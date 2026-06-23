@@ -1,0 +1,187 @@
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100svh;
+  width: 96px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+  padding: 24px 0;
+  border-right: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 38%),
+    radial-gradient(circle at 50% 100%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 38%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, var(--primitive-canvas) 100%);
+  color: var(--primitive-text-strong);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 16px, color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent) 16px 17px);
+  opacity: 0.7;
+}
+
+.sidebarStatic {
+  position: static;
+  height: auto;
+  min-height: 540px;
+}
+
+.brand {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.brand img {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  object-fit: contain;
+  padding: 6px;
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--primitive-text-strong) 18%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+}
+
+.wordmark {
+  font-family: var(--primitive-font-display);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  margin-top: 8px;
+}
+
+.nav {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 0 12px;
+  overflow-y: auto;
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-rows: 30px auto;
+  gap: 6px;
+  justify-items: center;
+  padding: 12px 6px;
+  border-radius: 14px;
+  color: color-mix(in oklab, var(--primitive-text-strong) 66%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid transparent;
+  transition: color 200ms ease, background 200ms ease, border-color 200ms ease;
+}
+
+.item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 999px;
+  background: transparent;
+  transition: background 200ms ease;
+}
+
+.item:hover {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.item:focus-visible {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: -2px;
+}
+
+.itemActive {
+  color: var(--primitive-text-on-accent);
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 38%, transparent);
+}
+
+.itemActive::before {
+  background: var(--primitive-red);
+  box-shadow: 0 0 14px color-mix(in oklab, var(--primitive-red) 60%, transparent);
+}
+
+.item svg {
+  width: 26px;
+  height: 26px;
+}
+
+.footer {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 0 12px;
+}
+
+.footerStatus {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-green);
+}
+
+.footerStatus svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footerYear {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  color: var(--primitive-muted);
+}
+
+:global(html[data-primitive-theme="light"]) .sidebar {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 38%),
+    radial-gradient(circle at 50% 100%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 38%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, var(--primitive-canvas) 100%);
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .wordmark {
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .item {
+  color: color-mix(in oklab, var(--primitive-text-strong) 66%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .item:hover,
+:global(html[data-primitive-theme="light"]) .item:focus-visible,
+:global(html[data-primitive-theme="light"]) .itemActive {
+  color: var(--primitive-text-strong);
+}

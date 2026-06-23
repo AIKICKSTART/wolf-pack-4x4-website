@@ -1,0 +1,182 @@
+.picker {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  font-family: var(--primitive-font-body);
+}
+
+.presets {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  align-content: start;
+  padding-right: 14px;
+  border-right: 1px solid var(--primitive-line);
+}
+
+.presets ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.presetButton {
+  width: 100%;
+  text-align: left;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: var(--primitive-surface-3);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-semibold);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease, transform 120ms ease;
+}
+
+.presetButton:hover,
+.presetButton:focus-visible {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+  background: var(--primitive-surface-hover);
+  outline: none;
+}
+
+.presetButton:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.presetButton:active {
+  transform: scale(0.98);
+}
+
+.presetButton[aria-pressed="true"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.summary {
+  margin-top: var(--primitive-space-2);
+  padding-top: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.summary p {
+  margin: var(--primitive-space-1-5) 0 0;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  line-height: var(--primitive-leading-normal);
+  letter-spacing: 0.02em;
+}
+
+.dual {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.dualHead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.dualHead strong {
+  text-align: center;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: var(--primitive-field-bg);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease, transform 120ms ease;
+}
+
+.nav:hover,
+.nav:focus-visible {
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-field-hover);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.nav:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.nav:active {
+  transform: scale(0.94);
+}
+
+.dualGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--primitive-space-3);
+}
+
+@media (max-width: 880px) {
+  .picker {
+    grid-template-columns: 1fr;
+  }
+
+  .presets {
+    padding-right: 0;
+    border-right: 0;
+    padding-bottom: var(--primitive-space-3);
+    border-bottom: 1px solid var(--primitive-line);
+  }
+
+  .presets ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dualGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .presetButton,
+  .nav {
+    transition: none;
+  }
+
+  .presetButton:active,
+  .nav:active {
+    transform: none;
+  }
+}

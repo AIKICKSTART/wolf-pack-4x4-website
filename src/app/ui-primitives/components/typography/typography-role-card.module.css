@@ -1,0 +1,177 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  min-height: 100%;
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-text-strong) 7%, transparent), transparent),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 7%, transparent);
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    border-color 180ms var(--primitive-ease-out),
+    box-shadow 180ms var(--primitive-ease-out),
+    transform 180ms var(--primitive-ease-out);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(120deg, transparent 12%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 58%),
+    repeating-linear-gradient(90deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 0 1px, transparent 1px 30px);
+  opacity: 0.38;
+  transform: translateX(-40%);
+  animation: role-card-scan 5.4s var(--primitive-ease-in-out) infinite alternate;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: auto 16px 14px;
+  height: 2px;
+  border-radius: var(--primitive-radius-pill);
+  background: linear-gradient(90deg, var(--primitive-red), var(--primitive-amber), var(--primitive-teal));
+  background-size: 180% 100%;
+  opacity: 0.74;
+  animation: role-card-meter 3.4s linear infinite;
+}
+
+.card:hover {
+  border-color: color-mix(in oklab, var(--primitive-red) 38%, var(--primitive-line));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    0 14px 30px color-mix(in oklab, var(--primitive-canvas) 24%, transparent);
+  transform: translateY(-2px);
+}
+
+.header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 0;
+}
+
+.header h3 {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-none);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.kicker {
+  flex: 0 0 auto;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.preview {
+  max-width: var(--role-preview-max, 24ch);
+  margin: 0;
+  font-family: var(--role-font-family);
+  font-size: var(--role-font-size);
+  font-weight: var(--role-font-weight);
+  line-height: var(--role-line-height);
+  letter-spacing: var(--role-letter-spacing);
+  text-transform: var(--role-transform);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: var(--role-numeric-variant, normal);
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.meta div {
+  display: grid;
+  grid-template-columns: minmax(78px, 0.32fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+  min-width: 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--primitive-line-muted);
+}
+
+.meta dt {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.meta dd {
+  min-width: 0;
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  line-height: var(--primitive-leading-snug);
+  color: var(--primitive-body);
+  overflow-wrap: anywhere;
+}
+
+.usage {
+  margin: 0;
+  padding-bottom: 8px;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+}
+
+@keyframes role-card-scan {
+  from {
+    transform: translateX(-40%);
+  }
+  to {
+    transform: translateX(18%);
+  }
+}
+
+@keyframes role-card-meter {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 180% 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    display: grid;
+  }
+
+  .meta div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card::before,
+  .card::after {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}

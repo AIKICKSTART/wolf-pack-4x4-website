@@ -1,0 +1,434 @@
+.page {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px) 80px;
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 84% 0%, color-mix(in oklab, var(--primitive-amber) 14%, transparent), transparent 36%),
+    radial-gradient(circle at 8% 100%, color-mix(in oklab, var(--primitive-teal) 14%, transparent), transparent 40%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+.canvas {
+  width: min(100%, 1320px);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--primitive-space-6);
+}
+
+.scene {
+  display: grid;
+  gap: 22px;
+  min-width: 0;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Header ------------------------------------------------------------- */
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-4);
+  padding: 18px var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 42%),
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.8%, transparent)),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    var(--primitive-shadow-soft);
+}
+
+/* Placeholder circular Torque avatar — real mascot lands later. */
+.avatar {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in oklab, var(--primitive-text-strong) 42%, transparent), transparent 46%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-red) 35%, var(--primitive-text-strong)),
+    0 12px 26px color-mix(in oklab, var(--primitive-red-dark) 45%, transparent);
+}
+
+.avatar::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--primitive-radius-pill);
+  background: radial-gradient(circle at 30% 30%,
+    color-mix(in oklab, var(--primitive-green) 60%, white),
+    var(--primitive-green) 55%,
+    color-mix(in oklab, var(--primitive-green) 60%, black) 100%);
+  border: 2px solid var(--primitive-canvas);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primitive-green) 60%, transparent);
+}
+
+.avatarInitial {
+  position: relative;
+  z-index: 1;
+  transform: translateY(1px);
+}
+
+.headMeta {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+  flex: 1 1 320px;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-green);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primitive-green) 70%, transparent);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: 400;
+  letter-spacing: 0.004em;
+  line-height: 1.04;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 78ch;
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+/* ---- Lane filter -------------------------------------------------------- */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+.controlsLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.lanes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.lane {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  padding: var(--primitive-space-2) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-control-surface);
+  color: var(--primitive-body);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.lane:hover,
+.lane:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.lane[data-selected="true"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  background: var(--primitive-control-active);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.laneLabel {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.laneHint {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.01em;
+}
+
+/* ---- Gallery + frames --------------------------------------------------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.frame {
+  display: grid;
+  gap: var(--primitive-space-3);
+  margin: 0;
+  min-width: 0;
+}
+
+.frameHead {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.frameIndex {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--primitive-red);
+}
+
+.frameCaption {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.frameReplay {
+  flex: none;
+  min-height: 30px;
+  padding: 0 var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.frameReplay:hover,
+.frameReplay:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  outline: none;
+}
+
+.viewport {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.8%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.viewportBar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 34px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, black 18%, transparent);
+}
+
+.viewportBar span {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-glass-strong);
+}
+
+.viewportBar span:first-child {
+  background: var(--primitive-red);
+}
+
+.viewportBar span:nth-child(2) {
+  background: var(--primitive-amber);
+}
+
+.viewportBar span:last-child {
+  background: var(--primitive-green);
+}
+
+.viewportBody {
+  padding: clamp(14px, 1.6vw, 22px);
+  min-width: 0;
+}
+
+.frameNote {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+/* ---- Demo action buttons (passed into the state primitives) ------------- */
+
+.action {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  border-radius: var(--primitive-btn-radius);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.action:hover,
+.action:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.actionPrimary {
+  border: 1px solid var(--primitive-red-dark);
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.actionPrimary:hover,
+.actionPrimary:focus-visible {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.actionGhost {
+  border: 1px solid var(--primitive-btn-secondary-border);
+  color: var(--primitive-btn-secondary-fg);
+  background: var(--primitive-btn-secondary-bg);
+}
+
+.actionGhost:hover,
+.actionGhost:focus-visible {
+  border-color: var(--primitive-red);
+}
+
+/* ---- Composition note --------------------------------------------------- */
+
+.note {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border-left: 2px solid var(--primitive-red);
+  border-radius: 0 var(--primitive-radius-lg) var(--primitive-radius-lg) 0;
+  background: var(--primitive-glass-soft);
+}
+
+.noteLabel {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.note p {
+  margin: 0;
+  max-width: 84ch;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+.note code {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--primitive-glass-strong);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+/* ---- Responsive --------------------------------------------------------- */
+
+@media (max-width: 1040px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lane,
+  .frameReplay,
+  .action {
+    transition: none;
+  }
+}

@@ -1,0 +1,179 @@
+/* EmailPreviewFrame — chrome around a transactional email preview. */
+
+.frame {
+  --email-preview-paper: #f4f2ee;
+  --email-preview-paper-dark: #0d0e15;
+
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: clamp(18px, 2.4vw, 28px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-5);
+  align-items: center;
+  padding: var(--primitive-space-3) var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-code-bg);
+}
+
+.meta {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.metaRow {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  min-width: 0;
+}
+
+.metaLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaValue {
+  font-size: 13px;
+  color: var(--primitive-code-fg);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.toggleGroup {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-recessed);
+}
+
+.toggleButton {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  cursor: pointer;
+  transition:
+    color var(--primitive-duration-fast) ease,
+    background var(--primitive-duration-fast) ease;
+}
+
+.toggleButton[aria-pressed="true"] {
+  color: var(--primitive-canvas);
+  background: var(--primitive-amber);
+}
+
+.toggleButton:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.sourceButton {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-recessed);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color var(--primitive-duration-fast) ease,
+    border-color var(--primitive-duration-fast) ease;
+}
+
+.sourceButton[aria-expanded="true"] {
+  color: var(--primitive-amber);
+  border-color: var(--primitive-amber);
+}
+
+.sourceButton:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.canvas {
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  overflow: hidden;
+  background: var(--email-preview-paper);
+  transition: background var(--primitive-duration-normal) ease;
+}
+
+.canvasDark {
+  background: var(--email-preview-paper-dark);
+}
+
+.canvasInner {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+.previewBody {
+  min-height: 880px;
+  overflow: auto;
+}
+
+.source {
+  display: block;
+  max-height: 320px;
+  overflow: auto;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-code-bg);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 720px) {
+  .bar {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    justify-content: space-between;
+  }
+}

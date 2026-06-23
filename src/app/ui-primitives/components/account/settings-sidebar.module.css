@@ -1,0 +1,160 @@
+.nav {
+  --nav-glaze: linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 0.5%, transparent));
+  --nav-top-light: color-mix(in oklab, var(--primitive-text-on-accent) 8%, transparent);
+
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: var(--primitive-space-5) var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    var(--nav-glaze),
+    var(--primitive-panel);
+  backdrop-filter: blur(18px) saturate(1.08);
+  box-shadow: inset 0 1px 0 var(--nav-top-light), var(--primitive-card-shadow);
+  min-width: 0;
+}
+
+:global(html[data-primitive-theme="light"]) .nav {
+  --nav-glaze: linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 60%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 8%, transparent));
+  --nav-top-light: color-mix(in oklab, var(--primitive-text-on-accent) 80%, transparent);
+}
+
+.group {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.groupTitle {
+  padding: 0 var(--primitive-space-2-5) var(--primitive-space-1);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  list-style: none;
+}
+
+.link {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  min-height: 44px;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid transparent;
+  border-radius: var(--primitive-radius-md);
+  color: var(--primitive-body);
+  text-decoration: none;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line);
+  background: var(--primitive-field-bg);
+  transform: translateX(2px);
+}
+
+.link:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.linkActive {
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  background: var(--primitive-nav-active-surface);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.linkActive:hover,
+.linkActive:focus-visible {
+  transform: none;
+}
+
+.linkDanger.linkActive {
+  border-color: color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 70%),
+    var(--primitive-field-bg);
+}
+
+.linkDanger {
+  color: color-mix(in oklab, var(--primitive-red) 78%, var(--primitive-body));
+}
+
+.linkDanger .iconWrap {
+  color: var(--primitive-red);
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-amber);
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.linkActive .iconWrap {
+  background: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  color: var(--primitive-red);
+}
+
+.linkText {
+  display: grid;
+  gap: var(--primitive-space-px);
+  min-width: 0;
+}
+
+.label {
+  display: block;
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+.description {
+  display: block;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .iconWrap {
+    transition: none;
+    transform: none;
+  }
+  .link:hover,
+  .link:focus-visible {
+    transform: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .nav {
+    padding: var(--primitive-space-3);
+  }
+}

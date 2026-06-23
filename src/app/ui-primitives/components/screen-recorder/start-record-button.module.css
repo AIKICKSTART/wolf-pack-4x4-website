@@ -1,0 +1,164 @@
+.wrap {
+  position: relative;
+  display: inline-grid;
+  justify-items: center;
+  gap: var(--primitive-space-3);
+  padding: 18px;
+}
+
+.button {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  padding: 0;
+  border: none;
+  border-radius: var(--primitive-radius-round);
+  background: transparent;
+  cursor: pointer;
+  isolation: isolate;
+  outline: none;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--primitive-radius-round);
+  border: 2px solid var(--primitive-line);
+  background:
+    radial-gradient(circle at 50% 36%, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent), transparent 56%),
+    var(--primitive-panel-strong);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 16%, transparent),
+    var(--primitive-shadow-deep);
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity var(--primitive-duration-normal) ease, transform var(--primitive-duration-normal) ease;
+}
+
+.core {
+  position: absolute;
+  inset: 14px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle at 50% 30%, color-mix(in oklab, var(--primitive-text-strong) 32%, transparent), transparent 54%),
+    var(--primitive-red);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 40%, transparent),
+    0 18px 32px color-mix(in oklab, var(--primitive-red) 38%, transparent);
+  transition: border-radius 200ms ease, background 200ms ease;
+}
+
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-on-accent);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-text-strong) 14%, transparent);
+}
+
+.square {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-text-on-accent);
+}
+
+.caption {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  text-align: center;
+}
+
+.button:hover .ring,
+.button:focus-visible .ring {
+  border-color: var(--primitive-red);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 18%, transparent),
+    0 26px 54px color-mix(in oklab, var(--primitive-red) 35%, transparent);
+}
+
+.state-arming .ring {
+  border-color: var(--primitive-amber);
+  animation: arm 1.4s linear infinite;
+}
+
+.state-arming .core {
+  background:
+    radial-gradient(circle at 50% 30%, color-mix(in oklab, var(--primitive-text-strong) 32%, transparent), transparent 54%),
+    var(--primitive-amber);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 40%, transparent),
+    0 18px 32px color-mix(in oklab, var(--primitive-amber) 38%, transparent);
+}
+
+.state-recording .pulse {
+  opacity: 1;
+  animation: pulse 1.4s ease-out infinite;
+}
+
+.state-recording .core {
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 30%, color-mix(in oklab, var(--primitive-text-strong) 28%, transparent), transparent 54%),
+    var(--primitive-red);
+}
+
+.state-countdown .ring {
+  border-color: var(--primitive-amber);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 16%, transparent),
+    0 26px 54px color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+}
+
+.countdown {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.countdownDigit {
+  font-family: var(--primitive-font-display);
+  font-size: 84px;
+  line-height: var(--primitive-leading-none);
+  color: var(--primitive-text-on-accent);
+  letter-spacing: -0.04em;
+  text-shadow: 0 8px 28px color-mix(in oklab, var(--primitive-overlay) 60%, transparent);
+}
+
+.countdownLabel {
+  position: absolute;
+  bottom: 26px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 78%, transparent);
+}
+
+@keyframes arm {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.9; transform: scale(0.94); }
+  100% { opacity: 0; transform: scale(1.18); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring, .core, .pulse { transition: none; animation: none !important; }
+}

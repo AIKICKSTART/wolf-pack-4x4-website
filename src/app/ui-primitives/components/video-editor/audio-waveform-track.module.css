@@ -1,0 +1,102 @@
+.wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 84px;
+  align-items: stretch;
+  gap: 8px;
+  height: 100%;
+}
+
+.waveformArea {
+  position: relative;
+  height: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--primitive-amber);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 6%, transparent), transparent 40%),
+    var(--primitive-panel);
+  overflow: hidden;
+}
+
+.bars {
+  position: absolute;
+  inset: 12% 6%;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.bar {
+  flex: 1 1 0;
+  min-width: 2px;
+  border-radius: 1px;
+  background: linear-gradient(180deg, var(--primitive-amber), color-mix(in oklab, var(--primitive-amber) 42%, transparent));
+  align-self: center;
+}
+
+.selection {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 18%, transparent), color-mix(in oklab, var(--primitive-teal) 6%, transparent)),
+    color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+  border-left: 1px solid var(--primitive-teal);
+  border-right: 1px solid var(--primitive-teal);
+  pointer-events: none;
+}
+
+.name {
+  position: absolute;
+  left: 8px;
+  bottom: 4px;
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 1px 0 color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+}
+
+.meter {
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+}
+
+.meterChannel {
+  position: relative;
+  height: 8px;
+  border-radius: 4px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  overflow: hidden;
+}
+
+.meterFill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--primitive-green) 0%,
+    var(--primitive-green) 60%,
+    var(--primitive-amber) 80%,
+    var(--primitive-red) 100%
+  );
+}
+
+.meterLabel {
+  position: absolute;
+  right: 4px;
+  top: -10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 8px;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  color: var(--primitive-muted);
+}

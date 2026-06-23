@@ -1,0 +1,100 @@
+.wrap {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-control-surface);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.stack {
+  display: flex;
+  height: 36px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+  isolation: isolate;
+}
+
+.segment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--primitive-space-2-5);
+  color: color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: width var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.segmentLabel {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-shadow: 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+}
+
+.totalRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.sliderList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.sliderRow {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.sliderLabel {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.sliderValue {
+  color: var(--primitive-text-strong);
+}
+
+.slider {
+  width: 100%;
+  accent-color: var(--primitive-teal);
+}
+
+.picker {
+  border-top: 1px dashed var(--primitive-line);
+  padding-top: var(--primitive-space-3);
+}
+
+.picker summary {
+  cursor: pointer;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  margin-bottom: var(--primitive-space-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .segment {
+    transition: none;
+  }
+}

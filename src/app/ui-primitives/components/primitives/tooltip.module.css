@@ -1,0 +1,195 @@
+.root {
+  /* Distance the bubble sits off the trigger edge, plus the slide-in offset. */
+  --tooltip-gap: var(--primitive-space-2);
+  --tooltip-shift: var(--primitive-space-1);
+  --tooltip-delay: 0ms;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* --- The reveal container (positioned, no paint of its own) --- */
+.bubble {
+  position: absolute;
+  z-index: 60;
+  display: flex;
+  pointer-events: none;
+  opacity: 0;
+  /* Compositor-only properties; per-placement translate set below. */
+  transition:
+    opacity var(--primitive-duration-fast) var(--primitive-ease-out),
+    transform var(--primitive-duration-normal) var(--primitive-ease-out),
+    visibility 0s linear var(--primitive-duration-fast);
+  visibility: hidden;
+}
+
+/* --- The visible chip --- */
+.surface {
+  position: relative;
+  max-width: 16rem;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-panel-strong);
+  border: 1px solid var(--primitive-line-strong);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    var(--primitive-surface-shadow);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-medium);
+  line-height: var(--primitive-leading-normal);
+  letter-spacing: var(--primitive-tracking-normal);
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+  white-space: normal;
+  backdrop-filter: blur(12px) saturate(1.15);
+  -webkit-backdrop-filter: blur(12px) saturate(1.15);
+  isolation: isolate;
+}
+
+/* --- Arrow: a rotated square clipped to a triangle, tucked under the chip --- */
+.arrow {
+  position: absolute;
+  width: var(--primitive-space-2);
+  height: var(--primitive-space-2);
+  background: var(--primitive-panel-strong);
+  border-right: 1px solid var(--primitive-line-strong);
+  border-bottom: 1px solid var(--primitive-line-strong);
+}
+
+/* ============================================================= */
+/* Reveal — hover OR keyboard focus on the trigger                */
+/* ============================================================= */
+.root:hover > .bubble,
+.root:focus-within > .bubble {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity var(--primitive-duration-fast) var(--primitive-ease-out) var(--tooltip-delay),
+    transform var(--primitive-duration-normal) var(--primitive-ease-out) var(--tooltip-delay),
+    visibility 0s;
+  transform: translate(var(--tooltip-rest-x, 0), var(--tooltip-rest-y, 0));
+}
+
+/* ============================================================= */
+/* Placement: position, slide origin, rest transform, arrow seat  */
+/* ============================================================= */
+
+/* top (default) */
+.top > .bubble {
+  bottom: 100%;
+  left: 50%;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: var(--tooltip-gap);
+  --tooltip-rest-x: -50%;
+  --tooltip-rest-y: 0;
+  transform: translate(-50%, var(--tooltip-shift));
+}
+.top .arrow {
+  bottom: calc(var(--tooltip-gap) - var(--primitive-space-1));
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* bottom */
+.bottom > .bubble {
+  top: 100%;
+  left: 50%;
+  flex-direction: column-reverse;
+  align-items: center;
+  padding-top: var(--tooltip-gap);
+  --tooltip-rest-x: -50%;
+  --tooltip-rest-y: 0;
+  transform: translate(-50%, calc(-1 * var(--tooltip-shift)));
+}
+.bottom .arrow {
+  top: calc(var(--tooltip-gap) - var(--primitive-space-1));
+  left: 50%;
+  transform: translateX(-50%) rotate(225deg);
+}
+
+/* left */
+.left > .bubble {
+  right: 100%;
+  top: 50%;
+  flex-direction: row;
+  align-items: center;
+  padding-right: var(--tooltip-gap);
+  --tooltip-rest-x: 0;
+  --tooltip-rest-y: -50%;
+  transform: translate(var(--tooltip-shift), -50%);
+}
+.left .arrow {
+  right: calc(var(--tooltip-gap) - var(--primitive-space-1));
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* right */
+.right > .bubble {
+  left: 100%;
+  top: 50%;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding-left: var(--tooltip-gap);
+  --tooltip-rest-x: 0;
+  --tooltip-rest-y: -50%;
+  transform: translate(calc(-1 * var(--tooltip-shift)), -50%);
+}
+.right .arrow {
+  left: calc(var(--tooltip-gap) - var(--primitive-space-1));
+  top: 50%;
+  transform: translateY(-50%) rotate(135deg);
+}
+
+/* ============================================================= */
+/* Light theme — crisp edge + lifted shadow to match house feel  */
+/* ============================================================= */
+:global(html[data-primitive-theme="light"]) .surface {
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--primitive-text-on-accent) 96%, transparent),
+      color-mix(in srgb, var(--primitive-panel-strong) 70%, transparent)
+    ),
+    var(--primitive-panel-strong);
+  border-color: color-mix(in srgb, var(--primitive-text-strong) 16%, transparent);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent),
+    0 18px 36px color-mix(in srgb, var(--primitive-body) 18%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--primitive-text-on-accent) 70%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .arrow {
+  background: var(--primitive-text-on-accent);
+  border-color: color-mix(in srgb, var(--primitive-text-strong) 16%, transparent);
+}
+
+/* ============================================================= */
+/* Reduced motion — reveal instantly, no slide                    */
+/* ============================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .bubble {
+    transition:
+      opacity var(--primitive-duration-fast) linear,
+      visibility 0s linear var(--primitive-duration-fast);
+    transform: none;
+  }
+  .top > .bubble,
+  .bottom > .bubble,
+  .left > .bubble,
+  .right > .bubble {
+    transform: translate(var(--tooltip-rest-x, 0), var(--tooltip-rest-y, 0));
+  }
+  .root:hover > .bubble,
+  .root:focus-within > .bubble {
+    transition:
+      opacity var(--primitive-duration-fast) linear var(--tooltip-delay),
+      visibility 0s;
+    transform: translate(var(--tooltip-rest-x, 0), var(--tooltip-rest-y, 0));
+  }
+}

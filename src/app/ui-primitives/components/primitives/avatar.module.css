@@ -1,0 +1,199 @@
+.avatar {
+  --avatar-bg: var(--primitive-control-surface);
+  --avatar-stroke: var(--primitive-line-strong);
+  --avatar-ink: var(--primitive-body);
+  --avatar-glow: color-mix(in srgb, var(--primitive-teal) 0%, transparent);
+  --avatar-shadow: var(--primitive-shadow-outline);
+  --avatar-size: 40px;
+  --avatar-radius: 12px;
+  --avatar-status: 10px;
+  --avatar-font: 14px;
+
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: var(--avatar-radius);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--avatar-font);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--avatar-ink);
+  background: var(--avatar-bg);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    inset 0 0 0 1px var(--avatar-stroke),
+    0 12px 28px var(--avatar-shadow),
+    0 0 0 0 var(--avatar-glow);
+  isolation: isolate;
+  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 220ms ease;
+}
+
+.avatar:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    inset 0 0 0 1px var(--avatar-stroke),
+    0 18px 36px var(--avatar-shadow),
+    0 0 18px var(--avatar-glow);
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.initials {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, var(--primitive-text-strong), var(--avatar-ink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.statusDot {
+  position: absolute;
+  right: -3px;
+  bottom: -3px;
+  width: var(--avatar-status);
+  height: var(--avatar-status);
+  border-radius: var(--primitive-radius-pill);
+  border: 2px solid var(--primitive-canvas);
+  z-index: 2;
+  box-shadow: 0 0 0 1px var(--primitive-shadow-outline);
+}
+
+/* sizes */
+.sizeSm {
+  --avatar-size: 28px;
+  --avatar-radius: 8px;
+  --avatar-status: 8px;
+  --avatar-font: 10px;
+}
+
+.sizeMd {
+  --avatar-size: 40px;
+  --avatar-radius: 12px;
+  --avatar-status: 10px;
+  --avatar-font: 14px;
+}
+
+.sizeLg {
+  --avatar-size: 56px;
+  --avatar-radius: 14px;
+  --avatar-status: 12px;
+  --avatar-font: 18px;
+}
+
+.sizeXl {
+  --avatar-size: 80px;
+  --avatar-radius: 18px;
+  --avatar-status: 14px;
+  --avatar-font: 26px;
+}
+
+/* tones */
+.toneRed {
+  --avatar-bg: linear-gradient(135deg, color-mix(in srgb, var(--primitive-red) 88%, transparent), color-mix(in oklab, var(--primitive-red-dark) 82%, var(--primitive-canvas)));
+  --avatar-stroke: color-mix(in srgb, var(--primitive-red) 40%, transparent);
+  --avatar-glow: color-mix(in srgb, var(--primitive-red) 40%, transparent);
+}
+
+.toneAmber {
+  --avatar-bg: linear-gradient(135deg, color-mix(in srgb, var(--primitive-amber) 92%, transparent), color-mix(in oklab, var(--primitive-amber) 60%, var(--primitive-canvas)));
+  --avatar-stroke: color-mix(in srgb, var(--primitive-amber) 45%, transparent);
+  --avatar-glow: color-mix(in srgb, var(--primitive-amber) 35%, transparent);
+}
+
+.toneTeal {
+  --avatar-bg: linear-gradient(135deg, color-mix(in srgb, var(--primitive-teal) 92%, transparent), color-mix(in oklab, var(--primitive-teal) 58%, var(--primitive-canvas)));
+  --avatar-stroke: color-mix(in srgb, var(--primitive-teal) 40%, transparent);
+  --avatar-glow: color-mix(in srgb, var(--primitive-teal) 40%, transparent);
+}
+
+.toneGreen {
+  --avatar-bg: linear-gradient(135deg, color-mix(in srgb, var(--primitive-green) 90%, transparent), color-mix(in oklab, var(--primitive-green) 56%, var(--primitive-canvas)));
+  --avatar-stroke: color-mix(in srgb, var(--primitive-green) 40%, transparent);
+  --avatar-glow: color-mix(in srgb, var(--primitive-green) 36%, transparent);
+}
+
+.toneObsidian {
+  --avatar-bg: var(--primitive-control-surface);
+  --avatar-stroke: var(--primitive-line-strong);
+  --avatar-glow: var(--primitive-line-muted);
+}
+
+/* statuses */
+.statusOnline {
+  background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-green) 64%, white), var(--primitive-green) 50%, color-mix(in oklab, var(--primitive-green) 58%, black) 100%);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--primitive-green) 70%, transparent), 0 0 0 2px var(--primitive-canvas);
+}
+
+.statusAway {
+  background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-amber) 70%, white), var(--primitive-amber) 50%, color-mix(in oklab, var(--primitive-amber) 56%, black) 100%);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--primitive-amber) 70%, transparent), 0 0 0 2px var(--primitive-canvas);
+}
+
+.statusBusy {
+  background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-red) 58%, white), var(--primitive-red) 55%, color-mix(in oklab, var(--primitive-red) 60%, black) 100%);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--primitive-red) 70%, transparent), 0 0 0 2px var(--primitive-canvas);
+}
+
+.statusOffline {
+  background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-muted) 70%, var(--primitive-canvas)), color-mix(in oklab, var(--primitive-muted) 40%, var(--primitive-canvas)) 60%, var(--primitive-canvas) 100%);
+  box-shadow: 0 0 0 2px var(--primitive-canvas);
+}
+
+:global(html[data-primitive-theme="light"]) .avatar {
+  --avatar-bg: linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 94%, transparent), color-mix(in srgb, var(--primitive-panel-strong) 84%, transparent));
+  --avatar-stroke: color-mix(in srgb, var(--primitive-text-strong) 16%, transparent);
+  --avatar-ink: var(--primitive-text-strong);
+  --avatar-shadow: color-mix(in srgb, var(--primitive-body) 14%, transparent);
+
+  box-shadow:
+    inset 1px 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 88%, transparent),
+    inset 0 0 0 1px var(--avatar-stroke),
+    0 12px 24px var(--avatar-shadow),
+    0 0 0 0 var(--avatar-glow);
+}
+
+:global(html[data-primitive-theme="light"]) .avatar:hover {
+  box-shadow:
+    inset 1px 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent),
+    inset 0 0 0 1px var(--avatar-stroke),
+    0 18px 32px color-mix(in srgb, var(--primitive-body) 18%, transparent),
+    0 0 16px var(--avatar-glow);
+}
+
+:global(html[data-primitive-theme="light"]) .initials {
+  background: linear-gradient(180deg, var(--primitive-text-strong), var(--avatar-ink));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+:global(html[data-primitive-theme="light"]) .statusDot {
+  border-color: var(--primitive-panel-strong);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--primitive-text-strong) 16%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .statusOffline {
+  background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-muted) 24%, var(--primitive-panel-strong)), var(--primitive-muted) 60%, color-mix(in oklab, var(--primitive-muted) 78%, black) 100%);
+  box-shadow: 0 0 0 2px var(--primitive-panel-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar,
+  .avatar:hover {
+    transition: none;
+    transform: none;
+  }
+}

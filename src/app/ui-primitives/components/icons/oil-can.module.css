@@ -1,0 +1,46 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.body { fill: currentColor; opacity: 0.4; }
+.bodyStroke { stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.bodyTop { fill: currentColor; opacity: 0.65; stroke: currentColor; stroke-width: 1.1; }
+.spout { fill: currentColor; opacity: 0.75; }
+.spoutNeck { fill: currentColor; opacity: 0.85; stroke: currentColor; stroke-width: 1; stroke-linejoin: round; }
+.spoutLine { stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.spoutTip { fill: currentColor; opacity: 0.95; stroke: currentColor; stroke-width: 0.9; stroke-linejoin: round; }
+.drop { fill: currentColor; opacity: 0; animation: oilDrop 1.6s ease-in infinite; }
+.drop[data-d="2"] { animation-delay: 0.6s; }
+.drop[data-d="3"] { animation-delay: 1.1s; }
+.handle { stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.tick { stroke: currentColor; opacity: 0.4; }
+
+@keyframes oilDrop {
+  0% { opacity: 0; transform: translate(0, -2px) scale(0.4); }
+  20% { opacity: 1; transform: translate(0, -1px) scale(1); }
+  100% { opacity: 0; transform: translate(2px, 6px) scale(0.8); }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .bodyStroke, .motionDraw .handle, .motionDraw .spoutLine { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .drop { animation-duration: 0.4s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .body { fill: transparent; }
+[data-variant="outline"] .bodyTop { fill: transparent; opacity: 1; }
+[data-variant="outline"] .spoutNeck { fill: transparent; opacity: 1; }
+[data-variant="outline"] .spoutTip { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .body { opacity: 0.9; }
+[data-variant="filled"] .bodyTop { opacity: 0.95; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .drop { animation: none !important; transition: none !important; }
+}

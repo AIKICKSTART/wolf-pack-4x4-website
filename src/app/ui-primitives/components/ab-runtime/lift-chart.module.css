@@ -1,0 +1,120 @@
+.wrap {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-control-surface);
+  box-shadow: var(--primitive-surface-shadow);
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.headText {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: var(--primitive-space-0);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.legendSwatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--primitive-radius-xs);
+}
+
+.legendBand {
+  display: inline-block;
+  width: 14px;
+  height: 8px;
+  border-radius: var(--primitive-radius-xs);
+  background: color-mix(in srgb, var(--primitive-teal) 30%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--primitive-teal) 50%, transparent);
+}
+
+.chartSlot {
+  position: relative;
+  width: 100%;
+}
+
+.chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gridLine {
+  stroke: var(--primitive-line);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+  opacity: 0.6;
+}
+
+.zeroLine {
+  stroke: var(--primitive-line-strong);
+  stroke-width: 1;
+}
+
+.axisLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  fill: var(--primitive-muted);
+  letter-spacing: 0.05em;
+}
+
+.lift {
+  fill: none;
+  stroke: var(--primitive-teal);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.band {
+  fill: color-mix(in srgb, var(--primitive-teal) 18%, transparent);
+}
+
+.marker {
+  fill: var(--primitive-teal);
+}

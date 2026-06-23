@@ -1,0 +1,194 @@
+.panel {
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 16px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+  font-variant-numeric: tabular-nums;
+  min-width: 280px;
+}
+
+.head {
+  display: grid;
+  gap: 6px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--primitive-line);
+  position: relative;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  color: var(--primitive-text-strong);
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+.clear {
+  position: absolute;
+  top: 0;
+  right: 0;
+  appearance: none;
+  background: var(--primitive-field-bg);
+  border: 1px solid var(--primitive-line);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.clear:hover,
+.clear:focus-visible {
+  border-color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  outline: none;
+}
+
+.section {
+  display: grid;
+  gap: 8px;
+}
+
+.sectionLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.dateRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.dateField,
+.numericField,
+.textField {
+  display: grid;
+  gap: 4px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.dateField input,
+.numericField input,
+.textField input {
+  appearance: none;
+  background: var(--primitive-field-bg);
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  font-variant-numeric: tabular-nums;
+  color-scheme: dark;
+}
+
+.dateField input:focus-visible,
+.numericField input:focus-visible,
+.textField input:focus-visible,
+.select:focus-visible {
+  outline: none;
+  border-color: var(--primitive-teal);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.select {
+  appearance: none;
+  background: var(--primitive-field-bg);
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  padding: 8px 32px 8px 10px;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: 13px;
+  background-image: linear-gradient(45deg, transparent 50%, var(--primitive-muted) 50%),
+    linear-gradient(135deg, var(--primitive-muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) calc(50% - 2px), calc(100% - 12px) calc(50% - 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.numericRow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 8px;
+}
+
+.dash {
+  padding-bottom: 12px;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+}
+
+.chipGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  appearance: none;
+  background: var(--primitive-field-bg);
+  border: 1px solid var(--primitive-line);
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.chip:hover,
+.chip:focus-visible {
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-surface-hover);
+  outline: none;
+}
+
+.chipOn {
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  border-color: var(--primitive-teal);
+  color: var(--primitive-text-strong);
+}
+
+.textGrid {
+  display: grid;
+  gap: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .clear,
+  .dateField input,
+  .numericField input,
+  .textField input {
+    transition: none;
+  }
+}

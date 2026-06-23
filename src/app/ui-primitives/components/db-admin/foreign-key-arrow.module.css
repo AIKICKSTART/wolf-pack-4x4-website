@@ -1,0 +1,97 @@
+.arrow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    var(--primitive-surface-1);
+}
+
+.endpoint {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  background: var(--primitive-code-bg);
+  text-align: center;
+}
+
+.endpointLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.endpointName {
+  font-family: var(--primitive-font-mono);
+  font-size: 13px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+}
+
+.endpointName em {
+  font-style: normal;
+  color: var(--primitive-teal);
+}
+
+.connector {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 120px;
+  padding: 0 12px;
+}
+
+.line {
+  width: 100%;
+}
+
+.chips {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.chipKey {
+  color: var(--primitive-muted);
+  opacity: 0.7;
+}
+
+.actionCascade { color: color-mix(in oklab, var(--primitive-red) 62%, white); border-color: color-mix(in oklab, var(--primitive-red) 40%, transparent); background: color-mix(in oklab, var(--primitive-red) 8%, transparent); }
+.actionRestrict { color: var(--primitive-amber); border-color: color-mix(in oklab, var(--primitive-amber) 40%, transparent); background: color-mix(in oklab, var(--primitive-amber) 8%, transparent); }
+.actionNoAction { color: var(--primitive-muted); }
+.actionSetNull { color: var(--primitive-teal); border-color: color-mix(in oklab, var(--primitive-teal) 40%, transparent); background: color-mix(in oklab, var(--primitive-teal) 8%, transparent); }
+.actionSetDefault { color: var(--primitive-green); border-color: color-mix(in oklab, var(--primitive-green) 40%, transparent); background: color-mix(in oklab, var(--primitive-green) 8%, transparent); }
+
+@media (max-width: 720px) {
+  .arrow {
+    grid-template-columns: 1fr;
+  }
+  .connector {
+    transform: rotate(90deg);
+  }
+}

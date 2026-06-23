@@ -1,0 +1,198 @@
+.panel {
+  display: grid;
+  gap: 16px;
+}
+
+.currentSha {
+  font-family: var(--primitive-font-mono);
+  background: color-mix(in srgb, var(--primitive-text-strong) 4%, transparent);
+  border: 1px solid var(--primitive-line);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 11.5px;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: contents;
+}
+
+.revision {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--primitive-text-strong) 2%, transparent);
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.revision:hover {
+  border-color: color-mix(in srgb, var(--dc-tone) 35%, var(--primitive-line));
+  background: color-mix(in srgb, var(--dc-tone) 4%, color-mix(in srgb, var(--primitive-text-strong) 2.2%, transparent));
+}
+
+.revisionSelected {
+  border-color: color-mix(in srgb, var(--dc-tone) 55%, var(--primitive-line));
+  background: color-mix(in srgb, var(--dc-tone) 10%, color-mix(in srgb, var(--primitive-text-strong) 2.2%, transparent));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--dc-tone) 35%, transparent);
+}
+
+.revisionCurrent {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.revision:focus-within {
+  outline: 2px solid color-mix(in srgb, var(--dc-tone) 60%, transparent);
+  outline-offset: 2px;
+}
+
+.revisionDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--dc-tone) 50%, transparent);
+  background: color-mix(in srgb, var(--primitive-text-strong) 2%, transparent);
+}
+
+.revisionSelected .revisionDot {
+  border-color: var(--dc-tone);
+  background: var(--dc-tone);
+  box-shadow: inset 0 0 0 2px var(--primitive-code-bg);
+}
+
+.revisionBody {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.revisionTopRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sha {
+  font-family: var(--primitive-font-mono);
+  font-size: 12.5px;
+  color: var(--primitive-text-strong);
+  background: var(--primitive-glass-soft);
+  border: 1px solid var(--primitive-line);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.message {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.meta {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.diff {
+  display: grid;
+  gap: 2px;
+  text-align: right;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.diffAdded {
+  color: var(--primitive-green);
+}
+
+.diffRemoved {
+  color: var(--primitive-red);
+}
+
+.diffFiles {
+  color: var(--primitive-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 10.5px;
+}
+
+.foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: end;
+  padding-top: 12px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.preview {
+  display: grid;
+  gap: 8px;
+}
+
+.diffPreview {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  background: var(--primitive-recessed);
+  color: color-mix(in srgb, var(--primitive-body) 89%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 11.5px;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 720px) {
+  .foot {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,161 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 30%),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.headLeft {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.jurisdiction {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid currentColor;
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.statusPending {
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+}
+
+.statusActive {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+}
+
+.statusExpired {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+}
+
+.certBlock {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border: 1px dashed var(--primitive-line-strong);
+  border-radius: 10px;
+}
+
+.certIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 56px;
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 10%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.certInfo {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.certName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.certMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.uploadBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  background: transparent;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.uploadBtn:hover {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-amber);
+}
+
+.uploadBtn:focus-within {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 2px;
+}
+
+.fileInput {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uploadBtn {
+    transition: none;
+  }
+}

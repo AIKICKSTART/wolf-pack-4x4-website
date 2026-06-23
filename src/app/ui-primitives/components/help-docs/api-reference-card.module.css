@@ -1,0 +1,173 @@
+.card {
+  display: grid;
+  gap: 18px;
+  padding: clamp(22px, 2.4vw, 30px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-panel);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--primitive-space-3) 14px;
+  align-items: center;
+}
+
+.method {
+  display: inline-grid;
+  place-items: center;
+  height: 32px;
+  padding: 0 var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: var(--primitive-tracking-wider);
+  color: var(--primitive-text-on-accent);
+  text-transform: uppercase;
+}
+
+.methodGet {
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--primitive-teal) 78%, black),
+    color-mix(in oklab, var(--primitive-teal) 42%, black));
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 55%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 25%, transparent);
+}
+
+.methodPost {
+  background: linear-gradient(180deg, var(--primitive-red), var(--primitive-red-dark));
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 30%, transparent);
+}
+
+.methodPatch {
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--primitive-amber) 88%, black),
+    color-mix(in oklab, var(--primitive-amber) 52%, black));
+  color: color-mix(in oklab, var(--primitive-amber) 18%, black);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+}
+
+.methodPut {
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--primitive-teal) 50%, var(--primitive-red)),
+    color-mix(in oklab, color-mix(in oklab, var(--primitive-teal) 50%, var(--primitive-red)) 50%, black));
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 50%, var(--primitive-red));
+}
+
+.methodDelete {
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--primitive-red) 80%, var(--primitive-amber)),
+    color-mix(in oklab, var(--primitive-red-dark) 70%, black));
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 65%, var(--primitive-amber));
+}
+
+.path {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-md);
+  letter-spacing: 0.01em;
+  overflow-wrap: anywhere;
+}
+
+.description {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.section {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+}
+
+.table {
+  display: grid;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  overflow: hidden;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr 0.6fr 2fr;
+}
+
+.row + .row {
+  border-top: 1px solid var(--primitive-line);
+}
+
+.row span[role="columnheader"],
+.row code[role="cell"],
+.row span[role="cell"] {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-right: 1px solid var(--primitive-line);
+  font-size: var(--primitive-text-xs);
+}
+
+.row [role="columnheader"]:last-child,
+.row [role="cell"]:last-child {
+  border-right: 0;
+}
+
+.row span[role="columnheader"] {
+  color: var(--primitive-muted);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.paramName {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.paramType {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+}
+
+.paramRequired {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.paramDesc {
+  color: var(--primitive-body);
+}
+
+@media (max-width: 760px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .row span[role="columnheader"] {
+    display: none;
+  }
+  .row span[role="cell"],
+  .row code[role="cell"] {
+    border-right: 0;
+    border-bottom: 1px dashed var(--primitive-line-muted);
+  }
+}

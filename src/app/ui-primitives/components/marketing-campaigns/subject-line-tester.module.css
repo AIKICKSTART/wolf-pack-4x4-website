@@ -1,0 +1,163 @@
+.wrapper {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(120% 80% at 0% 100%, color-mix(in oklab, var(--primitive-green) 8%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 84%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.charCount {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-teal);
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.input {
+  appearance: none;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+  padding: 14px var(--primitive-space-4);
+  font-family: inherit;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-semibold);
+  border-radius: var(--primitive-radius-md);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primitive-teal);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.scoreRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.suggestButton {
+  appearance: none;
+  border: 0;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  padding: var(--primitive-space-2-5) 14px;
+  border-radius: var(--primitive-btn-radius);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  justify-self: start;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.suggestButton:hover {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.dialog {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-4);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-amber) 6%, var(--primitive-canvas));
+}
+
+.dialogHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.dialogClose {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--primitive-amber);
+  cursor: pointer;
+  border-radius: var(--primitive-radius-round);
+  padding: var(--primitive-space-1);
+}
+
+.dialogClose:hover {
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.suggestList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.suggestItem {
+  appearance: none;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: inherit;
+  font-size: 14px;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) ease, background var(--primitive-duration-fast) ease;
+}
+
+.suggestItem:hover {
+  border-color: color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .suggestButton,
+  .suggestItem {
+    transition: none;
+  }
+}

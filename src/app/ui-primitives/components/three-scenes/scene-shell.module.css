@@ -1,0 +1,1428 @@
+.shell {
+  position: relative;
+  display: grid;
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, white 4.5%, transparent), color-mix(in oklab, white 0.5%, transparent)),
+    var(--primitive-panel);
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 5%, transparent),
+    0 24px 60px color-mix(in oklab, black 28%, transparent);
+  isolation: isolate;
+}
+
+.shell figcaption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+.canvasWrap {
+  --primitive-line: color-mix(in oklab, white 13%, transparent);
+  --primitive-line-muted: color-mix(in oklab, white 8%, transparent);
+  --primitive-line-strong: color-mix(in oklab, white 24%, transparent);
+  --primitive-field-bg: color-mix(in oklab, var(--primitive-canvas) 84%, color-mix(in oklab, var(--primitive-teal) 30%, transparent));
+  --primitive-field-hover: color-mix(in oklab, var(--primitive-canvas) 78%, color-mix(in oklab, var(--primitive-teal) 36%, transparent));
+  --primitive-panel-strong: color-mix(in oklab, var(--primitive-canvas) 94%, transparent);
+  --primitive-control-active: linear-gradient(180deg, color-mix(in oklab, white 8%, transparent), color-mix(in oklab, white 2%, transparent));
+  --primitive-control-surface: linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 95%, white 26%), color-mix(in oklab, var(--primitive-canvas) 95%, white 6%));
+
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 320px;
+  background:
+    linear-gradient(90deg, color-mix(in oklab, white 3.5%, transparent) 1px, transparent 1px) 50% 50% / 76px 76px,
+    linear-gradient(0deg, color-mix(in oklab, white 2.6%, transparent) 1px, transparent 1px) 50% 50% / 76px 76px,
+    radial-gradient(circle at 18% 16%, color-mix(in oklab, var(--primitive-teal) 20%, transparent), transparent 32%),
+    radial-gradient(circle at 82% 18%, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 34%),
+    radial-gradient(circle at 50% 110%, color-mix(in oklab, var(--primitive-amber) 14%, transparent), transparent 42%),
+    var(--primitive-canvas);
+}
+
+:global(html[data-primitive-theme="light"]) .canvasWrap {
+  --primitive-line: color-mix(in oklab, var(--primitive-canvas) 87%, black 13%);
+  --primitive-line-muted: color-mix(in oklab, var(--primitive-canvas) 92%, black 8%);
+  --primitive-line-strong: color-mix(in oklab, var(--primitive-canvas) 76%, black 24%);
+  --primitive-field-bg: color-mix(in oklab, white 74%, transparent);
+  --primitive-field-hover: color-mix(in oklab, white 92%, transparent);
+  --primitive-panel-strong: color-mix(in oklab, white 94%, transparent);
+  --primitive-control-active:
+    linear-gradient(145deg, color-mix(in oklab, white 98%, transparent), color-mix(in oklab, var(--primitive-red) 8%, white 74%)),
+    color-mix(in oklab, var(--primitive-red) 13%, transparent);
+  --primitive-control-surface:
+    linear-gradient(145deg, color-mix(in oklab, white 86%, transparent), color-mix(in oklab, var(--primitive-teal) 14%, white 58%)),
+    color-mix(in oklab, white 52%, transparent);
+
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 1px, transparent 1px) 50% 50% / 76px 76px,
+    linear-gradient(0deg, color-mix(in oklab, var(--primitive-text-strong) 3.2%, transparent) 1px, transparent 1px) 50% 50% / 76px 76px,
+    radial-gradient(circle at 18% 16%, color-mix(in oklab, var(--primitive-teal) 14%, transparent), transparent 32%),
+    radial-gradient(circle at 82% 18%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 34%),
+    radial-gradient(circle at 50% 110%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 42%),
+    color-mix(in oklab, var(--primitive-canvas) 96%, white);
+}
+
+.canvasWrap > :global(canvas) {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  outline: none;
+}
+
+.primitiveFallback {
+  --primitive-line: color-mix(in oklab, white 13%, transparent);
+  --primitive-line-muted: color-mix(in oklab, white 8%, transparent);
+  --primitive-line-strong: color-mix(in oklab, white 24%, transparent);
+  --primitive-field-bg: color-mix(in oklab, var(--primitive-canvas) 84%, color-mix(in oklab, var(--primitive-teal) 30%, transparent));
+  --primitive-field-hover: color-mix(in oklab, var(--primitive-canvas) 78%, color-mix(in oklab, var(--primitive-teal) 36%, transparent));
+  --primitive-panel-strong: color-mix(in oklab, var(--primitive-canvas) 94%, transparent);
+  --primitive-control-active: linear-gradient(180deg, color-mix(in oklab, white 8%, transparent), color-mix(in oklab, white 2%, transparent));
+  --primitive-control-surface: linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 95%, white 26%), color-mix(in oklab, var(--primitive-canvas) 95%, white 6%));
+
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(320px, 1.08fr) minmax(280px, 0.92fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(12px, 2vw, 20px);
+  min-height: 100%;
+  padding: clamp(14px, 2.4vw, 28px);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, white 3.5%, transparent) 1px, transparent 1px) 50% 50% / 76px 76px,
+    linear-gradient(0deg, color-mix(in oklab, white 2.6%, transparent) 1px, transparent 1px) 50% 50% / 76px 76px,
+    radial-gradient(circle at 18% 16%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 32%),
+    radial-gradient(circle at 82% 18%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 34%),
+    radial-gradient(circle at 50% 110%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 42%),
+    var(--primitive-canvas);
+  color: color-mix(in oklab, white 82%, transparent);
+  overflow: hidden;
+}
+
+:global(html[data-primitive-theme="light"]) .primitiveFallback {
+  --primitive-line: color-mix(in oklab, var(--primitive-canvas) 87%, black 13%);
+  --primitive-line-muted: color-mix(in oklab, var(--primitive-canvas) 92%, black 8%);
+  --primitive-line-strong: color-mix(in oklab, var(--primitive-canvas) 76%, black 24%);
+  --primitive-field-bg: color-mix(in oklab, white 74%, transparent);
+  --primitive-field-hover: color-mix(in oklab, white 92%, transparent);
+  --primitive-panel-strong: color-mix(in oklab, white 94%, transparent);
+  --primitive-control-active:
+    linear-gradient(145deg, color-mix(in oklab, white 98%, transparent), color-mix(in oklab, var(--primitive-red) 8%, white 74%)),
+    color-mix(in oklab, var(--primitive-red) 13%, transparent);
+  --primitive-control-surface:
+    linear-gradient(145deg, color-mix(in oklab, white 86%, transparent), color-mix(in oklab, var(--primitive-teal) 14%, white 58%)),
+    color-mix(in oklab, white 52%, transparent);
+
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 1px, transparent 1px) 50% 50% / 76px 76px,
+    linear-gradient(0deg, color-mix(in oklab, var(--primitive-text-strong) 3.2%, transparent) 1px, transparent 1px) 50% 50% / 76px 76px,
+    radial-gradient(circle at 18% 16%, color-mix(in oklab, var(--primitive-teal) 14%, transparent), transparent 32%),
+    radial-gradient(circle at 82% 18%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 34%),
+    radial-gradient(circle at 50% 110%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 42%),
+    color-mix(in oklab, var(--primitive-canvas) 96%, white);
+  color: var(--primitive-body);
+}
+
+.fallbackSceneHeader {
+  position: relative;
+  z-index: 3;
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 0;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 14px;
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 32%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 34%),
+    color-mix(in oklab, var(--primitive-canvas) 64%, transparent);
+  box-shadow: 0 22px 48px color-mix(in oklab, black 22%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackSceneHeader {
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 9%, transparent), transparent 32%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 9%, transparent), transparent 34%),
+    color-mix(in oklab, white 72%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, white 82%, transparent),
+    0 18px 36px color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.fallbackSceneTitle {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.fallbackSceneTitle > :first-child {
+  justify-self: start;
+}
+
+.fallbackSceneTitle p {
+  max-width: 78ch;
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.45;
+}
+
+.fallbackSceneMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.fallbackDeck {
+  position: relative;
+  display: grid;
+  min-height: clamp(360px, 38vw, 500px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 40%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 38%),
+    color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, white 5%, transparent);
+  perspective: 900px;
+  overflow: hidden;
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackDeck {
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 40%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 38%),
+    color-mix(in oklab, white 46%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, white 82%, transparent),
+    0 18px 36px color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+}
+
+.fallbackDeck::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-lg);
+  pointer-events: none;
+}
+
+.fallbackBayFrame {
+  position: absolute;
+  inset: 70px 18px 18px;
+  border-block: 1px solid var(--primitive-line-muted);
+  pointer-events: none;
+}
+
+.fallbackBayFrame span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--primitive-line-muted);
+}
+
+.fallbackBayFrame span:first-child {
+  left: 25%;
+}
+
+.fallbackBayFrame span:nth-child(2) {
+  left: 50%;
+}
+
+.fallbackBayFrame span:nth-child(3) {
+  left: 75%;
+}
+
+.fallbackStackRail {
+  position: absolute;
+  top: var(--primitive-space-4);
+  right: var(--primitive-space-4);
+  left: var(--primitive-space-4);
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.fallbackStackItem {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+  padding: var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-left: 3px solid var(--primitive-red);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, white 7%, transparent), transparent 54%),
+    color-mix(in oklab, black 30%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackStackItem {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, white 88%, transparent), transparent 56%),
+    color-mix(in oklab, white 52%, transparent);
+}
+
+.fallbackStackItem[data-active="true"] {
+  border-color: var(--primitive-line-strong);
+  box-shadow: 0 12px 30px color-mix(in oklab, black 22%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackStackItem[data-active="true"] {
+  box-shadow: 0 12px 26px color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.fallbackStackItem > span {
+  overflow: hidden;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fallbackStackItem :global(button) {
+  grid-column: 1 / -1;
+  justify-self: start;
+  max-width: 100%;
+}
+
+.fallbackShadowCard,
+.fallbackCard {
+  position: absolute;
+  right: clamp(18px, 5vw, 76px);
+  left: clamp(18px, 5vw, 76px);
+  top: clamp(122px, 16vw, 150px);
+  min-height: 214px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 40%),
+    var(--primitive-panel);
+  box-shadow: 0 32px 70px color-mix(in oklab, black 36%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackShadowCard,
+:global(html[data-primitive-theme="light"]) .fallbackCard {
+  border-color: var(--primitive-line);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 40%),
+    color-mix(in oklab, white 92%, transparent);
+  box-shadow: 0 28px 54px color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+}
+
+.fallbackShadowCard:first-child {
+  transform: translate(22px, -16px) rotate(4deg) scale(0.94);
+  opacity: 0.38;
+}
+
+.fallbackShadowCard:nth-child(2) {
+  transform: translate(10px, 0) rotate(-2deg) scale(0.97);
+  opacity: 0.58;
+}
+
+.fallbackCard {
+  display: grid;
+  align-content: center;
+  gap: var(--primitive-space-2);
+  padding: 22px;
+  transform: translateY(18px);
+  border-left: 4px solid var(--primitive-red);
+}
+
+.fallbackCardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.fallbackCardHeader > svg {
+  flex: 0 0 auto;
+  padding: 5px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 9px;
+  background: color-mix(in oklab, black 24%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackCardHeader > svg {
+  background: color-mix(in oklab, white 66%, transparent);
+}
+
+.fallbackCard span,
+.fallbackCard em {
+  color: color-mix(in oklab, white 62%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackCard span,
+:global(html[data-primitive-theme="light"]) .fallbackCard em {
+  color: var(--primitive-muted);
+}
+
+.fallbackCard strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackCard strong {
+  color: var(--primitive-text-strong);
+}
+
+.fallbackCard b {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackCard b {
+  color: color-mix(in oklab, var(--primitive-amber) 88%, black);
+}
+
+.fallbackCardMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.fallbackServiceRail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+  padding-top: var(--primitive-space-1);
+}
+
+.fallbackServiceRail :global(button:disabled) {
+  opacity: 1;
+  cursor: default;
+}
+
+.fallbackPanel {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--primitive-canvas) 72%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackPanel {
+  border-color: var(--primitive-line);
+  background: color-mix(in oklab, white 74%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, white 82%, transparent),
+    0 22px 44px color-mix(in oklab, var(--primitive-text-strong) 13%, transparent);
+}
+
+.fallbackHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.fallbackHeader > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.fallbackHeader :global(button:disabled) {
+  opacity: 1;
+  cursor: default;
+}
+
+.fallbackPanel p {
+  margin: 0;
+  color: color-mix(in oklab, white 72%, transparent);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackPanel p {
+  color: color-mix(in oklab, var(--primitive-body) 92%, transparent);
+}
+
+.fallbackActivePacket {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  min-width: 0;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-amber) 13%, transparent), transparent 46%),
+    color-mix(in oklab, black 22%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackActivePacket {
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-amber) 11%, transparent), transparent 46%),
+    color-mix(in oklab, white 58%, transparent);
+}
+
+.fallbackActiveMark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, white 8%, transparent), transparent 58%),
+    color-mix(in oklab, black 26%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackActiveMark {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, white 90%, transparent), transparent 58%),
+    color-mix(in oklab, white 56%, transparent);
+}
+
+.fallbackActivePacket div {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.fallbackActivePacket span,
+.fallbackActivePacket em {
+  overflow: hidden;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.fallbackActivePacket strong {
+  overflow: hidden;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 400;
+  line-height: 1;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.fallbackSelectedMirror {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 38%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 9%, transparent), transparent 46%),
+    color-mix(in oklab, black 22%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackSelectedMirror {
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 38%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 46%),
+    color-mix(in oklab, white 56%, transparent);
+}
+
+.fallbackSelectedMirrorHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.fallbackSelectedMirrorHeader :global(button:disabled) {
+  opacity: 1;
+  cursor: default;
+}
+
+.fallbackReadinessGrid {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.9fr) minmax(180px, 1.1fr);
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+}
+
+.fallbackReadinessMeter {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-green) 14%, transparent), transparent 48%),
+    var(--primitive-field-bg);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackReadinessMeter {
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-green) 12%, transparent), transparent 48%),
+    color-mix(in oklab, white 66%, transparent);
+}
+
+.fallbackReadinessMeter span {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.fallbackReadinessMeter strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.fallbackReadinessMeter em {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+  font-style: normal;
+  line-height: 1.35;
+}
+
+.fallbackMiniStat {
+  min-width: 0;
+}
+
+.fallbackContractRail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 34%),
+    color-mix(in oklab, black 22%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackContractRail {
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 34%),
+    color-mix(in oklab, white 50%, transparent);
+}
+
+.fallbackLoadingPulse {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  width: fit-content;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.fallbackLoadingPulse::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-amber);
+  box-shadow: 0 0 18px color-mix(in oklab, var(--primitive-amber) 65%, transparent);
+  animation: fallbackPulse 1.4s ease-in-out infinite;
+}
+
+.canvasWrap[data-canvas-ready="false"] .canvasPrimitiveRail,
+.canvasWrap[data-canvas-ready="false"] .overlay {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.overlay {
+  position: absolute;
+  inset: auto 14px 14px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.overlay :global(button:disabled) {
+  opacity: 1;
+  cursor: default;
+}
+
+.canvasPrimitiveRail {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  max-width: calc(100% - 28px);
+  padding: var(--primitive-space-2);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-canvas) 62%, transparent);
+  box-shadow: 0 18px 42px color-mix(in oklab, black 28%, transparent);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.canvasPrimitiveRail :global(button:disabled) {
+  opacity: 1;
+  cursor: default;
+}
+
+.canvasPrimitiveRail :global(svg) {
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+.canvasReadyPill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: color-mix(in oklab, black 20%, transparent);
+}
+
+.canvasReadyPill[data-ready="true"] {
+  color: var(--primitive-green);
+  border-color: color-mix(in oklab, var(--primitive-green) 34%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .canvasPrimitiveRail {
+  background: color-mix(in oklab, white 70%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, white 82%, transparent),
+    0 18px 36px color-mix(in oklab, var(--primitive-text-strong) 13%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .canvasReadyPill {
+  background: color-mix(in oklab, white 56%, transparent);
+}
+
+.overlayKeys {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 68%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+:global(html[data-primitive-theme="light"]) .overlayKeys {
+  background: color-mix(in oklab, white 64%, transparent);
+}
+
+.primitiveDock {
+  --foreground: color-mix(in oklab, white 97%, var(--primitive-teal));
+  --kt-color: color-mix(in oklab, white 97%, var(--primitive-teal));
+  --primitive-line: color-mix(in oklab, white 13%, transparent);
+  --primitive-line-muted: color-mix(in oklab, white 8%, transparent);
+  --primitive-line-strong: color-mix(in oklab, white 24%, transparent);
+  --primitive-field-bg: color-mix(in oklab, var(--primitive-canvas) 84%, color-mix(in oklab, var(--primitive-teal) 30%, transparent));
+  --primitive-field-hover: color-mix(in oklab, var(--primitive-canvas) 78%, color-mix(in oklab, var(--primitive-teal) 36%, transparent));
+  --primitive-panel: color-mix(in oklab, var(--primitive-canvas) 94%, transparent);
+  --primitive-panel-strong: color-mix(in oklab, var(--primitive-canvas) 94%, transparent);
+  --primitive-control-active: linear-gradient(180deg, color-mix(in oklab, white 8%, transparent), color-mix(in oklab, white 2%, transparent));
+  --primitive-control-surface: linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 95%, white 26%), color-mix(in oklab, var(--primitive-canvas) 95%, white 6%));
+
+  display: grid;
+  gap: var(--primitive-space-3);
+  position: relative;
+  padding: var(--primitive-space-4);
+  border-top: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 7%, transparent), transparent 32%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 34%),
+    color-mix(in oklab, var(--primitive-canvas) 72%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .shell {
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, white 82%, transparent),
+    inset -18px -18px 34px color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    0 24px 54px color-mix(in oklab, var(--primitive-text-strong) 14%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .primitiveDock {
+  --foreground: var(--primitive-text-strong);
+  --kt-color: var(--primitive-text-strong);
+  --primitive-line: color-mix(in oklab, var(--primitive-canvas) 87%, black 13%);
+  --primitive-line-muted: color-mix(in oklab, var(--primitive-canvas) 92%, black 8%);
+  --primitive-line-strong: color-mix(in oklab, var(--primitive-canvas) 76%, black 24%);
+  --primitive-field-bg: color-mix(in oklab, white 74%, transparent);
+  --primitive-field-hover: color-mix(in oklab, white 92%, transparent);
+  --primitive-panel: color-mix(in oklab, white 78%, transparent);
+  --primitive-panel-strong: color-mix(in oklab, white 94%, transparent);
+  --primitive-control-active:
+    linear-gradient(145deg, color-mix(in oklab, white 98%, transparent), color-mix(in oklab, var(--primitive-red) 8%, white 74%)),
+    color-mix(in oklab, var(--primitive-red) 13%, transparent);
+  --primitive-control-surface:
+    linear-gradient(145deg, color-mix(in oklab, white 86%, transparent), color-mix(in oklab, var(--primitive-teal) 14%, white 58%)),
+    color-mix(in oklab, white 52%, transparent);
+
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 32%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 34%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, white);
+}
+
+.dockHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.dockEcosystemRail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 38%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 13%, transparent), transparent 42%),
+    color-mix(in oklab, black 24%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .dockEcosystemRail {
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 38%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 42%),
+    color-mix(in oklab, white 48%, transparent);
+}
+
+.dockEcosystemText {
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.dockEcosystemText > span:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.dockIconRail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--primitive-space-2);
+}
+
+.dockIconRail > span {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, white 8%, transparent), transparent 58%),
+    color-mix(in oklab, black 28%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .dockIconRail > span {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, white 92%, transparent), transparent 58%),
+    color-mix(in oklab, white 50%, transparent);
+}
+
+.dockContractRail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+}
+
+.dockContractCard {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-2) var(--primitive-space-2-5);
+  min-width: 0;
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, white 8%, transparent), transparent 46%),
+    color-mix(in oklab, black 20%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .dockContractCard {
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, white 92%, transparent), transparent 48%),
+    color-mix(in oklab, white 52%, transparent);
+}
+
+.dockContractCardActive {
+  border-color: var(--primitive-line-strong);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 12%, transparent), color-mix(in oklab, var(--primitive-teal) 10%, transparent)),
+    color-mix(in oklab, black 30%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, white 4%, transparent),
+    0 18px 38px color-mix(in oklab, black 22%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .dockContractCardActive {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 10%, transparent), color-mix(in oklab, var(--primitive-teal) 8%, transparent)),
+    color-mix(in oklab, white 70%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, white 82%, transparent),
+    0 18px 38px color-mix(in oklab, var(--primitive-text-strong) 14%, transparent);
+}
+
+.dockContractMark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, white 8%, transparent), transparent 58%),
+    color-mix(in oklab, black 26%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .dockContractMark {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, white 92%, transparent), transparent 58%),
+    color-mix(in oklab, white 54%, transparent);
+}
+
+.dockContractCopy {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.dockContractCopy > span:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.dockContractCard > :last-child {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.72fr) minmax(0, 1.28fr);
+  gap: var(--primitive-space-3);
+  align-items: stretch;
+}
+
+.readinessMeter {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-green) 14%, transparent), transparent 48%),
+    var(--primitive-field-bg);
+}
+
+:global(html[data-primitive-theme="light"]) .readinessMeter {
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-green) 12%, transparent), transparent 48%),
+    color-mix(in oklab, white 66%, transparent);
+}
+
+.readinessMeter span {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.readinessMeter strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.readinessMeter em {
+  color: var(--primitive-muted);
+  font-style: normal;
+  font-size: var(--primitive-text-xs);
+  line-height: 1.35;
+}
+
+.statRail {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.dockStat {
+  min-width: 0;
+}
+
+.keyHint {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--primitive-space-1-5);
+}
+
+.chipRail,
+.quoteSelector,
+.serviceRail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.quoteSelector {
+  padding: var(--primitive-space-0-5) 0;
+}
+
+.quoteStatusRail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.quoteStatusItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+  padding: var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, white 5.5%, transparent), transparent 58%),
+    color-mix(in oklab, black 16%, transparent);
+}
+
+.quoteStatusItem[data-active="true"] {
+  border-color: var(--primitive-line-strong);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 12%, transparent), color-mix(in oklab, var(--primitive-teal) 8%, transparent)),
+    color-mix(in oklab, black 24%, transparent);
+}
+
+.quoteStatusItem :global(button:disabled) {
+  opacity: 1;
+  cursor: default;
+}
+
+:global(html[data-primitive-theme="light"]) .quoteStatusItem {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, white 86%, transparent), transparent 58%),
+    color-mix(in oklab, white 50%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .quoteStatusItem[data-active="true"] {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 10%, transparent), color-mix(in oklab, var(--primitive-teal) 8%, transparent)),
+    color-mix(in oklab, white 72%, transparent);
+}
+
+.selectedQuoteBridge {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-left: 4px solid var(--primitive-red);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 34%),
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-amber) 13%, transparent), transparent 42%),
+    linear-gradient(90deg, color-mix(in oklab, white 5.5%, transparent), color-mix(in oklab, white 1.8%, transparent)),
+    color-mix(in oklab, black 20%, transparent);
+  box-shadow: 0 18px 40px color-mix(in oklab, black 18%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .selectedQuoteBridge {
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 34%),
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 42%),
+    linear-gradient(90deg, color-mix(in oklab, white 78%, transparent), color-mix(in oklab, var(--primitive-teal) 6%, white 52%));
+  box-shadow: 0 18px 38px color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.selectedQuoteMark {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, white 10%, transparent), transparent 58%),
+    color-mix(in oklab, black 30%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .selectedQuoteMark {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, white 92%, transparent), transparent 58%),
+    color-mix(in oklab, white 60%, transparent);
+}
+
+.selectedQuoteCopy {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.selectedQuoteCopy > span:first-child {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.selectedQuoteCopy p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.35;
+}
+
+.selectedQuoteMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.selectedQuotePrimitiveGrid {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(220px, 0.95fr) minmax(260px, 1.15fr);
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+}
+
+.selectedQuoteSignal {
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, white 6%, transparent), transparent 58%),
+    color-mix(in oklab, black 18%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .selectedQuoteSignal {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, white 88%, transparent), transparent 58%),
+    color-mix(in oklab, white 52%, transparent);
+}
+
+.selectedQuoteSignalHeader,
+.selectedQuoteContractLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.selectedQuoteSignalHeader {
+  justify-content: space-between;
+}
+
+.selectedQuoteSignalHeader :global(button:disabled) {
+  opacity: 1;
+  cursor: default;
+}
+
+.selectedQuoteSignalHeader > :first-child {
+  min-width: 0;
+}
+
+.selectedQuoteContractLine {
+  padding-top: var(--primitive-space-0-5);
+}
+
+.selectedQuoteStat {
+  min-width: 0;
+}
+
+.serviceRail {
+  padding-top: var(--primitive-space-0-5);
+}
+
+.serviceContractRail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+}
+
+.serviceContractCard {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-2) var(--primitive-space-2-5);
+  min-width: 0;
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-left: 3px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, white 6%, transparent), transparent 56%),
+    color-mix(in oklab, black 18%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .serviceContractCard {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, white 86%, transparent), transparent 58%),
+    color-mix(in oklab, white 54%, transparent);
+}
+
+.serviceContractMark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, white 8%, transparent), transparent 58%),
+    color-mix(in oklab, black 26%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .serviceContractMark {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, white 92%, transparent), transparent 58%),
+    color-mix(in oklab, white 60%, transparent);
+}
+
+.serviceContractCopy {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.serviceContractCopy > span:first-child {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.serviceContractCopy > span:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.serviceContractCard > :last-child {
+  grid-column: 1 / -1;
+}
+
+.dockToast.dockToast {
+  --toast-bg: color-mix(in oklab, var(--primitive-canvas) 94%, transparent);
+  --toast-ink: var(--primitive-text-strong);
+  --toast-stroke: color-mix(in oklab, white 20%, transparent);
+
+  justify-self: end;
+  width: min(100%, 440px);
+}
+
+:global(html[data-primitive-theme="light"]) .dockToast.dockToast {
+  --toast-bg: color-mix(in oklab, white 96%, transparent);
+  --toast-ink: var(--primitive-text-strong);
+  --toast-stroke: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+@media (max-width: 560px) {
+  .canvasWrap {
+    aspect-ratio: 3 / 4;
+  }
+
+  .primitiveFallback {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    align-content: start;
+    padding: 18px;
+  }
+
+  .fallbackSceneHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .fallbackSceneMeta {
+    justify-content: flex-start;
+  }
+
+  .fallbackDeck {
+    min-height: 360px;
+  }
+
+  .fallbackStackRail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fallbackShadowCard,
+  .fallbackCard {
+    right: 18px;
+    left: 18px;
+    top: 146px;
+  }
+
+  .fallbackPanel {
+    padding: 14px;
+  }
+
+  .fallbackReadinessGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .primitiveDock {
+    padding: 14px;
+  }
+
+  .keyHint {
+    display: none;
+  }
+
+  .summaryGrid,
+  .dockEcosystemRail,
+  .dockContractRail,
+  .selectedQuoteBridge,
+  .selectedQuotePrimitiveGrid,
+  .statRail {
+    grid-template-columns: 1fr;
+  }
+
+  .dockIconRail {
+    justify-content: flex-start;
+  }
+
+  .selectedQuoteMeta {
+    justify-content: flex-start;
+  }
+
+  .overlay {
+    align-items: flex-end;
+  }
+}
+
+@keyframes fallbackPulse {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvasPrimitiveRail,
+  .overlay,
+  .canvasReadyPill {
+    transition: none;
+  }
+
+  .fallbackLoadingPulse::before {
+    animation: none;
+  }
+}

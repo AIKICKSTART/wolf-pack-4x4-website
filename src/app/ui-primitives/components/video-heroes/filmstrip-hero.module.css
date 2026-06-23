@@ -1,0 +1,515 @@
+/* =========================================================
+   FILMSTRIP HERO — 35mm reel: perforated rails + scrolling
+   video frames, headline as a marquee title card.
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(560px, 88svh, 860px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 50% 18%, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 58%),
+    radial-gradient(ellipse at 84% 88%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 60%),
+    var(--primitive-dashboard-background, var(--primitive-canvas));
+
+  /* shape rhythm tokens */
+  --film-cell-w: clamp(208px, 26vw, 360px);
+  --film-strip-h: clamp(176px, 30svh, 280px);
+  --film-rail-h: clamp(20px, 3.4svh, 32px);
+  --film-perf-w: clamp(14px, 1.6vw, 22px);
+  --film-gap: clamp(8px, 1vw, 14px);
+  --film-frame-pad: clamp(6px, 0.8vw, 12px);
+}
+
+/* ---- ambient depth + texture ---- */
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 42%, color-mix(in oklab, var(--primitive-canvas) 70%, black) 100%);
+}
+
+.grain {
+  position: absolute;
+  inset: -12%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  animation: grainShift 2s steps(7) infinite;
+}
+
+@keyframes grainShift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-10px, 6px); }
+  50% { transform: translate(8px, -8px); }
+  75% { transform: translate(-6px, 8px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* =========================================================
+   THE FILM STRIP — the distinctive shape
+   ========================================================= */
+.strip {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  width: 100%;
+  display: grid;
+  grid-template-rows: var(--film-rail-h) 1fr var(--film-rail-h);
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, black 78%, var(--primitive-canvas)) 0%,
+      color-mix(in oklab, black 62%, var(--primitive-canvas)) 50%,
+      color-mix(in oklab, black 78%, var(--primitive-canvas)) 100%);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-line-strong),
+    inset 0 -1px 0 var(--primitive-line),
+    var(--primitive-shadow-deep);
+  /* slight cinematic tilt for editorial energy */
+  transform: rotate(-1.6deg) scale(1.05);
+  transform-origin: center;
+}
+
+/* ---- perforated sprocket rails ---- */
+.rail {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, black 86%, var(--primitive-canvas)),
+      color-mix(in oklab, black 70%, var(--primitive-canvas)));
+}
+.railTop {
+  border-bottom: 1px solid color-mix(in oklab, var(--primitive-amber) 26%, transparent);
+}
+.railBottom {
+  border-top: 1px solid color-mix(in oklab, var(--primitive-amber) 26%, transparent);
+}
+
+.perfTrack {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--film-cell-w);
+  padding-inline: calc(var(--film-perf-w) * 0.5);
+  will-change: transform;
+  animation: stripScroll 26s linear infinite;
+}
+
+.perf {
+  flex: 0 0 auto;
+  width: var(--film-perf-w);
+  height: calc(var(--film-rail-h) * 0.46);
+  border-radius: 3px;
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--primitive-canvas) 30%, black),
+      color-mix(in oklab, var(--primitive-canvas) 10%, black));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 1px 1px color-mix(in oklab, black 60%, transparent);
+}
+
+/* ---- scrolling frame track ---- */
+.track {
+  display: flex;
+  align-items: stretch;
+  gap: var(--film-gap);
+  padding: var(--film-frame-pad);
+  height: var(--film-strip-h);
+  will-change: transform;
+  animation: stripScroll 26s linear infinite;
+}
+
+@keyframes stripScroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ---- a single film cell ---- */
+.frame {
+  position: relative;
+  flex: 0 0 var(--film-cell-w);
+  display: grid;
+  padding: var(--film-frame-pad);
+  background: color-mix(in oklab, black 40%, var(--primitive-canvas));
+  border-radius: var(--primitive-radius-sm);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.frameNo {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  z-index: 2;
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: color-mix(in oklab, var(--primitive-amber) 78%, white);
+  text-shadow: 0 1px 2px color-mix(in oklab, black 80%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.frameWindow {
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  background: black;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 7%, transparent);
+}
+
+.video,
+.frameStill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video {
+  object-fit: cover;
+  filter: contrast(1.12) saturate(1.08);
+}
+
+.frameStill {
+  background-color: color-mix(in oklab, var(--primitive-canvas) 50%, black);
+  background-size: cover;
+  background-position: center;
+  filter: contrast(1.1) saturate(1.05) brightness(0.92);
+}
+/* stagger the tint of the poster stand-ins so the reel reads as motion */
+.frame:nth-of-type(2n) .frameStill { filter: contrast(1.14) saturate(0.9) brightness(0.82) sepia(0.18); }
+.frame:nth-of-type(3n) .frameStill { filter: contrast(1.08) saturate(1.18) brightness(1); }
+
+.frameGloss {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 14%, transparent) 0%, transparent 26%, transparent 72%, color-mix(in oklab, black 38%, transparent) 100%),
+    linear-gradient(100deg, transparent 40%, color-mix(in oklab, var(--primitive-text-strong) 8%, transparent) 52%, transparent 64%);
+  mix-blend-mode: overlay;
+}
+
+/* readability scrim behind the title card */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--primitive-canvas) 70%, transparent) 0%,
+      transparent 26%,
+      transparent 52%,
+      color-mix(in oklab, var(--primitive-canvas) 86%, transparent) 100%);
+}
+
+/* =========================================================
+   THE MARQUEE TITLE CARD
+   ========================================================= */
+.card {
+  position: relative;
+  z-index: 5;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  justify-items: center;
+  gap: clamp(16px, 2.4vh, 26px);
+  text-align: center;
+  max-width: min(880px, 92vw);
+  padding: clamp(28px, 6vw, 72px);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(10px, 0.7rem + 0.1vw, 12px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  text-shadow: 0 0 18px color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kickerDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--primitive-red);
+  box-shadow: 0 0 14px var(--primitive-red);
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.6); }
+}
+
+/* title card framed like a slate / marquee placard */
+.titleCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 30px);
+  width: 100%;
+  padding: clamp(14px, 2.4vw, 26px) clamp(18px, 3vw, 38px);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, black 25%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 64%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 30%, transparent);
+  border-radius: var(--primitive-radius-sm);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    0 24px 60px color-mix(in oklab, black 42%, transparent);
+}
+/* corner ticks — clapperboard cue */
+.titleCard::before,
+.titleCard::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  pointer-events: none;
+}
+.titleCard::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.titleCard::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.titleEdge {
+  width: clamp(18px, 3vw, 44px);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primitive-red));
+}
+.titleCard .titleEdge:last-of-type {
+  background: linear-gradient(90deg, var(--primitive-red), transparent);
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 1rem + 6vw, 6.4rem);
+  line-height: 0.9;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 4px 32px color-mix(in oklab, black 60%, transparent);
+}
+
+.subhead {
+  font-family: var(--primitive-font-body);
+  font-size: clamp(15px, 0.9rem + 0.3vw, 18px);
+  line-height: 1.55;
+  color: var(--primitive-body);
+  margin: 0;
+  max-width: 56ch;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(16px, 2.4vw, 28px);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform 240ms var(--primitive-ease-out),
+    background 240ms,
+    color 240ms,
+    box-shadow 240ms;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--primitive-red);
+  border-radius: var(--primitive-radius-sm);
+  z-index: -1;
+  opacity: 0.42;
+  transition: inset 240ms;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+.cta:hover::before { inset: -7px; border-color: var(--primitive-amber); }
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+.cta:active { transform: translateY(0); }
+.cta:active::before { inset: -3px; }
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+.gauge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.gaugeFill {
+  width: 30px;
+  height: 4px;
+  border-radius: var(--primitive-radius-pill);
+  background: linear-gradient(90deg, var(--primitive-amber), color-mix(in oklab, var(--primitive-amber) 30%, transparent));
+}
+
+/* =========================================================
+   FOOTER META
+   ========================================================= */
+.meta {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 clamp(24px, 6vw, 96px) clamp(28px, 6svh, 64px);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  flex-wrap: wrap;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* =========================================================
+   RESPONSIVE — strip adapts, never overflows
+   ========================================================= */
+@media (max-width: 720px) {
+  .hero {
+    --film-cell-w: clamp(150px, 52vw, 230px);
+    --film-strip-h: clamp(140px, 24svh, 200px);
+  }
+  .strip {
+    transform: rotate(-1.2deg) scale(1.08);
+  }
+  .meta {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero {
+    --film-cell-w: 64vw;
+    --film-rail-h: 18px;
+  }
+  .titleCard {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .titleEdge { display: none; }
+  .actions { gap: 14px; }
+}
+
+/* =========================================================
+   LIGHT THEME PARITY — film stock stays dark (it must, to
+   read as a strip) but chrome/typography follow the theme.
+   ========================================================= */
+:global(html[data-primitive-theme="light"]) .hero {
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 50% 16%, color-mix(in oklab, var(--primitive-red) 9%, transparent), transparent 56%),
+    radial-gradient(ellipse at 86% 88%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 58%),
+    var(--primitive-canvas);
+}
+:global(html[data-primitive-theme="light"]) .grain {
+  opacity: 0.16;
+  mix-blend-mode: multiply;
+}
+:global(html[data-primitive-theme="light"]) .titleCard {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, white 70%, transparent), color-mix(in oklab, white 42%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 50%, white);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 60%, transparent),
+    0 24px 60px color-mix(in oklab, var(--primitive-text-strong) 14%, transparent);
+}
+:global(html[data-primitive-theme="light"]) .scrim {
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--primitive-canvas) 55%, transparent) 0%,
+      transparent 28%,
+      transparent 54%,
+      color-mix(in oklab, var(--primitive-canvas) 70%, transparent) 100%);
+}
+
+/* =========================================================
+   REDUCED MOTION — neutralise to a clean static composition
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .grain,
+  .kickerDot,
+  .perfTrack,
+  .track {
+    animation: none;
+  }
+  /* anchor the strip so the static frames sit centered + legible */
+  .track {
+    transform: translate3d(0, 0, 0);
+  }
+  .strip {
+    transform: rotate(-1deg) scale(1.04);
+  }
+}
+
+.strip[data-static="true"] .perfTrack,
+.strip[data-static="true"] .track {
+  animation: none;
+}

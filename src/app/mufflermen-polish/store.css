@@ -1,0 +1,800 @@
+/* Wolfpack store: consistent square imagery, dense catalogue scanning and
+   upload-led visualisation tools for apparel and vehicle upgrades. */
+
+.public-product-card img,
+.public-gallery-item img,
+.public-brand-asset img {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.public-product-card img {
+  height: auto;
+  min-height: 0;
+}
+
+.public-gallery-vehicle-grid {
+  grid-template-columns: 1fr;
+}
+
+.public-gallery-vehicle {
+  display: grid;
+  gap: clamp(14px, 2vw, 22px);
+  padding: clamp(14px, 2vw, 24px);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background:
+    radial-gradient(85% 70% at 10% 0%, rgba(0, 140, 255, 0.12), transparent 70%),
+    rgba(5, 7, 12, 0.78);
+}
+
+.public-gallery-vehicle-heading {
+  display: grid;
+  gap: 8px;
+  max-width: 780px;
+}
+
+.public-gallery-vehicle-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5vw, 72px);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.public-gallery-vehicle-heading p {
+  margin: 0;
+  color: var(--body-strong);
+  line-height: 1.6;
+}
+
+.public-gallery-vehicle-views {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.5vw, 18px);
+}
+
+.public-gallery-angle {
+  min-height: 0;
+}
+
+.public-gallery-angle img {
+  aspect-ratio: 4 / 3;
+  height: auto;
+  min-height: 0;
+  object-fit: contain;
+  background: #04060b;
+}
+
+html[data-mufflermen-theme="light"] .public-gallery-vehicle {
+  border-color: rgba(59, 45, 31, 0.16);
+  background:
+    radial-gradient(80% 65% at 10% 0%, rgba(0, 140, 255, 0.12), transparent 70%),
+    linear-gradient(145deg, rgba(255, 253, 248, 0.98), rgba(239, 226, 201, 0.88));
+}
+
+html[data-mufflermen-theme="light"] .public-gallery-vehicle-heading h2 {
+  color: var(--ink);
+}
+
+html[data-mufflermen-theme="light"] .public-gallery-vehicle-heading p {
+  color: var(--body-strong);
+}
+
+.wolfpack-store {
+  --store-blue: #008cff;
+  --store-purple: #7c2cff;
+  --store-panel: rgba(8, 11, 18, 0.84);
+  --store-line: rgba(255, 255, 255, 0.14);
+  display: grid;
+  gap: clamp(18px, 3vw, 34px);
+  width: min(1520px, calc(100% - clamp(24px, 5vw, 88px)));
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 72px) 0 clamp(72px, 8vw, 118px);
+}
+
+.wolfpack-store-campaign {
+  position: relative;
+  display: grid;
+  align-content: end;
+  min-height: min(760px, calc(100vh - 128px));
+  overflow: hidden;
+  border: 1px solid var(--store-line);
+  border-radius: 8px;
+  background: #030407;
+  box-shadow: 0 34px 110px -74px rgba(0, 140, 255, 0.82);
+}
+
+.wolfpack-store-campaign::before,
+.wolfpack-store-campaign::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.wolfpack-store-campaign::before {
+  background:
+    linear-gradient(90deg, rgba(2, 3, 7, 0.9) 0%, rgba(2, 3, 7, 0.52) 32%, rgba(2, 3, 7, 0.12) 70%),
+    linear-gradient(180deg, rgba(2, 3, 7, 0.02) 42%, rgba(2, 3, 7, 0.9) 100%);
+}
+
+.wolfpack-store-campaign::after {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(0, 140, 255, 0.16);
+}
+
+.wolfpack-store-campaign > img {
+  object-fit: cover;
+}
+
+.wolfpack-store-campaign-copy {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 16px;
+  max-width: 760px;
+  padding: clamp(28px, 5vw, 68px);
+}
+
+.wolfpack-store-campaign-copy h1 {
+  margin: 0;
+  max-width: 8.5ch;
+  color: #f5f7fa;
+  font-family: var(--font-display);
+  font-size: clamp(58px, 10vw, 158px);
+  line-height: 0.82;
+  text-transform: uppercase;
+}
+
+.wolfpack-store-campaign-copy p {
+  max-width: 60ch;
+  margin: 0;
+  color: rgba(239, 244, 252, 0.82);
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.65;
+}
+
+.wolfpack-store-hero-tabs {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 clamp(28px, 5vw, 68px) clamp(24px, 4vw, 44px);
+}
+
+.wolfpack-store-hero-tabs button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(5, 7, 12, 0.72);
+  color: rgba(239, 244, 252, 0.86);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+}
+
+.wolfpack-store-hero-tabs button:hover,
+.wolfpack-store-hero-tabs button:focus-visible {
+  outline: 2px solid rgba(0, 140, 255, 0.52);
+  outline-offset: 2px;
+}
+
+.wolfpack-store-hero-tabs button.is-active {
+  border-color: rgba(255, 255, 255, 0.24);
+  background:
+    linear-gradient(135deg, var(--store-blue), var(--store-purple)),
+    rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.wolfpack-store-hero {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(480px, 1.2fr);
+  gap: clamp(20px, 4vw, 54px);
+  align-items: end;
+  min-height: min(760px, calc(100vh - 120px));
+}
+
+.wolfpack-store-hero-copy {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+}
+
+.wolfpack-store-hero h2 {
+  margin: 0;
+  max-width: 9.8ch;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(58px, 9vw, 148px);
+  line-height: 0.84;
+  text-transform: uppercase;
+}
+
+.wolfpack-store-hero p {
+  max-width: 56ch;
+  margin: 0;
+  color: var(--body-strong);
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.65;
+}
+
+.wolfpack-store-stats,
+.wolfpack-store-viewbar,
+.wolfpack-store-filter-scroll {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.wolfpack-store-stats span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--body-strong);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wolfpack-store-feature {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(260px, 0.58fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.wolfpack-store-stage,
+.wolfpack-store-card-media,
+.wolfpack-store-preview {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--store-line);
+  border-radius: 8px;
+  background:
+    radial-gradient(70% 62% at 50% 42%, rgba(0, 140, 255, 0.18), transparent 70%),
+    linear-gradient(145deg, rgba(18, 23, 35, 0.92), rgba(4, 5, 8, 0.98));
+}
+
+.wolfpack-store-stage img,
+.wolfpack-store-card-media img,
+.wolfpack-store-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.wolfpack-store-feature-copy,
+.wolfpack-store-spec,
+.wolfpack-store-uploader {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--store-line);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 46%),
+    var(--store-panel);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 26px 74px -48px rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(16px);
+}
+
+.wolfpack-store-feature-copy span,
+.wolfpack-store-card-copy small {
+  color: var(--store-blue);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.wolfpack-store-feature-copy h2,
+.wolfpack-store-spec h2,
+.wolfpack-store-uploader h3 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.wolfpack-store-feature-copy h2,
+.wolfpack-store-spec h2 {
+  font-size: clamp(34px, 4vw, 66px);
+}
+
+.wolfpack-store-uploader h3 {
+  font-size: clamp(23px, 2.2vw, 36px);
+}
+
+.wolfpack-store-feature-copy p,
+.wolfpack-store-spec p {
+  margin: 0;
+  color: var(--body);
+  line-height: 1.58;
+}
+
+.wolfpack-store-viewbar button,
+.wolfpack-store-filter-scroll button,
+.wolfpack-store-card,
+.wolfpack-store-uploader label,
+.wolfpack-store-generate {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent),
+    rgba(255, 255, 255, 0.035);
+  color: var(--body-strong);
+}
+
+.wolfpack-store-viewbar button,
+.wolfpack-store-filter-scroll button,
+.wolfpack-store-uploader label,
+.wolfpack-store-generate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.wolfpack-store-viewbar svg,
+.wolfpack-store-search svg,
+.wolfpack-store-uploader svg,
+.wolfpack-store-generate svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.wolfpack-store-viewbar button:hover,
+.wolfpack-store-viewbar button:focus-visible,
+.wolfpack-store-filter-scroll button:hover,
+.wolfpack-store-filter-scroll button:focus-visible,
+.wolfpack-store-uploader label:hover,
+.wolfpack-store-uploader label:focus-within,
+.wolfpack-store-generate:hover,
+.wolfpack-store-generate:focus-visible {
+  outline: 2px solid rgba(0, 140, 255, 0.52);
+  outline-offset: 2px;
+  color: #fff;
+  border-color: rgba(0, 140, 255, 0.55);
+}
+
+.wolfpack-store-viewbar button.is-active,
+.wolfpack-store-filter-scroll button.is-active,
+.wolfpack-store-generate {
+  border-color: rgba(255, 255, 255, 0.24);
+  background:
+    linear-gradient(135deg, var(--store-blue), var(--store-purple)),
+    rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.wolfpack-store-generate:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+
+.wolfpack-store-toolbar {
+  position: sticky;
+  top: 74px;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.52fr) minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid var(--store-line);
+  border-radius: 8px;
+  background: rgba(5, 7, 12, 0.88);
+  backdrop-filter: blur(18px);
+}
+
+.wolfpack-store-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--body-strong);
+}
+
+.wolfpack-store-search input {
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+}
+
+.wolfpack-store-search input::placeholder {
+  color: rgba(225, 232, 244, 0.62);
+}
+
+.wolfpack-store-filter-scroll {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  padding-bottom: 2px;
+}
+
+.wolfpack-store-filter-scroll button {
+  flex: 0 0 auto;
+}
+
+.wolfpack-store-filter-scroll span {
+  display: inline-grid;
+  min-width: 22px;
+  min-height: 22px;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.wolfpack-store-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: clamp(18px, 2vw, 28px);
+  align-items: start;
+}
+
+.wolfpack-store-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.wolfpack-store-card {
+  display: grid;
+  gap: 10px;
+  padding: 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.wolfpack-store-card.is-active {
+  border-color: rgba(0, 140, 255, 0.72);
+  box-shadow: 0 0 0 1px rgba(124, 44, 255, 0.38), 0 18px 52px -38px rgba(0, 140, 255, 0.9);
+}
+
+.wolfpack-store-card-copy {
+  display: grid;
+  gap: 5px;
+  padding: 0 2px 4px;
+}
+
+.wolfpack-store-card-copy strong {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(19px, 1.5vw, 27px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.wolfpack-store-card-copy em {
+  color: var(--body);
+  font-style: normal;
+  font-size: 13px;
+}
+
+.wolfpack-store-side {
+  position: sticky;
+  top: 158px;
+  display: grid;
+  gap: 14px;
+}
+
+.wolfpack-store-spec dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.wolfpack-store-spec dl div {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wolfpack-store-spec dt,
+.wolfpack-store-spec dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.wolfpack-store-spec dt {
+  color: var(--store-blue);
+  font-family: var(--font-mono);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wolfpack-store-spec dd {
+  color: var(--body-strong);
+}
+
+.wolfpack-store-uploader > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wolfpack-store-uploader label input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.wolfpack-store-preview {
+  display: grid;
+  place-items: center;
+  min-height: 260px;
+}
+
+.wolfpack-store-preview > svg {
+  width: 46px;
+  height: 46px;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.wolfpack-store-preview > img:first-of-type {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.72;
+}
+
+.wolfpack-store-preview > img:only-of-type {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+}
+
+.wolfpack-store-preview > img + img {
+  position: relative;
+  z-index: 2;
+  width: 58%;
+  height: 58%;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 20px 30px rgba(0, 0, 0, 0.58))
+    drop-shadow(0 0 18px rgba(0, 140, 255, 0.22));
+}
+
+.wolfpack-store-preview.is-vehicle > img + img {
+  align-self: end;
+  width: 45%;
+  height: 45%;
+  margin-bottom: 4%;
+}
+
+.wolfpack-store-uploader textarea {
+  min-height: 112px;
+  resize: vertical;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.28);
+  color: var(--body);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.wolfpack-store-status {
+  margin: 0;
+  color: var(--body-strong);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+html[data-mufflermen-theme="light"] .wolfpack-store {
+  --store-panel: rgba(255, 250, 240, 0.9);
+  --store-line: rgba(29, 34, 42, 0.15);
+}
+
+html[data-mufflermen-theme="light"] .wolfpack-store-hero h2,
+html[data-mufflermen-theme="light"] .wolfpack-store-feature-copy h2,
+html[data-mufflermen-theme="light"] .wolfpack-store-spec h2,
+html[data-mufflermen-theme="light"] .wolfpack-store-uploader h3,
+html[data-mufflermen-theme="light"] .wolfpack-store-card-copy strong {
+  color: #15100b;
+}
+
+html[data-mufflermen-theme="light"] .wolfpack-store-hero p,
+html[data-mufflermen-theme="light"] .wolfpack-store-feature-copy p,
+html[data-mufflermen-theme="light"] .wolfpack-store-spec p,
+html[data-mufflermen-theme="light"] .wolfpack-store-card-copy em,
+html[data-mufflermen-theme="light"] .wolfpack-store-spec dd {
+  color: #37291d;
+}
+
+html[data-mufflermen-theme="light"] .wolfpack-store-toolbar {
+  background: rgba(255, 250, 240, 0.9);
+}
+
+html[data-mufflermen-theme="light"] .wolfpack-store-search,
+html[data-mufflermen-theme="light"] .wolfpack-store-viewbar button,
+html[data-mufflermen-theme="light"] .wolfpack-store-filter-scroll button,
+html[data-mufflermen-theme="light"] .wolfpack-store-card,
+html[data-mufflermen-theme="light"] .wolfpack-store-uploader label,
+html[data-mufflermen-theme="light"] .wolfpack-store-generate,
+html[data-mufflermen-theme="light"] .wolfpack-store-uploader textarea {
+  background: rgba(255, 255, 255, 0.62);
+  color: #15100b;
+}
+
+html[data-mufflermen-theme="light"] .wolfpack-store-search input {
+  color: #15100b;
+}
+
+@media (max-width: 1180px) {
+  .wolfpack-store-hero,
+  .wolfpack-store-feature,
+  .wolfpack-store-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wolfpack-store-side {
+    position: static;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .wolfpack-store-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .wolfpack-store {
+    width: min(100% - 24px, 760px);
+    padding-top: 24px;
+  }
+
+  .wolfpack-store-campaign {
+    min-height: min(620px, calc(100vh - 96px));
+  }
+
+  .wolfpack-store-campaign-copy {
+    padding: clamp(22px, 7vw, 42px);
+  }
+
+  .wolfpack-store-hero {
+    min-height: auto;
+  }
+
+  .wolfpack-store-campaign-copy h1 {
+    max-width: 10ch;
+    font-size: clamp(48px, 15vw, 92px);
+  }
+
+  .wolfpack-store-hero h2 {
+    max-width: 10ch;
+    font-size: clamp(48px, 15vw, 92px);
+  }
+
+  .wolfpack-store-toolbar {
+    position: relative;
+    top: auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wolfpack-store-side {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wolfpack-store-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .public-gallery-vehicle-views {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .wolfpack-store {
+    width: min(100% - 18px, 760px);
+  }
+
+  .wolfpack-store-campaign {
+    min-height: min(560px, calc(100vh - 78px));
+  }
+
+  .wolfpack-store-campaign-copy {
+    gap: 11px;
+    padding: 20px;
+  }
+
+  .wolfpack-store-campaign-copy h1 {
+    font-size: clamp(42px, 16vw, 72px);
+  }
+
+  .wolfpack-store-campaign-copy p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .wolfpack-store-hero-tabs {
+    padding: 0 20px 18px;
+  }
+
+  .wolfpack-store-hero-tabs button {
+    flex: 1 1 calc(50% - 6px);
+    min-height: 38px;
+    padding: 0 9px;
+    font-size: 10px;
+  }
+
+  .wolfpack-store-card {
+    gap: 7px;
+    padding: 6px;
+  }
+
+  .wolfpack-store-card-copy strong {
+    font-size: clamp(17px, 6vw, 22px);
+  }
+
+  .wolfpack-store-card-copy em {
+    font-size: 12px;
+  }
+
+  .wolfpack-store-viewbar button {
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .wolfpack-store-spec dl div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,371 @@
+/* Settings & workspace — bespoke chrome composed from primitive tokens.
+   Identity band, Torque avatar, sticky nav rail, editorial section frames.
+   Light + dark parity via --primitive-* tokens; motion is opacity/transform only. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Identity band ------------------------------------------------------- */
+
+.band {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: clamp(20px, 2.6vw, 32px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 58%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  opacity: 0.6;
+}
+
+.bandHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, white 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 26px color-mix(in oklab, var(--primitive-red) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, white 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.torqueId {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.torqueName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.torqueRole {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+.bandTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3.4vw, 42px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.bandTitle em {
+  font-style: normal;
+  color: var(--primitive-red);
+}
+
+.bandCopy {
+  margin: 0;
+  max-width: 64ch;
+  font-size: var(--primitive-text-base);
+  line-height: 1.6;
+  color: var(--primitive-body);
+}
+
+.bandMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2) 18px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaDot {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.metaDot::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+.slugMono {
+  font-family: var(--primitive-font-mono);
+  font-variant-numeric: tabular-nums;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Console layout ------------------------------------------------------ */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 248px) minmax(0, 1fr);
+  gap: clamp(16px, 2.2vw, 28px);
+  align-items: start;
+}
+
+.rail {
+  min-width: 0;
+}
+
+.railSticky {
+  position: sticky;
+  top: clamp(16px, 3vw, 28px);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.body {
+  display: grid;
+  gap: clamp(18px, 2.4vw, 28px);
+  min-width: 0;
+}
+
+/* ---- Section frame ------------------------------------------------------- */
+
+.section {
+  display: grid;
+  gap: clamp(14px, 1.6vw, 20px);
+  padding: clamp(16px, 2vw, 24px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+  scroll-margin-top: clamp(16px, 4vw, 32px);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+}
+
+.sectionText {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.sectionKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.sectionDesc {
+  margin: 0;
+  max-width: 70ch;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--primitive-muted);
+}
+
+.sectionAside {
+  flex: 0 0 auto;
+}
+
+.tally {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.tally strong {
+  font-size: var(--primitive-text-base);
+  color: var(--primitive-text-strong);
+}
+
+.copiedHint {
+  color: var(--primitive-teal);
+}
+
+/* ---- Profile + usage ----------------------------------------------------- */
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(14px, 1.8vw, 22px);
+  align-items: start;
+}
+
+.usageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+/* ---- Shared row stack ---------------------------------------------------- */
+
+.rowStack {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+/* ---- Workspace details --------------------------------------------------- */
+
+.workspaceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  margin: 0;
+}
+
+.workspaceField {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: 13px;
+  background: var(--primitive-surface-3);
+}
+
+.workspaceField dt {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.workspaceField dd {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+/* ---- Integrations -------------------------------------------------------- */
+
+.integrationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.integrationGlyph {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  line-height: var(--primitive-leading-none);
+  color: var(--primitive-text-strong);
+}
+
+/* ---- Danger zone --------------------------------------------------------- */
+
+.dangerGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: var(--primitive-space-3);
+  align-items: start;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 1040px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .railSticky {
+    position: static;
+  }
+}
+
+@media (max-width: 880px) {
+  .profileGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .usageGrid,
+  .workspaceGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sectionHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main {
+    scroll-behavior: auto;
+  }
+}

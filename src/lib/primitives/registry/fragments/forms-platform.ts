@@ -1,0 +1,197 @@
+import type { PrimitiveFamilyManifest } from "../types"
+
+const importPath = "@/app/ui-primitives/components/forms-platform"
+
+const manifest: PrimitiveFamilyManifest = {
+  family: "forms-platform",
+  title: "Forms platform",
+  group: "System",
+  summary:
+    "Form-builder platform: canvas, field config, conditional logic, multi-step, submissions, webhooks, anti-spam.",
+  entries: [
+    {
+      key: "forms-platform/builder-canvas",
+      family: "forms-platform",
+      name: "FormBuilderCanvas",
+      label: "Form builder canvas",
+      description:
+        "Drag-drop builder with a grouped field palette rail and a centre stage of ordered field rows with drop indicators and selection ring.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/form-builder-canvas",
+      tags: ["form-builder", "drag-drop", "canvas", "palette"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/field-config-panel",
+      family: "forms-platform",
+      name: "FieldConfigPanel",
+      label: "Field config panel",
+      description:
+        "Inspector for the selected field — label, placeholder, required switch, help text, default value, and the option list.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/field-config-panel",
+      tags: ["form-builder", "inspector", "field-config"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/submission-inbox-row",
+      family: "forms-platform",
+      name: "SubmissionInboxRow",
+      label: "Submission inbox row",
+      description:
+        "Compact clickable submission row — unread dot, form name, preview, submitter, amount, toned status chip, and timestamp.",
+      kind: "primitive",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/submission-inbox-row",
+      tags: ["submissions", "inbox", "row", "status"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/anti-spam-shield-card",
+      family: "forms-platform",
+      name: "AntiSpamShieldCard",
+      label: "Anti-spam shield card",
+      description:
+        "Defence stack card listing honeypot / Turnstile / rate-limit / reCAPTCHA rules with armed-state chips and block counts.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/anti-spam-shield-card",
+      tags: ["anti-spam", "security", "honeypot", "captcha"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/payment-field-card",
+      family: "forms-platform",
+      name: "PaymentFieldCard",
+      label: "Payment field card",
+      description:
+        "Stripe AU payment field preview with AUD amount, card element row, cardholder/expiry/CVC fields, and a tip-percent selector.",
+      kind: "primitive",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/payment-field-card",
+      tags: ["payment", "stripe", "checkout", "tipping"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/file-upload-zone",
+      family: "forms-platform",
+      name: "FileUploadZone",
+      label: "File upload zone",
+      description:
+        "Dashed drag-drop area with a browse button and an uploaded-file list showing progress bars, size meta, and ClamAV scan badges.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/file-upload-zone",
+      tags: ["file-upload", "dropzone", "virus-scan", "progress"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/conditional-logic-card",
+      family: "forms-platform",
+      name: "ConditionalLogicCard",
+      label: "Conditional logic card",
+      description:
+        "If/then rule card — enable toggle, ALL/ANY gate, chip-based condition list, then a toned action chip and target field.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/conditional-logic-card",
+      tags: ["conditional-logic", "rules", "if-then", "branching"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/multi-step-form-rail",
+      family: "forms-platform",
+      name: "MultiStepFormRail",
+      label: "Multi-step form rail",
+      description:
+        "Wizard progress rail with per-step completion bars, complete/current/skipped bubble states, field counts, and an overall percentage.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/multi-step-form-rail",
+      tags: ["multi-step", "wizard", "progress", "stepper"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/submission-detail-panel",
+      family: "forms-platform",
+      name: "SubmissionDetailPanel",
+      label: "Submission detail panel",
+      description:
+        "Full submission view — meta header, approve/reject/reply actions, answer rows with flag chips, and a toned audit-log timeline.",
+      kind: "section",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/submission-detail-panel",
+      tags: ["submissions", "detail", "audit-log", "review"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/notification-rule-row",
+      family: "forms-platform",
+      name: "NotificationRuleRow",
+      label: "Notification rule row",
+      description:
+        "Single notification rule row — channel glyph (email/SMS/Slack/webhook), trigger, recipient, template label, and an on/off switch.",
+      kind: "primitive",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/notification-rule-row",
+      tags: ["notifications", "rules", "channels", "toggle"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/data-export-card",
+      family: "forms-platform",
+      name: "DataExportCard",
+      label: "Data export card",
+      description:
+        "Export card with a date-range badge, CSV/JSON/XLS/PDF preset tiles with row estimates, and a total-rows export footer.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/data-export-card",
+      tags: ["data-export", "csv", "presets", "download"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/webhook-trigger-row",
+      family: "forms-platform",
+      name: "WebhookTriggerRow",
+      label: "Webhook trigger row",
+      description:
+        "Webhook endpoint+event row with delivery status chip, retry count, last-delivery meta, and a pretty-printed sample JSON payload.",
+      kind: "primitive",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/webhook-trigger-row",
+      tags: ["webhook", "integration", "delivery", "payload"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/form-publish-card",
+      family: "forms-platform",
+      name: "FormPublishCard",
+      label: "Form publish card",
+      description:
+        "Publish card with a live badge, publish-target tabs (embed/popup/share/QR), a copy-ready code snippet, and a share-link row.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/form-publish-card",
+      tags: ["publish", "embed", "share-link", "tabs"],
+      status: "improved",
+    },
+    {
+      key: "forms-platform/analytics-funnel-tile",
+      family: "forms-platform",
+      name: "AnalyticsFunnelTile",
+      label: "Analytics funnel tile",
+      description:
+        "Conversion funnel tile — started/halfway/submitted/abandoned stages with retention bars, counts, percentages, and a period footer.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/forms-platform/analytics-funnel-tile",
+      tags: ["analytics", "funnel", "conversion", "data-viz"],
+      status: "improved",
+    },
+  ],
+}
+
+export default manifest

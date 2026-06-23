@@ -1,0 +1,243 @@
+.panel {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 50%),
+    var(--primitive-surface-1);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+}
+
+.manualCta {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid transparent;
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.manualCta:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.manualCta:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.backupRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  background: var(--primitive-code-bg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-body);
+  letter-spacing: 0.02em;
+}
+
+.kindChip {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.kindScheduled { color: var(--primitive-teal); background: color-mix(in oklab, var(--primitive-teal) 10%, transparent); border: 1px solid color-mix(in oklab, var(--primitive-teal) 40%, transparent); }
+.kindManual { color: var(--primitive-amber); background: color-mix(in oklab, var(--primitive-amber) 10%, transparent); border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent); }
+
+.timestamp {
+  color: var(--primitive-text-strong);
+}
+
+.size {
+  color: var(--primitive-muted);
+}
+
+.retention {
+  color: var(--primitive-green);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 30%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 6%, transparent);
+}
+
+.restoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.restoreBtn:hover,
+.restoreBtn:focus-visible {
+  outline: none;
+  border-color: var(--primitive-amber);
+  color: var(--primitive-amber);
+}
+
+.wizard {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px dashed var(--primitive-line);
+  border-radius: 12px;
+  background: var(--primitive-recessed);
+}
+
+.wizardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wizardSteps {
+  display: flex;
+  gap: 6px;
+}
+
+.step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  cursor: pointer;
+}
+
+.step[aria-current="step"] {
+  color: var(--primitive-amber);
+  border-color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+}
+
+.step[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.stepIndex {
+  font-family: var(--primitive-font-mono);
+  background: var(--primitive-glass-strong);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: inline-grid;
+  place-items: center;
+  font-size: 10px;
+}
+
+.step[aria-current="step"] .stepIndex {
+  background: var(--primitive-amber);
+  color: var(--primitive-canvas);
+}
+
+.wizardBody {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--primitive-code-bg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.wizardActions {
+  display: flex;
+  gap: 8px;
+}
+
+.wizardBtn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.wizardBtnPrimary {
+  border-color: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  color: var(--primitive-green);
+}
+
+.wizardBtnPrimary:hover,
+.wizardBtnPrimary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}

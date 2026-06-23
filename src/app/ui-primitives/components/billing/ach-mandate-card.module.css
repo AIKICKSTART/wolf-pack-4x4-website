@@ -1,0 +1,231 @@
+.card {
+  display: grid;
+  gap: 18px;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 30%),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.headLeft {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.bank {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.mandateId {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  color: var(--primitive-muted);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid currentColor;
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.statusPending {
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+}
+.statusActive {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+}
+.statusRevoked {
+  color: var(--primitive-muted);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+.statusFailed {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.bankDetails {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--primitive-space-3);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-recessed);
+}
+
+.detail {
+  display: grid;
+  gap: 3px;
+}
+
+.detail dt {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.detail dd {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.terms {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-4);
+  border: 1px dashed var(--primitive-line-strong);
+  border-radius: 10px;
+}
+
+.termsHead {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.termsText {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.footer,
+.footerSign {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.signedNote {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--primitive-green);
+}
+
+.sigLabel {
+  display: grid;
+  gap: var(--primitive-space-1);
+  flex: 1 1 260px;
+}
+
+.sigLabelText {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.sigInput {
+  height: 42px;
+  padding: 0 var(--primitive-space-3);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: "Caveat", "Brush Script MT", cursive;
+  font-size: var(--primitive-text-xl);
+  letter-spacing: 0.02em;
+}
+
+.sigInput:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 2px;
+}
+
+.signBtn,
+.revokeBtn {
+  padding: 11px 18px;
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.signBtn {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent), transparent 50%),
+    linear-gradient(135deg, var(--primitive-green), color-mix(in oklab, var(--primitive-green) 62%, black));
+  color: var(--primitive-text-on-accent);
+}
+
+.signBtn:hover {
+  filter: brightness(1.1);
+}
+
+.signBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.revokeBtn {
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  background: transparent;
+  color: color-mix(in oklab, var(--primitive-red) 62%, var(--primitive-text-strong));
+}
+
+.revokeBtn:hover {
+  border-color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signBtn,
+  .revokeBtn {
+    transition: none;
+  }
+  .signBtn:hover {
+    filter: none;
+  }
+}

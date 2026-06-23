@@ -1,0 +1,127 @@
+.frame {
+  display: grid;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--primitive-code-bg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.55;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-bottom: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.path {
+  color: var(--primitive-text-strong);
+  font-weight: 800;
+}
+
+.ref {
+  color: var(--primitive-amber);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.body {
+  display: grid;
+}
+
+.line {
+  display: grid;
+  grid-template-columns: 44px 44px 18px minmax(0, 1fr);
+  align-items: start;
+  min-height: 22px;
+  padding: var(--primitive-space-px) var(--primitive-space-0);
+}
+
+.gutter {
+  padding: var(--primitive-space-0) var(--primitive-space-2);
+  color: var(--primitive-muted);
+  text-align: right;
+  font-size: 11px;
+  user-select: none;
+  border-right: 1px solid var(--primitive-line-muted);
+}
+
+.marker {
+  text-align: center;
+  font-weight: 800;
+  user-select: none;
+}
+
+.text {
+  padding: var(--primitive-space-0) var(--primitive-space-3);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  color: var(--primitive-code-fg);
+}
+
+.added {
+  background: color-mix(in oklab, var(--primitive-green) 13%, transparent);
+}
+
+.added .marker {
+  color: var(--primitive-green);
+}
+
+.added .text {
+  color: color-mix(in oklab, var(--primitive-green) 34%, var(--primitive-text-strong));
+}
+
+.removed {
+  background: color-mix(in oklab, var(--primitive-red) 13%, transparent);
+}
+
+.removed .marker {
+  color: var(--primitive-red);
+}
+
+.removed .text {
+  color: color-mix(in oklab, var(--primitive-red) 30%, var(--primitive-text-strong));
+}
+
+.context .marker {
+  color: var(--primitive-muted);
+}
+
+.meta {
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+}
+
+.meta .text {
+  color: var(--primitive-teal);
+  font-style: italic;
+}
+
+:global(html[data-primitive-theme="light"]) .frame {
+  background: var(--primitive-glass-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .added {
+  background: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .added .text {
+  color: color-mix(in oklab, var(--primitive-green) 70%, var(--primitive-canvas));
+}
+
+:global(html[data-primitive-theme="light"]) .removed {
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .removed .text {
+  color: color-mix(in oklab, var(--primitive-red) 72%, var(--primitive-canvas));
+}

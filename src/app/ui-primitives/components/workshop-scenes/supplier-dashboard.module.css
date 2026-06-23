@@ -1,0 +1,208 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.4fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), 0 30px 60px color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+}
+
+.head {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: end;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.identity {
+  display: grid;
+  gap: 4px;
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 30px;
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.statBlock {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.statTile {
+  display: grid;
+  gap: 4px;
+  min-width: 120px;
+  padding: 10px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.statLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.statValue {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 26px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  line-height: 1;
+}
+
+.contactPane,
+.chartPane {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent);
+}
+
+.contactPane h4,
+.chartPane h4 {
+  margin: 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.contactList {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contactList li {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+}
+
+.contactList li svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+  color: var(--primitive-amber);
+}
+
+.lastContact {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.lastContact strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+.lastContact span {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.chartRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+}
+
+.miniChart {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.miniChart span {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.miniChart strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 22px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+}
+
+.tableBlock {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 920px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .chartRow {
+    grid-template-columns: 1fr;
+  }
+
+  .head {
+    grid-template-columns: 1fr;
+  }
+}

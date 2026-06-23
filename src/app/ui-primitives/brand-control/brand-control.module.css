@@ -1,0 +1,307 @@
+/* /ui-primitives/brand-control — index + sub-route + full-hub */
+
+.page {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px) 80px;
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  background:
+    radial-gradient(circle at 88% 0%, color-mix(in srgb, var(--primitive-red) 14%, transparent), transparent 36%),
+    radial-gradient(circle at 4% 96%, color-mix(in srgb, var(--primitive-teal) 12%, transparent), transparent 40%),
+    var(--primitive-canvas);
+}
+
+.shell {
+  width: min(100%, 1480px);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--primitive-space-7);
+}
+
+.shellNarrow {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+}
+
+.notice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid color-mix(in srgb, var(--primitive-amber) 38%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in srgb, var(--primitive-amber) 10%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  width: max-content;
+  max-width: 100%;
+}
+
+.notice::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primitive-amber) 30%, transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 14px;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      var(--accent-soft, color-mix(in srgb, var(--primitive-amber) 12%, transparent)),
+      transparent 60%
+    ),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), border-color 240ms ease, box-shadow 240ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 3px 4px);
+  mix-blend-mode: overlay;
+  z-index: 0;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--accent, color-mix(in srgb, var(--primitive-amber) 50%, transparent));
+  box-shadow: 0 22px 48px var(--primitive-shadow-outline);
+  outline: none;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 4px;
+}
+
+.cardAccentRed {
+  --accent: color-mix(in srgb, var(--primitive-red) 50%, transparent);
+  --accent-soft: color-mix(in srgb, var(--primitive-red) 14%, transparent);
+}
+
+.cardAccentAmber {
+  --accent: color-mix(in srgb, var(--primitive-amber) 50%, transparent);
+  --accent-soft: color-mix(in srgb, var(--primitive-amber) 12%, transparent);
+}
+
+.cardAccentTeal {
+  --accent: color-mix(in srgb, var(--primitive-teal) 50%, transparent);
+  --accent-soft: color-mix(in srgb, var(--primitive-teal) 12%, transparent);
+}
+
+.cardAccentGreen {
+  --accent: color-mix(in srgb, var(--primitive-green) 50%, transparent);
+  --accent-soft: color-mix(in srgb, var(--primitive-green) 12%, transparent);
+}
+
+.cardKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.cardBody {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-muted);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--primitive-space-2);
+  border-top: 1px dashed var(--primitive-line);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaAction {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-body);
+}
+
+/* sub-route */
+
+.subRoute {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px) 80px;
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  background:
+    radial-gradient(circle at 86% 0%, color-mix(in srgb, var(--primitive-red) 12%, transparent), transparent 36%),
+    radial-gradient(circle at 6% 96%, color-mix(in srgb, var(--primitive-teal) 10%, transparent), transparent 40%),
+    var(--primitive-canvas);
+}
+
+.note {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-left-width: 3px;
+  border-left-color: var(--primitive-amber);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.note span {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.note p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.6;
+}
+
+.stateGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: var(--primitive-space-5);
+}
+
+.stateLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-recessed) 56%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  width: max-content;
+}
+
+.stateLabel::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-teal);
+}
+
+.stateWrap {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.hubGrid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hubGrid > [data-span="3"] { grid-column: span 3; }
+.hubGrid > [data-span="4"] { grid-column: span 4; }
+.hubGrid > [data-span="5"] { grid-column: span 5; }
+.hubGrid > [data-span="6"] { grid-column: span 6; }
+.hubGrid > [data-span="7"] { grid-column: span 7; }
+.hubGrid > [data-span="8"] { grid-column: span 8; }
+.hubGrid > [data-span="9"] { grid-column: span 9; }
+.hubGrid > [data-span="12"] { grid-column: span 12; }
+
+@media (max-width: 1180px) {
+  .hubGrid > [data-span] {
+    grid-column: span 12;
+  }
+}
+
+.hubSection {
+  display: grid;
+  gap: 14px;
+}
+
+.hubSectionTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.hubSectionTitle::before {
+  content: "";
+  width: 6px;
+  height: 16px;
+  background: var(--primitive-red);
+  border-radius: var(--primitive-radius-xs);
+}

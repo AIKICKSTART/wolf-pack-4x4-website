@@ -1,0 +1,85 @@
+.rail {
+  position: relative;
+  display: grid;
+  margin: 0;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 16% 12%, color-mix(in srgb, var(--primitive-teal) 7%, transparent), transparent 40%),
+    radial-gradient(circle at 84% 88%, color-mix(in srgb, var(--primitive-amber) 6%, transparent), transparent 36%),
+    var(--primitive-panel);
+  isolation: isolate;
+  font-family: var(--primitive-font-body);
+  overflow: hidden;
+}
+
+.caption {
+  position: absolute;
+  top: var(--primitive-space-4);
+  left: 18px;
+  z-index: 2;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.svg {
+  position: absolute;
+  inset: 36px 16px 56px 16px;
+  width: calc(100% - 32px);
+  height: calc(100% - 92px);
+}
+
+.legend {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) 9px;
+  border: 1px solid color-mix(in srgb, var(--legend-tint, var(--primitive-teal)) 30%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in srgb, var(--primitive-canvas) 42%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.legendSwatch {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-xs);
+  background: var(--legend-tint, var(--primitive-teal));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--legend-tint, var(--primitive-teal)) 30%, transparent);
+}
+
+.legendName {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+  font-family: var(--primitive-font-body);
+  font-size: 11px;
+}
+
+.legendCount {
+  color: var(--primitive-muted);
+  letter-spacing: 0.04em;
+}
+
+.trailDot {
+  stroke: var(--primitive-canvas);
+}

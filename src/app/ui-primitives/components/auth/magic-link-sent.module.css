@@ -1,0 +1,166 @@
+/* MagicLinkSent — confirmation surface w/ animated envelope + resend timer */
+
+.card {
+  display: grid;
+  gap: 22px;
+  padding: var(--primitive-space-7) var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 50% -20%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  text-align: center;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 3px 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.65;
+}
+
+.iconSlot {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle at 50% 40%, color-mix(in oklab, var(--primitive-teal) 32%, transparent), transparent 65%),
+    color-mix(in oklab, var(--primitive-canvas) 85%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-teal) 40%, transparent),
+    0 18px 36px color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.envelope {
+  width: 38px;
+  height: 38px;
+  color: var(--primitive-teal);
+  filter: drop-shadow(0 0 12px color-mix(in oklab, var(--primitive-teal) 55%, transparent));
+  animation: floatLetter 4.4s ease-in-out infinite;
+}
+
+@keyframes floatLetter {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-4px) rotate(2deg); }
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: var(--primitive-leading-none);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.copy {
+  margin: 0 auto;
+  max-width: 38ch;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--primitive-body);
+}
+
+.copy strong {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.actions {
+  display: grid;
+  gap: var(--primitive-space-3);
+  margin-top: var(--primitive-space-1);
+}
+
+.resend {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2);
+  padding: 11px 18px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 200ms ease, background 200ms ease, transform 200ms ease;
+}
+
+.resend:hover:not(:disabled),
+.resend:focus-visible:not(:disabled) {
+  border-color: var(--primitive-amber);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.resend:disabled {
+  cursor: not-allowed;
+  color: var(--primitive-muted);
+  border-color: var(--primitive-line);
+}
+
+.timerRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.timerValue {
+  color: var(--primitive-amber);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.altLink {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+  text-decoration: none;
+  padding-bottom: 1px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+
+.altLink:hover,
+.altLink:focus-visible {
+  color: var(--primitive-amber);
+  border-bottom-color: var(--primitive-amber);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .envelope {
+    animation: none;
+  }
+}

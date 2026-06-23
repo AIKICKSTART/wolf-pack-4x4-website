@@ -1,0 +1,166 @@
+.row {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1.4fr) minmax(160px, 1.2fr) minmax(120px, auto);
+  align-items: center;
+  gap: 14px;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  color: var(--primitive-body);
+  isolation: isolate;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.row:hover {
+  border-color: var(--primitive-line-strong);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+}
+
+.statusDot {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+  color: var(--row-tone, var(--primitive-teal));
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+.meta {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.source {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.02em;
+}
+
+.profile {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-muted);
+  text-transform: uppercase;
+}
+
+.numeric {
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-body);
+}
+
+.progressCol {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.progress {
+  min-width: 80px;
+}
+
+.progressValue {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  min-width: 36px;
+  text-align: right;
+}
+
+.right {
+  display: grid;
+  gap: var(--primitive-space-1);
+  justify-items: end;
+  align-content: center;
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--row-chip-border, var(--primitive-line));
+  background: var(--row-chip-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--row-tone, var(--primitive-teal));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.etaLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.toneRed {
+  --row-tone: var(--primitive-red);
+  --row-chip-bg: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --row-chip-border: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+}
+
+.toneAmber {
+  --row-tone: var(--primitive-amber);
+  --row-chip-bg: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --row-chip-border: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+}
+
+.toneTeal {
+  --row-tone: var(--primitive-teal);
+  --row-chip-bg: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  --row-chip-border: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+}
+
+.toneGreen {
+  --row-tone: var(--primitive-green);
+  --row-chip-bg: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --row-chip-border: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+}
+
+.toneNeutral {
+  --row-tone: color-mix(in oklab, var(--primitive-text-strong) 74%, transparent);
+  --row-chip-bg: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --row-chip-border: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 32px minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+  }
+  .progressCol {
+    grid-column: 1 / -1;
+  }
+  .right {
+    grid-column: 1 / -1;
+    justify-items: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    transition: none;
+  }
+}

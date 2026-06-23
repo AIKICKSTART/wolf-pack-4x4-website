@@ -1,0 +1,231 @@
+/* =========================================================
+   HOST BACKSTAGE PANEL — broadcast deck for the host
+   ========================================================= */
+
+.panel {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 60%),
+    linear-gradient(180deg, var(--primitive-panel-strong), var(--primitive-code-bg));
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 96%, var(--primitive-canvas));
+  font-family: var(--primitive-font-body, system-ui, sans-serif);
+  position: relative;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display, Anton, Impact, sans-serif);
+  font-weight: 400;
+  font-size: var(--primitive-text-lg);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-on-accent);
+}
+
+.primaryRow {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.phase {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: 11px 18px;
+  border-radius: var(--primitive-btn-radius);
+  border: none;
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.phase:hover,
+.phase:focus-visible {
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.phase:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+/* primary go-live CTA — central metallic-red button DNA */
+.tonePrimary {
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.tonePrimary:hover,
+.tonePrimary:focus-visible {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.tonePrimary:focus-visible {
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+/* destructive intent keeps semantic red but follows the button shape/shadow */
+.toneDanger {
+  background: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  color: var(--primitive-red);
+  border: 1px solid var(--primitive-red);
+}
+
+.toneDanger:hover,
+.toneDanger:focus-visible {
+  background: color-mix(in oklab, var(--primitive-red) 28%, transparent);
+}
+
+/* warning/starting intent keeps semantic amber but follows the button shape */
+.toneStarting {
+  background: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  color: var(--primitive-amber);
+  border: 1px solid var(--primitive-amber);
+}
+
+.toneStarting:hover,
+.toneStarting:focus-visible {
+  background: color-mix(in oklab, var(--primitive-amber) 26%, transparent);
+}
+
+.toggleGroup {
+  display: inline-flex;
+  gap: var(--primitive-space-1-5);
+  flex-wrap: wrap;
+}
+
+/* secondary toggle — central carbon-fibre button DNA */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px var(--primitive-space-3);
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 72%, transparent);
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.toggle:hover,
+.toggle:focus-visible {
+  outline: none;
+  color: var(--primitive-text-on-accent);
+  border-color: color-mix(in oklab, var(--primitive-text-on-accent) 32%, transparent);
+  background: var(--primitive-glass-soft);
+}
+
+.toggleOn {
+  color: var(--primitive-teal);
+  border-color: var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+}
+
+.ops {
+  display: grid;
+  gap: var(--primitive-space-2);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  padding: var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-overlay) 35%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent);
+}
+
+.opsItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 2%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent);
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 82%, transparent);
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--primitive-duration-fast) ease, background var(--primitive-duration-fast) ease;
+}
+
+button.opsItem:hover,
+button.opsItem:focus-visible {
+  outline: none;
+  border-color: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+}
+
+.opsIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent);
+  color: var(--primitive-amber);
+}
+
+.opsBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.opsValue {
+  color: var(--primitive-text-on-accent);
+  font-weight: 700;
+  font-size: var(--primitive-text-md);
+  letter-spacing: 0;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.opsLabel {
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 45%, transparent);
+}
+
+.opsAction {
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}

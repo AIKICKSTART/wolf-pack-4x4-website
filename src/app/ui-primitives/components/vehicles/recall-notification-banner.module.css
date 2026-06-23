@@ -1,0 +1,232 @@
+.banner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  padding: 22px;
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 18%, transparent) 0%, transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 5%, transparent), transparent),
+    var(--primitive-panel-strong);
+  box-shadow: 0 26px 60px color-mix(in oklab, var(--primitive-canvas) 42%, transparent), inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0 8px,
+    color-mix(in oklab, var(--primitive-red) 6%, transparent) 8px 9px
+  );
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+}
+
+.sev-watch {
+  border-color: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-amber) 16%, transparent) 0%, transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 4%, transparent), transparent),
+    var(--primitive-panel-strong);
+}
+
+.sev-watch .glyph {
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+}
+
+.sev-advised {
+  border-color: color-mix(in oklab, var(--primitive-amber) 52%, transparent);
+}
+
+.sev-advised .glyph {
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-amber) 52%, transparent);
+}
+
+.sev-mandatory {
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+}
+
+.left {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  z-index: 1;
+}
+
+.glyph {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  color: var(--primitive-red);
+}
+
+.copy {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  align-items: center;
+}
+
+.kicker > span:first-child {
+  color: var(--primitive-red);
+}
+
+.sev-watch .kicker > span:first-child,
+.sev-advised .kicker > span:first-child {
+  color: var(--primitive-amber);
+}
+
+.kickerSep {
+  color: var(--primitive-muted);
+  opacity: 0.6;
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.action {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.systems {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.actions {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1;
+  align-items: stretch;
+  justify-content: center;
+  min-width: 200px;
+}
+
+.actionPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-3) var(--primitive-space-4);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 70%, transparent);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-standard),
+    background var(--primitive-duration-fast) var(--primitive-ease-standard),
+    color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.actionPrimary:hover,
+.actionPrimary:focus-visible {
+  transform: translateY(-2px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  border-color: color-mix(in oklab, var(--primitive-amber) 70%, transparent);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.actionPrimary:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.actionGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--primitive-space-3) var(--primitive-space-4);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.actionGhost:hover,
+.actionGhost:focus-visible {
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-shadow-soft);
+  outline: none;
+}
+
+.actionGhost:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (max-width: 820px) {
+  .banner {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actionPrimary,
+  .actionPrimary:hover,
+  .actionPrimary:focus-visible {
+    transition: none;
+    transform: none;
+  }
+}

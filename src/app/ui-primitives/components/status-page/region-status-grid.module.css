@@ -1,0 +1,169 @@
+.wrap {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 50%),
+    var(--primitive-panel);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-line-muted),
+    inset -18px -18px 30px color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.caption {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--primitive-space-2-5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cell {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 14px;
+  border: 1px solid var(--cell-border, var(--primitive-line));
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--cell-bg, color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent));
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    inset -8px -8px 14px color-mix(in oklab, var(--primitive-canvas) 20%, transparent);
+}
+
+.cellHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+}
+
+.short {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--cell-dot, color-mix(in oklab, var(--primitive-text-strong) 42%, transparent));
+  box-shadow: 0 0 0 3px var(--cell-dot-halo, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent));
+}
+
+.label {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+  padding-top: var(--primitive-space-2);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.latency {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px var(--primitive-space-2);
+  border: 1px solid var(--chip-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--chip-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--chip-fg, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.meta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.toneRed {
+  --cell-bg: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+  --cell-border: color-mix(in oklab, var(--primitive-red) 24%, transparent);
+  --cell-dot: var(--primitive-red);
+  --cell-dot-halo: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-red) 34%, transparent);
+  --chip-fg: var(--primitive-red);
+}
+
+.toneAmber {
+  --cell-bg: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  --cell-border: color-mix(in oklab, var(--primitive-amber) 26%, transparent);
+  --cell-dot: var(--primitive-amber);
+  --cell-dot-halo: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  --chip-fg: var(--primitive-amber);
+}
+
+.toneTeal {
+  --cell-bg: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+  --cell-border: color-mix(in oklab, var(--primitive-teal) 26%, transparent);
+  --cell-dot: var(--primitive-teal);
+  --cell-dot-halo: color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-teal) 36%, transparent);
+  --chip-fg: var(--primitive-teal);
+}
+
+.toneGreen {
+  --cell-bg: color-mix(in oklab, var(--primitive-green) 6%, transparent);
+  --cell-border: color-mix(in oklab, var(--primitive-green) 24%, transparent);
+  --cell-dot: var(--primitive-green);
+  --cell-dot-halo: color-mix(in oklab, var(--primitive-green) 22%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-green) 34%, transparent);
+  --chip-fg: var(--primitive-green);
+}
+
+.toneNeutral {
+  --cell-bg: color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent);
+  --cell-border: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  --cell-dot: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent);
+  --cell-dot-halo: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  --chip-fg: var(--primitive-body);
+}
+
+.toneViolet {
+  --cell-bg: color-mix(in oklab, var(--primitive-violet) 6%, transparent);
+  --cell-border: color-mix(in oklab, var(--primitive-violet) 24%, transparent);
+  --cell-dot: var(--primitive-violet);
+  --cell-dot-halo: color-mix(in oklab, var(--primitive-violet) 22%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-violet) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-violet) 34%, transparent);
+  --chip-fg: color-mix(in oklab, var(--primitive-violet) 70%, white);
+}

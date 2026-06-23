@@ -1,0 +1,196 @@
+/* =========================================================
+   GLASS SURFACE — premium glassmorphism
+   layered backdrop blur, gradient stroke, inner highlight,
+   subtle film grain via mix-blend-mode. Token-driven so the
+   panel reads intentionally in both light and dark themes.
+   ========================================================= */
+
+.surface {
+  --glass-blur: 22px;
+  --glass-saturate: 1.18;
+  --glass-tint: var(--primitive-panel);
+  --glass-stroke-a: var(--primitive-line-strong);
+  --glass-stroke-b: var(--primitive-line-muted);
+  --glass-highlight: color-mix(in oklab, var(--primitive-text-strong) 42%, transparent);
+  --glass-shadow: var(--primitive-shadow-deep);
+  --glass-accent: var(--primitive-teal);
+  --glass-sheen: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --glass-lift: 0px;
+
+  position: relative;
+  display: block;
+  border-radius: var(--primitive-radius-lg);
+  padding: var(--primitive-space-5);
+  color: var(--primitive-body);
+  background:
+    /* light wash across the top */
+    linear-gradient(180deg, var(--glass-sheen) 0%, transparent 36%),
+    /* diagonal accent sheen */
+    linear-gradient(132deg, transparent 38%, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent) 50%, transparent 62%),
+    /* tonal tint base */
+    var(--glass-tint);
+  background-clip: padding-box;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent),
+    0 24px 60px var(--glass-shadow);
+  isolation: isolate;
+  overflow: hidden;
+  transform: translate3d(0, var(--glass-lift), 0);
+  transition:
+    transform var(--primitive-duration-slow) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-slow) var(--primitive-ease-out);
+}
+
+/* gradient stroke — emulated via masked ::before so we keep
+   the inner highlight + outer shadow without losing the edge */
+.surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--glass-stroke-a) 0%, var(--glass-stroke-b) 48%, var(--glass-accent) 100%);
+  -webkit-mask:
+    linear-gradient(var(--primitive-text-strong) 0 0) content-box,
+    linear-gradient(var(--primitive-text-strong) 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(var(--primitive-text-strong) 0 0) content-box,
+    linear-gradient(var(--primitive-text-strong) 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 2;
+  transition: opacity var(--primitive-duration-slow) var(--primitive-ease-out);
+}
+
+/* film-grain mix-blend layer for that subtle texture */
+.surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='180' height='180' filter='url(%23g)'/></svg>");
+  background-size: 180px 180px;
+}
+
+.surface > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* =========================================================
+   designed interaction states — lift on hover, accent the
+   edge, and surface a visible focus ring for keyboard users
+   ========================================================= */
+
+.surface:hover {
+  --glass-lift: -3px;
+  --glass-sheen: var(--primitive-glass-strong);
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 7%, transparent),
+    0 34px 78px var(--glass-shadow);
+}
+
+.surface:hover::before {
+  opacity: 1;
+}
+
+.surface:focus-within {
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 24px 60px var(--glass-shadow),
+    var(--primitive-focus-shadow);
+}
+
+.surface:active {
+  --glass-lift: -1px;
+}
+
+/* =========================================================
+   tone variants — token-driven for light + dark parity
+   ========================================================= */
+
+.toneChrome {
+  --glass-tint: var(--primitive-surface-2);
+  --glass-stroke-a: var(--primitive-line-strong);
+  --glass-stroke-b: var(--primitive-line-muted);
+  --glass-highlight: color-mix(in oklab, var(--primitive-text-strong) 48%, transparent);
+  --glass-accent: var(--primitive-teal);
+  color: var(--primitive-text-strong);
+}
+
+.toneObsidian {
+  --glass-tint: var(--primitive-panel);
+  --glass-stroke-a: var(--primitive-line-strong);
+  --glass-stroke-b: var(--primitive-line-muted);
+  --glass-highlight: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+  --glass-accent: var(--primitive-red);
+  color: var(--primitive-text-strong);
+}
+
+.toneAmber {
+  --glass-tint:
+    linear-gradient(150deg, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 70%),
+    var(--primitive-panel-strong);
+  --glass-stroke-a: color-mix(in oklab, var(--primitive-amber) 55%, transparent);
+  --glass-stroke-b: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  --glass-highlight: color-mix(in oklab, var(--primitive-amber) 42%, var(--primitive-text-strong));
+  --glass-accent: var(--primitive-amber);
+  color: var(--primitive-text-strong);
+}
+
+/* =========================================================
+   intensity — controls blur depth, saturation and stroke weight
+   ========================================================= */
+
+.intensityLow {
+  --glass-blur: 18px;
+  --glass-saturate: 1.1;
+}
+
+.intensityMed {
+  --glass-blur: 22px;
+  --glass-saturate: 1.2;
+}
+
+.intensityHigh {
+  --glass-blur: 26px;
+  --glass-saturate: 1.3;
+}
+
+.intensityHigh::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface {
+    transition: none;
+  }
+
+  .surface:hover,
+  .surface:active {
+    --glass-lift: 0px;
+  }
+
+  .surface::after {
+    display: none;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .surface {
+    background:
+      linear-gradient(180deg, var(--glass-sheen) 0%, transparent 36%),
+      var(--primitive-panel-strong);
+  }
+}

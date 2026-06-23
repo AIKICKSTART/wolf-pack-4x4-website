@@ -1,0 +1,98 @@
+.badge {
+  --lat-tone: var(--primitive-green);
+  --lat-glow: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5) var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border-radius: 10px;
+  border: 1px solid var(--lat-tone);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 80%),
+    color-mix(in oklab, var(--primitive-canvas) 85%, transparent);
+  box-shadow: 0 8px 18px color-mix(in oklab, var(--primitive-canvas) 42%, transparent), 0 0 0 1px var(--lat-glow);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+}
+
+.sizeSm {
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+}
+
+.metrics {
+  display: grid;
+  gap: 1px;
+}
+
+.metricRow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+}
+
+.metricLabel {
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.sizeSm .metricLabel { font-size: 8px; }
+
+.metricValue {
+  font-size: var(--primitive-text-sm);
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.04em;
+}
+
+.sizeSm .metricValue { font-size: 11px; }
+
+.metricValue small {
+  margin-left: var(--primitive-space-0-5);
+  font-size: var(--primitive-text-2xs);
+  color: var(--lat-tone);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.spark {
+  width: 56px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.sizeSm .spark {
+  width: 40px;
+  height: 14px;
+}
+
+.sparkPath {
+  fill: none;
+  stroke: var(--lat-tone);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 3px var(--lat-glow));
+}
+
+.toneGreen {
+  --lat-tone: var(--primitive-green);
+  --lat-glow: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+}
+
+.toneTeal {
+  --lat-tone: var(--primitive-teal);
+  --lat-glow: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+}
+
+.toneAmber {
+  --lat-tone: var(--primitive-amber);
+  --lat-glow: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+}
+
+.toneRed {
+  --lat-tone: var(--primitive-red);
+  --lat-glow: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}

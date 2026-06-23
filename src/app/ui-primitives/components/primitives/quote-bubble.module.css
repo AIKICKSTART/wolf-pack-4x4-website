@@ -1,0 +1,140 @@
+.bubble {
+  --bubble-bg: var(--primitive-panel-strong);
+  --bubble-stroke: var(--primitive-line-strong);
+  --bubble-ink: var(--primitive-body);
+  --bubble-glow: transparent;
+  --tail-size: 8px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  max-width: 320px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--bubble-bg);
+  border: 1px solid var(--bubble-stroke);
+  color: var(--bubble-ink);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    0 18px 32px -22px var(--primitive-shadow-outline),
+    0 0 18px var(--bubble-glow);
+  isolation: isolate;
+}
+
+.body {
+  position: relative;
+  z-index: 1;
+}
+
+.tail {
+  position: absolute;
+  width: var(--tail-size);
+  height: var(--tail-size);
+  background: var(--bubble-bg);
+  border: 1px solid var(--bubble-stroke);
+  transform: rotate(45deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sideTop .tail {
+  bottom: calc(var(--tail-size) * -0.5 - 1px);
+  left: 50%;
+  margin-left: calc(var(--tail-size) * -0.5);
+  border-top: 0;
+  border-left: 0;
+}
+
+.sideBottom .tail {
+  top: calc(var(--tail-size) * -0.5 - 1px);
+  left: 50%;
+  margin-left: calc(var(--tail-size) * -0.5);
+  border-bottom: 0;
+  border-right: 0;
+}
+
+.sideLeft .tail {
+  right: calc(var(--tail-size) * -0.5 - 1px);
+  top: 50%;
+  margin-top: calc(var(--tail-size) * -0.5);
+  border-bottom: 0;
+  border-left: 0;
+}
+
+.sideRight .tail {
+  left: calc(var(--tail-size) * -0.5 - 1px);
+  top: 50%;
+  margin-top: calc(var(--tail-size) * -0.5);
+  border-top: 0;
+  border-right: 0;
+}
+
+/* tones */
+.toneObsidian {
+  --bubble-bg: var(--primitive-panel-strong);
+  --bubble-stroke: var(--primitive-line-strong);
+  --bubble-glow: var(--primitive-line-muted);
+}
+
+.toneAmber {
+  --bubble-bg: linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 22%, var(--primitive-canvas)), color-mix(in oklab, var(--primitive-amber) 12%, var(--primitive-canvas)));
+  --bubble-stroke: color-mix(in srgb, var(--primitive-amber) 60%, transparent);
+  --bubble-ink: color-mix(in oklab, var(--primitive-amber) 42%, white);
+  --bubble-glow: color-mix(in srgb, var(--primitive-amber) 25%, transparent);
+}
+
+.toneTeal {
+  --bubble-bg: linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 22%, var(--primitive-canvas)), color-mix(in oklab, var(--primitive-teal) 12%, var(--primitive-canvas)));
+  --bubble-stroke: color-mix(in srgb, var(--primitive-teal) 60%, transparent);
+  --bubble-ink: color-mix(in oklab, var(--primitive-teal) 34%, white);
+  --bubble-glow: color-mix(in srgb, var(--primitive-teal) 25%, transparent);
+}
+
+.toneRed {
+  --bubble-bg: linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 24%, var(--primitive-canvas)), color-mix(in oklab, var(--primitive-red) 14%, var(--primitive-canvas)));
+  --bubble-stroke: color-mix(in srgb, var(--primitive-red) 60%, transparent);
+  --bubble-ink: color-mix(in oklab, var(--primitive-red) 32%, white);
+  --bubble-glow: color-mix(in srgb, var(--primitive-red) 25%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .bubble {
+  --bubble-bg: linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent), color-mix(in srgb, var(--primitive-panel-strong) 76%, transparent));
+  --bubble-stroke: color-mix(in srgb, var(--primitive-text-strong) 16%, transparent);
+  --bubble-ink: var(--primitive-body);
+  --bubble-glow: color-mix(in srgb, var(--primitive-body) 8%, transparent);
+
+  box-shadow:
+    inset 1px 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 86%, transparent),
+    0 16px 28px color-mix(in srgb, var(--primitive-body) 12%, transparent),
+    0 0 14px var(--bubble-glow);
+}
+
+:global(html[data-primitive-theme="light"]) .toneObsidian {
+  --bubble-bg: linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent), color-mix(in srgb, var(--primitive-panel-strong) 76%, transparent));
+  --bubble-stroke: color-mix(in srgb, var(--primitive-text-strong) 16%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .toneAmber {
+  --bubble-bg: linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 12%, var(--primitive-panel-strong)), color-mix(in oklab, var(--primitive-amber) 18%, var(--primitive-panel-strong)));
+  --bubble-stroke: color-mix(in srgb, var(--primitive-amber) 36%, transparent);
+  --bubble-ink: color-mix(in oklab, var(--primitive-amber) 64%, black);
+  --bubble-glow: color-mix(in srgb, var(--primitive-amber) 12%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .toneTeal {
+  --bubble-bg: linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 10%, var(--primitive-panel-strong)), color-mix(in oklab, var(--primitive-teal) 16%, var(--primitive-panel-strong)));
+  --bubble-stroke: color-mix(in srgb, var(--primitive-teal) 36%, transparent);
+  --bubble-ink: color-mix(in oklab, var(--primitive-teal) 76%, black);
+  --bubble-glow: color-mix(in srgb, var(--primitive-teal) 12%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .toneRed {
+  --bubble-bg: linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 10%, var(--primitive-panel-strong)), color-mix(in oklab, var(--primitive-red) 16%, var(--primitive-panel-strong)));
+  --bubble-stroke: color-mix(in srgb, var(--primitive-red) 36%, transparent);
+  --bubble-ink: color-mix(in oklab, var(--primitive-red) 72%, black);
+  --bubble-glow: color-mix(in srgb, var(--primitive-red) 12%, transparent);
+}

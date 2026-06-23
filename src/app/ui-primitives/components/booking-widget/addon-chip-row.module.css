@@ -1,0 +1,131 @@
+.wrap {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.label {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.total {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+.total strong {
+  color: var(--primitive-amber);
+  font-weight: var(--primitive-weight-black);
+}
+
+.row {
+  display: grid;
+  gap: var(--primitive-space-2);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.chip {
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-control-surface);
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.chip:hover {
+  border-color: var(--primitive-line-strong);
+}
+
+.chipSelected {
+  border-color: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 65%),
+    var(--primitive-control-active);
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -var(--primitive-space-px);
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.box {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-sm);
+  color: var(--primitive-canvas);
+  background: var(--primitive-glass-soft);
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.chipSelected .box {
+  background: var(--primitive-teal);
+  border-color: var(--primitive-teal);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.name {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.blurb {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.4;
+}
+
+.price {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.06em;
+}
+
+.chip:focus-within {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .box {
+    transition: none;
+  }
+}

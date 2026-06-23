@@ -1,0 +1,107 @@
+.shell {
+  display: grid;
+  gap: 14px;
+}
+
+.bar {
+  position: relative;
+  top: auto;
+}
+
+.aside {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--primitive-space-4);
+  align-items: center;
+  padding: 14px 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.shell[data-urgency="critical"] .aside {
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.countdown {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggleInput {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggleTrack {
+  position: relative;
+  width: 44px;
+  height: 22px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-meter-track);
+  transition: background 180ms ease;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: var(--primitive-space-0-5);
+  left: var(--primitive-space-0-5);
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  box-shadow: 0 4px 10px color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+  transition: transform 200ms var(--primitive-ease-out);
+}
+
+.toggleInput:checked + .toggleTrack {
+  background: var(--primitive-green);
+}
+
+.toggleInput:checked + .toggleTrack .toggleThumb {
+  transform: translateX(22px);
+}
+
+.toggleInput:focus-visible + .toggleTrack {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 3px;
+}
+
+.toggleLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+@media (max-width: 640px) {
+  .aside {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggleTrack,
+  .toggleThumb {
+    transition: none;
+  }
+}

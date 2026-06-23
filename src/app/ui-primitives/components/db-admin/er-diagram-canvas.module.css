@@ -1,0 +1,162 @@
+.canvas {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 50% 50%, color-mix(in oklab, var(--primitive-teal) 7%, transparent), transparent 60%),
+    radial-gradient(circle at 12% 8%, color-mix(in oklab, var(--primitive-amber) 8%, transparent), transparent 40%),
+    var(--primitive-code-bg);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.grid,
+.gridFine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.gridFine {
+  background-image:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+}
+
+.edge {
+  fill: none;
+  stroke: var(--primitive-teal);
+  stroke-width: 1.4;
+  opacity: 0.78;
+}
+
+.edgeArrow {
+  fill: var(--primitive-teal);
+}
+
+.nodeRect {
+  fill: var(--primitive-panel-strong);
+  stroke: var(--primitive-line-strong);
+  stroke-width: 1;
+}
+
+.nodeHeader {
+  fill: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  stroke: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  stroke-width: 1;
+}
+
+.nodeTitle {
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  fill: var(--primitive-text-strong);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nodeSchema {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  fill: var(--primitive-muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.column {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  fill: var(--primitive-body);
+}
+
+.columnType {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  fill: var(--primitive-amber);
+  text-anchor: end;
+}
+
+.columnRowAlt {
+  fill: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.pkDot {
+  fill: var(--primitive-amber);
+}
+
+.fkDot {
+  fill: var(--primitive-teal);
+}
+
+.minimap {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 124px;
+  height: 78px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 6px;
+  background: var(--primitive-overlay);
+  overflow: hidden;
+}
+
+.minimapNode {
+  position: absolute;
+  background: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  border-radius: 2px;
+}
+
+.minimapViewport {
+  position: absolute;
+  inset: 8% 18% 18% 8%;
+  border: 1px solid var(--primitive-amber);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.legend {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 12px;
+  padding: 6px 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 999px;
+  background: var(--primitive-overlay);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dotPk { background: var(--primitive-amber); }
+.dotFk { background: var(--primitive-teal); }

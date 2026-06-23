@@ -1,0 +1,352 @@
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1.4fr) minmax(0, 320px);
+  gap: 16px;
+  align-items: stretch;
+  min-height: 580px;
+}
+
+.column {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), 0 24px 50px color-mix(in oklab, var(--primitive-canvas) 30%, transparent);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.columnHead {
+  display: grid;
+  gap: 6px;
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.columnTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 22px;
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+.search svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+  color: var(--primitive-muted);
+}
+
+.libraryList {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.libraryItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent);
+  cursor: grab;
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.libraryItem:hover,
+.libraryItem:focus-within {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  transform: translateY(-1px);
+}
+
+.libraryItem::before {
+  content: "⋮⋮";
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: -0.1em;
+}
+
+.libraryThumb {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-amber) 20%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.libraryBody {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.libraryTitle {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.librarySub {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.libraryPrice {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+}
+
+.quoteBody {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 14px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.quoteList {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  overflow-y: auto;
+  padding: 4px;
+  border: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  border-radius: 10px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 7px, color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent) 7px 8px);
+}
+
+.quoteRow {
+  display: grid;
+  grid-template-columns: 44px 1.6fr 0.5fr 0.7fr 0.7fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 7%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 65%, transparent);
+}
+
+.quoteRow strong {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+}
+
+.quoteRow span {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.quoteRow .lineTotal {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  text-align: right;
+}
+
+.removeBtn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  color: var(--primitive-muted);
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.removeBtn:hover,
+.removeBtn:focus-visible {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  outline: none;
+}
+
+.quoteFoot {
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+}
+
+.totalRow strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+}
+
+.grandTotal {
+  border-top: 1px solid var(--primitive-line);
+  padding-top: 10px;
+}
+
+.grandTotal strong {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-display);
+  font-size: 30px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+}
+
+.contextStack {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.contextBlock {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent);
+}
+
+.contextLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contextBody {
+  display: grid;
+  gap: 4px;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+}
+
+.contextBody strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 18px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+}
+
+.noteList {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+}
+
+.noteList li::marker {
+  color: var(--primitive-amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .libraryItem,
+  .removeBtn {
+    transition: none;
+  }
+}
+
+@media (max-width: 1180px) {
+  .workspace {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .column:first-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .column:first-child {
+    grid-column: auto;
+  }
+
+  .quoteRow {
+    grid-template-columns: 36px 1fr auto;
+  }
+
+  .quoteRow span:nth-of-type(2),
+  .quoteRow span:nth-of-type(3) {
+    display: none;
+  }
+}

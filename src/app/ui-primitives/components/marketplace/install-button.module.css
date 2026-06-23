@@ -1,0 +1,138 @@
+.button {
+  --btn-bg: var(--primitive-btn-secondary-bg);
+  --btn-border: var(--primitive-btn-secondary-border);
+  --btn-ink: var(--primitive-btn-secondary-fg);
+  --btn-shadow: var(--primitive-btn-primary-shadow);
+  --btn-hover-bg: var(--primitive-btn-secondary-bg);
+  --btn-hover-ink: var(--primitive-text-strong);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2);
+  min-height: 38px;
+  padding: 0 var(--primitive-space-4);
+  border: 1px solid var(--btn-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: var(--btn-shadow);
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-ink);
+  box-shadow: var(--btn-shadow), var(--primitive-focus-shadow);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.78;
+  transform: none;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.spin {
+  animation: spin 800ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Primary install CTA — central metallic-red button DNA, amber hover. */
+.toneInstall {
+  --btn-bg: var(--primitive-btn-primary-bg);
+  --btn-border: var(--primitive-line-strong);
+  --btn-ink: var(--primitive-btn-primary-fg);
+  --btn-shadow: var(--primitive-btn-primary-shadow);
+  --btn-hover-bg: var(--primitive-btn-primary-hover-bg);
+  --btn-hover-ink: var(--primitive-btn-primary-hover-fg);
+}
+
+/* Semantic state — amber hue, shared button shape/shadow. */
+.toneInstalling {
+  --btn-bg: color-mix(in oklab, var(--primitive-amber) 14%, transparent);
+  --btn-border: color-mix(in oklab, var(--primitive-amber) 46%, transparent);
+  --btn-ink: var(--primitive-amber);
+  --btn-hover-bg: color-mix(in oklab, var(--primitive-amber) 20%, transparent);
+  --btn-hover-ink: var(--primitive-amber);
+}
+
+/* Semantic state — green hue, shared button shape/shadow. */
+.toneInstalled {
+  --btn-bg: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  --btn-border: color-mix(in oklab, var(--primitive-green) 46%, transparent);
+  --btn-ink: var(--primitive-green);
+  --btn-hover-bg: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  --btn-hover-ink: var(--primitive-green);
+}
+
+/* Update action — primary metallic-amber button DNA. */
+.toneUpdate {
+  --btn-bg: var(--primitive-btn-primary-hover-bg);
+  --btn-border: color-mix(in oklab, var(--primitive-amber) 52%, transparent);
+  --btn-ink: var(--primitive-btn-primary-hover-fg);
+  --btn-shadow: var(--primitive-btn-primary-hover-shadow);
+  --btn-hover-bg: var(--primitive-btn-primary-bg);
+  --btn-hover-ink: var(--primitive-btn-primary-fg);
+}
+
+/* Destructive intent — red semantic hue, shared button shape/shadow. */
+.toneUninstall {
+  --btn-bg: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  --btn-border: color-mix(in oklab, var(--primitive-red) 46%, transparent);
+  --btn-ink: color-mix(in oklab, var(--primitive-red) 60%, var(--primitive-text-strong));
+  --btn-hover-bg: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  --btn-hover-ink: var(--primitive-text-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+  .button:hover,
+  .button:focus-visible {
+    transform: none;
+  }
+  .spin {
+    animation: none;
+  }
+}

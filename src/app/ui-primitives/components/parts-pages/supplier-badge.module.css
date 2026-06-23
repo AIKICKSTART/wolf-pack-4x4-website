@@ -1,0 +1,302 @@
+.badge {
+  display: grid;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--supplier-line, var(--primitive-line));
+  border-radius: var(--primitive-radius-lg);
+  background: var(--supplier-bg, var(--primitive-glass-soft));
+  color: var(--supplier-fg, var(--primitive-code-fg));
+  box-shadow: var(--supplier-shadow, none);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.badge:hover,
+.badge:focus-within {
+  transform: translateY(-1px);
+  border-color: var(--supplier-line-strong, var(--supplier-line, var(--primitive-line)));
+  box-shadow: var(--supplier-shadow-hover, var(--supplier-shadow, none));
+}
+
+.inline {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.stacked {
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+}
+
+.inline .chips {
+  grid-column: 2;
+}
+
+.stacked .chips {
+  grid-column: 1 / -1;
+}
+
+.mark {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--supplier-mark-bg, var(--primitive-line-muted));
+  border: 1px solid var(--supplier-mark-line, var(--primitive-line));
+  color: var(--supplier-mark-fg, currentColor);
+}
+
+.logoMark {
+  width: 88px;
+  padding: 5px var(--primitive-space-2);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 24%, transparent),
+    0 12px 24px -18px color-mix(in oklab, var(--primitive-canvas) 80%, transparent);
+}
+
+.logoMarkLight {
+  background: color-mix(in oklab, var(--supplier-mark-bg, var(--primitive-line-muted)) 72%, transparent);
+}
+
+.logoMarkDark {
+  background: color-mix(in oklab, var(--supplier-mark-bg, var(--primitive-line-muted)) 72%, transparent);
+}
+
+.logoImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logoImageDark {
+  display: none;
+}
+
+:global(html[data-primitive-theme="dark"]) .logoImageLight {
+  display: none;
+}
+
+:global(html[data-primitive-theme="dark"]) .logoImageDark {
+  display: block;
+}
+
+.fallbackMark {
+  width: 76px;
+  padding: 5px var(--primitive-space-1-5);
+  border-style: dashed;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--primitive-text-strong) 6%, transparent) 0 6px,
+      color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 6px 12px
+    ),
+    var(--supplier-mark-bg, var(--primitive-line-muted));
+  color: var(--primitive-muted);
+}
+
+.fallbackText {
+  max-width: 100%;
+  font-family: var(--primitive-font-mono);
+  font-size: 8px;
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.1em;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.copy {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  align-content: center;
+  min-width: 0;
+}
+
+.role {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--supplier-muted, var(--primitive-muted));
+}
+
+.name {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(14px, 1.15vw, 16px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--supplier-title, var(--primitive-text-strong));
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: var(--primitive-leading-none);
+}
+
+.code {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--supplier-muted, var(--primitive-muted));
+}
+
+.chips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.toneManta {
+  --supplier-line: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+  --supplier-fg: color-mix(in oklab, var(--primitive-red) 30%, var(--primitive-text-strong));
+  --supplier-mark-bg: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --supplier-mark-fg: color-mix(in oklab, var(--primitive-red) 70%, var(--primitive-text-strong));
+}
+
+.toneRedback {
+  --supplier-line: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-red) 4%, transparent);
+  --supplier-fg: color-mix(in oklab, var(--primitive-red) 30%, var(--primitive-text-strong));
+  --supplier-mark-bg: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  --supplier-mark-fg: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-text-strong));
+}
+
+.toneXforce {
+  --supplier-line: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+  --supplier-fg: color-mix(in oklab, var(--primitive-teal) 35%, var(--primitive-text-strong));
+  --supplier-mark-bg: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  --supplier-mark-fg: color-mix(in oklab, var(--primitive-teal) 60%, var(--primitive-text-strong));
+}
+
+.tonePacemaker {
+  --supplier-line: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  --supplier-fg: color-mix(in oklab, var(--primitive-amber) 45%, var(--primitive-text-strong));
+  --supplier-mark-bg: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --supplier-mark-fg: color-mix(in oklab, var(--primitive-amber) 80%, var(--primitive-text-strong));
+}
+
+.toneLukey {
+  --supplier-line: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-amber) 5%, transparent);
+  --supplier-fg: color-mix(in oklab, var(--primitive-amber) 45%, var(--primitive-text-strong));
+  --supplier-mark-bg: color-mix(in oklab, var(--primitive-amber) 14%, transparent);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  --supplier-mark-fg: color-mix(in oklab, var(--primitive-amber) 80%, var(--primitive-text-strong));
+}
+
+.toneHushpower {
+  --supplier-line: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-green) 6%, transparent);
+  --supplier-fg: color-mix(in oklab, var(--primitive-green) 35%, var(--primitive-text-strong));
+  --supplier-mark-bg: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --supplier-mark-fg: color-mix(in oklab, var(--primitive-green) 60%, var(--primitive-text-strong));
+}
+
+.toneNeutral {
+  --supplier-line: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  --supplier-fg: color-mix(in oklab, var(--primitive-text-strong) 90%, var(--primitive-muted));
+  --supplier-mark-bg: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  --supplier-mark-fg: var(--primitive-body);
+}
+
+:global(html[data-primitive-theme="light"]) .badge {
+  --supplier-title: var(--primitive-text-strong);
+  --supplier-muted: var(--primitive-muted);
+  --supplier-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-glass-strong) 98%, transparent),
+    var(--primitive-shadow-soft);
+  --supplier-shadow-hover:
+    inset 0 1px 0 var(--primitive-glass-strong),
+    var(--primitive-shadow-deep);
+}
+
+:global(html[data-primitive-theme="light"]) .toneManta,
+:global(html[data-primitive-theme="light"]) .toneRedback {
+  --supplier-line: color-mix(in oklab, var(--primitive-red) 20%, transparent);
+  --supplier-line-strong: color-mix(in oklab, var(--primitive-red) 36%, transparent);
+  --supplier-bg:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 58%),
+    linear-gradient(145deg, var(--primitive-glass-strong), color-mix(in oklab, var(--primitive-glass-soft) 68%, transparent));
+  --supplier-fg: color-mix(in oklab, var(--primitive-red) 22%, var(--primitive-text-strong));
+  --supplier-mark-bg: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-red) 24%, transparent);
+  --supplier-mark-fg: var(--primitive-red);
+}
+
+:global(html[data-primitive-theme="light"]) .toneXforce {
+  --supplier-line: color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+  --supplier-line-strong: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  --supplier-bg:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 58%),
+    linear-gradient(145deg, var(--primitive-glass-strong), color-mix(in oklab, var(--primitive-glass-soft) 68%, transparent));
+  --supplier-fg: color-mix(in oklab, var(--primitive-teal) 26%, var(--primitive-text-strong));
+  --supplier-mark-bg: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-teal) 24%, transparent);
+  --supplier-mark-fg: var(--primitive-teal);
+}
+
+:global(html[data-primitive-theme="light"]) .tonePacemaker,
+:global(html[data-primitive-theme="light"]) .toneLukey {
+  --supplier-line: color-mix(in oklab, var(--primitive-amber) 24%, transparent);
+  --supplier-line-strong: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  --supplier-bg:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-amber) 13%, transparent), transparent 58%),
+    linear-gradient(145deg, var(--primitive-glass-strong), color-mix(in oklab, var(--primitive-glass-soft) 70%, transparent));
+  --supplier-fg: color-mix(in oklab, var(--primitive-amber) 26%, var(--primitive-text-strong));
+  --supplier-mark-bg: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-amber) 26%, transparent);
+  --supplier-mark-fg: var(--primitive-amber);
+}
+
+:global(html[data-primitive-theme="light"]) .toneHushpower {
+  --supplier-line: color-mix(in oklab, var(--primitive-green) 22%, transparent);
+  --supplier-line-strong: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --supplier-bg:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-green) 11%, transparent), transparent 58%),
+    linear-gradient(145deg, var(--primitive-glass-strong), color-mix(in oklab, var(--primitive-glass-soft) 70%, transparent));
+  --supplier-fg: color-mix(in oklab, var(--primitive-green) 26%, var(--primitive-text-strong));
+  --supplier-mark-bg: color-mix(in oklab, var(--primitive-green) 11%, transparent);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-green) 24%, transparent);
+  --supplier-mark-fg: var(--primitive-green);
+}
+
+:global(html[data-primitive-theme="light"]) .toneNeutral {
+  --supplier-line: color-mix(in oklab, var(--primitive-text-strong) 14%, transparent);
+  --supplier-line-strong: color-mix(in oklab, var(--primitive-text-strong) 26%, transparent);
+  --supplier-bg:
+    linear-gradient(145deg, var(--primitive-glass-strong), color-mix(in oklab, var(--primitive-glass-soft) 68%, transparent)),
+    var(--primitive-surface-3);
+  --supplier-fg: color-mix(in oklab, var(--primitive-text-strong) 88%, var(--primitive-muted));
+  --supplier-mark-bg: var(--primitive-surface-3);
+  --supplier-mark-line: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  --supplier-mark-fg: var(--primitive-muted);
+}
+
+:global(html[data-primitive-theme="light"]) .logoMark {
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-glass-strong) 95%, transparent),
+    0 14px 24px -20px var(--primitive-shadow-outline);
+}
+
+:global(html[data-primitive-theme="light"]) .fallbackMark {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--primitive-text-strong) 6%, transparent) 0 6px,
+      color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 6px 12px
+    ),
+    var(--supplier-mark-bg, var(--primitive-surface-3));
+}

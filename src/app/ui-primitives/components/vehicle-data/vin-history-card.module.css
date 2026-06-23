@@ -1,0 +1,182 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+.headCopy {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 19px;
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.code {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.codeCell {
+  list-style: none;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--primitive-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: var(--primitive-space-0-5) var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.statIcon {
+  grid-row: 1 / span 2;
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  color: var(--primitive-teal);
+}
+
+.statLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statValue {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.events {
+  display: grid;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0 0 0 16px;
+  list-style: none;
+  position: relative;
+}
+
+.events::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 3px;
+  width: 1px;
+  background: var(--primitive-line);
+}
+
+.event {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: start;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.eventMarker {
+  position: absolute;
+  top: 14px;
+  left: -16px;
+  width: 9px;
+  height: 9px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-line-strong);
+  border: 2px solid var(--primitive-canvas);
+}
+
+.event[data-flag="minor"] .eventMarker,
+.event[data-flag="moderate"] .eventMarker {
+  background: var(--primitive-amber);
+}
+
+.event[data-flag="write-off"] .eventMarker {
+  background: var(--primitive-red);
+}
+
+.eventBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.eventDate {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.eventHeadline {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.eventMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}

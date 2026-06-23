@@ -1,0 +1,94 @@
+.strip {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent),
+    var(--primitive-panel);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.code {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 0;
+}
+
+.codeCell {
+  list-style: none;
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: var(--primitive-control-surface);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.copyBtn:hover,
+.copyBtn:focus-visible {
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-field-hover);
+  outline: none;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px 18px;
+  margin: 0;
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.field dt {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.field dd {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copyBtn {
+    transition: none;
+  }
+}

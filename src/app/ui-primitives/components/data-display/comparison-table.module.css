@@ -1,0 +1,161 @@
+.wrapper {
+  position: relative;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, white 4%, transparent), color-mix(in oklab, white 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 var(--primitive-neumo-light), var(--primitive-shadow-soft);
+  font-family: var(--primitive-font-body);
+}
+
+.scroller {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.table th,
+.table td {
+  padding: 14px 18px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.featureCol {
+  width: 38%;
+  color: var(--primitive-body);
+}
+
+.colHeader {
+  position: relative;
+  text-align: center !important;
+  background: var(--primitive-recessed);
+}
+
+.colHeader strong {
+  display: block;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.colHeader span {
+  display: block;
+  margin-top: var(--primitive-space-1);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.popularCol {
+  position: relative;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 18%, transparent), color-mix(in oklab, var(--primitive-red) 4%, transparent)) !important;
+  border-left: 1px solid color-mix(in oklab, var(--primitive-red) 36%, transparent);
+  border-right: 1px solid color-mix(in oklab, var(--primitive-red) 36%, transparent);
+}
+
+.popularRibbon {
+  position: absolute;
+  top: var(--primitive-space-2-5);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 20px color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.cellCenter {
+  text-align: center !important;
+}
+
+.featureName {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.featureName strong {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.featureName span {
+  color: var(--primitive-muted);
+  font-size: 11px;
+}
+
+.check {
+  color: var(--primitive-green);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+}
+
+.cross {
+  color: var(--primitive-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-field-bg);
+}
+
+.dot {
+  display: inline-block;
+  width: var(--primitive-space-1-5);
+  height: var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-amber);
+  box-shadow: 0 0 8px var(--primitive-amber);
+}
+
+.text {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.tableRow {
+  transition: background 160ms ease;
+}
+
+.tableRow:hover td {
+  background: var(--primitive-glass-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tableRow {
+    transition: none;
+  }
+}
+
+.tableRow:hover .popularCol {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 22%, transparent), color-mix(in oklab, var(--primitive-red) 6%, transparent)) !important;
+}

@@ -1,0 +1,194 @@
+.card {
+  display: grid;
+  gap: 18px;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-1) var(--primitive-space-4);
+}
+
+.kicker {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-lg);
+  font-weight: 700;
+  grid-column: 1;
+}
+
+.overall {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  display: grid;
+  gap: var(--primitive-space-1);
+  justify-items: end;
+  align-self: center;
+}
+
+.overallLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.overallValue {
+  font-family: var(--primitive-font-display);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.overallValue[data-tone="green"] { color: var(--primitive-green); }
+.overallValue[data-tone="amber"] { color: var(--primitive-amber); }
+.overallValue[data-tone="red"] { color: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-text-strong)); }
+
+.preview {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-4);
+  border: 1px dashed var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-recessed);
+}
+
+.previewField {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.previewLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.required {
+  color: var(--primitive-red);
+  font-style: normal;
+  margin-left: var(--primitive-space-1);
+}
+
+.previewInput {
+  display: block;
+  height: 30px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.previewButton {
+  appearance: none;
+  margin-top: var(--primitive-space-1);
+  padding: var(--primitive-space-2) 14px;
+  border-radius: var(--primitive-btn-radius);
+  border: 0;
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: default;
+  pointer-events: none;
+}
+
+.fieldList {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fieldRow {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-recessed) 68.75%, transparent);
+}
+
+.fieldHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.fieldName {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+}
+
+.requiredBadge,
+.optionalBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-sm);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.requiredBadge {
+  background: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  color: var(--primitive-red);
+}
+
+.optionalBadge {
+  background: color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+  color: var(--primitive-muted);
+}
+
+.fieldRate {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: 700;
+}
+
+.fieldRate[data-tone="green"] { color: var(--primitive-green); }
+.fieldRate[data-tone="amber"] { color: var(--primitive-amber); }
+.fieldRate[data-tone="red"] { color: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-text-strong)); }
+
+.fieldTrend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.fieldTrendLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}

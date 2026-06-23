@@ -1,0 +1,255 @@
+/* Workflow engine showcase + sub-route shared shell. */
+
+.page {
+  display: grid;
+  gap: 28px;
+  padding: clamp(20px, 3vw, 36px);
+}
+
+.main {
+  display: grid;
+  gap: 28px;
+  padding: clamp(20px, 3vw, 36px);
+  max-width: 1420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.notice {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 34%, transparent);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.4%, transparent)),
+    color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+  color: color-mix(in oklab, var(--primitive-teal) 64%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  width: max-content;
+  max-width: 100%;
+}
+
+.notice::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--primitive-teal) 64%, var(--primitive-text-strong));
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, var(--accent-soft, color-mix(in oklab, var(--primitive-text-strong) 14%, transparent)) 75%, var(--primitive-line));
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 7.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.4%, transparent) 42%),
+    radial-gradient(ellipse at 100% 0%, var(--accent-soft, color-mix(in oklab, var(--primitive-teal) 16%, transparent)), transparent 56%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  color: var(--primitive-body);
+  text-decoration: none;
+  overflow: hidden;
+  backdrop-filter: blur(18px) saturate(1.12);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    inset -18px -18px 30px color-mix(in oklab, var(--primitive-overlay) 41.6667%, transparent),
+    0 18px 42px color-mix(in oklab, var(--primitive-overlay) 58.3333%, transparent);
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--primitive-line-strong);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 10%, transparent),
+    inset -18px -18px 30px color-mix(in oklab, var(--primitive-overlay) 37.5%, transparent),
+    0 26px 58px color-mix(in oklab, var(--primitive-overlay) 87.5%, transparent);
+  outline: none;
+}
+
+.accentRed { --accent-soft: color-mix(in oklab, var(--primitive-red) 16%, transparent); }
+.accentAmber { --accent-soft: color-mix(in oklab, var(--primitive-amber) 16%, transparent); }
+.accentTeal { --accent-soft: color-mix(in oklab, var(--primitive-teal) 16%, transparent); }
+.accentGreen { --accent-soft: color-mix(in oklab, var(--primitive-green) 16%, transparent); }
+.accentViolet { --accent-soft: color-mix(in oklab, var(--primitive-violet) 18%, transparent); }
+.accentNeutral { --accent-soft: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent); }
+
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-text-strong) 8%, transparent), transparent 46%),
+    radial-gradient(ellipse at 30% 12%, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-canvas) 90%, transparent);
+  overflow: hidden;
+  font-family: var(--primitive-font-mono);
+  color: var(--primitive-muted);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    inset -14px -14px 22px color-mix(in oklab, var(--primitive-overlay) 41.6667%, transparent);
+}
+
+.thumbGlyph {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 4vw, 40px);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.04em;
+  line-height: 0.9;
+}
+
+.cardKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.cardTitle {
+  margin: 6px 0 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.cardBody {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--primitive-body);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaAction {
+  color: var(--primitive-text-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.demoSurface {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+}
+
+.demoLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.demoStack {
+  display: grid;
+  gap: 14px;
+}
+
+.demoTriple {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.demoRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.demoSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.builderShell {
+  display: grid;
+  gap: 22px;
+}
+
+.builderTop {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.builderMid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.builderBottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.headerStrip {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 1180px) {
+  .builderTop,
+  .builderBottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .demoSplit,
+  .headerStrip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+}

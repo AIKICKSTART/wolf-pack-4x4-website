@@ -1,0 +1,168 @@
+.wrapper {
+  display: grid;
+  gap: 18px;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 84%, transparent);
+}
+
+.header {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.winnerRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.tablist {
+  display: flex;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: var(--primitive-space-2) var(--primitive-space-4);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  border-radius: var(--primitive-radius-pill);
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) ease, color var(--primitive-duration-fast) ease;
+  white-space: nowrap;
+}
+
+.tab[aria-selected="true"] {
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.panel {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1);
+  margin: 0;
+}
+
+.field dt {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.field dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: 14px;
+  line-height: var(--primitive-leading-normal);
+}
+
+.weightRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding-top: var(--primitive-space-1-5);
+  border-top: 1px solid var(--primitive-line-muted);
+}
+
+.weightLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.range {
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: var(--primitive-radius-pill);
+  background:
+    linear-gradient(90deg, var(--primitive-teal) 0%, var(--primitive-teal) var(--p, 50%), color-mix(in oklab, var(--primitive-text-strong) 12%, transparent) var(--p, 50%));
+  cursor: pointer;
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  border: 2px solid var(--primitive-teal);
+}
+
+.range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  border: 2px solid var(--primitive-teal);
+}
+
+.weightValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  min-width: 42px;
+  text-align: right;
+}
+
+.summary {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.summaryItem {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}

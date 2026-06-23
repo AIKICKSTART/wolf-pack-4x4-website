@@ -1,0 +1,210 @@
+/* ── Fine UI audit fixes (2026-06-11) ─────────────────────────────
+   Mechanical fixes from the 25-agent visual audit (62 confirmed
+   findings, .remember/ui-audit/findings.json). Each block cites its
+   finding. Late chunk: later import order wins ties. */
+
+/* [typesys-1/2] Saira Condensed loads 500/700/800/900 only; the seo
+   route display roles inherited body weight 300 and silently rendered
+   the 500 cut while /parts identical roles ran 800. One spec: hero
+   displays 800, section displays 700, honest 500 on the cinema
+   utility classes (01-type-chrome declares 400, an unloaded cut). */
+.seo-hero h1,
+.seo-product h1 {
+  font-weight: 800;
+}
+
+.seo-card h2,
+.seo-card h3,
+.seo-section h2,
+.seo-two-col h2,
+.seo-band h2,
+.parts-lookup-head h2 {
+  font-weight: 700;
+}
+
+.display,
+.title-lg {
+  font-weight: 500;
+}
+
+/* [typesys-5] unify display optical correction with the home cinema
+   spec (tighter leading, hair-negative tracking at display sizes).
+   text-wrap: balance also kills the widowed last words found on
+   gallery/faq/blog/about h1s. */
+.seo-hero h1,
+.seo-product h1 {
+  line-height: 0.98;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+/* [typesys-6] one tracking token for the mono label role — audit
+   counted 8 different letter-spacings on the same role. */
+:root {
+  --ls-label: 0.08em;
+}
+
+.seo-kicker,
+.parts-count,
+.seo-breadcrumbs,
+.public-conversion-dock a,
+.public-theme-toggle button,
+.seo-hero-proof span {
+  letter-spacing: var(--ls-label);
+}
+
+/* [services/about/contact/faq/areas/parts] dark theme kicker + SKU +
+   status labels rendered the light-theme oxblood (#005bd1 family) on
+   near-black at ~2:1 contrast. Use the brighter accent already used
+   by .seo-hero.has-cover .seo-kicker. */
+html[data-mufflermen-theme="dark"] .seo-kicker,
+html[data-mufflermen-theme="dark"] .parts-count,
+html[data-mufflermen-theme="dark"] .parts-lookup-status,
+html[data-mufflermen-theme="dark"] .part-result > .seo-kicker {
+  color: #ff3b45;
+}
+
+/* [micro-type floor] sub-12px mobile text: proof chips 9px, gallery
+   captions 8-11px, theme toggle 10px, footer legal 8.8px with a
+   larger inline credit link. Floor everything at 11-12px. */
+.seo-hero-proof span {
+  font-size: 12px;
+}
+
+.public-theme-toggle button {
+  font-size: 11px;
+}
+
+.public-gallery-grid figcaption,
+.public-gallery-grid figcaption small,
+.public-gallery-grid figcaption span {
+  font-size: 12px;
+}
+
+footer small,
+.public-site-footer-legal,
+.seo-legal-copy {
+  font-size: 12px;
+}
+
+.public-site-footer-legal a,
+.seo-legal-copy a {
+  font-size: inherit;
+}
+
+/* [areas + owner directive] card CTAs floated at different heights in
+   equal-height grid cards. Flex-column card + auto top margin pins
+   every CTA to one baseline across the row. */
+.seo-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.seo-card > a:last-child {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.seo-card > a:last-child:not(:first-child) {
+  margin-top: auto;
+  padding-top: 0;
+}
+
+/* [owner directive 2026-06-11] remove the 01-04 numerals from the
+   home service cards. */
+.service-num {
+  display: none;
+}
+
+/* [parts] catalogue grid fell from 4 columns straight to 1 below
+   981px — ~700px square cards at 768, blank scroll segments. Add the
+   missing 2-column step; single column only under 641px. */
+@media (max-width: 980px) and (min-width: 641px) {
+  .parts-results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* [services] 9 cards in the 2-column band left an orphan half-row.
+   Promote the odd last card to full width. */
+@media (max-width: 980px) and (min-width: 641px) {
+  .seo-grid > .seo-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* [gallery] grid tail: orphan tile at 3-col widths, staggered columns
+   at 2-col widths. Promote the orphan; lock tile media to one ratio so
+   rows stay aligned (scenery tiles — uniform grid is the valid crop
+   exception to the no-crop rule). */
+.public-gallery-grid > *:last-child:nth-child(3n + 1) {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 980px) and (min-width: 641px) {
+  .public-gallery-grid > *:last-child:nth-child(2n + 1) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* [contact] email broke mid-domain inside the contact card pill. */
+.seo-contact-card a[href^="mailto:"] {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  font-size: clamp(11px, 2.8vw, 12px);
+}
+
+/* [home/blog] header nav items wrapped to two lines at 768-1100. */
+.seo-nav a,
+.mufflermen-public .nav a {
+  white-space: nowrap;
+}
+
+/* [contact] consent line was ALL-CAPS red mono — restyle as quiet
+   body text (checkbox label, not a warning). */
+.public-consent {
+  text-transform: none;
+  font-family: var(--font-body);
+  letter-spacing: 0.01em;
+  color: var(--body, rgba(232, 228, 218, 0.72));
+}
+
+/* [services] li copy stuck at 13px while sibling paragraphs scale to
+   22px at desktop. */
+.seo-list li {
+  font-size: clamp(14px, 1.05vw, 17px);
+}
+
+/* [main-thread finding] fixed translucent header is ~110px tall but
+   sections had scroll-margin 0 — every anchor jump buried content. */
+.seo-section,
+.seo-band,
+.seo-two-col,
+.seo-product,
+.seo-grid,
+main [id] {
+  scroll-margin-top: 132px;
+}
+
+/* [home] 'quote it properly' band copy sat unscreened over the bright
+   car body at 1440 in light theme. */
+.brand-asset-story p,
+.public-brand-asset p {
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+}
+
+/* [owner 2026-06-11] home nav logo deformed at portrait desktop
+   widths: breakpoint rules fix the height and cap the width while the
+   flex row squeezes it (rendered 0x36 at 800w) with default
+   object-fit: fill. The mark's ratio always wins; the box may
+   letterbox, never stretch. */
+.nav-logo {
+  flex: 0 0 auto;
+  min-width: fit-content;
+}
+
+.nav-logo img {
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}

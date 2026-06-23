@@ -1,0 +1,182 @@
+.frame {
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 40%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-5);
+  align-items: end;
+  justify-content: space-between;
+}
+
+.headText {
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  max-width: 640px;
+}
+
+.index {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h3);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-tight);
+  text-transform: uppercase;
+}
+
+.type {
+  justify-self: start;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  color: var(--primitive-amber);
+  background: var(--primitive-recessed);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+.summary {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+}
+
+.controls {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.switcherLabel {
+  padding: 0 var(--primitive-space-2) 0 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.chip {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-body);
+  background: var(--primitive-field-bg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.chip:hover {
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-field-hover);
+  transform: translateY(-1px);
+}
+
+.chipActive {
+  color: var(--primitive-text-on-accent);
+  border-color: color-mix(in oklab, var(--primitive-red) 60%, var(--primitive-line-strong));
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.chipActive:hover {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.stage {
+  display: grid;
+  justify-items: center;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(0deg, var(--primitive-glass-soft), transparent 1px) 0 0 / 100% 24px,
+    var(--primitive-recessed);
+  overflow-x: auto;
+}
+
+.canvas {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.vpMobile .canvas,
+.vpTablet .canvas {
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-2xl);
+  padding: var(--primitive-space-3);
+  background: var(--primitive-canvas);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.vpDesktop .canvas {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .head {
+    align-items: start;
+  }
+
+  .controls {
+    width: 100%;
+  }
+
+  .stage {
+    padding: var(--primitive-space-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
+
+  .chip:hover {
+    transform: none;
+  }
+}

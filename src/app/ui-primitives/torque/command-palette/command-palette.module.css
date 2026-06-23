@@ -1,0 +1,347 @@
+/* --- Page wrapper (self-contained; mirrors the shared sub-route shell) --- */
+
+.page {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px) var(--primitive-space-14);
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 84% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 36%),
+    radial-gradient(circle at 8% 100%, color-mix(in oklab, var(--primitive-teal) 14%, transparent), transparent 40%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+.canvas {
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--primitive-space-6);
+}
+
+.note {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: 18px 22px;
+  border-left: 2px solid var(--primitive-red);
+  border-radius: 0 var(--primitive-radius-lg) var(--primitive-radius-lg) 0;
+  background: var(--primitive-glass-soft);
+}
+
+.note > span {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.note p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  max-width: 70ch;
+}
+
+/* --- Scene --- */
+
+.scene {
+  display: grid;
+  gap: 18px;
+  font-family: var(--primitive-font-body);
+}
+
+/* --- App-surface backdrop / Torque assistant bar --- */
+
+.surface {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: clamp(20px, 2.6vw, 32px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 92% -10%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 42%),
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.brandBar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--primitive-radius-round);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.01em;
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in oklab, white 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  box-shadow:
+    0 8px 22px color-mix(in oklab, var(--primitive-red) 36%, transparent),
+    inset 0 1px 0 color-mix(in oklab, white 40%, transparent);
+}
+
+.brandText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.brandName {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 19px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.brandRole {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.01em;
+}
+
+.brandStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  margin-left: auto;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-green);
+  box-shadow: 0 0 8px var(--primitive-green);
+}
+
+/* --- Trigger: a real button (no nested form/input) wrapping a faux search field --- */
+
+.trigger {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  font-family: inherit;
+  font-size: var(--primitive-text-sm);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 200ms var(--primitive-ease-out),
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.trigger:hover {
+  transform: translateY(-1px);
+  border-color: var(--primitive-red);
+}
+
+.trigger:focus-visible {
+  outline: none;
+  border-color: var(--primitive-red);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.triggerIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--primitive-red);
+}
+
+.triggerLabel {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.triggerHint {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.lede {
+  margin: 0;
+  max-width: 74ch;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.62;
+}
+
+/* --- Two-column preview --- */
+
+.preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+.actions,
+.recents {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 70%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.colHead {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  color: var(--primitive-amber);
+}
+
+.colTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.colCount {
+  margin-left: auto;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.recentList {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.recallNote {
+  margin: 0;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+}
+
+.recallQuery {
+  color: var(--primitive-teal);
+}
+
+/* --- Keyboard legend + run status --- */
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-glass-soft);
+}
+
+.hintList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.hintLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.runStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.runLabel {
+  color: var(--primitive-teal);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.runIdle {
+  color: var(--primitive-muted);
+}
+
+@media (max-width: 880px) {
+  .preview {
+    grid-template-columns: 1fr;
+  }
+
+  .brandStatus {
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trigger {
+    transition: none;
+  }
+
+  .trigger:hover {
+    transform: none;
+  }
+}

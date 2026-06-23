@@ -1,0 +1,265 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-green) 10%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-panel));
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: var(--primitive-space-1) 0 var(--primitive-space-0-5);
+  font-size: var(--primitive-text-lg);
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.005em;
+}
+
+.reference {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-muted);
+}
+
+.totals {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-4);
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  align-items: center;
+}
+
+.amountWrap {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.amountLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.amount {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(34px, 4.6vw, 44px);
+  color: var(--primitive-green);
+  letter-spacing: 0.01em;
+  line-height: var(--primitive-leading-none);
+  font-feature-settings: "tnum" 1;
+}
+
+.amountSub {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.collected {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  text-align: right;
+}
+
+.collectedLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.collectedTime {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.005em;
+}
+
+.providers {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.providersLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.providerGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: var(--primitive-space-1-5);
+}
+
+.providerButton {
+  appearance: none;
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.providerButton:hover {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+}
+
+.providerButton:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.providerButtonActive {
+  border-color: var(--primitive-amber);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 70%),
+    var(--primitive-btn-secondary-bg);
+  color: var(--primitive-text-strong);
+}
+
+.providerName {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.005em;
+}
+
+.providerHint {
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.providerButtonActive .providerHint {
+  color: var(--primitive-amber);
+}
+
+.foot {
+  display: flex;
+  gap: var(--primitive-space-2-5);
+  padding-top: 14px;
+  border-top: 1px solid var(--primitive-line);
+  flex-wrap: wrap;
+}
+
+.primaryButton,
+.refundButton {
+  appearance: none;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  padding: var(--primitive-space-2-5) 18px;
+  border-radius: var(--primitive-btn-radius);
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) ease, transform var(--primitive-duration-fast) ease, border-color var(--primitive-duration-fast) ease, box-shadow var(--primitive-duration-fast) ease;
+  font-weight: var(--primitive-weight-semibold);
+}
+
+/* Success-intent CTA — keeps the green semantic but follows the
+   central button shape/shadow/hover (lift) system. */
+.primaryButton {
+  flex: 1;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 78%, white) 0%,
+      var(--primitive-green) 44%, color-mix(in oklab, var(--primitive-green) 72%, black) 100%);
+  color: color-mix(in oklab, var(--primitive-green) 14%, black);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 34%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, black 40%, transparent),
+    0 10px 24px color-mix(in oklab, var(--primitive-green) 38%, transparent);
+}
+
+.primaryButton:hover {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 84%, white) 0%,
+      color-mix(in oklab, var(--primitive-green) 88%, black) 44%, color-mix(in oklab, var(--primitive-green) 64%, black) 100%);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 50%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, black 40%, transparent),
+    0 14px 30px color-mix(in oklab, var(--primitive-green) 44%, transparent);
+}
+
+.primaryButton:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+/* Secondary/ghost destructive — carbon body, red semantic on hover. */
+.refundButton {
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+}
+
+.refundButton:not(:disabled):hover {
+  border-color: var(--primitive-red);
+  color: var(--primitive-red);
+}
+
+.refundButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.refundButton:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (max-width: 540px) {
+  .totals {
+    grid-template-columns: 1fr;
+  }
+  .collected {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .providerButton,
+  .primaryButton,
+  .refundButton {
+    transition: none;
+  }
+}

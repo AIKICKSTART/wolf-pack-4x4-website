@@ -1,0 +1,103 @@
+.wrap {
+  position: relative;
+  display: block;
+  min-height: 0;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+.menu {
+  position: fixed;
+  z-index: 60;
+  min-width: 220px;
+  padding: var(--primitive-space-1-5);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-panel-strong);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  box-shadow:
+    var(--primitive-shadow-soft),
+    0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-body);
+  animation: menuPop var(--primitive-duration-fast) var(--primitive-ease-out);
+  transform-origin: top left;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 16px 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  background: transparent;
+  border: 0;
+  border-radius: var(--primitive-radius-md);
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--primitive-text-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) ease, color var(--primitive-duration-fast) ease;
+}
+
+.item:hover,
+.item:focus-visible {
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.itemDestructive {
+  color: var(--primitive-red);
+}
+
+.itemDestructive:hover,
+.itemDestructive:focus-visible {
+  background: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.itemIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.itemLabel {
+  letter-spacing: 0.005em;
+}
+
+.shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-0-5);
+  color: var(--primitive-muted);
+}
+
+@keyframes menuPop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu {
+    animation: none;
+  }
+  .item {
+    transition: none;
+  }
+}

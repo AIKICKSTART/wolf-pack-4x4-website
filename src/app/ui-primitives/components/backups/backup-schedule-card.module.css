@@ -1,0 +1,240 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 55%),
+    var(--primitive-surface-1, var(--primitive-panel));
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  transition: border-color 220ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover {
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-2px);
+}
+
+.card.disabled {
+  opacity: 0.62;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--primitive-space-3);
+}
+
+.titles {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  margin-left: auto;
+  cursor: pointer;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggleTrack {
+  position: relative;
+  width: 30px;
+  height: 16px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-strong);
+  transition: background 180ms ease;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: var(--primitive-space-0-5);
+  left: var(--primitive-space-0-5);
+  width: 12px;
+  height: 12px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-muted);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), background 180ms ease;
+}
+
+.toggle input:checked ~ .toggleTrack {
+  background: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.toggle input:checked ~ .toggleTrack .toggleThumb {
+  transform: translateX(14px);
+  background: var(--primitive-green);
+}
+
+.toggle input:focus-visible ~ .toggleTrack {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.toggleLabel {
+  color: var(--primitive-text-strong);
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  align-items: center;
+}
+
+.chip {
+  display: inline-flex;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.cron {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border-radius: 6px;
+  background: var(--primitive-code-bg);
+  color: var(--primitive-teal);
+  letter-spacing: 0.04em;
+}
+
+.retentionChip {
+  display: inline-flex;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: 6px;
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 7%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-green);
+}
+
+.statRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  margin: 0;
+  padding: var(--primitive-space-3);
+  border: 1px dashed var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.stat {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.stat dt {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.stat dd {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  align-items: baseline;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+}
+
+.statusChip {
+  display: inline-flex;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-sm);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+}
+
+.toneGreen { color: var(--primitive-green); background: color-mix(in oklab, var(--primitive-green) 8%, transparent); }
+.toneTeal  { color: var(--primitive-teal);  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent); }
+.toneAmber { color: var(--primitive-amber); background: color-mix(in oklab, var(--primitive-amber) 10%, transparent); }
+.toneRed   { color: var(--primitive-red);   background: color-mix(in oklab, var(--primitive-red) 8%, transparent); }
+.toneMuted { color: var(--primitive-muted); background: var(--primitive-glass-soft); }
+
+.dim {
+  color: var(--primitive-muted);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.editBtn {
+  padding: var(--primitive-space-1-5) 14px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.editBtn:hover,
+.editBtn:focus-visible {
+  outline: none;
+  border-color: var(--primitive-amber);
+  color: var(--primitive-amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .toggleTrack,
+  .toggleThumb,
+  .editBtn {
+    transition: none;
+  }
+}

@@ -1,0 +1,284 @@
+/* =========================================================
+   SIDE BY SIDE HERO — video left, copy right, brand stripe
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 78svh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) auto minmax(0, 0.95fr);
+  gap: 0;
+  background:
+    linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 84%, var(--primitive-teal)) 100%);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.videoColumn {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--primitive-canvas) 80%, black);
+}
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.92) saturate(1.05);
+}
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, color-mix(in oklab, black 32%, transparent) 0%, color-mix(in oklab, black 4%, transparent) 50%, color-mix(in oklab, black 48%, transparent) 100%),
+    radial-gradient(ellipse at 70% 30%, transparent 38%, color-mix(in oklab, black 40%, transparent) 100%);
+  z-index: 1;
+}
+.videoLabel {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) 14px;
+  background: color-mix(in oklab, var(--primitive-canvas) 80%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+  font-family: var(--primitive-font-mono);
+  z-index: 2;
+}
+.videoLabel span {
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent);
+}
+.videoLabel strong {
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.cornerTL,
+.cornerBR {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--primitive-amber);
+  z-index: 2;
+}
+.cornerTL { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+.cornerBR { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+.stripe {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto auto;
+  align-items: center;
+  justify-items: center;
+  gap: 18px;
+  padding: var(--primitive-space-8) 18px;
+  background:
+    linear-gradient(180deg, var(--primitive-red) 0%, var(--primitive-red-dark) 50%, var(--primitive-red) 100%);
+  color: var(--primitive-text-on-accent);
+  border-left: 1px solid color-mix(in oklab, black 40%, transparent);
+  border-right: 1px solid color-mix(in oklab, black 40%, transparent);
+  box-shadow:
+    inset 1px 0 0 color-mix(in oklab, var(--primitive-text-strong) 18%, transparent),
+    inset -1px 0 0 color-mix(in oklab, black 30%, transparent);
+}
+.stripe span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--primitive-font-display);
+  font-size: 28px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.stripe i {
+  width: 8px;
+  height: 8px;
+  background: var(--primitive-text-on-accent);
+  border-radius: var(--primitive-radius-pill);
+  box-shadow: 0 0 12px color-mix(in oklab, var(--primitive-text-on-accent) 70%, transparent);
+}
+
+.copyColumn {
+  display: grid;
+  align-items: center;
+  padding: clamp(36px, 5vw, 80px);
+}
+
+.copyInner {
+  display: grid;
+  gap: 18px;
+  padding: clamp(28px, 4vw, 44px) !important;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 1.4rem + 3.6vw, 4.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  margin: 0;
+}
+
+.subhead {
+  font-size: var(--primitive-text-base);
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--primitive-text-strong) 80%, transparent);
+  margin: 0;
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 4px 0 0;
+  border-top: 1px solid color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+}
+.specs > div {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-3) 14px;
+  border-right: 1px solid color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  transition: background 200ms;
+}
+.specs > div::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background: var(--primitive-amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.specs > div:hover {
+  background: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+}
+.specs > div:hover::after {
+  transform: scaleX(1);
+}
+.specs > div:last-child { border-right: none; }
+.specs dt {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 46%, transparent);
+  margin: 0;
+}
+.specs dd {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  letter-spacing: 0.12em;
+  color: var(--primitive-text-strong);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 12px 22px;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  transition: transform 200ms var(--primitive-ease-out), background 200ms,
+    color 200ms, box-shadow 200ms, border-color 200ms;
+}
+.ctaPrimary {
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+.ctaPrimary:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  transform: translateY(-2px);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+.ctaGhost {
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  border: 1px solid var(--primitive-btn-secondary-border);
+}
+.ctaGhost:hover {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, var(--primitive-canvas));
+  transform: translateY(-2px);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 4px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (max-width: 920px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: 320px auto auto;
+  }
+  .stripe {
+    grid-template-rows: auto;
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
+    align-items: center;
+    justify-items: center;
+    padding: 14px 24px;
+  }
+  .stripe span {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video { display: none; }
+  .videoColumn { background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-red)) 0%, color-mix(in oklab, var(--primitive-canvas) 92%, var(--primitive-teal)) 60%, var(--primitive-canvas) 100%);
+  }
+  .cta,
+  .specs > div,
+  .specs > div::after {
+    transition: none;
+  }
+}

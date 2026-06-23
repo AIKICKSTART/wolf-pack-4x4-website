@@ -1,0 +1,192 @@
+.root {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 0% 100%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.copy {
+  margin: 0;
+  font-size: 14px;
+  color: var(--primitive-body);
+  line-height: 1.55;
+}
+
+.primary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.primaryBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.primaryLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.primaryName {
+  font-family: var(--primitive-font-display);
+  font-size: 24px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.primarySuburb {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.cta {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2-5);
+  min-height: var(--primitive-space-10);
+  padding: 0 22px;
+  border: 0;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition:
+    transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.cta:focus-visible {
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+.ctaArrow {
+  font-size: var(--primitive-text-md);
+}
+
+.altWrap {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.altLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.alternatives {
+  display: grid;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alt {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.altInfo {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.altInfo strong {
+  color: var(--primitive-text-strong);
+  font-size: 14px;
+}
+
+.altInfo small {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+  .cta:hover,
+  .cta:focus-visible {
+    transform: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .primary {
+    grid-template-columns: 1fr;
+  }
+  .alt {
+    grid-template-columns: 1fr;
+  }
+}

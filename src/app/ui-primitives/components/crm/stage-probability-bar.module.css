@@ -1,0 +1,88 @@
+.wrapper {
+  display: grid;
+  gap: var(--primitive-space-8);
+  padding: var(--primitive-space-3) var(--primitive-space-1-5) var(--primitive-space-1-5);
+}
+
+.track {
+  position: relative;
+  height: 10px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-meter-track);
+  overflow: visible;
+}
+
+.fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primitive-teal), var(--primitive-amber), var(--primitive-red));
+  box-shadow: 0 0 14px color-mix(in oklab, var(--primitive-red) 35%, transparent);
+  transition: width 320ms var(--primitive-ease-out);
+}
+
+.tick {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: var(--primitive-radius-round);
+  border: 2px solid var(--primitive-canvas);
+  background: color-mix(in oklab, var(--primitive-text-strong) 45%, transparent);
+}
+
+.tick[data-current="true"] {
+  width: 16px;
+  height: 16px;
+  background: var(--primitive-text-strong);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 36%, transparent), 0 0 18px color-mix(in oklab, var(--primitive-red) 45%, transparent);
+}
+
+.legend {
+  position: relative;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legendItem {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.legendStage {
+  display: block;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.legendValue {
+  display: block;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+}
+
+.legendItem[data-current="true"] .legendStage {
+  color: var(--primitive-text-strong);
+}
+
+.legendItem[data-current="true"] .legendValue {
+  color: var(--primitive-amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+}

@@ -1,0 +1,170 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 50%),
+    var(--primitive-surface-1, var(--primitive-panel));
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.running { border-color: color-mix(in oklab, var(--primitive-teal) 32%, transparent); }
+.paused  { border-color: color-mix(in oklab, var(--primitive-amber) 32%, transparent); }
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  align-items: baseline;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.paused .kicker {
+  color: var(--primitive-amber);
+}
+
+.resource {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+}
+
+.snapId {
+  margin-left: auto;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--primitive-muted);
+}
+
+.progressTrack {
+  position: relative;
+  height: 22px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-line-muted);
+  overflow: hidden;
+  border: 1px solid var(--primitive-line);
+}
+
+.progressFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  background:
+    linear-gradient(90deg, var(--primitive-teal) 0%, var(--primitive-green) 100%),
+    repeating-linear-gradient(
+      45deg,
+      var(--primitive-glass-strong) 0 8px,
+      transparent 8px 16px
+    );
+  background-blend-mode: overlay;
+  animation: shimmer 1.8s linear infinite;
+}
+
+.fillPaused {
+  background:
+    linear-gradient(90deg, var(--primitive-amber), color-mix(in oklab, var(--primitive-amber) 45%, transparent));
+  animation: none;
+}
+
+.progressLabel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 0 6px color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+}
+
+.stats > div {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+.stats dt {
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.stats dd {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+}
+
+.throughputChip {
+  display: inline-flex;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 7%, transparent);
+  color: var(--primitive-green);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pauseBtn {
+  padding: var(--primitive-space-1-5) 14px;
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.pauseBtn:hover,
+.pauseBtn:focus-visible {
+  outline: none;
+  border-color: var(--primitive-amber);
+  color: var(--primitive-amber);
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 0 0, 32px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressFill {
+    animation: none;
+  }
+}

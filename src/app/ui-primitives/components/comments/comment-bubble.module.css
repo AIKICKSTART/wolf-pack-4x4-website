@@ -1,0 +1,161 @@
+.bubble {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--primitive-space-3);
+  padding: 14px var(--primitive-space-4) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), transparent),
+    var(--primitive-panel);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-body);
+  isolation: isolate;
+}
+
+.bubbleResolved {
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 6%, transparent), transparent),
+    var(--primitive-panel);
+}
+
+.bubbleHighlighted {
+  border-color: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-teal) 20%, transparent);
+}
+
+.avatarCol {
+  display: grid;
+  align-content: start;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+}
+
+.name {
+  font-weight: var(--primitive-weight-bold);
+  font-size: 13.5px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.role {
+  padding: 2px 7px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-soft);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.time {
+  margin-left: auto;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.kebab {
+  display: inline-grid;
+  place-items: center;
+  width: var(--primitive-icon-xl);
+  height: var(--primitive-icon-xl);
+  border: 1px solid transparent;
+  border-radius: var(--primitive-radius-md);
+  background: transparent;
+  color: var(--primitive-muted);
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.kebab:hover,
+.kebab:focus-visible {
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--primitive-text-strong);
+  overflow-wrap: anywhere;
+}
+
+.mention {
+  padding: 0 var(--primitive-space-1);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  color: var(--primitive-teal);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  margin-top: var(--primitive-space-1);
+}
+
+.replyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.replyBtn:hover,
+.replyBtn:focus-visible {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px var(--primitive-space-2);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 45%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kebab,
+  .replyBtn {
+    transition: none;
+  }
+}

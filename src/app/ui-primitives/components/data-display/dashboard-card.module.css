@@ -1,0 +1,201 @@
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, white 5%, transparent), color-mix(in oklab, white 1%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 var(--primitive-neumo-light), var(--primitive-shadow-soft);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-body);
+  overflow: hidden;
+  transition: transform 220ms var(--primitive-ease-out), border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--primitive-space-4);
+  right: var(--primitive-space-4);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primitive-red), transparent);
+  opacity: 0.5;
+  transition: opacity 220ms ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primitive-line-strong);
+  box-shadow: inset 0 1px 0 var(--primitive-neumo-light), var(--primitive-shadow-deep);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.surfaceGlass {
+  background:
+    radial-gradient(circle at 22% 12%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 48%),
+    var(--primitive-glass-soft);
+  backdrop-filter: blur(18px);
+  border-color: var(--primitive-line-strong);
+}
+
+.surfaceNeuo {
+  background:
+    radial-gradient(circle at 80% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 40%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-inset), var(--primitive-shadow-soft);
+}
+
+.surfaceMaterial {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 52%),
+    var(--primitive-panel-strong);
+  border-color: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  box-shadow: 0 22px 60px color-mix(in oklab, var(--primitive-red) 18%, transparent), inset 0 1px 0 color-mix(in oklab, white 10%, transparent);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.iconWrap {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-md);
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+}
+
+.iconWrap svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+.label {
+  min-width: 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.delta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.deltaUp {
+  color: color-mix(in oklab, var(--primitive-green) 14%, black);
+  background: var(--primitive-green);
+}
+
+.deltaDown {
+  color: var(--primitive-text-on-accent);
+  background: var(--primitive-red);
+}
+
+.deltaFlat {
+  color: var(--primitive-body);
+  background: var(--primitive-line-muted);
+}
+
+.value {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(40px, 4.4vw, 58px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: -0.005em;
+  line-height: var(--primitive-leading-tight);
+  font-variant-numeric: tabular-nums;
+}
+
+.unit {
+  margin-left: var(--primitive-space-1-5);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sparkSlot {
+  min-height: 44px;
+  display: grid;
+  align-items: end;
+}
+
+.footer {
+  display: flex;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.footer a:hover {
+  color: var(--primitive-amber);
+  transform: translateX(2px);
+}
+
+.footer a:focus-visible {
+  color: var(--primitive-amber);
+  transform: translateX(2px);
+  outline: none;
+  border-radius: var(--primitive-radius-sm);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.footer span {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .footer a {
+    transition: none;
+  }
+}

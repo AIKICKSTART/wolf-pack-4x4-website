@@ -1,0 +1,242 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding-bottom: var(--primitive-space-2-5);
+  border-bottom: 1px dashed var(--primitive-line);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.dropZone {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  place-items: center;
+  padding: 26px 18px;
+  border: 1px dashed var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.dropZone:hover,
+.dropZone:focus-visible {
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.dropZoneActive {
+  border-color: color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+}
+
+.dropGlyph {
+  font-size: var(--primitive-icon-xl);
+  color: var(--primitive-teal);
+}
+
+.dropTitle {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: var(--primitive-tracking-tight);
+}
+
+.dropHint {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.dropActions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  margin-top: var(--primitive-space-1);
+}
+
+/* Primary action — central premium button DNA. */
+.dropBtn {
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  border: 1px solid transparent;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.dropBtn:hover,
+.dropBtn:focus-visible {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.dropBtn:focus-visible {
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+/* Secondary/ghost action — central carbon-body secondary DNA. */
+.dropBtnGhost {
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.dropBtnGhost:hover,
+.dropBtnGhost:focus-visible {
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.dropBtnGhost:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.selected {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.input {
+  padding: 9px var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  outline: none;
+  transition: border-color 200ms ease;
+}
+
+.input:focus-visible {
+  border-color: var(--primitive-teal);
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+.toggleLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.toggle {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.toggleOn {
+  background: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 60%, transparent);
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  transition: transform 200ms ease;
+}
+
+.toggleOn .toggleThumb {
+  transform: translateX(16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropZone,
+  .toggle,
+  .toggleThumb,
+  .input {
+    transition: none;
+  }
+}

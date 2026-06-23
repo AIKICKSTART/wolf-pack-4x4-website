@@ -1,0 +1,780 @@
+/* =========================================================
+   TORQUE MASCOT — the Mufflermen assistant avatar
+   A little chrome + matte-black mechanic robot built from
+   SVG shapes and CSS. Brand red accents, amber glass ring,
+   one expressive eye. Ten states, each with a DISTINCT,
+   compositor-friendly animation (transform / opacity only),
+   fully neutralised under prefers-reduced-motion.
+   Token-driven for light + dark parity.
+   ========================================================= */
+
+.root {
+  /* size scale — overridden by .size* modifiers */
+  --tm-size: 84px;
+  --tm-ring: 6px;
+
+  /* palette — pulls from the primitive token system so both
+     themes read intentionally; brand red + amber carry it */
+  --tm-chrome-hi: color-mix(in srgb, white 95%, transparent);
+  --tm-chrome-mid: color-mix(in srgb, white 64%, var(--tm-ink));
+  --tm-chrome-lo: color-mix(in srgb, var(--primitive-text-strong) 22%, transparent);
+  --tm-chrome-lo-solid: color-mix(in srgb, white 28%, var(--tm-ink));
+  --tm-ink: color-mix(in srgb, black 92%, var(--primitive-canvas));
+  --tm-matte: color-mix(in srgb, black 88%, var(--primitive-canvas));
+  --tm-matte-deep: color-mix(in srgb, black 94%, var(--primitive-canvas));
+  --tm-matte-edge: color-mix(in srgb, white 14%, var(--tm-matte));
+  --tm-steel: color-mix(in srgb, white 42%, var(--tm-ink));
+  --tm-spec-hi: color-mix(in srgb, white 96%, transparent);
+  --tm-red: var(--primitive-red);
+  --tm-red-deep: var(--primitive-red-dark);
+  --tm-amber: var(--primitive-amber);
+  --tm-eye: var(--primitive-teal);
+  --tm-eye-glow: color-mix(in srgb, var(--tm-eye) 70%, transparent);
+  --tm-green: var(--primitive-green);
+  --tm-glass: color-mix(in srgb, var(--primitive-text-strong) 6%, transparent);
+  --tm-glyph-ink: color-mix(in srgb, black 86%, var(--primitive-amber));
+  --tm-glyph-ink-green: color-mix(in srgb, black 84%, var(--primitive-green));
+
+  /* per-state accent that tints ring + status dot */
+  --tm-accent: var(--tm-eye);
+
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--tm-size);
+  height: var(--tm-size);
+  flex: none;
+  isolation: isolate;
+  color: var(--primitive-text-strong);
+  line-height: 0;
+}
+
+.sizeSm {
+  --tm-size: 52px;
+  --tm-ring: 4px;
+}
+.sizeMd {
+  --tm-size: 84px;
+  --tm-ring: 6px;
+}
+.sizeLg {
+  --tm-size: 120px;
+  --tm-ring: 8px;
+}
+.sizeXl {
+  --tm-size: 176px;
+  --tm-ring: 11px;
+}
+
+/* =========================================================
+   the glass ring — a layered halo behind the robot. Carries
+   the per-state accent and a soft glass blur + brand sheen.
+   ========================================================= */
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: var(--tm-ring);
+  background:
+    conic-gradient(
+      from 140deg,
+      color-mix(in srgb, var(--tm-accent) 70%, transparent),
+      color-mix(in srgb, var(--tm-amber) 35%, transparent) 38%,
+      transparent 60%,
+      color-mix(in srgb, var(--tm-accent) 55%, transparent) 100%
+    );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.9;
+  z-index: 0;
+  transform: translateZ(0);
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+/* soft glow puck beneath the body */
+.glow {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 42%,
+    color-mix(in srgb, var(--tm-accent) 36%, transparent),
+    transparent 68%
+  );
+  filter: blur(6px);
+  opacity: 0.7;
+  z-index: 0;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+.svg {
+  position: relative;
+  z-index: 1;
+  width: 78%;
+  height: 78%;
+  overflow: visible;
+  transform: translateZ(0);
+  transform-origin: 50% 60%;
+  will-change: transform;
+}
+
+/* =========================================================
+   robot anatomy — grouped so individual parts animate
+   independently. Colours come from in-SVG gradients defined
+   per instance; these classes only handle motion + accent.
+   ========================================================= */
+
+.head {
+  transform-origin: 50% 64%;
+  will-change: transform;
+}
+.eye {
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+  will-change: transform, opacity;
+}
+.eyeGlow {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  opacity: 0.65;
+  will-change: opacity, transform;
+}
+.antenna {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+.gear {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+.scanBeam {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.exhaust {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.spark {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+.statusGlyph {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+/* the orbiting "thinking" dots live in their own layer so
+   they can rotate around the avatar without affecting layout */
+.orbit {
+  position: absolute;
+  inset: -2%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.orbit span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9%;
+  height: 9%;
+  margin: -4.5% 0 0 -4.5%;
+  border-radius: 50%;
+  background: var(--tm-accent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--tm-accent) 80%, transparent);
+}
+.orbit span:nth-child(1) {
+  transform: rotate(0deg) translateX(46%);
+}
+.orbit span:nth-child(2) {
+  transform: rotate(120deg) translateX(46%);
+  opacity: 0.7;
+}
+.orbit span:nth-child(3) {
+  transform: rotate(240deg) translateX(46%);
+  opacity: 0.45;
+}
+
+/* =========================================================
+   per-state accent colour — tints ring, glow + status glyph
+   ========================================================= */
+
+.stateIdle {
+  --tm-accent: var(--tm-eye);
+}
+.stateThinking {
+  --tm-accent: var(--tm-amber);
+}
+.stateTyping {
+  --tm-accent: var(--tm-eye);
+}
+.stateWorking {
+  --tm-accent: var(--tm-red);
+}
+.stateAnalysing {
+  --tm-accent: var(--tm-eye);
+}
+.stateGenerating {
+  --tm-accent: var(--tm-amber);
+}
+.stateDeploying {
+  --tm-accent: var(--tm-eye);
+}
+.stateApproval {
+  --tm-accent: var(--tm-amber);
+}
+.stateWarning {
+  --tm-accent: var(--tm-amber);
+}
+.stateSuccess {
+  --tm-accent: var(--tm-green);
+}
+
+/* =========================================================
+   STATE ANIMATIONS — transform / opacity only
+   ========================================================= */
+
+/* idle: soft breathing + slow ring drift + slow blink */
+.stateIdle .svg {
+  animation: tm-breathe 4200ms var(--tm-ease, cubic-bezier(0.45, 0, 0.55, 1)) infinite;
+}
+.stateIdle .ring {
+  animation: tm-ring-drift 12000ms linear infinite;
+}
+.stateIdle .eye {
+  animation: tm-blink 5200ms ease-in-out infinite;
+}
+.stateIdle .antenna {
+  animation: tm-antenna-sway 4200ms ease-in-out infinite;
+}
+
+/* thinking: gentle pulse + orbiting dots + amber ring spin */
+.stateThinking .orbit {
+  opacity: 1;
+  animation: tm-orbit 2600ms linear infinite;
+}
+.stateThinking .svg {
+  animation: tm-think-pulse 1900ms ease-in-out infinite;
+}
+.stateThinking .eyeGlow {
+  animation: tm-glow-pulse 1900ms ease-in-out infinite;
+}
+.stateThinking .ring {
+  animation: tm-ring-spin 5200ms linear infinite;
+}
+
+/* typing: quick bobbing + eager antenna */
+.stateTyping .svg {
+  animation: tm-bob 760ms cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.stateTyping .antenna {
+  animation: tm-antenna-tick 760ms ease-in-out infinite;
+}
+.stateTyping .eye {
+  animation: tm-blink 3200ms ease-in-out infinite;
+}
+
+/* working: spinning gear/wrench + steady head + ring spin */
+.stateWorking .gear {
+  opacity: 1;
+  animation: tm-spin 2400ms linear infinite;
+}
+.stateWorking .ring {
+  animation: tm-ring-spin 3400ms linear infinite reverse;
+}
+.stateWorking .svg {
+  animation: tm-work-lean 2400ms ease-in-out infinite;
+}
+
+/* analysing: vertical scanning beam sweeps the face */
+.stateAnalysing .scanBeam {
+  animation: tm-scan 2200ms cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.stateAnalysing .eye {
+  animation: tm-eye-track 2200ms cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.stateAnalysing .ring {
+  animation: tm-ring-drift 9000ms linear infinite;
+}
+
+/* generating: shimmer/sparkle + soft scale shimmer */
+.stateGenerating .spark {
+  animation: tm-sparkle 1700ms ease-in-out infinite;
+}
+.stateGenerating .spark.sparkB {
+  animation-delay: 560ms;
+  animation-duration: 1500ms;
+}
+.stateGenerating .spark.sparkC {
+  animation-delay: 980ms;
+  animation-duration: 1900ms;
+}
+.stateGenerating .eyeGlow {
+  animation: tm-glow-pulse 1300ms ease-in-out infinite;
+}
+.stateGenerating .ring {
+  animation: tm-ring-spin 6000ms linear infinite;
+}
+
+/* deploying: upward thrust + exhaust puff */
+.stateDeploying .svg {
+  animation: tm-thrust 1500ms cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+.stateDeploying .exhaust {
+  animation: tm-exhaust 1500ms cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+.stateDeploying .ring {
+  animation: tm-ring-spin 4200ms linear infinite;
+}
+
+/* approval: gentle attention pulse + check hint fade */
+.stateApproval .svg {
+  animation: tm-attention 2400ms ease-in-out infinite;
+}
+.stateApproval .ring {
+  animation: tm-ring-breathe 2400ms ease-in-out infinite;
+}
+.stateApproval .statusGlyph.glyphCheck {
+  animation: tm-glyph-hint 2400ms ease-in-out infinite;
+}
+
+/* warning: amber shake + glow flare */
+.stateWarning .svg {
+  animation: tm-shake 1100ms ease-in-out infinite;
+}
+.stateWarning .ring {
+  animation: tm-ring-flare 1100ms ease-in-out infinite;
+}
+.stateWarning .statusGlyph.glyphWarn {
+  animation: tm-glyph-flash 1100ms ease-in-out infinite;
+}
+
+/* success: pop + tick reveal + ring settle */
+.stateSuccess .svg {
+  animation: tm-pop 1700ms cubic-bezier(0.2, 0.9, 0.25, 1) infinite;
+}
+.stateSuccess .statusGlyph.glyphTick {
+  animation: tm-tick 1700ms cubic-bezier(0.2, 0.9, 0.25, 1) infinite;
+}
+.stateSuccess .ring {
+  animation: tm-ring-breathe 1700ms ease-out infinite;
+}
+
+/* =========================================================
+   KEYFRAMES
+   ========================================================= */
+
+@keyframes tm-breathe {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -2%, 0) scale(1.025);
+  }
+}
+
+@keyframes tm-ring-drift {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tm-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tm-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95%,
+  97% {
+    transform: scaleY(0.12);
+  }
+}
+
+@keyframes tm-antenna-sway {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes tm-think-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes tm-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes tm-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tm-bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 5%, 0);
+  }
+}
+
+@keyframes tm-antenna-tick {
+  0%,
+  100% {
+    transform: rotate(-7deg);
+  }
+  50% {
+    transform: rotate(7deg);
+  }
+}
+
+@keyframes tm-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tm-work-lean {
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+
+@keyframes tm-scan {
+  0% {
+    opacity: 0;
+    transform: translateY(-32%) scaleY(0.7);
+  }
+  12%,
+  88% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(58%) scaleY(0.7);
+  }
+}
+
+@keyframes tm-eye-track {
+  0%,
+  100% {
+    transform: translateX(-12%);
+  }
+  50% {
+    transform: translateX(12%);
+  }
+}
+
+@keyframes tm-sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4) rotate(0deg);
+  }
+  45%,
+  60% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+@keyframes tm-thrust {
+  0% {
+    transform: translate3d(0, 4%, 0);
+  }
+  35% {
+    transform: translate3d(0, -6%, 0);
+  }
+  100% {
+    transform: translate3d(0, 4%, 0);
+  }
+}
+
+@keyframes tm-exhaust {
+  0% {
+    opacity: 0;
+    transform: translateY(-6%) scaleY(0.4) scaleX(0.7);
+  }
+  35% {
+    opacity: 0.85;
+    transform: translateY(40%) scaleY(1.1) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(78%) scaleY(1.4) scaleX(1.3);
+  }
+}
+
+@keyframes tm-attention {
+  0%,
+  70%,
+  100% {
+    transform: scale(1) translateY(0);
+  }
+  82% {
+    transform: scale(1.04) translateY(-2%);
+  }
+}
+
+@keyframes tm-ring-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes tm-glyph-hint {
+  0%,
+  60%,
+  100% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  78% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes tm-shake {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  20% {
+    transform: translateX(-5%) rotate(-2deg);
+  }
+  40% {
+    transform: translateX(5%) rotate(2deg);
+  }
+  60% {
+    transform: translateX(-4%) rotate(-1.5deg);
+  }
+  80% {
+    transform: translateX(4%) rotate(1.5deg);
+  }
+}
+
+@keyframes tm-ring-flare {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes tm-glyph-flash {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes tm-pop {
+  0% {
+    transform: scale(1);
+  }
+  18% {
+    transform: scale(1.1);
+  }
+  36% {
+    transform: scale(0.98);
+  }
+  52%,
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes tm-tick {
+  0%,
+  10% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  46%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION — neutralise all motion, keep an expressive
+   STATIC pose per state so the avatar still reads its mood.
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .root *,
+  .root *::before,
+  .root *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* show the "evidence" layers statically so the state is
+     still legible without movement */
+  .stateThinking .orbit {
+    opacity: 1;
+  }
+  .stateThinking .eyeGlow,
+  .stateGenerating .eyeGlow {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+  .stateWorking .gear {
+    opacity: 1;
+  }
+  .stateAnalysing .scanBeam {
+    opacity: 0.85;
+    transform: translateY(8%);
+  }
+  .stateGenerating .spark {
+    opacity: 1;
+    transform: scale(0.9) rotate(45deg);
+  }
+  .stateDeploying .exhaust {
+    opacity: 0.7;
+    transform: translateY(28%) scaleY(1);
+  }
+  .stateDeploying .svg {
+    transform: translateY(-4%);
+  }
+  .stateApproval .statusGlyph.glyphCheck,
+  .stateWarning .statusGlyph.glyphWarn,
+  .stateSuccess .statusGlyph.glyphTick {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   TORQUE BADGE — inline mini-avatar + label chip for use in
+   chat headers, toasts, list rows. Reuses the avatar.
+   ========================================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3) var(--primitive-space-1-5) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-none);
+}
+
+.badgeText {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.badgeName {
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.01em;
+}
+
+.badgeState {
+  font-size: 0.6875rem;
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tm-badge-accent, var(--primitive-muted));
+}
+
+.badgeAccentThinking,
+.badgeAccentGenerating,
+.badgeAccentApproval,
+.badgeAccentWarning {
+  --tm-badge-accent: var(--primitive-amber);
+}
+.badgeAccentWorking {
+  --tm-badge-accent: var(--primitive-red);
+}
+.badgeAccentSuccess {
+  --tm-badge-accent: var(--primitive-green);
+}
+.badgeAccentIdle,
+.badgeAccentTyping,
+.badgeAccentAnalysing,
+.badgeAccentDeploying {
+  --tm-badge-accent: var(--primitive-teal);
+}

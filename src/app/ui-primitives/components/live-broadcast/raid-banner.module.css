@@ -1,0 +1,201 @@
+/* =========================================================
+   RAID BANNER — incoming raid notification
+   ========================================================= */
+
+.banner {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-amber);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-amber) 18%, transparent), color-mix(in oklab, var(--primitive-red) 12%, transparent), color-mix(in oklab, var(--primitive-teal) 8%, transparent));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-body, system-ui, sans-serif);
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 40%, color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent) 50%, transparent 60%);
+  background-size: 200% 200%;
+  animation: shimmer 3.4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.banner > *:not(.shimmer) {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer { animation: none; opacity: 0.6; }
+}
+
+.identity {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.identityText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.channel {
+  font-family: var(--primitive-font-display, Anton, Impact, sans-serif);
+  font-size: var(--primitive-text-lg);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-on-accent);
+}
+
+.handle {
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 65%, transparent);
+}
+
+.counterBlock {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  justify-items: center;
+  padding: var(--primitive-space-1-5) 14px;
+  border-left: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+  border-right: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+}
+
+.counterLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 65%, transparent);
+}
+
+.counterValue {
+  font-family: var(--primitive-font-display, Anton, Impact, sans-serif);
+  font-size: var(--primitive-text-xl);
+  font-weight: 400;
+  color: var(--primitive-text-on-accent);
+  letter-spacing: 0.02em;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.counterUnit {
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 55%, transparent);
+}
+
+.message {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 85%, transparent);
+  font-style: italic;
+  max-width: 32ch;
+}
+
+.actions {
+  display: inline-flex;
+  gap: var(--primitive-space-1-5);
+}
+
+.accept {
+  padding: 9px 14px;
+  border-radius: var(--primitive-btn-radius);
+  border: none;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.accept:hover,
+.accept:focus-visible {
+  outline: none;
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.accept:focus-visible {
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+.dismiss {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 78%, transparent);
+  cursor: pointer;
+  transition: color var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.dismiss:hover,
+.dismiss:focus-visible {
+  outline: none;
+  color: var(--primitive-btn-secondary-fg);
+  border-color: color-mix(in oklab, var(--primitive-text-on-accent) 42%, transparent);
+}
+
+@media (max-width: 720px) {
+  .banner {
+    grid-template-columns: 1fr;
+    gap: var(--primitive-space-2-5);
+  }
+  .counterBlock {
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+    border-bottom: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+    padding: var(--primitive-space-2) 0;
+  }
+  .message { max-width: 100%; }
+  .actions { justify-content: flex-start; }
+}

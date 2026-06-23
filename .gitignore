@@ -1,0 +1,78 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+/qa-artifacts/
+
+# next.js
+/.next/
+/.next-codex/
+/.next-local-logs/
+/out/
+
+# production
+/build
+/infra/production/backups/
+/infra/production/release.env
+/infra/production/release-artifacts/
+/infra/production/runtime-image-pins.env
+
+# misc
+.DS_Store
+.codex-tmp/
+*.pem
+Kimi_Agent_Repco Parts Scrape*.zip
+__pycache__/
+*.pyc
+
+# Payload CMS local upload storage. Persist and back this up on the VPS;
+# do not commit local test uploads.
+/public/media/cms/*
+!/public/media/cms/.gitkeep
+
+# Embedded local worktrees managed as independent Git repositories.
+/infra/supabase-upstream/
+/tools/claude-video/
+/tools/higgsfield-skills/
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Local QA artifacts (logs, pids, screenshots)
+output/
+
+# Local QA scratch (dev-server logs, before/after screenshots)
+.qa-*
+.codex-contact-audit/
+
+# graphify + design-loop artifacts (local only)
+graphify-out/
+.graphify_*
+.graphify_build.py
+.design-audit.md
+.design-loop-count
+.theme-light-explicit.css
+tmp/

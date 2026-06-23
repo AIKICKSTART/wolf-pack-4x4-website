@@ -1,0 +1,99 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 40%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.kicker {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+  margin-bottom: 4px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 18px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.toolbar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 62%, transparent);
+  width: max-content;
+}
+
+.toolBtn {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.toolBtn:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.toolBtn:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 2px;
+}
+
+.area {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 22%, transparent), transparent),
+    color-mix(in oklab, var(--primitive-canvas) 62%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 180px;
+}
+
+.area:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toolBtn {
+    transition: none;
+  }
+}

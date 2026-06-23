@@ -1,0 +1,431 @@
+.board {
+  width: min(100%, 1480px);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--primitive-space-7);
+}
+
+.section {
+  min-width: 0;
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), transparent 48%),
+    radial-gradient(circle at 6% 0%, color-mix(in oklab, var(--primitive-red) 13%, transparent), transparent 42%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  overflow: hidden;
+}
+
+.sectionHeader {
+  display: grid;
+  gap: var(--primitive-space-2);
+  max-width: 980px;
+}
+
+.kicker,
+.index,
+.meta,
+.token {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.sectionHeader h2,
+.card h3,
+.pattern h3,
+.sizeGroup h3 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+}
+
+.sectionHeader h2 {
+  font-size: clamp(30px, 4vw, 58px);
+}
+
+.sectionHeader p,
+.card p,
+.pattern p,
+.rule,
+.note {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+}
+
+.grid,
+.threeGrid,
+.twoGrid,
+.patternGrid {
+  display: grid;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+}
+
+.grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.threeGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.twoGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.patternGrid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.card,
+.pattern,
+.sizeGroup,
+.matrix {
+  min-width: 0;
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(145deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent),
+    color-mix(in oklab, var(--primitive-panel) 86%, transparent);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    inset -10px -10px 18px var(--primitive-neumo-dark);
+}
+
+.card h3,
+.pattern h3,
+.sizeGroup h3 {
+  font-size: var(--primitive-text-xl);
+}
+
+.pattern {
+  border-left: 2px solid color-mix(in oklab, var(--primitive-red) 62%, var(--primitive-line));
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.tags span,
+.chip {
+  min-width: 0;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.blueprintFrame {
+  min-height: 190px;
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(90deg, var(--primitive-texture-stroke) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(0deg, var(--primitive-texture-stroke) 1px, transparent 1px) 0 0 / 28px 28px,
+    var(--primitive-recessed);
+}
+
+.wire {
+  min-width: 0;
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 42%, var(--primitive-line));
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-teal) 9%, transparent);
+}
+
+.wireStrong {
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-line));
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+}
+
+.wireAmber {
+  border-color: color-mix(in oklab, var(--primitive-amber) 62%, var(--primitive-line));
+  background: color-mix(in oklab, var(--primitive-amber) 11%, transparent);
+}
+
+.wirePage {
+  grid-template-columns: 74px minmax(0, 1fr);
+}
+
+.wirePage .wire:nth-child(1) {
+  grid-row: 1 / 5;
+}
+
+.wireSection {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: 52px 1fr;
+  gap: var(--primitive-space-2);
+}
+
+.wireSection > div:first-child {
+  grid-column: 1 / -1;
+}
+
+.wireCard {
+  grid-template-rows: 40px 1fr 34px;
+}
+
+.wireControl {
+  align-content: center;
+}
+
+.wireControl > div {
+  min-height: 36px;
+}
+
+.wireTable {
+  grid-template-rows: 34px repeat(4, minmax(22px, 1fr));
+}
+
+.wireOverlay {
+  place-items: center;
+}
+
+.wireOverlay > div {
+  width: min(100%, 280px);
+  min-height: 126px;
+}
+
+.wireMobile {
+  width: min(100%, 180px);
+  justify-self: center;
+  grid-template-rows: 34px 1fr 44px;
+  border-radius: var(--primitive-radius-xl);
+}
+
+.layoutSpec {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: var(--primitive-space-4);
+  align-items: stretch;
+}
+
+.layoutDiagram {
+  min-height: 230px;
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(90deg, var(--primitive-texture-stroke) 1px, transparent 1px) 0 0 / 36px 36px,
+    var(--primitive-recessed);
+}
+
+.split5050 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.split6040 {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+}
+
+.split7030 {
+  grid-template-columns: minmax(0, 2.35fr) minmax(0, 1fr);
+}
+
+.railLayout {
+  grid-template-columns: 72px minmax(0, 1fr);
+}
+
+.bandLayout {
+  grid-template-rows: 44px 1fr 44px;
+}
+
+.stackLayout {
+  grid-template-rows: repeat(4, minmax(30px, 1fr));
+}
+
+.sizeRows {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.sizeRow {
+  display: grid;
+  grid-template-columns: minmax(92px, 0.4fr) minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: center;
+  min-width: 0;
+}
+
+.sizeRail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  min-width: 0;
+}
+
+.sizeBox {
+  display: inline-grid;
+  place-items: center;
+  inline-size: min(var(--size-box), 100%);
+  min-inline-size: min(var(--size-box), 100%);
+  block-size: min(var(--size-box), 220px);
+  min-block-size: min(var(--size-box), 220px);
+  padding: 0 var(--primitive-space-2);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-sm);
+  background:
+    var(--primitive-metallic-sheen),
+    var(--primitive-control-surface);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.tokenList {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.tokenLine {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.9fr) minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: center;
+  min-width: 0;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-field-bg);
+}
+
+.tokenLine code,
+.tokenLine span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+}
+
+.tokenLine code {
+  color: var(--primitive-amber);
+}
+
+.tokenLine span {
+  color: var(--primitive-muted);
+}
+
+.matrix {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+}
+
+.table caption {
+  padding-bottom: var(--primitive-space-3);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.table th,
+.table td {
+  padding: var(--primitive-space-3);
+  border-bottom: 1px solid var(--primitive-line-muted);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.table td:first-child {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+@media (max-width: 1180px) {
+  .grid,
+  .patternGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .threeGrid,
+  .twoGrid,
+  .layoutSpec {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding: var(--primitive-space-4);
+  }
+
+  .grid,
+  .threeGrid,
+  .twoGrid,
+  .patternGrid,
+  .wireSection,
+  .split5050,
+  .split6040,
+  .split7030,
+  .railLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .wirePage {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+
+  .wireSection > div:first-child {
+    grid-column: auto;
+  }
+
+  .sizeRow,
+  .tokenLine {
+    grid-template-columns: 1fr;
+  }
+
+  .table {
+    min-width: 620px;
+  }
+}

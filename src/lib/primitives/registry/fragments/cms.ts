@@ -1,0 +1,197 @@
+import type { PrimitiveFamilyManifest } from "../types"
+
+const importPath = "@/app/ui-primitives/components/cms"
+
+const manifest: PrimitiveFamilyManifest = {
+  family: "cms",
+  title: "CMS page-builder",
+  group: "Content",
+  summary:
+    "Visual page-builder tools: canvas, block library, slot inspector, publish flow, revision timeline, SEO checklist.",
+  entries: [
+    {
+      key: "cms/block-card",
+      family: "cms",
+      name: "BlockCard",
+      label: "Block card",
+      description:
+        "Block preview tile (glyph thumbnail, category kicker, summary, brand footer) with selected, grabbed and loading states.",
+      kind: "primitive",
+      importPath,
+      routeHref: "/ui-primitives/cms/block-card",
+      tags: ["block", "tile", "drag"],
+      status: "captured",
+    },
+    {
+      key: "cms/block-library-panel",
+      family: "cms",
+      name: "BlockLibraryPanel",
+      label: "Block library panel",
+      description:
+        "Searchable, category-filtered palette of block cards grouped by category, with count badge, empty and error states.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/block-library-panel",
+      tags: ["palette", "search", "blocks"],
+      status: "captured",
+    },
+    {
+      key: "cms/page-canvas",
+      family: "cms",
+      name: "PageCanvas",
+      label: "Page canvas",
+      description:
+        "Drag-and-drop building canvas with rulers, grid overlay, 50-150% zoom and a dashed drop zone, rendering selectable block rows.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/page-canvas",
+      tags: ["canvas", "zoom", "drag-drop"],
+      status: "captured",
+    },
+    {
+      key: "cms/slot-inspector",
+      family: "cms",
+      name: "SlotInspector",
+      label: "Slot inspector",
+      description:
+        "Right-rail props editor for the focused block with grouped text, textarea, number, color, image, select and toggle controls.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/slot-inspector",
+      tags: ["inspector", "props", "form"],
+      status: "captured",
+    },
+    {
+      key: "cms/page-tree",
+      family: "cms",
+      name: "PageTree",
+      label: "Page tree",
+      description:
+        "Hierarchical, filterable site-outline tree with expand/collapse, state chips, owner-initial avatars and a new-page action.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/page-tree",
+      tags: ["tree", "navigation", "outline"],
+      status: "captured",
+    },
+    {
+      key: "cms/template-gallery",
+      family: "cms",
+      name: "TemplateGallery",
+      label: "Template gallery",
+      description:
+        "Category-filtered grid of page-template tiles (landing, parts, suburb, service, blog) with glyph thumbnails and block counts.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/template-gallery",
+      tags: ["templates", "gallery", "filter"],
+      status: "captured",
+    },
+    {
+      key: "cms/responsive-toolbar",
+      family: "cms",
+      name: "ResponsiveToolbar",
+      label: "Responsive toolbar",
+      description:
+        "Desktop/tablet/mobile viewport switcher rendering a simulated, ruler-marked preview frame at the selected breakpoint.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/responsive-toolbar",
+      tags: ["viewport", "responsive", "preview"],
+      status: "captured",
+    },
+    {
+      key: "cms/publish-flow",
+      family: "cms",
+      name: "PublishFlow",
+      label: "Publish flow",
+      description:
+        "Draft-review-scheduled-published state-machine card with progress bar, stage list, next-action detail, branch/reviewer meta and actions.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/publish-flow",
+      tags: ["publish", "workflow", "stages"],
+      status: "captured",
+    },
+    {
+      key: "cms/revision-timeline",
+      family: "cms",
+      name: "RevisionTimeline",
+      label: "Revision timeline",
+      description:
+        "Vertical version-history list with author avatars, action tags, live-version pin and per-entry view/diff buttons.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/revision-timeline",
+      tags: ["history", "versions", "timeline"],
+      status: "captured",
+    },
+    {
+      key: "cms/seo-checklist",
+      family: "cms",
+      name: "SeoChecklist",
+      label: "SEO checklist",
+      description:
+        "SEO audit panel with a radial completion gauge, pass/warn/fail/skip summary cells and a per-check status list.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/seo-checklist",
+      tags: ["seo", "checklist", "audit"],
+      status: "captured",
+    },
+    {
+      key: "cms/collection-row",
+      family: "cms",
+      name: "CollectionRow",
+      label: "Collection row",
+      description:
+        "A single CMS collection entry row with kind glyph, item/draft counts and last-edit meta; selectable button, loading and error states.",
+      kind: "primitive",
+      importPath,
+      routeHref: "/ui-primitives/cms/collection-row",
+      tags: ["collection", "row", "list"],
+      status: "captured",
+    },
+    {
+      key: "cms/field-builder",
+      family: "cms",
+      name: "FieldBuilder",
+      label: "Field builder",
+      description:
+        "Schema field builder with an add-field palette (text, rich-text, number, boolean, date, image, reference, JSON, geo, money) and reorderable list.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/field-builder",
+      tags: ["schema", "fields", "builder"],
+      status: "captured",
+    },
+    {
+      key: "cms/media-picker",
+      family: "cms",
+      name: "MediaPicker",
+      label: "Media picker",
+      description:
+        "DAM-backed media gallery picker with a searchable asset grid, format chips and a click-to-set focal-point selector.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/media-picker",
+      tags: ["media", "dam", "focal-point"],
+      status: "captured",
+    },
+    {
+      key: "cms/i18n-language-switcher",
+      family: "cms",
+      name: "I18nLanguageSwitcher",
+      label: "Locale switcher",
+      description:
+        "Locale tab strip showing translation-completeness progress bars, pending counts, last-reviewed dates and an average-coverage badge.",
+      kind: "widget",
+      importPath,
+      routeHref: "/ui-primitives/cms/i18n-language-switcher",
+      tags: ["i18n", "locale", "translation"],
+      status: "captured",
+    },
+  ],
+}
+
+export default manifest

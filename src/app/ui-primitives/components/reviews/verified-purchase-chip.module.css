@@ -1,0 +1,35 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltipShell {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.wrapper:hover .tooltipShell,
+.wrapper:focus-within .tooltipShell {
+  opacity: 1;
+}
+
+.tooltipText {
+  display: inline-flex;
+  white-space: nowrap;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltipShell {
+    transition: none;
+  }
+}

@@ -1,0 +1,63 @@
+.tabs {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.strip {
+  display: inline-flex;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-recessed);
+}
+
+.tab {
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease, background 120ms ease;
+}
+
+.tab:hover,
+.tab:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.tabActive {
+  border-color: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  color: var(--primitive-teal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}

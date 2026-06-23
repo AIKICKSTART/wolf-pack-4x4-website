@@ -1,0 +1,1429 @@
+/* Icon set showcase — workshop tile catalogue + motion drill grid. */
+
+.shell {
+  --icons-red-readable: color-mix(in oklab, var(--primitive-red) 64%, var(--primitive-text-on-accent));
+  --icons-red-deep: var(--primitive-red);
+
+  display: grid;
+  gap: clamp(24px, 3vw, 44px);
+  padding-bottom: var(--primitive-space-12);
+}
+
+.supplierTab {
+  display: grid;
+  gap: var(--primitive-space-6);
+}
+
+.section {
+  display: grid;
+  gap: 18px;
+}
+
+.bridge {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.95fr);
+  gap: clamp(16px, 2.4vw, 28px);
+  align-items: stretch;
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 15%, transparent), transparent 30%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 36%),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--primitive-text-on-accent) 4.5%, transparent) 0 1px, transparent 1px 92px),
+    linear-gradient(135deg, color-mix(in srgb, var(--primitive-text-on-accent) 5.5%, transparent), transparent),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 6%, transparent), 0 28px 70px color-mix(in srgb, var(--primitive-canvas) 34%, transparent);
+  overflow: hidden;
+}
+
+.bridgeCopy {
+  display: grid;
+  align-content: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.brandLockup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  width: fit-content;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+}
+
+.brandLockup > span {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.brandLockup strong {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.brandLockup span span {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.bridgeTitle {
+  max-width: min(100%, 430px);
+  margin: 0;
+  line-height: 0.9;
+}
+
+.bridgeCopy p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.bridgeChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.bridgeStage {
+  --foreground: var(--primitive-text-strong);
+  --kt-color: var(--primitive-text-strong);
+
+  display: grid;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+  padding: clamp(14px, 1.7vw, 18px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 11%, transparent), transparent 32%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 13%, transparent), transparent 38%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-text-strong);
+}
+
+.bridgeIcons {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.bridgeIcons > svg {
+  width: 100%;
+  min-height: 72px;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--primitive-text-on-accent) 8%, transparent), transparent 58%),
+    var(--primitive-recessed);
+}
+
+.bridgeTicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5) var(--primitive-space-4);
+  min-width: 0;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-field-bg);
+}
+
+.bridgeTicker > span:last-child {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.bridgeStats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.sectionHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 18px;
+  padding-bottom: var(--primitive-space-3);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.sectionKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.sectionKicker::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--primitive-amber), transparent);
+}
+
+.sectionTitle {
+  margin: var(--primitive-space-1-5) 0 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 3.4vw, 46px);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.sectionMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 4%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.sectionMeta strong {
+  color: var(--primitive-text-strong);
+  font-weight: 800;
+}
+
+.cataloguePreamble {
+  max-width: 64ch;
+  margin: 0;
+  color: var(--primitive-body);
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: var(--primitive-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.variantBar {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.72fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--primitive-space-2-5) 14px;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 5%, transparent), transparent),
+    var(--primitive-panel);
+  margin-bottom: var(--primitive-space-1-5);
+}
+
+.variantControlCopy {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.variantBarLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.variantControlSurface {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+  padding: var(--primitive-space-2);
+  border: 1px solid color-mix(in srgb, var(--primitive-amber) 24%, var(--primitive-line));
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 34%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 42%),
+    color-mix(in srgb, var(--primitive-canvas) 22%, transparent);
+}
+
+.variantSegmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-field-bg);
+}
+
+.variantChip {
+  min-height: 32px;
+}
+
+.variantLivePreview {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 52px);
+  gap: var(--primitive-space-1-5);
+  padding-left: var(--primitive-space-2-5);
+  border-left: 1px solid var(--primitive-line);
+}
+
+.variantLivePreview > span {
+  --animated-icon-frame-size: 52px;
+}
+
+.variantOption {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) 14px;
+  border: 1px solid transparent;
+  border-radius: var(--primitive-radius-md);
+  background: transparent;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.variantOption:hover {
+  color: var(--primitive-text-strong);
+}
+
+.variantOption[data-active] {
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.variantOptionLabel {
+  display: inline-block;
+}
+
+.variantBarCaption {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  line-height: 1.4;
+}
+
+.toneContractRail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--primitive-space-2-5);
+  margin-bottom: var(--primitive-space-1);
+}
+
+.toneContractCard {
+  --tone-accent: var(--primitive-red);
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--primitive-space-2-5) var(--primitive-space-3);
+  min-width: 0;
+  padding: var(--primitive-space-2-5);
+  border: 1px solid color-mix(in srgb, var(--tone-accent) 32%, var(--primitive-line));
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--tone-accent) 20%, transparent), transparent 54%),
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 5%, transparent), color-mix(in srgb, var(--primitive-text-on-accent) 1%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 6%, transparent);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.toneContractCard:hover,
+.toneContractCard:focus-within {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--tone-accent) 62%, var(--primitive-line-strong));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 10%, transparent),
+    0 18px 36px color-mix(in srgb, var(--tone-accent) 22%, transparent);
+}
+
+.toneContractIcon {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border: 1px solid color-mix(in srgb, var(--tone-accent) 42%, var(--primitive-line));
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--tone-accent) 26%, transparent), transparent 62%),
+    color-mix(in srgb, var(--primitive-canvas) 28%, transparent);
+}
+
+.toneContractCopy {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.toneContractKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.toneContractCopy > strong {
+  color: var(--primitive-text-strong);
+  font-size: 14px;
+  line-height: 1.15;
+}
+
+.toneContractCopy > strong + span {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.4;
+}
+
+.toneContractMeta {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  align-items: center;
+}
+
+.toneContractCard > div:last-child {
+  grid-column: 1 / -1;
+}
+
+:global(html[data-primitive-theme="light"]) .variantBar {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 95%, var(--primitive-teal)) 68%, transparent)),
+    var(--primitive-panel-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .variantControlSurface {
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 34%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 42%),
+    color-mix(in srgb, var(--primitive-text-on-accent) 64%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .shell {
+  --icons-red-readable: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-red-dark));
+  --icons-red-deep: var(--primitive-red-dark);
+}
+
+:global(html[data-primitive-theme="light"]) .bridge {
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 30%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 36%),
+    repeating-linear-gradient(90deg, color-mix(in srgb, black 4.5%, transparent) 0 1px, transparent 1px 92px),
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 94%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 95%, var(--primitive-teal)) 68%, transparent)),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+:global(html[data-primitive-theme="light"]) .brandLockup {
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 68%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .bridgeStage {
+  --foreground: var(--primitive-text-strong);
+  --kt-color: var(--primitive-text-strong);
+  --primitive-body: color-mix(in oklab, var(--primitive-teal) 22%, black);
+  --primitive-muted: color-mix(in oklab, var(--primitive-teal) 30%, color-mix(in srgb, black 60%, var(--primitive-text-on-accent)));
+  --primitive-text-strong: color-mix(in oklab, var(--primitive-teal) 12%, black);
+  --primitive-line: color-mix(in srgb, black 13%, transparent);
+  --primitive-line-muted: color-mix(in srgb, black 8%, transparent);
+  --primitive-line-strong: color-mix(in srgb, black 24%, transparent);
+  --primitive-field-bg: color-mix(in srgb, var(--primitive-text-on-accent) 74%, transparent);
+  --primitive-field-hover: color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent);
+  --primitive-panel: color-mix(in srgb, var(--primitive-text-on-accent) 78%, transparent);
+  --primitive-panel-strong: color-mix(in srgb, var(--primitive-text-on-accent) 94%, transparent);
+  --primitive-control-active:
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 98%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 94%, var(--primitive-red)) 74%, transparent)),
+    color-mix(in oklab, var(--primitive-red) 13%, transparent);
+  --primitive-control-surface:
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 86%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 94%, var(--primitive-teal)) 58%, transparent)),
+    color-mix(in srgb, var(--primitive-text-on-accent) 52%, transparent);
+
+  border-color: color-mix(in srgb, black 13%, transparent);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 32%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 38%),
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 90%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 94%, var(--primitive-teal)) 62%, transparent));
+  color: var(--primitive-text-strong);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+:global(html[data-primitive-theme="light"]) .bridgeIcons > svg {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 58%),
+    color-mix(in srgb, var(--primitive-text-on-accent) 68%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .bridgeTicker {
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 66%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .variantSegmented {
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 72%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 88%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .variantChip[aria-pressed="false"] {
+  --chip-bg: color-mix(in srgb, var(--primitive-text-on-accent) 72%, transparent);
+  --chip-stroke: var(--primitive-line);
+  --chip-stroke-hover: var(--primitive-line-strong);
+  --chip-ink: var(--primitive-body);
+  --chip-glow: transparent;
+}
+
+:global(html[data-primitive-theme="light"]) .variantChip[aria-pressed="true"] {
+  --chip-ink: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .variantOption:hover,
+:global(html[data-primitive-theme="light"]) .variantOption[data-active] {
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .toneContractCard {
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--tone-accent) 13%, transparent), transparent 54%),
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 90%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 95%, var(--primitive-teal)) 64%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+:global(html[data-primitive-theme="light"]) .toneContractIcon {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--tone-accent) 18%, transparent), transparent 62%),
+    color-mix(in srgb, var(--primitive-text-on-accent) 70%, transparent);
+}
+
+.supplierShowcase {
+  display: grid;
+  gap: 14px;
+  margin: var(--primitive-space-1-5) 0 var(--primitive-space-1);
+  padding: clamp(14px, 2vw, 18px);
+  border: 1px solid color-mix(in srgb, var(--primitive-amber) 28%, var(--primitive-line));
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 35%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 42%),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--primitive-text-on-accent) 3.5%, transparent) 0 1px, transparent 1px 78px),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 6%, transparent),
+    0 24px 52px -34px color-mix(in srgb, var(--primitive-canvas) 72%, transparent);
+}
+
+.supplierShowcaseHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 0.28fr);
+  gap: 14px;
+  align-items: end;
+}
+
+.supplierShowcaseHeader > div:first-child {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.supplierShowcaseTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(24px, 2.8vw, 38px);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.98;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.supplierShowcaseHeader p {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+}
+
+.supplierSurfaceRail {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+  max-width: 880px;
+  margin-top: var(--primitive-space-2);
+}
+
+.supplierSurfacePill {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: var(--primitive-space-2) var(--primitive-space-2-5);
+  align-items: center;
+  min-width: 0;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in srgb, var(--logo-surface-accent) 34%, var(--primitive-line));
+  border-radius: 10px;
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--logo-surface-accent) 10%, transparent), transparent 48%),
+    color-mix(in srgb, var(--primitive-text-on-accent) 4%, transparent);
+}
+
+.supplierSurfaceCopy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.supplierSurfaceCopy strong,
+.supplierSurfaceCopy span {
+  display: block;
+}
+
+.supplierSurfaceCopy strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.supplierSurfaceCopy span {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.35;
+}
+
+.supplierSurfaceProgress {
+  grid-column: 1 / -1;
+}
+
+.supplierSourceRail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin-top: var(--primitive-space-1);
+}
+
+.supplierStat {
+  align-self: stretch;
+}
+
+.supplierLogoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.supplierLogoCard {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+  padding: var(--primitive-space-3);
+  border: 1px solid color-mix(in srgb, var(--primitive-amber) 28%, var(--primitive-line));
+  border-radius: 10px;
+  background:
+    radial-gradient(120% 90% at 50% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 62%),
+    color-mix(in srgb, var(--primitive-canvas) 22%, transparent);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.supplierLogoCard:hover,
+.supplierLogoCard:focus-within {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--primitive-amber) 54%, var(--primitive-line-strong));
+  box-shadow: 0 18px 34px -22px color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.supplierLogoPlate {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 112px;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.supplierLogoPlate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--primitive-text-on-accent) 4.5%, transparent) 0 1px, transparent 1px 42px),
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 60%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.supplierLogoPlate[data-surface="light"] {
+  background: color-mix(in srgb, var(--primitive-canvas) 18%, transparent);
+  border-color: color-mix(in srgb, var(--primitive-amber) 24%, var(--primitive-line));
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 8%, transparent);
+}
+
+.supplierLogoPlate[data-surface="dark"] {
+  background: color-mix(in srgb, var(--primitive-canvas) 18%, transparent);
+}
+
+.supplierLogoImage {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: min(100%, 220px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 16px var(--primitive-shadow-outline));
+}
+
+.supplierLogoImageDark {
+  display: none;
+}
+
+:global(html[data-primitive-theme="dark"]) .supplierLogoImageLight {
+  display: none;
+}
+
+:global(html[data-primitive-theme="dark"]) .supplierLogoImageDark {
+  display: block;
+}
+
+.supplierLogoCopy {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.supplierLogoName {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.supplierLogoSlug {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  overflow-wrap: anywhere;
+}
+
+.supplierPrimitiveRail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.supplierLogoAudit {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+  margin: 0;
+  padding-top: var(--primitive-space-2);
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.supplierLogoAudit div {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.supplierLogoAudit dt {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.supplierLogoAudit dd {
+  min-width: 0;
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  line-height: 1.35;
+  color: var(--primitive-body);
+  overflow-wrap: anywhere;
+}
+
+.supplierLogoAudit a {
+  color: var(--primitive-body);
+  text-decoration: none;
+}
+
+.supplierLogoAudit a:hover,
+.supplierLogoAudit a:focus-visible {
+  color: var(--primitive-amber);
+  text-decoration: underline;
+}
+
+:global(html[data-primitive-theme="light"]) .supplierShowcase {
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-amber) 8%, transparent), transparent 35%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 42%),
+    repeating-linear-gradient(90deg, color-mix(in srgb, black 4%, transparent) 0 1px, transparent 1px 78px),
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 90%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 95%, var(--primitive-teal)) 60%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+:global(html[data-primitive-theme="light"]) .supplierLogoCard {
+  background:
+    radial-gradient(120% 90% at 50% 0%, color-mix(in oklab, var(--primitive-amber) 8%, transparent), transparent 62%),
+    color-mix(in srgb, var(--primitive-text-on-accent) 68%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 82%, transparent),
+    0 14px 34px color-mix(in srgb, black 10%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .supplierLogoPlate::before {
+  background:
+    repeating-linear-gradient(90deg, color-mix(in srgb, black 4%, transparent) 0 1px, transparent 1px 42px),
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 60%);
+}
+
+:global(html[data-primitive-theme="light"]) .supplierLogoAudit {
+  border-top-color: color-mix(in srgb, black 16%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .supplierLogoAudit dd {
+  color: var(--primitive-body);
+}
+
+:global(html[data-primitive-theme="light"]) .supplierLogoAudit a {
+  color: color-mix(in oklab, var(--primitive-teal) 70%, black);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--primitive-teal) 28%, transparent);
+  text-underline-offset: 2px;
+}
+
+:global(html[data-primitive-theme="light"]) .supplierLogoAudit a:hover,
+:global(html[data-primitive-theme="light"]) .supplierLogoAudit a:focus-visible {
+  color: color-mix(in oklab, var(--primitive-amber) 78%, black);
+  text-decoration-color: currentColor;
+}
+
+.groupBlock {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.groupHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.5fr);
+  gap: var(--primitive-space-3) 18px;
+  align-items: end;
+  margin-top: var(--primitive-space-1-5);
+  padding-top: var(--primitive-space-3);
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.groupCopy {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.groupTitle {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.groupCopy p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.45;
+}
+
+.groupPrimitiveRail {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: var(--primitive-space-2) var(--primitive-space-2-5);
+  justify-content: end;
+  align-items: center;
+  min-width: 0;
+}
+
+.groupProgress {
+  grid-column: 1 / -1;
+  min-width: min(100%, 240px);
+}
+
+.tile {
+  --tile-accent: var(--primitive-red);
+
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(120% 80% at 100% 0%, color-mix(in srgb, var(--tile-accent) 10%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 5%, transparent), color-mix(in srgb, var(--primitive-text-on-accent) 0.5%, transparent)),
+    color-mix(in srgb, var(--tile-accent) 4%, var(--primitive-panel));
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 50% -10%, color-mix(in srgb, var(--tile-accent) 24%, transparent), transparent 55%);
+  opacity: 0;
+  transition: opacity 220ms ease;
+  z-index: -1;
+}
+
+.tile:hover,
+.tile:focus-within {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--tile-accent) 52%, var(--primitive-line));
+  box-shadow: 0 22px 36px -16px color-mix(in srgb, var(--tile-accent) 42%, transparent);
+}
+
+.tile:hover::before,
+.tile:focus-within::before {
+  opacity: 1;
+}
+
+.tileStage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  min-height: 76px;
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 24% 0%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 50%),
+    color-mix(in srgb, var(--primitive-canvas) 32%, transparent);
+  transition: border-color 220ms ease, background 220ms ease;
+}
+
+.tile:hover .tileStage,
+.tile:focus-within .tileStage {
+  border-color: color-mix(in srgb, var(--tile-accent) 48%, var(--primitive-line));
+  background:
+    radial-gradient(circle at 24% 0%, color-mix(in srgb, var(--tile-accent) 18%, transparent), transparent 54%),
+    color-mix(in srgb, var(--primitive-canvas) 34%, transparent);
+}
+
+.tileLarge,
+.tileSmall {
+  display: grid;
+  place-items: center;
+}
+
+.tileLarge {
+  min-width: 56px;
+}
+
+.tileSmall {
+  align-self: end;
+  padding: 5px 7px;
+  border: 1px dashed var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 4%, transparent);
+}
+
+.tileMeta {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.tileName {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .tileName,
+:global(html[data-primitive-theme="light"]) .supplierLogoName,
+:global(html[data-primitive-theme="light"]) .motionRowTitle,
+:global(html[data-primitive-theme="light"]) .sectionMeta strong {
+  color: var(--foreground);
+}
+
+.tileSlug {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  overflow-wrap: anywhere;
+}
+
+.tileTones {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tileTone {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 4.5%, transparent);
+}
+
+.tileTone span {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--swatch);
+  box-shadow: 0 0 8px var(--swatch);
+}
+
+.tileTone[data-tone="obsidian"] span {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--primitive-text-on-accent) 40%, transparent);
+}
+
+.tileFooter {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: var(--primitive-space-2);
+}
+
+.tilePrimitiveRail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.tileToneKbd {
+  --kbd-bg:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 8%, transparent), color-mix(in srgb, var(--primitive-text-on-accent) 2%, transparent)),
+    color-mix(in srgb, var(--tile-accent) 14%, color-mix(in srgb, var(--primitive-canvas) 88%, transparent));
+  --kbd-stroke: color-mix(in srgb, var(--tile-accent) 38%, var(--primitive-line));
+  --kbd-stroke-bottom: color-mix(in srgb, var(--primitive-canvas) 42%, transparent);
+  --kbd-ink: var(--primitive-text-strong);
+}
+
+.tileMotionBadge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  justify-self: start;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 4%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+  pointer-events: none;
+}
+
+.motionDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-teal);
+  box-shadow: 0 0 8px var(--primitive-teal);
+}
+
+.motionDrill {
+  display: grid;
+  gap: var(--primitive-space-5);
+}
+
+.motionRow {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(0, 4fr);
+  align-items: center;
+  gap: 18px;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 4%, transparent), transparent),
+    var(--primitive-panel);
+}
+
+.motionRowHead {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.motionRowKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.motionRowTitle {
+  font-family: var(--primitive-font-display);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.motionRowCaption {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  line-height: 1.45;
+}
+
+.motionPrimitiveBridge {
+  --foreground: color-mix(in srgb, var(--primitive-text-on-accent) 96%, var(--primitive-teal));
+  --kt-color: var(--primitive-text-strong);
+  --primitive-body: color-mix(in srgb, var(--primitive-text-on-accent) 78%, var(--primitive-muted));
+  --primitive-muted: color-mix(in srgb, var(--primitive-text-on-accent) 56%, var(--primitive-canvas));
+  --primitive-text-strong: var(--primitive-text-on-accent);
+  --primitive-line: color-mix(in srgb, var(--primitive-text-on-accent) 13%, transparent);
+  --primitive-line-muted: color-mix(in srgb, var(--primitive-text-on-accent) 8%, transparent);
+  --primitive-line-strong: color-mix(in srgb, var(--primitive-text-on-accent) 24%, transparent);
+  --primitive-field-bg: color-mix(in srgb, var(--primitive-canvas) 72%, transparent);
+  --primitive-field-hover: color-mix(in srgb, var(--primitive-canvas) 86%, transparent);
+  --primitive-panel: color-mix(in srgb, var(--primitive-canvas) 94%, transparent);
+  --primitive-panel-strong: color-mix(in srgb, var(--primitive-canvas) 94%, transparent);
+  --primitive-control-active: linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 8%, transparent), color-mix(in srgb, var(--primitive-text-on-accent) 2%, transparent));
+  --primitive-control-surface: linear-gradient(180deg, color-mix(in srgb, var(--primitive-canvas) 95%, var(--primitive-text-on-accent)), color-mix(in srgb, var(--primitive-canvas) 95%, transparent));
+
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  margin-top: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 11%, transparent), transparent 38%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 42%),
+    var(--primitive-panel);
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .motionPrimitiveBridge {
+  --foreground: var(--primitive-text-strong);
+  --kt-color: var(--primitive-text-strong);
+  --primitive-body: color-mix(in oklab, var(--primitive-teal) 22%, black);
+  --primitive-muted: color-mix(in oklab, var(--primitive-teal) 30%, color-mix(in srgb, black 60%, var(--primitive-text-on-accent)));
+  --primitive-text-strong: color-mix(in oklab, var(--primitive-teal) 12%, black);
+  --primitive-line: color-mix(in srgb, black 13%, transparent);
+  --primitive-line-muted: color-mix(in srgb, black 8%, transparent);
+  --primitive-line-strong: color-mix(in srgb, black 24%, transparent);
+  --primitive-field-bg: color-mix(in srgb, var(--primitive-text-on-accent) 74%, transparent);
+  --primitive-field-hover: color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent);
+  --primitive-panel: color-mix(in srgb, var(--primitive-text-on-accent) 78%, transparent);
+  --primitive-panel-strong: color-mix(in srgb, var(--primitive-text-on-accent) 94%, transparent);
+  --primitive-control-active:
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 98%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 94%, var(--primitive-red)) 74%, transparent)),
+    color-mix(in oklab, var(--primitive-red) 13%, transparent);
+  --primitive-control-surface:
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 86%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 94%, var(--primitive-teal)) 58%, transparent)),
+    color-mix(in srgb, var(--primitive-text-on-accent) 52%, transparent);
+
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 38%),
+    linear-gradient(270deg, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 42%),
+    color-mix(in srgb, var(--primitive-text-on-accent) 66%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.motionPrimitiveBridge > span:nth-child(2) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.motionStrip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 48px;
+  gap: var(--primitive-space-2);
+  overflow-x: auto;
+  padding: var(--primitive-space-1-5) var(--primitive-space-0-5);
+  scrollbar-width: thin;
+  scrollbar-color: var(--primitive-line) transparent;
+  scroll-snap-type: x mandatory;
+}
+
+.motionStrip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.motionStrip::-webkit-scrollbar-thumb {
+  background: var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+}
+
+.motionCell {
+  --motion-accent: var(--primitive-red);
+
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-field-bg);
+  scroll-snap-align: start;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.motionCell:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--motion-accent) 56%, var(--primitive-line));
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--motion-accent) 18%, transparent), transparent 64%),
+    color-mix(in srgb, var(--primitive-canvas) 40%, transparent);
+  box-shadow: 0 12px 22px -16px color-mix(in srgb, var(--motion-accent) 52%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .motionCell {
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 68%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .tile {
+  background:
+    radial-gradient(120% 80% at 100% 0%, color-mix(in srgb, var(--tile-accent) 8%, transparent), transparent 60%),
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 95%, var(--primitive-teal)) 56%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+:global(html[data-primitive-theme="light"]) .tileStage {
+  background:
+    radial-gradient(circle at 24% 0%, color-mix(in srgb, var(--tile-accent) 9%, transparent), transparent 50%),
+    color-mix(in srgb, var(--primitive-text-on-accent) 72%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .tileSmall,
+:global(html[data-primitive-theme="light"]) .tileTone,
+:global(html[data-primitive-theme="light"]) .tileMotionBadge,
+:global(html[data-primitive-theme="light"]) .legendChip {
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 68%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .tileTone[data-tone="obsidian"] span {
+  box-shadow: 0 0 0 1px color-mix(in srgb, black 46%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .tileToneKbd {
+  --kbd-bg:
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 90%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 94%, var(--primitive-teal)) 64%, transparent)),
+    color-mix(in srgb, var(--tile-accent) 9%, color-mix(in srgb, var(--primitive-text-on-accent) 86%, transparent));
+  --kbd-stroke: color-mix(in srgb, var(--tile-accent) 32%, var(--primitive-line));
+  --kbd-stroke-bottom: color-mix(in srgb, black 16%, transparent);
+  --kbd-ink: var(--foreground);
+}
+
+:global(html[data-primitive-theme="light"]) .tile:hover .tileStage,
+:global(html[data-primitive-theme="light"]) .tile:focus-within .tileStage {
+  background:
+    radial-gradient(circle at 24% 0%, color-mix(in srgb, var(--tile-accent) 13%, transparent), transparent 54%),
+    color-mix(in srgb, var(--primitive-text-on-accent) 82%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .motionCell:hover {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--motion-accent) 13%, transparent), transparent 64%),
+    color-mix(in srgb, var(--primitive-text-on-accent) 86%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .motionRow {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 90%, transparent), color-mix(in srgb, color-mix(in srgb, var(--primitive-text-on-accent) 95%, var(--primitive-teal)) 54%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legendChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) 9px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 4%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.legendChip span {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--swatch);
+  box-shadow: 0 0 8px var(--swatch);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .tile::before,
+  .tileStage,
+  .tileMotionBadge,
+  .motionCell {
+    transition: none;
+  }
+
+  .motionCell:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .bridge {
+    grid-template-columns: 1fr;
+  }
+
+  .bridgeStats {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionHeader {
+    grid-template-columns: 1fr;
+  }
+
+  .motionRow {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .variantBar {
+    grid-template-columns: 1fr;
+  }
+
+  .variantControlSurface {
+    grid-template-columns: 1fr;
+  }
+
+  .variantSegmented {
+    width: 100%;
+  }
+
+  .variantLivePreview {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-top: var(--primitive-space-2);
+    padding-left: 0;
+    border-top: 1px solid var(--primitive-line);
+    border-left: 0;
+  }
+
+  .groupHeader {
+    grid-template-columns: 1fr;
+  }
+
+  .groupPrimitiveRail {
+    justify-content: start;
+  }
+
+  .supplierShowcaseHeader {
+    grid-template-columns: 1fr;
+  }
+
+  .supplierSurfaceRail {
+    grid-template-columns: 1fr;
+  }
+}

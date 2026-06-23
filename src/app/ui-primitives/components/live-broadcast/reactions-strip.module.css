@@ -1,0 +1,80 @@
+/* =========================================================
+   REACTIONS STRIP — floating reactions stream
+   ========================================================= */
+
+.strip {
+  position: relative;
+  width: 64px;
+  height: 220px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.anchorRight {
+  margin-left: auto;
+}
+
+.anchorLeft {
+  margin-right: auto;
+}
+
+.pulse {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  font-size: var(--primitive-text-xl);
+  animation: pulseRise 2.6s ease-out forwards;
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primitive-overlay) 40%, transparent));
+  --pulse-offset: 0px;
+}
+
+.pulse > span:first-child {
+  display: inline-block;
+  transform: translateX(var(--pulse-offset));
+}
+
+.kind-muffler-flame { color: var(--primitive-red); }
+.kind-wrench { color: color-mix(in oklab, var(--primitive-text-on-accent) 92%, transparent); }
+.kind-dyno { color: var(--primitive-amber); }
+.kind-smoke { color: color-mix(in oklab, var(--primitive-text-on-accent) 62%, transparent); }
+.kind-aussie-flag { color: var(--primitive-teal); }
+
+@keyframes pulseRise {
+  0% {
+    bottom: -10px;
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    bottom: 100%;
+    opacity: 0;
+    transform: scale(1.2) translateX(calc(var(--pulse-offset) * 1.3));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: pulseFade 600ms ease-out forwards;
+  }
+  @keyframes pulseFade {
+    0% { opacity: 0; bottom: 32%; }
+    40% { opacity: 1; bottom: 60%; }
+    100% { opacity: 0; bottom: 80%; }
+  }
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

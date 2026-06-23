@@ -1,0 +1,493 @@
+/* =========================================================
+   ZOOM BURST HERO — radial speed/motion lines emanating from
+   a focal point over the workshop video. Conic spokes +
+   radial halo + concentric rings + a subtle media scale-pulse.
+   Distinctive shape: the explosive zoom-burst itself.
+   ========================================================= */
+
+.hero {
+  --focal-x: 30%;
+  --focal-y: 60%;
+  --burst-red: var(--primitive-red);
+  --burst-amber: var(--primitive-amber);
+
+  position: relative;
+  width: 100%;
+  min-height: clamp(520px, 84svh, 800px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at var(--focal-x) var(--focal-y),
+      color-mix(in oklab, var(--burst-amber) 12%, transparent), transparent 56%),
+    radial-gradient(ellipse at 88% 14%,
+      color-mix(in oklab, var(--burst-red) 14%, transparent), transparent 64%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 90%, white) 100%);
+  font-family: var(--primitive-font-body);
+}
+
+/* ---- Kinetic media ---- */
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.video {
+  position: absolute;
+  /* Slight oversize so the scale-pulse never exposes a hard edge. */
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  object-fit: cover;
+  transform-origin: var(--focal-x) var(--focal-y);
+  filter: brightness(0.62) saturate(1.12) contrast(1.08);
+  will-change: transform;
+  animation: zoomPulse 7s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+@keyframes zoomPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.07); }
+}
+
+/* ---- Radial wash anchoring the focal point ---- */
+.focusWash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--focal-x) var(--focal-y),
+    color-mix(in oklab, var(--burst-amber) 34%, transparent) 0%,
+    color-mix(in oklab, var(--burst-red) 16%, transparent) 16%,
+    transparent 46%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+
+/* ---- Conic spokes: the core zoom-burst geometry ---- */
+.burst {
+  position: absolute;
+  /* Oversize + square via the larger viewport unit so spokes stay radial
+     and reach every corner regardless of aspect ratio. */
+  width: 280vmax;
+  height: 280vmax;
+  left: var(--focal-x);
+  top: var(--focal-y);
+  z-index: 2;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  background: repeating-conic-gradient(
+    from 0deg at 50% 50%,
+    color-mix(in oklab, var(--burst-amber) 26%, transparent) 0deg,
+    transparent 1.1deg,
+    transparent 6deg,
+    color-mix(in oklab, var(--burst-red) 18%, transparent) 6.6deg,
+    transparent 7.6deg,
+    transparent 12deg
+  );
+  /* Fade the spokes out toward the rim so the focal point reads as origin. */
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 3%, black 14%, black 38%, transparent 64%);
+  mask-image: radial-gradient(circle at 50% 50%, transparent 3%, black 14%, black 38%, transparent 64%);
+  mix-blend-mode: screen;
+  opacity: 0.72;
+  will-change: transform;
+  animation: burstSpin 26s linear infinite;
+}
+
+@keyframes burstSpin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ---- Discrete speed streaks (gritty, staggered outward pulse) ---- */
+.streaks {
+  position: absolute;
+  left: var(--focal-x);
+  top: var(--focal-y);
+  width: 0;
+  height: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.streak {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: clamp(140px, 38vmax, 760px);
+  height: 2px;
+  transform-origin: 0 50%;
+  /* Rotate to the spoke angle, then push the streak out from the core. */
+  transform: rotate(var(--streak-angle)) translateX(6%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--burst-amber) 70%, transparent) 14%,
+    color-mix(in oklab, var(--burst-red) 60%, transparent) 46%,
+    transparent 100%
+  );
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: streakShoot 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation-delay: var(--streak-delay);
+}
+
+@keyframes streakShoot {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--streak-angle)) translateX(4%) scaleX(0.2);
+  }
+  18% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--streak-angle)) translateX(80%) scaleX(1);
+  }
+}
+
+/* ---- Concentric pulse rings expanding from the focal point ---- */
+.rings {
+  position: absolute;
+  left: var(--focal-x);
+  top: var(--focal-y);
+  width: 0;
+  height: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30vmax;
+  height: 30vmax;
+  margin: -15vmax 0 0 -15vmax;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in oklab, var(--burst-amber) 46%, transparent);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: ringExpand 4.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.ring:nth-child(2) {
+  animation-delay: 1.4s;
+  border-color: color-mix(in oklab, var(--burst-red) 50%, transparent);
+}
+.ring:nth-child(3) {
+  animation-delay: 2.8s;
+}
+
+@keyframes ringExpand {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.18);
+  }
+  70% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+/* ---- Legibility scrim for the lower-left copy ---- */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background:
+    linear-gradient(78deg, color-mix(in oklab, black 74%, transparent) 0%, color-mix(in oklab, black 34%, transparent) 36%, transparent 62%),
+    linear-gradient(0deg, color-mix(in oklab, black 66%, transparent) 0%, transparent 42%);
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 52%, transparent 36%, color-mix(in oklab, black 62%, transparent) 100%);
+}
+
+/* ---- Focal-point reticle (crosshair marker) ---- */
+.reticle {
+  position: absolute;
+  left: var(--focal-x);
+  top: var(--focal-y);
+  width: 0;
+  height: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.reticleDot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 999px;
+  background: var(--burst-amber);
+  box-shadow: 0 0 18px var(--burst-amber), 0 0 6px white;
+  will-change: transform, opacity;
+  animation: reticlePulse 2.2s ease-in-out infinite;
+}
+
+.reticleRing {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border-radius: 999px;
+  border: 1px dashed color-mix(in oklab, var(--burst-amber) 64%, transparent);
+  will-change: transform;
+  animation: reticleSpin 12s linear infinite;
+}
+
+@keyframes reticlePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.55); opacity: 0.55; }
+}
+
+@keyframes reticleSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ---- Copy (lower-left) ---- */
+.copy {
+  position: relative;
+  z-index: 6;
+  align-self: end;
+  justify-self: start;
+  display: grid;
+  gap: clamp(16px, 2.4vw, 24px);
+  max-width: 640px;
+  padding: 0 clamp(28px, 7vw, 110px) clamp(48px, 9svh, 104px);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--burst-amber);
+  text-shadow: 0 0 18px color-mix(in oklab, var(--burst-amber) 42%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--burst-red);
+  box-shadow: 0 0 14px var(--burst-red);
+  animation: kickerPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes kickerPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.6); }
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.75rem, 1.3rem + 5.6vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  color: white;
+  text-shadow:
+    0 0 44px color-mix(in oklab, var(--burst-amber) 26%, transparent),
+    0 2px 30px color-mix(in oklab, black 66%, transparent);
+}
+
+.subhead {
+  font-family: var(--primitive-font-body);
+  font-size: clamp(15px, 0.9rem + 0.4vw, 19px);
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--primitive-text-strong) 86%, transparent);
+  margin: 0;
+  max-width: 52ch;
+}
+
+.cta {
+  margin-top: 6px;
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  position: relative;
+  isolation: isolate;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), background 240ms, color 240ms;
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--burst-amber);
+  border-radius: 4px;
+  z-index: -1;
+  opacity: 0.42;
+  transition: inset 240ms, opacity 240ms;
+}
+.cta:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  transform: translateY(-2px);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+.cta:hover::before {
+  inset: -7px;
+  opacity: 0.7;
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:active::before {
+  inset: -3px;
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+.meta {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 clamp(28px, 7vw, 110px) clamp(28px, 6svh, 52px);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 46%, transparent);
+  flex-wrap: wrap;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---- Light theme parity: warm dark stage so the burst stays vivid ---- */
+:global(html[data-primitive-theme="light"]) .hero {
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at var(--focal-x) var(--focal-y),
+      color-mix(in oklab, var(--burst-amber) 18%, transparent), transparent 56%),
+    radial-gradient(ellipse at 88% 14%,
+      color-mix(in oklab, var(--burst-red) 16%, transparent), transparent 64%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-amber)) 0%, color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-amber)) 100%);
+}
+:global(html[data-primitive-theme="light"]) .video {
+  filter: brightness(0.66) saturate(1.16) contrast(1.04) sepia(0.1);
+}
+
+/* ---- Responsive: pull the focal point toward center + tighten copy ---- */
+@media (max-width: 880px) {
+  .hero {
+    --focal-x: 50%;
+    --focal-y: 42%;
+  }
+  .scrim {
+    background:
+      linear-gradient(0deg, color-mix(in oklab, black 82%, transparent) 0%, color-mix(in oklab, black 32%, transparent) 44%, transparent 70%);
+  }
+  .copy {
+    justify-self: stretch;
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    min-height: clamp(480px, 80svh, 680px);
+  }
+  .reticleRing {
+    width: 36px;
+    height: 36px;
+    margin: -18px 0 0 -18px;
+  }
+  .meta {
+    font-size: 9px;
+    gap: 12px;
+  }
+}
+
+/* ---- Reduced motion: freeze to a clean, static zoom-burst ---- */
+@media (prefers-reduced-motion: reduce) {
+  .video,
+  .burst,
+  .streak,
+  .ring,
+  .reticleDot,
+  .reticleRing,
+  .kicker i,
+  .cta,
+  .cta::before {
+    animation: none !important;
+    transition: none;
+  }
+  .video {
+    transform: scale(1);
+  }
+  .burst {
+    transform: translate(-50%, -50%) rotate(7.5deg);
+  }
+  /* Keep a single crisp set of streaks visible in the static frame. */
+  .streak {
+    opacity: 0.5;
+    transform: rotate(var(--streak-angle)) translateX(40%) scaleX(1);
+  }
+  /* Collapse the expanding rings into one calm static ring. */
+  .ring {
+    opacity: 0.22;
+    transform: scale(1);
+  }
+  .ring:nth-child(2),
+  .ring:nth-child(3) {
+    display: none;
+  }
+  .reticleDot {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

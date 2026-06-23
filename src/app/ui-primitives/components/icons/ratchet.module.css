@@ -1,0 +1,42 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.handle { fill: currentColor; opacity: 0.92; stroke: currentColor; stroke-width: 1.1; }
+.grip { stroke: var(--primitive-canvas); fill: none; opacity: 0.5; stroke-width: 0.8; stroke-linecap: round; }
+.gripGroup { transform-origin: 9.2px 15.7px; }
+.toggle { fill: var(--primitive-canvas); stroke: currentColor; stroke-width: 0.9; }
+.headGroup { transform-origin: 17.6px 7.4px; }
+.gear { stroke: currentColor; fill: none; stroke-width: 1.4; }
+.gearFill { fill: currentColor; opacity: 0.2; }
+.teeth { stroke: currentColor; stroke-width: 1; stroke-linecap: round; opacity: 0.85; }
+.driveSquare { fill: var(--primitive-canvas); stroke: currentColor; stroke-width: 0.9; }
+.driveCenter { fill: currentColor; }
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate .headGroup { animation: iconRotate 2s linear infinite; }
+.motionWiggle .headGroup { animation: ratchetClick 0.6s steps(6) infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .gear, .motionDraw .handle, .motionDraw .teeth { stroke-dasharray: 70; stroke-dashoffset: 70; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .headGroup { animation: iconRotate 0.6s linear infinite; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+@keyframes ratchetClick {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(60deg); }
+}
+
+[data-variant="outline"] .handle { fill: transparent; }
+[data-variant="outline"] .gearFill { fill: transparent; }
+[data-variant="outline"] .driveSquare { fill: transparent; }
+[data-variant="outline"] .toggle { fill: transparent; }
+[data-variant="outline"] .grip { stroke: currentColor; opacity: 0.6; }
+
+[data-variant="filled"] .gearFill { opacity: 0.95; }
+[data-variant="filled"] .handle { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host * { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,47 @@
+.wrapper {
+  display: grid;
+  gap: 14px;
+}
+
+.sourceCell {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+}
+
+.sourceCell::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-muted);
+}
+
+.sourceCell[data-source="website"]::before { background: var(--primitive-teal); }
+.sourceCell[data-source="phone"]::before { background: var(--primitive-amber); }
+.sourceCell[data-source="walk-in"]::before { background: var(--primitive-green); }
+.sourceCell[data-source="referral"]::before { background: var(--primitive-green); }
+.sourceCell[data-source="social"]::before { background: var(--primitive-amber); }
+.sourceCell[data-source="ad"]::before { background: var(--primitive-red); }
+
+.numCell {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 600;
+}
+
+.numCell[data-tone="green"] { color: var(--primitive-green); }
+.numCell[data-tone="amber"] { color: var(--primitive-amber); }
+.numCell[data-tone="red"] { color: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-text-strong)); }
+
+.revenueCell {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: 400;
+  letter-spacing: 0;
+}

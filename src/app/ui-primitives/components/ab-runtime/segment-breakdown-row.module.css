@@ -1,0 +1,88 @@
+.row {
+  display: grid;
+  grid-template-columns: minmax(96px, 1fr) minmax(0, 3fr) auto auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-field-bg);
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+  color: var(--primitive-text-strong);
+}
+
+.glyph {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.bar {
+  position: relative;
+  height: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  overflow: hidden;
+}
+
+.barFill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform-origin: 0 50%;
+}
+
+.barFillUp {
+  background: var(--primitive-green);
+  left: 50%;
+}
+
+.barFillDown {
+  background: var(--primitive-red);
+  right: 50%;
+}
+
+.barAxis {
+  position: absolute;
+  top: -var(--primitive-space-0-5);
+  bottom: -var(--primitive-space-0-5);
+  left: 50%;
+  width: 1px;
+  background: var(--primitive-line-strong);
+}
+
+.lift {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.liftUp { color: var(--primitive-green); }
+.liftDown { color: var(--primitive-red); }
+.liftFlat { color: var(--primitive-muted); }
+
+.sample {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+  white-space: nowrap;
+  min-width: 64px;
+  text-align: right;
+}

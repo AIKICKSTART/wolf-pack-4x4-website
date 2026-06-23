@@ -1,0 +1,184 @@
+.composer {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.macroStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.macroLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--primitive-glass-soft);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.varStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.varLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.varBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px dashed color-mix(in oklab, var(--primitive-violet) 45%, transparent);
+  background: color-mix(in oklab, var(--primitive-violet) 10%, transparent);
+  color: color-mix(in oklab, var(--primitive-violet) 50%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.varBtn:hover,
+.varBtn:focus-visible {
+  background: color-mix(in oklab, var(--primitive-violet) 18%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-violet) 85%, transparent);
+  outline: none;
+}
+
+.varToken {
+  white-space: nowrap;
+}
+
+.editorRow {
+  display: grid;
+}
+
+.textarea {
+  appearance: none;
+  resize: none;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.textarea:focus-visible {
+  border-color: var(--primitive-focus-ring);
+  background: var(--primitive-field-hover);
+}
+
+.textarea::placeholder {
+  color: var(--primitive-muted);
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.charCount {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.sendBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--primitive-btn-radius);
+  border: 0;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, color 180ms ease, opacity 180ms ease;
+}
+
+.sendBtn:hover:not(:disabled),
+.sendBtn:focus-visible:not(:disabled) {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.sendBtn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.sendBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sendBtn,
+  .varBtn,
+  .textarea {
+    transition: none;
+  }
+  .sendBtn:hover {
+    transform: none;
+  }
+}

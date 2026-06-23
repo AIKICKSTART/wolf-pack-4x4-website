@@ -1,0 +1,270 @@
+.shell {
+  position: relative;
+  display: block;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-teal) 6%, transparent), transparent 56%),
+    radial-gradient(ellipse at 100% 100%, color-mix(in oklab, var(--primitive-teal) 5%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-canvas) 94%, transparent);
+  overflow: hidden;
+  box-shadow: var(--primitive-shadow-soft);
+  min-height: 520px;
+  color: var(--primitive-body);
+}
+
+.viewport {
+  position: relative;
+  inline-size: 100%;
+  block-size: 100%;
+  min-height: 520px;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+}
+
+.viewport[data-panning="true"] {
+  cursor: grabbing;
+}
+
+.gridSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.world {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world {
+    will-change: auto;
+  }
+}
+
+.edges {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.edgePath {
+  stroke-linecap: round;
+  filter: drop-shadow(0 1px 0 color-mix(in oklab, var(--primitive-canvas) 40%, transparent));
+}
+
+.edgeLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  font-feature-settings: "tnum" 1;
+}
+
+.node {
+  position: absolute;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in srgb, var(--node-tone, var(--primitive-line)) 28%, var(--primitive-line));
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    radial-gradient(ellipse at 0% 0%, color-mix(in srgb, var(--node-tone) 12%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 94%, transparent);
+  color: var(--primitive-body);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 180ms var(--primitive-ease-out),
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 10px 22px color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+}
+
+.node:hover,
+.node:focus-visible {
+  outline: none;
+  transform: translateY(-1px);
+  border-color: var(--node-tone);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--node-tone) 35%, transparent),
+    0 14px 28px color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+}
+
+.node[data-selected="true"] {
+  border-color: var(--node-tone);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 10%, transparent),
+    0 0 0 2px color-mix(in srgb, var(--node-tone) 35%, transparent),
+    0 18px 36px color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.node[data-running="true"] .statusDot {
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node {
+    transition: none;
+  }
+  .node[data-running="true"] .statusDot {
+    animation: none;
+  }
+}
+
+.nodeKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--node-tone);
+}
+
+.nodeTitle {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nodeMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.statusDot {
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--node-tone);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--node-tone) 18%, transparent);
+}
+
+.portIn,
+.portOut {
+  position: absolute;
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--node-tone);
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+}
+
+.portIn {
+  left: -var(--primitive-space-1);
+}
+
+.portOut {
+  right: -var(--primitive-space-1);
+}
+
+.controls {
+  position: absolute;
+  bottom: var(--primitive-space-3);
+  left: var(--primitive-space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 88%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.ctrl {
+  display: grid;
+  place-items: center;
+  inline-size: 28px;
+  block-size: 28px;
+  border: 1px solid transparent;
+  border-radius: var(--primitive-radius-pill);
+  background: transparent;
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.ctrl:hover,
+.ctrl:focus-visible {
+  outline: none;
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  border-color: var(--primitive-line-strong);
+}
+
+.zoomReadout {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.1em;
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+  padding: 0 var(--primitive-space-1-5);
+  min-width: 44px;
+  text-align: center;
+}
+
+.minimap {
+  position: absolute;
+  bottom: var(--primitive-space-3);
+  right: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent),
+    color-mix(in oklab, var(--primitive-canvas) 88%, transparent);
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.minimapNode {
+  position: absolute;
+  border-radius: var(--primitive-radius-xs);
+  background: color-mix(in srgb, var(--node-tone, var(--primitive-body)) 70%, transparent);
+}
+
+.minimapNode[data-selected="true"] {
+  background: var(--node-tone, var(--primitive-teal));
+  box-shadow: 0 0 0 1px var(--node-tone, var(--primitive-teal));
+}
+
+.minimapViewport {
+  position: absolute;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 42%, transparent);
+  border-radius: var(--primitive-radius-xs);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+}

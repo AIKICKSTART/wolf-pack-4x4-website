@@ -1,0 +1,195 @@
+.canvas {
+  --canvas-bg: var(--primitive-panel-strong);
+  --canvas-grid: var(--primitive-glass-soft);
+  --canvas-accent: var(--primitive-teal);
+
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--canvas-bg);
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    var(--primitive-shadow-soft);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border-bottom: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent),
+    var(--primitive-panel);
+}
+
+.name {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  color: var(--primitive-text-strong);
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.size {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.zoomChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.zoomChip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--canvas-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 50% 50%, var(--primitive-glass-soft), transparent 60%),
+    repeating-conic-gradient(
+      var(--canvas-grid) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 24px 24px;
+  overflow: hidden;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: var(--canvas-aspect, 16 / 10);
+  width: min(100%, 720px);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-sm);
+  background:
+    linear-gradient(135deg,
+      color-mix(in oklab, var(--primitive-teal) 12%, transparent),
+      color-mix(in oklab, var(--primitive-amber) 16%, transparent)),
+    var(--primitive-panel-strong);
+  overflow: hidden;
+  transform: translate(var(--pan-x, 0px), var(--pan-y, 0px)) scale(var(--zoom, 1));
+  transform-origin: center;
+  transition: transform var(--primitive-duration-normal) var(--primitive-ease-out);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.proxy {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 62%, transparent);
+  text-align: center;
+}
+
+.proxy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--primitive-overlay) 38%, transparent),
+      color-mix(in oklab, var(--primitive-overlay) 88%, transparent)),
+    repeating-linear-gradient(45deg, transparent 0 18px, var(--primitive-glass-soft) 18px 19px);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.foot {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: var(--primitive-space-2) var(--primitive-space-4);
+  border-top: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, transparent, var(--primitive-glass-soft)),
+    var(--primitive-panel);
+}
+
+.coords {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.panTrack {
+  position: relative;
+  height: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-strong);
+  overflow: hidden;
+}
+
+.panFill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pan-track-left, 30%);
+  width: var(--pan-track-width, 40%);
+  background: linear-gradient(90deg, var(--canvas-accent), var(--primitive-amber));
+  border-radius: var(--primitive-radius-pill);
+}
+
+.mode {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.modeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame {
+    transition: none;
+  }
+}

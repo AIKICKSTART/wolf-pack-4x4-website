@@ -1,0 +1,137 @@
+.strip {
+  display: grid;
+  gap: 14px;
+  padding: 18px var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.kicker {
+  display: block;
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.vehicle {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+}
+
+.pct {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xl);
+  font-weight: 800;
+}
+
+.checkpoints {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--primitive-space-1-5);
+  margin: 0;
+  padding: var(--primitive-space-0);
+  list-style: none;
+}
+
+.cp {
+  display: grid;
+  justify-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1-5) var(--primitive-space-1);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-round);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.cpLabel {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.at {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.done .dot {
+  border-color: var(--primitive-green);
+  background: var(--primitive-green);
+  color: color-mix(in oklab, var(--primitive-green) 15%, black);
+}
+
+.done .cpLabel {
+  color: var(--primitive-green);
+}
+
+.active .dot {
+  border-color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.active .cpLabel {
+  color: var(--primitive-amber);
+}
+
+.skipped .dot {
+  border-color: var(--primitive-line);
+  background: transparent;
+  opacity: 0.5;
+}
+
+.skipped .cpLabel {
+  color: var(--primitive-muted);
+  text-decoration: line-through;
+}
+
+.pending .dot {
+  opacity: 0.7;
+}
+
+.pending .cpLabel {
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .active .dot {
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .checkpoints {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

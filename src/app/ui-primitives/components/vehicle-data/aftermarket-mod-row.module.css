@@ -1,0 +1,128 @@
+.row {
+  border-bottom: 1px solid color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.row:hover {
+  background: color-mix(in oklab, var(--primitive-teal) 4%, transparent);
+}
+
+.legality-illegal {
+  background: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+}
+
+.modCell {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-3) 14px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  color: var(--primitive-teal);
+}
+
+.modBody {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.modBody strong {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.modRef {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.gainCell,
+.costCell {
+  padding: var(--primitive-space-3) 14px;
+  vertical-align: middle;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.gainBadge {
+  display: inline-flex;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.legalityCell {
+  padding: var(--primitive-space-3) 14px;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.certRef {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.actionCell {
+  padding: var(--primitive-space-3) 14px;
+  vertical-align: middle;
+  text-align: right;
+}
+
+.briefLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+  text-decoration: none;
+}
+
+.briefLink:hover,
+.briefLink:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.empty {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    transition: none;
+  }
+}

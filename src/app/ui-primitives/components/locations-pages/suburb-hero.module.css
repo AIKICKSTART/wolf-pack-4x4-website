@@ -1,0 +1,134 @@
+.heroWrap {
+  display: block;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  gap: clamp(18px, 2.2vw, 28px);
+  padding: clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px);
+}
+
+.kicker {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.headline {
+  margin: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-display);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  line-height: 0.92;
+}
+
+.headlinePrefix {
+  font-size: clamp(16px, 1.6vw, 22px);
+  letter-spacing: var(--primitive-tracking-widest);
+  color: var(--primitive-muted);
+}
+
+.headlineSuburb {
+  font-size: clamp(48px, 7vw, 96px);
+  letter-spacing: var(--primitive-tracking-tight);
+}
+
+.tagline {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--primitive-body);
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-3) 18px;
+  border-radius: var(--primitive-btn-radius);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    transform var(--primitive-duration-normal) var(--primitive-ease-out),
+    background var(--primitive-duration-normal) var(--primitive-ease-standard),
+    color var(--primitive-duration-normal) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-out),
+    border-color var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+.actionPrimary {
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  border: 0;
+}
+
+.actionPrimary:hover,
+.actionPrimary:focus-visible {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.actionPrimary:focus-visible {
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+.actionSecondary {
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  border: 1px solid var(--primitive-btn-secondary-border);
+}
+
+.actionSecondary:hover,
+.actionSecondary:focus-visible {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-amber);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.actionSecondary:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action,
+  .action:hover,
+  .action:focus-visible {
+    transition: none;
+    transform: none;
+  }
+}

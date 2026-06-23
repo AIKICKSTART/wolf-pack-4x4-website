@@ -1,0 +1,541 @@
+
+
+/* Vyrra liquid conversion layer: restrained shader-style motion on CTA surfaces. */
+.btn,
+.service .more,
+.conversion-panel .more {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.btn::after,
+.conversion-panel .more::before,
+.service .more::before {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 24% 34%, rgba(255,255,255,0.55), transparent 14%),
+    radial-gradient(circle at 64% 52%, rgba(0,140,255,0.58), transparent 18%),
+    radial-gradient(circle at 42% 72%, rgba(255,186,92,0.26), transparent 16%),
+    linear-gradient(120deg, transparent 24%, rgba(255,255,255,0.18), transparent 72%);
+  filter: blur(9px) saturate(1.25);
+  transform: scale(0.78) rotate(-8deg);
+  transition:
+    opacity 0.28s ease,
+    transform 0.45s cubic-bezier(.2,.7,.2,1),
+    filter 0.45s ease;
+}
+
+.btn:hover::after,
+.btn:focus-visible::after,
+.conversion-panel .more:hover::before,
+.conversion-panel .more:focus-visible::before,
+.service .more:hover::before,
+.service .more:focus-visible::before {
+  opacity: 0.9;
+  transform: scale(1) rotate(5deg);
+  animation: liquid-button-flow 1.2s cubic-bezier(.2,.7,.2,1) infinite alternate;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    0 18px 48px -24px rgba(0,140,255,0.82);
+}
+
+.conversion-pathways {
+  position: relative;
+  padding-top: clamp(56px, 7vw, 96px);
+  padding-bottom: clamp(56px, 7vw, 104px);
+}
+
+.conversion-pathways::before {
+  content: "";
+  position: absolute;
+  inset: 8% 0 auto;
+  height: min(520px, 54vw);
+  pointer-events: none;
+  background:
+    radial-gradient(45% 38% at 20% 30%, rgba(0,140,255,0.20), transparent 72%),
+    radial-gradient(38% 32% at 82% 42%, rgba(112,140,255,0.12), transparent 70%),
+    linear-gradient(90deg, transparent, rgba(255,255,255,0.035), transparent);
+  filter: blur(2px) saturate(1.15);
+  opacity: 0.9;
+}
+
+.conversion-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.conversion-panel {
+  min-height: 330px;
+  padding: clamp(26px, 3vw, 40px);
+  border-color: rgba(255,255,255,0.16);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.018) 42%, rgba(0,140,255,0.065)),
+    rgba(6,6,10,0.58);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 28px 82px -42px rgba(0,0,0,0.92);
+}
+
+.conversion-panel:nth-child(2) {
+  background:
+    linear-gradient(145deg, rgba(0,140,255,0.14), rgba(255,255,255,0.036) 42%, rgba(255,193,79,0.06)),
+    rgba(6,6,10,0.64);
+}
+
+.conversion-panel:nth-child(3) {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.07), rgba(80,130,255,0.07) 44%, rgba(0,140,255,0.055)),
+    rgba(6,6,10,0.58);
+}
+
+.conversion-panel h3 {
+  max-width: 9ch;
+}
+
+.conversion-panel p {
+  max-width: 34rem;
+  margin: 18px 0 0;
+  color: rgba(255,255,255,0.72);
+  font-size: 15px;
+  line-height: 1.56;
+}
+
+.conversion-panel:hover,
+.conversion-panel:focus-within {
+  border-color: rgba(0,140,255,0.44);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.16),
+    0 34px 96px -44px rgba(0,140,255,0.42),
+    0 38px 104px -52px rgba(0,0,0,0.96);
+}
+
+.conversion-panel .more {
+  min-width: 162px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02)),
+    rgba(3,3,7,0.46);
+}
+
+.conversion-panel:nth-child(2) .more {
+  border-color: rgba(255,150,150,0.34);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0.02)),
+    radial-gradient(120% 100% at 50% -10%, rgba(0,140,255,0.48), rgba(120,6,12,0.42));
+}
+
+@keyframes liquid-button-flow {
+  from {
+    filter: blur(10px) saturate(1.18) hue-rotate(-4deg);
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  to {
+    filter: blur(7px) saturate(1.58) hue-rotate(7deg);
+    background-position: 18px -12px, -16px 14px, 10px 16px, 0 0;
+  }
+}
+
+@media (max-width: 980px) {
+  .conversion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .conversion-panel {
+    min-height: auto;
+  }
+
+  .conversion-panel h3 {
+    max-width: 14ch;
+  }
+}
+
+/* First-pass premium landing uplift: factual copy needs a calmer, sharper frame. */
+.nav {
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  background:
+    linear-gradient(180deg, rgba(8,8,11,0.88), rgba(8,8,11,0.62)),
+    rgba(3,3,5,0.74);
+  box-shadow: 0 18px 70px -46px rgba(0,0,0,0.96);
+}
+
+.nav-inner {
+  min-height: 82px;
+}
+
+.nav-links {
+  gap: clamp(14px, 1.5vw, 24px);
+  margin-left: 8px;
+}
+
+.nav-logo img {
+  filter: drop-shadow(0 10px 26px rgba(0,0,0,0.54));
+}
+
+.nav-logo,
+.seo-brand {
+  min-height: 44px;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 2px;
+  color: rgba(255,255,255,0.72);
+  font-weight: 700;
+}
+
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.nav-link.active,
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: #fff;
+}
+
+.nav-phone,
+.label,
+.label-red,
+.pill,
+.tag,
+.faq-num {
+  letter-spacing: 0.08em;
+}
+
+.footer-grid,
+.footer-grid > *,
+.footer-bottom,
+.footer-bottom > * {
+  min-width: 0;
+}
+
+.hero-cinema-track::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.50) 29%, transparent 58%),
+    radial-gradient(64% 48% at 24% 56%, rgba(0,0,0,0.62), transparent 70%);
+}
+
+.hero-main {
+  z-index: 6;
+  /* 860px (not 820px) keeps the h1's two-line wrap available at 1440w —
+     "CUSTOM EXHAUST SYSTEMS" needs ~843px at the 85px hero type size. */
+  max-width: min(860px, 62vw);
+}
+
+.hero-h1,
+.display,
+.arch-text h2,
+.hoist-text h2,
+.rollout-main h2 {
+  text-wrap: balance;
+}
+
+.hero-h1 {
+  /* 21.5ch wraps the default headline to 4-5 lines. 12.2ch forced ~8 lines,
+     taller than the 16:9 hero band, so the top lines clipped above it. */
+  max-width: 21.5ch;
+  line-height: 0.86;
+}
+
+.hero-sub,
+.lead,
+.body-md,
+.arch-text .sub,
+.hoist-text .sub,
+.rollout-main .sub,
+.feature-body p,
+.step p,
+.review-card blockquote,
+.faq-item p {
+  max-width: 60ch;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.62;
+}
+
+.hero-sub {
+  max-width: 56ch;
+  margin-top: 24px;
+  color: rgba(255,255,255,0.82);
+  font-size: clamp(17px, 1.25vw, 21px);
+}
+
+.btn,
+.service .more,
+.route-panel .more {
+  min-height: 48px;
+  border-radius: 7px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.btn-red {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.02)),
+    linear-gradient(135deg, #00b8ff, #3f1fbf 72%);
+}
+
+.btn-chrome,
+.btn-ghost,
+.service .more,
+.route-panel .more {
+  border-color: rgba(255,255,255,0.2);
+  color: var(--ink);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.035)),
+    rgba(7,7,10,0.58);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.44);
+}
+
+.btn > span {
+  position: relative;
+  z-index: 1;
+}
+
+.section {
+  padding-block: clamp(82px, 9vw, 138px);
+}
+
+.section-head {
+  align-items: end;
+  gap: clamp(22px, 5vw, 84px);
+}
+
+.section-head .lead {
+  width: min(100%, 58ch);
+  font-size: clamp(16px, 1.25vw, 20px);
+}
+
+.display-lg {
+  font-size: clamp(46px, 7.2vw, 112px);
+  line-height: 0.9;
+}
+
+.display-md {
+  font-size: clamp(34px, 4.4vw, 70px);
+  line-height: 0.94;
+}
+
+.services,
+.conversion-grid,
+.specs,
+.process,
+.review,
+.faq-list {
+  gap: clamp(14px, 1.6vw, 24px);
+}
+
+.service,
+.route-panel,
+.feature,
+.spec-cell,
+.step,
+.review-card,
+.faq-item {
+  border-color: rgba(255,255,255,0.15);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.088), rgba(255,255,255,0.022) 46%, rgba(0,140,255,0.055)),
+    rgba(7,7,10,0.68);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 30px 90px -58px rgba(0,0,0,0.96);
+}
+
+.service h3,
+.route-panel h3,
+.step h3 {
+  text-wrap: balance;
+}
+
+.hoist-meta .label,
+.services-stamp .label,
+.footer-heading,
+.footer-bottom small,
+.footer-bottom .links a,
+.footer span[style*="var(--muted)"],
+.footer li[style*="var(--muted)"] {
+  color: rgba(255,255,255,0.72) !important;
+}
+
+.label-red {
+  color: #ff0011;
+  font-weight: 700;
+}
+
+.arch-text h2 span[style*="var(--accent)"],
+.hoist-text h2 span[style*="var(--accent)"],
+.rollout-main h2 span[style*="var(--accent)"] {
+  color: #ff0011 !important;
+  text-shadow: 0 4px 28px rgba(255,0,17,0.36) !important;
+}
+
+.service p,
+.route-panel p,
+.spec-cell .desc {
+  max-width: 56ch;
+}
+
+.feature-specs {
+  align-items: stretch;
+}
+
+.feature-specs > div,
+.spec-cell {
+  min-width: 0;
+}
+
+.feature-specs .v {
+  line-height: 0.95;
+  text-wrap: nowrap;
+}
+
+.spec-cell .v {
+  font-size: clamp(40px, 3.65vw, 64px);
+  letter-spacing: 0;
+  line-height: 0.95;
+  max-width: 100%;
+  overflow-wrap: normal;
+  text-wrap: balance;
+  white-space: normal;
+}
+
+@supports (font-size: 1cqw) {
+  .spec-cell {
+    container-type: inline-size;
+  }
+
+  .spec-cell .v {
+    font-size: clamp(28px, 21cqw, 64px);
+  }
+}
+
+@media (max-width: 600px) {
+  .specs {
+    grid-template-columns: 1fr;
+  }
+
+  .spec-cell {
+    padding: 34px 24px;
+  }
+
+  .spec-cell .v {
+    font-size: clamp(34px, 11vw, 46px);
+  }
+}
+
+.feature-specs .k,
+.spec-cell .k {
+  max-width: 18ch;
+  line-height: 1.28;
+}
+
+.review-card blockquote {
+  font-size: clamp(18px, 1.7vw, 25px);
+  text-wrap: pretty;
+}
+
+.quote-mark {
+  font-family: var(--font-mono);
+  font-size: clamp(38px, 5vw, 74px);
+  letter-spacing: 0;
+}
+
+.faq-item summary {
+  min-height: 76px;
+}
+
+@media (max-width: 980px) {
+  .section-head {
+    align-items: start;
+  }
+
+  .hero-main {
+    max-width: min(720px, calc(100vw - 48px));
+  }
+}
+
+@media (max-width: 760px) {
+  /* Mobile hero copy renders below the 16:9 clip (see 05-media-cinema.css), so the
+     heavy bottom scrim that used to sit here only darkened the bare video. Keep a
+     light, even edge vignette instead — no dark band at the bottom of the clip. */
+  .hero-cinema-track::after {
+    background:
+      radial-gradient(120% 120% at 50% 45%, transparent 62%, rgba(0, 0, 0, 0.22) 100%);
+  }
+
+  .hero-h1 {
+    font-size: clamp(36px, 11vw, 52px);
+    line-height: 0.92;
+    max-width: calc(100vw - 40px);
+  }
+
+  .section {
+    padding-block: clamp(64px, 14vw, 92px);
+  }
+
+  .display-lg {
+    font-size: clamp(40px, 12vw, 62px);
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-main {
+    left: 16px;
+    right: 16px;
+  }
+
+  .hero-h1 {
+    font-size: clamp(27px, 8.8vw, 34px);
+    line-height: 0.94;
+    max-width: calc(100vw - 32px);
+  }
+
+  .hero-h1 .line {
+    overflow: visible;
+  }
+}
+
+@media (max-width: 340px) {
+  .hero-h1 .line:nth-of-type(2),
+  .hero-h1 .line:nth-of-type(2) > span {
+    display: block;
+    width: 9.4ch;
+    max-width: 9.4ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn::after,
+  .conversion-panel .more::before,
+  .service .more::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}

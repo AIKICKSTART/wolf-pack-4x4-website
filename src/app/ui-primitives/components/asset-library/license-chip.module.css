@@ -1,0 +1,60 @@
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  position: relative;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) 9px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--chip-border, var(--primitive-line));
+  background: var(--chip-bg, var(--primitive-shimmer-base));
+  color: var(--chip-fg, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--chip-fg, var(--primitive-body));
+  box-shadow: 0 0 0 3px var(--chip-bg, var(--primitive-shimmer-base));
+}
+
+.toneRed {
+  --chip-bg: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --chip-fg: var(--primitive-red);
+}
+
+.toneAmber {
+  --chip-bg: color-mix(in oklab, var(--primitive-amber) 14%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  --chip-fg: var(--primitive-amber);
+}
+
+.toneTeal {
+  --chip-bg: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  --chip-fg: var(--primitive-teal);
+}
+
+.toneGreen {
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --chip-fg: var(--primitive-green);
+}
+
+.toneNeutral {
+  --chip-bg: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  --chip-fg: var(--primitive-body);
+}

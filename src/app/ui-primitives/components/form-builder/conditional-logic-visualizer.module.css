@@ -1,0 +1,219 @@
+/* Local violet — no central violet token exists; derived from red + focus-ring
+   (teal) so the hue still tracks the central palette. */
+.visualizer {
+  --fb-violet: color-mix(in oklab, var(--primitive-red) 42%, var(--primitive-focus-ring));
+
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.subtitle {
+  margin: var(--primitive-space-1) 0 0;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+.stage {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: 1px dashed var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+  overflow: hidden;
+  min-height: 280px;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+}
+
+.column {
+  position: absolute;
+  top: var(--primitive-space-6);
+  display: grid;
+  gap: 0;
+}
+
+.columnTitle {
+  position: absolute;
+  top: -22px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5) 14px;
+  height: 44px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  width: 200px;
+  box-sizing: border-box;
+}
+
+.nodeDot {
+  width: var(--primitive-space-2);
+  height: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-teal);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+}
+
+.nodeDotTarget {
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.nodeLabel {
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.condition {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 112px;
+  display: grid;
+  place-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-3);
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid color-mix(in oklab, var(--fb-violet) 50%, transparent);
+  background: color-mix(in oklab, var(--fb-violet) 12%, transparent);
+  text-align: center;
+}
+
+.conditionLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--fb-violet) 65%, var(--primitive-text-strong));
+}
+
+.conditionCount {
+  font-family: var(--primitive-font-display, sans-serif);
+  font-size: var(--primitive-text-2xl);
+  line-height: var(--primitive-leading-none);
+  color: var(--primitive-text-strong);
+}
+
+.edge path {
+  stroke-width: 1.6;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.edge circle {
+  stroke: none;
+}
+
+.edge-green path {
+  stroke: var(--primitive-green);
+}
+
+.edge-green circle {
+  fill: var(--primitive-green);
+}
+
+.edge-red path {
+  stroke: var(--primitive-red);
+}
+
+.edge-red circle {
+  fill: var(--primitive-red);
+}
+
+.edge-amber path {
+  stroke: var(--primitive-amber);
+}
+
+.edge-amber circle {
+  fill: var(--primitive-amber);
+}
+
+.edge-teal path {
+  stroke: var(--primitive-teal);
+}
+
+.edge-teal circle {
+  fill: var(--primitive-teal);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.legendChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 5px 9px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.legendChip::before {
+  content: "";
+  width: 14px;
+  height: 2px;
+  border-radius: var(--primitive-radius-xs);
+  background: currentColor;
+}

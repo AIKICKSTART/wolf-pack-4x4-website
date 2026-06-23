@@ -1,0 +1,140 @@
+/* FormStepper — animated horizontal step indicator */
+
+.wrap {
+  display: grid;
+  gap: 14px;
+  width: 100%;
+}
+
+.track {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: center;
+  gap: 0;
+}
+
+.rail {
+  position: absolute;
+  inset-inline: calc(50% / var(--stepper-count, 3));
+  top: 13px;
+  height: 2px;
+  background: var(--primitive-line);
+  border-radius: var(--primitive-radius-xs);
+  overflow: hidden;
+  z-index: 0;
+}
+
+.railFill {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: var(--stepper-progress, 0%);
+  background: linear-gradient(
+    90deg,
+    var(--primitive-red),
+    var(--primitive-amber) 50%,
+    var(--primitive-teal)
+  );
+  border-radius: var(--primitive-radius-xs);
+  transition: width 480ms var(--primitive-ease-out);
+  box-shadow: 0 0 12px color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-items: center;
+  gap: var(--primitive-space-2-5);
+  z-index: 1;
+}
+
+.dot {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in oklab, var(--primitive-canvas) 96%, transparent);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  transition:
+    transform 280ms var(--primitive-ease-out),
+    border-color 280ms ease,
+    color 280ms ease,
+    background 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.step[data-state="done"] .dot {
+  background: linear-gradient(135deg, var(--primitive-teal), var(--primitive-green));
+  color: var(--primitive-canvas);
+  border-color: var(--primitive-teal);
+}
+
+.step[data-state="active"] .dot {
+  background: linear-gradient(135deg, var(--primitive-red), var(--primitive-amber));
+  border-color: var(--primitive-amber);
+  color: var(--primitive-canvas);
+  transform: scale(1.12);
+  box-shadow:
+    0 0 0 4px color-mix(in oklab, var(--primitive-amber) 15%, transparent),
+    0 6px 16px color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}
+
+.step[data-state="pending"] .dot {
+  background: color-mix(in oklab, var(--primitive-canvas) 96%, transparent);
+  color: var(--primitive-muted);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  transition: color 200ms ease;
+  white-space: nowrap;
+}
+
+.step[data-state="active"] .label {
+  color: var(--primitive-amber);
+}
+
+.step[data-state="done"] .label {
+  color: var(--primitive-teal);
+}
+
+.summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.summary strong {
+  color: var(--primitive-body);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .railFill,
+  .dot {
+    transition: none;
+  }
+
+  .step[data-state="active"] .dot {
+    transform: none;
+  }
+}

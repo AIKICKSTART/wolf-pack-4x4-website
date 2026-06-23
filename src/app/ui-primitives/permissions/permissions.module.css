@@ -1,0 +1,639 @@
+/* Permissions / RBAC index + sub-route shell */
+
+.page {
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: clamp(20px, 3vw, 36px);
+}
+
+.main {
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: clamp(20px, 3vw, 36px);
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.notice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  width: max-content;
+  max-width: 100%;
+}
+
+.notice::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-red) 16%, transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 100% 0%, var(--accent-soft, color-mix(in oklab, var(--primitive-teal) 14%, transparent)), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  text-decoration: none;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform var(--primitive-duration-normal) var(--primitive-ease-out),
+    border-color var(--primitive-duration-normal) ease,
+    box-shadow var(--primitive-duration-normal) ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--primitive-line-strong);
+  box-shadow: 0 22px 46px color-mix(in oklab, var(--primitive-canvas) 46%, transparent);
+  outline: none;
+}
+
+.accentTeal { --accent-soft: color-mix(in oklab, var(--primitive-teal) 18%, transparent); }
+.accentAmber { --accent-soft: color-mix(in oklab, var(--primitive-amber) 18%, transparent); }
+.accentRed { --accent-soft: color-mix(in oklab, var(--primitive-red) 18%, transparent); }
+.accentGreen { --accent-soft: color-mix(in oklab, var(--primitive-green) 18%, transparent); }
+.accentViolet { --accent-soft: color-mix(in oklab, var(--primitive-violet) 18%, transparent); }
+
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(ellipse at 30% 12%, var(--primitive-glass-soft), transparent 50%),
+    var(--primitive-panel-strong);
+  overflow: hidden;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.thumbGlyph {
+  font-family: var(--primitive-font-display);
+  font-size: 38px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.04em;
+  line-height: 0.9;
+}
+
+.cardKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.cardTitle {
+  margin: var(--primitive-space-1-5) 0 var(--primitive-space-1);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.cardBody {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+  color: var(--primitive-body);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaAction {
+  color: var(--primitive-text-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.demoSurface {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, var(--primitive-texture-stroke), transparent 60%),
+    var(--primitive-panel);
+}
+
+.demoLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.demoStack {
+  display: grid;
+  gap: 14px;
+}
+
+.demoInline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-4);
+}
+
+.roleBadgeHero,
+.roleBadgeSurface {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    inset -18px -18px 34px var(--primitive-neumo-dark),
+    var(--primitive-shadow-soft);
+}
+
+.roleBadgeHero::before,
+.roleBadgeSurface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, var(--primitive-texture-stroke) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(0deg, color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent) 1px, transparent 1px) 0 0 / 32px 32px,
+    radial-gradient(circle at 12% 12%, color-mix(in oklab, var(--primitive-red) 20%, transparent), transparent 30%),
+    radial-gradient(circle at 90% 8%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 32%);
+  opacity: 0.88;
+}
+
+.roleBadgeHero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+  gap: 22px;
+  align-items: stretch;
+  padding: var(--primitive-space-6);
+}
+
+.roleBadgeHeroCopy {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+  padding: var(--primitive-space-1);
+}
+
+.roleBadgeHeroCopy p,
+.roleBadgeSectionHead p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.roleBadgeActionRow,
+.roleBadgeChipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+}
+
+.roleBadgePreview {
+  max-width: 100%;
+}
+
+.roleBadgeMetricGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.roleBadgeSurface {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+}
+
+.roleBadgeSectionHead {
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.roleBadgeWall {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.roleBadgeToneCard,
+.roleBadgeAssignmentCard {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 66%, transparent);
+}
+
+.roleBadgeToneCard {
+  align-content: start;
+  justify-items: start;
+  padding: var(--primitive-space-4);
+}
+
+.roleBadgeAssignments {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 14px;
+}
+
+.roleBadgeAssignmentCard {
+  padding: var(--primitive-space-4);
+}
+
+.roleBadgeAssignmentHead {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  min-width: 0;
+}
+
+.roleBadgeAvatar {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 34%, transparent);
+  border-radius: 10px;
+  background:
+    linear-gradient(145deg, color-mix(in oklab, var(--primitive-red) 88%, transparent), color-mix(in oklab, var(--primitive-red-dark) 88%, var(--primitive-canvas))),
+    var(--primitive-red);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+}
+
+.roleBadgePerson {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.roleBadgePerson strong,
+.roleBadgeAssignmentMeta dd,
+.roleBadgeTable td {
+  color: var(--primitive-text-strong);
+}
+
+.roleBadgePerson strong {
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.roleBadgePerson small {
+  overflow: hidden;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.roleBadgeAssignmentRole {
+  min-width: 0;
+}
+
+.roleBadgeAssignmentMeta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 18%, transparent);
+}
+
+.roleBadgeAssignmentMeta div {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.roleBadgeAssignmentMeta dt,
+.roleBadgeTable th {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.roleBadgeAssignmentMeta dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.35;
+}
+
+.roleBadgeTableShell {
+  overflow-x: auto;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.roleBadgeTable {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: collapse;
+}
+
+.roleBadgeTable caption {
+  position: absolute;
+  clip: rect(0 0 0 0);
+}
+
+.roleBadgeTable th,
+.roleBadgeTable td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--primitive-line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.roleBadgeTable th {
+  background: color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent);
+}
+
+.roleBadgeTable td {
+  font-size: var(--primitive-text-sm);
+}
+
+.roleBadgeTable tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.roleBadgeTable code {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+:global(html[data-primitive-theme="light"]) .roleBadgeHero,
+:global(html[data-primitive-theme="light"]) .roleBadgeSurface {
+  background:
+    linear-gradient(145deg, var(--primitive-glass-strong), var(--primitive-glass-soft)),
+    var(--primitive-panel);
+}
+
+:global(html[data-primitive-theme="light"]) .roleBadgeHero::before,
+:global(html[data-primitive-theme="light"]) .roleBadgeSurface::before {
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-canvas) 4.5%, transparent) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(0deg, color-mix(in oklab, var(--primitive-canvas) 3.5%, transparent) 1px, transparent 1px) 0 0 / 32px 32px,
+    radial-gradient(circle at 12% 12%, color-mix(in oklab, var(--primitive-red) 13%, transparent), transparent 32%),
+    radial-gradient(circle at 90% 8%, color-mix(in oklab, var(--primitive-teal) 13%, transparent), transparent 34%);
+}
+
+:global(html[data-primitive-theme="light"]) .roleBadgeToneCard,
+:global(html[data-primitive-theme="light"]) .roleBadgeAssignmentCard {
+  background:
+    linear-gradient(145deg, var(--primitive-glass-strong), var(--primitive-glass-soft)),
+    var(--primitive-panel-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .roleBadgeAssignmentMeta,
+:global(html[data-primitive-theme="light"]) .roleBadgeTableShell {
+  background: var(--primitive-field-bg);
+}
+
+:global(html[data-primitive-theme="light"]) .roleBadgePreview {
+  --tone-text: var(--primitive-text-strong);
+  --tone-muted: var(--primitive-muted);
+  --tone-icon: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .roleBadgeTable th {
+  background: color-mix(in oklab, var(--primitive-canvas) 4.5%, transparent);
+}
+
+.demoStage {
+  display: grid;
+  place-items: center;
+  padding: var(--primitive-space-9);
+  border: 1px dashed var(--primitive-line);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--primitive-canvas) 24%, transparent);
+}
+
+.aclList,
+.approvalStack {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.console {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--primitive-space-6);
+}
+
+.consoleMain {
+  display: grid;
+  gap: var(--primitive-space-6);
+  min-width: 0;
+}
+
+.consoleSide {
+  display: grid;
+  gap: var(--primitive-space-5);
+  align-content: start;
+}
+
+.topRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-4);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.smallStack {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.demoSurface .demoStack > * + * {
+  margin: 0;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  border: 1px solid var(--primitive-red);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  border-color: var(--primitive-amber);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.ctaGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.ctaGhost:hover,
+.ctaGhost:focus-visible {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+@media (max-width: 1100px) {
+  .console {
+    grid-template-columns: 1fr;
+  }
+
+  .roleBadgeHero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .roleBadgeHero,
+  .roleBadgeSurface {
+    padding: var(--primitive-space-4);
+  }
+
+  .roleBadgeAssignmentHead {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .roleBadgeAssignmentHead > :last-child {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .roleBadgeAssignmentMeta {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}

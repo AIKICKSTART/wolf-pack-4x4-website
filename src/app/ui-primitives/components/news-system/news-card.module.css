@@ -1,0 +1,191 @@
+.card {
+  --card-tone: var(--primitive-red);
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--primitive-card-border);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(in oklab, var(--card-tone) 16%, transparent),
+      transparent 46%
+    ),
+    linear-gradient(150deg, var(--primitive-glass-soft), transparent 56%),
+    var(--primitive-card-bg);
+  box-shadow: var(--primitive-card-shadow);
+  transition:
+    transform var(--primitive-duration-normal) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in oklab, var(--card-tone) 38%, var(--primitive-line));
+  box-shadow: var(--primitive-card-hover-shadow);
+}
+
+.card:focus-within {
+  border-color: color-mix(in oklab, var(--card-tone) 46%, var(--primitive-line-strong));
+}
+
+.grid {
+  flex-direction: column;
+}
+
+.list {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.rail {
+  flex: 0 0 auto;
+  background: linear-gradient(180deg, var(--card-tone), color-mix(in oklab, var(--card-tone) 50%, transparent));
+}
+
+.grid .rail {
+  height: 4px;
+  width: 100%;
+}
+
+.list .rail {
+  width: 4px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-5);
+}
+
+.list .body {
+  padding: var(--primitive-space-5) var(--primitive-space-6);
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-bold);
+  line-height: var(--primitive-leading-snug);
+  letter-spacing: var(--primitive-tracking-tight);
+  color: var(--primitive-text-strong);
+}
+
+.link {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--primitive-space-1-5);
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.linkText {
+  background-image: linear-gradient(var(--card-tone), var(--card-tone));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.link:hover .linkText,
+.link:focus-visible .linkText {
+  background-size: 100% 2px;
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--primitive-radius-xs);
+}
+
+.linkIcon {
+  flex: 0 0 auto;
+  margin-top: var(--primitive-space-0-5);
+  color: var(--card-tone);
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.link:hover .linkIcon,
+.link:focus-visible .linkIcon {
+  transform: translate(2px, -2px);
+}
+
+.summary {
+  margin: 0;
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-base);
+  line-height: var(--primitive-leading-relaxed);
+  color: var(--primitive-body);
+}
+
+.foot {
+  margin-top: auto;
+  padding-top: var(--primitive-space-2);
+  border-top: 1px solid var(--primitive-line-muted);
+}
+
+.byline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-0-5);
+}
+
+.bylineName {
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.bylineRole {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.toneRed {
+  --card-tone: var(--primitive-red);
+}
+.toneAmber {
+  --card-tone: var(--primitive-amber);
+}
+.toneTeal {
+  --card-tone: var(--primitive-teal);
+}
+.toneGreen {
+  --card-tone: var(--primitive-green);
+}
+.toneNeutral {
+  --card-tone: var(--primitive-muted);
+}
+
+@media (max-width: 640px) {
+  .list {
+    flex-direction: column;
+  }
+  .list .rail {
+    width: 100%;
+    height: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .linkText,
+  .linkIcon {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+  .link:hover .linkIcon,
+  .link:focus-visible .linkIcon {
+    transform: none;
+  }
+}

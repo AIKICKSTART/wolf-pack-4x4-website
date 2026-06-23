@@ -1,0 +1,111 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.headLeft {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  line-height: 1.1;
+}
+
+.chart {
+  display: grid;
+  place-items: center;
+}
+
+.list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 14px 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--primitive-canvas) 32%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-body);
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--primitive-teal);
+}
+
+.swatch[data-tone="red"] {
+  background: var(--primitive-red);
+}
+.swatch[data-tone="amber"] {
+  background: var(--primitive-amber);
+}
+.swatch[data-tone="green"] {
+  background: var(--primitive-green);
+}
+.swatch[data-tone="teal"] {
+  background: var(--primitive-teal);
+}
+
+.service {
+  font-family: var(--primitive-font-display);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.pct {
+  font-feature-settings: "tnum" 1;
+  color: var(--primitive-muted);
+}
+
+.spend {
+  font-feature-settings: "tnum" 1;
+  color: var(--primitive-text-strong);
+}

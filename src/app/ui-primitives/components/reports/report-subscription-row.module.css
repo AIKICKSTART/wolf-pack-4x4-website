@@ -1,0 +1,88 @@
+.row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background: var(--primitive-card-bg);
+}
+
+.row + .row {
+  margin-top: 6px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid var(--primitive-line);
+}
+
+.identity {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.email {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+}
+
+.freq {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.lastSent {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-body);
+}
+
+.unsubscribe {
+  appearance: none;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.unsubscribe:hover {
+  border-color: var(--primitive-red);
+  color: var(--primitive-red);
+}

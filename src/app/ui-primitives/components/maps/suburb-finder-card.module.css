@@ -1,0 +1,180 @@
+.root {
+  display: grid;
+  gap: 18px;
+  width: min(420px, 100%);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 26px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.desc {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+  line-height: 1.55;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-2-5);
+  align-items: end;
+}
+
+.searchField {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.input {
+  min-height: 42px;
+  padding: 0 var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+  font: inherit;
+  font-size: 14px;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.input:focus-visible {
+  border-color: var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 5%, transparent);
+  outline: none;
+}
+
+.locateBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  color: var(--primitive-teal);
+  font: inherit;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.locateBtn:hover,
+.locateBtn:focus-visible {
+  background: color-mix(in oklab, var(--primitive-teal) 20%, transparent);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.locateIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.results {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.resultName {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.resultName small {
+  margin-left: var(--primitive-space-1-5);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-regular);
+}
+
+.resultDistance {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-teal);
+  letter-spacing: 0.06em;
+}
+
+.empty {
+  padding: var(--primitive-space-3);
+  border: 1px dashed var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .locateBtn {
+    transition: none;
+  }
+  .locateBtn:hover,
+  .locateBtn:focus-visible {
+    transform: none;
+  }
+}
+
+@media (max-width: 460px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+}

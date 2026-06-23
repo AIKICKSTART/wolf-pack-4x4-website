@@ -1,0 +1,149 @@
+.frame {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 16px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 4px 0 0;
+  font-size: 16px;
+  color: var(--primitive-text-strong);
+  font-weight: 700;
+}
+
+.toggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-field-bg);
+}
+
+.toggleBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.toggleBtn:hover,
+.toggleBtn:focus-visible {
+  background: var(--primitive-surface-hover);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.toggleBtnActive {
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.scroll {
+  overflow-x: auto;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--primitive-panel-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  min-width: max-content;
+}
+
+.cornerCell,
+.sizeCol,
+.periodCol {
+  background: var(--primitive-surface-3);
+  color: var(--primitive-text-strong);
+  text-align: center;
+  padding: 8px 10px;
+  border: 1px solid var(--primitive-line);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.cornerCell {
+  text-align: left;
+}
+
+.rowLabel {
+  text-align: left;
+  padding: 8px 12px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-panel);
+  color: var(--primitive-text-strong);
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.sizeCell {
+  text-align: right;
+  padding: 8px 12px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+  color: var(--primitive-text-strong);
+  font-weight: 500;
+}
+
+.heatCell {
+  position: relative;
+  text-align: right;
+  padding: 8px 12px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--heat-tone, var(--primitive-teal)) calc(var(--heat-intensity, 0) * 70%), transparent),
+      transparent 80%
+    ),
+    var(--primitive-panel-strong);
+  color: var(--primitive-text-strong);
+}
+
+.heatValue {
+  position: relative;
+  z-index: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggleBtn {
+    transition: none;
+  }
+}

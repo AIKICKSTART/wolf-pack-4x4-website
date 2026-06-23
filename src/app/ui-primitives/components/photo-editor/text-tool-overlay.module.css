@@ -1,0 +1,165 @@
+.wrap {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+}
+
+.title {
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.canvas {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 200px;
+  padding: 18px;
+  border: 1px dashed var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 60%),
+    repeating-conic-gradient(var(--primitive-texture-stroke) 0% 25%, transparent 0% 50%) 0 0 / 16px 16px,
+    var(--primitive-panel-strong);
+  overflow: hidden;
+}
+
+.preview {
+  font-family: var(--text-font, "Inter", sans-serif);
+  font-size: var(--text-size, 48px);
+  font-weight: var(--text-weight, 700);
+  letter-spacing: var(--text-spacing, 0.02em);
+  color: var(--text-color, var(--primitive-text-strong));
+  text-align: center;
+  line-height: 1.05;
+  text-shadow: 0 4px 18px color-mix(in oklab, var(--primitive-overlay) 90%, transparent);
+  position: relative;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  outline: 1px dashed color-mix(in oklab, var(--primitive-teal) 62%, transparent);
+  outline-offset: 4px;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 0.9em;
+  background: var(--primitive-teal);
+  vertical-align: middle;
+  margin-left: var(--primitive-space-0-5);
+  animation: blink 1.1s infinite;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.controls {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--primitive-space-2-5);
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-recessed);
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.fieldValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.colourField {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: var(--primitive-space-2);
+  align-items: center;
+}
+
+.colourChip {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line-strong);
+  background: var(--colour-hex, var(--primitive-text-strong));
+}
+
+.weights {
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--primitive-space-1);
+}
+
+.weightBtn {
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.weightActive {
+  background: var(--primitive-amber);
+  color: var(--primitive-canvas);
+  border-color: var(--primitive-amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}

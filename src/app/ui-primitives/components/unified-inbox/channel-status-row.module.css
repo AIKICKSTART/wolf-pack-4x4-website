@@ -1,0 +1,233 @@
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--card-stroke, var(--primitive-line));
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.glyph {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--badge-stroke, var(--primitive-line));
+  background: var(--badge-bg, var(--primitive-glass-soft));
+  color: var(--badge-ink, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.identity {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+}
+
+.handle {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stateChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--state-stroke, var(--primitive-line));
+  background: var(--state-bg, var(--primitive-glass-soft));
+  color: var(--state-ink, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.stateDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--state-dot, var(--state-ink, var(--primitive-text-strong)));
+  box-shadow: 0 0 0 2px var(--primitive-line-muted);
+}
+
+.stateDot[data-pulse="true"] {
+  animation: cs-pulse 1800ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes cs-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--primitive-green) 45%, transparent);
+  }
+  80% {
+    box-shadow: 0 0 0 8px color-mix(in oklab, var(--primitive-green) 0%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--primitive-green) 0%, transparent);
+  }
+}
+
+.sync {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.reconnectBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding: 6px 12px;
+  border-radius: var(--primitive-btn-radius);
+  border: 0;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.reconnectBtn:hover,
+.reconnectBtn:focus-visible {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.reconnectBtn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.needsAttention {
+  border-color: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+/* Channel tones (badge accent). */
+.channel_violet {
+  --badge-bg: color-mix(in oklab, var(--primitive-violet) 16%, transparent);
+  --badge-stroke: color-mix(in oklab, var(--primitive-violet) 55%, transparent);
+  --badge-ink: color-mix(in oklab, var(--primitive-violet) 50%, var(--primitive-text-strong));
+}
+
+.channel_teal {
+  --badge-bg: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  --badge-stroke: color-mix(in oklab, var(--primitive-teal) 55%, transparent);
+  --badge-ink: color-mix(in oklab, var(--primitive-teal) 50%, var(--primitive-text-strong));
+}
+
+.channel_red {
+  --badge-bg: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --badge-stroke: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  --badge-ink: color-mix(in oklab, var(--primitive-red) 45%, var(--primitive-text-strong));
+}
+
+.channel_amber {
+  --badge-bg: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --badge-stroke: color-mix(in oklab, var(--primitive-amber) 55%, transparent);
+  --badge-ink: color-mix(in oklab, var(--primitive-amber) 62%, var(--primitive-text-strong));
+}
+
+.channel_green {
+  --badge-bg: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --badge-stroke: color-mix(in oklab, var(--primitive-green) 55%, transparent);
+  --badge-ink: color-mix(in oklab, var(--primitive-green) 55%, var(--primitive-text-strong));
+}
+
+.channel_neutral {
+  --badge-bg: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --badge-stroke: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  --badge-ink: color-mix(in oklab, var(--primitive-text-strong) 84%, var(--primitive-muted));
+}
+
+/* State chip tones. */
+.state_green {
+  --state-bg: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --state-stroke: color-mix(in oklab, var(--primitive-green) 55%, transparent);
+  --state-ink: color-mix(in oklab, var(--primitive-green) 55%, var(--primitive-text-strong));
+  --state-dot: var(--primitive-green);
+}
+
+.state_amber {
+  --state-bg: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --state-stroke: color-mix(in oklab, var(--primitive-amber) 55%, transparent);
+  --state-ink: color-mix(in oklab, var(--primitive-amber) 62%, var(--primitive-text-strong));
+  --state-dot: var(--primitive-amber);
+}
+
+.state_red {
+  --state-bg: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --state-stroke: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  --state-ink: color-mix(in oklab, var(--primitive-red) 45%, var(--primitive-text-strong));
+  --state-dot: var(--primitive-red);
+}
+
+.state_neutral {
+  --state-bg: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --state-stroke: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  --state-ink: color-mix(in oklab, var(--primitive-text-strong) 84%, var(--primitive-muted));
+  --state-dot: color-mix(in oklab, var(--primitive-text-strong) 60%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stateDot[data-pulse="true"] {
+    animation: none;
+  }
+  .reconnectBtn {
+    transition: none;
+  }
+  .reconnectBtn:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,289 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 90%, transparent);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.kindRow {
+  display: flex;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-0-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.kindBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.kindBtn:hover {
+  color: var(--primitive-text-strong);
+}
+
+.kindBtn:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 1px;
+}
+
+.kindOn {
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(200px, 1fr);
+  gap: var(--primitive-space-4);
+}
+
+@media (max-width: 720px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.previewWrap {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.preview {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  overflow: hidden;
+  background:
+    repeating-conic-gradient(color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 0deg 90deg, color-mix(in oklab, var(--primitive-canvas) 18%, transparent) 90deg 180deg);
+  background-size: 14px 14px;
+  isolation: isolate;
+}
+
+.previewBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 50%, color-mix(in oklab, var(--primitive-teal) 32%, transparent), transparent 60%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 32%, transparent), transparent 55%),
+    color-mix(in oklab, var(--primitive-canvas) 72%, transparent);
+}
+
+.mark {
+  position: absolute;
+  font-family: var(--primitive-font-display);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--primitive-text-strong);
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 0 2px 6px color-mix(in oklab, var(--primitive-canvas) 62%, transparent);
+  transition: opacity 200ms ease, font-size 200ms ease, top 200ms ease, left 200ms ease, right 200ms ease, bottom 200ms ease;
+}
+
+.previewCaption {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: grid;
+  gap: var(--primitive-space-3);
+  align-content: start;
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  display: inline-flex;
+  gap: var(--primitive-space-2);
+  align-items: baseline;
+}
+
+.value {
+  font-style: normal;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+}
+
+.input {
+  appearance: none;
+  width: 100%;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--primitive-amber);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+}
+
+.slider {
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: var(--primitive-radius-pill);
+  background: linear-gradient(
+    to right,
+    var(--primitive-amber) 0%,
+    var(--primitive-amber) 50%,
+    color-mix(in oklab, var(--primitive-text-strong) 8%, transparent) 50%,
+    color-mix(in oklab, var(--primitive-text-strong) 8%, transparent) 100%
+  );
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  border: 2px solid var(--primitive-amber);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  border: 2px solid var(--primitive-amber);
+  cursor: pointer;
+}
+
+.slider:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 4px;
+}
+
+.anchorGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--primitive-space-1);
+  width: 120px;
+  aspect-ratio: 1;
+  padding: var(--primitive-space-1);
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.anchorBtn {
+  appearance: none;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.04em;
+  border-radius: 6px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.anchorBtn:hover {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+}
+
+.anchorBtn:focus-visible {
+  outline: none;
+  border-color: var(--primitive-amber);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+}
+
+.anchorOn {
+  background: color-mix(in oklab, var(--primitive-amber) 24%, transparent);
+  border-color: var(--primitive-amber);
+  color: var(--primitive-text-strong);
+}
+
+.anchorBtn[data-anchor="top-left"] {
+  grid-column: 1;
+  grid-row: 1;
+}
+.anchorBtn[data-anchor="top-right"] {
+  grid-column: 3;
+  grid-row: 1;
+}
+.anchorBtn[data-anchor="center"] {
+  grid-column: 2;
+  grid-row: 2;
+}
+.anchorBtn[data-anchor="bottom-left"] {
+  grid-column: 1;
+  grid-row: 3;
+}
+.anchorBtn[data-anchor="bottom-right"] {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark,
+  .kindBtn,
+  .anchorBtn {
+    transition: none;
+  }
+}

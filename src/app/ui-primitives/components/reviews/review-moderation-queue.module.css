@@ -1,0 +1,106 @@
+.queue {
+  display: grid;
+  gap: 12px;
+}
+
+.rowActions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.actionButton {
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.actionApprove {
+  border-color: color-mix(in srgb, var(--primitive-green) 36%, var(--primitive-line));
+  color: var(--primitive-green);
+}
+
+.actionReject {
+  border-color: color-mix(in srgb, var(--primitive-red) 36%, var(--primitive-line));
+  color: var(--primitive-red);
+}
+
+.actionEdit {
+  border-color: color-mix(in srgb, var(--primitive-teal) 36%, var(--primitive-line));
+  color: var(--primitive-teal);
+}
+
+.actionButton:hover,
+.actionButton:focus-visible {
+  background: var(--primitive-field-hover);
+  outline: none;
+}
+
+.previewCell {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.headline {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.snippet {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.flagChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.reviewerCell {
+  display: grid;
+  gap: 2px;
+}
+
+.reviewerName {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.reviewerMeta {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ratingStars {
+  color: var(--primitive-amber);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}

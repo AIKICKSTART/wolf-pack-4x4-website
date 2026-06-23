@@ -1,0 +1,142 @@
+.wrap {
+  display: grid;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: flex;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.eta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 34%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.etaLabel {
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.etaValue {
+  color: var(--primitive-text-strong);
+}
+
+.steps {
+  list-style: none;
+  margin: var(--primitive-space-0);
+  padding: var(--primitive-space-0);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--primitive-space-1-5);
+}
+
+.step {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-1);
+  justify-items: center;
+  padding: 14px 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent);
+  text-align: center;
+  transition: border-color 200ms ease, background 200ms ease, transform 200ms ease;
+}
+
+.stepPercent {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0;
+}
+
+.stepLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.connector {
+  position: absolute;
+  top: 50%;
+  right: -7px;
+  width: 8px;
+  height: 2px;
+  background: var(--primitive-line);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.reached {
+  border-color: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+}
+
+.reached .stepPercent {
+  color: var(--primitive-green);
+}
+
+.reached .connector {
+  background: var(--primitive-green);
+}
+
+.current {
+  border-color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--primitive-amber) 30%, transparent),
+    0 12px 28px color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  transform: translateY(-1px);
+}
+
+.current .stepPercent {
+  color: var(--primitive-amber);
+}
+
+.current .stepLabel {
+  color: var(--primitive-text-strong);
+}
+
+@media (max-width: 720px) {
+  .steps {
+    grid-template-columns: repeat(5, minmax(56px, 1fr));
+    overflow-x: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    transition: none;
+  }
+}

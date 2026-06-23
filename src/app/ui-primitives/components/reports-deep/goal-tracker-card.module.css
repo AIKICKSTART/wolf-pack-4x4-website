@@ -1,0 +1,184 @@
+.card {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 16px;
+  background: var(--primitive-card-bg);
+  box-shadow: var(--primitive-card-shadow);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: grid;
+  gap: 4px;
+  position: relative;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: 17px;
+  color: var(--primitive-text-strong);
+  font-weight: 700;
+}
+
+.status {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+}
+
+.statusAhead {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.statusOn {
+  color: var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+
+.statusBehind {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.valueBlock {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-surface-3);
+}
+
+.valueLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.valueText {
+  font-family: var(--primitive-font-display);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--primitive-text-strong);
+}
+
+.valueProjected {
+  color: var(--primitive-amber);
+}
+
+.bar {
+  display: grid;
+  gap: 6px;
+}
+
+.barTrack {
+  position: relative;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--primitive-meter-track);
+  overflow: hidden;
+}
+
+.barProjected {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primitive-amber) 32%, transparent), color-mix(in oklab, var(--primitive-amber) 18%, transparent));
+  border-right: 1px dashed var(--primitive-amber);
+  transition: width 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.barCurrent {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primitive-teal), color-mix(in oklab, var(--primitive-teal) 60%, transparent));
+  border-radius: 999px;
+  transition: width 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scale {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.varianceLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.variance {
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+}
+
+.variancePositive {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.varianceNegative {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.varianceHint {
+  font-size: 11px;
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barProjected,
+  .barCurrent {
+    transition: none;
+  }
+}

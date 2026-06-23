@@ -1,0 +1,325 @@
+/* Marketplace gallery index + sub-route shell */
+
+.page {
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: clamp(20px, 3vw, 36px);
+  width: min(100%, 1480px);
+  margin: 0 auto;
+}
+
+.notice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  width: max-content;
+  max-width: 100%;
+}
+
+.notice::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--primitive-space-5);
+}
+
+.card {
+  --accent: var(--primitive-teal);
+  --accent-soft: color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 100% 0%, var(--accent-soft), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-text-strong) 6%);
+  color: var(--primitive-body);
+  text-decoration: none;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform var(--primitive-duration-normal) var(--primitive-ease-out), border-color var(--primitive-duration-normal) var(--primitive-ease-out), box-shadow var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 3px 4px);
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: var(--primitive-shadow-deep);
+  outline: none;
+}
+
+.thumb {
+  position: relative;
+  height: 138px;
+  border-radius: var(--primitive-radius-lg);
+  background:
+    var(--thumb-bg, linear-gradient(135deg, color-mix(in oklab, var(--primitive-teal) 22%, transparent), color-mix(in oklab, var(--primitive-amber) 14%, transparent) 70%, color-mix(in oklab, var(--primitive-red) 10%, transparent)));
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(0deg, transparent 0 4px, color-mix(in oklab, var(--primitive-overlay) 16%, transparent) 4px 5px);
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+.thumbInner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  justify-items: center;
+}
+
+.thumbGlyph {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-3xl);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 92%, transparent);
+  line-height: var(--primitive-leading-none);
+}
+
+.thumbField {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--primitive-space-1-5);
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-overlay) 36%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 78%, transparent);
+}
+
+.thumbField span:first-child {
+  color: color-mix(in oklab, var(--primitive-text-strong) 40%, transparent);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.cardKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: 1.04;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.cardBody {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaAction {
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.accentRed {
+  --accent: var(--primitive-red);
+  --accent-soft: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  --thumb-bg: radial-gradient(ellipse at 80% 20%, color-mix(in oklab, var(--primitive-red) 36%, transparent), transparent 60%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-red) 14%) 0%, color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-violet) 6%) 100%);
+}
+
+.accentAmber {
+  --accent: var(--primitive-amber);
+  --accent-soft: color-mix(in oklab, var(--primitive-amber) 24%, transparent);
+  --thumb-bg: radial-gradient(ellipse at 80% 20%, color-mix(in oklab, var(--primitive-amber) 32%, transparent), transparent 60%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-amber) 14%) 0%, color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-violet) 6%) 100%);
+}
+
+.accentTeal {
+  --accent: var(--primitive-teal);
+  --accent-soft: color-mix(in oklab, var(--primitive-teal) 24%, transparent);
+  --thumb-bg: radial-gradient(ellipse at 80% 20%, color-mix(in oklab, var(--primitive-teal) 36%, transparent), transparent 60%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-teal) 14%) 0%, color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-violet) 6%) 100%);
+}
+
+.accentGreen {
+  --accent: var(--primitive-green);
+  --accent-soft: color-mix(in oklab, var(--primitive-green) 24%, transparent);
+  --thumb-bg: radial-gradient(ellipse at 80% 20%, color-mix(in oklab, var(--primitive-green) 34%, transparent), transparent 60%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-green) 14%) 0%, color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-violet) 6%) 100%);
+}
+
+/* Sub-route shell */
+
+.section {
+  display: grid;
+  gap: var(--primitive-space-5);
+  min-width: 0;
+}
+
+.sectionHead {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.sectionKicker {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: var(--primitive-leading-none);
+  text-transform: uppercase;
+}
+
+.sectionLead {
+  margin: 0;
+  max-width: 720px;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-base);
+  line-height: 1.55;
+}
+
+.pluginGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.sideBySide {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: var(--primitive-space-5);
+  align-items: start;
+}
+
+@media (max-width: 880px) {
+  .sideBySide {
+    grid-template-columns: 1fr;
+  }
+}
+
+.actionRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  align-items: center;
+}
+
+.full {
+  display: grid;
+  gap: var(--primitive-space-6);
+}
+
+.fullLayout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: var(--primitive-space-6);
+  align-items: start;
+}
+
+@media (max-width: 1080px) {
+  .fullLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  .card:hover,
+  .card:focus-visible {
+    transform: none;
+  }
+}

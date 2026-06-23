@@ -1,0 +1,199 @@
+/* ── Brand consistency pass (owner directives 2026-06-11) ─────────
+   1. ONE red: the obsidium hero/header CTA red is the only button
+      red on the site. Tokens here; every red-button family below
+      consumes them (22-cta-buttons references the same tokens).
+   2. Silver type: the services-hero platinum gradient (06-seo-routes
+      .seo-heading-text) is the canonical treatment for display text
+      on dark surfaces — flat-white headings upgraded.
+   3. No-crop heroes/portraits: cover bands render their native 16:9;
+      the about-us founder portrait keeps its natural ratio.
+   4. About step coins restyled (owner: "badly designed icons"). */
+
+:root {
+  --cta-red-border: rgba(0, 67, 150, 0.82);
+  --cta-red-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.02) 42%, rgba(0, 0, 0, 0.26) 100%),
+    radial-gradient(circle at 32% 0%, rgba(124, 60, 255, 0.72), transparent 40%),
+    linear-gradient(180deg, #0077ff 0%, #3f1fbf 52%, #130b3d 100%);
+  --cta-red-bg-hover:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.03) 42%, rgba(0, 0, 0, 0.24) 100%),
+    radial-gradient(circle at 34% 0%, rgba(143, 92, 255, 0.82), transparent 42%),
+    linear-gradient(180deg, #2098ff 0%, #005bd1 52%, #130b3d 100%);
+  --cta-red-shadow:
+    0 16px 36px rgba(19, 11, 61, 0.38),
+    0 0 34px -20px rgba(0, 119, 255, 0.72),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.34);
+  --cta-red-shadow-hover:
+    0 20px 44px rgba(19, 11, 61, 0.46),
+    0 0 38px -18px rgba(0, 119, 255, 0.78),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.34);
+  --silver-text: linear-gradient(180deg, #fffaf0 0%, #ded7c9 44%, #aaa79f 68%, #f4efe4 100%);
+
+  /* Centralized brand constants — the most-repeated orphan values from
+     the polish chunks now live here (28-token-centralization pass).
+     Static in both themes; theme gating stays at the usage sites. */
+  --ink-signal: #008cff; /* bright signal red for text/glow on near-black */
+  --ink-espresso: #17120d; /* espresso ink on cream surfaces */
+  --ink-warm-silver: #f2eee6; /* warm silver flat ink (silver-text colour) */
+  --ink-heritage-red: #008cff; /* heritage signal red (light-theme accents) */
+  --surface-night: #050507; /* near-black floor surface */
+  --surface-cream: #fffaf0; /* floral-white cream surface */
+}
+
+/* One .btn-red. 13-video-hero-bands and 16-obsidium-red both declare
+   !important recipes at equal specificity (16 currently wins); this
+   later block makes the winner explicit and single-sourced, and the
+   unscoped rule covers .btn-red outside .mufflermen-public. */
+.btn.btn-red,
+html .mufflermen-public .btn.btn-red {
+  color: #fff !important;
+  border: 1px solid var(--cta-red-border) !important;
+  background: var(--cta-red-bg) !important;
+  background-color: var(--obsidium-red-mid, #3f1fbf) !important;
+  box-shadow: var(--cta-red-shadow) !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.42) !important;
+}
+
+.btn.btn-red:hover,
+.btn.btn-red:focus-visible,
+html .mufflermen-public .btn.btn-red:hover,
+html .mufflermen-public .btn.btn-red:focus-visible {
+  background: var(--cta-red-bg-hover) !important;
+  box-shadow: var(--cta-red-shadow-hover) !important;
+  border-color: rgba(63, 31, 191, 0.9) !important;
+}
+
+/* Light-theme link-cloud chips were a third red (#c0202a oxblood via
+   20-public-nav). Same canonical red, compact chip geometry. */
+html[data-mufflermen-theme="light"] .seo-link-cloud a,
+.seo-link-cloud a {
+  color: #fff;
+  border: 1px solid var(--cta-red-border);
+  background: var(--cta-red-bg);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+/* ── Silver display type on dark surfaces ──────────────────────── */
+
+/* Always-dark cinema sections: silver in BOTH themes. */
+.hero-cinema .hero-h1,
+.rollout-cinema h2,
+.mufflermen-public .display.chrome-alt {
+  background: var(--silver-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--ink-warm-silver);
+}
+
+/* TypeReveal headings render their glyphs as `.ch::before` pseudo
+   content (no real text nodes), so a parent background-clip paints
+   nothing — the chars need the gradient on themselves and on the
+   pseudo that holds the glyph. */
+.hero-cinema .hero-h1 .ch,
+.hero-cinema .hero-h1 .ch::before,
+.rollout-cinema h2 .ch,
+.rollout-cinema h2 .ch::before,
+html[data-mufflermen-theme="dark"] .display .ch,
+html[data-mufflermen-theme="dark"] .display .ch::before {
+  background: var(--silver-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Accent (red) lines inside TypeReveal headings keep their ink. */
+.hero-cinema .hero-h1 .accent .ch,
+.hero-cinema .hero-h1 .accent .ch::before,
+.hero-cinema .hero-h1 .line.accent .ch,
+.hero-cinema .hero-h1 .line.accent .ch::before {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+/* Dark theme: flat-white section displays go silver. */
+html[data-mufflermen-theme="dark"] .seo-card h2,
+html[data-mufflermen-theme="dark"] .seo-section h2,
+html[data-mufflermen-theme="dark"] .seo-two-col h2,
+html[data-mufflermen-theme="dark"] .seo-band h2,
+html[data-mufflermen-theme="dark"] .parts-lookup-head h2,
+html[data-mufflermen-theme="dark"] .display {
+  background: var(--silver-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--ink-warm-silver);
+}
+
+/* Red accent words inside silvered headings keep their own ink. */
+.seo-heading-accent,
+.hero-h1 .accent,
+.hero-h1 em {
+  -webkit-text-fill-color: currentColor;
+  background: none;
+}
+
+/* Body copy on dark surfaces: warm silver instead of flat white. */
+html[data-mufflermen-theme="dark"] {
+  --body: rgba(233, 229, 220, 0.8);
+  --body-strong: #e9e5db;
+}
+
+.hero-cinema p,
+.rollout-cinema p {
+  color: rgba(233, 229, 220, 0.82);
+}
+
+/* ── No-crop heroes + portraits ────────────────────────────────── */
+
+/* Cover bands were a 21:9 / max-height 460px window over 1600x900
+   sources — ~31% of every cover (and the blog founder's head) was
+   cropped on desktop. Render the native 16:9. Mobile recomposition
+   (20-public-nav <=640px rules) is unaffected. */
+.seo-hero-media {
+  aspect-ratio: 16 / 9;
+  max-height: none;
+}
+
+/* Quote page keeps its full-screen cinematic video overlay (owner-
+   approved exception — video, no portrait subject). */
+.quote-hero .seo-hero-media {
+  aspect-ratio: auto;
+}
+
+/* About-us founder portrait: 1080x608 landscape source was forced
+   into a portrait frame (62% cropped). Natural ratio, no crop. */
+.public-image-card {
+  align-self: start;
+}
+
+.public-image-card img {
+  width: 100%;
+  height: auto !important;
+  min-height: 0;
+  aspect-ratio: auto !important;
+  object-fit: contain;
+}
+
+/* ── About-us step coins ("badly designed icons") ──────────────── */
+.public-about-step-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 34px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 6px;
+  background: none;
+  border: 1px solid var(--cta-red-border, rgba(0, 67, 150, 0.55));
+  color: var(--accent, var(--ink-heritage-red));
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: var(--ls-label, 0.08em);
+  box-shadow: none;
+}

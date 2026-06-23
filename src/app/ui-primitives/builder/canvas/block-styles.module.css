@@ -1,0 +1,200 @@
+/*
+ * Token-driven preview styles for the canvas block renders.
+ *
+ * Split out of canvas.module.css to keep both files focused and under the
+ * line budget. TOKEN-DRIVEN ONLY: every value resolves to a central
+ * `--primitive-*` token; tints use color-mix(... var(--primitive-*) ...).
+ */
+
+.bHero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-16) var(--primitive-space-8);
+  background: linear-gradient(
+    160deg,
+    var(--primitive-canvas) 0%,
+    color-mix(in oklab, var(--primitive-red) 14%, var(--primitive-canvas)) 100%
+  );
+}
+
+.bHeroKicker,
+.bKicker {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-red);
+  margin: 0;
+}
+
+.bHeroTitle {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-display);
+  font-weight: var(--primitive-weight-black);
+  line-height: var(--primitive-leading-tight);
+  color: var(--primitive-text-strong);
+  margin: 0;
+}
+
+.bHeroSub {
+  font-size: var(--primitive-text-lg);
+  color: var(--primitive-body);
+  margin: 0;
+  max-width: 52ch;
+}
+
+.bBtnPrimary,
+.bBtnSecondary {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  border-radius: var(--primitive-btn-radius);
+  padding: var(--primitive-space-2-5) var(--primitive-space-5);
+}
+
+.bBtnPrimary {
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.bBtnSecondary {
+  color: var(--primitive-btn-secondary-fg);
+  background: var(--primitive-btn-secondary-bg);
+  border: 1px solid var(--primitive-btn-secondary-border);
+}
+
+.bHeading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-8);
+}
+
+.bHeadingText {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h2);
+  font-weight: var(--primitive-weight-bold);
+  line-height: var(--primitive-leading-tight);
+  color: var(--primitive-text-strong);
+  margin: 0;
+}
+
+.bPara,
+.bParaStrong {
+  font-size: var(--primitive-text-base);
+  line-height: var(--primitive-leading-relaxed);
+  margin: 0;
+  padding: var(--primitive-space-4) var(--primitive-space-8);
+  max-width: 68ch;
+}
+
+.bPara {
+  color: var(--primitive-body);
+}
+
+.bParaStrong {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-medium);
+}
+
+.bCtaRow {
+  display: flex;
+  padding: var(--primitive-space-6) var(--primitive-space-8);
+}
+
+.bStat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-8);
+}
+
+.bStatValue {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-display);
+  font-weight: var(--primitive-weight-black);
+  color: var(--primitive-red);
+  line-height: var(--primitive-leading-none);
+  font-variant-numeric: tabular-nums;
+}
+
+.bStatLabel {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.bDivider,
+.bDividerCompact,
+.bDividerRoomy {
+  border: 0;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.bDividerCompact {
+  margin: var(--primitive-space-4) var(--primitive-space-8);
+}
+
+.bDivider {
+  margin: var(--primitive-space-8);
+}
+
+.bDividerRoomy {
+  margin: var(--primitive-space-16) var(--primitive-space-8);
+}
+
+.bNotice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-1);
+  margin: var(--primitive-space-6) var(--primitive-space-8);
+  padding: var(--primitive-space-4);
+  border-radius: var(--primitive-radius-md);
+  border-inline-start: 4px solid var(--primitive-teal);
+  background: var(--primitive-panel);
+}
+
+.bNoticeInfo {
+  border-inline-start-color: var(--primitive-teal);
+}
+
+.bNoticeWarning {
+  border-inline-start-color: var(--primitive-amber);
+}
+
+.bNoticeSuccess {
+  border-inline-start-color: var(--primitive-green);
+}
+
+.bNoticeTitle {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.bNoticeBody {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.bUnknown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-6) var(--primitive-space-8);
+  color: var(--primitive-muted);
+}
+
+.bUnknown code {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-amber);
+}

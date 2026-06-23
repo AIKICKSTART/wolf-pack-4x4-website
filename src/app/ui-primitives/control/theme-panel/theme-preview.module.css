@@ -1,0 +1,277 @@
+/*
+ * Live preview strip styles — 100% token-driven.
+ *
+ * Split out of `theme-panel.module.css` to keep each module under the file-size
+ * limit. Consumed only by `theme-preview-strip.tsx`. Every value references a
+ * central `--primitive-*` token (or a `color-mix(... var(--primitive-*) ...)`);
+ * no raw color literals appear here. Layout/flex/grid, 1px hairlines, percentage
+ * sizes, and transforms are not design tokens per the contract and stay literal.
+ */
+
+.preview {
+  position: sticky;
+  top: var(--primitive-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-5);
+  border-radius: var(--primitive-radius-xl);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-deep);
+}
+
+.previewHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.previewTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h5);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.previewNote {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-2xs);
+}
+
+.previewBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-2);
+}
+
+.previewBlockLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.previewButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.btnPrimary,
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: 40px;
+  padding: var(--primitive-space-2) var(--primitive-space-5);
+  border-radius: var(--primitive-btn-radius);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-wide);
+  cursor: pointer;
+  transition:
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.btnPrimary svg,
+.btnSecondary svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+  stroke-width: var(--primitive-icon-stroke);
+}
+
+.btnPrimary {
+  border: none;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.btnPrimary:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.btnSecondary {
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+}
+
+.btnSecondary:hover {
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-surface-hover);
+}
+
+.btnPrimary:focus-visible,
+.btnSecondary:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.previewCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-card-bg);
+  border: 1px solid var(--primitive-card-border);
+  box-shadow: var(--primitive-card-shadow);
+  transition: box-shadow var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.previewCard:hover {
+  box-shadow: var(--primitive-card-hover-shadow);
+}
+
+.cardEyebrow {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h6);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.cardBody {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-relaxed);
+}
+
+.cardMeter {
+  height: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-meter-track);
+  overflow: hidden;
+}
+
+.cardMeterFill {
+  height: 100%;
+  width: 68%;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-metallic-red);
+}
+
+.previewField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-1-5);
+}
+
+.previewFieldLabel {
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-medium);
+  color: var(--primitive-text-strong);
+}
+
+.previewInput {
+  min-height: 40px;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  transition:
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.previewInput::placeholder {
+  color: var(--primitive-muted);
+}
+
+.previewInput:hover {
+  background: var(--primitive-field-hover);
+}
+
+.previewInput:focus-visible {
+  outline: none;
+  border-color: var(--primitive-focus-ring);
+  background: var(--primitive-field-strong);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.previewType {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-1);
+}
+
+.typeDisplay {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-bold);
+  line-height: var(--primitive-leading-tight);
+  letter-spacing: var(--primitive-tracking-tight);
+  color: var(--primitive-text-strong);
+}
+
+.typeBody {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-relaxed);
+}
+
+.typeMuted {
+  margin: 0;
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+}
+
+.swatchStrip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--primitive-space-1-5);
+}
+
+.swatchTile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-1);
+  align-items: center;
+}
+
+.swatchChip {
+  width: 100%;
+  height: var(--primitive-space-8);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid var(--primitive-line);
+}
+
+.swatchName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btnPrimary,
+  .btnSecondary,
+  .previewCard,
+  .previewInput {
+    transition: none;
+  }
+}

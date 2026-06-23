@@ -1,0 +1,47 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.connector { fill: currentColor; opacity: 0.85; stroke: currentColor; stroke-width: 1; }
+.pin { stroke: currentColor; stroke-width: 0.7; stroke-linecap: round; opacity: 0.65; }
+.cable { stroke: currentColor; fill: none; stroke-linecap: round; opacity: 0.85; }
+.cableInner { stroke: var(--primitive-canvas); fill: none; stroke-width: 0.7; opacity: 0.55; stroke-linecap: round; }
+.boot { fill: currentColor; opacity: 0.55; stroke: currentColor; stroke-width: 1; stroke-linejoin: round; }
+.hex { fill: currentColor; opacity: 0.85; }
+.hexStroke { stroke: currentColor; fill: none; stroke-width: 1.2; stroke-linejoin: round; }
+.probe { fill: currentColor; opacity: 0.45; stroke: currentColor; stroke-width: 1; }
+.threads { stroke: var(--primitive-canvas); opacity: 0.7; stroke-linecap: round; }
+.tip { fill: currentColor; opacity: 0.75; stroke: currentColor; stroke-width: 0.9; stroke-linejoin: round; }
+.vent { fill: var(--primitive-canvas); opacity: 0.85; }
+.lambdaSymbol { fill: currentColor; font-family: var(--primitive-font-display, serif); font-size: 6px; font-weight: 700; opacity: 0.75; animation: lambdaPulse 2s ease-in-out infinite; }
+
+@keyframes lambdaPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .hexStroke, .motionDraw .probe { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .lambdaSymbol { animation-duration: 0.4s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .connector,
+[data-variant="outline"] .boot,
+[data-variant="outline"] .hex,
+[data-variant="outline"] .probe,
+[data-variant="outline"] .tip { fill: transparent; opacity: 1; }
+[data-variant="outline"] .vent { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .hex { opacity: 1; }
+[data-variant="filled"] .probe { opacity: 0.9; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .lambdaSymbol { animation: none !important; transition: none !important; }
+}

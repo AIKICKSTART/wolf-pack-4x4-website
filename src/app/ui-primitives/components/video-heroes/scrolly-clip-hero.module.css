@@ -1,0 +1,187 @@
+/* =========================================================
+   SCROLLY CLIP HERO — clip-path widens as you scroll
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-text-strong);
+  padding: clamp(36px, 5svh, 64px) clamp(28px, 5vw, 96px);
+  display: grid;
+}
+
+.bgGradient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 84% 10%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 60%),
+    radial-gradient(ellipse at 12% 90%, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 64%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-teal)) 60%, var(--primitive-canvas) 100%);
+}
+
+.tickerTop {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 18px;
+  margin-bottom: 36px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  padding-bottom: 14px;
+  border-bottom: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  align-items: center;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: clamp(20px, 4svh, 36px);
+  align-content: center;
+  flex: 1;
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 1.6rem + 6vw, 7.4rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  margin: 0;
+  text-shadow: 0 4px 28px color-mix(in oklab, black 45%, transparent);
+  will-change: transform;
+}
+
+.clipFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  border: 1px solid var(--primitive-line-muted);
+  overflow: hidden;
+}
+
+.clipInner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.videoTint {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, black 16%, transparent) 0%, color-mix(in oklab, black 46%, transparent) 100%);
+}
+
+.frameLabel {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  background: color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  font-family: var(--primitive-font-mono);
+  text-align: right;
+  z-index: 3;
+}
+.frameLabel span {
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent);
+}
+.frameLabel strong {
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.bottomRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px;
+  align-items: end;
+}
+
+.subhead {
+  font-size: var(--primitive-text-md);
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--primitive-text-strong) 84%, transparent);
+  margin: 0;
+  max-width: 58ch;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  transition: transform 200ms var(--primitive-ease-out), box-shadow 200ms;
+  width: max-content;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+.cta:hover em,
+.cta:focus-visible em { transform: translateX(6px); }
+.cta:active { transform: translateY(0); }
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 4px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+.cta em { font-style: normal; transition: transform 200ms; }
+
+@media (max-width: 880px) {
+  .bottomRow { grid-template-columns: 1fr; }
+  .clipFrame { aspect-ratio: 16 / 11; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video { display: none; }
+  .clipInner {
+    background: linear-gradient(120deg, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-red)) 0%, color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-teal)) 60%, var(--primitive-canvas) 100%);
+  }
+  .cta,
+  .cta em {
+    transition: none;
+  }
+}

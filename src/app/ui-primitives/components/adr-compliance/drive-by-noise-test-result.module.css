@@ -1,0 +1,122 @@
+.result {
+  display: grid;
+  gap: var(--primitive-space-4);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.stampPass,
+.stampFail,
+.stampPending {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  border-radius: var(--primitive-radius-round);
+  border: 3px solid var(--stamp-color, var(--primitive-line-strong));
+  color: var(--stamp-color, var(--primitive-text-strong));
+  background: var(--stamp-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transform: rotate(-8deg);
+}
+
+.stampPass {
+  --stamp-color: var(--primitive-green);
+  --stamp-bg: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+}
+
+.stampFail {
+  --stamp-color: var(--primitive-red);
+  --stamp-bg: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.stampPending {
+  --stamp-color: var(--primitive-amber);
+  --stamp-bg: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+}
+
+.headline {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.headline h4 {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  color: var(--primitive-text-strong);
+}
+
+.headline span {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+}
+
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.metric {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.metricLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metricValue {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  color: var(--primitive-text-strong);
+}
+
+.metricUnit {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  color: var(--primitive-muted);
+  margin-left: var(--primitive-space-1);
+}
+
+.contextRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  padding-top: var(--primitive-space-3);
+  border-top: 1px dashed var(--primitive-line);
+}
+
+@media (max-width: 540px) {
+  .summary {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+}

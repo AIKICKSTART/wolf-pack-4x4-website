@@ -1,0 +1,167 @@
+.surface {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-card-bg);
+  box-shadow: var(--primitive-card-shadow);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--primitive-space-4);
+  flex-wrap: wrap;
+}
+
+.headText {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  color: var(--primitive-text-strong);
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 5px var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-soft);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.chipKey {
+  color: var(--primitive-muted);
+}
+
+.chipValue {
+  color: var(--primitive-text-strong);
+}
+
+.barWrap {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.bar {
+  position: relative;
+  height: 10px;
+  width: 100%;
+  border-radius: 6px;
+  background: var(--primitive-meter-track);
+  overflow: hidden;
+  border: 1px solid var(--primitive-line);
+}
+
+.fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--primitive-teal) 0%,
+    color-mix(in oklab, var(--primitive-teal) 60%, transparent) 100%
+  );
+  position: relative;
+  overflow: hidden;
+  transition: width 320ms ease-out;
+}
+
+.fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent) 0 6px,
+    transparent 6px 12px
+  );
+  animation: stripes 1.2s linear infinite;
+}
+
+.fillPaused::after {
+  animation: none;
+  opacity: 0.5;
+}
+
+.barFoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.progressText {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.pauseButton {
+  font: inherit;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line-strong);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.pauseButton:hover,
+.pauseButton:focus-visible {
+  border-color: var(--primitive-teal);
+  outline: none;
+}
+
+@keyframes stripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 24px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+  .fill::after {
+    animation: none;
+  }
+}

@@ -1,0 +1,156 @@
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+  gap: var(--primitive-space-5);
+  padding: var(--primitive-space-5) var(--primitive-space-6);
+  border-radius: var(--primitive-radius-xl);
+  border: 1px solid var(--primitive-line-strong);
+  background:
+    radial-gradient(ellipse at 88% 6%, var(--meter-accent-soft, color-mix(in oklab, var(--primitive-teal) 18%, transparent)), transparent 56%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 50%),
+    color-mix(in oklab, var(--primitive-panel-strong) 92%, transparent);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-glass-strong),
+    inset -16px -16px 28px color-mix(in oklab, var(--primitive-recessed) 69%, transparent),
+    0 22px 60px color-mix(in oklab, var(--primitive-recessed) 100%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0 3px,
+    color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 3px 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.toneLegal { --meter-accent-soft: color-mix(in oklab, var(--primitive-green) 18%, transparent); }
+.toneBorderline { --meter-accent-soft: color-mix(in oklab, var(--primitive-amber) 18%, transparent); }
+.toneOver { --meter-accent-soft: color-mix(in oklab, var(--primitive-red) 18%, transparent); }
+
+.meterSide {
+  display: grid;
+  place-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.readoutSide {
+  display: grid;
+  align-content: center;
+  gap: var(--primitive-space-3);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.005em;
+  color: var(--primitive-text-strong);
+}
+
+.readout {
+  display: flex;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+  margin-top: var(--primitive-space-1);
+}
+
+.bigNumber {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(48px, 6vw, 64px);
+  line-height: 1;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.unit {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--primitive-muted);
+}
+
+.limitRow {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.limitValue {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.04em;
+}
+
+.bandSlot {
+  margin-top: var(--primitive-space-1);
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--meter-accent-soft, var(--primitive-teal));
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live::before {
+    animation: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .meterSide {
+    justify-self: center;
+  }
+}

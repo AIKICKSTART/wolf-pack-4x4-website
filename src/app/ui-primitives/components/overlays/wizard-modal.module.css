@@ -1,0 +1,315 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  backdrop-filter: blur(14px) saturate(1.18);
+  -webkit-backdrop-filter: blur(14px) saturate(1.18);
+  transition: opacity 220ms ease;
+}
+
+.backdrop[data-starting-style],
+.backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 120;
+  display: grid;
+  grid-template-rows: auto auto auto auto 1fr auto;
+  gap: var(--primitive-space-4);
+  width: min(92vw, 720px);
+  max-height: 92vh;
+  padding: 22px var(--primitive-space-6) 18px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  backdrop-filter: blur(22px) saturate(1.18);
+  -webkit-backdrop-filter: blur(22px) saturate(1.18);
+  box-shadow: 0 32px 90px -20px color-mix(in oklab, var(--primitive-canvas) 72%, transparent);
+  outline: none;
+  transform: translate(-50%, -50%);
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), opacity 220ms ease;
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 12px)) scale(0.97);
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.eyebrow {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.eyebrowFigure {
+  font-variant-numeric: tabular-nums;
+}
+
+.progressTrack {
+  position: relative;
+  height: 3px;
+  margin-top: -6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-line);
+  overflow: hidden;
+}
+
+.progressFill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(calc(var(--wizard-progress, 0%) / 100%));
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--primitive-red),
+    var(--primitive-amber)
+  );
+  box-shadow: 0 0 12px color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.title {
+  margin: var(--primitive-space-1) 0 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.closeBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  color: var(--primitive-muted);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.closeBtn:hover {
+  background: var(--primitive-glass-strong);
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.stepper {
+  display: grid;
+  grid-template-columns: repeat(var(--wizard-step-count, 1), minmax(0, 1fr));
+  grid-auto-flow: column;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.stepIndex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+}
+
+.stepLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stepCurrent {
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.stepCurrent .stepIndex {
+  color: var(--primitive-text-on-accent);
+  border-color: color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  background: var(--primitive-red);
+  box-shadow: 0 0 14px color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.stepComplete {
+  border-color: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 6%, transparent);
+  color: var(--primitive-body);
+}
+
+.stepComplete .stepIndex {
+  color: color-mix(in oklab, var(--primitive-green) 18%, var(--primitive-canvas));
+  background: var(--primitive-green);
+  border-color: color-mix(in oklab, var(--primitive-green) 55%, transparent);
+}
+
+.stepDescription {
+  margin: -4px 0 0;
+  color: var(--primitive-body);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.body {
+  padding: var(--primitive-space-4) 0;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  min-height: 120px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  padding-top: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.actionsRight {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.ghostBtn,
+.secondaryBtn,
+.primaryBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  height: 38px;
+  padding: 0 var(--primitive-space-4);
+  border-radius: var(--primitive-radius-md);
+  font-family: var(--primitive-font-mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease,
+    color 160ms ease, box-shadow 160ms ease;
+}
+
+.ghostBtn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--primitive-muted);
+}
+
+.ghostBtn:hover {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-glass-soft);
+}
+
+.secondaryBtn {
+  background: var(--primitive-btn-secondary-bg);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  color: var(--primitive-btn-secondary-fg);
+}
+
+.secondaryBtn:hover {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+  transform: translateY(-1px);
+}
+
+.primaryBtn {
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.primaryBtn:hover {
+  transform: translateY(-1px);
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  border-color: color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.ghostBtn:focus-visible,
+.secondaryBtn:focus-visible,
+.primaryBtn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (max-width: 720px) {
+  .stepper {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .popup,
+  .ghostBtn,
+  .secondaryBtn,
+  .primaryBtn,
+  .progressFill {
+    transition: none;
+  }
+  .popup[data-starting-style],
+  .popup[data-ending-style] {
+    transform: translate(-50%, -50%);
+  }
+}

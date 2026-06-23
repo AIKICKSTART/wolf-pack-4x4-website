@@ -1,0 +1,260 @@
+.footer {
+  position: relative;
+  display: grid;
+  justify-content: center;
+  padding: 32px clamp(16px, 3vw, 36px) 18px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 96%, transparent), color-mix(in oklab, var(--primitive-canvas) 99%, transparent));
+  color: var(--primitive-body);
+}
+
+.receipt {
+  position: relative;
+  width: min(100%, 460px);
+  display: grid;
+  gap: 14px;
+  padding: 28px 22px 26px;
+  background: var(--primitive-canvas);
+  border: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 4%, transparent),
+    0 24px 60px color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.receipt::before,
+.receipt::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  height: 14px;
+  background-image:
+    radial-gradient(circle at 6px 0, var(--primitive-canvas) 6px, transparent 6px);
+  background-repeat: repeat-x;
+  background-size: 14px 14px;
+}
+
+.receipt::before {
+  top: -7px;
+}
+
+.receipt::after {
+  bottom: -7px;
+  transform: translateX(-50%) scaleY(-1);
+}
+
+.brandHead {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+}
+
+.brandHead img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: contain;
+  padding: 4px;
+  background: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+}
+
+.brandHead strong {
+  font-family: var(--primitive-font-display);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.brandHead span {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.divider {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  color: var(--primitive-muted);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 16px minmax(0, auto) minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--primitive-body);
+}
+
+.row svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+  align-self: center;
+}
+
+.row dt {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.row dd {
+  margin: 0;
+  font-size: 12px;
+  color: var(--primitive-text-strong);
+  word-break: break-word;
+  font-variant-numeric: tabular-nums;
+}
+
+.dots {
+  border-bottom: 1px dotted color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+}
+
+.row a {
+  color: var(--primitive-text-strong);
+  text-decoration: none;
+}
+
+.row a:hover {
+  color: var(--primitive-amber);
+}
+
+.row a:focus-visible {
+  color: var(--primitive-amber);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.acknowledgement {
+  padding-top: 12px;
+  border-top: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-body);
+  text-align: left;
+}
+
+.legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.legalLinks a {
+  padding: 6px 10px;
+  color: var(--primitive-muted);
+  text-decoration: none;
+}
+
+.legalLinks a:hover {
+  color: var(--primitive-amber);
+}
+
+.legalLinks a:focus-visible {
+  color: var(--primitive-amber);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: -2px;
+  border-radius: 3px;
+}
+
+.legalLinks span {
+  color: var(--primitive-muted);
+  opacity: 0.4;
+  padding: 6px 0;
+}
+
+.barcode {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding-top: 10px;
+}
+
+.barcodeLines {
+  display: flex;
+  gap: 1px;
+  height: 30px;
+}
+
+.barcodeLines span {
+  display: block;
+  width: 2px;
+  height: 100%;
+  background: var(--primitive-text-strong);
+}
+
+.barcodeLines span:nth-child(odd) {
+  width: 1px;
+  opacity: 0.85;
+}
+
+.barcodeLines span:nth-child(5n) {
+  height: 70%;
+  align-self: end;
+}
+
+.barcodeLines span:nth-child(7n) {
+  width: 3px;
+}
+
+.barcodeText {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+:global(html[data-primitive-theme="light"]) .footer {
+  background: linear-gradient(180deg, var(--primitive-canvas), var(--primitive-canvas));
+}
+
+:global(html[data-primitive-theme="light"]) .receipt {
+  background: var(--primitive-canvas);
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent);
+  box-shadow: 0 16px 48px color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .receipt::before,
+:global(html[data-primitive-theme="light"]) .receipt::after {
+  background-image: radial-gradient(circle at 6px 0, var(--primitive-canvas) 6px, transparent 6px);
+}
+
+:global(html[data-primitive-theme="light"]) .brandHead strong {
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .row dd {
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .row dt,
+:global(html[data-primitive-theme="light"]) .divider,
+:global(html[data-primitive-theme="light"]) .legalLinks a,
+:global(html[data-primitive-theme="light"]) .barcodeText {
+  color: var(--primitive-muted);
+}
+
+:global(html[data-primitive-theme="light"]) .barcodeLines span {
+  background: var(--primitive-text-strong);
+}

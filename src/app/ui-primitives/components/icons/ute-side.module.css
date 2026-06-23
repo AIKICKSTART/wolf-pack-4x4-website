@@ -1,0 +1,46 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.body { fill: currentColor; opacity: 0.85; }
+.bodyStroke { stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.cab { fill: currentColor; opacity: 0.45; }
+.window { stroke: currentColor; fill: none; stroke-width: 1.1; opacity: 0.7; stroke-linejoin: round; }
+.bPillar { stroke: currentColor; opacity: 0.7; stroke-linecap: round; }
+.tray { stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.trayBack { stroke: currentColor; fill: none; opacity: 0.7; }
+.trayLine { stroke: currentColor; opacity: 0.45; stroke-linecap: round; }
+.doorLine { stroke: var(--primitive-canvas); stroke-width: 0.9; opacity: 0.6; stroke-linecap: round; }
+.headlight { fill: var(--primitive-amber); opacity: 0.85; }
+.wheel { fill: currentColor; }
+.tire { stroke: currentColor; opacity: 0.4; stroke-width: 0.9; fill: none; }
+.rim { fill: var(--primitive-canvas); stroke: currentColor; stroke-width: 0.6; opacity: 0.85; }
+.hubCap { fill: currentColor; }
+.lineRun { stroke: currentColor; fill: none; stroke-linecap: round; stroke-width: 1.3; opacity: 0; }
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate .wheel { animation: iconRotate 1.6s linear infinite; transform-origin: center; transform-box: fill-box; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: uteRoll 2.4s ease-in-out infinite; }
+.motionDrift .wheel { animation: iconRotate 1s linear infinite; transform-origin: center; transform-box: fill-box; }
+.motionDrift .lineRun { animation: uteLines 1s linear infinite; }
+.motionDraw .bodyStroke, .motionDraw .tray, .motionDraw .window { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .wheel { animation: iconRotate 0.4s linear infinite; transform-origin: center; transform-box: fill-box; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-3deg); } 75% { transform: rotate(3deg); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+@keyframes uteRoll { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-1.5px); } }
+@keyframes uteLines { 0% { opacity: 0; transform: translateX(2px); } 50% { opacity: 0.9; } 100% { opacity: 0; transform: translateX(-4px); } }
+
+[data-variant="outline"] .body { fill: transparent; }
+[data-variant="outline"] .cab { fill: transparent; }
+[data-variant="outline"] .wheel { fill: transparent; stroke: currentColor; stroke-width: 1.4; }
+[data-variant="outline"] .rim { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .body { opacity: 0.95; }
+[data-variant="filled"] .cab { opacity: 0.75; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .wheel, .lineRun { animation: none !important; transition: none !important; }
+}

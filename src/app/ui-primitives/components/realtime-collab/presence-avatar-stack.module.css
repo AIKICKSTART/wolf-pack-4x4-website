@@ -1,0 +1,110 @@
+.stack {
+  --stack-overlap: -10px;
+  --stack-ring: 2px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--primitive-font-body);
+}
+
+.size_sm { --stack-overlap: -8px; }
+.size_md { --stack-overlap: -10px; }
+.size_lg { --stack-overlap: -12px; }
+
+.live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.slot {
+  position: relative;
+  display: inline-flex;
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-canvas);
+  padding: var(--stack-ring);
+  margin-left: var(--stack-overlap);
+  isolation: isolate;
+  transition: transform 220ms var(--primitive-ease-out);
+}
+
+.slot:first-child {
+  margin-left: 0;
+}
+
+.slot:hover {
+  transform: translateY(-2px);
+  z-index: 2;
+}
+
+.borderOnline {
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-green) 70%, transparent), color-mix(in oklab, var(--primitive-green) 15%, transparent) 60%),
+    var(--primitive-canvas);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-green) 45%, transparent);
+}
+
+.borderIdle {
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-amber) 60%, transparent), color-mix(in oklab, var(--primitive-amber) 12%, transparent) 60%),
+    var(--primitive-canvas);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.borderBusy {
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-red) 65%, transparent), color-mix(in oklab, var(--primitive-red) 14%, transparent) 60%),
+    var(--primitive-canvas);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-red) 45%, transparent);
+}
+
+.borderOffline {
+  background: var(--primitive-canvas);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+  opacity: 0.78;
+}
+
+.overflow {
+  display: inline-grid;
+  place-items: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 var(--primitive-space-2-5);
+  margin-left: var(--stack-overlap);
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+}
+
+.size_sm .overflow {
+  min-width: 28px;
+  height: 28px;
+  font-size: var(--primitive-text-2xs);
+}
+
+.size_lg .overflow {
+  min-width: 56px;
+  height: 56px;
+  font-size: var(--primitive-text-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slot,
+  .slot:hover {
+    transition: none;
+    transform: none;
+  }
+}

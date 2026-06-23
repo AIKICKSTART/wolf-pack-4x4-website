@@ -1,0 +1,222 @@
+.card {
+  display: grid;
+  grid-template-columns: 104px 1fr auto;
+  gap: 18px;
+  padding: var(--primitive-space-4) 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms var(--primitive-ease-out);
+}
+
+.card:hover {
+  border-color: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  transform: translateY(-1px);
+  box-shadow: 0 22px 50px -22px color-mix(in oklab, var(--primitive-overlay) 72%, transparent);
+}
+
+.thumb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  background:
+    radial-gradient(circle at 32% 22%, color-mix(in oklab, var(--primitive-amber) 28%, transparent), transparent 56%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-amber) 24%, var(--primitive-canvas)), var(--primitive-panel));
+  color: var(--primitive-amber);
+  overflow: hidden;
+}
+
+.thumbGrid {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 10px, var(--primitive-glass-soft) 10px 11px),
+    repeating-linear-gradient(90deg, transparent 0 10px, var(--primitive-glass-soft) 10px 11px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  flex-wrap: wrap;
+}
+
+.sku {
+  display: inline-flex;
+  align-items: center;
+  height: var(--primitive-space-5);
+  padding: 0 9px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-strong);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.fitment {
+  display: inline-flex;
+  align-items: center;
+  height: var(--primitive-space-5);
+  padding: 0 9px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 22%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-semibold);
+  line-height: 1.32;
+}
+
+.metaRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+}
+
+.metaRow > div {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.metaRow dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.metaRow dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-medium);
+}
+
+.stockIn {
+  color: var(--primitive-green) !important;
+}
+
+.stockOut {
+  color: var(--primitive-amber) !important;
+}
+
+.aside {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  align-content: center;
+  justify-items: end;
+}
+
+.priceBlock {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  justify-items: end;
+}
+
+.priceLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.price {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 30px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  height: 36px;
+  padding: 0 14px;
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.cta:hover {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.cta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primitive-text-strong), var(--primitive-btn-primary-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cta,
+  .card:hover,
+  .cta:hover {
+    transition: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .card {
+    grid-template-columns: 92px 1fr;
+  }
+  .aside {
+    grid-column: 1 / -1;
+    justify-items: stretch;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+  .priceBlock {
+    justify-items: start;
+  }
+}

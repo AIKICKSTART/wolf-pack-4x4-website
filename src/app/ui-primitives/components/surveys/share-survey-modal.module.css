@@ -1,0 +1,222 @@
+.scrim {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: var(--primitive-space-6);
+  background: var(--primitive-overlay);
+  border-radius: var(--primitive-radius-xl);
+  isolation: isolate;
+  min-height: 540px;
+}
+
+.shell {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  width: min(540px, 100%);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-amber) 8%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  box-shadow: 0 32px 80px color-mix(in oklab, var(--primitive-overlay) 100%, transparent);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: var(--primitive-space-3);
+}
+
+.headBody {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.close {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: transparent;
+  color: var(--primitive-muted);
+  cursor: pointer;
+  transition: color var(--primitive-duration-fast) var(--primitive-ease-standard), border-color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.close:hover,
+.close:focus-visible {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.section {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.sectionLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.urlRow,
+.emailRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-2);
+}
+
+.urlChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-code-bg) 60%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-teal);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Primary CTAs — central premium button DNA (metallic-red → amber hover). */
+.copyBtn,
+.sendBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-2) 14px;
+  border: 1px solid transparent;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-standard), box-shadow var(--primitive-duration-fast) var(--primitive-ease-standard), color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.copyBtn:hover,
+.copyBtn:focus-visible,
+.sendBtn:hover,
+.sendBtn:focus-visible {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.emailInput {
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-code-bg) 60%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+.emailInput:focus-visible {
+  outline: none;
+  border-color: var(--primitive-teal);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+}
+
+.qrRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--primitive-space-4);
+  align-items: center;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-code-bg) 60%, transparent);
+}
+
+/* QR quiet-zone + module colors are intentionally pure black-on-white for
+   scannability (functional data), so they stay fixed across themes. */
+.qrBlock {
+  display: grid;
+  padding: var(--primitive-space-2-5);
+  background: #fff;
+  border-radius: var(--primitive-radius-md);
+  gap: 0;
+}
+
+.qrRow2 {
+  display: flex;
+}
+
+.qrCellOn,
+.qrCellOff {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+}
+
+.qrCellOn {
+  background: #050508;
+}
+
+.qrCellOff {
+  background: #fff;
+}
+
+.qrCaption {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  line-height: 1.5;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .close,
+  .copyBtn,
+  .sendBtn {
+    transition: none;
+  }
+}

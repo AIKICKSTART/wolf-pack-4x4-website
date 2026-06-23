@@ -1,0 +1,115 @@
+.root {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.rootOpen {
+  pointer-events: auto;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--primitive-media-overlay);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity var(--primitive-duration-normal) var(--primitive-ease-out);
+  border: 0;
+  appearance: none;
+  cursor: pointer;
+}
+
+.backdrop:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: -4px;
+}
+
+.rootOpen .backdrop {
+  opacity: 1;
+}
+
+.panel {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+  border-right: 1px solid var(--primitive-line);
+  box-shadow: 24px 0 60px color-mix(in oklab, var(--primitive-canvas) 55%, transparent);
+  transform: translateX(-100%);
+  transition: transform 280ms var(--primitive-ease-out);
+  touch-action: pan-y;
+}
+
+.panelDefault {
+  width: 78%;
+  max-width: 320px;
+}
+
+.panelNarrow {
+  width: 64%;
+  max-width: 260px;
+}
+
+.rootOpen .panel {
+  transform: translateX(0);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-4);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.closeBtn {
+  appearance: none;
+  width: var(--primitive-space-8);
+  height: var(--primitive-space-8);
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+  cursor: pointer;
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 2px;
+}
+
+.body {
+  padding: 14px var(--primitive-space-4);
+  overflow-y: auto;
+  color: var(--primitive-body);
+}
+
+.foot {
+  padding: 14px var(--primitive-space-4);
+  border-top: 1px solid var(--primitive-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .panel {
+    transition: none;
+  }
+}

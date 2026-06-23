@@ -1,0 +1,155 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 18px 18px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.card[data-winner="winner"] {
+  border-color: color-mix(in oklab, var(--primitive-green) 55%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-green) 22%, transparent),
+    0 18px 38px color-mix(in oklab, var(--primitive-canvas) 45%, transparent);
+}
+
+.card[data-winner="loser"] {
+  opacity: 0.85;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-2-5);
+}
+
+.variantLetter {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border: 1px solid var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 5px var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+}
+
+.statusChip[data-tone="winner"] {
+  color: var(--primitive-green);
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+}
+
+.statusChip[data-tone="loser"] {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+}
+
+.statusChip[data-tone="running"] {
+  color: var(--primitive-amber);
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+}
+
+.statusChip[data-tone="tied"] {
+  color: var(--primitive-teal);
+  border-color: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+}
+
+.subject {
+  font-size: var(--primitive-text-base);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  line-height: 1.35;
+}
+
+.body {
+  font-size: var(--primitive-text-xs);
+  line-height: 1.45;
+  color: var(--primitive-body);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px dashed var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 18%, transparent);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.metric {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.metricLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metricValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.weight {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.weightLabel {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.weightTrack {
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  overflow: hidden;
+}
+
+.weightFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primitive-amber) 85%, transparent), color-mix(in oklab, var(--primitive-green) 85%, transparent));
+  border-radius: inherit;
+}

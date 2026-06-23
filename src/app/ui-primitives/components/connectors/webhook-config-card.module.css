@@ -1,0 +1,319 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 5%, transparent),
+      color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 50%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      var(--card-glow, color-mix(in oklab, var(--primitive-teal) 16%, transparent)),
+      transparent 52%
+    ),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-panel-strong));
+  color: var(--primitive-body);
+  isolation: isolate;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    inset -18px -18px 30px color-mix(in oklab, var(--primitive-canvas) 22%, transparent),
+    0 18px 42px color-mix(in oklab, var(--primitive-canvas) 28%, transparent);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--primitive-space-3);
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.source {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--chip-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--chip-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--chip-fg, var(--primitive-text-strong));
+  white-space: nowrap;
+}
+
+.chipDot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--chip-dot, color-mix(in oklab, var(--primitive-text-strong) 42%, transparent));
+  box-shadow: 0 0 0 2px var(--chip-dot-halo, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent));
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.endpoint {
+  display: block;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  border-radius: var(--primitive-radius-md);
+  background:
+    repeating-linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 0 8px,
+      transparent 8px 16px
+    ),
+    color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+.secretField {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+}
+
+.secret {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.secretToggle {
+  appearance: none;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+  padding: 5px var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-sm);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.secretToggle:hover,
+.secretToggle:focus-visible {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+  outline: none;
+}
+
+.secretToggle[aria-pressed="true"] {
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  color: var(--primitive-teal);
+}
+
+.eventsBlock {
+  display: grid;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  padding: 0;
+}
+
+.eventList {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.eventRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 55%, transparent);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.eventRow:hover,
+.eventRow:focus-within {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 24%, transparent);
+  background: color-mix(in oklab, var(--primitive-canvas) 72%, var(--primitive-panel-strong));
+}
+
+.eventRowOn {
+  border-color: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+}
+
+.checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 36%, transparent);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox:checked {
+  border-color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.checkbox:checked::after {
+  content: "";
+  position: absolute;
+  inset: var(--primitive-space-0-5);
+  border-radius: var(--primitive-radius-xs);
+  background: var(--primitive-green);
+}
+
+.checkbox:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 2px;
+}
+
+.eventBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.eventLabel {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.01em;
+  color: var(--primitive-text-strong);
+}
+
+.eventCode {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.toneRed {
+  --chip-bg: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-red) 34%, transparent);
+  --chip-fg: var(--primitive-red);
+  --chip-dot: var(--primitive-red);
+  --chip-dot-halo: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  --card-glow: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.toneAmber {
+  --chip-bg: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  --chip-fg: var(--primitive-amber);
+  --chip-dot: var(--primitive-amber);
+  --chip-dot-halo: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+  --card-glow: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.toneTeal {
+  --chip-bg: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-teal) 36%, transparent);
+  --chip-fg: var(--primitive-teal);
+  --chip-dot: var(--primitive-teal);
+  --chip-dot-halo: color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+  --card-glow: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+}
+
+.toneGreen {
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-green) 34%, transparent);
+  --chip-fg: var(--primitive-green);
+  --chip-dot: var(--primitive-green);
+  --chip-dot-halo: color-mix(in oklab, var(--primitive-green) 22%, transparent);
+  --card-glow: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+.toneNeutral {
+  --chip-bg: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  --chip-fg: var(--primitive-body);
+  --chip-dot: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent);
+  --chip-dot-halo: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --card-glow: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+}
+
+.toneViolet {
+  --chip-bg: color-mix(in oklab, var(--primitive-focus-ring) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-focus-ring) 34%, transparent);
+  --chip-fg: var(--primitive-text-strong);
+  --chip-dot: var(--primitive-focus-ring);
+  --chip-dot-halo: color-mix(in oklab, var(--primitive-focus-ring) 22%, transparent);
+  --card-glow: color-mix(in oklab, var(--primitive-focus-ring) 16%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .secretToggle,
+  .eventRow {
+    transition: none;
+  }
+}

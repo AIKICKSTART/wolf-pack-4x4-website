@@ -1,0 +1,160 @@
+.tagInput {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.count {
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.04em;
+  color: var(--primitive-body);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 44px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  border: 1px solid var(--primitive-line);
+  box-shadow: var(--primitive-shadow-inset);
+  cursor: text;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.field:focus-within {
+  border-color: color-mix(in srgb, var(--primitive-teal) 55%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 4%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--primitive-teal) 18%, transparent);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 4px 0 10px;
+  border-radius: var(--primitive-radius-pill);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--primitive-teal) 22%, transparent), color-mix(in srgb, var(--primitive-teal) 8%, transparent));
+  border: 1px solid color-mix(in srgb, var(--primitive-teal) 42%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-medium);
+  letter-spacing: 0.02em;
+  line-height: var(--primitive-leading-none);
+}
+
+.tagLabel {
+  display: inline-block;
+}
+
+.tagRemove {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 2px;
+  border: 0;
+  background: color-mix(in srgb, var(--primitive-teal) 8%, transparent);
+  color: inherit;
+  border-radius: var(--primitive-radius-pill);
+  cursor: pointer;
+  transition: background 140ms ease;
+}
+
+.tagRemove:hover {
+  background: color-mix(in srgb, var(--primitive-teal) 28%, transparent);
+}
+
+.tagRemove:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 1px;
+}
+
+.input {
+  appearance: none;
+  flex: 1 1 80px;
+  min-width: 100px;
+  height: 26px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.01em;
+}
+
+.input::placeholder {
+  color: var(--primitive-muted);
+}
+
+.helper {
+  font-family: var(--primitive-font-body);
+  font-size: 11px;
+  color: var(--primitive-muted);
+  letter-spacing: 0.02em;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+:global(html[data-primitive-theme="light"]) .field {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 84%, transparent), color-mix(in srgb, var(--primitive-panel-strong) 56%, transparent)),
+    var(--primitive-panel);
+  border-color: color-mix(in srgb, var(--primitive-text-strong) 14%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 86%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--primitive-body) 4%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .field:focus-within {
+  border-color: color-mix(in srgb, var(--primitive-teal) 48%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 86%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--primitive-teal) 16%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .tag {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--primitive-teal) 14%, transparent), color-mix(in srgb, var(--primitive-teal) 6%, transparent));
+  border-color: color-mix(in srgb, var(--primitive-teal) 28%, transparent);
+  color: color-mix(in oklab, var(--primitive-teal) 76%, black);
+}
+
+:global(html[data-primitive-theme="light"]) .tagRemove {
+  background: color-mix(in srgb, var(--primitive-teal) 8%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .tagRemove:hover {
+  background: color-mix(in srgb, var(--primitive-teal) 16%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field,
+  .tagRemove {
+    transition: none;
+  }
+}

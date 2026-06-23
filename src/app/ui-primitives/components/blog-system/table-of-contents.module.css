@@ -1,0 +1,92 @@
+.toc {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 70%),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 var(--primitive-glass-soft);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.list {
+  display: grid;
+  gap: var(--primitive-space-px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: toc;
+}
+
+.item {
+  counter-increment: toc;
+}
+
+.link {
+  display: flex;
+  align-items: baseline;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-sm);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-snug);
+  text-decoration: none;
+  transition:
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.marker {
+  flex: none;
+  width: var(--primitive-space-2);
+  height: 1px;
+  margin-top: 0.6em;
+  background: var(--primitive-line-strong);
+  transition:
+    width var(--primitive-duration-normal) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.label {
+  min-width: 0;
+}
+
+.link:hover {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-field-hover);
+}
+
+.link:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.active {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.active .marker {
+  width: var(--primitive-space-4);
+  background: var(--primitive-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .marker {
+    transition: none;
+  }
+}

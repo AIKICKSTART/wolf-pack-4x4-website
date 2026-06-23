@@ -1,0 +1,154 @@
+/* =========================================================
+   Q&A QUEUE ROW — question with upvotes + host actions
+   ========================================================= */
+
+.row {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 2%, transparent);
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 96%, var(--primitive-canvas));
+  font-family: var(--primitive-font-body, system-ui, sans-serif);
+  transition: border-color var(--primitive-duration-fast) ease, background var(--primitive-duration-fast) ease;
+}
+
+.row:hover {
+  border-color: color-mix(in oklab, var(--primitive-text-on-accent) 14%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 4%, transparent);
+}
+
+.answered {
+  opacity: 0.7;
+}
+
+.voteCol {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: var(--primitive-space-0-5);
+  width: 100%;
+  padding: var(--primitive-space-2) var(--primitive-space-1);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 10%, transparent);
+  background: var(--primitive-recessed);
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 78%, transparent);
+  cursor: pointer;
+  transition: color var(--primitive-duration-fast) ease, border-color var(--primitive-duration-fast) ease, background var(--primitive-duration-fast) ease;
+}
+
+.voteCol:hover,
+.voteCol:focus-visible {
+  outline: none;
+  border-color: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  color: var(--primitive-text-on-accent);
+}
+
+.voteOn {
+  color: var(--primitive-amber);
+  border-color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+}
+
+.voteCount {
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  font-size: var(--primitive-text-sm);
+  font-weight: 700;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.question {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--primitive-text-on-accent);
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-size: 11px;
+}
+
+.asker {
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 78%, transparent);
+  font-weight: 600;
+}
+
+.dot {
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 32%, transparent);
+}
+
+.timestamp {
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 42%, transparent);
+}
+
+.statusCol {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  align-items: start;
+  justify-items: end;
+}
+
+.answeredChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-green);
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.actions {
+  display: inline-flex;
+  gap: var(--primitive-space-1);
+}
+
+.actionBtn {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 10%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 2%, transparent);
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 70%, transparent);
+  cursor: pointer;
+}
+
+.actionBtn:hover:not(:disabled),
+.actionBtn:focus-visible:not(:disabled) {
+  outline: none;
+  color: var(--primitive-text-on-accent);
+  border-color: color-mix(in oklab, var(--primitive-text-on-accent) 30%, transparent);
+}
+
+.actionBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.actionDone {
+  color: var(--primitive-green);
+  border-color: var(--primitive-green);
+}

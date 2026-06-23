@@ -1,0 +1,178 @@
+.surface {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 50%),
+    var(--primitive-surface-1, var(--primitive-panel));
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.hasFailures {
+  border-color: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--primitive-space-2-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.summary {
+  margin-left: auto;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.scanTrack {
+  position: relative;
+  height: 18px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-line-muted);
+  overflow: hidden;
+  border: 1px solid var(--primitive-line);
+}
+
+.scanFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primitive-teal), var(--primitive-green));
+  transition: width var(--primitive-duration-normal) ease;
+}
+
+.scanLabel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 0 6px color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) 14px;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.rowPass {
+  border-color: color-mix(in oklab, var(--primitive-green) 28%, transparent);
+}
+
+.rowFail {
+  border-color: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 4%, transparent);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+}
+
+.rowPass .statusDot {
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+.rowFail .statusDot {
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 22%, transparent);
+}
+
+.rowMain {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.rowSnap {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+}
+
+.rowResource {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.rowReason {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-red);
+  letter-spacing: 0.02em;
+}
+
+.passChip {
+  padding: var(--primitive-space-0-5) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.remediateBtn {
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: 6px;
+  border: 1px solid var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.remediateBtn:hover,
+.remediateBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanFill {
+    transition: none;
+  }
+}

@@ -1,0 +1,113 @@
+.wrap {
+  --hc-size: 14px;
+  --hc-tone: var(--primitive-green);
+  --hc-glow: color-mix(in oklab, var(--primitive-green) 45%, transparent);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.dot {
+  position: relative;
+  width: var(--hc-size);
+  height: var(--hc-size);
+  display: inline-block;
+}
+
+.sizeSm { --hc-size: 10px; }
+.sizeMd { --hc-size: 14px; }
+.sizeLg { --hc-size: 20px; }
+
+.pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--hc-tone);
+  opacity: 0.55;
+  animation: hcPulse 2s ease-out infinite;
+}
+
+.core {
+  position: absolute;
+  inset: 25%;
+  border-radius: 50%;
+  background: var(--hc-tone);
+  box-shadow: 0 0 calc(var(--hc-size) * 0.7) var(--hc-glow);
+}
+
+.toneHealthy {
+  --hc-tone: var(--primitive-green);
+  --hc-glow: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+}
+
+.toneDegraded {
+  --hc-tone: var(--primitive-amber);
+  --hc-glow: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+}
+
+.toneFailed {
+  --hc-tone: var(--primitive-red);
+  --hc-glow: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+}
+
+.toneUnknown {
+  --hc-tone: color-mix(in oklab, var(--primitive-text-strong) 55%, transparent);
+  --hc-glow: color-mix(in oklab, var(--primitive-text-strong) 30%, transparent);
+}
+
+.toneHealthy .pulse {
+  animation-duration: 2.4s;
+}
+
+.toneDegraded .pulse {
+  animation-duration: 1.6s;
+}
+
+.toneFailed .pulse {
+  animation-duration: 1.1s;
+}
+
+.toneUnknown .pulse {
+  animation: none;
+  opacity: 0.25;
+}
+
+@keyframes hcPulse {
+  0% { transform: scale(0.6); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.tooltipSlot {
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.wrap:hover .tooltipSlot,
+.wrap:focus-within .tooltipSlot {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tooltipTitle {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tooltipDetail {
+  display: block;
+  margin-top: var(--primitive-space-1);
+  font-size: var(--primitive-text-xs);
+  color: inherit;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; opacity: 0.25; }
+}

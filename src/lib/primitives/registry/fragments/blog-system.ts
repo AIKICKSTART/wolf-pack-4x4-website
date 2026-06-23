@@ -1,0 +1,156 @@
+import type { PrimitiveFamilyManifest } from "../types"
+
+const manifest: PrimitiveFamilyManifest = {
+  family: "blog-system",
+  title: "Blog System",
+  group: "Content",
+  summary:
+    "A full editorial blog kit — author bylines, post cards, category filtering, index grids, featured heroes, table of contents, prev/next navigation, related rows, newsletter CTA, share row, and a rich post layout — sharing one typed blog content model.",
+  entries: [
+    {
+      key: "blog-system/author-byline",
+      family: "blog-system",
+      name: "AuthorByline",
+      label: "Author byline",
+      description:
+        "Author credit line with avatar or initials monogram, name, optional role and bio, formatted date, and reading time in compact or expanded density.",
+      kind: "primitive",
+      importPath: "@/app/ui-primitives/components/blog-system",
+      routeHref: "/ui-primitives/blog-system#author-byline",
+      tags: ["blog", "author", "byline", "metadata"],
+      status: "improved",
+    },
+    {
+      key: "blog-system/blog-card",
+      family: "blog-system",
+      name: "BlogCard",
+      label: "Blog card",
+      description:
+        "Linked post summary card with accent-tinted media, category chip, clamped title, excerpt, and embedded author byline in vertical or horizontal orientation.",
+      kind: "primitive",
+      importPath: "@/app/ui-primitives/components/blog-system",
+      routeHref: "/ui-primitives/blog-system#blog-card",
+      tags: ["blog", "card", "post", "summary"],
+      status: "improved",
+    },
+    {
+      key: "blog-system/category-filter-bar",
+      family: "blog-system",
+      name: "CategoryFilterBar",
+      label: "Category filter bar",
+      description:
+        "Accessible radiogroup of accent-coded category pills plus an all-posts pill that emits the selected category id (or null) on change.",
+      kind: "primitive",
+      importPath: "@/app/ui-primitives/components/blog-system",
+      routeHref: "/ui-primitives/blog-system#category-filter-bar",
+      tags: ["blog", "filter", "category", "radiogroup"],
+      status: "improved",
+    },
+    {
+      key: "blog-system/blog-index-grid",
+      family: "blog-system",
+      name: "BlogIndexGrid",
+      label: "Blog index grid",
+      description:
+        "Post-listing section with kicker, heading, an optional category filter bar, and a live-region grid of blog cards that filters by active category.",
+      kind: "section",
+      importPath: "@/app/ui-primitives/components/blog-system",
+      routeHref: "/ui-primitives/blog-system#blog-index-grid",
+      tags: ["blog", "grid", "index", "listing"],
+      status: "improved",
+    },
+    {
+      key: "blog-system/featured-post-hero",
+      family: "blog-system",
+      name: "FeaturedPostHero",
+      label: "Featured post hero",
+      description:
+        "Accent-tinted hero section for a single featured post with background media, kicker, category chip, headline, excerpt, expanded byline, and a CTA link.",
+      kind: "section",
+      importPath: "@/app/ui-primitives/components/blog-system",
+      routeHref: "/ui-primitives/blog-system#featured-post-hero",
+      tags: ["blog", "hero", "featured", "section"],
+      status: "improved",
+    },
+    {
+      key: "blog-system/table-of-contents",
+      family: "blog-system",
+      name: "TableOfContents",
+      label: "Table of contents",
+      description:
+        "Sticky on-this-page anchor nav that scroll-spies headings via IntersectionObserver and highlights the active section.",
+      kind: "primitive",
+      importPath: "@/app/ui-primitives/components/blog-system",
+      routeHref: "/ui-primitives/blog-system#table-of-contents",
+      tags: ["blog", "toc", "navigation", "scrollspy"],
+      status: "improved",
+    },
+    {
+      key: "blog-system/prev-next-nav",
+      family: "blog-system",
+      name: "PrevNextNav",
+      label: "Prev / next nav",
+      description:
+        "Paired previous/next post navigation with directional arrows, category label, and title, gracefully showing placeholder ends when a neighbour is absent.",
+      kind: "primitive",
+      importPath: "@/app/ui-primitives/components/blog-system",
+      routeHref: "/ui-primitives/blog-system#prev-next-nav",
+      tags: ["blog", "navigation", "pagination", "post"],
+      status: "improved",
+    },
+    {
+      key: "blog-system/related-posts-row",
+      family: "blog-system",
+      name: "RelatedPostsRow",
+      label: "Related posts row",
+      description:
+        "Section listing related posts as a horizontal row of blog cards under a kicker and heading, rendering nothing when there are no posts.",
+      kind: "section",
+      importPath: "@/app/ui-primitives/components/blog-system",
+      routeHref: "/ui-primitives/blog-system#related-posts-row",
+      tags: ["blog", "related", "row", "section"],
+      status: "improved",
+    },
+    {
+      key: "blog-system/blog-newsletter-cta",
+      family: "blog-system",
+      name: "BlogNewsletterCta",
+      label: "Blog newsletter CTA",
+      description:
+        "Newsletter signup section with kicker, heading, body, an email field, and a submit button that tracks submitting/success/error status and privacy fineprint.",
+      kind: "section",
+      importPath: "@/app/ui-primitives/components/blog-system",
+      routeHref: "/ui-primitives/blog-system#blog-newsletter-cta",
+      tags: ["blog", "newsletter", "cta", "subscribe"],
+      status: "improved",
+    },
+    {
+      key: "blog-system/share-row",
+      family: "blog-system",
+      name: "ShareRow",
+      label: "Share row",
+      description:
+        "Inline social share strip with copy-link, X, Facebook, LinkedIn, and email targets, copying the canonical URL to the clipboard with copied feedback.",
+      kind: "primitive",
+      importPath: "@/app/ui-primitives/components/blog-system",
+      routeHref: "/ui-primitives/blog-system#share-row",
+      tags: ["blog", "share", "social", "clipboard"],
+      status: "improved",
+    },
+    {
+      key: "blog-system/blog-post-layout",
+      family: "blog-system",
+      name: "BlogPostLayout",
+      label: "Blog post layout",
+      description:
+        "Full article layout rendering category chip, date, reading time, headline, byline, hero image, rich body blocks (lede, headings, quotes, media, lists), tags, an optional aside, and a share row.",
+      kind: "section",
+      importPath: "@/app/ui-primitives/components/blog-system",
+      routeHref: "/ui-primitives/blog-system#blog-post-layout",
+      tags: ["blog", "article", "layout", "post"],
+      status: "improved",
+    },
+  ],
+}
+
+export default manifest

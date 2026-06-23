@@ -1,0 +1,309 @@
+/* ════════════════════════════════════════════════════════════════
+   18 · Advanced scroll motion — progress bar, parallax, reveal variety
+   Compositor-only (transform/opacity). All effects collapse under
+   prefers-reduced-motion. JS hooks live in mufflermen-site.tsx.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Scroll-progress bar (pinned to viewport top, over the nav) ── */
+.mufflermen-public .scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    color-mix(in oklab, var(--accent) 55%, #ff8a1e)
+  );
+  box-shadow: 0 0 12px color-mix(in oklab, var(--accent) 60%, transparent);
+  z-index: 200;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ── Parallax drift — JS sets --py on [data-parallax] ──────────── */
+.mufflermen-public [data-parallax] {
+  transform: translate3d(0, var(--py, 0px), 0);
+  will-change: transform;
+}
+/* Gallery hero images oversized so the drift never reveals an edge gap. */
+.mufflermen-public .vehicle-collection-hero {
+  overflow: hidden;
+}
+.mufflermen-public .vehicle-collection-hero img[data-parallax] {
+  transform: translate3d(0, var(--py, 0px), 0) scale(1.12);
+}
+
+/* ── Reveal variety — directional entrances per data-reveal ────── */
+.mufflermen-public .reveal[data-reveal="left"] {
+  transform: translate3d(-36px, 0, 0);
+}
+.mufflermen-public .reveal[data-reveal="right"] {
+  transform: translate3d(36px, 0, 0);
+}
+.mufflermen-public .reveal[data-reveal="scale"] {
+  transform: scale(0.94);
+}
+.mufflermen-public .reveal[data-reveal="clip"] {
+  clip-path: inset(0 0 38% 0);
+  opacity: 0;
+}
+.mufflermen-public .reveal[data-reveal].in {
+  transform: none;
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mufflermen-public .scroll-progress {
+    display: none;
+  }
+  .mufflermen-public [data-parallax] {
+    transform: none !important;
+  }
+  .mufflermen-public .reveal[data-reveal] {
+    transform: none !important;
+    clip-path: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ── Minimal footer ─────────────────────────────────────────────── */
+.mufflermen-public .footer.footer-min {
+  padding-block: clamp(2rem, 4vw, 3rem);
+}
+.footer-min .footer-min-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+}
+.footer-min .footer-min-brand img {
+  height: 46px;
+  width: auto;
+  display: block;
+}
+.footer-min .footer-min-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.4rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.footer-min .footer-min-links a {
+  color: var(--body);
+  transition: color 0.2s ease;
+}
+.footer-min .footer-min-links a:hover {
+  color: var(--accent);
+}
+@media (max-width: 600px) {
+  .footer-min .footer-min-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* clear the fixed conversion dock wherever the horizontal tray shows
+   (<1024): ~70px tray + 16px bottom offset + 18px gap */
+@media (max-width: 1023.98px) {
+  .mufflermen-public .footer.footer-min {
+    padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ── Home sticky close dock — fade in past the hero ─────────────── */
+/* These rules outrank the dock's own centering transforms (translateX(-50%)
+   horizontal tray, translateY(-50%) side rail), so each state must restate
+   them — a bare `transform: none` parks the tray's left edge mid-viewport. */
+.mufflermen-public .home-conversion-dock {
+  opacity: 0;
+  transform: translateX(-50%) translateY(14px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.mufflermen-public .home-conversion-dock.is-visible {
+  opacity: 1;
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+@media (min-width: 1024px) {
+  /* side-rail mode: vertical centering instead of horizontal */
+  .mufflermen-public .home-conversion-dock {
+    transform: translateY(calc(-50% + 14px));
+  }
+  .mufflermen-public .home-conversion-dock.is-visible {
+    transform: translateY(-50%);
+  }
+}
+
+/* ── Pinned "How it works" story ────────────────────────────────── */
+/* position:sticky needs a non-scroll-container ancestor. The home <main>
+   computed as overflow-x:hidden + overflow-y:auto (a scroll container), which
+   silently broke pinning. clip contains horizontal bleed without establishing
+   a scroll container, so sticky works again. */
+.mufflermen-public main {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.mufflermen-public .process-pinned {
+  position: relative;
+  height: 300vh;
+}
+.mufflermen-public .process-pinned-stage {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  max-width: 1320px;
+  margin-inline: auto;
+  padding: clamp(3rem, 7vw, 6rem) clamp(1.25rem, 6vw, 5rem);
+}
+.process-pinned-head h2 {
+  margin-top: 0.35em;
+}
+.process-pinned-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+.process-pinned-rail {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  border-left: 1px solid color-mix(in oklab, var(--ink) 14%, transparent);
+}
+.process-pinned-rail li {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  padding-left: 1.4rem;
+  color: color-mix(in oklab, var(--ink) 40%, transparent);
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+.process-pinned-rail li::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 0.5em;
+  width: 2px;
+  height: 0;
+  background: var(--accent);
+  transition: height 0.4s ease;
+}
+.process-pinned-rail li .num {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.process-pinned-rail li .t {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 1.4vw, 1.4rem);
+  text-transform: uppercase;
+}
+.process-pinned-rail li.is-done {
+  color: color-mix(in oklab, var(--ink) 60%, transparent);
+}
+.process-pinned-rail li.is-active {
+  color: var(--ink);
+  transform: translateX(4px);
+}
+.process-pinned-rail li.is-active::before {
+  height: 1.4em;
+}
+.process-pinned-panels {
+  position: relative;
+  min-height: clamp(220px, 30vh, 320px);
+}
+.process-pinned-panel {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.process-pinned-panel.is-active {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.process-pinned-panel .big-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 11vw, 9rem);
+  line-height: 0.8;
+  color: color-mix(in oklab, var(--accent) 20%, transparent);
+  -webkit-text-stroke: 1px color-mix(in oklab, var(--accent) 45%, transparent);
+}
+.process-pinned-panel h3 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(1.6rem, 3.4vw, 3rem);
+  margin: 0.3em 0 0.35em;
+}
+.process-pinned-panel p {
+  color: var(--body);
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  max-width: 42ch;
+  line-height: 1.55;
+}
+
+@media (max-width: 860px) {
+  .mufflermen-public .process-pinned {
+    height: auto;
+  }
+  .mufflermen-public .process-pinned-stage {
+    position: static;
+    min-height: 0;
+  }
+  .process-pinned-grid {
+    grid-template-columns: 1fr;
+  }
+  .process-pinned-panels {
+    min-height: 0;
+  }
+  .process-pinned-panel {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    margin-bottom: 2rem;
+  }
+  .process-pinned-rail {
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-left: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mufflermen-public .process-pinned {
+    height: auto;
+  }
+  .mufflermen-public .process-pinned-stage {
+    position: static;
+    min-height: 0;
+  }
+  .process-pinned-panel {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    margin-bottom: 2rem;
+  }
+}

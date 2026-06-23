@@ -1,0 +1,174 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), transparent 65%),
+    radial-gradient(ellipse at 100% 0, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 55%),
+    var(--primitive-panel-strong);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 22px 38px color-mix(in oklab, var(--primitive-canvas) 46%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  isolation: isolate;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.iconBadge {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+.iconBadge svg {
+  width: 18px;
+  height: 18px;
+}
+
+.kicker {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: var(--primitive-space-0-5) 0 0;
+  font-size: var(--primitive-text-md);
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.006em;
+  word-break: break-word;
+}
+
+.specGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: var(--primitive-space-1-5);
+  column-gap: var(--primitive-space-3);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.specLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  align-self: center;
+}
+
+.specValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.04em;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) 9px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.chip svg {
+  width: 12px;
+  height: 12px;
+}
+
+.chipIgw {
+  border-color: color-mix(in oklab, var(--primitive-green) 45%, transparent);
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+}
+
+.chipPrivate {
+  border-color: color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+  color: var(--primitive-amber);
+}
+
+.peerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.peerRow {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.peerIcon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 35%, transparent);
+}
+
+.peerIcon svg { width: 13px; height: 13px; }
+
+.peerMeta {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.peerMeta strong {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.peerMeta small {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  color: var(--primitive-muted);
+}

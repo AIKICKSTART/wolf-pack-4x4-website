@@ -1,0 +1,109 @@
+.header {
+  --row-accent: var(--primitive-teal);
+
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent)),
+    var(--primitive-panel-strong);
+  min-width: 0;
+}
+
+.kind-video { --row-accent: var(--primitive-teal); }
+.kind-audio { --row-accent: var(--primitive-amber); }
+.kind-subtitles { --row-accent: var(--primitive-green); }
+.kind-effect { --row-accent: var(--primitive-red); }
+
+.compact { padding: 6px 10px; grid-template-columns: 24px minmax(0, 1fr) auto; }
+
+.glyph {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent), transparent 60%),
+    var(--row-accent);
+  color: var(--primitive-canvas);
+  box-shadow: 0 6px 14px color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+}
+
+.compact .glyph { width: 24px; height: 24px; }
+
+.glyph svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.compact .glyph svg { width: 14px; height: 14px; }
+
+.text { display: grid; gap: 2px; min-width: 0; }
+
+.shortName {
+  font-family: var(--primitive-font-display);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.compact .shortName { font-size: 14px; }
+
+.name {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.controls {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 4px;
+}
+
+.btn {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  border-color: var(--row-accent);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.btnMuted { background: color-mix(in oklab, var(--primitive-red) 22%, transparent); border-color: color-mix(in oklab, var(--primitive-red) 62%, transparent); color: var(--primitive-text-strong); }
+.btnSolo { background: color-mix(in oklab, var(--primitive-amber) 24%, transparent); border-color: color-mix(in oklab, var(--primitive-amber) 62%, transparent); color: var(--primitive-canvas); }
+.btnLocked { background: color-mix(in oklab, var(--primitive-text-strong) 14%, transparent); border-color: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent); color: var(--primitive-text-strong); }
+.btnArmed { background: color-mix(in oklab, var(--primitive-red) 62%, transparent); border-color: var(--primitive-red); color: var(--primitive-text-strong); box-shadow: 0 0 12px color-mix(in oklab, var(--primitive-red) 32%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+}

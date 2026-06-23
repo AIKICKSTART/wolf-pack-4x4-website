@@ -1,0 +1,162 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 50%),
+    var(--primitive-surface-1, var(--primitive-panel));
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.passed {
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.failed {
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  align-items: baseline;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.snapId {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+}
+
+.overall {
+  margin-left: auto;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+}
+
+.overallPass {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+}
+
+.overallFail {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+}
+
+.checks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.checks li {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+.pass {
+  color: var(--primitive-green);
+}
+
+.fail {
+  color: var(--primitive-red);
+}
+
+.iconDiscPass {
+  fill: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+}
+
+.iconDiscFail {
+  fill: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.checkLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.checkValue {
+  margin-left: auto;
+  font-family: var(--primitive-font-mono);
+  font-size: 11.5px;
+  color: var(--primitive-text-strong);
+}
+
+.message {
+  margin: 0;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  border: 1px dashed color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 11.5px;
+  color: var(--primitive-red);
+  line-height: 1.5;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.lastVerified {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.verifyBtn {
+  margin-left: auto;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.verifyBtn:hover,
+.verifyBtn:focus-visible {
+  outline: none;
+  background: var(--primitive-amber);
+  color: var(--primitive-canvas);
+}

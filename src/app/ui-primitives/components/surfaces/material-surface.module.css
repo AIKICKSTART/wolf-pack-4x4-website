@@ -1,0 +1,176 @@
+/* =========================================================
+   MATERIAL SURFACE — Material 3 elevation
+   Filled tonal surface. Key-light + ambient shadow pair.
+   Tone-mapped color overlay per elevation step. Token-driven
+   tone bases so the fill reads intentionally light + dark.
+   ========================================================= */
+
+.surface {
+  --m3-tone-base: var(--primitive-surface-2);
+  --m3-tone-tint: transparent;
+  --m3-tone-overlay: color-mix(in oklab, var(--primitive-text-strong) 0%, transparent);
+  --m3-tone-accent: var(--primitive-red);
+  --m3-key: 0 0 0 transparent;
+  --m3-ambient: 0 0 0 transparent;
+  --m3-radius: var(--primitive-radius-lg);
+  --m3-lift: 0px;
+
+  position: relative;
+  display: block;
+  padding: var(--primitive-space-5);
+  border-radius: var(--m3-radius);
+  color: var(--primitive-body);
+  background:
+    /* tonal overlay scales with elevation (per M3 spec) */
+    linear-gradient(0deg, var(--m3-tone-overlay), var(--m3-tone-overlay)),
+    /* tone tint sits above the base so it survives theme flips */
+    linear-gradient(0deg, var(--m3-tone-tint), var(--m3-tone-tint)),
+    var(--m3-tone-base);
+  box-shadow: var(--m3-key), var(--m3-ambient);
+  transform: translate3d(0, var(--m3-lift), 0);
+  transition:
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-standard),
+    transform var(--primitive-duration-normal) var(--primitive-ease-standard),
+    background var(--primitive-duration-normal) var(--primitive-ease-standard);
+  isolation: isolate;
+}
+
+/* state-layer for hover/focus/active consistent with M3 */
+.surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--m3-tone-accent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--primitive-duration-fast) var(--primitive-ease-standard);
+  z-index: 0;
+}
+
+.surface > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* M3 state-layer opacities: hover 8%, focus 10%, pressed 12% */
+.surface:hover::before {
+  opacity: 0.08;
+}
+
+.surface:focus-within::before {
+  opacity: 0.1;
+}
+
+.surface:active::before {
+  opacity: 0.12;
+}
+
+.surface:focus-within {
+  box-shadow: var(--m3-key), var(--m3-ambient), var(--primitive-focus-shadow);
+}
+
+/* =========================================================
+   tones — M3 tonal-palette-inspired, token-driven so the fill
+   keeps its semantic hue while flipping light/dark cleanly
+   ========================================================= */
+
+.tonePrimary {
+  --m3-tone-base: var(--primitive-surface-2);
+  --m3-tone-tint: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --m3-tone-accent: var(--primitive-red);
+  color: var(--primitive-text-strong);
+}
+
+.toneSecondary {
+  --m3-tone-base: var(--primitive-surface-2);
+  --m3-tone-tint: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  --m3-tone-accent: var(--primitive-teal);
+  color: var(--primitive-text-strong);
+}
+
+.toneTertiary {
+  --m3-tone-base: var(--primitive-surface-2);
+  --m3-tone-tint: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --m3-tone-accent: var(--primitive-amber);
+  color: var(--primitive-text-strong);
+}
+
+.toneSurface {
+  --m3-tone-base: var(--primitive-surface-2);
+  --m3-tone-tint: transparent;
+  --m3-tone-accent: var(--primitive-text-strong);
+  color: var(--primitive-body);
+}
+
+/* =========================================================
+   elevations 0-5 — M3 recipe: tonal overlay opacity grows
+   with elevation; key + ambient shadow pair per step.
+   ========================================================= */
+
+.elevation0 {
+  --m3-tone-overlay: color-mix(in oklab, var(--primitive-text-strong) 0%, transparent);
+  --m3-key: 0 0 0 0 color-mix(in oklab, var(--primitive-canvas) 0%, transparent);
+  --m3-ambient: 0 0 0 0 color-mix(in oklab, var(--primitive-canvas) 0%, transparent);
+}
+
+.elevation1 {
+  --m3-tone-overlay: color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+  --m3-key: 0 1px 2px 0 color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+  --m3-ambient: 0 1px 3px 1px color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.elevation2 {
+  --m3-tone-overlay: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  --m3-key: 0 1px 2px 0 color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+  --m3-ambient: 0 2px 6px 2px color-mix(in oklab, var(--primitive-canvas) 26%, transparent);
+}
+
+.elevation3 {
+  --m3-tone-overlay: color-mix(in oklab, var(--primitive-text-strong) 11%, transparent);
+  --m3-key: 0 1px 3px 0 color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+  --m3-ambient: 0 4px 8px 3px color-mix(in oklab, var(--primitive-canvas) 30%, transparent);
+}
+
+.elevation4 {
+  --m3-tone-overlay: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  --m3-key: 0 2px 3px 0 color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+  --m3-ambient: 0 6px 10px 4px color-mix(in oklab, var(--primitive-canvas) 34%, transparent);
+}
+
+.elevation5 {
+  --m3-tone-overlay: color-mix(in oklab, var(--primitive-text-strong) 14%, transparent);
+  --m3-key: 0 4px 4px 0 color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+  --m3-ambient: 0 8px 12px 6px color-mix(in oklab, var(--primitive-canvas) 38%, transparent);
+}
+
+/* state-layer intensity scales lightly with elevation so the
+   higher cards feel more "live" without breaking M3 ratios;
+   the higher tiers also lift a touch on hover */
+.elevation3::before,
+.elevation4::before,
+.elevation5::before {
+  opacity: 0.04;
+}
+
+.elevation3:hover,
+.elevation4:hover,
+.elevation5:hover {
+  --m3-lift: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface {
+    transition: box-shadow var(--primitive-duration-normal) var(--primitive-ease-standard);
+  }
+
+  .surface::before {
+    transition: none;
+  }
+
+  .elevation3:hover,
+  .elevation4:hover,
+  .elevation5:hover {
+    --m3-lift: 0px;
+  }
+}

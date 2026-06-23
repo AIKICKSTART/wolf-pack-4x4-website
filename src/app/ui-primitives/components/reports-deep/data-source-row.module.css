@@ -1,0 +1,211 @@
+.row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.6fr) repeat(3, minmax(120px, 1fr)) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 16px 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-card-bg);
+  box-shadow: var(--primitive-card-shadow);
+  font-variant-numeric: tabular-nums;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.row:hover,
+.row:focus-within {
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-card-hover-shadow);
+}
+
+@media (max-width: 980px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.identity {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.kindBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  width: max-content;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.name {
+  margin: 0;
+  font-size: 15px;
+  color: var(--primitive-text-strong);
+  font-weight: 700;
+}
+
+.stateRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stateDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primitive-muted);
+}
+
+.stateLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.stateOk .stateDot {
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+.stateOk .stateLabel {
+  color: var(--primitive-green);
+}
+
+.stateSyncing .stateDot {
+  background: var(--primitive-teal);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.stateSyncing .stateLabel {
+  color: var(--primitive-teal);
+}
+
+.stateStale .stateDot {
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.stateStale .stateLabel {
+  color: var(--primitive-amber);
+}
+
+.stateFailed .stateDot,
+.stateAuth .stateDot {
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.stateFailed .stateLabel,
+.stateAuth .stateLabel {
+  color: var(--primitive-red);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.metric {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.metricLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metricValue {
+  font-family: var(--primitive-font-mono);
+  font-size: 13px;
+  color: var(--primitive-text-strong);
+  font-weight: 500;
+}
+
+.cadence {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.refreshBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.refreshBtn:hover:not(:disabled),
+.refreshBtn:focus-visible:not(:disabled) {
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-shadow-soft);
+  outline: none;
+}
+
+.refreshBtn:focus-visible:not(:disabled) {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.refreshBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.refreshGlyph {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.refreshGlyphBusy {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  animation: spin 900ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .refreshBtn,
+  .stateSyncing .stateDot,
+  .refreshGlyphBusy {
+    animation: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,164 @@
+.dock {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding: 0;
+  border-radius: 16px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.4%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    0 18px 40px color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+  overflow: hidden;
+}
+
+.dockFloating {
+  position: fixed;
+  bottom: clamp(16px, 3vw, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 36;
+  width: min(96vw, 520px);
+}
+
+.list {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  position: relative;
+}
+
+.listItem {
+  flex: 1 1 0;
+  min-width: 0;
+  list-style: none;
+  display: flex;
+}
+
+.indicator {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 32%, transparent), color-mix(in oklab, var(--primitive-red-dark) 42%, transparent));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 18%, transparent),
+    0 12px 28px color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), width 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+  width: 0;
+  transform: translateX(0);
+}
+
+.tab {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 6px;
+  padding: 10px 8px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: color-mix(in oklab, var(--primitive-text-strong) 72%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 1;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.tab:hover {
+  color: var(--primitive-text-strong);
+}
+
+.tab:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: -2px;
+  border-radius: 12px;
+}
+
+.tabActive {
+  color: var(--primitive-text-strong);
+}
+
+.tab svg {
+  width: var(--primitive-icon-lg);
+  height: var(--primitive-icon-lg);
+}
+
+.subtitle {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 4px;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--primitive-muted);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+
+.tab:hover .subtitle,
+.tab:focus-visible .subtitle {
+  opacity: 1;
+}
+
+.badge {
+  position: absolute;
+  top: 4px;
+  right: 12%;
+  min-width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--primitive-amber);
+  color: var(--primitive-canvas);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator,
+  .tab {
+    transition: none;
+  }
+}
+
+:global(html[data-primitive-theme="light"]) .dock {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 92%, transparent), color-mix(in oklab, var(--primitive-canvas) 84%, transparent)),
+    color-mix(in oklab, var(--primitive-text-on-accent) 60%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .tab {
+  color: color-mix(in oklab, var(--primitive-text-strong) 72%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .tab:hover,
+:global(html[data-primitive-theme="light"]) .tab:focus-visible,
+:global(html[data-primitive-theme="light"]) .tabActive {
+  color: var(--primitive-text-strong);
+}

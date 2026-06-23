@@ -1,0 +1,143 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+/* NSW yellow plate styled as the real DRIVES placard.
+   The plate gradient + #1a1a1a digits + internal black insets are the
+   authentic NSW number-plate brand colours (documented brand hex) and are
+   intentionally NOT themed. */
+.plate {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: var(--primitive-space-3) 22px;
+  border-radius: var(--primitive-radius-md);
+  background: linear-gradient(180deg, #f7d442 0%, #e9c43a 100%);
+  color: #1a1a1a;
+  font-family: var(--primitive-font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.18), 0 2px 0 rgba(0, 0, 0, 0.32);
+}
+
+.plateState {
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.18em;
+  border-right: 1px solid rgba(0, 0, 0, 0.34);
+  padding-right: 14px;
+}
+
+.plateNumber {
+  font-size: var(--primitive-text-2xl);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  font-variant-numeric: tabular-nums;
+}
+
+.statusStrip {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.status-active {
+  border-color: color-mix(in oklab, var(--primitive-green) 36%, transparent);
+}
+
+.status-encumbered {
+  border-color: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.status-expired,
+.status-suspended,
+.status-written-off {
+  border-color: color-mix(in oklab, var(--primitive-red) 44%, transparent);
+}
+
+.statusGlyph {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  color: var(--primitive-body);
+}
+
+.statusCopy {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.statusKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--primitive-space-2-5) var(--primitive-space-4);
+  margin: 0;
+}
+
+.facts div {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.facts dt {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.facts dd {
+  margin: 0;
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}

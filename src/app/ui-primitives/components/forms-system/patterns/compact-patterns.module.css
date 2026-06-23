@@ -1,0 +1,290 @@
+.compactForm {
+  display: grid;
+  gap: 18px;
+  width: min(100%, 620px);
+  min-height: 100%;
+  padding: clamp(18px, 2.5vw, 28px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 5.5%, transparent),
+      color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)
+    ),
+    var(--primitive-panel-strong);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 7%, transparent),
+    var(--primitive-shadow-deep);
+}
+
+.formHead {
+  display: grid;
+  gap: 6px;
+}
+
+.eyebrow,
+.compactForm label,
+.choiceGroup legend,
+.rangeTop output,
+.status,
+.actions button {
+  font-family: var(--primitive-font-mono);
+}
+
+.eyebrow {
+  color: var(--primitive-amber);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.formHead h3 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0;
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+.formHead p,
+.field span,
+.toggleRow small {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  min-width: 0;
+}
+
+.field,
+.choiceGroup {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.compactForm label,
+.choiceGroup legend {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--primitive-size-field-md);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 70%),
+    var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  font: inherit;
+  outline: none;
+}
+
+.field textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: color-mix(in srgb, var(--primitive-muted) 76%, transparent);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible,
+.radioCard:focus-within,
+.toggleRow:focus-within,
+.chip:focus-visible,
+.actions button:focus-visible {
+  border-color: var(--primitive-focus-ring);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.choiceGroup {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.optionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.radioCard,
+.toggleRow {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: start;
+  gap: var(--primitive-space-2-5);
+  min-height: var(--primitive-size-row-md);
+  padding: 11px var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent);
+  cursor: pointer;
+}
+
+.radioCard input,
+.toggleRow input {
+  width: 16px;
+  height: 16px;
+  margin: 1px 0 0;
+  accent-color: var(--primitive-red);
+}
+
+.radioCard span,
+.toggleRow strong {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.toggleRow span {
+  display: grid;
+  gap: 3px;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  min-height: var(--primitive-size-pill-lg);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  padding: 0 var(--primitive-space-3);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.chipActive {
+  border-color: color-mix(in srgb, var(--primitive-amber) 70%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 13%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.rangeTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rangeTop output {
+  color: var(--primitive-amber);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.field input[type="range"] {
+  min-height: 28px;
+  padding: 0;
+  accent-color: var(--primitive-amber);
+}
+
+.status {
+  margin: 0;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 38%, transparent);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  color: var(--primitive-green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.actions button {
+  min-height: var(--primitive-size-command-sm);
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  padding: 0 14px;
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.actions button[type="submit"] {
+  border-color: transparent;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.actions button[type="submit"]:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+@media (max-width: 720px) {
+  .fieldGrid,
+  .optionGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .compactForm *,
+  .compactForm *::before,
+  .compactForm *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

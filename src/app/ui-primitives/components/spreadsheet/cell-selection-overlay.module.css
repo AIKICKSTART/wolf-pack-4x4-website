@@ -1,0 +1,64 @@
+.overlay {
+  position: absolute;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--primitive-red);
+  border-radius: var(--primitive-radius-xs);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-media-overlay) 73%, transparent), 0 0 0 4px color-mix(in oklab, var(--primitive-red) 20%, transparent);
+  animation: marching 1200ms linear infinite;
+}
+
+.plate {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 3px 7px;
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}
+
+.plateMeta {
+  opacity: 0.7;
+  font-size: var(--primitive-text-2xs);
+}
+
+.handleAnchor {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  pointer-events: auto;
+}
+
+@keyframes marching {
+  0% {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-media-overlay) 73%, transparent), 0 0 0 4px color-mix(in oklab, var(--primitive-red) 20%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-media-overlay) 73%, transparent), 0 0 0 4px color-mix(in oklab, var(--primitive-red) 35%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-media-overlay) 73%, transparent), 0 0 0 4px color-mix(in oklab, var(--primitive-red) 20%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring {
+    animation: none;
+  }
+}

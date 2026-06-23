@@ -1,0 +1,235 @@
+/* Two-factor scene — OTP entry w/ countdown + backup code link */
+
+.form {
+  display: grid;
+  gap: var(--primitive-space-6);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(30px, 3.6vw, 42px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: 0.96;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.subtitle {
+  margin: 0 auto;
+  max-width: 38ch;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.subtitle strong {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.padWrap {
+  display: grid;
+  gap: 14px;
+  padding: 22px var(--primitive-space-1-5) var(--primitive-space-3);
+}
+
+.errorRow {
+  margin: 0;
+  text-align: center;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-red);
+  min-height: 14px;
+}
+
+.errorRow:empty {
+  visibility: hidden;
+}
+
+.timerCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-3) var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.timerCard strong {
+  color: var(--primitive-amber);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.timerCard[data-expired="true"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+  color: var(--primitive-red);
+}
+
+.timerCard[data-expired="true"] strong {
+  color: var(--primitive-red);
+}
+
+.actions {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2-5);
+  width: 100%;
+  padding: var(--primitive-space-4) 22px;
+  border: 0;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, color 200ms ease;
+}
+
+.primaryButton:hover:not(:disabled),
+.primaryButton:focus-visible:not(:disabled) {
+  transform: translateY(-1px);
+  outline: none;
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.primaryButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: saturate(0.5);
+}
+
+.altActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.linkButton {
+  background: transparent;
+  border: 0;
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0 0 1px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+
+.linkButton:hover,
+.linkButton:focus-visible {
+  color: var(--primitive-amber);
+  border-bottom-color: var(--primitive-amber);
+  outline: none;
+}
+
+.tooltipWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltipTrigger {
+  background: transparent;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  width: 22px;
+  height: 22px;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  cursor: pointer;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+
+.tooltipTrigger:hover,
+.tooltipTrigger:focus-visible {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-amber);
+  outline: none;
+}
+
+.tooltipBody {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 260px;
+  z-index: 4;
+  text-transform: none;
+  letter-spacing: var(--primitive-tracking-normal);
+  white-space: normal;
+  text-align: left;
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 220ms ease, transform 220ms var(--primitive-ease-out);
+}
+
+.tooltipWrap[data-open="true"] .tooltipBody {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryButton,
+  .tooltipBody {
+    transition: border-color 100ms ease;
+  }
+
+  .primaryButton:hover,
+  .primaryButton:focus-visible {
+    transform: none;
+  }
+}

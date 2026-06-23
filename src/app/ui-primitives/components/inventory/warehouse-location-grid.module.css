@@ -1,0 +1,145 @@
+.wrap {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 18px;
+  border-radius: var(--primitive-radius-xl);
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(ellipse at 50% 0%, color-mix(in oklab, var(--primitive-green) 8%, transparent), transparent 70%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.legend {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin-top: var(--primitive-space-1);
+}
+
+.grid {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.aisleRow {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.aisleLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.bayRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  gap: var(--primitive-space-1-5);
+}
+
+.bay {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: var(--primitive-space-0-5);
+  aspect-ratio: 1;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  color: var(--primitive-body);
+  transition:
+    transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out);
+  cursor: default;
+}
+
+.bay:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+}
+
+.bayBin {
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.baySku {
+  font-size: 9px;
+  color: var(--primitive-muted);
+}
+
+.densityEmpty {
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.densityLow {
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+
+.densityMid {
+  background: color-mix(in oklab, var(--primitive-green) 22%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 36%, transparent);
+  color: color-mix(in oklab, var(--primitive-green) 22%, white);
+}
+
+.densityHigh {
+  background: color-mix(in oklab, var(--primitive-amber) 26%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  color: color-mix(in oklab, var(--primitive-amber) 26%, white);
+}
+
+.densityFull {
+  background: color-mix(in oklab, var(--primitive-red) 28%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 24%, white);
+}
+
+.bayActive {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 1px;
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bay {
+    transition: none;
+  }
+  .bay:hover,
+  .bayActive {
+    transform: none;
+  }
+}

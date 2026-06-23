@@ -1,0 +1,370 @@
+/* =========================================================
+   JIGSAW PUZZLE HERO — video shown through interlocking
+   jigsaw pieces that assemble in with a diagonal stagger.
+   One continuous video tiled across clip-path tabs/blanks.
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(540px, 82svh, 860px);
+  display: grid;
+  align-items: center;
+  padding: clamp(40px, 6svh, 96px) clamp(20px, 5vw, 96px);
+  overflow: hidden;
+  isolation: isolate;
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 82% 12%, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 56%),
+    radial-gradient(ellipse at 6% 88%, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 62%),
+    var(--primitive-canvas);
+}
+
+/* Soft brand glow behind the board */
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 46%, color-mix(in oklab, var(--primitive-red) 22%, transparent), transparent 46%);
+  opacity: 0.7;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 0,
+    color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  opacity: 0.32;
+  mix-blend-mode: overlay;
+}
+
+.layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+}
+
+/* ---------- Copy column ---------- */
+
+.copy {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--primitive-red);
+  box-shadow: 0 0 14px var(--primitive-red);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 1.4rem + 4.6vw, 5.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--primitive-text-strong);
+}
+
+.subhead {
+  font-size: clamp(15px, 0.9rem + 0.3vw, 18px);
+  line-height: 1.55;
+  color: var(--primitive-body);
+  margin: 0;
+  max-width: 46ch;
+}
+
+.metaRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  padding: 9px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 2px;
+  background: var(--primitive-panel);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--primitive-amber);
+}
+
+.cta {
+  margin-top: 6px;
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  position: relative;
+  isolation: isolate;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), background 240ms, color 240ms;
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--primitive-red);
+  border-radius: 4px;
+  z-index: -1;
+  opacity: 0.4;
+  transition: inset 240ms;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+.cta:hover::before {
+  inset: -7px;
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:active::before {
+  inset: -3px;
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+/* ---------- Puzzle stage ---------- */
+
+.stage {
+  position: relative;
+  width: 100%;
+}
+
+/*
+  The board is the rectangular puzzle. Each piece element occupies exactly one
+  grid cell. Its clip-path polygon is expressed in percentages of that cell box
+  and intentionally exceeds 0%..100% (down to -26% / up to 126%) where a tab
+  bulges into the neighbouring cell. clip-path is NOT bounded by the element
+  box, and the piece sets overflow:visible, so those tabs paint outward.
+  The video inside each piece is sized to the WHOLE board and shifted by the
+  piece's grid position, so all twelve pieces sample one continuous video —
+  the seams read as interlocking joins, not cuts.
+*/
+.board {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  border-radius: 4px;
+  /* clip tabs at the outer frame so the assembled puzzle stays rectangular */
+  overflow: hidden;
+  background: var(--primitive-canvas);
+  box-shadow:
+    0 30px 80px color-mix(in oklab, black 32%, transparent),
+    inset 0 0 0 1px var(--primitive-line);
+}
+
+.piece {
+  position: absolute;
+  /* one grid cell */
+  width: calc(100% / var(--cols));
+  height: calc(100% / var(--rows));
+  left: calc(var(--col) * 100% / var(--cols));
+  top: calc(var(--row) * 100% / var(--rows));
+  /* tabs from the clip-path bulge past this box; let them paint */
+  overflow: visible;
+  transform-origin: center;
+  will-change: transform, opacity;
+  /* resting transform: a couple of pieces carry a small offset for character */
+  transform:
+    translate3d(var(--ox, 0), var(--oy, 0), 0)
+    rotate(var(--rot, 0deg));
+  animation: pieceIn 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.video {
+  position: absolute;
+  /* size to the full board (cols x rows of the cell) */
+  width: calc(100% * var(--cols));
+  height: calc(100% * var(--rows));
+  /* shift so this piece samples its own region of the continuous video */
+  left: calc(-100% * var(--col));
+  top: calc(-100% * var(--row));
+  object-fit: cover;
+  filter: contrast(1.08) saturate(1.08);
+}
+
+/* Bevelled edge highlight on each piece for premium, cut-out depth */
+.pieceEdge {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, white 18%, transparent) 0%, transparent 26%),
+    linear-gradient(315deg, color-mix(in oklab, black 34%, transparent) 0%, transparent 30%);
+  mix-blend-mode: overlay;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, white 22%, transparent),
+    inset -1px -1px 2px color-mix(in oklab, black 40%, transparent);
+}
+
+.tag {
+  position: absolute;
+  top: -14px;
+  right: 8%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--primitive-canvas);
+  border: 1px solid var(--primitive-amber);
+  border-radius: 2px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+.tag i {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--primitive-amber);
+  box-shadow: 0 0 10px var(--primitive-amber);
+}
+
+@keyframes pieceIn {
+  0% {
+    opacity: 0;
+    transform:
+      translate3d(calc(var(--ox, 0px) + (var(--col) - 1.5) * 26px), calc(var(--oy, 0px) - 30px), 0)
+      scale(0.86)
+      rotate(calc(var(--rot, 0deg) - 6deg));
+  }
+  100% {
+    opacity: 1;
+    transform:
+      translate3d(var(--ox, 0), var(--oy, 0), 0)
+      scale(1)
+      rotate(var(--rot, 0deg));
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.62); }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 5vw, 40px);
+  }
+  .board {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 540px) {
+  .hero {
+    min-height: auto;
+  }
+  .board {
+    --pad: 10%;
+    aspect-ratio: 5 / 4;
+  }
+  .tag {
+    right: 4%;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+  .headline {
+    font-size: clamp(2.2rem, 1.2rem + 7vw, 3.4rem);
+  }
+}
+
+/* ---------- Reduced motion: clean static composition ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .piece {
+    animation: none;
+    /* keep the resting offsets so the puzzle still reads as assembled
+       with character, but with zero motion */
+    transform:
+      translate3d(var(--ox, 0), var(--oy, 0), 0)
+      rotate(var(--rot, 0deg));
+  }
+  .kicker i {
+    animation: none;
+  }
+  .cta {
+    transition: none;
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+  .video {
+    /* Stop the looping feed for users who opt out of motion; the poster
+       fallback holds the static frame (house pattern). */
+    display: none;
+  }
+}

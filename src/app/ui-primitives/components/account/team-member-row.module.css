@@ -1,0 +1,197 @@
+.row {
+  --row-glaze: linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 4%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 0.5%, transparent));
+  --row-glaze-hover: linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 0.5%, transparent));
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto;
+  gap: var(--primitive-space-4);
+  align-items: center;
+  padding: var(--primitive-space-3) var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    var(--row-glaze),
+    var(--primitive-surface-1);
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+:global(html[data-primitive-theme="light"]) .row {
+  --row-glaze: linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 45%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent));
+  --row-glaze-hover: linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 62%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 10%, transparent));
+}
+
+.row:hover {
+  border-color: var(--primitive-line-strong);
+  background:
+    var(--row-glaze-hover),
+    var(--primitive-surface-2);
+}
+
+.invited {
+  border-style: dashed;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.identity {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: center;
+  min-width: 0;
+}
+
+.identityText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.name {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.005em;
+  line-height: 1.2;
+}
+
+.email {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  display: flex;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.bay {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.1em;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  border-radius: var(--primitive-radius-sm);
+  text-transform: uppercase;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: var(--primitive-space-2);
+  align-items: center;
+}
+
+.roleLabel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -var(--primitive-space-px);
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
+.roleSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 34px;
+  padding: 0 var(--primitive-space-8) 0 var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background-color: var(--primitive-field-bg);
+  background-image: linear-gradient(45deg, transparent 50%, var(--primitive-body) 50%),
+    linear-gradient(135deg, var(--primitive-body) 50%, transparent 50%);
+  background-position: calc(100% - 16px) 50%, calc(100% - 12px) 50%;
+  background-size: 4px 4px, 4px 4px;
+  background-repeat: no-repeat;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.roleSelect:hover,
+.roleSelect:focus-visible {
+  border-color: var(--primitive-line-strong);
+  background-color: var(--primitive-field-hover);
+  outline: none;
+}
+
+.roleSelect:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.roleSelect option {
+  background: var(--primitive-panel-strong);
+  color: var(--primitive-text-strong);
+}
+
+.removeBtn {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-muted);
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.removeBtn:hover,
+.removeBtn:focus-visible {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  outline: none;
+}
+
+.removeBtn:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.removeBtn:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.removeBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .roleSelect,
+  .removeBtn {
+    transition: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .row {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .controls {
+    grid-template-columns: 1fr auto;
+  }
+}

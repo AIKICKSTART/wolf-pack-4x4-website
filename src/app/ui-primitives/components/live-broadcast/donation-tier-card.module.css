@@ -1,0 +1,188 @@
+/* =========================================================
+   DONATION TIER CARD — supporter perks tier
+   ========================================================= */
+
+.card {
+  --tier-accent: color-mix(in oklab, var(--primitive-text-on-accent) 50%, transparent);
+  --tier-glow: color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent);
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-lg);
+  background: linear-gradient(180deg, var(--primitive-panel-strong), var(--primitive-code-bg));
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 96%, var(--primitive-canvas));
+  font-family: var(--primitive-font-body, system-ui, sans-serif);
+  position: relative;
+  overflow: hidden;
+  transition: transform 200ms ease, border-color 200ms ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 100% 0%, var(--tier-glow), transparent 60%);
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.toneBronze {
+  --tier-accent: color-mix(in oklab, var(--primitive-amber), black 38%);
+  --tier-glow: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.toneSilver {
+  --tier-accent: color-mix(in oklab, var(--primitive-body) 70%, var(--primitive-text-on-accent));
+  --tier-glow: color-mix(in oklab, var(--primitive-text-on-accent) 16%, transparent);
+}
+
+.toneGold {
+  --tier-accent: var(--primitive-amber);
+  --tier-glow: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+}
+
+.tonePlatinum {
+  --tier-accent: var(--primitive-teal);
+  --tier-glow: color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+}
+
+.current {
+  border-color: var(--tier-accent);
+  box-shadow: 0 0 0 1px var(--tier-accent), var(--primitive-shadow-soft);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+}
+
+.tierBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5) var(--primitive-space-1) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--tier-accent);
+  color: var(--tier-accent);
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.currentChip {
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--tier-accent);
+  color: var(--primitive-code-bg);
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.price {
+  font-family: var(--primitive-font-display, Anton, Impact, sans-serif);
+  font-weight: 400;
+  font-size: var(--primitive-text-2xl);
+  color: var(--primitive-text-on-accent);
+  letter-spacing: 0.02em;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.supporters {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 60%, transparent);
+}
+
+.supportersValue {
+  font-weight: 700;
+  color: var(--primitive-text-on-accent);
+  font-size: var(--primitive-text-sm);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.supportersLabel {
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.tagline {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 70%, transparent);
+}
+
+.perks {
+  margin: 0;
+  padding: var(--primitive-space-3) 0 0;
+  list-style: none;
+  border-top: 1px dashed color-mix(in oklab, var(--primitive-text-on-accent) 10%, transparent);
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.perk {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--primitive-space-2);
+  font-size: 12.5px;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 82%, transparent);
+}
+
+.perkCheck {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 4%, transparent);
+  color: var(--tier-accent);
+  margin-top: var(--primitive-space-0-5);
+}
+
+.cta {
+  padding: var(--primitive-space-2-5) 14px;
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--tier-accent);
+  background: color-mix(in oklab, var(--primitive-overlay) 30%, transparent);
+  color: var(--tier-accent);
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  outline: none;
+  background: var(--tier-accent);
+  color: var(--primitive-code-bg);
+  transform: translateY(-1px);
+}

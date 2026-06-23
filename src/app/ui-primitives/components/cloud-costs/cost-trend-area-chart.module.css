@@ -1,0 +1,138 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-teal) 14%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.headLeft {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.rangePicker {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in srgb, var(--primitive-canvas) 32%, transparent);
+}
+
+.rangeOption,
+.rangeSelected {
+  border: none;
+  background: transparent;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.rangeOption:hover {
+  color: var(--primitive-text-strong);
+}
+
+.rangeSelected {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 18%, transparent), transparent 60%),
+    linear-gradient(135deg, var(--primitive-teal), color-mix(in oklab, var(--primitive-teal) 72%, var(--primitive-canvas)));
+  color: var(--primitive-text-on-accent);
+}
+
+.rangeOption:focus-visible,
+.rangeSelected:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 2px;
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--primitive-canvas) 30%, transparent);
+}
+
+.metric {
+  display: grid;
+  gap: 2px;
+}
+
+.metricLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metricValue {
+  font-family: var(--primitive-font-display);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.metricValue[data-tone="amber"] {
+  color: var(--primitive-amber);
+}
+
+.metricValue[data-tone="green"] {
+  color: var(--primitive-green);
+}
+
+.chartWrap {
+  padding: 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--primitive-canvas) 28%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rangeOption,
+  .rangeSelected {
+    transition: none;
+  }
+}

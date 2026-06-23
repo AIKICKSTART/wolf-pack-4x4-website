@@ -1,0 +1,206 @@
+.editor {
+  --col-key: minmax(170px, 1.6fr);
+  --col-value: minmax(220px, 2.4fr);
+  --col-kind: 92px;
+  --col-scope: 110px;
+  --col-state: 110px;
+}
+
+.scopeLabel {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+}
+
+.scopeSelect {
+  padding: 8px 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--primitive-text-strong) 3.5%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.scopeSelect:focus-visible {
+  outline: none;
+  border-color: var(--primitive-teal);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primitive-teal) 28%, transparent);
+}
+
+.gridHead,
+.gridRow {
+  display: grid;
+  grid-template-columns:
+    var(--col-key)
+    var(--col-value)
+    var(--col-kind)
+    var(--col-scope)
+    var(--col-state);
+  gap: 14px;
+  align-items: start;
+}
+
+.gridHead {
+  padding: 4px 14px 6px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gridRow {
+  padding: 12px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--primitive-text-strong) 2.2%, transparent);
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.gridRow:hover {
+  border-color: color-mix(in srgb, var(--primitive-teal) 30%, var(--primitive-line));
+}
+
+.dirty-added {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--primitive-green) 7%, transparent) 0%, transparent 18%),
+    color-mix(in srgb, var(--primitive-text-strong) 2.2%, transparent);
+  border-color: color-mix(in srgb, var(--primitive-green) 28%, var(--primitive-line));
+}
+
+.dirty-modified {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--primitive-amber) 7%, transparent) 0%, transparent 18%),
+    color-mix(in srgb, var(--primitive-text-strong) 2.2%, transparent);
+  border-color: color-mix(in srgb, var(--primitive-amber) 28%, var(--primitive-line));
+}
+
+.dirty-removed {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--primitive-red) 7%, transparent) 0%, transparent 18%),
+    color-mix(in srgb, var(--primitive-text-strong) 2.2%, transparent);
+  border-color: color-mix(in srgb, var(--primitive-red) 28%, var(--primitive-line));
+}
+
+.cellKey {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.key {
+  font-family: var(--primitive-font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--primitive-text-strong);
+  word-break: break-all;
+}
+
+.desc {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--primitive-muted);
+}
+
+.meta {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  color: var(--primitive-muted);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.cellValue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.value {
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in srgb, var(--primitive-body) 45%, var(--primitive-text-strong));
+  background: color-mix(in srgb, var(--primitive-text-strong) 3%, transparent);
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  padding: 6px 8px;
+  word-break: break-all;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.revealButton {
+  flex: 0 0 auto;
+  padding: 5px 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.revealButton:hover,
+.revealButton:focus-visible {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.cellKind,
+.cellScope,
+.cellState {
+  display: flex;
+  align-items: center;
+}
+
+.cellScope span {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .gridHead {
+    display: none;
+  }
+
+  .gridRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gridRow {
+    transition: none;
+  }
+}

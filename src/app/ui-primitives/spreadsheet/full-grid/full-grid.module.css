@@ -1,0 +1,80 @@
+.layout {
+  width: min(100%, 1400px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 360px);
+  gap: 18px;
+  align-items: start;
+}
+
+.center {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.rail {
+  display: grid;
+  gap: 14px;
+  position: sticky;
+  top: var(--primitive-space-3);
+}
+
+.gridWrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 34%, transparent);
+  overflow: hidden;
+}
+
+.gridCorner {
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-code-bg);
+  border-right: 1px solid var(--primitive-line-strong);
+  border-bottom: 1px solid var(--primitive-line-strong);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  height: 38px;
+}
+
+.headRow {
+  display: grid;
+  grid-column: 2;
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  grid-column: 1 / -1;
+}
+
+.row {
+  display: contents;
+}
+
+.frozenDivider {
+  position: absolute;
+  left: calc(36px + (100% - 36px) / 7);
+  top: 0;
+  height: 100%;
+  pointer-events: none;
+  z-index: 6;
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .rail {
+    position: static;
+  }
+}

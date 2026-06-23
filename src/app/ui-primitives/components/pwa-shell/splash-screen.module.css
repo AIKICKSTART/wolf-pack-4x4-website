@@ -1,0 +1,169 @@
+.root {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  gap: 32px;
+  padding: clamp(24px, 5vw, 56px);
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 50% 24%, color-mix(in oklab, var(--primitive-red) 32%, transparent), transparent 52%),
+    radial-gradient(circle at 80% 100%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 50%),
+    var(--primitive-canvas);
+  color: var(--primitive-body);
+  overflow: hidden;
+}
+
+.root::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 0 1px, transparent 1px 3px);
+  pointer-events: none;
+}
+
+.brand {
+  display: grid;
+  place-items: center;
+  align-self: end;
+  gap: 22px;
+  text-align: center;
+}
+
+.logo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 18%, transparent), transparent 60%),
+    var(--primitive-red);
+  box-shadow: 0 28px 56px color-mix(in oklab, var(--primitive-red) 42%, transparent), inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 42%, transparent);
+  color: var(--primitive-text-on-accent);
+  animation: ssBoot 1.8s ease-out;
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 28px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  animation: ssHalo 2.6s ease-out infinite;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 30px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.bootRow {
+  display: grid;
+  gap: 8px;
+  align-self: start;
+  justify-self: stretch;
+  padding: 0;
+}
+
+.bootTrack {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  overflow: hidden;
+}
+
+.bootFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 35%, transparent), transparent 50%),
+    linear-gradient(90deg, var(--primitive-red), var(--primitive-amber));
+  width: var(--boot-progress, 0%);
+  transition: width 320ms var(--primitive-ease-out);
+}
+
+.bootMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.bootStep {
+  color: var(--primitive-teal);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid var(--primitive-line);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.version {
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes ssBoot {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05) translateY(0);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes ssHalo {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo,
+  .logo::after,
+  .bootFill {
+    animation: none;
+    transition: none;
+  }
+}

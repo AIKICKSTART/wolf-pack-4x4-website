@@ -1,0 +1,68 @@
+.cluster {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-5) 18px var(--primitive-space-4);
+  background:
+    linear-gradient(180deg, var(--primitive-surface-3), transparent 60%),
+    var(--primitive-panel);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+.cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: var(--primitive-space-1-5) var(--primitive-space-0) var(--primitive-space-0-5);
+  border-radius: 10px;
+  transition: background var(--dur, 200ms) ease;
+}
+
+/* Designed hover: the touched gauge gets a soft surface so it reads as active. */
+.cell:hover {
+  background: var(--primitive-surface-3);
+}
+
+.cell::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -6px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primitive-line) 22%, var(--primitive-line) 78%, transparent);
+}
+
+.scale {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  text-align: center;
+  padding-top: var(--primitive-space-1-5);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    transition: none;
+  }
+}

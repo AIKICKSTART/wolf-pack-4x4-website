@@ -1,0 +1,115 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-control-surface);
+  box-shadow: var(--primitive-surface-shadow);
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: var(--primitive-space-0);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.rules {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.rule {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-3) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-field-bg);
+}
+
+.ruleArmed {
+  border-color: color-mix(in srgb, var(--primitive-amber) 60%, var(--primitive-line));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-amber) 10%, transparent), transparent 70%),
+    var(--primitive-field-bg);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.dotArmed {
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primitive-amber) 32%, transparent);
+}
+
+.dotTriggered {
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primitive-red) 32%, transparent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dotTriggered {
+    animation: none;
+  }
+}
+
+.ruleBody {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.ruleTitle {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.ruleDetail {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+}
+
+.ruleStatus {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  white-space: nowrap;
+}
+
+.ruleStatusArmed { color: var(--primitive-amber); }
+.ruleStatusTriggered { color: var(--primitive-red); }
+.ruleStatusOff { color: var(--primitive-muted); }

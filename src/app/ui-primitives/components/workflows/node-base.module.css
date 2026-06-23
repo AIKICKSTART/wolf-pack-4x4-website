@@ -1,0 +1,221 @@
+/* Shared visual chassis for workflow node primitives. */
+
+.node {
+  --node-accent: var(--primitive-amber);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-amber) 35%, transparent);
+
+  position: absolute;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 196px;
+  max-width: 240px;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    radial-gradient(ellipse at 0% 0%, var(--node-accent-soft), transparent 60%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 14px 28px color-mix(in oklab, var(--primitive-canvas) 50%, transparent),
+    0 0 0 1px var(--node-accent-soft);
+  font-family: var(--primitive-font-body);
+  transform: translate(-50%, -50%);
+  isolation: isolate;
+}
+
+.node::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--node-accent-glow), transparent 55%) border-box;
+  -webkit-mask:
+    linear-gradient(var(--primitive-text-strong) 0 0) padding-box,
+    linear-gradient(var(--primitive-text-strong) 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.iconBadge {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  color: var(--node-accent);
+  background: var(--node-accent-soft);
+  border: 1px solid var(--node-accent-glow);
+}
+
+.iconBadge svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--node-accent);
+  box-shadow: 0 0 6px var(--node-accent-glow);
+  align-self: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  line-height: 1.3;
+  letter-spacing: 0.005em;
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+}
+
+.port {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primitive-canvas);
+  border: 2px solid var(--node-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-canvas) 45%, transparent);
+  z-index: 2;
+}
+
+.portLeft {
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.portRight {
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.portTop {
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.portBottom {
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.portLabel {
+  position: absolute;
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.portLabelTop {
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.portLabelBottom {
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.portLabelLeft {
+  left: -8px;
+  top: 50%;
+  transform: translate(-100%, -50%);
+}
+
+.portLabelRight {
+  right: -8px;
+  top: 50%;
+  transform: translate(100%, -50%);
+}
+
+/* Tones */
+.toneAmber {
+  --node-accent: var(--primitive-amber);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.toneTeal {
+  --node-accent: var(--primitive-teal);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+.toneGreen {
+  --node-accent: var(--primitive-green);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+}
+
+.toneRed {
+  --node-accent: var(--primitive-red);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.toneNeutral {
+  --node-accent: color-mix(in oklab, var(--primitive-text-strong) 70%, transparent);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+/* Special shapes */
+.diamond {
+  border-radius: 18px;
+  transform: translate(-50%, -50%);
+}
+
+.diamond::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--node-accent-soft), transparent 55%);
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.6;
+}

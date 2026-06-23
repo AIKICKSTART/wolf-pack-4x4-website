@@ -1,0 +1,279 @@
+.rail {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100svh;
+  width: 320px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 16px;
+  padding: 22px;
+  border-left: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  color: var(--primitive-body);
+}
+
+.railStatic {
+  position: static;
+  height: auto;
+  min-height: 540px;
+}
+
+.headerBlock {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 0.94;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.metaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.metaChip svg {
+  width: 11px;
+  height: 11px;
+  color: var(--primitive-muted);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.statTile {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.4%, transparent)),
+    color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.statTile:hover {
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-2px);
+}
+
+.statTile span {
+  font-family: var(--primitive-font-mono);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statTile strong {
+  font-family: var(--primitive-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 0.94;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+}
+
+.statTile svg {
+  color: var(--primitive-amber);
+  width: var(--primitive-icon-md);
+  height: var(--primitive-icon-md);
+  justify-self: end;
+}
+
+.body {
+  overflow-y: auto;
+  display: grid;
+  gap: 12px;
+}
+
+.section h4 {
+  margin: 0 0 8px;
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.relatedList {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.relatedList a {
+  display: grid;
+  grid-template-columns: 16px 1fr 12px;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: var(--primitive-body);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.relatedList a:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.relatedList a:focus-visible {
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: -2px;
+}
+
+.relatedList svg {
+  width: var(--primitive-icon-md);
+  height: var(--primitive-icon-md);
+  color: var(--primitive-amber);
+}
+
+.relatedList .chev {
+  color: var(--primitive-muted);
+}
+
+.actions {
+  display: grid;
+  gap: 8px;
+}
+
+.actionPrimary,
+.actionSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.actionPrimary:focus-visible,
+.actionSecondary:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.actionPrimary {
+  color: var(--primitive-text-on-accent);
+  background:
+    radial-gradient(circle at 30% 0%, color-mix(in oklab, var(--primitive-red) 58%, var(--primitive-text-on-accent)), transparent 38%),
+    linear-gradient(180deg, var(--primitive-red), var(--primitive-red-dark));
+  box-shadow: 0 14px 28px color-mix(in oklab, var(--primitive-red) 36%, transparent);
+}
+
+.actionPrimary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 36px color-mix(in oklab, var(--primitive-red) 46%, transparent);
+}
+
+.actionPrimary:active {
+  transform: translateY(0);
+}
+
+.actionSecondary {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.actionSecondary:hover,
+.actionSecondary:focus-visible {
+  background: color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statTile,
+  .actionPrimary,
+  .actionSecondary {
+    transition: none;
+  }
+  .statTile:hover,
+  .actionPrimary:hover,
+  .actionPrimary:active {
+    transform: none;
+  }
+}
+
+:global(html[data-primitive-theme="light"]) .rail {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 86%, transparent), color-mix(in oklab, var(--primitive-canvas) 70%, transparent)),
+    color-mix(in oklab, var(--primitive-text-on-accent) 60%, transparent);
+  color: var(--primitive-body);
+}
+
+:global(html[data-primitive-theme="light"]) .title,
+:global(html[data-primitive-theme="light"]) .statTile strong {
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .actionSecondary {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .relatedList a:hover,
+:global(html[data-primitive-theme="light"]) .relatedList a:focus-visible {
+  background: color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+  color: var(--primitive-text-strong);
+}

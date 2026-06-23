@@ -1,0 +1,196 @@
+.host {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 18px 18px 6px;
+  pointer-events: none;
+}
+
+.island {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 10px 14px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  background:
+    radial-gradient(circle at 16% 0%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 50%),
+    radial-gradient(circle at 86% 100%, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  backdrop-filter: blur(28px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 16%, transparent),
+    0 24px 56px color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.brand {
+  display: inline-grid;
+  grid-template-columns: 28px minmax(0, auto);
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.brand img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: contain;
+  padding: 3px;
+  background: color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+}
+
+.brandWordmark {
+  font-family: var(--primitive-font-display);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: color-mix(in oklab, var(--primitive-text-strong) 78%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.navLink:hover {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+}
+
+.navLink:focus-visible {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.navLink[aria-current="page"] {
+  color: var(--primitive-text-on-accent);
+  background: linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 36%, transparent), color-mix(in oklab, var(--primitive-red-dark) 40%, transparent));
+}
+
+.navLink svg {
+  width: var(--primitive-icon-xs);
+  height: var(--primitive-icon-xs);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 32%, transparent), transparent 50%),
+    linear-gradient(135deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 12px 28px color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px color-mix(in oklab, var(--primitive-red) 50%, transparent);
+}
+
+.cta:active {
+  transform: translateY(0);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.cta svg {
+  width: var(--primitive-icon-xs);
+  height: var(--primitive-icon-xs);
+}
+
+@media (max-width: 760px) {
+  .island {
+    grid-template-columns: 1fr auto;
+    gap: 6px;
+  }
+  .nav {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navLink,
+  .cta {
+    transition: none;
+  }
+  .cta:hover,
+  .cta:active {
+    transform: none;
+  }
+}
+
+:global(html[data-primitive-theme="light"]) .island {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  background:
+    radial-gradient(circle at 16% 0%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 50%),
+    radial-gradient(circle at 86% 100%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-text-on-accent) 86%, transparent);
+  color: var(--primitive-text-strong);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-on-accent) 96%, transparent),
+    0 24px 48px color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .brandWordmark {
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .navLink {
+  color: color-mix(in oklab, var(--primitive-text-strong) 70%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .navLink:hover,
+:global(html[data-primitive-theme="light"]) .navLink:focus-visible {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}

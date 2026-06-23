@@ -1,0 +1,52 @@
+# Email Draft 3: SWD
+
+To: sales@swd.com.au
+
+Phone: 1300 669 122
+
+Subject: Product image export request for Oak Flats Muffler Men catalogue - SWD
+
+Attachment: `data\parts\supplier-media-requests\outgoing\2026-05-18-swd-media-request.zip`
+
+Contact source: https://swd.com.au/pages/about-us
+
+## Body
+
+```text
+Hi SWD team,
+
+We are preparing the Oak Flats Muffler Men online parts catalogue and need real product images for the attached rows.
+
+Please start with the 41 P1 rows because they are launch-blocking.
+
+Current request split:
+
+- P1 launch-blocking rows: 41
+- P2 image request rows: 84
+- P3 exception-review rows: 59
+- Total rows in this supplier request: 184
+
+Image requirements:
+
+- Send one clean product image per row where possible.
+- Use transparent PNG where available. Clean product-only JPG, PNG or WebP files are also accepted.
+- Avoid watermarks, lifestyle-only photos, logos, favicons and placeholder images.
+- Minimum 900 px on the longest edge is preferred if available.
+- Name files by SKU or Source UID so the import can match them automatically.
+
+Best filenames:
+
+- SKU.png
+- SourceUID.png
+
+If a product genuinely has no image available, please mark that row as no image available in the CSV and return it with the image export.
+
+Requested files are included in the ZIP attachment:
+
+- swd-p1.csv for P1 rows
+- swd-all.csv for all missing-media rows
+- swd-request.md for the full request notes
+
+Thanks,
+Oak Flats Muffler Men
+```

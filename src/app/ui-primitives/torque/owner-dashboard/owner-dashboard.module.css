@@ -1,0 +1,434 @@
+/* Owner business command centre — bespoke chrome composed from primitive tokens.
+   Greeting card, Torque avatar, quick-action grid, channel rows, section frames.
+   Light + dark parity via --primitive-* tokens; motion is opacity/transform only. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Greeting / hero band ------------------------------------------------ */
+
+.greeting {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: clamp(18px, 2.4vw, 32px);
+  align-items: center;
+  padding: clamp(20px, 2.6vw, 32px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 58%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.greeting::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  opacity: 0.6;
+}
+
+.greetingMain {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.greetingHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--primitive-text-on-accent) 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 26px color-mix(in oklab, var(--primitive-red) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.torqueId {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.torqueName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.torqueRole {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+.greetingTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3.4vw, 42px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.greetingTitle em {
+  font-style: normal;
+  color: var(--primitive-red);
+}
+
+.greetingCopy {
+  margin: 0;
+  max-width: 56ch;
+  font-size: var(--primitive-text-base);
+  line-height: 1.6;
+  color: var(--primitive-body);
+}
+
+.greetingMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2) 18px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaDot {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.metaDot::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+/* ---- Quick actions ------------------------------------------------------- */
+
+.quickPanel {
+  display: grid;
+  gap: var(--primitive-space-3);
+  align-content: start;
+  min-width: 0;
+}
+
+.quickHead {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.quickGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.quickAction {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--primitive-space-2-5);
+  align-items: start;
+  padding: 13px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 13px;
+  background: var(--primitive-surface-3);
+  color: var(--primitive-body);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 220ms var(--primitive-ease-out),
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.quickAction:hover,
+.quickAction:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--accent-tone);
+  box-shadow: 0 16px 32px color-mix(in oklab, var(--primitive-shadow-outline) 67%, transparent);
+  outline: none;
+}
+
+.quickAction:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.quickGlyph {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: color-mix(in oklab, var(--accent-tone) 18%, transparent);
+  color: var(--accent-tone);
+  font-size: var(--primitive-text-base);
+  line-height: 1;
+}
+
+.quickText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.quickTitle {
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.quickHint {
+  font-size: var(--primitive-text-xs);
+  line-height: 1.4;
+  color: var(--primitive-muted);
+}
+
+.toneRed {
+  --accent-tone: var(--primitive-red);
+}
+.toneAmber {
+  --accent-tone: var(--primitive-amber);
+}
+.toneTeal {
+  --accent-tone: var(--primitive-teal);
+}
+.toneGreen {
+  --accent-tone: var(--primitive-green);
+}
+
+/* ---- Tile inner content -------------------------------------------------- */
+
+.kpiSpark {
+  margin-top: var(--primitive-space-2-5);
+}
+
+.figures {
+  font-variant-numeric: tabular-nums;
+}
+
+.chartFrame {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.tileNote {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  line-height: 1.5;
+  color: var(--primitive-muted);
+}
+
+/* Channel / SEO rows */
+.channelList {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.channelRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: 11px var(--primitive-space-1);
+  border-bottom: 1px solid var(--primitive-line-muted);
+}
+
+.channelRow:last-child {
+  border-bottom: 0;
+}
+
+.channelText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.channelName {
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.channelDetail {
+  font-size: var(--primitive-text-xs);
+  line-height: 1.4;
+  color: var(--primitive-muted);
+}
+
+/* Job board status pill colours via badge tones (reuse StatusBadge). */
+.jobValue {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.jobVehicle {
+  display: grid;
+  gap: 1px;
+}
+
+.jobVehicleName {
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.jobRego {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.08em;
+  color: var(--primitive-muted);
+}
+
+.jobMono {
+  font-family: var(--primitive-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+}
+
+/* ---- Layout regions ------------------------------------------------------ */
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.feedFrame {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.feedHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.feedKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.feedTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.feedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.feedBadge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primitive-teal);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .greeting {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .quickGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quickAction {
+    transition: none;
+  }
+  .quickAction:hover,
+  .quickAction:focus-visible {
+    transform: none;
+  }
+}

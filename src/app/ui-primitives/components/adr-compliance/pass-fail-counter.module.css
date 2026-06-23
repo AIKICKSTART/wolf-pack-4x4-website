@@ -1,0 +1,90 @@
+.panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-5);
+  padding: var(--primitive-space-5);
+  border-radius: var(--primitive-radius-xl);
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent) 60%),
+    color-mix(in oklab, var(--primitive-panel-strong) 92%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 22px 60px color-mix(in oklab, var(--primitive-recessed) 100%, transparent);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  color: var(--primitive-text-strong);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-4);
+  align-content: start;
+}
+
+.meter {
+  display: grid;
+  place-items: center;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  padding-top: var(--primitive-space-3);
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border: 1px solid var(--primitive-line);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.swatch::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--swatch-color, var(--primitive-teal));
+}
+
+.swatchPass::before { --swatch-color: var(--primitive-green); }
+.swatchFail::before { --swatch-color: var(--primitive-red); }
+
+@media (max-width: 720px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+  .meter {
+    justify-self: start;
+  }
+}

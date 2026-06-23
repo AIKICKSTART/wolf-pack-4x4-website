@@ -1,0 +1,226 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-green) 10%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr 96px;
+  gap: 14px;
+}
+
+@media (max-width: 540px) {
+  .kpis {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kpi {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 55%, transparent);
+}
+
+.kpiLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.kpiValue {
+  font-family: var(--primitive-font-display, sans-serif);
+  font-size: 32px;
+  line-height: var(--primitive-leading-none);
+  color: var(--primitive-text-strong);
+}
+
+.kpiHint {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.kpiTrend {
+  display: inline-flex;
+  align-self: start;
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.gauge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 55%, transparent);
+  width: 96px;
+  height: 96px;
+}
+
+.gaugeSvg {
+  width: 80px;
+  height: 80px;
+}
+
+.gaugeBody {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0;
+  text-align: center;
+}
+
+.gaugeValue {
+  font-family: var(--primitive-font-display, sans-serif);
+  font-size: var(--primitive-h4);
+  line-height: var(--primitive-leading-none);
+  color: var(--primitive-text-strong);
+}
+
+.gaugeLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 8px;
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.chart {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.chartHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+}
+
+.chartTitle {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.chartHint {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 140px 1fr 44px;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+.barLabel {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.barTrack {
+  position: relative;
+  height: var(--primitive-space-2-5);
+  border-radius: 5px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  overflow: hidden;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+  transition: width var(--primitive-duration-normal) ease;
+}
+
+.barFillHigh {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primitive-green) 55%, transparent), var(--primitive-green));
+}
+
+.barFillMid {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primitive-amber) 55%, transparent), var(--primitive-amber));
+}
+
+.barFillLow {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 55%, transparent), var(--primitive-red));
+}
+
+.barValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-muted);
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barFill {
+    transition: none;
+  }
+}

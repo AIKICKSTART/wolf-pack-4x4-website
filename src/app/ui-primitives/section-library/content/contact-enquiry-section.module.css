@@ -1,0 +1,100 @@
+/* Contact / enquiry section — local styles. Token-driven only. */
+
+.points {
+  display: grid;
+  gap: var(--primitive-space-3);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.point {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-card-bg);
+}
+
+.pointLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.pointValue {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-medium);
+  line-height: var(--primitive-leading-snug);
+  text-decoration: none;
+}
+
+a.pointValue {
+  transition: color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+a.pointValue:hover,
+a.pointValue:focus-visible {
+  color: var(--primitive-amber);
+  outline: none;
+}
+
+a.pointValue:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--primitive-radius-xs);
+}
+
+.formCard {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 40%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.formTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-tight);
+  text-transform: uppercase;
+}
+
+.formHint {
+  margin: 0;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+}
+
+@media (max-width: 1024px) {
+  .points {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .points {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .formCard {
+    padding: var(--primitive-space-4);
+  }
+}

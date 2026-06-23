@@ -1,0 +1,220 @@
+.wrap {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.armButton {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  padding: 18px 22px;
+  /* shared primary button DNA — metallic-red paint + clearcoat shadow.
+     Destructive arm trigger layers an extra red glow-ring on top of the
+     central button shadow for emphasis, but the body, radius and sheen
+     all come from the one button system. */
+  border: 1px solid transparent;
+  border-radius: var(--primitive-btn-radius);
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow:
+    var(--primitive-btn-primary-shadow),
+    0 0 0 4px color-mix(in oklab, var(--primitive-red) 16%, transparent),
+    0 0 32px color-mix(in oklab, var(--primitive-red) 24%, transparent);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--primitive-font-display);
+  font-size: 24px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0;
+  text-transform: uppercase;
+  line-height: 1.04;
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, color 200ms ease;
+}
+
+.armButton:hover {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow:
+    var(--primitive-btn-primary-hover-shadow),
+    0 0 0 4px color-mix(in oklab, var(--primitive-red) 24%, transparent),
+    0 0 42px color-mix(in oklab, var(--primitive-red) 34%, transparent);
+}
+
+.armButton:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 4px;
+  box-shadow: var(--primitive-focus-shadow), var(--primitive-btn-primary-shadow);
+}
+
+.armGlyph {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-recessed);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+  font-size: var(--primitive-text-xl);
+  color: var(--primitive-text-strong);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--primitive-red) 70%, transparent);
+}
+
+.armSub {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 72%, transparent);
+}
+
+.armed {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 100% 100%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-red-dark) 28%, var(--primitive-panel));
+  /* shared neumorphic + deep-drop surface DNA, plus a destructive red ring */
+  box-shadow:
+    var(--primitive-shadow-inset),
+    0 0 0 4px color-mix(in oklab, var(--primitive-red) 18%, transparent),
+    var(--primitive-shadow-deep);
+  color: var(--primitive-body);
+}
+
+.armedHeading {
+  margin: var(--primitive-space-0);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  color: var(--primitive-red);
+  letter-spacing: 0.005em;
+}
+
+.armedHint {
+  margin: var(--primitive-space-0);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+  max-width: 60ch;
+}
+
+.confirmLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.requiredPhrase {
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 34%, transparent);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-text-strong);
+}
+
+.confirmInput {
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.confirmInput:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.confirmInputMatch {
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+}
+
+.actions {
+  display: flex;
+  gap: var(--primitive-space-2-5);
+}
+
+.actionCancel {
+  flex: 1 0 auto;
+  height: 42px;
+  padding: var(--primitive-space-0) var(--primitive-space-4);
+  /* shared secondary/ghost button DNA — carbon body */
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.actionConfirm {
+  flex: 2 0 auto;
+  height: 42px;
+  padding: 0 18px;
+  /* shared primary button DNA — destructive intent keeps the metallic-red
+     paint, otherwise follows the central button shape/shadow/hover system */
+  border: 1px solid transparent;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: opacity 160ms ease, transform 160ms ease, background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.actionConfirm:disabled {
+  opacity: 0.36;
+  cursor: not-allowed;
+}
+
+.actionConfirm:not(:disabled):hover {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.actionCancel:focus-visible,
+.actionConfirm:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .armButton,
+  .actionConfirm {
+    transition: none;
+  }
+}

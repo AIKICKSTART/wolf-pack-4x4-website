@@ -1,0 +1,136 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2) var(--primitive-space-1) var(--primitive-space-1-5);
+  border: 1px solid var(--chip-line, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--chip-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--chip-fg, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+  user-select: none;
+}
+
+.chip:hover,
+.chip:focus-visible {
+  border-color: var(--chip-line-strong, color-mix(in oklab, var(--primitive-text-strong) 36%, transparent));
+  background: var(--chip-bg-hover, color-mix(in oklab, var(--primitive-text-strong) 8%, transparent));
+  color: var(--chip-fg-strong, var(--primitive-text-strong));
+  outline: none;
+}
+
+.icon {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--chip-icon-bg, color-mix(in oklab, var(--primitive-text-strong) 8%, transparent));
+  color: var(--chip-fg);
+}
+
+.label {
+  letter-spacing: 0.12em;
+}
+
+.tone-bearer {
+  --chip-line: color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+  --chip-line-strong: color-mix(in oklab, var(--primitive-amber) 85%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  --chip-bg-hover: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --chip-fg: var(--primitive-amber);
+  --chip-fg-strong: color-mix(in oklab, var(--primitive-amber) 22%, var(--primitive-text-strong));
+  --chip-icon-bg: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+}
+
+.tone-basic {
+  --chip-line: color-mix(in oklab, var(--primitive-text-strong) 28%, transparent);
+  --chip-line-strong: color-mix(in oklab, var(--primitive-text-strong) 55%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --chip-bg-hover: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  --chip-fg: var(--primitive-body);
+  --chip-fg-strong: var(--primitive-text-strong);
+  --chip-icon-bg: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.tone-api-key {
+  --chip-line: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  --chip-line-strong: color-mix(in oklab, var(--primitive-teal) 85%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --chip-bg-hover: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --chip-fg: var(--primitive-teal);
+  --chip-fg-strong: color-mix(in oklab, var(--primitive-teal) 18%, var(--primitive-text-strong));
+  --chip-icon-bg: color-mix(in oklab, var(--primitive-teal) 20%, transparent);
+}
+
+.tone-mtls {
+  --chip-line: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  --chip-line-strong: color-mix(in oklab, var(--primitive-red) 90%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  --chip-bg-hover: color-mix(in oklab, var(--primitive-red) 20%, transparent);
+  --chip-fg: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-text-strong));
+  --chip-fg-strong: var(--primitive-text-strong);
+  --chip-icon-bg: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+}
+
+.tone-oidc {
+  --chip-line: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  --chip-line-strong: color-mix(in oklab, var(--primitive-green) 85%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  --chip-bg-hover: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  --chip-fg: var(--primitive-green);
+  --chip-fg-strong: color-mix(in oklab, var(--primitive-green) 18%, var(--primitive-text-strong));
+  --chip-icon-bg: color-mix(in oklab, var(--primitive-green) 20%, transparent);
+}
+
+.popover {
+  min-width: 320px;
+}
+
+.popoverInner {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-3) var(--primitive-space-4);
+}
+
+.popoverKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.signature {
+  display: block;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-shadow-outline) 95.2381%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.02em;
+  word-break: break-all;
+}
+
+.popoverFoot {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
+}

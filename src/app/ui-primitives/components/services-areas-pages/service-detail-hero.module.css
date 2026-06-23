@@ -1,0 +1,113 @@
+.hero {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.cover {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-teal) 12%, transparent), color-mix(in oklab, var(--primitive-amber) 8%, transparent) 60%, color-mix(in oklab, var(--primitive-red) 10%, transparent)),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 14px,
+      color-mix(in oklab, var(--primitive-text-strong) 3%, transparent) 14px 15px
+    ),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cover::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed var(--primitive-line-strong);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.coverLabel {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  text-align: center;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  text-transform: uppercase;
+}
+
+.coverLabel small {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  color: var(--primitive-amber);
+}
+
+.coverLabel strong {
+  font-size: var(--primitive-text-2xl);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.coverLabel em {
+  font-family: var(--primitive-font-mono);
+  font-style: normal;
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  color: var(--primitive-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  padding-left: clamp(8px, 1.6vw, 18px);
+}
+
+.secondaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 11px var(--primitive-space-4);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    transform var(--primitive-duration-normal) var(--primitive-ease-out),
+    border-color var(--primitive-duration-normal) var(--primitive-ease-out),
+    background var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.secondaryCta:hover,
+.secondaryCta:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-surface-hover);
+  outline: none;
+}
+
+.secondaryCta:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .secondaryCta {
+    transition: none;
+  }
+  .secondaryCta:hover,
+  .secondaryCta:focus-visible {
+    transform: none;
+  }
+}

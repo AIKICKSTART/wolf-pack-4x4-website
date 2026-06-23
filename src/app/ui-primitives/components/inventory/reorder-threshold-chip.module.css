@@ -1,0 +1,35 @@
+.wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  isolation: isolate;
+}
+
+.bubble {
+  position: absolute;
+  top: calc(100% + var(--primitive-space-2-5));
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  max-width: 280px;
+  transition:
+    opacity var(--primitive-duration-fast) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.bubble[data-open="true"] {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble {
+    transition: none;
+    transform: translateX(-50%);
+  }
+  .bubble[data-open="true"] {
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,217 @@
+.tile {
+  --fp-teal: var(--primitive-teal);
+  --fp-amber: var(--primitive-amber);
+  --fp-green: var(--primitive-green);
+  --fp-red: var(--primitive-red);
+
+  position: relative;
+  display: grid;
+  gap: 14px;
+  padding: clamp(16px, 2vw, 20px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--fp-teal) 8%, transparent), transparent 55%),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-glass-strong),
+    var(--primitive-shadow-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  min-width: 300px;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* faint baseline grid — anchors the bars as a chart surface */
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--primitive-texture-stroke) 0 1px,
+    transparent 1px 56px
+  );
+  opacity: 0.6;
+  mask-image: linear-gradient(180deg, transparent, var(--primitive-text-strong) 22%, var(--primitive-text-strong) 86%, transparent);
+}
+
+.tile > * {
+  position: relative;
+  z-index: 1;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  padding-bottom: var(--primitive-space-3);
+  border-bottom: 1px dashed var(--primitive-line);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  display: block;
+  margin-bottom: var(--primitive-space-1);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(16px, 2.2vw, 18px);
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: -0.01em;
+}
+
+.startedTotal {
+  text-align: right;
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.startedValue {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(24px, 4.4vw, 30px);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+}
+
+.startedLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.stages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.stageRow {
+  display: grid;
+  grid-template-columns: 92px 1fr 90px 60px;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+@media (max-width: 580px) {
+  .stageRow {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "label"
+      "bar"
+      "meta";
+  }
+  .stageLabel { grid-area: label; }
+  .stageBarWrap { grid-area: bar; }
+  .stageCount { grid-area: meta; text-align: left; }
+  .stagePct { grid-area: meta; text-align: right; }
+}
+
+.stageLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.stageBarWrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 12px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-meter-track);
+  border: 1px solid var(--primitive-line);
+  box-shadow: inset 0 1px 2px var(--primitive-shadow-outline);
+  overflow: hidden;
+}
+
+.stageBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: var(--primitive-radius-pill);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 28%, transparent);
+  transition: width 320ms var(--primitive-ease-out);
+}
+
+/* leading-edge cap that reads as the live data head */
+.stageBar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 78%, transparent);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primitive-text-strong) 45%, transparent);
+}
+
+.stageBarStarted { background: linear-gradient(90deg, var(--fp-teal), color-mix(in oklab, var(--fp-teal) 64%, white)); }
+.stageBarHalfway { background: linear-gradient(90deg, var(--fp-amber), color-mix(in oklab, var(--fp-amber) 72%, white)); }
+.stageBarSubmitted { background: linear-gradient(90deg, var(--fp-green), color-mix(in oklab, var(--fp-green) 60%, white)); }
+.stageBarAbandoned { background: linear-gradient(90deg, var(--fp-red), color-mix(in oklab, var(--fp-red) 58%, white)); }
+
+.stageCount {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.stagePct {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  padding-top: var(--primitive-space-3);
+  border-top: 1px dashed var(--primitive-line);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.footerStrong {
+  color: var(--fp-green);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stageBar {
+    transition: none;
+  }
+}

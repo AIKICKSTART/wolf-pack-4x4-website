@@ -1,0 +1,39 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.rotor { transform-origin: 11.5px 12px; }
+.outer { stroke: currentColor; fill: none; stroke-width: 1.4; }
+.outerFill { fill: currentColor; opacity: 0.1; }
+.frictionRing { stroke: currentColor; fill: none; stroke-width: 1.2; opacity: 0.7; }
+.inner { stroke: currentColor; fill: none; stroke-width: 1.1; opacity: 0.65; }
+.hub { fill: currentColor; opacity: 0.95; }
+.lug { fill: var(--primitive-canvas); stroke: currentColor; stroke-width: 0.45; }
+.ventHole { fill: var(--primitive-canvas); stroke: currentColor; stroke-width: 0.5; opacity: 0.8; }
+.vent { stroke: currentColor; stroke-width: 0.9; opacity: 0.55; }
+.caliper { fill: currentColor; opacity: 0.9; stroke: currentColor; stroke-width: 1; stroke-linejoin: round; }
+.caliperPad { fill: var(--primitive-canvas); }
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate .rotor { animation: iconRotate 2.4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .outer, .motionDraw .inner, .motionDraw .frictionRing { stroke-dasharray: 60; stroke-dashoffset: 60; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .rotor { animation: iconRotate 0.5s linear infinite; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .outerFill,
+[data-variant="outline"] .caliper { fill: transparent; opacity: 1; }
+[data-variant="outline"] .ventHole { fill: transparent; opacity: 1; }
+[data-variant="outline"] .lug { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .outerFill { opacity: 0.5; }
+[data-variant="filled"] .frictionRing { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .rotor { animation: none !important; transition: none !important; }
+}

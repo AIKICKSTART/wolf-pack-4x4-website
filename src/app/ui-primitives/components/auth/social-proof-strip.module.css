@@ -1,0 +1,51 @@
+/* Social proof strip — tiny trust marks row for auth-side */
+
+.strip {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px var(--primitive-space-6);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-body);
+  opacity: 0.78;
+  transition: opacity 220ms ease, color 220ms ease;
+}
+
+.mark:hover {
+  opacity: 1;
+  color: var(--primitive-text-strong);
+}
+
+.markIcon {
+  display: inline-grid;
+  place-items: center;
+  width: var(--primitive-icon-lg);
+  height: var(--primitive-icon-lg);
+  color: currentColor;
+}

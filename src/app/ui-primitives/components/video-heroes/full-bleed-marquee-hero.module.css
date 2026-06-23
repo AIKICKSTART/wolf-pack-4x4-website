@@ -1,0 +1,198 @@
+/* =========================================================
+   FULL BLEED MARQUEE HERO — video bg + bottom marquee strip
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 86svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 30%, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 56%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-text-strong);
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-teal) 22%, transparent), transparent 38%),
+    radial-gradient(circle at 78% 64%, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 42%);
+  mix-blend-mode: screen;
+}
+
+.darken {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, black 36%, transparent) 0%, color-mix(in oklab, black 12%, transparent) 36%, color-mix(in oklab, black 78%, transparent) 100%);
+}
+
+.dashedRing {
+  position: absolute;
+  z-index: 3;
+  top: 12%;
+  right: 8%;
+  width: 280px;
+  height: 280px;
+  border: 1px dashed color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  pointer-events: none;
+  animation: ringSpin 32s linear infinite;
+}
+.dashedRing::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  border-radius: var(--primitive-radius-pill);
+}
+
+@keyframes ringSpin {
+  to { transform: rotate(360deg); }
+}
+
+.content {
+  position: relative;
+  z-index: 4;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  gap: 20px;
+  text-align: center;
+  max-width: 880px;
+  padding: 0 clamp(24px, 5vw, 64px);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 1rem + 7vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 4px 32px color-mix(in oklab, black 65%, transparent);
+}
+
+.subhead {
+  font-size: 17px;
+  line-height: var(--primitive-leading-normal);
+  color: color-mix(in oklab, var(--primitive-text-strong) 78%, transparent);
+  margin: 0 auto;
+  max-width: 56ch;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  margin: 8px auto 0;
+  padding: 14px 26px;
+  background: var(--primitive-btn-primary-bg);
+  border: 1px solid transparent;
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-radius-pill);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: background 220ms, border-color 220ms,
+    transform 220ms var(--primitive-ease-out), box-shadow 220ms;
+}
+.cta:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+.cta:active {
+  transform: translateY(0);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 4px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.ctaDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-amber);
+  box-shadow: 0 0 14px var(--primitive-amber);
+  animation: ctaDotPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes ctaDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.6); }
+}
+
+.marqueeStrip {
+  position: relative;
+  z-index: 5;
+  padding: 18px 0;
+  background:
+    linear-gradient(180deg, transparent, color-mix(in oklab, black 40%, transparent) 36%, var(--primitive-red) 100%);
+  border-top: 1px solid color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.marqueeItem {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--primitive-font-display);
+  font-size: 36px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-text-on-accent);
+  white-space: nowrap;
+}
+
+.marqueeSeparator {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 28px;
+  color: var(--primitive-amber);
+  font-size: 18px;
+}
+
+@media (max-width: 720px) {
+  .dashedRing { width: 180px; height: 180px; top: auto; bottom: 30%; right: -40px; opacity: 0.6; }
+  .marqueeItem { font-size: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video { display: none; }
+  .dashedRing,
+  .ctaDot { animation: none; }
+  .cta { transition: none; }
+}

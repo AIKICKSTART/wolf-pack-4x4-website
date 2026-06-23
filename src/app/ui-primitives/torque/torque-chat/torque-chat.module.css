@@ -1,0 +1,289 @@
+.page {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px) var(--primitive-space-14);
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 84% 0%, color-mix(in oklab, var(--primitive-amber) 14%, transparent), transparent 36%),
+    radial-gradient(circle at 8% 100%, color-mix(in oklab, var(--primitive-teal) 14%, transparent), transparent 40%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+.canvas {
+  width: min(100%, 1080px);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--primitive-space-6);
+}
+
+.scene {
+  display: grid;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+}
+
+/* ---- Conversation header ------------------------------------------------ */
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-4);
+  padding: 18px var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 42%),
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, white 0.8%, transparent)),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 6%, transparent),
+    0 22px 56px color-mix(in oklab, black 26%, transparent);
+  font-family: var(--primitive-font-body);
+}
+
+/* Placeholder circular Torque avatar — real mascot lands later. */
+.avatar {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.01em;
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in oklab, white 42%, transparent), transparent 46%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-red) 35%, white),
+    0 12px 26px color-mix(in oklab, var(--primitive-red-dark) 45%, transparent);
+}
+
+.avatar::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--primitive-radius-pill);
+  background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-green) 60%, white), var(--primitive-green) 55%, color-mix(in oklab, var(--primitive-green) 70%, black) 100%);
+  border: 2px solid var(--primitive-canvas);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primitive-green) 60%, transparent);
+}
+
+.avatarInitial {
+  position: relative;
+  z-index: 1;
+  transform: translateY(1px);
+}
+
+.headMeta {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-green);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primitive-green) 70%, transparent);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.004em;
+  line-height: 1.04;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--primitive-muted);
+  font-size: 12.5px;
+  line-height: var(--primitive-leading-normal);
+}
+
+.headTools {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+/* ---- Thread + composer -------------------------------------------------- */
+
+.thread {
+  min-height: 440px;
+  max-height: 620px;
+}
+
+.bubbleCopy {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.bubbleCopy p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.bubbleCopy ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  line-height: var(--primitive-leading-normal);
+}
+
+/* Draft preview card nested inside a Torque proposal turn. */
+.draftCard {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-left: 3px solid var(--primitive-amber);
+  border-radius: 0 var(--primitive-radius-lg) var(--primitive-radius-lg) 0;
+  background: color-mix(in oklab, white 2.5%, transparent);
+}
+
+.draftLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.draftChannel {
+  color: var(--primitive-muted);
+  letter-spacing: 0.12em;
+}
+
+.draftTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-base);
+  font-weight: var(--primitive-weight-bold);
+  line-height: 1.3;
+}
+
+.draftBody {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.draftMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5) 14px;
+  margin-top: var(--primitive-space-0-5);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+}
+
+.draftMeta b {
+  color: var(--primitive-body);
+  font-weight: var(--primitive-weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin-top: var(--primitive-space-0-5);
+}
+
+.tag {
+  padding: 2px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, white 4%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.02em;
+}
+
+.composerStack {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.note {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border-left: 2px solid var(--primitive-red);
+  border-radius: 0 var(--primitive-radius-lg) var(--primitive-radius-lg) 0;
+  background: color-mix(in oklab, white 2.2%, transparent);
+}
+
+.noteLabel {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.note p {
+  margin: 0;
+  max-width: 72ch;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+@media (max-width: 680px) {
+  .headTools {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar,
+  .statusDot,
+  .avatar::after {
+    animation: none;
+  }
+}

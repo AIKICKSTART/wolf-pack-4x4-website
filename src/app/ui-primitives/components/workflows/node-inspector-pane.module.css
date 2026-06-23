@@ -1,0 +1,262 @@
+.pane {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 18px;
+  padding: 18px;
+  width: 320px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.header {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.kindChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--inspector-tone, color-mix(in oklab, var(--primitive-teal) 40%, transparent));
+  background: var(--inspector-tone-soft, color-mix(in oklab, var(--primitive-teal) 12%, transparent));
+  color: var(--inspector-tone-ink, color-mix(in oklab, var(--primitive-teal) 35%, var(--primitive-text-strong)));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  width: max-content;
+}
+
+.kindChipAmber {
+  --inspector-tone: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  --inspector-tone-soft: color-mix(in oklab, var(--primitive-amber) 14%, transparent);
+  --inspector-tone-ink: color-mix(in oklab, var(--primitive-amber) 30%, var(--primitive-text-strong));
+}
+
+.kindChipTeal {
+  --inspector-tone: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  --inspector-tone-soft: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  --inspector-tone-ink: color-mix(in oklab, var(--primitive-teal) 35%, var(--primitive-text-strong));
+}
+
+.kindChipGreen {
+  --inspector-tone: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --inspector-tone-soft: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+  --inspector-tone-ink: color-mix(in oklab, var(--primitive-green) 30%, var(--primitive-text-strong));
+}
+
+.kindChipRed {
+  --inspector-tone: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --inspector-tone-soft: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  --inspector-tone-ink: color-mix(in oklab, var(--primitive-red) 28%, var(--primitive-text-strong));
+}
+
+.kindChipNeutral {
+  --inspector-tone: color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+  --inspector-tone-soft: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  --inspector-tone-ink: var(--primitive-text-strong);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.subtitle {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--primitive-muted);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--primitive-space-1);
+  padding: 3px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+}
+
+.tabBtn {
+  flex: 1;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.tabBtn:hover {
+  color: var(--primitive-text-strong);
+}
+
+.tabActive {
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.fields {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.fieldInput {
+  padding: 9px var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+}
+
+.fieldInputCode {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: color-mix(in oklab, var(--primitive-teal) 35%, var(--primitive-text-strong));
+}
+
+.advanced {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3);
+  border: 1px dashed var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 1.5%, transparent);
+}
+
+.advancedHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.footer {
+  display: flex;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line);
+}
+
+/* Destructive button — keeps its red semantic identity but follows the
+   shared button DNA (radius + clearcoat shadow + focus ring). */
+.deleteBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  border-radius: var(--primitive-btn-radius);
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 28%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 12%, transparent),
+    0 10px 24px color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.deleteBtn:hover {
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 70%, transparent);
+}
+
+.deleteBtn:focus-visible {
+  outline: none;
+  border-color: var(--primitive-focus-ring);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.deleteBtn svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+/* Primary action — draws from the central metallic-red button DNA
+   (metallic red body, amber/yellow hover) so it matches the system CTA. */
+.runBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2) 14px;
+  border: none;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.runBtn:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.runBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-btn-primary-shadow), var(--primitive-focus-shadow);
+}
+
+.runBtn svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabBtn,
+  .deleteBtn,
+  .runBtn {
+    transition: none;
+  }
+}

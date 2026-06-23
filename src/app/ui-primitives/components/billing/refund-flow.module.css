@@ -1,0 +1,277 @@
+.flow {
+  display: grid;
+  gap: 18px;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 30%),
+    var(--primitive-panel-strong);
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step,
+.stepActive,
+.stepDone {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.stepActive {
+  color: var(--primitive-text-strong);
+}
+
+.stepDone {
+  color: var(--primitive-green);
+}
+
+.stepNum {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid currentColor;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+}
+
+.list {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.invoiceRow {
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr 1fr 1fr;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-recessed);
+  color: var(--primitive-body);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.invoiceRow:hover {
+  border-color: var(--primitive-line-strong);
+}
+
+.invoiceSelected {
+  border-color: var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+}
+
+.invoiceNum {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.invoiceCustomer {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+}
+
+.invoiceDate {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+}
+
+.invoiceAmount {
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  text-align: right;
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.detail {
+  display: grid;
+  gap: 14px;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: 14px 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-recessed);
+}
+
+.summaryLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.summaryInvoice {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.summaryAmount {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-lg);
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.typeToggle {
+  display: inline-flex;
+  padding: var(--primitive-space-1);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-shadow-outline);
+  width: max-content;
+}
+
+.typeBtn {
+  padding: var(--primitive-space-2) 14px;
+  border: 0;
+  border-radius: var(--primitive-radius-pill);
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.typeBtnActive {
+  background: var(--primitive-text-strong);
+  color: var(--primitive-canvas);
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.input,
+.textarea {
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+}
+
+.input {
+  height: 42px;
+}
+
+.input:focus-visible,
+.textarea:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 2px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--primitive-space-2);
+}
+
+.primaryBtn,
+.ghostBtn {
+  padding: 11px 18px;
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 160ms ease, border-color 160ms ease;
+}
+
+.primaryBtn {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent), transparent 50%),
+    linear-gradient(135deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+}
+
+.primaryBtn:hover {
+  filter: brightness(1.1);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ghostBtn {
+  border: 1px solid var(--primitive-line-strong);
+  background: transparent;
+  color: var(--primitive-body);
+}
+
+.ghostBtn:hover {
+  border-color: var(--primitive-text-strong);
+  color: var(--primitive-text-strong);
+}
+
+@media (max-width: 640px) {
+  .invoiceRow {
+    grid-template-columns: 1fr 1fr;
+  }
+  .invoiceDate,
+  .invoiceAmount {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invoiceRow,
+  .typeBtn,
+  .input,
+  .textarea,
+  .primaryBtn,
+  .ghostBtn {
+    transition: none;
+  }
+  .primaryBtn:hover {
+    filter: none;
+  }
+}

@@ -1,0 +1,159 @@
+/* =========================================================
+   STREAM QUALITY PANEL — bitrate / dropped / audio + chart
+   ========================================================= */
+
+.panel {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 60%),
+    linear-gradient(180deg, var(--primitive-panel-strong), var(--primitive-code-bg));
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 96%, var(--primitive-canvas));
+  font-family: var(--primitive-font-body, system-ui, sans-serif);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 50%, transparent);
+}
+
+.healthBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid currentColor;
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.health-excellent { color: var(--primitive-green); }
+.health-good { color: var(--primitive-teal); }
+.health-degraded { color: var(--primitive-amber); }
+.health-critical { color: var(--primitive-red); }
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.metric {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent);
+  border-radius: 10px;
+  background: var(--primitive-recessed);
+}
+
+.metricLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 45%, transparent);
+}
+
+.metricValue {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+}
+
+.bigNumber {
+  font-family: var(--primitive-font-display, Anton, Impact, sans-serif);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--primitive-text-on-accent);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.metricUnit {
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 50%, transparent);
+}
+
+.metricSub {
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 40%, transparent);
+}
+
+.audioBars {
+  display: inline-flex;
+  gap: var(--primitive-space-0-5);
+  height: 12px;
+  margin-top: var(--primitive-space-0-5);
+}
+
+.audioBar {
+  width: 6px;
+  border-radius: var(--primitive-radius-xs);
+  background: var(--primitive-line-muted);
+}
+
+.audioBarOn {
+  background: linear-gradient(180deg, var(--primitive-green), var(--primitive-amber) 70%, var(--primitive-red));
+}
+
+.chartBlock {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent);
+  border-radius: 10px;
+  background: var(--primitive-recessed);
+}
+
+.chartHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono, "JetBrains Mono", monospace);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.chartLabel {
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 45%, transparent);
+}
+
+.chartRange {
+  color: var(--primitive-teal);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.chartFrame {
+  display: grid;
+}

@@ -1,0 +1,162 @@
+.wrap {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+}
+
+.title {
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.cell {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-recessed);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-standard), transform var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.cell:hover,
+.cell:focus-visible {
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.cellActive {
+  border-color: var(--primitive-teal);
+  box-shadow: 0 0 0 1px var(--primitive-teal);
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-teal) 32%, transparent), color-mix(in oklab, var(--primitive-amber) 28%, transparent)),
+    radial-gradient(ellipse at 30% 20%, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  filter: var(--preset-filter, none);
+}
+
+.thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 12px, var(--primitive-glass-strong) 12px 13px);
+  mix-blend-mode: overlay;
+}
+
+.thumb::after {
+  content: var(--preset-label, "");
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 62%, transparent);
+}
+
+.cellName {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.cellMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.strengthRow {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) 48px;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding-top: var(--primitive-space-1);
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.strengthLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.strengthBar {
+  position: relative;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-strong);
+  overflow: hidden;
+}
+
+.strengthFill {
+  position: absolute;
+  inset: 0;
+  width: var(--strength-fill, 70%);
+  background: linear-gradient(90deg, var(--primitive-teal), var(--primitive-amber));
+  border-radius: inherit;
+}
+
+.strengthValue {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-text-strong);
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    transition: none;
+  }
+}

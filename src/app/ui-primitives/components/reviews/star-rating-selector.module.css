@@ -1,0 +1,103 @@
+.wrapper {
+  display: inline-grid;
+  gap: 6px;
+}
+
+.group {
+  display: inline-flex;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 999px;
+  background: var(--primitive-field-bg);
+  box-shadow: inset 1px 1px 0 var(--primitive-neumo-light),
+    inset -10px -10px 18px var(--primitive-neumo-dark);
+}
+
+.star {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  color: var(--primitive-muted);
+  transition: color 140ms ease, transform 140ms ease;
+}
+
+.star::before {
+  content: "★";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.starFilled {
+  color: var(--primitive-amber);
+}
+
+.starHover {
+  color: color-mix(in srgb, var(--primitive-amber) 80%, white);
+  transform: scale(1.06);
+}
+
+.starHalf::after {
+  content: "★";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--primitive-amber);
+  clip-path: inset(0 50% 0 0);
+}
+
+.starHalf::before {
+  color: var(--primitive-muted);
+}
+
+.halfSlot {
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.halfRight {
+  left: 50%;
+}
+
+.legend {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  text-transform: uppercase;
+}
+
+.legendValue {
+  color: var(--primitive-text-strong);
+  font-weight: 800;
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star,
+  .starHover {
+    transition: none;
+    transform: none;
+  }
+}

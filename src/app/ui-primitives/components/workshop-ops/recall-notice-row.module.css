@@ -1,0 +1,198 @@
+.row {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-panel));
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.row[data-severity="high"],
+.row[data-severity="stop-drive"] {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 16%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-panel));
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+}
+
+.banner {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  padding: var(--primitive-space-2-5) 14px;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  text-align: center;
+  min-width: 120px;
+}
+
+.manufacturer {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  letter-spacing: 0.04em;
+  color: var(--primitive-text-strong);
+}
+
+.campaign {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  color: var(--primitive-muted);
+  text-transform: uppercase;
+}
+
+.titleBlock {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.005em;
+}
+
+.stopBadge {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-sm);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.subtitle {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.chips {
+  display: flex;
+  gap: var(--primitive-space-1-5);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.description {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.6;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3);
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+}
+
+.metricBlock {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  text-align: center;
+}
+
+.metricLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metricValue {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  font-feature-settings: "tnum" 1;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.footHint {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-muted);
+}
+
+/* Primary CTA — central button DNA (metallic red -> amber hover). */
+.reachButton {
+  appearance: none;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  padding: var(--primitive-space-2) 14px;
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid transparent;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  cursor: pointer;
+  font-weight: var(--primitive-weight-semibold);
+  transition: background var(--primitive-duration-fast) ease, transform var(--primitive-duration-fast) ease, box-shadow var(--primitive-duration-fast) ease;
+}
+
+.reachButton:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.reachButton:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (max-width: 640px) {
+  .head {
+    grid-template-columns: 1fr;
+  }
+  .banner {
+    text-align: left;
+  }
+  .chips {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reachButton {
+    transition: none;
+  }
+}

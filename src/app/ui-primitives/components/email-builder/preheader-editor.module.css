@@ -1,0 +1,147 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding-bottom: var(--primitive-space-2-5);
+  border-bottom: 1px dashed var(--primitive-line);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.fieldLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.fieldCount {
+  color: var(--primitive-text-strong);
+}
+
+.input {
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  outline: none;
+  transition: border-color 200ms ease;
+}
+
+.input:focus-visible {
+  border-color: var(--primitive-teal);
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+/* Rendered inbox-row preview — light email-client simulation. The paper /
+   ink hexes below are email-content data colors, kept to preserve the
+   email-client look (no dashboard-chrome token maps to these). */
+.inboxPreview {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: rgba(244, 242, 238, 0.92);
+  color: #1f2230;
+  align-items: center;
+}
+
+.inboxAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  letter-spacing: var(--primitive-tracking-tight);
+}
+
+.inboxBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.inboxFrom {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  color: #0a0a0a;
+}
+
+.inboxSubject {
+  font-size: 14px;
+  font-weight: var(--primitive-weight-semibold);
+  color: #0a0a0a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inboxPreheader {
+  font-size: var(--primitive-text-xs);
+  color: #6b7080;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inboxMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: #6b7080;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input {
+    transition: none;
+  }
+}

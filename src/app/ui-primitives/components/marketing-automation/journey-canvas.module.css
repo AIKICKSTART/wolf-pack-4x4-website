@@ -1,0 +1,140 @@
+.wrapper {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in oklab, var(--primitive-teal) 6%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.subline {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+}
+
+.canvas {
+  position: relative;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent) 1px, transparent 1px) 0 0 / 24px 24px,
+    color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  overflow: hidden;
+}
+
+.canvasInner {
+  position: relative;
+  display: grid;
+  /* gap-driven matrix so edges line up to node centers. */
+  padding: var(--primitive-space-7);
+  align-content: start;
+  z-index: 1;
+}
+
+.svgLayer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.edge {
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+}
+
+.edgeYes {
+  stroke: var(--primitive-green);
+}
+
+.edgeNo {
+  stroke: var(--primitive-red);
+}
+
+.edgeFallback {
+  stroke: var(--primitive-amber);
+  stroke-dasharray: 4 5;
+}
+
+.edgeDefault {
+  stroke: var(--primitive-teal);
+}
+
+.edgeLabel {
+  fill: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  paint-order: stroke;
+  stroke: color-mix(in oklab, var(--primitive-canvas) 85%, transparent);
+  stroke-width: 4;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.legendSwatch {
+  width: 18px;
+  height: 2px;
+  border-radius: var(--primitive-radius-xs);
+  background: currentColor;
+}
+
+.legendSwatch[data-tone="yes"] { color: var(--primitive-green); }
+.legendSwatch[data-tone="no"] { color: var(--primitive-red); }
+.legendSwatch[data-tone="fallback"] { color: var(--primitive-amber); }
+.legendSwatch[data-tone="default"] { color: var(--primitive-teal); }
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas {
+    animation: none;
+  }
+}

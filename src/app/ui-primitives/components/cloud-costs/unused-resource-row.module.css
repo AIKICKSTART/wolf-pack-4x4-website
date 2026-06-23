@@ -1,0 +1,191 @@
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, 2fr) auto minmax(120px, 1fr) minmax(140px, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--primitive-line);
+  border-left: 3px solid var(--primitive-amber);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 100% 50%, color-mix(in oklab, var(--primitive-amber) 8%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  overflow: hidden;
+}
+
+.identity {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 5px color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.identityText {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.id {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.idleCell,
+.costCell {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.idleLabel,
+.costLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.idleValue {
+  font-family: var(--primitive-font-display);
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: var(--primitive-amber);
+  font-feature-settings: "tnum" 1;
+}
+
+.idleValue[data-tone="red"] {
+  color: var(--primitive-red);
+}
+
+.idleSub {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  color: var(--primitive-muted);
+}
+
+.costValue {
+  font-family: var(--primitive-font-display);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.costSub {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  font-feature-settings: "tnum" 1;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.actionPrimary,
+.actionGhost,
+.actionPlaceholder {
+  padding: var(--primitive-space-2) 14px;
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.actionPrimary {
+  border: 1px solid transparent;
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  color: var(--primitive-btn-primary-fg);
+}
+
+.actionPrimary:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.actionGhost {
+  border: 1px solid var(--primitive-line-strong);
+  background: transparent;
+  color: var(--primitive-body);
+}
+
+.actionGhost:hover {
+  border-color: var(--primitive-text-strong);
+  color: var(--primitive-text-strong);
+}
+
+.actionPlaceholder {
+  border: 1px dashed var(--primitive-line-strong);
+  background: transparent;
+  color: var(--primitive-muted);
+  cursor: default;
+}
+
+.actionPrimary:focus-visible,
+.actionGhost:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (max-width: 980px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actionPrimary,
+  .actionGhost {
+    transition: none;
+  }
+}

@@ -1,0 +1,125 @@
+.wrapper {
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+}
+
+.lede {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+.axes {
+  display: grid;
+  gap: 14px;
+}
+
+.axis {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.axisLabels {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.input {
+  appearance: none;
+  width: 100%;
+  height: var(--primitive-space-2);
+  background: linear-gradient(90deg, var(--primitive-teal), var(--primitive-amber), var(--primitive-red));
+  border-radius: var(--primitive-radius-pill);
+  outline: none;
+  margin: 0;
+}
+
+.input::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  border: 2px solid var(--primitive-text-strong);
+  background: var(--primitive-red);
+  box-shadow: 0 6px 14px color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  cursor: pointer;
+}
+
+.input::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  border: 2px solid var(--primitive-text-strong);
+  background: var(--primitive-red);
+  box-shadow: 0 6px 14px color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  cursor: pointer;
+}
+
+.input:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.axisFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.axisValue {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+}
+
+.axisHelper {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+  text-align: right;
+  max-width: 60ch;
+}

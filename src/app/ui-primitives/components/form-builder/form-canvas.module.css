@@ -1,0 +1,242 @@
+.canvas {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 18px;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 50% -10%, color-mix(in oklab, var(--primitive-teal) 6%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  min-height: 380px;
+  overflow: hidden;
+}
+
+.canvas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 23px,
+    color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent) 23px 24px
+  );
+  opacity: 0.6;
+}
+
+.canvas > * {
+  position: relative;
+  z-index: 1;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding-bottom: var(--primitive-space-4);
+  border-bottom: 1px dashed var(--primitive-line);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.meta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.stage {
+  display: grid;
+  align-content: start;
+}
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.rowWrap {
+  display: grid;
+  gap: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 32px 28px 1fr 14px;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: 14px 14px;
+  margin: var(--primitive-space-1-5) 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 62%, transparent);
+  cursor: grab;
+  transition:
+    border-color var(--primitive-duration-fast) ease,
+    box-shadow var(--primitive-duration-normal) ease,
+    background var(--primitive-duration-fast) ease;
+}
+
+.row:hover {
+  border-color: var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-surface-2) 78%, transparent);
+}
+
+.rowSelected {
+  border-color: color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, var(--primitive-recessed));
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--primitive-amber) 40%, transparent),
+    0 18px 42px color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.rowIndex {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.rowIcon {
+  display: grid;
+  place-items: center;
+  width: var(--primitive-space-7);
+  height: var(--primitive-space-7);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.rowBody {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.rowLabel {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.requiredStar {
+  color: var(--primitive-red);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-none);
+}
+
+.rowPlaceholder {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.05em;
+  color: var(--primitive-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rowGrip {
+  color: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+  display: grid;
+  place-items: center;
+}
+
+.dropZone {
+  display: grid;
+  place-items: center;
+  padding: var(--primitive-space-2);
+  margin: var(--primitive-space-1) 0;
+  border: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 18%, transparent);
+  transition:
+    border-color var(--primitive-duration-fast) ease,
+    background var(--primitive-duration-fast) ease,
+    color var(--primitive-duration-fast) ease;
+}
+
+.dropLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.dropZoneHover {
+  border-color: color-mix(in oklab, var(--primitive-teal) 45%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+}
+
+.dropZoneHover .dropLabel {
+  color: var(--primitive-teal);
+}
+
+.dropZoneActive {
+  border-color: var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+}
+
+.dropZoneActive .dropLabel {
+  color: var(--primitive-text-strong);
+}
+
+.empty {
+  display: grid;
+  place-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-11) var(--primitive-space-4);
+  border: 1px dashed var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-canvas) 18%, transparent);
+  color: var(--primitive-muted);
+}
+
+.emptyKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.emptyHint {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .dropZone {
+    transition: none;
+  }
+}

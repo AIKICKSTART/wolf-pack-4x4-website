@@ -1,0 +1,78 @@
+.node {
+  --node-tone: var(--primitive-teal);
+  display: inline-grid;
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2) 14px var(--primitive-space-2) var(--primitive-space-2);
+  border: 1px solid color-mix(in srgb, var(--node-tone) 40%, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--node-tone) 22%, transparent), transparent 64%),
+    linear-gradient(180deg, var(--primitive-glass-strong), color-mix(in oklab, var(--primitive-glass-soft) 36%, transparent)),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.toggle {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid color-mix(in srgb, var(--node-tone) 50%, var(--primitive-line));
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--node-tone) 18%, var(--primitive-field-bg));
+  color: var(--node-tone);
+  cursor: pointer;
+}
+
+.toggle svg {
+  width: 14px;
+  height: 14px;
+}
+
+.bullet {
+  width: 8px;
+  height: 8px;
+  margin-left: var(--primitive-space-1-5);
+  border-radius: 50%;
+  background: var(--node-tone);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--node-tone) 28%, transparent);
+}
+
+.label {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.04em;
+  overflow-wrap: anywhere;
+}
+
+.count {
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border: 1px solid color-mix(in srgb, var(--node-tone) 40%, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in srgb, var(--node-tone) 18%, transparent);
+  color: color-mix(in srgb, var(--node-tone) 80%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.toneRoot {
+  --node-tone: var(--primitive-red);
+  font-weight: 800;
+}
+
+.toneRoot .label {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.toneBranch  { --node-tone: var(--primitive-amber); }
+.toneLeaf    { --node-tone: var(--primitive-muted); }
+.toneAccent  { --node-tone: var(--primitive-teal); }

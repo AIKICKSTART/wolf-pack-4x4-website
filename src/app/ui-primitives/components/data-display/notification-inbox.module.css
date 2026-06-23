@@ -1,0 +1,267 @@
+.inbox {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, white 4.5%, transparent), color-mix(in oklab, white 1%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 var(--primitive-neumo-light), var(--primitive-shadow-soft);
+  font-family: var(--primitive-font-body);
+  overflow: hidden;
+}
+
+.tabs {
+  display: flex;
+  gap: var(--primitive-space-1);
+  padding: 14px 14px 0;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2) 14px var(--primitive-space-3);
+  border: 0;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+
+.tab:focus-visible {
+  outline: none;
+  border-radius: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.tab[aria-selected="true"] {
+  color: var(--primitive-text-strong);
+}
+
+.tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: var(--primitive-space-2);
+  right: var(--primitive-space-2);
+  bottom: -1px;
+  height: 2px;
+  border-radius: var(--primitive-radius-xs);
+  background: linear-gradient(90deg, var(--primitive-red), var(--primitive-amber));
+}
+
+.tabBadge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  color: var(--primitive-red);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.tab[aria-selected="true"] .tabBadge {
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+}
+
+.list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 460px;
+  overflow-y: auto;
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  gap: var(--primitive-space-3);
+  padding: 14px var(--primitive-space-4);
+  align-items: start;
+  border-bottom: 1px solid var(--primitive-line);
+  transition: background 160ms ease;
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.item:hover,
+.item:focus-within {
+  background: color-mix(in oklab, var(--primitive-red) 5%, transparent);
+}
+
+.iconCell {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-field-bg);
+}
+
+.iconCell[data-tone="info"] {
+  color: var(--primitive-teal);
+  border-color: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+}
+
+.iconCell[data-tone="success"] {
+  color: var(--primitive-green);
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+}
+
+.iconCell[data-tone="warn"] {
+  color: var(--primitive-amber);
+  border-color: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+}
+
+.iconCell[data-tone="error"] {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+}
+
+.iconCell svg {
+  width: var(--primitive-icon-md);
+  height: var(--primitive-icon-md);
+}
+
+.body {
+  min-width: 0;
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+}
+
+.sub {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.45;
+}
+
+.metaRow {
+  display: flex;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  margin-top: var(--primitive-space-1);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.unreadFlag {
+  width: var(--primitive-space-1-5);
+  height: var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primitive-red) 70%, transparent);
+}
+
+.actions {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--primitive-space-1);
+}
+
+.actions button {
+  border: 0;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: var(--primitive-space-1) var(--primitive-space-1-5);
+  border-radius: 6px;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.actions button:hover {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-field-hover);
+}
+
+.actions button:focus-visible {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-field-hover);
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--primitive-space-3) var(--primitive-space-4);
+  border-top: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.footer span {
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.footer button {
+  border: 0;
+  background: transparent;
+  color: var(--primitive-amber);
+  font: inherit;
+  cursor: pointer;
+  letter-spacing: 0.14em;
+}
+
+.footer button:hover {
+  color: var(--primitive-red);
+}
+
+.footer button:focus-visible {
+  color: var(--primitive-red);
+  outline: none;
+  border-radius: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .actions button,
+  .tab {
+    transition: none;
+  }
+}

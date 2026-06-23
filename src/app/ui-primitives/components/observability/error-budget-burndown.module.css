@@ -1,0 +1,177 @@
+.card {
+  display: block;
+  padding: 18px;
+  border-radius: 14px;
+  --burndown-tone: var(--primitive-green);
+}
+
+.toneRed { --burndown-tone: var(--primitive-red); }
+.toneAmber { --burndown-tone: var(--primitive-amber); }
+.toneTeal { --burndown-tone: var(--primitive-teal); }
+.toneGreen { --burndown-tone: var(--primitive-green); }
+.toneNeutral { --burndown-tone: color-mix(in oklab, var(--primitive-text-strong) 60%, transparent); }
+.toneViolet { --burndown-tone: var(--primitive-violet); }
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+  margin-bottom: 14px;
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  color: var(--primitive-text-strong);
+  text-transform: uppercase;
+}
+
+.window {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  flex-shrink: 0;
+}
+
+.percentBlock {
+  display: grid;
+  text-align: right;
+}
+
+.percent {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--burndown-tone);
+  line-height: var(--primitive-leading-none);
+}
+
+.percentLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.budgetChip {
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--burndown-tone);
+  background: color-mix(in srgb, var(--burndown-tone) 12%, transparent);
+  color: var(--burndown-tone);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.chart {
+  padding: var(--primitive-space-2-5);
+  border-radius: 10px;
+  background: var(--primitive-recessed);
+  border: 1px solid var(--primitive-line);
+}
+
+.chart svg {
+  width: 100%;
+  height: auto;
+}
+
+.gridLine {
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  stroke-width: 0.6;
+}
+
+.gridLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 8px;
+  fill: var(--primitive-muted);
+  letter-spacing: 0.06em;
+}
+
+.ideal {
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 40%, transparent);
+  stroke-width: 1.4;
+  stroke-dasharray: 4 4;
+}
+
+.actual {
+  stroke: var(--burndown-tone);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.marker {
+  fill: var(--burndown-tone);
+  stroke: var(--primitive-text-strong);
+  stroke-width: 0.8;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  margin-top: var(--primitive-space-3);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.legendDot {
+  display: inline-block;
+  width: 12px;
+  height: 2px;
+  margin-right: var(--primitive-space-1);
+  vertical-align: middle;
+}
+
+.idealDot {
+  background: color-mix(in oklab, var(--primitive-text-strong) 40%, transparent);
+}
+
+.actualDot {
+  background: var(--burndown-tone);
+}
+
+.trend {
+  display: flex;
+  align-items: center;
+}

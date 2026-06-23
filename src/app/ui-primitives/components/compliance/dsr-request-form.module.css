@@ -1,0 +1,320 @@
+.form {
+  display: grid;
+  gap: 22px;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-glass-soft) 24%, transparent) 60%),
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  color: var(--primitive-body);
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    inset -22px -22px 36px color-mix(in oklab, var(--primitive-overlay) 50%, transparent),
+    0 22px 56px color-mix(in oklab, var(--primitive-overlay) 62%, transparent);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 2.2vw, 26px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+  color: var(--primitive-body);
+  max-width: 64ch;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.stepItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.stepIndex {
+  width: 18px;
+  height: 18px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-glass-strong);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+}
+
+.stepActive {
+  border-color: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  color: var(--primitive-teal);
+}
+
+.stepActive .stepIndex {
+  background: var(--primitive-teal);
+  color: var(--primitive-canvas);
+}
+
+.stepDone {
+  border-color: color-mix(in oklab, var(--primitive-green) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  color: var(--primitive-green);
+}
+
+.stepDone .stepIndex {
+  background: var(--primitive-green);
+  color: var(--primitive-canvas);
+}
+
+.section {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-glass-soft) 50%, transparent);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.input {
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.01em;
+}
+
+.input:focus {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.requestGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.requestOption {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-glass-soft) 50%, transparent);
+  color: var(--primitive-body);
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--primitive-font-body);
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-standard), background var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.requestOption:hover,
+.requestOption:focus-visible {
+  border-color: var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-glass-soft) 90%, transparent);
+  outline: none;
+}
+
+.requestOption[aria-pressed="true"] {
+  border-color: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.requestLabel {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.requestHint {
+  font-size: var(--primitive-text-xs);
+  line-height: 1.4;
+  color: var(--primitive-muted);
+}
+
+.scope {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.scopeChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.scopeChip:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.scopeChip[aria-pressed="true"] {
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  color: var(--primitive-amber);
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.notice {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  max-width: 56ch;
+}
+
+.actionStack {
+  display: flex;
+  gap: var(--primitive-space-2);
+}
+
+.actionSecondary {
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.actionPrimary {
+  padding: var(--primitive-space-2-5) 18px;
+  border: 0;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-standard), color var(--primitive-duration-fast) var(--primitive-ease-standard), box-shadow var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.actionPrimary:hover:not(:disabled) {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.actionPrimary:disabled,
+.actionSecondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .requestOption,
+  .scopeChip,
+  .actionPrimary {
+    transition: none;
+  }
+}

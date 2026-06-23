@@ -1,0 +1,158 @@
+.stream {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent),
+    var(--primitive-panel-strong);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.count {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.event {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  padding-left: var(--primitive-space-3);
+  align-items: start;
+}
+
+.event::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 2px;
+  bottom: -12px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}
+
+.event:last-child::before {
+  display: none;
+}
+
+.glyph {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--primitive-icon-xl);
+  height: var(--primitive-icon-xl);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-panel-strong);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-body);
+  margin-left: -23px;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.line {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+  color: var(--primitive-text-strong);
+}
+
+.actor {
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.thread {
+  color: var(--primitive-teal);
+  font-weight: var(--primitive-weight-medium);
+}
+
+.verb {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: 2px 7px;
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.verbCommented {
+  background: var(--primitive-surface-3);
+  color: var(--primitive-text-strong);
+}
+
+.verbReplied {
+  background: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  color: var(--primitive-amber);
+}
+
+.verbResolved {
+  background: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  color: var(--primitive-green);
+}
+
+.verbReopened {
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  color: var(--primitive-red);
+}
+
+.verbMentioned {
+  background: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  color: var(--primitive-teal);
+}
+
+.verbLiked {
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  color: var(--primitive-red);
+}
+
+.verbAnnotated {
+  background: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  color: var(--primitive-amber);
+}
+
+.time {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  white-space: nowrap;
+}

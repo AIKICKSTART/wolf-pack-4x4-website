@@ -1,0 +1,256 @@
+.panel {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-card-bg);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  color: var(--primitive-text-strong);
+  font-weight: 700;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-4);
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+}
+
+@media (max-width: 760px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.controls {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.fieldLabel {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.fieldValue {
+  color: var(--primitive-text-strong);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.input {
+  height: 36px;
+  padding: 0 var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--primitive-red);
+  outline-offset: 1px;
+}
+
+.range {
+  width: 100%;
+  appearance: none;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-meter-track);
+  outline: none;
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  border: 2px solid var(--primitive-text-strong);
+  box-shadow: 0 4px 12px var(--primitive-neumo-dark);
+  cursor: pointer;
+}
+
+.range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  border: 2px solid var(--primitive-text-strong);
+  cursor: pointer;
+}
+
+.positionGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 24%, transparent);
+}
+
+.positionCell {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-muted);
+  cursor: pointer;
+  font-size: var(--primitive-text-2xs);
+  transition: background 160ms ease, color 160ms ease,
+    border-color 160ms ease;
+}
+
+.positionCell:hover {
+  background: var(--primitive-line-muted);
+  color: var(--primitive-body);
+}
+
+.positionCellSelected {
+  background: color-mix(in oklab, var(--primitive-red) 20%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.preview {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--primitive-radius-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 30% 12%, var(--primitive-glass-soft), transparent 50%),
+    repeating-linear-gradient(
+      45deg,
+      color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 0 12px,
+      color-mix(in oklab, var(--primitive-canvas) 18%, transparent) 12px 24px
+    ),
+    var(--primitive-panel);
+}
+
+.previewMedia {
+  position: absolute;
+  inset: var(--primitive-space-2);
+  border: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  border-radius: var(--primitive-radius-md);
+  display: grid;
+  place-items: center;
+}
+
+.previewLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.32em;
+  color: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+}
+
+.mark {
+  position: absolute;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-shadow-outline);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.mark {
+  --mark-scale: 1;
+  transform: scale(var(--mark-scale));
+}
+
+.posTopLeft .mark {
+  top: var(--primitive-space-4);
+  left: var(--primitive-space-4);
+  transform-origin: top left;
+}
+.posTopCenter .mark {
+  top: var(--primitive-space-4);
+  left: 50%;
+  transform: translateX(-50%) scale(var(--mark-scale));
+  transform-origin: top center;
+}
+.posTopRight .mark {
+  top: var(--primitive-space-4);
+  right: var(--primitive-space-4);
+  transform-origin: top right;
+}
+.posMiddleLeft .mark {
+  top: 50%;
+  left: var(--primitive-space-4);
+  transform: translateY(-50%) scale(var(--mark-scale));
+  transform-origin: center left;
+}
+.posMiddleCenter .mark {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(var(--mark-scale));
+  transform-origin: center;
+}
+.posMiddleRight .mark {
+  top: 50%;
+  right: var(--primitive-space-4);
+  transform: translateY(-50%) scale(var(--mark-scale));
+  transform-origin: center right;
+}
+.posBottomLeft .mark {
+  bottom: var(--primitive-space-4);
+  left: var(--primitive-space-4);
+  transform-origin: bottom left;
+}
+.posBottomCenter .mark {
+  bottom: var(--primitive-space-4);
+  left: 50%;
+  transform: translateX(-50%) scale(var(--mark-scale));
+  transform-origin: bottom center;
+}
+.posBottomRight .mark {
+  bottom: var(--primitive-space-4);
+  right: var(--primitive-space-4);
+  transform-origin: bottom right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .positionCell {
+    transition: none;
+  }
+}

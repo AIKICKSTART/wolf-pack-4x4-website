@@ -1,0 +1,187 @@
+.rail {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 14px;
+  padding: 16px;
+  width: 248px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.search svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--primitive-body);
+  font: inherit;
+}
+
+.sections {
+  display: grid;
+  gap: 18px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.sections::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sections::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+  border-radius: 3px;
+}
+
+.section {
+  display: grid;
+  gap: 8px;
+}
+
+.sectionTitle {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 55%, transparent);
+  cursor: grab;
+  transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+.item:hover {
+  transform: translateX(2px);
+  border-color: var(--primitive-line-strong);
+  background:
+    linear-gradient(0deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 6%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+}
+
+.itemIcon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+.itemIcon svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+.itemBody {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.itemTitle {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemDesc {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemTrigger {
+  --palette-icon-bg: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --palette-icon-ink: var(--primitive-amber);
+}
+
+.itemAction {
+  --palette-icon-bg: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  --palette-icon-ink: var(--primitive-teal);
+}
+
+.itemCondition {
+  --palette-icon-bg: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --palette-icon-ink: var(--primitive-green);
+}
+
+.itemLoop {
+  --palette-icon-bg: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --palette-icon-ink: var(--primitive-red);
+}
+
+.itemWait {
+  --palette-icon-bg: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --palette-icon-ink: var(--primitive-amber);
+}
+
+.itemEnd {
+  --palette-icon-bg: color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+  --palette-icon-ink: color-mix(in oklab, var(--primitive-text-strong) 78%, transparent);
+}
+
+.itemTrigger .itemIcon,
+.itemAction .itemIcon,
+.itemCondition .itemIcon,
+.itemLoop .itemIcon,
+.itemWait .itemIcon,
+.itemEnd .itemIcon {
+  background: var(--palette-icon-bg);
+  color: var(--palette-icon-ink);
+  border: 1px solid var(--palette-icon-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
+}

@@ -1,0 +1,103 @@
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 70%),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 var(--primitive-glass-soft);
+  width: max-content;
+  max-width: 100%;
+}
+
+.pill {
+  --accent: var(--primitive-red);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: var(--primitive-space-9);
+  padding: 0 var(--primitive-space-4);
+  border: 1px solid transparent;
+  border-radius: var(--primitive-radius-pill);
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.accentRed {
+  --accent: var(--primitive-red);
+}
+.accentAmber {
+  --accent: var(--primitive-amber);
+}
+.accentTeal {
+  --accent: var(--primitive-teal);
+}
+.accentGreen {
+  --accent: var(--primitive-green);
+}
+
+.dot {
+  width: var(--primitive-space-2);
+  height: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-round);
+  background: var(--accent);
+  flex: none;
+  opacity: 0.7;
+  transition: opacity var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.pill:hover {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-field-hover);
+}
+
+.pill:hover .dot {
+  opacity: 1;
+}
+
+.pill:focus-visible {
+  outline: none;
+  border-color: color-mix(in oklab, var(--accent) 50%, transparent);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.active {
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--accent) 56%, transparent);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent 70%),
+    color-mix(in oklab, var(--accent) 20%, var(--primitive-recessed));
+  box-shadow:
+    inset 0 1px 0 var(--primitive-glass-strong),
+    0 6px 18px color-mix(in oklab, var(--accent) 26%, transparent);
+}
+
+.active .dot {
+  opacity: 1;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 24%, transparent);
+}
+
+.pillLabel {
+  line-height: var(--primitive-leading-none);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill,
+  .dot {
+    transition: none;
+  }
+}

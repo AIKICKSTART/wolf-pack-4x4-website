@@ -1,0 +1,181 @@
+.card {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.card[data-invalid] {
+  border-color: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.kicker {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+.target {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.prefix {
+  display: inline-block;
+  margin-right: var(--primitive-space-1-5);
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.phone {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.pad {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(36px, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.cellWrap {
+  position: relative;
+  display: block;
+}
+
+.cell {
+  width: 100%;
+  padding: 14px 0;
+  background: var(--primitive-recessed);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.06em;
+  outline: none;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+
+.cell:focus {
+  border-color: var(--primitive-teal);
+  background: var(--primitive-recessed);
+}
+
+.cell[data-filled="true"] {
+  border-color: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+.pad[data-invalid] .cell {
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+}
+
+.underline {
+  position: absolute;
+  left: var(--primitive-space-3);
+  right: var(--primitive-space-3);
+  bottom: var(--primitive-space-2);
+  height: 2px;
+  border-radius: var(--primitive-radius-xs);
+  background: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  pointer-events: none;
+}
+
+.cell:focus + .underline {
+  background: var(--primitive-teal);
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.timer {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.timer strong {
+  color: var(--primitive-text-strong);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.resendCta {
+  appearance: none;
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  color: var(--primitive-teal);
+  padding: 7px 14px;
+  border-radius: var(--primitive-radius-md);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 160ms ease;
+}
+
+.resendCta:hover,
+.resendCta:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  outline: none;
+}
+
+.error {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-red);
+  letter-spacing: 0.06em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell,
+  .resendCta {
+    transition: none;
+  }
+}

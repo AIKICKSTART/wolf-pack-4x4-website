@@ -1,0 +1,195 @@
+.wrapper {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-violet) 12%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kicker {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.title {
+  margin: var(--primitive-space-1) 0 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-medium);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.reach {
+  display: grid;
+  gap: 2px;
+  justify-items: end;
+  text-align: right;
+}
+
+.reachLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.reachValue {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-medium);
+  color: var(--primitive-text-strong);
+}
+
+.matchToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  align-self: start;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.matchToggle strong {
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.18em;
+}
+
+.matchToggle:hover,
+.matchToggle:focus-visible {
+  outline: none;
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+}
+
+.ruleList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.ruleItem {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.comparator {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.value {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border-radius: 6px;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  word-break: break-all;
+  min-width: 0;
+}
+
+.remove {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: transparent;
+  color: var(--primitive-muted);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: var(--primitive-leading-none);
+  transition: color var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.remove:hover,
+.remove:focus-visible {
+  outline: none;
+  color: var(--primitive-red);
+  border-color: var(--primitive-red);
+}
+
+.empty {
+  padding: 14px;
+  border: 1px dashed var(--primitive-line);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--primitive-muted);
+}
+
+.adders {
+  display: grid;
+  gap: 8px;
+}
+
+.adderLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.adderChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+@media (max-width: 600px) {
+  .ruleItem {
+    grid-template-columns: 1fr auto;
+  }
+
+  .comparator,
+  .value {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .matchToggle,
+  .remove {
+    transition: none;
+  }
+}

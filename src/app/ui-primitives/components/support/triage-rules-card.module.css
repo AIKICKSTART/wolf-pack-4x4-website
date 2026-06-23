@@ -1,0 +1,211 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 40%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    var(--primitive-shadow-soft);
+  position: relative;
+  isolation: isolate;
+}
+
+.disabled {
+  opacity: 0.7;
+  filter: saturate(0.8);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: var(--primitive-space-1) var(--primitive-space-3);
+  align-items: baseline;
+}
+
+.kicker {
+  grid-column: 1 / -1;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.003em;
+}
+
+.enabledChip {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  line-height: var(--primitive-leading-none);
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  color: var(--chip-fg);
+}
+
+.on {
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --chip-fg: var(--primitive-green);
+}
+
+.off {
+  --chip-bg: var(--primitive-glass-soft);
+  --chip-border: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  --chip-fg: var(--primitive-muted);
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: var(--primitive-space-2-5);
+  align-items: baseline;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.stepKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.stepBody {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+  color: var(--primitive-text-strong);
+}
+
+.priorityChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border: 1px solid var(--chip-border);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--chip-bg);
+  color: var(--chip-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: var(--primitive-leading-none);
+}
+
+.tagList {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.tagChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px var(--primitive-space-2);
+  border: 1px solid color-mix(in oklab, var(--primitive-violet) 35%, transparent);
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--primitive-violet) 10%, transparent);
+  color: color-mix(in oklab, var(--primitive-violet) 72%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  line-height: var(--primitive-leading-none);
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--primitive-space-2);
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.footLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.footValue {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.06em;
+}
+
+.toneRed {
+  --chip-bg: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --chip-fg: var(--primitive-red);
+}
+
+.toneAmber {
+  --chip-bg: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --chip-fg: var(--primitive-amber);
+}
+
+.toneTeal {
+  --chip-bg: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-teal) 34%, transparent);
+  --chip-fg: var(--primitive-teal);
+}
+
+.toneGreen {
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-green) 34%, transparent);
+  --chip-fg: var(--primitive-green);
+}
+
+.toneNeutral {
+  --chip-bg: color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent);
+  --chip-border: var(--primitive-line);
+  --chip-fg: var(--primitive-body);
+}
+
+.toneViolet {
+  --chip-bg: color-mix(in oklab, var(--primitive-violet) 12%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-violet) 34%, transparent);
+  --chip-fg: color-mix(in oklab, var(--primitive-violet) 72%, var(--primitive-text-strong));
+}
+
+@media (max-width: 560px) {
+  .step {
+    grid-template-columns: 1fr;
+  }
+}

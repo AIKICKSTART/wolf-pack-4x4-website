@@ -1,0 +1,170 @@
+.card {
+  display: grid;
+  gap: 14px;
+  width: 240px;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-glass-strong) 60%, transparent), color-mix(in oklab, var(--primitive-glass-soft) 28%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.activeName {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.shapeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--primitive-space-1-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shape {
+  display: grid;
+  place-items: center;
+  height: 56px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-standard),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.shape svg {
+  width: 28px;
+  height: 28px;
+}
+
+.shape:hover,
+.shape:focus-visible {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-field-hover);
+  outline: none;
+}
+
+.shapeActive {
+  color: var(--primitive-text-on-accent);
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 32%, transparent), transparent 78%),
+    color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.label {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.sizeGroup {
+  display: inline-flex;
+  gap: var(--primitive-space-1);
+  padding: 3px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-control-surface);
+}
+
+.sizeChip {
+  min-width: 36px;
+  padding: 5px var(--primitive-space-2);
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+}
+
+.sizeActive {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent), transparent),
+    color-mix(in oklab, var(--primitive-red) 70%, transparent);
+  color: var(--primitive-text-on-accent);
+}
+
+.swatchRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.swatch {
+  width: 22px;
+  height: 22px;
+  border: 1px solid color-mix(in oklab, var(--primitive-overlay) 71%, transparent);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.strokeSwatch {
+  background: transparent;
+  border-width: 3px;
+}
+
+.swatch:hover,
+.swatch:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px color-mix(in oklab, var(--primitive-overlay) 50%, transparent);
+  outline: none;
+}
+
+.swatchActive {
+  box-shadow:
+    0 0 0 2px var(--primitive-focus-ring),
+    0 0 0 4px color-mix(in oklab, var(--primitive-focus-ring) 24%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shape,
+  .swatch {
+    transition: none;
+  }
+}

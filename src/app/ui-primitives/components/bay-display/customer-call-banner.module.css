@@ -1,0 +1,144 @@
+.banner {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: clamp(28px, 2.8vw, 56px) clamp(36px, 4vw, 80px);
+  border: 1px solid var(--primitive-red);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 0% 50%, color-mix(in oklab, var(--primitive-red) 40%, transparent), transparent 55%),
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-amber) 18%, transparent), transparent 55%),
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--primitive-red-dark) 24%, var(--primitive-canvas)) 0%,
+      color-mix(in oklab, var(--primitive-red-dark) 32%, var(--primitive-canvas)) 60%,
+      color-mix(in oklab, var(--primitive-red-dark) 18%, var(--primitive-canvas)) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-on-accent) 12%, transparent),
+    0 40px 100px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-align: left;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 4%, transparent) 0 2px,
+      transparent 2px 16px
+    );
+  pointer-events: none;
+}
+
+.banner.intense {
+  animation: call-glow 2400ms var(--primitive-ease-out) infinite;
+}
+
+@keyframes call-glow {
+  0%, 100% {
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklab, var(--primitive-text-on-accent) 12%, transparent),
+      0 40px 100px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  }
+  50% {
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent),
+      0 50px 130px color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  }
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(12px, 0.95vw, 16px);
+  font-weight: 800;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.headline {
+  display: block;
+}
+
+.name {
+  font-size: clamp(56px, 7vw, 140px);
+  line-height: 0.85;
+  letter-spacing: 0.005em;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 0 38px color-mix(in oklab, var(--primitive-text-on-accent) 22%, transparent);
+}
+
+.message {
+  margin: 0;
+  font-family: var(--ff-ts-bebas, var(--primitive-font-display));
+  font-size: clamp(24px, 2.2vw, 44px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 94%, transparent);
+}
+
+.bay {
+  color: var(--primitive-amber);
+  font-weight: 400;
+}
+
+.controls {
+  display: inline-flex;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  margin-top: var(--primitive-space-1-5);
+}
+
+.bellBtn,
+.muteBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-3) 18px;
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(12px, 0.9vw, 15px);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.bellBtn:hover,
+.bellBtn:focus-visible,
+.muteBtn:hover,
+.muteBtn:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 16%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-text-on-accent) 85%, transparent);
+  outline: none;
+}
+
+.muteBtn {
+  padding: var(--primitive-space-3) 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner.intense {
+    animation: none;
+  }
+  .banner::before {
+    background: none;
+  }
+  .bellBtn,
+  .muteBtn {
+    transition: none;
+  }
+}

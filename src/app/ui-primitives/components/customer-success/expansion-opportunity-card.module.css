@@ -1,0 +1,132 @@
+.wrapper {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-green) 16%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.glyph {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--primitive-green);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+}
+
+.headText {
+  min-width: 0;
+}
+
+.kicker {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-green);
+}
+
+.name {
+  margin: var(--primitive-space-1) 0 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-medium);
+  color: var(--primitive-text-strong);
+}
+
+.actionBlock,
+.upliftBlock {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.actionTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-medium);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.upliftValue {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  font-weight: 400;
+  color: var(--primitive-green);
+  letter-spacing: 0.004em;
+}
+
+.upliftSign {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-lg);
+  color: var(--primitive-green);
+  margin-right: var(--primitive-space-1);
+}
+
+.rationale {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+  color: var(--primitive-body);
+}
+
+.cta {
+  display: inline-flex;
+  align-self: start;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 9px 14px;
+  border: 1px solid var(--primitive-green);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.cta:hover,
+.cta:focus-visible {
+  outline: none;
+  background: color-mix(in oklab, var(--primitive-green) 24%, transparent);
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+}

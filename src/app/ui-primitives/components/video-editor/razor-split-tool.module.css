@@ -1,0 +1,126 @@
+.tool {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.blade {
+  position: absolute;
+  top: 4px;
+  left: -7px;
+  color: var(--primitive-amber);
+  filter: drop-shadow(0 4px 10px color-mix(in oklab, var(--primitive-amber) 50%, transparent));
+}
+
+.blade svg {
+  width: 16px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.dashedLine {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  background-image: linear-gradient(180deg, var(--primitive-amber) 0 4px, transparent 4px 9px);
+  background-size: 1px 9px;
+  background-repeat: repeat-y;
+  opacity: 0.7;
+}
+
+.atChip {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  border: 1px solid var(--primitive-amber);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.popover {
+  position: absolute;
+  top: -110px;
+  left: -130px;
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  width: 240px;
+  border-radius: 12px;
+  border: 1px solid var(--primitive-line-strong);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent)),
+    var(--primitive-panel-strong);
+  box-shadow: 0 22px 48px color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+  pointer-events: auto;
+}
+
+.popoverTitle {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.popoverBody {
+  font-family: var(--primitive-font-body);
+  font-size: 13px;
+  color: var(--primitive-text-strong);
+}
+
+.popoverBody strong {
+  font-family: var(--primitive-font-mono);
+  color: var(--primitive-amber);
+  letter-spacing: 0.06em;
+}
+
+.snapChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.snapChip:hover,
+.snapChip:focus-visible {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.snapOn {
+  border-color: var(--primitive-amber);
+  background: var(--primitive-amber);
+  color: var(--primitive-canvas);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snapChip { transition: none; }
+}

@@ -1,0 +1,71 @@
+.section {
+  display: grid;
+  gap: clamp(28px, 4vw, 48px);
+}
+
+.header {
+  display: grid;
+  gap: var(--primitive-space-3);
+  max-width: 760px;
+}
+
+.kicker {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.heading {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h2);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  letter-spacing: var(--primitive-tracking-tight);
+  text-transform: uppercase;
+}
+
+.body {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-lg);
+  line-height: var(--primitive-leading-normal);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.4fr);
+  gap: var(--primitive-space-8);
+  align-items: start;
+}
+
+.summaryColumn {
+  position: sticky;
+  top: var(--primitive-space-6);
+  min-width: 0;
+}
+
+.wallColumn {
+  min-width: 0;
+}
+
+/* TestimonialWall already renders its own section padding — trim it inside
+   this layout so the two columns share rhythm. */
+.wallColumn > :global(section) {
+  padding: 0;
+}
+
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryColumn {
+    position: static;
+    top: auto;
+  }
+}

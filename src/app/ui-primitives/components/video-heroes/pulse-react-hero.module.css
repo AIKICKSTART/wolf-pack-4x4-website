@@ -1,0 +1,279 @@
+/* =========================================================
+   PULSE REACT HERO — concentric pings + dyno gauge
+   ========================================================= */
+
+.hero {
+  --pulse-tint: var(--primitive-red);
+  position: relative;
+  width: 100%;
+  min-height: 80svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-text-strong);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(360px, 36vw);
+  align-items: end;
+}
+
+.toneRed   { --pulse-tint: var(--primitive-red); }
+.toneTeal  { --pulse-tint: var(--primitive-teal); }
+.toneGreen { --pulse-tint: var(--primitive-green); }
+.toneAmber { --pulse-tint: var(--primitive-amber); }
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.78) saturate(1.05);
+}
+
+.darken {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at 50% 100%, color-mix(in oklab, black 70%, transparent) 0%, transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, black 50%, transparent) 0%, color-mix(in oklab, black 18%, transparent) 30%, color-mix(in oklab, black 70%, transparent) 100%);
+}
+
+.pulseAnchor {
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.pulseDot {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--pulse-tint);
+  box-shadow: 0 0 24px var(--pulse-tint), 0 0 4px var(--primitive-text-strong) inset;
+}
+
+.pulseRing {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--primitive-radius-pill);
+  border: 2px solid var(--pulse-tint);
+  opacity: 0;
+  animation: pulse 2.1s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1);  opacity: 0.78; }
+  85%  { transform: scale(14); opacity: 0;    }
+  100% { transform: scale(14); opacity: 0;    }
+}
+
+.copy {
+  position: relative;
+  z-index: 3;
+  grid-column: 1 / 2;
+  display: grid;
+  gap: 18px;
+  padding: 0 clamp(28px, 5vw, 80px) clamp(48px, 8svh, 96px);
+  max-width: 680px;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--pulse-tint);
+  width: max-content;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--pulse-tint);
+  box-shadow: 0 0 14px var(--pulse-tint);
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.55); }
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 1.4rem + 4.4vw, 5.6rem);
+  line-height: 0.93;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  margin: 0;
+}
+
+.subhead {
+  font-size: var(--primitive-text-md);
+  line-height: 1.52;
+  color: color-mix(in oklab, var(--primitive-text-strong) 80%, transparent);
+  margin: 0;
+  max-width: 48ch;
+}
+
+.cta {
+  margin-top: var(--primitive-space-1-5);
+  display: inline-flex;
+  width: max-content;
+  padding: 13px 24px;
+  background: transparent;
+  border: 1px solid var(--pulse-tint);
+  color: var(--pulse-tint);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  transition: background 220ms var(--primitive-ease-out), color 220ms,
+    transform 220ms var(--primitive-ease-out), box-shadow 220ms;
+}
+.cta:hover {
+  background: var(--pulse-tint);
+  color: var(--primitive-canvas);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px color-mix(in oklab, var(--pulse-tint) 40%, transparent);
+}
+.cta:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px color-mix(in oklab, var(--pulse-tint) 32%, transparent);
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 4px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.gauge {
+  position: relative;
+  z-index: 3;
+  grid-column: 2 / 3;
+  align-self: end;
+  margin: 0 clamp(20px, 4vw, 48px) clamp(36px, 6svh, 72px);
+  padding: 18px;
+  background: color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.gauge header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+.gauge header span { color: color-mix(in oklab, var(--primitive-text-strong) 46%, transparent); }
+.gauge header strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--pulse-tint);
+}
+.gauge header strong::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--pulse-tint);
+  box-shadow: 0 0 10px var(--pulse-tint);
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+.gauge ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+  border-top: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+  padding-top: var(--primitive-space-2-5);
+}
+.gauge li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 70%, transparent);
+}
+.gauge li strong {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.gaugeBar {
+  position: relative;
+  height: 4px;
+  background: var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-pill);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+.gaugeBar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--primitive-text-strong) 16%, transparent) 0 1px,
+    transparent 1px 14px
+  );
+  opacity: 0.6;
+}
+.gaugeBar span {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--pulse-tint), transparent);
+  width: 70%;
+  animation: gaugeSweep 2.4s linear infinite;
+}
+
+@keyframes gaugeSweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(140%); }
+}
+
+@media (max-width: 880px) {
+  .hero { grid-template-columns: 1fr; }
+  .gauge { grid-column: 1 / 2; margin: 0 clamp(20px, 4vw, 48px) clamp(20px, 4vw, 32px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video { display: none; }
+  .pulseRing,
+  .kicker i,
+  .gaugeBar span { animation: none; }
+  .pulseRing { display: none; }
+}

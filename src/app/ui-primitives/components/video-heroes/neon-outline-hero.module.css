@@ -1,0 +1,359 @@
+/* =========================================================
+   NEON OUTLINE HERO — a traced neon tube that draws itself
+   around the copy plate (SVG stroke-dashoffset draw-on),
+   brand red + amber glow, dimmed loop video behind.
+   The neon line IS the motif.
+   ========================================================= */
+
+.hero {
+  --neon-red: var(--primitive-red);
+  --neon-amber: var(--primitive-amber);
+  --neon-draw-duration: 2200ms;
+  --neon-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  width: 100%;
+  min-height: clamp(540px, 88svh, 860px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(56px, 9svh, 120px) clamp(18px, 5vw, 88px) clamp(64px, 8svh, 110px);
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 50% 40%, color-mix(in oklab, var(--neon-red) 16%, transparent), transparent 58%),
+    radial-gradient(ellipse at 16% 88%, color-mix(in oklab, var(--neon-amber) 14%, transparent), transparent 64%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 84%, var(--primitive-teal)) 100%);
+  font-family: var(--primitive-font-body);
+}
+
+/* ---- Dimmed loop video, furthest back ---- */
+.video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.05) contrast(1.08) brightness(0.7);
+}
+
+/* Heavy dim so the neon reads as the brightest thing on screen. */
+.dim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 46%, color-mix(in oklab, black 32%, transparent) 0%, color-mix(in oklab, black 72%, transparent) 78%),
+    linear-gradient(180deg, color-mix(in oklab, black 50%, transparent) 0%, color-mix(in oklab, black 28%, transparent) 40%, color-mix(in oklab, black 78%, transparent) 100%);
+}
+
+/* Fine film grain for atmosphere. */
+.grain {
+  position: absolute;
+  inset: -8%;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+}
+
+/* Soft colour bloom behind the plate to seat the neon in the scene. */
+.bloom {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 60% 46% at 50% 46%,
+    color-mix(in oklab, var(--neon-red) 22%, transparent) 0%,
+    color-mix(in oklab, var(--neon-amber) 10%, transparent) 38%,
+    transparent 70%
+  );
+  opacity: 0.9;
+  animation: bloomBreathe 5.4s ease-in-out infinite;
+}
+
+@keyframes bloomBreathe {
+  0%, 100% { opacity: 0.78; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+/* ---- Stage: holds the traced outline + the copy it frames ---- */
+.stage {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 720px);
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+/* The neon outline stretches to cover the whole plate. Two strokes are
+   stacked: a wide blurred halo and a crisp bright core. */
+.outline {
+  position: absolute;
+  inset: clamp(-22px, -3vw, -40px) clamp(-14px, -2.6vw, -34px);
+  z-index: 0;
+  width: calc(100% + clamp(28px, 5.2vw, 68px));
+  height: calc(100% + clamp(44px, 6vw, 80px));
+  overflow: visible;
+}
+
+.outlineGlow,
+.outlineCore,
+.ruleGlow,
+.ruleCore {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  /* Animate the dash offset to "draw" the tube on; offset/dasharray are
+     supplied inline from the measured path length. */
+  transition: stroke-dashoffset var(--neon-draw-duration) var(--neon-ease);
+}
+
+/* Wide, blurred halo — the glow you see before the tube itself. */
+.outlineGlow {
+  stroke: var(--neon-red);
+  stroke-width: 10;
+  opacity: 0.55;
+  filter:
+    drop-shadow(0 0 6px color-mix(in oklab, var(--neon-red) 80%, transparent))
+    drop-shadow(0 0 18px color-mix(in oklab, var(--neon-red) 60%, transparent))
+    drop-shadow(0 0 34px color-mix(in oklab, var(--neon-amber) 38%, transparent));
+}
+
+/* Crisp, near-white core of the glass tube. */
+.outlineCore {
+  stroke: color-mix(in oklab, var(--neon-red) 30%, white);
+  stroke-width: 2.4;
+  filter: drop-shadow(0 0 4px color-mix(in oklab, var(--neon-amber) 70%, transparent));
+  animation: neonFlicker 6.5s steps(1, end) infinite;
+}
+
+/* Subtle, organic neon flicker — never strobing. */
+@keyframes neonFlicker {
+  0%, 7%, 9%, 100% { opacity: 1; }
+  8% { opacity: 0.74; }
+  46%, 48% { opacity: 1; }
+  47% { opacity: 0.82; }
+  72%, 74% { opacity: 1; }
+  73% { opacity: 0.66; }
+}
+
+/* ---- Copy plate framed by the neon ---- */
+.copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(14px, 1.8vw, 22px);
+  justify-items: start;
+  text-align: left;
+  padding: clamp(28px, 4.6vw, 56px) clamp(26px, 4.4vw, 60px);
+  max-width: 100%;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(10px, 0.6rem + 0.2vw, 11px);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--neon-amber);
+  text-shadow: 0 0 16px color-mix(in oklab, var(--neon-amber) 45%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--neon-red);
+  box-shadow:
+    0 0 8px var(--neon-red),
+    0 0 18px color-mix(in oklab, var(--neon-red) 70%, transparent);
+  animation: kickerPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes kickerPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.62); }
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 1.3rem + 5.4vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  color: white;
+  text-shadow:
+    0 0 24px color-mix(in oklab, black 70%, transparent),
+    0 0 38px color-mix(in oklab, var(--neon-red) 30%, transparent);
+}
+
+/* Hand-traced neon rule under the headline — same draw-on as the frame. */
+.rule {
+  width: clamp(180px, 38vw, 320px);
+  height: 12px;
+  overflow: visible;
+}
+.ruleGlow {
+  stroke: var(--neon-amber);
+  stroke-width: 7;
+  opacity: 0.6;
+  filter:
+    drop-shadow(0 0 5px color-mix(in oklab, var(--neon-amber) 80%, transparent))
+    drop-shadow(0 0 14px color-mix(in oklab, var(--neon-amber) 55%, transparent));
+}
+.ruleCore {
+  stroke: color-mix(in oklab, var(--neon-amber) 36%, white);
+  stroke-width: 2;
+}
+
+.subhead {
+  font-family: var(--primitive-font-body);
+  font-size: clamp(14px, 0.85rem + 0.4vw, 18px);
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--primitive-text-strong) 82%, transparent);
+  margin: 0;
+  max-width: 46ch;
+}
+
+.cta {
+  margin-top: clamp(4px, 0.8vw, 8px);
+  width: max-content;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 26px;
+  background: transparent;
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(13px, 0.78rem + 0.2vw, 15px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  position: relative;
+  isolation: isolate;
+  border: 1.5px solid color-mix(in oklab, var(--neon-red) 60%, transparent);
+  box-shadow:
+    0 0 0 0 transparent,
+    inset 0 0 18px color-mix(in oklab, var(--neon-red) 18%, transparent);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--neon-red) 40%, transparent);
+  transition:
+    transform 240ms var(--neon-ease),
+    box-shadow 240ms var(--neon-ease),
+    border-color 240ms var(--neon-ease),
+    background 240ms var(--neon-ease),
+    color 240ms var(--neon-ease);
+}
+.cta:hover {
+  transform: translateY(-2px);
+  background: var(--neon-red);
+  border-color: var(--neon-red);
+  color: var(--primitive-text-on-accent);
+  box-shadow:
+    0 0 22px color-mix(in oklab, var(--neon-red) 60%, transparent),
+    0 0 44px color-mix(in oklab, var(--neon-red) 34%, transparent),
+    inset 0 0 0 transparent;
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 5px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+/* ---- Footer micro-labels ---- */
+.meta {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: clamp(28px, 5svh, 56px);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(9px, 0.55rem + 0.15vw, 10px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 48%, transparent);
+  flex-wrap: wrap;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---- Light theme parity: deepen the scene so neon still glows ---- */
+:global(html[data-primitive-theme="light"]) .hero {
+  color: white;
+  background:
+    radial-gradient(ellipse at 50% 40%, color-mix(in oklab, var(--neon-red) 30%, transparent), transparent 58%),
+    radial-gradient(ellipse at 16% 88%, color-mix(in oklab, var(--neon-amber) 22%, transparent), transparent 64%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-teal)) 0%, color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-teal)) 100%);
+}
+:global(html[data-primitive-theme="light"]) .subhead {
+  color: color-mix(in oklab, var(--primitive-text-strong) 82%, transparent);
+}
+:global(html[data-primitive-theme="light"]) .meta {
+  color: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent);
+}
+
+/* ---- Narrow viewports: keep the frame readable, never clip ---- */
+@media (max-width: 560px) {
+  .copy {
+    gap: 12px;
+  }
+  .meta {
+    justify-content: flex-start;
+    gap: 14px 24px;
+  }
+}
+
+/* ---- Reduced motion: neutralise ALL motion to a clean static scene ---- */
+@media (prefers-reduced-motion: reduce) {
+  .video {
+    display: none;
+  }
+  .bloom,
+  .kicker i,
+  .outlineCore {
+    animation: none;
+  }
+  .outlineGlow,
+  .outlineCore,
+  .ruleGlow,
+  .ruleCore {
+    transition: none;
+    /* Static, fully-traced tube — the dash props are reset inline too. */
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+  .hero {
+    background:
+      radial-gradient(ellipse at 50% 42%, color-mix(in oklab, var(--neon-red) 18%, transparent), transparent 60%),
+      linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-teal)) 100%);
+  }
+}

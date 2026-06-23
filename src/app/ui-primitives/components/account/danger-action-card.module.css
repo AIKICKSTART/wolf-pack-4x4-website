@@ -1,0 +1,212 @@
+.card {
+  --danger-tone: var(--primitive-red);
+  --danger-tone-soft: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  --danger-tone-stroke: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  --danger-glaze: linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 5%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 0.5%, transparent));
+  --danger-top-light: color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent);
+
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--danger-tone-stroke);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 100% 0%, var(--danger-tone-soft), transparent 42%),
+    var(--danger-glaze),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 var(--danger-top-light),
+    inset 0 0 0 1px color-mix(in oklab, var(--danger-tone) 8%, transparent),
+    var(--primitive-shadow-deep);
+  min-width: 0;
+}
+
+:global(html[data-primitive-theme="light"]) .card {
+  --danger-glaze: linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 50%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent));
+  --danger-top-light: color-mix(in oklab, var(--primitive-text-on-accent) 70%, transparent);
+}
+
+.toneWarning {
+  --danger-tone: var(--primitive-amber);
+  --danger-tone-soft: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --danger-tone-stroke: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: start;
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--primitive-radius-md);
+  background: var(--danger-tone-soft);
+  color: var(--danger-tone);
+  box-shadow: inset 0 0 0 1px var(--danger-tone-stroke);
+}
+
+.headText {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+  line-height: var(--primitive-leading-none);
+}
+
+.description {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.45;
+}
+
+.consequences {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+  list-style: none;
+  border-top: 1px solid var(--primitive-line-muted);
+  padding-top: var(--primitive-space-3);
+}
+
+.consequences li {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  gap: var(--primitive-space-2-5);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.4;
+}
+
+.consequences li::before {
+  content: "";
+  margin-top: var(--primitive-space-1-5);
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--danger-tone);
+}
+
+.confirmRow {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.confirmLabel {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+}
+
+.phrase {
+  color: var(--danger-tone);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border: 1px solid var(--danger-tone-stroke);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--danger-tone-soft);
+}
+
+.confirmInput {
+  min-height: 40px;
+  padding: 0 var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.04em;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.confirmInput:focus-visible {
+  outline: none;
+  border-color: var(--danger-tone-stroke);
+  box-shadow: 0 0 0 3px var(--danger-tone-soft);
+}
+
+.confirmInput[aria-invalid="true"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 70%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.helper {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.04em;
+}
+
+.foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.confirmBtn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 var(--primitive-space-5);
+  border: 1px solid var(--danger-tone-stroke);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 16%, transparent), transparent 56%),
+    linear-gradient(135deg, var(--danger-tone), color-mix(in oklab, var(--danger-tone) 60%, var(--primitive-canvas) 40%));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 18px 38px color-mix(in oklab, var(--danger-tone) 26%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-on-accent) 32%, transparent);
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+
+.confirmBtn:hover:not(:disabled),
+.confirmBtn:focus-visible:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 22px 50px color-mix(in oklab, var(--danger-tone) 36%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-on-accent) 42%, transparent);
+  outline: none;
+}
+
+.confirmBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.confirmBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confirmInput,
+  .confirmBtn {
+    transition: none;
+  }
+  .confirmBtn:hover,
+  .confirmBtn:focus-visible {
+    transform: none;
+  }
+}

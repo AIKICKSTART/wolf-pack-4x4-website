@@ -1,0 +1,579 @@
+/* Quote builder — Workshop Pro estimate surface composed from registered
+   primitives. Command band + Torque avatar, customer/vehicle context, the
+   parts/labour/fee line table, a markup/discount + GST + totals rail, build
+   gallery, send-for-approval + acceptance tracker, and a convert-to-job action
+   band. Light + dark parity via --primitive-* tokens; motion is opacity/
+   transform only and prefers-reduced-motion is honoured. Figures use
+   tabular-nums so AUD columns align. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1520px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Command / hero band ------------------------------------------------- */
+
+.command {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  padding: clamp(20px, 2.6vw, 32px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 58%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.command::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  opacity: 0.6;
+}
+
+.commandHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--primitive-text-on-accent) 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 26px color-mix(in oklab, var(--primitive-red) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.torqueId {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+  margin-right: auto;
+}
+
+.torqueName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.torqueRole {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+.stagePill {
+  display: inline-flex;
+  align-items: center;
+}
+
+.commandTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3.4vw, 42px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.commandTitle em {
+  font-style: normal;
+  color: var(--primitive-red);
+}
+
+.commandCopy {
+  margin: 0;
+  max-width: 74ch;
+  font-size: var(--primitive-text-base);
+  line-height: 1.6;
+  color: var(--primitive-body);
+}
+
+/* ---- Customer / vehicle / quote context cards --------------------------- */
+
+.contextGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.4vw, 16px);
+  margin: var(--primitive-space-1) 0 0;
+}
+
+.contextCard {
+  display: grid;
+  gap: 3px;
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-panel);
+}
+
+.contextLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.contextValue {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.contextMeta {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--primitive-muted);
+}
+
+.rego {
+  font-family: var(--primitive-font-mono);
+  letter-spacing: 0.06em;
+  color: var(--primitive-body);
+}
+
+.figure {
+  font-variant-numeric: tabular-nums;
+}
+
+.vehicleNote {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: var(--primitive-space-2-5) 14px;
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-panel);
+  border: 1px dashed var(--primitive-line);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--primitive-body);
+}
+
+.vehicleNote svg {
+  flex: 0 0 auto;
+  color: var(--primitive-amber);
+}
+
+/* ---- Region heads -------------------------------------------------------- */
+
+.regionHead {
+  display: grid;
+  gap: var(--primitive-space-2);
+  margin-bottom: var(--primitive-space-4);
+}
+
+.regionKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.regionTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.regionSub {
+  margin: 0;
+  max-width: 64ch;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-muted);
+}
+
+/* ---- Builder split (lines + totals rail) -------------------------------- */
+
+.builder {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  align-items: start;
+}
+
+.builderMain {
+  display: grid;
+  gap: clamp(16px, 2vw, 22px);
+  min-width: 0;
+}
+
+.quoteFrame {
+  display: grid;
+  min-width: 0;
+}
+
+.rail {
+  display: grid;
+  gap: clamp(14px, 1.8vw, 20px);
+  align-content: start;
+  min-width: 0;
+  position: sticky;
+  top: clamp(12px, 2vw, 24px);
+}
+
+/* ---- Inline add-line editor --------------------------------------------- */
+
+.addLine {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: clamp(14px, 1.8vw, 20px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.addLineHead {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.addLineTitle {
+  margin: 0;
+  font-size: var(--primitive-text-base);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.addLineHint {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Totals rail card ---------------------------------------------------- */
+
+.totalsCard {
+  display: grid;
+  gap: 14px;
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background:
+    radial-gradient(120% 130% at 100% 0%, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.totalsHead {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.totalsTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 19px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--primitive-text-strong);
+}
+
+.totalsRows {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  margin: 0;
+}
+
+.totalsRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-2) 0;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.totalsRow:last-child {
+  border-bottom: none;
+}
+
+.totalsRow dt {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.totalsHint {
+  font-size: 11.5px;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.totalsAmount {
+  margin: 0;
+  font-size: var(--primitive-text-base);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+  white-space: nowrap;
+}
+
+.totalsCredit {
+  color: var(--primitive-green);
+}
+
+.totalsSubtotal dt,
+.totalsSubtotal .totalsAmount {
+  color: var(--primitive-text-strong);
+}
+
+.totalsGrand {
+  margin-top: var(--primitive-space-1);
+  padding-top: var(--primitive-space-3);
+  border-top: 2px solid var(--primitive-line);
+}
+
+.totalsGrand dt {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--primitive-text-strong);
+}
+
+.totalsGrand .totalsAmount {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 400;
+  color: var(--primitive-red);
+}
+
+.depositNote {
+  margin: 0;
+  padding-top: var(--primitive-space-1);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+.depositNote strong {
+  color: var(--primitive-text-strong);
+}
+
+/* ---- Media gallery ------------------------------------------------------- */
+
+.media {
+  display: grid;
+}
+
+/* ---- Approval split ------------------------------------------------------ */
+
+.approval {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  align-items: start;
+}
+
+.approvalSend,
+.approvalTrack {
+  display: grid;
+  min-width: 0;
+}
+
+/* ---- Convert-to-job action band ----------------------------------------- */
+
+.actionBand {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(14px, 2vw, 24px);
+  padding: clamp(18px, 2.4vw, 28px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 160% at 100% 50%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.actionCopy {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  max-width: 60ch;
+  min-width: min(100%, 280px);
+}
+
+.actionTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--primitive-text-strong);
+}
+
+.actionSub {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.actionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+}
+
+.secondaryAction,
+.primaryAction {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 11px 18px;
+  border-radius: var(--primitive-btn-radius);
+  font-size: var(--primitive-text-base);
+  font-weight: var(--primitive-weight-semibold);
+  cursor: pointer;
+  transition:
+    transform var(--primitive-duration-fast) ease,
+    background var(--primitive-duration-fast) ease,
+    border-color var(--primitive-duration-fast) ease,
+    box-shadow var(--primitive-duration-fast) ease;
+}
+
+.secondaryAction {
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+}
+
+.secondaryAction:hover {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+}
+
+.primaryAction {
+  border: 1px solid transparent;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.primaryAction:hover:not(:disabled) {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.primaryAction[data-stage="converted"],
+.primaryAction:disabled {
+  background: var(--primitive-panel);
+  border-color: var(--primitive-line);
+  color: var(--primitive-green);
+  box-shadow: none;
+  cursor: default;
+}
+
+.secondaryAction:focus-visible,
+.primaryAction:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 1040px) {
+  .builder,
+  .approval {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rail {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .contextGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .actionBand {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actionButtons {
+    width: 100%;
+  }
+
+  .secondaryAction,
+  .primaryAction {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+/* ---- Reduced motion ------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryAction,
+  .secondaryAction {
+    transition: none;
+  }
+
+  .primaryAction:hover:not(:disabled) {
+    transform: none;
+  }
+}

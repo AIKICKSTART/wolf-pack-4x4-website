@@ -1,0 +1,861 @@
+.atlas {
+  display: grid;
+  gap: clamp(24px, 4vw, 46px);
+  width: min(100%, 1480px);
+  margin: 0 auto;
+}
+
+.heroPanel,
+.matrix,
+.catalog,
+.patternPanel,
+.domainCard,
+.referencePanel {
+  position: relative;
+  isolation: isolate;
+}
+
+.heroPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.62fr);
+  gap: clamp(18px, 3vw, 30px);
+  align-items: end;
+  padding: clamp(22px, 4vw, 42px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 13%, transparent), transparent 30%),
+    radial-gradient(ellipse at 84% 8%, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 42%),
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+      color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)
+    ),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-deep);
+  overflow: hidden;
+}
+
+.heroPanel::before,
+.patternPanel::before,
+.domainCard::before,
+.referencePanel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 18px, var(--primitive-texture-stroke) 18px 19px),
+    repeating-linear-gradient(0deg, transparent 0 18px, color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent) 18px 19px);
+  mask-image: linear-gradient(135deg, var(--primitive-text-strong), transparent 72%);
+  opacity: 0.7;
+}
+
+.heroCopy,
+.sectionHead {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heroCopy h2,
+.sectionHead h2,
+.patternMeta h3,
+.domainCard h3 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.heroCopy h2 {
+  max-width: 760px;
+  font-size: clamp(42px, 6vw, 86px);
+  line-height: 0.92;
+}
+
+.sectionHead h2 {
+  font-size: clamp(30px, 4vw, 54px);
+  line-height: 0.96;
+}
+
+.heroCopy p,
+.sectionHead p,
+.patternMeta p,
+.metaRows span,
+.domainCard small,
+.referencePanel p {
+  margin: 0;
+  color: var(--primitive-body);
+  line-height: 1.55;
+}
+
+.heroCopy p,
+.sectionHead p {
+  max-width: 780px;
+  font-size: var(--primitive-text-base);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+}
+
+.statsGrid div {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-height: 116px;
+  align-content: center;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent);
+}
+
+.statsGrid dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.statsGrid dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 0.9;
+}
+
+.dnaPanel {
+  display: grid;
+  gap: clamp(18px, 3vw, 28px);
+  padding: clamp(20px, 3vw, 34px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    radial-gradient(circle at 4% 0%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 34%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), transparent 64%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  overflow: hidden;
+}
+
+.foundationChain {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.chainItem {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+  min-height: 132px;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  background:
+    linear-gradient(145deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent),
+    var(--primitive-field-bg);
+  color: var(--primitive-body);
+  text-decoration: none;
+}
+
+.chainItem span,
+.contractCard span,
+.contractCard code,
+.contractCard small,
+.stateRow span,
+.stateRow small,
+.inventoryList span {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.chainItem span,
+.contractCard span,
+.stateRow span {
+  color: var(--primitive-red);
+}
+
+.chainItem strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-none);
+  text-transform: uppercase;
+}
+
+.chainItem small,
+.contractCard small,
+.stateRow small {
+  color: var(--primitive-muted);
+  line-height: 1.45;
+}
+
+.contractGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.contractCard {
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  min-height: 238px;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-panel-strong) 84%, transparent);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    inset -8px -8px 18px var(--primitive-neumo-dark);
+}
+
+.contractIcon {
+  display: grid;
+  place-items: center;
+  inline-size: var(--primitive-size-icon-well-sm);
+  block-size: var(--primitive-size-icon-well-sm);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 44%, var(--primitive-line));
+  border-radius: var(--primitive-radius-sm);
+  background:
+    var(--primitive-metallic-sheen),
+    color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.contractCard h3,
+.blueprintHead h3 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-none);
+  text-transform: uppercase;
+}
+
+.contractCard h3 {
+  font-size: var(--primitive-text-2xl);
+}
+
+.contractCard p,
+.blueprintHead p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+}
+
+.contractCard code {
+  color: var(--primitive-amber);
+  overflow-wrap: anywhere;
+}
+
+.anatomyGrid {
+  display: grid;
+  grid-template-columns: minmax(340px, 1.05fr) repeat(2, minmax(260px, 0.7fr));
+  gap: var(--primitive-space-3);
+  align-items: stretch;
+}
+
+.fieldBlueprint,
+.statePanel {
+  display: grid;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    repeating-linear-gradient(90deg, transparent 0 23px, var(--primitive-texture-stroke) 23px 24px),
+    color-mix(in oklab, var(--primitive-canvas) 72%, transparent);
+}
+
+.blueprintHead {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: start;
+}
+
+.blueprintHead h3 {
+  font-size: clamp(26px, 3vw, 40px);
+}
+
+.formBlueprint {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.blueprintField {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.blueprintField label {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.blueprintField input,
+.blueprintField select {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--primitive-size-field-md);
+  padding: 0 var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 68%),
+    var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  font: inherit;
+}
+
+.blueprintField input[aria-invalid="true"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 68%, var(--primitive-line));
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 14%, transparent);
+}
+
+.blueprintField small,
+.errorLine {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  line-height: var(--primitive-leading-normal);
+}
+
+.blueprintField small {
+  color: var(--primitive-muted);
+}
+
+.errorLine {
+  color: var(--primitive-red);
+}
+
+.selectShell {
+  position: relative;
+  min-width: 0;
+}
+
+.selectShell select {
+  appearance: none;
+  padding-right: calc(var(--primitive-space-3) + 22px);
+}
+
+.selectShell svg {
+  position: absolute;
+  top: 50%;
+  right: var(--primitive-space-3);
+  color: var(--primitive-amber);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.submitRail {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--primitive-space-2);
+  flex-wrap: wrap;
+  padding-top: var(--primitive-space-1);
+}
+
+.submitRail button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2);
+  min-height: var(--primitive-size-command-sm);
+  padding: 0 var(--primitive-space-4);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.submitRail button:last-child {
+  border-color: transparent;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.stateGrid,
+.inventoryList {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.stateRow,
+.inventoryList div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 0.42fr) minmax(0, 0.58fr);
+  gap: var(--primitive-space-2);
+  align-items: center;
+  min-width: 0;
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.stateRow svg,
+.inventoryList svg {
+  color: var(--primitive-amber);
+}
+
+.stateRow strong,
+.inventoryList strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.stateRow small {
+  grid-column: 2 / -1;
+}
+
+.inventoryList div {
+  grid-template-columns: auto auto minmax(0, 1fr);
+}
+
+.inventoryList strong {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-display);
+  font-size: 28px;
+  font-weight: var(--primitive-weight-regular);
+  line-height: 0.9;
+  letter-spacing: 0;
+}
+
+.inventoryList span {
+  color: var(--primitive-muted);
+}
+
+.matrix,
+.catalog {
+  display: grid;
+  gap: 18px;
+}
+
+.domainGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.domainCard {
+  display: grid;
+  gap: 14px;
+  min-height: 220px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 5.2%, transparent),
+      color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)
+    ),
+    var(--primitive-panel);
+  overflow: hidden;
+}
+
+.domainCard header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.domainCard header span,
+.patternIndex {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-display);
+  font-size: 38px;
+  line-height: 0.8;
+}
+
+.domainCard h3 {
+  font-size: 24px;
+}
+
+.domainCard ul {
+  display: grid;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.domainCard li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-2);
+  align-items: center;
+}
+
+.domainCard a {
+  min-width: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.domainCard a:hover,
+.domainCard a:focus-visible,
+.openRoute:hover,
+.openRoute:focus-visible,
+.referencePanel a:hover,
+.referencePanel a:focus-visible {
+  color: var(--primitive-amber);
+}
+
+.domainCard small {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.patternStack {
+  display: grid;
+  gap: 18px;
+}
+
+.patternPanel {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.58fr) minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 28px);
+  align-items: start;
+  padding: clamp(18px, 3vw, 30px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 5%, transparent),
+      color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)
+    ),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    var(--primitive-shadow-soft);
+  scroll-margin-top: 22px;
+}
+
+.patternMeta {
+  position: sticky;
+  top: 20px;
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.patternIndex {
+  color: var(--primitive-red);
+}
+
+.sourcePill,
+.openRoute,
+.referencePanel a,
+.metaRows strong {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.sourcePill {
+  width: max-content;
+  max-width: 100%;
+  padding: var(--primitive-space-1-5) 9px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 34%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 7%, transparent);
+}
+
+.patternMeta h3 {
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 0.96;
+}
+
+.metaRows {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.metaRows div {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding-block: var(--primitive-space-2);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.metaRows strong {
+  color: var(--primitive-muted);
+}
+
+.metaRows span {
+  font-size: var(--primitive-text-sm);
+}
+
+.openRoute {
+  width: max-content;
+  max-width: 100%;
+  color: var(--primitive-text-strong);
+  text-decoration: none;
+}
+
+.demoSurface {
+  display: grid;
+  justify-items: center;
+  min-width: 0;
+}
+
+.demoSurface > * {
+  max-width: 100%;
+}
+
+.referencePanel {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 5.2%, transparent),
+      color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)
+    ),
+    var(--primitive-panel);
+  overflow: hidden;
+}
+
+.referencePanel h2,
+.referencePanel h3 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 24px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0;
+  line-height: var(--primitive-leading-none);
+  text-transform: uppercase;
+}
+
+.referenceList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.referencePanel a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  text-decoration: none;
+}
+
+:global(html[data-primitive-theme="light"]) .heroPanel,
+:global(html[data-primitive-theme="light"]) .dnaPanel,
+:global(html[data-primitive-theme="light"]) .contractCard,
+:global(html[data-primitive-theme="light"]) .fieldBlueprint,
+:global(html[data-primitive-theme="light"]) .statePanel,
+:global(html[data-primitive-theme="light"]) .chainItem,
+:global(html[data-primitive-theme="light"]) .domainCard,
+:global(html[data-primitive-theme="light"]) .patternPanel,
+:global(html[data-primitive-theme="light"]) .referencePanel {
+  border-color: var(--primitive-line);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-red) 9%, transparent), transparent 38%),
+    linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 92%, transparent),
+      color-mix(in oklab, var(--primitive-canvas) 62%, transparent)
+    ),
+    color-mix(in oklab, var(--primitive-text-on-accent) 72%, transparent);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+:global(html[data-primitive-theme="light"]) .statsGrid div,
+:global(html[data-primitive-theme="light"]) .sourcePill,
+:global(html[data-primitive-theme="light"]) .stateRow,
+:global(html[data-primitive-theme="light"]) .inventoryList div,
+:global(html[data-primitive-theme="light"]) .referencePanel a {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 14%, transparent);
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 84%, transparent),
+      color-mix(in oklab, var(--primitive-canvas) 54%, transparent)
+    ),
+    color-mix(in oklab, var(--primitive-text-on-accent) 62%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .domainCard header span,
+:global(html[data-primitive-theme="light"]) .patternIndex,
+:global(html[data-primitive-theme="light"]) .sourcePill {
+  color: color-mix(in oklab, var(--primitive-amber) 72%, black);
+}
+
+:global(html[data-primitive-theme="light"]) .demoSurface form {
+  color: var(--primitive-body);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 42%),
+    linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 94%, transparent),
+      color-mix(in oklab, var(--primitive-canvas) 68%, transparent)
+    ),
+    color-mix(in oklab, var(--primitive-text-on-accent) 78%, transparent);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+:global(html[data-primitive-theme="light"]) .demoSurface form :where(h1, h2, h3, strong, label, legend, [class*="title"], [class*="heading"]) {
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .demoSurface form :where(p, small, span, li) {
+  color: var(--primitive-body);
+}
+
+:global(html[data-primitive-theme="light"]) .demoSurface form :where([class*="eyebrow"], [class*="kicker"], [class*="required"]) {
+  color: var(--primitive-red);
+}
+
+:global(html[data-primitive-theme="light"]) .demoSurface form :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea) {
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 92%, transparent),
+      color-mix(in oklab, var(--primitive-canvas) 62%, transparent)
+    ),
+    color-mix(in oklab, var(--primitive-text-on-accent) 72%, transparent);
+  box-shadow: inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-on-accent) 86%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .demoSurface form :where(input, textarea)::placeholder {
+  color: color-mix(in oklab, var(--primitive-muted) 62%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .demoSurface form :where(button:not([type="submit"]), [role="button"], [class*="chip"], [class*="toggle"], [class*="option"], [class*="row"], [class*="card"]) {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 14%, transparent);
+  color: var(--primitive-text-strong);
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 84%, transparent),
+      color-mix(in oklab, var(--primitive-canvas) 52%, transparent)
+    ),
+    color-mix(in oklab, var(--primitive-text-on-accent) 60%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .demoSurface form :where(button[type="submit"], [class*="primary"]) {
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  text-shadow: 0 1px 1px color-mix(in oklab, var(--primitive-overlay) 26%, transparent);
+}
+
+@media (max-width: 1080px) {
+  .heroPanel,
+  .patternPanel,
+  .anatomyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .foundationChain,
+  .contractGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .patternMeta {
+    position: static;
+  }
+}
+
+@media (max-width: 680px) {
+  .statsGrid,
+  .domainGrid,
+  .foundationChain,
+  .contractGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroPanel,
+  .dnaPanel,
+  .patternPanel {
+    padding: 18px;
+  }
+
+  .submitRail {
+    justify-content: stretch;
+  }
+
+  .submitRail button {
+    flex: 1 1 160px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas *,
+  .atlas *::before,
+  .atlas *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

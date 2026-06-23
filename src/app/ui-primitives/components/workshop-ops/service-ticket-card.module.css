@@ -1,0 +1,324 @@
+.card {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 56%),
+    radial-gradient(ellipse at 8% 0%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-panel));
+  color: var(--primitive-body);
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    inset -14px -14px 26px color-mix(in oklab, black 18%, transparent),
+    0 18px 38px color-mix(in oklab, black 28%, transparent);
+  font-variant-numeric: tabular-nums;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent) 3px 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+  flex-wrap: wrap;
+}
+
+.numberBlock {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.numberKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.number {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 2.4vw, 28px);
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.headChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  align-items: center;
+}
+
+.vehicle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--primitive-space-3) 14px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.vehicleGlyph {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(135deg, var(--primitive-glass-strong), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-panel));
+  color: var(--primitive-amber);
+}
+
+.vehicleText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.customer {
+  margin: 0;
+  font-size: 17px;
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.005em;
+}
+
+.vehicleLabel {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.01em;
+}
+
+.vehicleFacts {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  margin: 0;
+  padding-top: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.vehicleFacts > div {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.vinFact dd {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.vehicleFacts dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.vehicleFacts dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+}
+
+.services {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.servicesHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.servicesLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.servicesProgress {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+}
+
+.servicesProgress strong {
+  color: var(--primitive-amber);
+  font-weight: var(--primitive-weight-semibold);
+  font-size: 14px;
+}
+
+.servicesList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.serviceItem {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.serviceCheck {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid var(--primitive-line-strong);
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+  line-height: 1;
+}
+
+.serviceItemDone {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 7%, transparent), transparent 80%),
+    color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 34%, transparent);
+}
+
+.serviceItemDone .serviceCheck {
+  background: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 62%, transparent);
+  color: var(--primitive-green);
+}
+
+.serviceLabel {
+  color: var(--primitive-text-strong);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.serviceItemDone .serviceLabel {
+  color: var(--primitive-body);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in oklab, var(--primitive-text-strong) 36%, transparent);
+}
+
+.serviceHours {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+}
+
+.foot {
+  padding-top: 14px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.footFacts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  margin: 0;
+}
+
+.footFacts > div {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.footFacts dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.footFacts dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+}
+
+.bayGlyph {
+  display: inline-flex;
+  align-items: center;
+  margin-right: var(--primitive-space-1);
+  color: var(--primitive-teal);
+  vertical-align: text-bottom;
+}
+
+.totalCell dd {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  color: var(--primitive-amber);
+  letter-spacing: 0.01em;
+  font-feature-settings: "tnum" 1;
+}
+
+@media (max-width: 600px) {
+  .vehicleFacts,
+  .footFacts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .footFacts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}

@@ -1,0 +1,39 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.wheelGroup { transform-origin: 12px 12px; }
+.outer { fill: currentColor; opacity: 0.18; stroke: currentColor; stroke-width: 1.3; }
+.teethGroup { transform-origin: 12px 12px; }
+.toothTick { stroke: currentColor; stroke-width: 0.9; stroke-linecap: round; opacity: 0.85; }
+.frictionFace { fill: currentColor; opacity: 0.5; }
+.frictionFaceStroke { fill: none; stroke: currentColor; stroke-width: 1.1; opacity: 0.7; }
+.bolt { fill: var(--primitive-canvas); stroke: currentColor; stroke-width: 0.5; opacity: 0.85; }
+.centerHub { fill: currentColor; opacity: 0.85; stroke: currentColor; stroke-width: 1; }
+.centerHole { fill: var(--primitive-canvas); opacity: 0.65; stroke: currentColor; stroke-width: 0.6; }
+.centerSpline { stroke: currentColor; opacity: 0.5; stroke-linecap: round; }
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate .wheelGroup { animation: iconRotate 2.4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .outer, .motionDraw .frictionFaceStroke { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .wheelGroup { animation: iconRotate 0.4s linear infinite; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .outer,
+[data-variant="outline"] .frictionFace,
+[data-variant="outline"] .centerHub { fill: transparent; opacity: 1; }
+[data-variant="outline"] .centerHole { fill: transparent; opacity: 1; }
+[data-variant="outline"] .bolt { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .outer { opacity: 0.5; }
+[data-variant="filled"] .frictionFace { opacity: 0.9; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .wheelGroup { animation: none !important; transition: none !important; }
+}

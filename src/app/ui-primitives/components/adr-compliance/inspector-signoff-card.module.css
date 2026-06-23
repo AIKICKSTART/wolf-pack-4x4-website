@@ -1,0 +1,84 @@
+.card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-4);
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    color-mix(in oklab, var(--primitive-panel-strong) 92%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 20px 50px color-mix(in oklab, var(--primitive-recessed) 100%, transparent);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-body);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.name {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  color: var(--primitive-text-strong);
+}
+
+.licence {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  color: var(--primitive-muted);
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.timestamp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--primitive-space-2-5);
+  border-top: 1px dashed var(--primitive-line);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.timestamp strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.04em;
+}
+
+.signGlyph {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-style: italic;
+  color: var(--primitive-amber);
+  letter-spacing: 0.02em;
+  text-decoration: underline wavy color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  text-underline-offset: 4px;
+}

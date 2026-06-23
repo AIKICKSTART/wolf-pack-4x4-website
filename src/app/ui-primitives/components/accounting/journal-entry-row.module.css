@@ -1,0 +1,180 @@
+.row {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-5) var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-left: 3px solid var(--primitive-teal);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 55%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-glass-strong) 20%, transparent), transparent 40%),
+    var(--primitive-panel-strong);
+  font-family: var(--primitive-font-body, Inter, sans-serif);
+  isolation: isolate;
+}
+
+.row[data-tone="green"] { border-left-color: var(--primitive-green); }
+.row[data-tone="amber"] { border-left-color: var(--primitive-amber); }
+.row[data-tone="red"]   { border-left-color: var(--primitive-red); }
+.row[data-tone="neutral"] { border-left-color: var(--primitive-muted); }
+
+.unbalanced {
+  border-color: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.headLeft,
+.headRight {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.date {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  color: var(--primitive-muted);
+}
+
+.entryNumber {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.reference {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+}
+
+.description {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.lines {
+  width: 100%;
+  border-collapse: collapse;
+  font-feature-settings: "tnum" 1;
+  font-size: var(--primitive-text-sm);
+}
+
+.sr {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.lines thead th {
+  text-align: left;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.lines tbody td,
+.lines tbody th {
+  padding: var(--primitive-space-2-5);
+  border-bottom: 1px dashed color-mix(in oklab, var(--primitive-glass-strong) 60%, transparent);
+  vertical-align: top;
+  text-align: left;
+}
+
+.account {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.accountCode {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  color: var(--primitive-teal);
+  letter-spacing: 0.12em;
+}
+
+.accountName {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+}
+
+.memo {
+  color: var(--primitive-body);
+}
+
+.amountCol,
+.amount,
+.amountTotal {
+  text-align: right;
+}
+
+.amount {
+  font-family: var(--primitive-font-mono);
+  color: var(--primitive-text-strong);
+}
+
+.amountTotal {
+  padding: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  color: var(--primitive-text-strong);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.totalLabel {
+  text-align: right;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  padding: var(--primitive-space-2-5);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.footLabel {
+  color: var(--primitive-muted);
+}
+
+.footOk {
+  color: var(--primitive-green);
+}
+
+.footBad {
+  color: var(--primitive-red);
+}

@@ -1,0 +1,427 @@
+
+
+/* Generated image support restored for the upgraded build/gallery cards. */
+.feature-collage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-auto-rows: minmax(92px, 1fr);
+  gap: 8px;
+  padding: 8px;
+  background:
+    radial-gradient(70% 64% at 18% 16%, rgba(0,140,255,0.24), transparent 62%),
+    linear-gradient(145deg, #15151b, var(--surface-night));
+}
+
+.feature-collage-cell {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 8px;
+  background: #07070a;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 18px 42px -28px rgba(0,0,0,0.88);
+}
+
+.feature-collage-cell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 38%, rgba(0,0,0,0.68)),
+    linear-gradient(90deg, rgba(0,0,0,0.18), transparent 42%);
+}
+
+.feature-collage-cell.hero {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.feature-collage-cell.vehicleHero {
+  grid-column: span 2;
+}
+
+.feature-collage-cell.side,
+.feature-collage-cell.hoist {
+  grid-column: span 2;
+}
+
+.feature-collage-cell.asset {
+  grid-column: span 1;
+}
+
+.feature-collage-label {
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  bottom: 8px;
+  z-index: 2;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(0.66rem, 0.74vw, 0.84rem);
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+}
+
+.feature-collage-cell.hero .feature-collage-label,
+.feature-collage-cell.vehicleHero .feature-collage-label {
+  font-size: clamp(0.74rem, 0.9vw, 1rem);
+}
+
+.feature-collage-cell.hero::after,
+.feature-collage-cell.vehicleHero::after {
+  background:
+    linear-gradient(180deg, transparent 46%, rgba(0,0,0,0.74)),
+    radial-gradient(80% 70% at 18% 18%, rgba(0,140,255,0.2), transparent 58%);
+}
+
+.feature-img {
+  object-fit: cover;
+  transform: scale(1.02);
+}
+
+.feature-collage-cell.vehicleHero .feature-img {
+  object-position: center;
+}
+
+.feature-collage-cell.side .feature-img,
+.feature-collage-cell.rear .feature-img {
+  object-position: center;
+}
+
+.feature-collage-cell.asset .feature-img {
+  object-position: center 70%;
+}
+
+.feature-collage-cell.detail .feature-img,
+.feature-collage-cell.hoist .feature-img {
+  object-position: center 70%;
+}
+
+.feature-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(80% 70% at 20% 20%, rgba(255,255,255,0.12), transparent 52%),
+    radial-gradient(70% 60% at 72% 82%, rgba(0,140,255,0.22), transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.42));
+}
+
+@media (max-width: 980px) {
+  .feature-collage {
+    min-height: 560px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .feature-collage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(118px, 1fr);
+    min-height: 860px;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .feature-collage-cell.hero {
+    grid-column: 1 / -1;
+    grid-row: span 2;
+  }
+
+  .feature-collage-cell.vehicleHero {
+    grid-column: span 1;
+  }
+
+  .feature-collage-cell.side,
+  .feature-collage-cell.hoist {
+    grid-column: span 1;
+  }
+}
+
+.feature-beads {
+  display: none;
+  z-index: 2;
+}
+
+.feature-tag {
+  z-index: 3;
+}
+
+.tile {
+  isolation: isolate;
+}
+
+.tile-image {
+  object-fit: cover;
+  transform: scale(1.02);
+  filter: contrast(1.08) saturate(1.06);
+  transition: transform 0.8s cubic-bezier(.2,.7,.2,1);
+}
+
+.tile:hover .tile-image {
+  transform: scale(1.06);
+}
+
+.tile-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.66)),
+    linear-gradient(90deg, rgba(0,0,0,0.28), transparent 54%);
+}
+
+.tile-frame {
+  z-index: 2;
+}
+
+.tile-label {
+  z-index: 3;
+}
+
+/* Native scroll-linked cinema motion. */
+.arch-cinema,
+.hoist-cinema,
+.rollout-cinema {
+  --cinema-progress: 0;
+  --cinema-scale: 1;
+  --cinema-copy-y: 0px;
+  --cinema-card-y: 18px;
+  --cinema-badge-y: 0px;
+  --cinema-card-opacity: 0.82;
+  --cinema-copy-opacity: 1;
+  --cinema-vignette-alpha: 0.95;
+  contain: paint;
+}
+
+.arch-vid,
+.hoist-vid,
+.rollout-vid {
+  transform: none;
+  transform-origin: center;
+  will-change: auto;
+}
+
+.arch-vignette,
+.hoist-vignette,
+.rollout-vignette {
+  opacity: var(--cinema-vignette-alpha);
+}
+
+.arch-text,
+.hoist-text,
+.rollout-main {
+  opacity: var(--cinema-copy-opacity);
+  transform: translate3d(0, var(--cinema-copy-y), 0);
+  will-change: transform, opacity;
+}
+
+.arch-tier,
+.hoist-meta {
+  opacity: var(--cinema-card-opacity);
+  transform: translate3d(0, var(--cinema-card-y), 0);
+  will-change: transform, opacity;
+}
+
+.rollout-badge {
+  transform: translate3d(0, var(--cinema-badge-y), 0) rotate(-6deg);
+}
+
+/* Full-frame 16:9 video treatment. Keep the whole video visible without zooming. */
+.hero-cinema,
+.arch-cinema,
+.hoist-cinema,
+.rollout-cinema {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: 100svh;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+/* The hero band also has to hold the bottom-anchored copy stack (h1 + lede +
+   CTAs ≈ 495px at 1024w, plus the 12vh bottom offset). A purely width-driven
+   16:9 band is only 576px tall at 1024w, so the headline's top lines clipped
+   above the band. Let the hero alone grow past 16:9 on narrow desktops; from
+   ~1210px wide up the 16:9 height already exceeds this floor. */
+.hero-cinema {
+  min-height: min(680px, 100svh);
+}
+
+.hero-cinema-track {
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: inherit;
+  background: #000;
+}
+
+.hero-media-frame {
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: inherit;
+}
+
+.hero-poster,
+.hero-vid,
+.arch-vid,
+.hoist-vid,
+.rollout-vid {
+  object-fit: cover;
+  object-position: center;
+  transform: none;
+  animation: none;
+  will-change: auto;
+}
+
+@media (max-width: 760px) {
+  .rollout-badge {
+    transform: translate3d(0, var(--cinema-badge-y), 0) scale(0.7) rotate(-6deg);
+  }
+}
+
+@media (max-width: 760px), (orientation: portrait) {
+  .hero-cinema,
+  .arch-cinema,
+  .hoist-cinema,
+  .rollout-cinema {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+
+  .hero-cinema-track {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    padding-top: 0;
+  }
+
+  .hero-media-frame {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  .arch-cinema,
+  .hoist-cinema,
+  .rollout-cinema {
+    display: block;
+    padding-top: 0;
+  }
+
+  .hero-vid,
+  .arch-vid,
+  .hoist-vid,
+  .rollout-vid {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .hero-media-frame .hero-vid,
+  .hero-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .hero-vignette,
+  .arch-vignette,
+  .hoist-vignette,
+  .rollout-vignette,
+  .hero-cinema-track::after {
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Mobile: the headline + copy sit BELOW the 16:9 video frame, not over it.
+     The desktop scrims (heavy black bottom band + left-weighted darkening) exist
+     only for overlaid-text legibility, so on mobile they just dim the bare clip —
+     this is the "dark at the bottom of the video" issue. Replace them with a light,
+     even edge vignette so the hero clip reads clean on phones. */
+  .hero-vignette {
+    background:
+      radial-gradient(ellipse 120% 120% at 50% 45%, transparent 62%, rgba(0, 0, 0, 0.26) 100%);
+  }
+
+  .hero-cinema-track::after {
+    background:
+      radial-gradient(120% 120% at 50% 45%, transparent 64%, rgba(0, 0, 0, 0.2) 100%);
+  }
+
+  .hero-main,
+  .arch-text,
+  .hoist-text,
+  .rollout-main {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    max-width: none;
+    padding: 26px 20px 34px;
+    transform: none;
+  }
+
+  .hero-main {
+    color: #fff;
+  }
+
+  .arch-text.pos-bl,
+  .hoist-text.pos-tl {
+    left: auto;
+    top: auto;
+  }
+
+  .arch-tiers,
+  .hoist-meta {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: auto;
+    max-width: none;
+    margin: 0 20px 36px;
+  }
+
+  .rollout-badge {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 24px auto 0;
+  }
+
+  .hero-scroll-cue {
+    display: none;
+  }
+
+  .sound-mini {
+    top: 12px;
+    right: 12px;
+  }
+}

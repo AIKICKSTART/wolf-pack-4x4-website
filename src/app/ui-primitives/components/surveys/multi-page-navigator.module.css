@@ -1,0 +1,141 @@
+.bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-code-bg) 85%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.back,
+.next,
+.resume {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-standard), background var(--primitive-duration-fast) var(--primitive-ease-standard), color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.back:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.back:not(:disabled):hover,
+.back:focus-visible {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  outline: none;
+}
+
+.meta {
+  justify-self: center;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaCurrent {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.metaSep {
+  opacity: 0.5;
+}
+
+.metaTotal {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+}
+
+.resume {
+  color: var(--primitive-teal);
+}
+
+.resume:hover,
+.resume:focus-visible {
+  border-color: var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  outline: none;
+}
+
+/* Primary CTA — central premium button DNA (metallic-red → amber hover). */
+.next {
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  border-color: transparent;
+  border-radius: var(--primitive-btn-radius);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.next:hover,
+.next:focus-visible {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  border-color: transparent;
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+/* Submit state rests on the amber (hover) paint to read as the final action,
+   keeping the shared button shape + clearcoat sheen. */
+.nextSubmit {
+  background: var(--primitive-btn-primary-hover-bg);
+  border-color: transparent;
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.nextSubmit:hover,
+.nextSubmit:focus-visible {
+  background: var(--primitive-btn-primary-hover-bg);
+  border-color: transparent;
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+@media (max-width: 720px) {
+  .bar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .meta {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .resume {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back,
+  .next,
+  .resume {
+    transition: none;
+  }
+}

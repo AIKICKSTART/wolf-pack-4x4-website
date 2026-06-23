@@ -1,0 +1,609 @@
+/* Quote page: full-screen responsive video hero. */
+.seo-page:has(.quote-hero) {
+  padding: 0;
+  background:
+    linear-gradient(180deg, var(--surface-night) 0%, #0b0b0f 48%, var(--surface-night) 100%);
+}
+
+.quote-hero.seo-hero.has-cover {
+  width: 100%;
+  min-height: calc(100svh - 84px);
+  margin: 0;
+  padding: clamp(72px, 9vw, 132px) clamp(20px, 7vw, 108px) clamp(42px, 7vw, 90px);
+  /* Quote keeps the cinematic overlay layout (video billboard), unlike the
+     photo cover heroes which stack image-above-copy. */
+  flex-direction: row;
+  align-items: center;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.quote-hero.seo-hero.has-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(3, 4, 8, 0.92) 0%, rgba(3, 4, 8, 0.66) 42%, rgba(3, 4, 8, 0.2) 100%),
+    linear-gradient(180deg, rgba(3, 4, 8, 0.18) 0%, rgba(3, 4, 8, 0.16) 44%, rgba(3, 4, 8, 0.9) 100%),
+    radial-gradient(58% 74% at 16% 58%, rgba(0, 119, 255, 0.26), transparent 70%);
+}
+
+.quote-hero.seo-hero.has-cover::after {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  opacity: 0.7;
+}
+
+.quote-hero .seo-hero-media,
+.quote-hero .seo-hero-cover,
+.quote-hero .seo-hero-cover-video {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* The base cover-hero now flows the media as a band; quote pins it back to a
+   full-bleed backdrop and drops the band's blend gradient. */
+.quote-hero .seo-hero-media {
+  position: absolute;
+  aspect-ratio: auto;
+  max-height: none;
+}
+
+.quote-hero .seo-hero-media::after {
+  content: none;
+}
+
+.quote-hero .seo-hero-cover,
+.quote-hero .seo-hero-cover-video {
+  object-fit: cover;
+  object-position: center center;
+  filter: saturate(1.04) contrast(1.08) brightness(0.74);
+  transform: none;
+}
+
+.quote-hero .seo-hero-copy {
+  max-width: min(860px, 62vw);
+}
+
+.quote-hero .seo-kicker {
+  width: fit-content;
+  margin-bottom: 18px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(8, 9, 12, 0.42);
+  color: #f5d4d6;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  text-shadow: none;
+}
+
+.quote-hero.seo-hero.has-cover h1 {
+  max-width: 13ch;
+  padding-block: 0;
+  color: #fff;
+  font-size: clamp(4rem, 6.2vw, 7.2rem);
+  line-height: 0.9;
+  text-shadow: 0 18px 52px rgba(0, 0, 0, 0.84);
+}
+
+.quote-hero.seo-hero.has-cover p {
+  max-width: 58ch;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(1.05rem, 1.45vw, 1.35rem);
+  line-height: 1.55;
+}
+
+.quote-hero .seo-hero-proof {
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+.quote-hero .seo-actions {
+  margin-top: clamp(28px, 3.6vw, 44px);
+}
+
+.quote-request-section {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(72px, 8vw, 132px) clamp(20px, 6vw, 92px);
+  background:
+    linear-gradient(180deg, rgba(9, 10, 14, 0.96), rgba(13, 14, 18, 0.98)),
+    #090a0d;
+}
+
+.quote-request-section > * {
+  width: min(1180px, 100%);
+  margin-inline: auto;
+}
+
+html[data-mufflermen-theme="light"] .seo-page:has(.quote-hero) {
+  background: #eee7d8;
+}
+
+html[data-mufflermen-theme="light"] .quote-hero.seo-hero.has-cover {
+  --ink: #fff;
+  --body: rgba(255, 255, 255, 0.86);
+  --body-strong: #fff;
+}
+
+html[data-mufflermen-theme="light"] .quote-hero.seo-hero.has-cover::before {
+  background:
+    linear-gradient(90deg, rgba(6, 7, 10, 0.88) 0%, rgba(6, 7, 10, 0.58) 42%, rgba(6, 7, 10, 0.18) 100%),
+    linear-gradient(180deg, rgba(6, 7, 10, 0.08) 0%, rgba(6, 7, 10, 0.14) 46%, rgba(6, 7, 10, 0.76) 100%),
+    radial-gradient(58% 74% at 14% 56%, rgba(0, 91, 209, 0.22), transparent 70%);
+}
+
+html[data-mufflermen-theme="light"] .quote-request-section {
+  background:
+    linear-gradient(180deg, #eee7d8 0%, #e8dfcf 100%);
+}
+
+@media (max-width: 980px) {
+  .quote-hero.seo-hero.has-cover {
+    min-height: calc(100svh - 126px);
+    padding: clamp(60px, 9vw, 96px) 28px 46px;
+    align-items: flex-end;
+  }
+
+  .quote-hero .seo-hero-copy {
+    max-width: min(100%, 680px);
+  }
+
+  .quote-hero.seo-hero.has-cover h1 {
+    max-width: 12ch;
+    font-size: clamp(3.2rem, 10.5vw, 5.8rem);
+  }
+
+  .quote-hero.seo-hero.has-cover::before {
+    background:
+      linear-gradient(180deg, rgba(3, 4, 8, 0.22) 0%, rgba(3, 4, 8, 0.54) 40%, rgba(3, 4, 8, 0.95) 100%),
+      radial-gradient(72% 54% at 18% 70%, rgba(0, 119, 255, 0.24), transparent 70%);
+  }
+}
+
+@media (max-width: 640px) {
+  .quote-hero.seo-hero.has-cover {
+    min-height: calc(100svh - 224px);
+    padding: 34px 18px 104px;
+  }
+
+  /* 20-public-nav.css re-composes <=640px cover heroes as an image band above
+     the copy; its in-flow media became a row sibling here and squeezed the
+     copy into the right half. Quote keeps the full-bleed video billboard, so
+     pin the media back behind the copy and let the copy span the full width. */
+  .quote-hero.seo-hero.has-cover .seo-hero-media {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .quote-hero.seo-hero.has-cover .seo-hero-media::after {
+    content: none;
+  }
+
+  .quote-hero.seo-hero.has-cover .seo-hero-cover,
+  .quote-hero.seo-hero.has-cover .seo-hero-cover-video {
+    filter: saturate(1.04) contrast(1.08) brightness(0.74);
+  }
+
+  .quote-hero.seo-hero.has-cover > *:not(.seo-hero-media) {
+    align-self: auto;
+    margin-inline: 0;
+  }
+
+  .quote-hero .seo-hero-copy {
+    max-width: 100%;
+  }
+
+  .quote-hero.seo-hero.has-cover h1 {
+    max-width: 100%;
+    font-size: clamp(2.45rem, 10.8vw, 3.25rem);
+    line-height: 0.94;
+  }
+
+  .quote-hero.seo-hero.has-cover p {
+    display: none;
+  }
+
+  .quote-hero .seo-hero-proof,
+  .quote-hero .seo-actions {
+    display: none;
+  }
+}
+
+/* Homepage section polish: service cards and local-experience stats. */
+.mufflermen-public #services.section,
+.mufflermen-public .experience-stats-section {
+  background:
+    radial-gradient(46rem 34rem at 8% 6%, color-mix(in oklab, var(--accent-deep) 10%, transparent), transparent 68%),
+    radial-gradient(40rem 32rem at 88% 20%, color-mix(in oklab, #5f6872 12%, transparent), transparent 72%),
+    linear-gradient(180deg, color-mix(in oklab, var(--canvas-2) 84%, #fff 16%), var(--canvas) 72%, color-mix(in oklab, var(--canvas) 88%, #d8d0c0 12%));
+}
+
+.mufflermen-public #services .section-head {
+  align-items: end;
+  gap: clamp(34px, 7vw, 116px);
+}
+
+.mufflermen-public #services .section-head .lead,
+.mufflermen-public .experience-stats-lede {
+  max-width: 40ch;
+  color: color-mix(in oklab, var(--body) 88%, var(--ink) 12%);
+  font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+  line-height: 1.62;
+}
+
+.mufflermen-public #services .display span[style*="var(--accent)"],
+.mufflermen-public .experience-stat-value-accent {
+  color: var(--accent-deep) !important;
+  text-shadow: 0 12px 34px color-mix(in oklab, var(--accent-deep) 18%, transparent) !important;
+}
+
+.mufflermen-public .services {
+  gap: clamp(16px, 1.4vw, 22px);
+}
+
+.mufflermen-public .service.glass {
+  min-height: 360px;
+  padding: clamp(24px, 2.4vw, 34px);
+  border: 1px solid color-mix(in oklab, var(--ink) 15%, transparent);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.2) 38%, rgba(255, 255, 255, 0.06)),
+    linear-gradient(140deg, color-mix(in oklab, var(--canvas-2) 88%, #fff 12%), color-mix(in oklab, var(--canvas) 78%, var(--accent-deep) 5%));
+  box-shadow:
+    0 28px 70px -54px color-mix(in oklab, var(--ink) 40%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+.mufflermen-public .service.glass::after {
+  opacity: 0.22;
+}
+
+.mufflermen-public .service-num,
+.mufflermen-public .services-stamp .label {
+  color: color-mix(in oklab, var(--muted) 78%, var(--ink) 22%);
+}
+
+.mufflermen-public .service h3 {
+  color: var(--ink);
+  font-size: clamp(1.5rem, 1.6vw, 2rem);
+  line-height: 1.02;
+}
+
+.mufflermen-public .service p {
+  color: color-mix(in oklab, var(--body) 86%, var(--ink) 14%);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.mufflermen-public .service-icon.brand-carbon-icon {
+  border-color: color-mix(in oklab, var(--accent-deep) 18%, var(--ink) 10%);
+  background:
+    radial-gradient(circle at 36% 20%, rgba(255, 255, 255, 0.78), transparent 48%),
+    linear-gradient(145deg, color-mix(in oklab, var(--canvas-2) 84%, #fff 16%), color-mix(in oklab, var(--canvas) 78%, var(--ink) 8%));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 14px 30px -22px color-mix(in oklab, var(--ink) 42%, transparent);
+}
+
+.mufflermen-public .services-actions {
+  margin-top: clamp(30px, 4vw, 52px);
+}
+
+.mufflermen-public .experience-stats-head {
+  max-width: 760px;
+}
+
+.mufflermen-public .experience-stats-head h2 {
+  max-width: 16ch;
+  color: var(--ink);
+  line-height: 0.96;
+}
+
+.mufflermen-public .experience-stats {
+  gap: clamp(14px, 1.3vw, 20px);
+}
+
+.mufflermen-public .experience-stat-card {
+  min-height: 310px;
+  border-radius: 8px;
+}
+
+.mufflermen-public .experience-stat-index {
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+
+.mufflermen-public .experience-stat-value {
+  max-width: 10ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 2.7vw, 3.45rem) !important;
+  line-height: 0.96 !important;
+}
+
+.mufflermen-public .experience-stat-card-primary .experience-stat-value {
+  max-width: none;
+  font-size: clamp(4rem, 5.2vw, 6rem) !important;
+}
+
+.mufflermen-public .experience-stat-card .k {
+  color: color-mix(in oklab, var(--ink) 82%, var(--body) 18%);
+}
+
+.mufflermen-public .experience-stat-card .desc {
+  color: color-mix(in oklab, var(--body) 86%, var(--ink) 14%);
+}
+
+html[data-mufflermen-theme="dark"] .mufflermen-public #services.section,
+html[data-mufflermen-theme="dark"] .mufflermen-public .experience-stats-section {
+  background:
+    radial-gradient(48rem 34rem at 8% 6%, rgba(86, 8, 13, 0.26), transparent 68%),
+    radial-gradient(42rem 30rem at 86% 18%, rgba(80, 90, 104, 0.13), transparent 72%),
+    linear-gradient(180deg, #07080b 0%, #0d0e12 54%, #08090d 100%);
+}
+
+html[data-mufflermen-theme="dark"] .mufflermen-public .service.glass {
+  border-color: rgba(255, 255, 255, 0.13);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.024) 44%, rgba(111, 13, 19, 0.1)),
+    rgba(9, 10, 14, 0.84);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 30px 70px -50px rgba(0, 0, 0, 0.92);
+}
+
+html[data-mufflermen-theme="dark"] .mufflermen-public .service h3,
+html[data-mufflermen-theme="dark"] .mufflermen-public .experience-stats-head h2,
+html[data-mufflermen-theme="dark"] .mufflermen-public .experience-stat-card .k {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+html[data-mufflermen-theme="dark"] .mufflermen-public #services .section-head .lead,
+html[data-mufflermen-theme="dark"] .mufflermen-public .service p,
+html[data-mufflermen-theme="dark"] .mufflermen-public .experience-stats-lede,
+html[data-mufflermen-theme="dark"] .mufflermen-public .experience-stat-card .desc {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+html[data-mufflermen-theme="dark"] .mufflermen-public #services .display span[style*="var(--accent)"],
+html[data-mufflermen-theme="dark"] .mufflermen-public .experience-stat-value-accent {
+  color: #b31621 !important;
+  text-shadow: 0 14px 36px rgba(137, 10, 17, 0.3) !important;
+}
+
+html[data-mufflermen-theme="dark"] .mufflermen-public .service-icon.brand-carbon-icon {
+  border-color: rgba(255, 255, 255, 0.14);
+  background:
+    radial-gradient(circle at 36% 20%, rgba(255, 255, 255, 0.12), transparent 48%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(5, 6, 9, 0.82));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 16px 36px -24px rgba(0, 0, 0, 0.92);
+}
+
+@media (max-width: 760px) {
+  .mufflermen-public #services .section-head {
+    align-items: start;
+  }
+
+  .mufflermen-public .service.glass {
+    min-height: auto;
+  }
+
+  .mufflermen-public .service-num {
+    margin-left: 0;
+    padding-left: 2px;
+  }
+
+  .mufflermen-public .experience-stat-value,
+  .mufflermen-public .experience-stat-card-primary .experience-stat-value {
+    max-width: 10ch;
+    font-size: clamp(2.9rem, 15vw, 4.6rem) !important;
+  }
+}
+
+/* Mobile navigation: replace the wrapped link grid with a hamburger panel. */
+.mufflermen-public .nav-menu-toggle,
+.mufflermen-public .nav-mobile-toggle,
+.mufflermen-public .nav-mobile-panel {
+  display: none;
+}
+
+/* Keep full-frame hero media behind the public navigation. The poster/video
+   are decorative layers, so they must never intercept nav/theme clicks. */
+.mufflermen-public .nav {
+  z-index: 120;
+}
+
+.mufflermen-public .hero-media-frame,
+.mufflermen-public .hero-poster,
+.mufflermen-public .hero-vid,
+.mufflermen-public .hero-vignette {
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .mufflermen-public .nav {
+    overflow: visible;
+  }
+
+  .mufflermen-public .nav-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    justify-items: stretch;
+    min-height: 74px;
+    padding-block: 10px;
+  }
+
+  .mufflermen-public .nav-logo {
+    justify-self: start;
+  }
+
+  .mufflermen-public .nav-logo img {
+    height: 42px;
+    max-width: min(128px, 44vw);
+  }
+
+  .mufflermen-public .nav-links,
+  .mufflermen-public .nav-spacer {
+    display: none;
+  }
+
+  /* Theme toggle stays in the top bar on mobile, just left of the menu button
+     (top-right, next to the logo) instead of being hidden inside the panel. */
+  .mufflermen-public .nav-mobile-toggle {
+    display: inline-flex;
+    align-items: center;
+    grid-column: 2;
+    justify-self: end;
+    margin-right: 10px;
+  }
+
+  .mufflermen-public .nav-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 46px;
+    min-height: 46px;
+    padding: 0;
+    border: 1px solid color-mix(in oklab, var(--ink) 16%, transparent);
+    border-radius: 999px;
+    color: var(--ink);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.24)),
+      color-mix(in oklab, var(--canvas-2) 84%, #fff 16%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.72),
+      0 16px 34px -28px color-mix(in oklab, var(--ink) 56%, transparent);
+    justify-self: end;
+  }
+
+  .mufflermen-public .nav-menu-toggle svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.25;
+  }
+
+  .mufflermen-public .nav-menu-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .mufflermen-public .nav-mobile-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 20px;
+    right: 20px;
+    z-index: 40;
+    display: grid;
+    gap: 14px;
+    padding: 14px;
+    border: 1px solid color-mix(in oklab, var(--ink) 14%, transparent);
+    border-radius: 8px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.52)),
+      color-mix(in oklab, var(--canvas-2) 88%, #fff 12%);
+    box-shadow:
+      0 28px 64px -34px color-mix(in oklab, var(--ink) 50%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.82);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .mufflermen-public .nav-mobile-panel.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .mufflermen-public .nav-mobile-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .mufflermen-public .nav-mobile-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 10px;
+    border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+    border-radius: 7px;
+    color: color-mix(in oklab, var(--ink) 86%, var(--body) 14%);
+    background: rgba(255, 255, 255, 0.38);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+
+  .mufflermen-public .nav-mobile-link.active {
+    border-color: color-mix(in oklab, var(--accent-deep) 36%, transparent);
+    color: var(--accent-deep);
+    background: color-mix(in oklab, var(--accent-deep) 8%, rgba(255, 255, 255, 0.42));
+  }
+
+  .mufflermen-public .nav-mobile-actions {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .mufflermen-public .nav-mobile-actions .btn {
+    grid-column: 1 / -1;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mufflermen-public .nav-mobile-phone {
+    justify-self: end;
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  html[data-mufflermen-theme="dark"] .mufflermen-public .nav-menu-toggle,
+  html[data-mufflermen-theme="dark"] .mufflermen-public .nav-mobile-panel {
+    border-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.92);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.026)),
+      rgba(8, 9, 13, 0.94);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.11),
+      0 28px 64px -34px rgba(0, 0, 0, 0.9);
+  }
+
+  html[data-mufflermen-theme="dark"] .mufflermen-public .nav-mobile-link {
+    border-color: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.84);
+    background: rgba(255, 255, 255, 0.045);
+  }
+
+  html[data-mufflermen-theme="dark"] .mufflermen-public .nav-mobile-link.active {
+    border-color: rgba(179, 22, 33, 0.38);
+    color: #f5d6d8;
+    background: rgba(132, 14, 20, 0.22);
+  }
+
+  html[data-mufflermen-theme="dark"] .mufflermen-public .nav-mobile-phone {
+    color: rgba(255, 255, 255, 0.88);
+  }
+}

@@ -1,0 +1,146 @@
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  transition: border-color 200ms ease;
+}
+
+.row:hover {
+  border-color: var(--primitive-line-strong);
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.address {
+  font-size: 14px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--chip-line, color-mix(in oklab, var(--primitive-text-strong) 20%, transparent));
+  background: var(--chip-fill, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--chip-color, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.statusChip[data-status="proof-on-file"] {
+  --chip-color: var(--primitive-green);
+  --chip-line: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+}
+
+.statusChip[data-status="proof-needed"] {
+  --chip-color: var(--primitive-amber);
+  --chip-line: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+}
+
+.statusChip[data-status="expired"] {
+  --chip-color: var(--primitive-red);
+  --chip-line: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: currentColor;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 7px var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 160ms ease;
+}
+
+.cta:hover,
+.cta:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  outline: none;
+}
+
+.lockChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .cta {
+    transition: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

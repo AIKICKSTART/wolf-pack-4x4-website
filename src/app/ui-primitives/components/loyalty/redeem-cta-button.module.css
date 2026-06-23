@@ -1,0 +1,128 @@
+.shell {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  isolation: isolate;
+}
+
+.confetti {
+  position: absolute;
+  inset: -120px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.button {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: var(--primitive-space-3) var(--primitive-space-6);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+  border-radius: var(--primitive-btn-radius);
+  color: var(--primitive-btn-primary-fg);
+  font: inherit;
+  cursor: pointer;
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition:
+    transform var(--primitive-duration-fast) var(--primitive-ease-standard),
+    background var(--primitive-duration-normal) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-standard);
+  text-align: left;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.button:focus-visible {
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+.shell[data-state="confirming"] .button {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.shell[data-state="redeemed"] .button {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 22%, transparent), transparent 48%),
+    linear-gradient(135deg, var(--primitive-green), color-mix(in oklab, var(--primitive-green) 40%, var(--primitive-canvas)));
+  color: var(--primitive-text-on-accent);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.shell[data-state="fail"] .button {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent), transparent 48%),
+    linear-gradient(135deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+}
+
+.spinner {
+  animation: spin 920ms linear infinite;
+}
+
+.copy {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.copy strong {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.copy small {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.84;
+}
+
+.failNote {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button:hover,
+  .button:focus-visible {
+    transform: none;
+    transition: none;
+  }
+  .spinner {
+    animation: none;
+  }
+}

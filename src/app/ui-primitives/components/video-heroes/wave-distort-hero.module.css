@@ -1,0 +1,349 @@
+/* =========================================================
+   WAVE DISTORT HERO — video framed by a wavy SVG edge (top +
+   bottom), with a gentle crawling wave crest and a layered
+   ripple sheen drifting across the surface. Aquatic / flow feel.
+   Headline rests over the calm centre band. Tokens drive
+   light + dark parity; motion is transform/opacity/clip only.
+   ========================================================= */
+
+.hero {
+  --wave-inset: clamp(14px, 3.6vw, 56px);
+  --crest-height: clamp(26px, 5vw, 64px);
+
+  position: relative;
+  width: 100%;
+  min-height: clamp(540px, 88svh, 860px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(28px, 5svh, 72px) clamp(16px, 4vw, 72px);
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 50% 22%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 58%),
+    radial-gradient(ellipse at 16% 92%, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 66%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 84%, var(--primitive-teal)) 100%);
+  font-family: var(--primitive-font-body);
+}
+
+/* Zero-footprint SVG holding the clip-path definition. */
+.defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Soft aquatic bloom behind the framed video. */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    color-mix(in oklab, var(--primitive-teal) 22%, transparent) 0%,
+    transparent 52%
+  );
+  opacity: 0.62;
+  animation: bloomBreathe 7s ease-in-out infinite;
+}
+
+/* The video stage: bounded, centred, never wider than the viewport. */
+.stage {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1280px);
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+}
+
+/* Wavy clip wrapper — the silhouette that frames the video. */
+.clip {
+  position: absolute;
+  inset: 0;
+  clip-path: url(#wave-distort-clip);
+  background: color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-teal));
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.94) contrast(1.1) saturate(1.12);
+}
+
+/* Tonal grade keeps the headline legible over any footage, and
+   deepens the wavy crops so the shape reads as intentional. */
+.grade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 30%, color-mix(in oklab, var(--primitive-canvas) 72%, transparent) 100%),
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--primitive-canvas) 64%, transparent) 0%,
+      transparent 26%,
+      transparent 70%,
+      color-mix(in oklab, var(--primitive-canvas) 70%, transparent) 100%);
+}
+
+/* Ripple sheen — a diagonal light band that drifts across the
+   surface, suggesting moving water. Two offset layers add depth. */
+.ripple,
+.rippleAlt {
+  position: absolute;
+  inset: -20% -40%;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  background: repeating-linear-gradient(
+    104deg,
+    transparent 0,
+    transparent 64px,
+    color-mix(in oklab, var(--primitive-teal) 30%, transparent) 84px,
+    color-mix(in oklab, white 36%, transparent) 96px,
+    transparent 116px,
+    transparent 180px
+  );
+  will-change: transform, opacity;
+}
+.ripple {
+  opacity: 0.5;
+  animation: rippleDrift 9s linear infinite;
+}
+.rippleAlt {
+  opacity: 0.3;
+  background-position: 40px 0;
+  animation: rippleDriftAlt 13s linear infinite;
+}
+
+/* Crawling wave crests — tiling SVG waves layered onto the top
+   and bottom edges, drifting sideways to animate the "wave crawl"
+   while the clip-path silhouette stays stable. */
+.crestTop,
+.crestBottom {
+  position: absolute;
+  left: 50%;
+  width: 240%;
+  height: var(--crest-height);
+  pointer-events: none;
+  background-repeat: repeat-x;
+  background-size: 50% 100%;
+  will-change: transform;
+}
+.crestTop {
+  top: -1px;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' preserveAspectRatio='none'%3E%3Cpath d='M0 32 C16 8 34 8 50 24 C66 40 84 40 100 24 C116 8 134 8 150 24 C166 40 184 40 200 20 L200 0 L0 0 Z' fill='%2340bcff' fill-opacity='0.22'/%3E%3C/svg%3E");
+  transform: translate3d(-50%, 0, 0);
+  animation: crestCrawl 11s linear infinite;
+}
+.crestBottom {
+  bottom: -1px;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' preserveAspectRatio='none'%3E%3Cpath d='M0 8 C16 32 34 32 50 16 C66 0 84 0 100 16 C116 32 134 32 150 16 C166 0 184 0 200 20 L200 40 L0 40 Z' fill='%2340bcff' fill-opacity='0.2'/%3E%3C/svg%3E");
+  transform: translate3d(-50%, 0, 0);
+  animation: crestCrawlReverse 14s linear infinite;
+}
+
+/* Copy block — pinned to the calm centre band of the stage. */
+.copy {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  gap: clamp(14px, 1.6vw, 22px);
+  width: min(100%, 640px);
+  padding: 0 clamp(16px, 4vw, 56px);
+  text-align: center;
+  justify-items: center;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(10px, 0.6rem + 0.2vw, 11px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  text-shadow: 0 0 18px color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--primitive-red);
+  box-shadow: 0 0 14px var(--primitive-red);
+  animation: dropPulse 1.6s ease-in-out infinite;
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 1.3rem + 5.2vw, 6rem);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  text-shadow:
+    0 2px 28px color-mix(in oklab, var(--primitive-canvas) 70%, transparent),
+    0 0 1px color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+}
+
+.subhead {
+  margin: 0;
+  font-family: var(--primitive-font-body);
+  font-size: clamp(14px, 0.9rem + 0.3vw, 18px);
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--primitive-text-strong) 84%, transparent);
+  max-width: 52ch;
+  text-shadow: 0 1px 18px color-mix(in oklab, var(--primitive-canvas) 64%, transparent);
+}
+
+.cta {
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-radius-pill);
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform 240ms var(--primitive-ease-out),
+    background 240ms,
+    color 240ms,
+    box-shadow 240ms;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  border-radius: 999px;
+  z-index: -1;
+  opacity: 0.5;
+  transition: inset 240ms, opacity 240ms;
+}
+.cta:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  transform: translateY(-2px);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+.cta:hover::before {
+  inset: -8px;
+  opacity: 0.8;
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:active::before {
+  inset: -4px;
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+.meta {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(8px, 2.4vw, 30px);
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 30px);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(9px, 0.55rem + 0.15vw, 10px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 52%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---- Motion keyframes (transform / opacity only) ---- */
+@keyframes bloomBreathe {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.72; transform: scale(1.05); }
+}
+@keyframes rippleDrift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(180px, 0, 0); }
+}
+@keyframes rippleDriftAlt {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-180px, 0, 0); }
+}
+@keyframes crestCrawl {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(calc(-50% - 50%), 0, 0); }
+}
+@keyframes crestCrawlReverse {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(calc(-50% + 50%), 0, 0); }
+}
+@keyframes dropPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.6); }
+}
+
+/* ---- Responsive tuning ---- */
+@media (max-width: 900px) {
+  .stage { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 560px) {
+  .stage { aspect-ratio: 3 / 4; }
+  .meta { gap: 12px; }
+}
+
+/* ---- Reduced motion: neutralise to a clean static composition ---- */
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .ripple,
+  .rippleAlt,
+  .crestTop,
+  .crestBottom,
+  .kicker i {
+    animation: none;
+  }
+  .video {
+    display: none;
+  }
+  .clip {
+    background:
+      radial-gradient(ellipse at 50% 40%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 60%),
+      linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-teal)) 0%, var(--primitive-canvas) 100%);
+  }
+  .cta {
+    transition: none;
+  }
+}

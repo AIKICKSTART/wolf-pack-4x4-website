@@ -1,0 +1,591 @@
+.wizard {
+  display: grid;
+  gap: 22px;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.4%, transparent) 60%),
+    radial-gradient(ellipse at 8% 0%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  color: var(--primitive-body);
+  isolation: isolate;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+  position: relative;
+}
+
+.wizard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent) 3px 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.wizard > * {
+  position: relative;
+  z-index: 1;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 2.4vw, 30px);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  min-width: 0;
+}
+
+.stepDot {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--primitive-line-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--primitive-muted);
+}
+
+.stepLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stepReached {
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.stepReached .stepDot {
+  background: var(--primitive-amber);
+  border-color: var(--primitive-amber);
+  color: var(--primitive-canvas);
+}
+
+.stepCurrent {
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-amber) 20%, transparent);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent);
+}
+
+.legend {
+  margin: 0;
+  padding: 0;
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.optionGrid {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.optionCard {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  color: var(--primitive-body);
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.optionCard:hover,
+.optionCard:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.optionCard:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.optionCardSelected {
+  border-color: color-mix(in oklab, var(--primitive-amber) 62%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+}
+
+.optionIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  color: var(--primitive-amber);
+}
+
+.optionLabel {
+  color: var(--primitive-text-strong);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+.optionDescription {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--primitive-body);
+}
+
+.optionMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  margin-top: var(--primitive-space-1-5);
+  padding-top: var(--primitive-space-2);
+  border-top: 1px solid var(--primitive-line);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+}
+
+.optionPrice {
+  color: var(--primitive-amber);
+  font-weight: 600;
+}
+
+.vehicleGrid {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.vehicleCard {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "icon title"
+    "icon sub";
+  gap: var(--primitive-space-1) var(--primitive-space-3);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  color: var(--primitive-body);
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms ease;
+  align-items: center;
+}
+
+.vehicleCard:hover,
+.vehicleCard:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.vehicleCard:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.vehicleCardSelected {
+  border-color: color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-teal) 30%, transparent);
+}
+
+.vehicleIcon {
+  grid-area: icon;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  color: var(--primitive-teal);
+}
+
+.vehicleTitle {
+  grid-area: title;
+  color: var(--primitive-text-strong);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.vehicleTitle strong {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  margin-right: var(--primitive-space-0-5);
+}
+
+.vehicleSub {
+  grid-area: sub;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.dateBlock {
+  display: grid;
+  gap: var(--primitive-space-4);
+}
+
+.dayColumns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.dayColumn {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.dayLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  text-align: center;
+}
+
+.slotList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.slotBtn {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  width: 100%;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.slotBtn:hover:not(:disabled),
+.slotBtn:focus-visible:not(:disabled) {
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.slotBtn:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.slotBtnSelected {
+  border-color: color-mix(in oklab, var(--primitive-amber) 62%, transparent);
+  background: linear-gradient(180deg, var(--primitive-amber), color-mix(in oklab, var(--primitive-amber) 78%, var(--primitive-canvas)));
+  color: var(--primitive-canvas);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.slotBtnTaken {
+  cursor: not-allowed;
+  color: var(--primitive-muted);
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.slotBtnNote {
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.04em;
+}
+
+.confirmBlock {
+  display: grid;
+  gap: 14px;
+}
+
+.summary {
+  margin: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.summary > div {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) 0;
+  border-bottom: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}
+
+.summary > div:last-child {
+  border-bottom: 0;
+}
+
+.summary dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.summary dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+}
+
+.summaryTotal {
+  color: var(--primitive-amber);
+  font-weight: 700;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+}
+
+.confirmFinePrint {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  line-height: 1.5;
+  color: var(--primitive-muted);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.actionGhost {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: transparent;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: var(--primitive-font-mono);
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.actionGhost:hover:not(:disabled),
+.actionGhost:focus-visible:not(:disabled) {
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.actionGhost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.actionPrimary {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 11px 22px;
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-line-strong);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-weight: var(--primitive-weight-bold);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: var(--primitive-font-mono);
+  transition:
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.actionPrimary:hover:not(:disabled),
+.actionPrimary:focus-visible:not(:disabled) {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.actionPrimary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.actionPrimary:focus-visible,
+.actionGhost:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.wizardDone {
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 8%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+}
+
+.successPanel {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 22px;
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--primitive-green) 5%, transparent);
+  text-align: center;
+}
+
+.successKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-green);
+}
+
+.successTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  letter-spacing: 0.01em;
+}
+
+.successCopy {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+@media (max-width: 700px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .summary > div {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .optionCard,
+  .vehicleCard,
+  .slotBtn,
+  .actionGhost,
+  .actionPrimary {
+    transition: none;
+  }
+}

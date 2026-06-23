@@ -1,0 +1,222 @@
+.card {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: var(--primitive-space-4);
+  align-items: start;
+  padding: var(--primitive-space-4) 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 0% 0%, var(--handoff-accent, color-mix(in srgb, var(--primitive-amber) 12%, transparent)), transparent 56%),
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-surface-2);
+  color: var(--primitive-body);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.card[data-priority="p1-critical"] {
+  --handoff-accent: color-mix(in srgb, var(--primitive-red) 16%, transparent);
+  border-color: color-mix(in srgb, var(--primitive-red) 32%, transparent);
+}
+.card[data-priority="p2-high"] { --handoff-accent: color-mix(in srgb, var(--primitive-amber) 16%, transparent); }
+.card[data-priority="p3-watch"] { --handoff-accent: color-mix(in srgb, var(--primitive-teal) 12%, transparent); }
+.card[data-priority="p4-routine"] { --handoff-accent: var(--primitive-glass-strong); }
+
+.botIcon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line-strong);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent),
+    var(--primitive-surface-2);
+  color: var(--primitive-text-strong);
+  box-shadow: inset 1px 1px 0 var(--primitive-glass-strong);
+}
+
+.card[data-priority="p1-critical"] .botIcon {
+  border-color: color-mix(in srgb, var(--primitive-red) 55%, transparent);
+  color: var(--primitive-red);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card[data-priority="p1-critical"] .botIcon::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    border: 1px solid color-mix(in srgb, var(--primitive-red) 55%, transparent);
+    animation: hermesHandoffPulse 2s var(--primitive-ease-out) infinite;
+    pointer-events: none;
+  }
+}
+
+@keyframes hermesHandoffPulse {
+  0% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-base);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.reason {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.assignee {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding-top: var(--primitive-space-1-5);
+  border-top: 1px dashed var(--primitive-line-muted);
+  margin-top: var(--primitive-space-1-5);
+}
+
+.assigneeText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.assigneeName {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.assigneeMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.tail {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  justify-items: end;
+  text-align: end;
+}
+
+.sla {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.slaLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.slaValue {
+  font-family: var(--primitive-font-display);
+  font-size: 24px;
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--primitive-leading-none);
+}
+
+.card[data-priority="p1-critical"] .slaValue {
+  color: var(--primitive-red);
+}
+
+/* Success-intent CTA: keeps the green semantic but draws its shape + clearcoat
+   sheen shadow from the shared button DNA so it reads as one system. */
+.acceptBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2) 14px;
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid color-mix(in srgb, var(--primitive-green) 45%, transparent);
+  background: color-mix(in srgb, var(--primitive-green) 16%, transparent);
+  color: var(--primitive-text-strong);
+  font: inherit;
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-semibold);
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    inset 0 -1px 0 var(--primitive-recessed);
+  transition: border-color 200ms ease, transform 200ms var(--primitive-ease-out), box-shadow 200ms ease;
+}
+
+.acceptBtn:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--primitive-green) 70%, transparent);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    inset 0 -1px 0 var(--primitive-recessed);
+}
+
+.acceptBtn:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+  border-color: var(--primitive-focus-ring);
+  box-shadow:
+    var(--primitive-focus-shadow),
+    0 14px 30px color-mix(in oklab, var(--primitive-green) 38%, transparent);
+}
+
+.acceptBtn:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acceptBtn {
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+  .acceptBtn:hover,
+  .acceptBtn:focus-visible {
+    transform: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+  .tail {
+    justify-items: stretch;
+    text-align: start;
+  }
+}

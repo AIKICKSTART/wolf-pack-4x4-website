@@ -1,0 +1,176 @@
+.snippet {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 48%),
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-glass-soft) 24%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.kicker {
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.package {
+  padding: 4px 9px;
+  border-radius: 6px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.tablist {
+  display: inline-grid;
+  grid-template-columns: repeat(4, minmax(64px, auto));
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-control-surface);
+  width: fit-content;
+}
+
+.tab {
+  min-height: 34px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--primitive-body);
+  background: transparent;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.tab:hover,
+.tab:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.tabActive {
+  color: var(--primitive-text-on-accent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-red) 78%, transparent);
+  box-shadow: 0 8px 20px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-code-bg);
+}
+
+.prompt {
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.command {
+  min-width: 0;
+  overflow-x: auto;
+  color: var(--primitive-code-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  color: var(--primitive-body);
+  background: var(--primitive-glass-soft);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.copy:hover,
+.copy:focus-visible {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-glass-strong);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.copyDone {
+  color: var(--primitive-canvas);
+  border-color: color-mix(in oklab, var(--primitive-green) 55%, transparent);
+  background: var(--primitive-green);
+}
+
+.statusLine {
+  min-height: 1em;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab,
+  .copy {
+    transition: none;
+  }
+  .copy:hover,
+  .copy:focus-visible {
+    transform: none;
+  }
+}

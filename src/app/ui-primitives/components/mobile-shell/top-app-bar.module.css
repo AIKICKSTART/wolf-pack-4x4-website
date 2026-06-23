@@ -1,0 +1,107 @@
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: 56px;
+  padding: var(--primitive-space-2) 14px var(--primitive-space-2-5);
+  color: var(--primitive-text-strong);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.variantSolid {
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 88%, transparent);
+  backdrop-filter: blur(18px) saturate(1.1);
+}
+
+.variantTransparent {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+.compact {
+  min-height: 44px;
+  padding-top: var(--primitive-space-1);
+  padding-bottom: var(--primitive-space-1-5);
+}
+
+.leading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 36px;
+}
+
+.leadingSlot {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.iconBtn {
+  appearance: none;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.iconBtn:hover,
+.iconBtn:focus-visible {
+  background: var(--primitive-glass-strong);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 28%, transparent);
+  outline: none;
+}
+
+.titleBlock {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subtitle {
+  display: block;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  justify-content: flex-end;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iconBtn {
+    transition: none;
+  }
+}

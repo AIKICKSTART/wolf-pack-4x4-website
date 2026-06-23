@@ -1,0 +1,201 @@
+/* Reset scene — toggles between email-entry and magic-link-sent confirmation */
+
+.form {
+  display: grid;
+  gap: 22px;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.eyebrow {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(30px, 3.6vw, 42px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: 0.96;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.field {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 22px 14px var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-base);
+  line-height: 1.4;
+  caret-color: var(--primitive-amber);
+  transition: border-color 220ms var(--primitive-ease-out), box-shadow 220ms ease;
+}
+
+.input::placeholder {
+  color: transparent;
+}
+
+.input:hover {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+}
+
+.input:focus-visible {
+  border-color: var(--primitive-amber);
+  outline: none;
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--primitive-amber) 18%, transparent),
+    0 12px 28px color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+}
+
+.label {
+  position: absolute;
+  top: var(--primitive-space-4);
+  left: 14px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  pointer-events: none;
+  transform-origin: left center;
+  transition: transform 220ms var(--primitive-ease-out), color 220ms ease;
+}
+
+.input:focus-visible + .label,
+.input:not(:placeholder-shown) + .label {
+  transform: translateY(-10px) scale(0.84);
+  color: var(--primitive-amber);
+}
+
+.primaryButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2-5);
+  width: 100%;
+  padding: var(--primitive-space-4) 22px;
+  border: 0;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, color 200ms ease;
+}
+
+.primaryButton:hover:not(:disabled),
+.primaryButton:focus-visible:not(:disabled) {
+  transform: translateY(-1px);
+  outline: none;
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.primaryButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: saturate(0.5);
+}
+
+.altFoot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.altFoot a {
+  color: var(--primitive-amber);
+  text-decoration: none;
+  padding-bottom: 1px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 200ms ease;
+}
+
+.altFoot a:hover,
+.altFoot a:focus-visible {
+  border-bottom-color: var(--primitive-amber);
+  outline: none;
+}
+
+.altLinkButton {
+  background: transparent;
+  border: 0;
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0 0 1px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+
+.altLinkButton:hover,
+.altLinkButton:focus-visible {
+  color: var(--primitive-amber);
+  border-bottom-color: var(--primitive-amber);
+  outline: none;
+}
+
+.helpHint {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+  line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .label,
+  .primaryButton {
+    transition: border-color 100ms ease;
+  }
+
+  .primaryButton:hover,
+  .primaryButton:focus-visible {
+    transform: none;
+  }
+}

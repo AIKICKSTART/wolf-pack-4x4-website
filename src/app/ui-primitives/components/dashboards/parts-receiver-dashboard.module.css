@@ -1,0 +1,111 @@
+/* PartsReceiverDashboard — receiving / inventory persona layout. */
+
+.surface {
+  display: grid;
+  gap: 18px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+.row > * {
+  min-width: 0;
+}
+
+.signalGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--primitive-space-2);
+}
+
+.signalRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-surface-1);
+  min-width: 0;
+  transition:
+    border-color var(--primitive-duration-fast) ease,
+    background var(--primitive-duration-fast) ease;
+}
+
+.signalRow:hover {
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-surface-hover);
+}
+
+.supplierName {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.supplierMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-muted);
+}
+
+.po {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signalRow {
+    transition: none;
+  }
+}
+
+.cellRego {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.recentRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+.recentLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+@media (max-width: 960px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

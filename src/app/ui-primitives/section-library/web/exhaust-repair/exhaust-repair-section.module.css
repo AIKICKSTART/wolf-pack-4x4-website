@@ -1,0 +1,78 @@
+.host {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: var(--primitive-space-10);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  padding: var(--primitive-space-9) var(--primitive-space-8);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 12% 8%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 50%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.weave {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--primitive-carbon-weave);
+  background-size: var(--primitive-carbon-weave-size);
+  opacity: 0.4;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at 30% 20%, color-mix(in oklab, var(--primitive-canvas) 85%, transparent), transparent 80%);
+}
+
+.spotlight,
+.steps {
+  min-width: 0;
+}
+
+.visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: var(--primitive-space-5);
+  min-height: 280px;
+  padding: var(--primitive-space-8);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-lg);
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--primitive-amber);
+  background:
+    radial-gradient(circle at 50% 40%, color-mix(in oklab, var(--primitive-red) 22%, transparent), transparent 60%),
+    var(--primitive-metallic-black);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.visualSheen {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--primitive-metallic-sheen);
+  opacity: 0.5;
+}
+
+.visualCaption {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .host {
+    gap: var(--primitive-space-8);
+    padding: var(--primitive-space-6) var(--primitive-space-5);
+  }
+
+  .visual {
+    min-height: 200px;
+    padding: var(--primitive-space-6);
+  }
+}

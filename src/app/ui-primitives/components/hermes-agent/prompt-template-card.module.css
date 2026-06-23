@@ -1,0 +1,159 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 0% 100%, color-mix(in srgb, var(--primitive-teal) 8%, transparent), transparent 56%),
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-surface-2);
+  color: var(--primitive-body);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: start;
+}
+
+.titleBlock {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.versionBlock {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  justify-items: end;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-code-bg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.55;
+  color: var(--primitive-code-fg);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.placeholder {
+  color: var(--primitive-teal);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.testCases {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.testCaseLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.testList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.testItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: 9px var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-recessed);
+}
+
+.testItem[data-passed="true"] { border-color: color-mix(in srgb, var(--primitive-green) 26%, var(--primitive-line)); }
+.testItem[data-passed="false"] { border-color: color-mix(in srgb, var(--primitive-red) 30%, var(--primitive-line)); }
+
+.testStatus {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-muted);
+}
+
+.testItem[data-passed="true"] .testStatus { background: var(--primitive-green); }
+.testItem[data-passed="false"] .testStatus { background: var(--primitive-red); }
+
+.testTitle {
+  font-size: 12.5px;
+  color: var(--primitive-text-strong);
+}
+
+.testMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.testItem[data-passed="true"] > .testMeta:last-child { color: var(--primitive-green); }
+.testItem[data-passed="false"] > .testMeta:last-child { color: var(--primitive-red); }
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding-top: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.winRate {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.winRateLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.winRateValue {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}

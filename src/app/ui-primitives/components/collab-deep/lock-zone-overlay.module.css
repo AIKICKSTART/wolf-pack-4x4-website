@@ -1,0 +1,119 @@
+.zone {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px dashed color-mix(in srgb, var(--lock-tint, var(--primitive-amber)) 50%, transparent);
+  background:
+    repeating-linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--lock-tint, var(--primitive-amber)) 6%, transparent) 0px,
+      color-mix(in srgb, var(--lock-tint, var(--primitive-amber)) 6%, transparent) 14px,
+      transparent 14px,
+      transparent 28px
+    ),
+    color-mix(in srgb, var(--primitive-canvas) 62%, transparent);
+  font-family: var(--primitive-font-body);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.muted {
+  pointer-events: none;
+  filter: blur(2px) saturate(0.6);
+  opacity: 0.45;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      color-mix(in srgb, var(--lock-tint, var(--primitive-amber)) 18%, transparent),
+      transparent 60%
+    );
+  z-index: 1;
+}
+
+.bar {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid color-mix(in srgb, var(--lock-tint, var(--primitive-amber)) 55%, transparent);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-strong) 4%, transparent), transparent),
+    color-mix(in srgb, var(--primitive-canvas) 82%, transparent);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--lock-tint, var(--primitive-amber)) 22%, transparent);
+}
+
+.barAvatar {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 30% 30%, var(--lock-tint, var(--primitive-amber)) 0%, transparent 70%),
+    var(--primitive-canvas);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--lock-tint, var(--primitive-amber)) 55%, transparent);
+}
+
+.barCopy {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.barLabel {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+  font-size: 13.5px;
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.barReason {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 var(--primitive-space-2);
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--lock-tint, var(--primitive-amber)) 60%, transparent);
+  background: color-mix(in srgb, var(--lock-tint, var(--primitive-amber)) 22%, transparent);
+  color: var(--lock-tint, var(--primitive-amber));
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.barMeta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.since {
+  color: var(--primitive-body);
+}
+
+.hint {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--lock-tint, var(--primitive-amber));
+  white-space: nowrap;
+}

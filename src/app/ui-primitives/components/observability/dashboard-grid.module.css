@@ -1,0 +1,107 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: minmax(140px, auto);
+  gap: var(--primitive-space-4);
+}
+
+.cell {
+  display: block;
+  min-width: 0;
+}
+
+.span1 { grid-column: span 12; }
+.span2 { grid-column: span 12; }
+.span3 { grid-column: span 12; }
+.span4 { grid-column: span 12; }
+.span6 { grid-column: span 12; }
+.span12 { grid-column: span 12; }
+
+@media (min-width: 720px) {
+  .span2 { grid-column: span 6; }
+  .span3 { grid-column: span 6; }
+  .span4 { grid-column: span 6; }
+  .span6 { grid-column: span 12; }
+}
+
+@media (min-width: 1100px) {
+  .span1 { grid-column: span 1; }
+  .span2 { grid-column: span 2; }
+  .span3 { grid-column: span 3; }
+  .span4 { grid-column: span 4; }
+  .span6 { grid-column: span 6; }
+}
+
+.row1 { grid-row: span 1; }
+.row2 { grid-row: span 2; }
+.row3 { grid-row: span 3; }
+
+.tile {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--primitive-space-2-5);
+  padding: 14px var(--primitive-space-4);
+  height: 100%;
+}
+
+.tileHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.tileTitleStack {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.tileTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  color: var(--primitive-text-strong);
+  text-transform: uppercase;
+}
+
+.tileSubtitle {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.dragHandle {
+  display: grid;
+  grid-template-columns: repeat(2, 4px);
+  grid-template-rows: repeat(3, 4px);
+  gap: var(--primitive-space-0-5);
+  padding: var(--primitive-space-1);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 18%, transparent);
+  cursor: grab;
+  flex-shrink: 0;
+}
+
+.dragHandle > span {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-muted);
+  opacity: 0.62;
+}
+
+.dragHandle:hover > span {
+  opacity: 1;
+}
+
+.tileBody {
+  min-width: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}

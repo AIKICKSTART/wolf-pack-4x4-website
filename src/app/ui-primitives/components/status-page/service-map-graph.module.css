@@ -1,0 +1,206 @@
+.wrap {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-line-muted),
+    inset -16px -16px 28px color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.caption {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.zoomBtn {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.zoomBtn:hover:not(:disabled) {
+  background: var(--primitive-line-muted);
+}
+
+.zoomBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.zoomBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.zoomValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  color: var(--primitive-text-strong);
+  width: 40px;
+  text-align: center;
+}
+
+.zoomReset {
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.zoomReset:hover {
+  background: var(--primitive-line-muted);
+}
+
+.zoomReset:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 480px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 23px, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent) 23px 24px),
+    repeating-linear-gradient(90deg, transparent 0 23px, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent) 23px 24px),
+    var(--primitive-code-bg);
+  overflow: hidden;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.edge {
+  stroke-width: 0.5;
+  stroke-linecap: round;
+  opacity: 0.85;
+  color: var(--edge-color, color-mix(in oklab, var(--primitive-text-strong) 40%, transparent));
+  stroke: var(--edge-color, color-mix(in oklab, var(--primitive-text-strong) 40%, transparent));
+  filter: drop-shadow(0 0 2px var(--edge-glow, color-mix(in oklab, var(--primitive-text-strong) 18%, transparent)));
+}
+
+.node {
+  color: var(--node-color, var(--primitive-text-strong));
+}
+
+.nodeOuter {
+  fill: var(--node-bg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent));
+  stroke: var(--node-stroke, color-mix(in oklab, var(--primitive-text-strong) 60%, transparent));
+  stroke-width: 0.6;
+  filter: drop-shadow(0 0 4px var(--node-glow, color-mix(in oklab, var(--primitive-text-strong) 20%, transparent)));
+}
+
+.nodeInner {
+  fill: var(--node-stroke, color-mix(in oklab, var(--primitive-text-strong) 85%, transparent));
+}
+
+.nodeLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 2.4px;
+  letter-spacing: 0.05em;
+  fill: var(--primitive-text-strong);
+  paint-order: stroke fill;
+  stroke: var(--primitive-code-bg);
+  stroke-width: 0.8;
+  stroke-linejoin: round;
+}
+
+.toneRed {
+  --edge-color: var(--primitive-red);
+  --edge-glow: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --node-color: var(--primitive-red);
+  --node-bg: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  --node-stroke: var(--primitive-red);
+  --node-glow: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}
+
+.toneAmber {
+  --edge-color: var(--primitive-amber);
+  --edge-glow: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --node-color: var(--primitive-amber);
+  --node-bg: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --node-stroke: var(--primitive-amber);
+  --node-glow: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.toneTeal {
+  --edge-color: var(--primitive-teal);
+  --edge-glow: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  --node-color: var(--primitive-teal);
+  --node-bg: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --node-stroke: var(--primitive-teal);
+  --node-glow: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+.toneGreen {
+  --edge-color: var(--primitive-green);
+  --edge-glow: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --node-color: var(--primitive-green);
+  --node-bg: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  --node-stroke: var(--primitive-green);
+  --node-glow: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+}
+
+.toneNeutral {
+  --edge-color: color-mix(in oklab, var(--primitive-text-strong) 40%, transparent);
+  --edge-glow: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  --node-color: color-mix(in oklab, var(--primitive-text-strong) 70%, transparent);
+  --node-bg: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --node-stroke: color-mix(in oklab, var(--primitive-text-strong) 60%, transparent);
+  --node-glow: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+}
+
+.toneViolet {
+  --edge-color: var(--primitive-violet);
+  --edge-glow: color-mix(in oklab, var(--primitive-violet) 40%, transparent);
+  --node-color: var(--primitive-violet);
+  --node-bg: color-mix(in oklab, var(--primitive-violet) 18%, transparent);
+  --node-stroke: var(--primitive-violet);
+  --node-glow: color-mix(in oklab, var(--primitive-violet) 40%, transparent);
+}

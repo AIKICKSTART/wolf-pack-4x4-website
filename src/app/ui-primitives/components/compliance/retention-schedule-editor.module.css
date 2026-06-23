@@ -1,0 +1,238 @@
+.editor {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-glass-soft) 24%, transparent) 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  color: var(--primitive-body);
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    inset -18px -18px 30px color-mix(in oklab, var(--primitive-overlay) 46%, transparent),
+    0 18px 42px color-mix(in oklab, var(--primitive-overlay) 58%, transparent);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.titleBlock {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.recordId {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-teal);
+  letter-spacing: 0.05em;
+}
+
+.legalHold {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.legalHoldDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: end;
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.input,
+.select {
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.01em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus,
+.select:focus {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.durationGroup {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: var(--primitive-space-2);
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-glass-soft) 50%, transparent);
+}
+
+.toggleLabel {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.toggleLabelMain {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.toggleLabelSub {
+  color: var(--primitive-muted);
+  font-size: 11px;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: var(--primitive-tracking-wider);
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-standard), background var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.toggle[aria-checked="true"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  color: var(--primitive-red);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.toggleTrack {
+  position: relative;
+  width: 30px;
+  height: 16px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-line-strong);
+  transition: background var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+.toggle[aria-checked="true"] .toggleTrack {
+  background: color-mix(in oklab, var(--primitive-red) 60%, transparent);
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  box-shadow: 0 2px 6px color-mix(in oklab, var(--primitive-overlay) 88%, transparent);
+  transition: transform var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.toggle[aria-checked="true"] .toggleThumb {
+  transform: translateX(14px);
+}
+
+.summary {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-body);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px dashed var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-glass-soft) 40%, transparent);
+}
+
+.summaryStrong {
+  color: var(--primitive-amber);
+  font-weight: var(--primitive-weight-bold);
+}
+
+@media (max-width: 700px) {
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggleThumb,
+  .toggleTrack {
+    transition: none;
+  }
+}

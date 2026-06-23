@@ -1,0 +1,159 @@
+.card {
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), transparent),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-glass-strong),
+    0 22px 60px -28px var(--primitive-overlay);
+  font-family: var(--primitive-font-body);
+  overflow: hidden;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 18px var(--primitive-space-5);
+  border-bottom: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent),
+    color-mix(in oklab, var(--primitive-canvas) 65%, transparent);
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.headRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1.05;
+}
+
+.range {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.statRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  margin: var(--primitive-space-1-5) 0 0;
+}
+
+.statRow > div {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.statRow dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.statRow dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  line-height: 1;
+}
+
+.zeroRate {
+  color: var(--primitive-amber) !important;
+}
+
+.sparkCell dd {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: var(--primitive-space-0-5);
+}
+
+.tableShell {
+  padding: var(--primitive-space-1-5) var(--primitive-space-2) var(--primitive-space-3);
+}
+
+.queryCell {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.01em;
+}
+
+.numCell {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.trendPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid currentColor;
+  color: var(--primitive-muted);
+  background: var(--primitive-glass-soft);
+}
+
+.trendPill[data-tone="up"] {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+}
+
+.trendPill[data-tone="down"] {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+}
+
+.trendPill[data-tone="flat"] {
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+}
+
+@media (max-width: 720px) {
+  .statRow {
+    grid-template-columns: 1fr;
+  }
+}

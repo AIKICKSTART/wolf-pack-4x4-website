@@ -1,0 +1,120 @@
+.veil {
+  --loading-tone: var(--primitive-red);
+
+  z-index: 80;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-6);
+  background:
+    radial-gradient(circle at 50% 35%, color-mix(in oklab, var(--loading-tone) 14%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-canvas) 55%, transparent);
+  backdrop-filter: blur(8px) saturate(1.1);
+  -webkit-backdrop-filter: blur(8px) saturate(1.1);
+  color: var(--primitive-body);
+  text-align: center;
+}
+
+.fixed {
+  position: fixed;
+  inset: 0;
+}
+
+.absolute {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.toneRed {
+  --loading-tone: var(--primitive-red);
+}
+
+.toneAmber {
+  --loading-tone: var(--primitive-amber);
+}
+
+.toneTeal {
+  --loading-tone: var(--primitive-teal);
+}
+
+.spinnerWrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  animation: loadingSpin 1.4s linear infinite;
+}
+
+.spinnerTrack {
+  fill: none;
+  stroke: var(--primitive-line);
+  stroke-width: 4;
+}
+
+.spinnerArc {
+  fill: none;
+  stroke: var(--loading-tone);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 80 200;
+  filter: drop-shadow(0 0 8px color-mix(in oklab, var(--loading-tone) 60%, transparent));
+}
+
+.spinnerDot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--loading-tone);
+  box-shadow: 0 0 14px var(--loading-tone);
+  animation: loadingPulse 1.8s ease-in-out infinite;
+}
+
+.message {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+.detail {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes loadingSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loadingPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner,
+  .spinnerDot {
+    animation: none;
+  }
+}

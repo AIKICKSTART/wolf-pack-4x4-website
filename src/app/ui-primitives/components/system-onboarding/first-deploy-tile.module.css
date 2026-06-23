@@ -1,0 +1,114 @@
+.tile {
+  gap: 18px;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+}
+
+@media (max-width: 540px) {
+  .head {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gauge {
+  display: grid;
+  place-items: center;
+  padding: var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-recessed);
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: minmax(140px, auto) 1fr;
+  gap: var(--primitive-space-2) var(--primitive-space-4);
+  margin: 0;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in srgb, var(--primitive-text-strong) 2%, transparent);
+}
+
+.meta dt {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.meta dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.url {
+  word-break: break-all;
+}
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.checkItem {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in srgb, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.checkGlyph {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in srgb, var(--primitive-canvas) 36%, transparent);
+  color: var(--so-tone, var(--primitive-text-strong));
+}
+
+.checkLabel {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+:global([data-primitive-theme="light"]) .meta {
+  background: var(--primitive-glass-soft);
+  border-color: var(--primitive-line);
+}
+
+:global([data-primitive-theme="light"]) .meta dd {
+  color: var(--primitive-text-strong);
+}
+
+:global([data-primitive-theme="light"]) .checkItem {
+  background: var(--primitive-glass-strong);
+  border-color: var(--primitive-line);
+}
+
+:global([data-primitive-theme="light"]) .checkLabel {
+  color: var(--primitive-text-strong);
+}

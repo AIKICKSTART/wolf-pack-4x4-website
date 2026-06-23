@@ -1,0 +1,112 @@
+.nav {
+  display: grid;
+  gap: 18px;
+  padding: 22px 24px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 12px 8px 8px;
+  border-radius: 10px;
+  background: transparent;
+  transition: background 200ms ease, border-color 200ms ease;
+  border: 1px solid transparent;
+}
+
+.indexBadge {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid var(--primitive-line-strong);
+  background: var(--primitive-recessed);
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--primitive-font-display);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.description {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.complete .indexBadge {
+  border-color: var(--primitive-green);
+  background: color-mix(in srgb, var(--primitive-green) 16%, var(--primitive-recessed));
+  color: var(--primitive-green);
+}
+
+.complete .label {
+  color: var(--primitive-green);
+}
+
+.current {
+  border-color: color-mix(in srgb, var(--primitive-amber) 32%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-amber) 10%, transparent), transparent),
+    color-mix(in srgb, var(--primitive-amber) 4%, transparent);
+}
+
+.current .indexBadge {
+  border-color: var(--primitive-amber);
+  background: color-mix(in srgb, var(--primitive-amber) 22%, var(--primitive-recessed));
+  color: var(--primitive-amber);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primitive-amber) 12%, transparent);
+}
+
+.current .label {
+  color: var(--primitive-amber);
+}
+
+.upcoming .indexBadge {
+  color: var(--primitive-muted);
+}
+
+.upcoming .label {
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
+}

@@ -1,0 +1,169 @@
+.hero {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-6);
+  padding: clamp(28px, 2.4vw, 44px);
+  min-height: 320px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent),
+      color-mix(in oklab, var(--primitive-text-on-accent) 1.2%, transparent)
+    ),
+    var(--primitive-panel-strong);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-on-accent) 8%, transparent),
+    0 36px 90px color-mix(in oklab, var(--primitive-canvas) 48%, transparent);
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+}
+
+.accent {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 8px;
+  background: var(--bay-display-accent, var(--primitive-red));
+  box-shadow: 0 0 24px var(--bay-display-accent, var(--primitive-red));
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.bayId {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  align-items: baseline;
+  gap: 14px;
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  text-transform: uppercase;
+}
+
+.bayId em {
+  font-style: normal;
+  font-size: clamp(20px, 1.5vw, 28px);
+  letter-spacing: 0.14em;
+  color: var(--primitive-muted);
+}
+
+.bayId strong {
+  font-weight: 400;
+  font-size: clamp(96px, 9vw, 156px);
+  line-height: 0.85;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 0 38px color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+  font-variant-numeric: tabular-nums;
+}
+
+.pulse {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--bay-display-accent, var(--primitive-red));
+  box-shadow:
+    0 0 0 0 var(--bay-display-accent, var(--primitive-red)),
+    0 0 28px var(--bay-display-accent, var(--primitive-red));
+}
+
+.hero[data-pulse="on"] .pulse {
+  animation: bay-pulse 1600ms var(--primitive-ease-out) infinite;
+}
+
+@keyframes bay-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--bay-display-accent) 65%, transparent);
+  }
+  60% {
+    box-shadow: 0 0 0 18px color-mix(in oklab, var(--bay-display-accent) 0%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--bay-display-accent) 0%, transparent);
+  }
+}
+
+.chip {
+  margin-left: auto;
+  font-size: clamp(14px, 1.05vw, 20px);
+  padding: var(--primitive-space-2) var(--primitive-space-4);
+}
+
+.vehicleBlock {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.vehicle {
+  display: block;
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  font-weight: 400;
+  font-size: clamp(36px, 3.2vw, 64px);
+  line-height: 1;
+  letter-spacing: 0.012em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.customer {
+  font-family: var(--ff-ts-bebas, var(--primitive-font-display));
+  font-size: clamp(20px, 1.6vw, 28px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.clearMsg {
+  margin: 0;
+  padding: var(--primitive-space-5) var(--primitive-space-6);
+  border-radius: 14px;
+  border: 1px dashed var(--primitive-line-strong);
+  color: var(--primitive-body);
+  font-size: clamp(18px, 1.4vw, 26px);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.foot {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--primitive-space-6);
+  padding-top: 18px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.cell {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.cell em {
+  font-style: normal;
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(10px, 0.8vw, 13px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.cell strong {
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  font-weight: 400;
+  font-size: clamp(28px, 2.2vw, 44px);
+  letter-spacing: 0.01em;
+  color: var(--primitive-text-strong);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero[data-pulse="on"] .pulse {
+    animation: none;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--bay-display-accent) 45%, transparent);
+  }
+}

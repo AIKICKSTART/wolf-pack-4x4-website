@@ -1,0 +1,164 @@
+.root {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 16%, transparent), color-mix(in oklab, var(--primitive-amber) 4%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+}
+
+.root::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: var(--primitive-amber);
+  opacity: 0.85;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  color: var(--primitive-amber);
+}
+
+.content {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.meta {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reloadBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 8px 14px;
+  border: none;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition:
+    transform var(--primitive-duration-fast) var(--primitive-ease-standard),
+    background var(--primitive-duration-fast) var(--primitive-ease-standard),
+    color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.reloadBtn:hover {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.reloadBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-btn-primary-shadow), var(--primitive-focus-shadow);
+}
+
+.snoozeBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.snoozeBtn:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, var(--primitive-btn-secondary-bg));
+}
+
+.snoozeBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.changelog {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 8px 4px 0;
+  border-top: 1px dashed var(--primitive-line);
+  list-style: none;
+}
+
+.changelogItem {
+  display: grid;
+  grid-template-columns: 6px 1fr;
+  gap: 8px;
+  align-items: start;
+  color: var(--primitive-body);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.changelogItem::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: var(--primitive-amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reloadBtn,
+  .snoozeBtn {
+    transition: none;
+  }
+}

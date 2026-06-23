@@ -1,0 +1,496 @@
+.page {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px) 80px;
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 86% 0%, color-mix(in oklab, var(--primitive-amber) 13%, transparent), transparent 38%),
+    radial-gradient(circle at 6% 100%, color-mix(in oklab, var(--primitive-teal) 13%, transparent), transparent 42%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+.canvas {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--primitive-space-6);
+}
+
+.scene {
+  display: grid;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+}
+
+/* ---- Room header -------------------------------------------------------- */
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-4);
+  padding: 18px var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 44%),
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.8%, transparent)),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    var(--primitive-shadow-soft);
+}
+
+/* Placeholder circular Torque avatar — real mascot lands later. */
+.torqueAvatar {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: 1;
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in oklab, var(--primitive-text-strong) 42%, transparent), transparent 46%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-red) 35%, var(--primitive-text-strong)),
+    0 12px 26px color-mix(in oklab, var(--primitive-red-dark) 45%, transparent);
+}
+
+.torqueAvatar::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--primitive-radius-pill);
+  background: radial-gradient(circle at 30% 30%,
+    color-mix(in oklab, var(--primitive-green) 60%, white),
+    var(--primitive-green) 55%,
+    color-mix(in oklab, var(--primitive-green) 60%, black) 100%);
+  border: 2px solid var(--primitive-canvas);
+}
+
+.torqueInitial {
+  position: relative;
+  z-index: 1;
+  transform: translateY(1px);
+}
+
+.headMeta {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-green);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primitive-green) 70%, transparent);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: 400;
+  letter-spacing: 0.004em;
+  line-height: 1.04;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--primitive-muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.headPresence {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* ---- Two-column body ---------------------------------------------------- */
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+/* ---- Participant rail --------------------------------------------------- */
+
+.rail {
+  display: grid;
+  gap: var(--primitive-space-4);
+  align-content: start;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.6%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+}
+
+.railTitle {
+  margin: 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.railList {
+  display: grid;
+  gap: var(--primitive-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.railItem {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid transparent;
+  transition: background-color var(--primitive-duration-fast) ease,
+    border-color var(--primitive-duration-fast) ease;
+}
+
+.railItem:hover {
+  background: var(--primitive-glass-soft);
+  border-color: var(--primitive-line);
+}
+
+.railAvatar {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  background:
+    radial-gradient(circle at 30% 24%, color-mix(in oklab, var(--primitive-text-strong) 34%, transparent), transparent 50%),
+    color-mix(in srgb, var(--tint, var(--primitive-teal)) 78%, black);
+  box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--tint, var(--primitive-teal)) 60%, transparent);
+}
+
+.railInitial {
+  position: relative;
+  z-index: 1;
+}
+
+.railCopy {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.railName {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.railHandle {
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 600;
+}
+
+.railJob {
+  color: var(--primitive-muted);
+  font-size: 11.5px;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.railFeed {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding-top: 14px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+/* ---- Main column -------------------------------------------------------- */
+
+.main {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.thread {
+  min-height: 400px;
+  max-height: 560px;
+}
+
+.turnCopy {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.line {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.figure {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+}
+
+/* ---- @mention chip ------------------------------------------------------ */
+
+.mention {
+  display: inline-flex;
+  align-items: baseline;
+  padding: 1px 7px;
+  margin: 0 1px;
+  border-radius: 6px;
+  font-family: var(--primitive-font-mono);
+  font-size: 0.92em;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--mention-tint, var(--primitive-teal));
+  background: color-mix(in srgb, var(--mention-tint, var(--primitive-teal)) 16%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--mention-tint, var(--primitive-teal)) 40%, transparent);
+}
+
+/* ---- Draft preview card nested in an agent turn ------------------------- */
+
+.draftCard {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-left: 3px solid var(--primitive-amber);
+  border-radius: 0 var(--primitive-radius-lg) var(--primitive-radius-lg) 0;
+  background: var(--primitive-glass-soft);
+}
+
+.draftCard[data-agent="social"] {
+  border-left-color: var(--primitive-teal);
+}
+
+.draftLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.draftCard[data-agent="social"] .draftLabel {
+  color: var(--primitive-teal);
+}
+
+.draftChannel {
+  color: var(--primitive-muted);
+  letter-spacing: 0.12em;
+}
+
+.draftTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-base);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.draftBody {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.draftMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5) 14px;
+  margin-top: var(--primitive-space-0-5);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+}
+
+.draftMeta b {
+  color: var(--primitive-body);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin-top: var(--primitive-space-0-5);
+}
+
+.tag {
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.02em;
+}
+
+/* ---- Threaded reply panel ----------------------------------------------- */
+
+.threadPanel {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.4%, transparent)),
+    var(--primitive-panel);
+}
+
+.threadKicker {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* The popover is absolutely positioned by default; in-flow it inside a
+   relative wrapper so it sits naturally in the room column. */
+.threadInner {
+  position: relative;
+}
+
+.threadPopover {
+  position: static;
+  width: 100%;
+  max-width: none;
+}
+
+/* ---- Composer ----------------------------------------------------------- */
+
+.composerStack {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+/* ---- Composition note --------------------------------------------------- */
+
+.note {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border-left: 2px solid var(--primitive-red);
+  border-radius: 0 var(--primitive-radius-lg) var(--primitive-radius-lg) 0;
+  background: var(--primitive-glass-soft);
+}
+
+.noteLabel {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.note p {
+  margin: 0;
+  max-width: 84ch;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+.note code {
+  font-family: var(--primitive-font-mono);
+  font-size: 0.92em;
+  color: var(--primitive-amber);
+}
+
+/* ---- Responsive --------------------------------------------------------- */
+
+@media (max-width: 920px) {
+  .body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rail {
+    order: 2;
+  }
+
+  .main {
+    order: 1;
+  }
+}
+
+@media (max-width: 680px) {
+  .headPresence {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .railItem {
+    transition: none;
+  }
+}

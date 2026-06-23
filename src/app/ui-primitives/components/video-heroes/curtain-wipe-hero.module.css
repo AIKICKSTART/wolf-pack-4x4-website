@@ -1,0 +1,548 @@
+/* =========================================================
+   CURTAIN WIPE HERO — a theatre curtain splits open: two
+   pleated fabric panels slide left/right on the X axis to
+   reveal a looping video, headline revealed centre-stage.
+   Subtle fabric sheen + red braid trim. Motion is
+   transform/opacity only (compositor-friendly).
+   ========================================================= */
+
+.hero {
+  --cw-panels: 52%; /* each panel overhangs centre slightly — no seam gap */
+  --cw-open: 1100ms;
+  --cw-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Dark / canonical: deep house with warm stage glow behind the seam. */
+  --cw-fabric-a: color-mix(in oklab, var(--primitive-red) 64%, var(--primitive-red-dark) 36%);
+  --cw-fabric-b: color-mix(in oklab, var(--primitive-red) 40%, var(--primitive-red-dark) 60%);
+  --cw-pleat-light: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+  --cw-pleat-dark: color-mix(in oklab, black 62%, transparent);
+  --cw-braid: var(--primitive-amber);
+  --cw-valance: color-mix(in oklab, var(--primitive-red) 58%, var(--primitive-red-dark) 42%);
+
+  position: relative;
+  width: 100%;
+  min-height: clamp(520px, 84svh, 800px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 50% 50%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 60%),
+    radial-gradient(ellipse at 50% 92%, color-mix(in oklab, var(--primitive-red) 24%, transparent), transparent 64%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-teal)) 100%);
+  font-family: var(--primitive-font-body);
+}
+
+/* Light parity: warm paper house, ink stage, brighter brass braid. */
+:global(:root[data-theme="light"]) .hero,
+:global(.light) .hero {
+  color: var(--primitive-canvas);
+  --cw-fabric-a: color-mix(in oklab, var(--primitive-red) 78%, white 22%);
+  --cw-fabric-b: color-mix(in oklab, var(--primitive-red) 56%, var(--primitive-red-dark) 44%);
+  --cw-pleat-light: color-mix(in oklab, white 46%, transparent);
+  --cw-pleat-dark: color-mix(in oklab, var(--primitive-red-dark) 50%, transparent);
+  --cw-braid: color-mix(in oklab, var(--primitive-amber) 88%, color-mix(in oklab, var(--primitive-amber) 30%, black) 12%);
+  --cw-valance: color-mix(in oklab, var(--primitive-red) 70%, var(--primitive-red-dark) 30%);
+  background:
+    radial-gradient(ellipse at 50% 46%, color-mix(in oklab, var(--primitive-text-strong) 40%, transparent), transparent 60%),
+    radial-gradient(ellipse at 50% 92%, color-mix(in oklab, var(--primitive-amber) 20%, transparent), transparent 62%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-amber)) 0%, color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-amber)) 100%);
+}
+
+.stage {
+  position: relative;
+  grid-row: 1 / -1;
+  grid-column: 1;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: contrast(1.08) saturate(1.08);
+}
+
+/* Readability wash over the revealed media. */
+.tint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, black 32%, transparent) 0%, color-mix(in oklab, black 4%, transparent) 30%, color-mix(in oklab, black 6%, transparent) 54%, color-mix(in oklab, black 68%, transparent) 94%),
+    radial-gradient(ellipse at 50% 56%, transparent 38%, color-mix(in oklab, black 50%, transparent) 100%);
+}
+:global(:root[data-theme="light"]) .tint,
+:global(.light) .tint {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 28%, transparent) 0%, transparent 32%, transparent 56%, color-mix(in oklab, white 70%, transparent) 96%),
+    radial-gradient(ellipse at 50% 56%, transparent 44%, color-mix(in oklab, black 20%, transparent) 100%);
+}
+
+/* ---------- Top valance / pelmet ---------- */
+.valance {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(44px, 9svh, 88px);
+  z-index: 4;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, var(--cw-valance) 0%, color-mix(in oklab, var(--cw-valance) 70%, black 30%) 100%);
+  /* Scalloped lower hem — repeating swag arcs read as a theatre pelmet. */
+  -webkit-mask-image: radial-gradient(18px 22px at 50% 0, black 96%, transparent 100%);
+  mask-image: radial-gradient(circle at 50% 0, black 96%, transparent 100%);
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-size: 76px 100%;
+  mask-size: 76px 100%;
+  -webkit-mask-position: bottom;
+  mask-position: bottom;
+  box-shadow: inset 0 -1px 0 color-mix(in oklab, black 40%, transparent);
+  /* Fabric sheen on the valance echoes the panels. */
+  background-blend-mode: normal;
+}
+.valance::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      var(--cw-pleat-light) 6px,
+      transparent 12px,
+      var(--cw-pleat-dark) 22px,
+      transparent 30px
+    );
+  opacity: 0.5;
+  mix-blend-mode: soft-light;
+}
+.valanceTrim {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--cw-braid) 8%, var(--cw-braid) 92%, transparent);
+  box-shadow: 0 0 12px color-mix(in oklab, var(--cw-braid) 60%, transparent);
+}
+
+/* ---------- The two curtain panels ---------- */
+.curtains {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--cw-panels);
+  overflow: hidden;
+  background:
+    /* warm directional sheen from stage centre */
+    linear-gradient(var(--cw-sheen-angle, 100deg), color-mix(in oklab, var(--primitive-amber) 14%, transparent) 0%, transparent 42%),
+    linear-gradient(180deg, color-mix(in oklab, white 8%, transparent) 0%, transparent 26%),
+    linear-gradient(90deg, var(--cw-fabric-a) 0%, var(--cw-fabric-b) 100%);
+  will-change: transform;
+  animation: panelOpen var(--cw-open) var(--cw-ease) forwards;
+  animation-delay: 320ms;
+}
+
+.panelLeft {
+  left: 0;
+  --cw-sheen-angle: 100deg;
+  --cw-shift: -101%; /* slides fully off the left edge */
+  border-right: 1px solid color-mix(in oklab, black 40%, transparent);
+  box-shadow:
+    inset -14px 0 28px color-mix(in oklab, black 50%, transparent),
+    6px 0 22px color-mix(in oklab, black 42%, transparent);
+  transform: translateX(0);
+}
+
+.panelRight {
+  right: 0;
+  --cw-sheen-angle: 260deg;
+  --cw-shift: 101%; /* slides fully off the right edge */
+  border-left: 1px solid color-mix(in oklab, black 40%, transparent);
+  box-shadow:
+    inset 14px 0 28px color-mix(in oklab, black 50%, transparent),
+    -6px 0 22px color-mix(in oklab, black 42%, transparent);
+  transform: translateX(0);
+}
+
+/* Each panel slides fully off its own side. translateX(±101%) of the
+   panel width clears the viewport without touching layout properties. */
+@keyframes panelOpen {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--cw-shift));
+  }
+}
+
+/* Vertical pleats: alternating light/shadow folds give the fabric body. */
+.pleats {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+.pleat {
+  flex: 1 1 0;
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    var(--cw-pleat-dark) 0%,
+    transparent 24%,
+    var(--cw-pleat-light) 50%,
+    transparent 76%,
+    var(--cw-pleat-dark) 100%
+  );
+  opacity: 0.72;
+  mix-blend-mode: soft-light;
+}
+/* Stagger fold emphasis so the weave does not look mechanical. */
+.pleat:nth-child(even) {
+  opacity: 0.5;
+}
+
+/* Inner braid: the red/brass trim that catches light along the parting edge. */
+.edgeBraid {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--cw-braid) 90%, white 10%) 0%,
+    var(--cw-braid) 50%,
+    color-mix(in oklab, var(--cw-braid) 70%, black 30%) 100%
+  );
+  box-shadow: 0 0 16px color-mix(in oklab, var(--cw-braid) 55%, transparent);
+}
+.panelLeft .edgeBraid {
+  right: 0;
+}
+.panelRight .edgeBraid {
+  left: 0;
+}
+
+/* ---------- Centre-stage spotlight ---------- */
+.spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 60% 70% at 50% 52%,
+    color-mix(in oklab, var(--primitive-amber) 12%, transparent) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  animation: spotlightWarm 900ms ease forwards;
+  animation-delay: 1000ms;
+}
+@keyframes spotlightWarm {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Atmosphere ---------- */
+.grain {
+  position: absolute;
+  inset: -10%;
+  z-index: 5;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  mix-blend-mode: overlay;
+  opacity: 0.26;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 58%, transparent 40%, color-mix(in oklab, black 56%, transparent) 100%);
+}
+:global(:root[data-theme="light"]) .vignette,
+:global(.light) .vignette {
+  background: radial-gradient(ellipse at 50% 56%, transparent 44%, color-mix(in oklab, black 22%, transparent) 100%);
+}
+
+/* ---------- Copy lockup, revealed centre-stage ---------- */
+.copy {
+  position: relative;
+  z-index: 6;
+  grid-row: 1 / -1;
+  grid-column: 1;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: clamp(16px, 2vw, 22px);
+  max-width: min(720px, 88vw);
+  padding: 0 clamp(24px, 6vw, 72px);
+  margin-top: clamp(28px, 5svh, 56px);
+  /* Copy fades up after the curtains begin to part. */
+  opacity: 0;
+  transform: translateY(14px);
+  animation: copyReveal 720ms var(--cw-ease) forwards;
+  animation-delay: 900ms;
+}
+@keyframes copyReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  text-shadow: 0 0 18px color-mix(in oklab, var(--primitive-amber) 38%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--primitive-red);
+  box-shadow: 0 0 14px var(--primitive-red);
+  animation: kickerPulse 1.4s ease-in-out infinite;
+}
+@keyframes kickerPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.6);
+  }
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.75rem, 1.4rem + 5.4vw, 6.25rem);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  color: white;
+  text-shadow:
+    0 0 32px color-mix(in oklab, black 55%, transparent),
+    0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+}
+:global(:root[data-theme="light"]) .headline,
+:global(.light) .headline {
+  color: var(--primitive-canvas);
+  text-shadow:
+    0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 60%, transparent),
+    0 0 24px color-mix(in oklab, var(--primitive-text-strong) 40%, transparent);
+}
+
+.subhead {
+  font-family: var(--primitive-font-body);
+  font-size: clamp(15px, 0.9rem + 0.4vw, 19px);
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--primitive-text-strong) 88%, transparent);
+  margin: 0;
+  max-width: 52ch;
+}
+:global(:root[data-theme="light"]) .subhead,
+:global(.light) .subhead {
+  color: color-mix(in oklab, var(--primitive-canvas) 82%, transparent);
+}
+
+.cta {
+  margin-top: 6px;
+  width: max-content;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform 240ms var(--cw-ease),
+    background 240ms;
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--primitive-red);
+  border-radius: 4px;
+  z-index: -1;
+  opacity: 0.42;
+  transition: inset 240ms;
+}
+.cta:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  transform: translateY(-2px);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+.cta:hover::before {
+  inset: -7px;
+  border-color: var(--primitive-amber);
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:active::before {
+  inset: -3px;
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+.meta {
+  position: relative;
+  z-index: 6;
+  grid-row: 2;
+  grid-column: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 clamp(28px, 7vw, 110px) clamp(40px, 6svh, 72px);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 48%, transparent);
+  flex-wrap: wrap;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+:global(:root[data-theme="light"]) .meta,
+:global(.light) .meta {
+  color: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .copy {
+    margin-top: clamp(24px, 4svh, 44px);
+  }
+  .valance {
+    height: clamp(36px, 7svh, 64px);
+  }
+  .meta {
+    font-size: 9px;
+    gap: 14px;
+  }
+  /* Keep the third meta tag from wedging mid-row on narrow screens. */
+  .meta span:last-child {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .meta span:nth-child(2) {
+    display: none;
+  }
+}
+
+/* ---------- Reduced motion: clean static composition ----------
+   No slide, no autoplaying video, no warm-up. The curtains rest
+   already-parted to a narrow framing band on each side, braid and
+   valance settled, revealing a token stage with the copy centred.
+   The distinctive two-panel theatre shape stays legible. */
+@media (prefers-reduced-motion: reduce) {
+  .video {
+    display: none;
+  }
+  .stage {
+    background:
+      linear-gradient(140deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-teal)) 100%),
+      var(--primitive-canvas);
+  }
+  .panel {
+    animation: none;
+    width: clamp(56px, 12vw, 168px);
+  }
+  .panelLeft {
+    transform: none;
+  }
+  .panelRight {
+    transform: none;
+  }
+  .spotlight {
+    animation: none;
+    opacity: 1;
+  }
+  .copy {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .kicker i {
+    animation: none;
+  }
+  .grain {
+    display: none;
+  }
+  .cta {
+    transition: none;
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+}
+
+:global(:root[data-theme="light"]) .stage,
+:global(.light) .stage {
+  background: transparent;
+}
+@media (prefers-reduced-motion: reduce) {
+  :global(:root[data-theme="light"]) .stage,
+  :global(.light) .stage {
+    background:
+      linear-gradient(140deg, color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-amber)) 0%, color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-amber)) 100%),
+      var(--primitive-canvas);
+  }
+}

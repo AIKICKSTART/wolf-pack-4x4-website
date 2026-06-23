@@ -1,0 +1,2161 @@
+/* KineticText primitive — applies a font + motion combo per call. */
+
+.root {
+  --kt-color: var(--foreground, var(--primitive-text-strong));
+  --kt-color-accent: var(--primitive-amber);
+  --kt-color-secondary: var(--primitive-teal);
+  display: inline-block;
+  position: relative;
+  color: var(--kt-color);
+  min-width: 0;
+  max-width: 100%;
+  line-height: var(--primitive-leading-tight);
+  margin: 0;
+  font-family: var(--kt-font);
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: balance;
+  vertical-align: bottom;
+}
+
+.root[data-motion="marquee"] {
+  display: block;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  overflow: hidden;
+  contain: paint;
+}
+
+:global(html[data-primitive-theme="light"]) .root {
+  --kt-color: var(--primitive-text-strong);
+}
+
+.sm {
+  font-size: var(--primitive-text-md);
+  line-height: var(--primitive-leading-snug);
+}
+
+.md {
+  font-size: var(--primitive-text-xl);
+}
+
+.lg {
+  font-size: var(--primitive-h2);
+}
+
+.xl {
+  font-size: var(--primitive-h1);
+}
+
+.hero {
+  font-size: var(--primitive-display);
+  letter-spacing: var(--primitive-tracking-normal);
+}
+
+@media (max-width: 720px) {
+  .sm {
+    font-size: var(--primitive-text-base);
+  }
+
+  .md {
+    font-size: var(--primitive-text-lg);
+  }
+
+  .lg {
+    font-size: var(--primitive-h3);
+  }
+
+  .xl {
+    font-size: var(--primitive-h2);
+  }
+
+  .hero {
+    font-size: var(--primitive-h1);
+  }
+}
+
+/* Motion: letter-rise — handled inside font-anton, but exposed via class. */
+.motionLetterRise {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0;
+  overflow: hidden;
+}
+
+.motionLetterRise span[data-glyph] {
+  display: inline-block;
+  animation: kt-letter-rise 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--kt-i, 0) * 38ms);
+}
+
+@keyframes kt-letter-rise {
+  from {
+    transform: translate3d(0, 110%, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* Motion: outline-fill */
+.motionOutlineFill {
+  position: relative;
+  display: inline-block;
+  -webkit-text-stroke: 1px currentColor;
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    var(--primitive-amber) 0%,
+    var(--primitive-red) 50%,
+    var(--primitive-amber) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: kt-outline-fill 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+@keyframes kt-outline-fill {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0% 0;
+  }
+}
+
+/* Motion: marquee */
+.motionMarqueeWrap {
+  display: block;
+  overflow: hidden;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  contain: paint;
+  mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+
+.motionMarqueeTrack {
+  display: inline-flex;
+  max-inline-size: none;
+  white-space: nowrap;
+  animation: kt-marquee 22s linear infinite;
+  gap: 56px;
+  padding-inline: 24px;
+  will-change: transform;
+}
+
+.motionMarqueeTrack > span {
+  display: inline-block;
+}
+
+@keyframes kt-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Motion: type-on */
+.motionTypeOn {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid var(--primitive-teal);
+  width: 0;
+  animation:
+    kt-type-on 3.2s steps(28, end) infinite alternate,
+    kt-caret 700ms steps(2, end) infinite;
+}
+
+@keyframes kt-type-on {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes kt-caret {
+  from {
+    border-right-color: var(--primitive-teal);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
+/* Motion: weight-morph (variable wght) */
+.motionWeightMorph {
+  font-variation-settings: "wght" 200;
+  animation: kt-weight-morph 5.5s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+@keyframes kt-weight-morph {
+  0% {
+    font-variation-settings: "wght" 200, "opsz" 9;
+  }
+  50% {
+    font-variation-settings: "wght" 700, "opsz" 144;
+  }
+  100% {
+    font-variation-settings: "wght" 900, "opsz" 144;
+  }
+}
+
+/* Motion: scramble — applied via JS, but cursor styling lives here. */
+.motionScramble {
+  font-feature-settings: "tnum";
+  letter-spacing: 0.02em;
+}
+
+/* Motion: axis-swing (variable wdth) */
+.motionAxisSwing {
+  font-variation-settings: "wdth" 75, "opsz" 12;
+  animation: kt-axis-swing 6s ease-in-out infinite alternate;
+}
+
+@keyframes kt-axis-swing {
+  0% {
+    font-variation-settings: "wdth" 75, "opsz" 12;
+  }
+  50% {
+    font-variation-settings: "wdth" 100, "opsz" 48;
+  }
+  100% {
+    font-variation-settings: "wdth" 125, "opsz" 96;
+  }
+}
+
+/* Motion: scanline-wipe */
+.motionScanlineWipe {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(90deg, var(--primitive-teal), var(--primitive-green));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.motionScanlineWipe::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, var(--primitive-teal) 50%, transparent 100%);
+  mix-blend-mode: screen;
+  animation: kt-scanline 3.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  width: 30%;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+@keyframes kt-scanline {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    transform: translate3d(420%, 0, 0);
+  }
+}
+
+/* Motion: color-sweep */
+.motionColorSweep {
+  background:
+    linear-gradient(
+      90deg,
+      var(--primitive-red) 0%,
+      var(--primitive-amber) 30%,
+      var(--primitive-teal) 60%,
+      var(--primitive-green) 100%
+    );
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: kt-color-sweep 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes kt-color-sweep {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 0%;
+  }
+}
+
+/* Motion: italic-shift */
+.motionItalicShift {
+  display: inline-block;
+  font-style: italic;
+  animation: kt-italic-shift 5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+@keyframes kt-italic-shift {
+  0% {
+    transform: translate3d(0, 12px, 0) skewX(-6deg);
+    opacity: 0;
+    font-style: italic;
+  }
+  60% {
+    transform: translate3d(0, 0, 0) skewX(-3deg);
+    opacity: 1;
+    font-style: italic;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) skewX(0deg);
+    opacity: 1;
+    font-style: normal;
+  }
+}
+
+/* Motion: heat-shimmer */
+.motionHeatShimmer {
+  display: inline-block;
+  color: transparent;
+  background:
+    linear-gradient(
+      92deg,
+      var(--primitive-red) 0%,
+      var(--primitive-amber) 24%,
+      var(--primitive-text-strong) 48%,
+      var(--primitive-amber) 64%,
+      var(--primitive-red) 100%
+    );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 12px color-mix(in oklab, var(--primitive-red) 28%, transparent));
+  animation: kt-heat-shimmer 2.8s ease-in-out infinite alternate;
+}
+
+:global(html[data-primitive-theme="light"]) .motionHeatShimmer {
+  background:
+    linear-gradient(
+      92deg,
+      color-mix(in oklab, var(--primitive-red) 80%, black) 0%,
+      color-mix(in oklab, var(--primitive-amber) 78%, black) 24%,
+      color-mix(in oklab, var(--primitive-amber) 26%, black) 48%,
+      color-mix(in oklab, var(--primitive-amber) 90%, black) 64%,
+      color-mix(in oklab, var(--primitive-red) 66%, black) 100%
+    );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 1px 0 color-mix(in oklab, var(--primitive-neumo-light) 70%, transparent));
+}
+
+@keyframes kt-heat-shimmer {
+  from {
+    background-position: 0% 0%;
+    transform: skewX(-1deg);
+  }
+  to {
+    background-position: 100% 0%;
+    transform: skewX(2deg);
+  }
+}
+
+/* Motion: stamp-pop */
+.motionStampPop,
+.motionSignalBounce,
+.motionPistonStroke,
+.motionValveTick,
+.motionClutchDrop,
+.motionBrakePulse,
+.motionSparkPlugFire,
+.motionHoistLift {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.motionStampPop span[data-glyph] {
+  display: inline-block;
+  transform-origin: 50% 70%;
+  animation: kt-stamp-pop 1.8s cubic-bezier(0.18, 1.45, 0.28, 1) infinite;
+  animation-delay: calc(var(--kt-i, 0) * 42ms);
+}
+
+@keyframes kt-stamp-pop {
+  0%,
+  68%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    text-shadow: none;
+  }
+  12% {
+    transform: translate3d(0, -0.08em, 0) scale(1.12);
+    text-shadow: 0 0 14px color-mix(in oklab, var(--primitive-amber) 55%, transparent);
+  }
+}
+
+/* Motion: lane-split */
+.motionLaneSplit {
+  display: inline-block;
+  animation: kt-lane-split 2.4s steps(2, end) infinite;
+}
+
+@keyframes kt-lane-split {
+  0%,
+  100% {
+    text-shadow:
+      -0.035em 0 var(--primitive-red),
+      0.035em 0 var(--primitive-teal);
+  }
+  50% {
+    text-shadow:
+      -0.075em 0 var(--primitive-red),
+      0.075em 0 var(--primitive-teal);
+  }
+}
+
+/* Motion: spark-trail */
+.motionSparkTrail {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.08em;
+}
+
+.motionSparkTrail::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.08em;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent, var(--primitive-red), var(--primitive-amber), transparent);
+  background-size: 240% 100%;
+  box-shadow: 0 0 16px color-mix(in oklab, var(--primitive-amber) 52%, transparent);
+  animation: kt-spark-trail 1.8s ease-in-out infinite;
+}
+
+@keyframes kt-spark-trail {
+  from {
+    background-position: 0% 0;
+    transform: scaleX(0.18);
+    transform-origin: left;
+  }
+  to {
+    background-position: 100% 0;
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+}
+
+/* Motion: torque-tilt */
+.motionTorqueTilt {
+  display: inline-block;
+  transform-origin: 0% 100%;
+  animation: kt-torque-tilt 3.6s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+@keyframes kt-torque-tilt {
+  from {
+    transform: rotate(-2deg) skewX(-4deg);
+  }
+  to {
+    transform: rotate(2deg) skewX(3deg);
+  }
+}
+
+/* Motion: chrome-glint */
+.motionChromeGlint {
+  display: inline-block;
+  color: transparent;
+  background:
+    linear-gradient(
+      100deg,
+      color-mix(in oklab, var(--primitive-text-strong) 58%, black) 0%,
+      var(--primitive-text-strong) 18%,
+      var(--primitive-teal) 26%,
+      var(--primitive-text-strong) 36%,
+      color-mix(in oklab, var(--primitive-text-strong) 49%, black) 54%,
+      var(--primitive-text-strong) 72%,
+      color-mix(in oklab, var(--primitive-text-strong) 63%, black) 100%
+    );
+  background-size: 320% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: kt-chrome-glint 3s ease-in-out infinite;
+}
+
+:global(html[data-primitive-theme="light"]) .motionChromeGlint {
+  background:
+    linear-gradient(
+      100deg,
+      var(--primitive-text-strong) 0%,
+      color-mix(in oklab, var(--primitive-text-strong) 60%, var(--primitive-muted)) 18%,
+      var(--primitive-teal) 28%,
+      var(--primitive-text-strong) 40%,
+      color-mix(in oklab, var(--primitive-text-strong) 78%, var(--primitive-muted)) 56%,
+      color-mix(in oklab, var(--primitive-muted) 78%, var(--primitive-text-strong)) 68%,
+      var(--primitive-text-strong) 100%
+    );
+  background-size: 320% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 1px 0 color-mix(in oklab, var(--primitive-neumo-light) 60%, transparent)) drop-shadow(0 0 1px color-mix(in oklab, var(--primitive-text-strong) 22%, transparent));
+}
+
+@keyframes kt-chrome-glint {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+/* Motion: signal-bounce */
+.motionSignalBounce span[data-glyph] {
+  display: inline-block;
+  animation: kt-signal-bounce 1.7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation-delay: calc(var(--kt-i, 0) * 34ms);
+}
+
+@keyframes kt-signal-bounce {
+  0%,
+  72%,
+  100% {
+    transform: translateY(0);
+    color: currentColor;
+  }
+  24% {
+    transform: translateY(-0.16em);
+    color: var(--primitive-teal);
+  }
+}
+
+/* Motion: road-blur */
+.motionRoadBlur {
+  display: inline-block;
+  animation: kt-road-blur 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+@keyframes kt-road-blur {
+  from {
+    transform: translate3d(-0.08em, 0, 0);
+    filter: blur(0);
+  }
+  to {
+    transform: translate3d(0.08em, 0, 0);
+    filter: blur(0.04em);
+    text-shadow:
+      -0.1em 0 color-mix(in oklab, var(--primitive-red) 45%, transparent),
+      0.1em 0 color-mix(in oklab, var(--primitive-teal) 35%, transparent);
+  }
+}
+
+/* Motion: arc-flash */
+.motionArcFlash {
+  display: inline-block;
+  animation: kt-arc-flash 2.2s steps(2, end) infinite;
+}
+
+@keyframes kt-arc-flash {
+  0%,
+  68%,
+  100% {
+    filter: brightness(1);
+    text-shadow: 0 0 0 color-mix(in oklab, var(--primitive-amber) 0%, transparent);
+  }
+  18% {
+    filter: brightness(1.24);
+    text-shadow:
+      0 0 0.15em color-mix(in oklab, var(--primitive-amber) 85%, transparent),
+      0 0 0.38em color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  }
+}
+
+/* Motion: boost-squeeze */
+.motionBoostSqueeze {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  animation: kt-boost-squeeze 2.7s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+@keyframes kt-boost-squeeze {
+  from {
+    transform: scaleX(0.92) translateY(0.04em);
+    letter-spacing: 0.01em;
+  }
+  to {
+    transform: scaleX(1.08) translateY(-0.02em);
+    letter-spacing: 0.04em;
+  }
+}
+
+/* Motion: bay-door-reveal */
+.motionBayDoorReveal {
+  display: inline-block;
+  clip-path: inset(0 100% 0 0);
+  animation: kt-bay-door-reveal 3s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
+}
+
+@keyframes kt-bay-door-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Motion: rubber-burn */
+.motionRubberBurn {
+  display: inline-block;
+  animation: kt-rubber-burn 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes kt-rubber-burn {
+  from {
+    transform: skewX(-3deg) translate3d(-0.04em, 0, 0);
+    text-shadow:
+      -0.04em 0 color-mix(in oklab, var(--primitive-red) 32%, transparent),
+      0.05em 0 color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+  }
+  to {
+    transform: skewX(4deg) translate3d(0.04em, 0, 0);
+    text-shadow:
+      -0.09em 0 color-mix(in oklab, var(--primitive-red) 42%, transparent),
+      0.1em 0 color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  }
+}
+
+/* Motion: gauge-sweep */
+.motionGaugeSweep {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.1em;
+}
+
+.motionGaugeSweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.08em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primitive-red), var(--primitive-amber), var(--primitive-teal), var(--primitive-green));
+  transform: scaleX(0.16);
+  transform-origin: left;
+  box-shadow: 0 0 14px color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  animation: kt-gauge-sweep 2.3s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+@keyframes kt-gauge-sweep {
+  from {
+    transform: scaleX(0.16);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Motion: weld-flicker */
+.motionWeldFlicker {
+  display: inline-block;
+  color: transparent;
+  background:
+    linear-gradient(92deg, var(--primitive-red), var(--primitive-amber), var(--primitive-text-strong), var(--primitive-red));
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: kt-weld-flicker 1.7s steps(2, end) infinite;
+}
+
+:global(html[data-primitive-theme="light"]) .motionWeldFlicker {
+  background:
+    linear-gradient(
+      92deg,
+      var(--kt-weld-red-light, color-mix(in oklab, var(--primitive-red) 74%, black)),
+      var(--kt-weld-amber-light, color-mix(in oklab, var(--primitive-amber) 76%, black)),
+      var(--kt-weld-core-light, var(--primitive-text-strong)),
+      var(--kt-weld-end-light, var(--primitive-red))
+    );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation-name: kt-weld-flicker-light;
+}
+
+@keyframes kt-weld-flicker {
+  0%,
+  74%,
+  100% {
+    background-position: 0% 0;
+    filter: brightness(1);
+    text-shadow: 0 0 0 color-mix(in oklab, var(--primitive-amber) 0%, transparent);
+  }
+  12% {
+    background-position: 62% 0;
+    filter: brightness(1.55);
+    text-shadow:
+      0 0 0.1em color-mix(in oklab, var(--primitive-text-strong) 58%, transparent),
+      0 0 0.28em color-mix(in oklab, var(--primitive-amber) 42%, transparent),
+      0 0 0.5em color-mix(in oklab, var(--primitive-red) 30%, transparent);
+  }
+  18%,
+  24% {
+    background-position: 100% 0;
+    filter: brightness(1.24);
+  }
+}
+
+@keyframes kt-weld-flicker-light {
+  0%,
+  74%,
+  100% {
+    background-position: 0% 0;
+    filter: brightness(1);
+    text-shadow: 0 0 0 color-mix(in oklab, var(--primitive-red) 0%, transparent);
+  }
+  12% {
+    background-position: 62% 0;
+    filter: brightness(1);
+    text-shadow: 0 0 0.12em color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  }
+  18%,
+  24% {
+    background-position: 100% 0;
+    filter: brightness(1);
+  }
+}
+
+/* Motion: dyno-pull */
+.motionDynoPull {
+  display: inline-block;
+  transform-origin: 0 80%;
+  animation: kt-dyno-pull 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes kt-dyno-pull {
+  0%,
+  100% {
+    transform: scaleX(0.96) translate3d(0, 0, 0);
+    filter: none;
+  }
+  42% {
+    transform: scaleX(1.08) translate3d(0.08em, -0.02em, 0);
+    filter: drop-shadow(-0.08em 0 0 color-mix(in oklab, var(--primitive-teal) 38%, transparent));
+  }
+  64% {
+    transform: scaleX(1.02) translate3d(0.02em, 0, 0);
+  }
+}
+
+/* Motion: piston-stroke */
+.motionPistonStroke span[data-glyph] {
+  display: inline-block;
+  animation: kt-piston-stroke 1.45s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  animation-delay: calc(var(--kt-i, 0) * 26ms);
+}
+
+@keyframes kt-piston-stroke {
+  0%,
+  64%,
+  100% {
+    transform: translateY(0);
+  }
+  26% {
+    transform: translateY(-0.18em);
+    color: var(--primitive-amber);
+  }
+}
+
+/* Motion: neon-idle */
+.motionNeonIdle {
+  display: inline-block;
+  color: var(--kt-color);
+  animation: kt-neon-idle 3.4s ease-in-out infinite alternate;
+}
+
+:global(html[data-primitive-theme="light"]) .motionNeonIdle {
+  color: var(--kt-neon-idle-light, var(--primitive-text-strong));
+}
+
+@keyframes kt-neon-idle {
+  from {
+    text-shadow:
+      0 0 0.1em color-mix(in oklab, var(--primitive-teal) 12%, transparent),
+      0 0 0.24em color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  }
+  to {
+    text-shadow:
+      0 0 0.16em color-mix(in oklab, var(--primitive-teal) 72%, transparent),
+      0 0 0.38em color-mix(in oklab, var(--primitive-green) 42%, transparent),
+      0 0 0.72em color-mix(in oklab, var(--primitive-red) 24%, transparent);
+  }
+}
+
+/* Motion: valve-tick */
+.motionValveTick span[data-glyph] {
+  display: inline-block;
+  animation: kt-valve-tick 1.2s steps(2, end) infinite;
+  animation-delay: calc(var(--kt-i, 0) * 28ms);
+}
+
+@keyframes kt-valve-tick {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.08em);
+    color: var(--primitive-red);
+  }
+}
+
+/* Motion: exhaust-wave */
+.motionExhaustWave {
+  display: inline-block;
+  animation: kt-exhaust-wave 3.8s ease-in-out infinite alternate;
+}
+
+@keyframes kt-exhaust-wave {
+  from {
+    transform: skewX(-2deg) translate3d(-0.03em, 0, 0);
+    filter: blur(0);
+    opacity: 0.84;
+  }
+  to {
+    transform: skewX(5deg) translate3d(0.05em, -0.02em, 0);
+    filter: blur(0.025em);
+    opacity: 1;
+    text-shadow: 0.08em 0 color-mix(in oklab, var(--primitive-teal) 26%, transparent);
+  }
+}
+
+/* Motion: oil-slick */
+.motionOilSlick {
+  display: inline-block;
+  color: transparent;
+  background:
+    linear-gradient(
+      100deg,
+      var(--primitive-red),
+      var(--primitive-amber),
+      var(--primitive-green),
+      var(--primitive-teal),
+      var(--primitive-red)
+    );
+  background-size: 360% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: kt-oil-slick 5.2s ease-in-out infinite alternate;
+}
+
+@keyframes kt-oil-slick {
+  from {
+    background-position: 0% 0;
+    filter: saturate(0.95);
+  }
+  to {
+    background-position: 100% 0;
+    filter: saturate(1.4) contrast(1.08);
+  }
+}
+
+/* Motion: grid-lock */
+.motionGridLock {
+  display: inline-block;
+  animation: kt-grid-lock 2.2s steps(4, end) infinite alternate;
+}
+
+@keyframes kt-grid-lock {
+  from {
+    transform: translate3d(-0.04em, 0, 0);
+    text-shadow:
+      -0.05em 0 color-mix(in oklab, var(--primitive-teal) 34%, transparent),
+      0.05em 0 color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    text-shadow:
+      0.04em 0 color-mix(in oklab, var(--primitive-green) 28%, transparent),
+      -0.03em 0 color-mix(in oklab, var(--primitive-amber) 20%, transparent);
+  }
+}
+
+/* Motion: relay-pulse */
+.motionRelayPulse {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.12em;
+  color: transparent;
+  background:
+    linear-gradient(
+      90deg,
+      var(--primitive-red),
+      var(--primitive-amber) 28%,
+      var(--primitive-teal) 56%,
+      var(--primitive-green) 76%,
+      var(--primitive-red)
+    );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 0.18em color-mix(in oklab, var(--primitive-teal) 22%, transparent));
+  letter-spacing: 0.01em;
+  animation: kt-relay-pulse 3.1s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+.motionRelayPulse::before,
+.motionRelayPulse::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.07em;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.motionRelayPulse::before {
+  background: color-mix(in srgb, var(--kt-color) 18%, transparent);
+  opacity: 0.42;
+}
+
+.motionRelayPulse::after {
+  width: 42%;
+  right: auto;
+  background: linear-gradient(90deg, var(--primitive-amber), var(--primitive-teal));
+  box-shadow: 0 0 0.18em color-mix(in oklab, var(--primitive-amber) 48%, transparent);
+  animation: kt-relay-scan 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+:global(html[data-primitive-theme="light"]) .motionRelayPulse {
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--primitive-red) 70%, black),
+      color-mix(in oklab, var(--primitive-amber) 70%, black) 28%,
+      color-mix(in oklab, var(--primitive-teal) 86%, black) 56%,
+      color-mix(in oklab, var(--primitive-green) 88%, black) 76%,
+      color-mix(in oklab, var(--primitive-red) 70%, black)
+    );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 1px 0 color-mix(in oklab, var(--primitive-neumo-light) 76%, transparent));
+}
+
+:global(html[data-primitive-theme="light"]) .motionRelayPulse::after {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primitive-amber) 70%, black), color-mix(in oklab, var(--primitive-teal) 86%, black));
+  box-shadow: 0 0 0.08em color-mix(in oklab, color-mix(in oklab, var(--primitive-teal) 86%, black) 18%, transparent);
+}
+
+@keyframes kt-relay-pulse {
+  from {
+    background-position: 0% 0;
+    filter: drop-shadow(0 0 0.08em color-mix(in oklab, var(--primitive-teal) 10%, transparent));
+  }
+  to {
+    background-position: 100% 0;
+    filter: drop-shadow(0 0 0.22em color-mix(in oklab, var(--primitive-amber) 32%, transparent));
+  }
+}
+
+@keyframes kt-relay-scan {
+  from {
+    transform: translate3d(0, 0, 0) scaleX(0.64);
+  }
+  to {
+    transform: translate3d(138%, 0, 0) scaleX(1);
+  }
+}
+
+/* Motion: circuit-trace */
+.motionCircuitTrace {
+  --kt-circuit-text: var(--kt-color);
+  --kt-circuit-red: var(--primitive-red);
+  --kt-circuit-amber: var(--primitive-amber);
+  --kt-circuit-teal: var(--primitive-teal);
+  --kt-circuit-green: var(--primitive-green);
+  --kt-circuit-shadow: color-mix(in oklab, var(--primitive-teal) 28%, transparent);
+
+  position: relative;
+  display: inline-block;
+  padding-inline: 0.04em;
+  padding-bottom: 0.18em;
+  color: transparent;
+  background:
+    linear-gradient(
+      90deg,
+      var(--kt-circuit-text) 0%,
+      var(--kt-circuit-text) 24%,
+      var(--kt-circuit-amber) 38%,
+      var(--kt-circuit-text) 52%,
+      var(--kt-circuit-teal) 70%,
+      var(--kt-circuit-text) 100%
+    );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: kt-circuit-trace-text 2.9s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+.motionCircuitTrace::before,
+.motionCircuitTrace::after {
+  content: "";
+  position: absolute;
+  left: 0.03em;
+  right: 0.03em;
+  bottom: 0.02em;
+  pointer-events: none;
+}
+
+.motionCircuitTrace::before {
+  height: 0.075em;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--kt-circuit-red) 0% 18%,
+      transparent 18% 25%,
+      var(--kt-circuit-amber) 25% 45%,
+      transparent 45% 54%,
+      var(--kt-circuit-teal) 54% 76%,
+      transparent 76% 84%,
+      var(--kt-circuit-green) 84% 100%
+    );
+  box-shadow: 0 0 0.16em var(--kt-circuit-shadow);
+  transform: scaleX(0.42);
+  transform-origin: left;
+  animation: kt-circuit-trace-bar 2.9s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+.motionCircuitTrace::after {
+  height: 0.18em;
+  background:
+    radial-gradient(circle, var(--kt-circuit-amber) 0 22%, transparent 25%),
+    radial-gradient(circle, var(--kt-circuit-teal) 0 18%, transparent 22%);
+  background-position: 0 0, 0.62em 0;
+  background-size: 1.24em 100%;
+  opacity: 0.8;
+  animation: kt-circuit-trace-nodes 1.45s steps(4, end) infinite;
+}
+
+:global(html[data-primitive-theme="light"]) .motionCircuitTrace {
+  --kt-circuit-text: var(--kt-circuit-text-light, var(--primitive-text-strong));
+  --kt-circuit-red: var(--kt-circuit-red-light, color-mix(in oklab, var(--primitive-red) 66%, black));
+  --kt-circuit-amber: var(--kt-circuit-amber-light, color-mix(in oklab, var(--primitive-amber) 62%, black));
+  --kt-circuit-teal: var(--kt-circuit-teal-light, color-mix(in oklab, var(--primitive-teal) 82%, black));
+  --kt-circuit-green: var(--kt-circuit-green-light, color-mix(in oklab, var(--primitive-green) 84%, black));
+  --kt-circuit-shadow: var(--kt-circuit-shadow-light, color-mix(in oklab, color-mix(in oklab, var(--primitive-teal) 82%, black) 16%, transparent));
+  filter: var(--kt-circuit-filter-light, drop-shadow(0 1px 0 color-mix(in oklab, var(--primitive-neumo-light) 78%, transparent)));
+}
+
+@keyframes kt-circuit-trace-text {
+  0% {
+    background-position: 0% 0;
+    transform: translate3d(0, 0, 0);
+  }
+  48% {
+    transform: translate3d(0, -0.015em, 0);
+  }
+  100% {
+    background-position: 100% 0;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes kt-circuit-trace-bar {
+  from {
+    opacity: 0.62;
+    transform: scaleX(0.42);
+  }
+  to {
+    opacity: 0.9;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes kt-circuit-trace-nodes {
+  from {
+    background-position: 0 0, 0.62em 0;
+  }
+  to {
+    background-position: 1.24em 0, 1.86em 0;
+  }
+}
+
+/* Motion: redline-ramp */
+.motionRedlineRamp {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.16em;
+  color: transparent;
+  background:
+    linear-gradient(
+      90deg,
+      var(--kt-color) 0%,
+      var(--kt-color) 34%,
+      var(--primitive-amber) 52%,
+      var(--primitive-red) 72%,
+      var(--primitive-text-strong) 100%
+    );
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: kt-redline-ramp 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+.motionRedlineRamp::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.08em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primitive-green), var(--primitive-amber), var(--primitive-red));
+  box-shadow: 0 0 0.2em color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  transform: scaleX(0.24);
+  transform-origin: left;
+  animation: kt-redline-ramp-bar 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+:global(html[data-primitive-theme="light"]) .motionRedlineRamp {
+  background:
+    linear-gradient(
+      90deg,
+      var(--primitive-text-strong) 0%,
+      var(--primitive-text-strong) 34%,
+      color-mix(in oklab, var(--primitive-amber) 66%, black) 52%,
+      color-mix(in oklab, var(--primitive-red) 66%, black) 72%,
+      var(--primitive-text-strong) 100%
+    );
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes kt-redline-ramp {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes kt-redline-ramp-bar {
+  from {
+    transform: scaleX(0.24);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Motion: clutch-drop */
+.motionClutchDrop span[data-glyph] {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  animation: kt-clutch-drop 1.9s cubic-bezier(0.18, 1.25, 0.28, 1) infinite;
+  animation-delay: calc(var(--kt-i, 0) * 24ms);
+}
+
+@keyframes kt-clutch-drop {
+  0%,
+  70%,
+  100% {
+    transform: translateY(0) scaleY(1);
+    color: currentColor;
+  }
+  18% {
+    transform: translateY(0.18em) scaleY(0.9);
+    color: var(--primitive-amber);
+  }
+  34% {
+    transform: translateY(-0.08em) scaleY(1.08);
+  }
+}
+
+/* Motion: turbo-spool */
+.motionTurboSpool {
+  position: relative;
+  display: inline-block;
+  padding-inline: 0.06em;
+  color: transparent;
+  background:
+    linear-gradient(96deg, var(--primitive-teal), var(--primitive-text-strong), var(--primitive-green), var(--primitive-teal));
+  background-size: 320% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 0.14em color-mix(in oklab, var(--primitive-teal) 22%, transparent));
+  animation: kt-turbo-spool 1.9s cubic-bezier(0.76, 0, 0.24, 1) infinite alternate;
+}
+
+.motionTurboSpool::after {
+  content: "";
+  position: absolute;
+  inset: 0.06em -0.1em;
+  border: 1px solid color-mix(in srgb, var(--primitive-teal) 42%, transparent);
+  border-inline-color: transparent;
+  border-radius: 999px;
+  opacity: 0.5;
+  transform: skewX(-12deg);
+  animation: kt-turbo-spool-ring 1.1s linear infinite;
+  pointer-events: none;
+}
+
+:global(html[data-primitive-theme="light"]) .motionTurboSpool {
+  background:
+    linear-gradient(96deg, color-mix(in oklab, var(--primitive-teal) 84%, black), var(--primitive-text-strong), color-mix(in oklab, var(--primitive-green) 84%, black), color-mix(in oklab, var(--primitive-teal) 84%, black));
+  background-size: 320% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 1px 0 color-mix(in oklab, var(--primitive-neumo-light) 76%, transparent));
+}
+
+@keyframes kt-turbo-spool {
+  from {
+    background-position: 0% 0;
+    letter-spacing: 0;
+  }
+  to {
+    background-position: 100% 0;
+    letter-spacing: 0.04em;
+  }
+}
+
+@keyframes kt-turbo-spool-ring {
+  from {
+    transform: skewX(-12deg) translateX(-0.08em);
+  }
+  to {
+    transform: skewX(-12deg) translateX(0.08em);
+  }
+}
+
+/* Motion: brake-pulse */
+.motionBrakePulse span[data-glyph] {
+  display: inline-block;
+  animation: kt-brake-pulse 1.6s steps(2, end) infinite;
+  animation-delay: calc(var(--kt-i, 0) * 18ms);
+}
+
+@keyframes kt-brake-pulse {
+  0%,
+  66%,
+  100% {
+    color: currentColor;
+    text-shadow: none;
+  }
+  24% {
+    color: var(--primitive-red);
+    text-shadow:
+      0 0 0.16em color-mix(in oklab, var(--primitive-red) 62%, transparent),
+      0 0 0.4em color-mix(in oklab, var(--primitive-red) 28%, transparent);
+  }
+}
+
+/* Motion: paint-mask */
+.motionPaintMask {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  background:
+    linear-gradient(
+      110deg,
+      var(--kt-color) 0%,
+      var(--kt-color) 24%,
+      var(--primitive-red) 34%,
+      var(--primitive-amber) 50%,
+      var(--primitive-teal) 66%,
+      var(--kt-color) 78%,
+      var(--kt-color) 100%
+    );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: kt-paint-mask 3.8s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+.motionPaintMask::after {
+  content: "";
+  position: absolute;
+  inset: 0.06em -0.08em 0.08em;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primitive-text-strong) 26%, transparent), transparent);
+  mix-blend-mode: screen;
+  transform: translateX(-110%) skewX(-18deg);
+  animation: kt-paint-mask-sheen 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  pointer-events: none;
+}
+
+:global(html[data-primitive-theme="light"]) .motionPaintMask {
+  background:
+    linear-gradient(
+      110deg,
+      var(--primitive-text-strong) 0%,
+      var(--primitive-text-strong) 24%,
+      color-mix(in oklab, var(--primitive-red) 66%, black) 34%,
+      color-mix(in oklab, var(--primitive-amber) 64%, black) 50%,
+      color-mix(in oklab, var(--primitive-teal) 82%, black) 66%,
+      var(--primitive-text-strong) 78%,
+      var(--primitive-text-strong) 100%
+    );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+:global(html[data-primitive-theme="light"]) .motionPaintMask::after {
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primitive-neumo-light) 78%, transparent), transparent);
+  mix-blend-mode: normal;
+}
+
+@keyframes kt-paint-mask {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes kt-paint-mask-sheen {
+  0%,
+  36% {
+    transform: translateX(-110%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(110%) skewX(-18deg);
+  }
+}
+
+/* Motion: route-draw */
+.motionRouteDraw {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.18em;
+}
+
+.motionRouteDraw::before,
+.motionRouteDraw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.03em;
+  height: 0.08em;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.motionRouteDraw::before {
+  background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--kt-color) 26%, transparent) 0 0.18em, transparent 0.18em 0.36em);
+}
+
+.motionRouteDraw::after {
+  width: 34%;
+  right: auto;
+  background: linear-gradient(90deg, var(--primitive-amber), var(--primitive-teal));
+  box-shadow: 0 0 0.18em color-mix(in oklab, var(--primitive-teal) 34%, transparent);
+  animation: kt-route-draw 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+@keyframes kt-route-draw {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(194%);
+  }
+}
+
+/* Motion: receipt-stamp */
+.motionReceiptStamp {
+  display: inline-block;
+  padding: 0.05em 0.18em 0.02em;
+  border: 0.055em solid color-mix(in srgb, var(--primitive-red) 68%, currentColor);
+  border-radius: 0.08em;
+  color: var(--primitive-red);
+  text-transform: uppercase;
+  transform-origin: 50% 70%;
+  animation: kt-receipt-stamp 2.4s cubic-bezier(0.18, 1.45, 0.28, 1) infinite;
+}
+
+:global(html[data-primitive-theme="light"]) .motionReceiptStamp {
+  color: color-mix(in oklab, var(--primitive-red) 66%, black);
+  border-color: color-mix(in oklab, var(--primitive-red) 66%, black);
+}
+
+@keyframes kt-receipt-stamp {
+  0%,
+  70%,
+  100% {
+    transform: rotate(-1deg) scale(1);
+    opacity: 0.92;
+  }
+  18% {
+    transform: rotate(-1deg) scale(1.08);
+    opacity: 1;
+    box-shadow: 0 0 0.22em color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  }
+}
+
+/* Motion: spark-plug-fire */
+.motionSparkPlugFire span[data-glyph] {
+  display: inline-block;
+  animation: kt-spark-plug-fire 1.55s steps(3, end) infinite;
+  animation-delay: calc(var(--kt-i, 0) * 32ms);
+}
+
+@keyframes kt-spark-plug-fire {
+  0%,
+  72%,
+  100% {
+    color: currentColor;
+    transform: translateY(0);
+    text-shadow: none;
+  }
+  18% {
+    color: var(--primitive-text-strong);
+    transform: translateY(-0.08em);
+    text-shadow:
+      0 0 0.12em color-mix(in oklab, var(--primitive-text-strong) 80%, transparent),
+      0 0 0.3em color-mix(in oklab, var(--primitive-amber) 58%, transparent),
+      0 0 0.52em color-mix(in oklab, var(--primitive-teal) 34%, transparent);
+  }
+  32% {
+    color: var(--primitive-amber);
+  }
+}
+
+:global(html[data-primitive-theme="light"]) .motionSparkPlugFire span[data-glyph] {
+  animation-name: kt-spark-plug-fire-light;
+  text-shadow: none;
+}
+
+@keyframes kt-spark-plug-fire-light {
+  0%,
+  72%,
+  100% {
+    color: currentColor;
+    transform: translateY(0);
+    text-shadow: none;
+  }
+  18% {
+    color: var(--primitive-text-strong);
+    transform: translateY(-0.08em);
+    text-shadow: 0 0 0.1em color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  }
+  32% {
+    color: var(--primitive-amber);
+  }
+}
+
+/* Motion: hoist-lift */
+.motionHoistLift span[data-glyph] {
+  display: inline-block;
+  animation: kt-hoist-lift 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+  animation-delay: calc(var(--kt-i, 0) * 22ms);
+}
+
+@keyframes kt-hoist-lift {
+  from {
+    transform: translateY(0.1em);
+    color: color-mix(in srgb, currentColor 70%, var(--primitive-teal));
+  }
+  to {
+    transform: translateY(-0.08em);
+    color: currentColor;
+  }
+}
+
+/* Motion: tacho-needle */
+.motionTachoNeedle {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.16em;
+}
+
+.motionTachoNeedle::before {
+  content: "";
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 0;
+  height: 0.075em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primitive-green), var(--primitive-amber), var(--primitive-red));
+  opacity: 0.74;
+}
+
+.motionTachoNeedle::after {
+  content: "";
+  position: absolute;
+  left: 4%;
+  bottom: -0.01em;
+  width: 12%;
+  height: 0.13em;
+  border-radius: 999px;
+  background: var(--primitive-text-strong);
+  box-shadow: 0 0 0.22em color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  animation: kt-tacho-needle 1.7s cubic-bezier(0.76, 0, 0.24, 1) infinite alternate;
+  pointer-events: none;
+}
+
+:global(html[data-primitive-theme="light"]) .motionTachoNeedle::after {
+  background: var(--primitive-text-strong);
+  box-shadow: 0 0 0.08em color-mix(in oklab, var(--primitive-text-strong) 20%, transparent);
+}
+
+@keyframes kt-tacho-needle {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(650%);
+  }
+}
+
+/* Motion: visor-scan */
+.motionVisorScan {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  background:
+    linear-gradient(90deg, var(--kt-color), var(--primitive-teal), var(--kt-color));
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: kt-visor-scan-text 3.4s ease-in-out infinite alternate;
+}
+
+.motionVisorScan::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 0.18em, color-mix(in oklab, var(--primitive-teal) 22%, transparent) 0.18em 0.24em);
+  mix-blend-mode: screen;
+  opacity: 0.56;
+  animation: kt-visor-scan-lines 1.4s linear infinite;
+  pointer-events: none;
+}
+
+:global(html[data-primitive-theme="light"]) .motionVisorScan {
+  background:
+    linear-gradient(90deg, var(--primitive-text-strong), color-mix(in oklab, var(--primitive-teal) 82%, black), var(--primitive-text-strong));
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+:global(html[data-primitive-theme="light"]) .motionVisorScan::after {
+  opacity: 0.22;
+  mix-blend-mode: normal;
+}
+
+@keyframes kt-visor-scan-text {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes kt-visor-scan-lines {
+  from {
+    transform: translateY(-0.16em);
+  }
+  to {
+    transform: translateY(0.16em);
+  }
+}
+
+/* Motion: checker-wave */
+.motionCheckerWave {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--kt-color) 0 0.16em,
+    var(--primitive-amber) 0.16em 0.32em,
+    var(--primitive-red) 0.32em 0.48em,
+    var(--kt-color) 0.48em 0.64em
+  );
+  background-size: 220% 220%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: kt-checker-wave 2.4s steps(8, end) infinite alternate;
+}
+
+.motionCheckerWave::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.02em;
+  height: 0.07em;
+  background:
+    repeating-linear-gradient(90deg, var(--primitive-red) 0 0.2em, var(--primitive-amber) 0.2em 0.4em);
+  opacity: 0.78;
+  animation: kt-checker-wave-line 1.2s steps(6, end) infinite;
+  pointer-events: none;
+}
+
+:global(html[data-primitive-theme="light"]) .motionCheckerWave {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--primitive-text-strong) 0 0.16em,
+    color-mix(in oklab, var(--primitive-amber) 66%, black) 0.16em 0.32em,
+    color-mix(in oklab, var(--primitive-red) 66%, black) 0.32em 0.48em,
+    var(--primitive-text-strong) 0.48em 0.64em
+  );
+  background-size: 220% 220%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes kt-checker-wave {
+  from {
+    transform: skewX(-1deg);
+    background-position: 0 0;
+  }
+  to {
+    transform: skewX(1deg);
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes kt-checker-wave-line {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0.8em 0;
+  }
+}
+
+/* Motion: blueprint-pan */
+.motionBlueprintPan {
+  position: relative;
+  display: inline-block;
+  padding: 0.02em 0.08em 0.14em;
+  color: transparent;
+  background:
+    linear-gradient(90deg, var(--kt-color) 0 28%, var(--primitive-teal) 44%, var(--kt-color) 64%),
+    repeating-linear-gradient(90deg, color-mix(in oklab, var(--primitive-teal) 34%, transparent) 0 0.04em, transparent 0.04em 0.42em),
+    repeating-linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 20%, transparent) 0 0.04em, transparent 0.04em 0.42em);
+  background-size: 260% 100%, 0.84em 0.84em, 0.84em 0.84em;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 0.14em color-mix(in oklab, var(--primitive-teal) 18%, transparent));
+  animation: kt-blueprint-pan 4.2s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+.motionBlueprintPan::after {
+  content: "";
+  position: absolute;
+  left: 0.08em;
+  right: 0.08em;
+  bottom: 0.02em;
+  height: 0.07em;
+  border-radius: 999px;
+  background:
+    repeating-linear-gradient(90deg, var(--primitive-teal) 0 0.16em, transparent 0.16em 0.32em),
+    linear-gradient(90deg, var(--primitive-teal), var(--primitive-green));
+  box-shadow: 0 0 0.16em color-mix(in oklab, var(--primitive-teal) 28%, transparent);
+  animation: kt-blueprint-rule 1.8s steps(6, end) infinite;
+  pointer-events: none;
+}
+
+:global(html[data-primitive-theme="light"]) .motionBlueprintPan {
+  background:
+    linear-gradient(90deg, var(--primitive-text-strong) 0 28%, color-mix(in oklab, var(--primitive-teal) 82%, black) 44%, var(--primitive-text-strong) 64%),
+    repeating-linear-gradient(90deg, color-mix(in oklab, color-mix(in oklab, var(--primitive-teal) 82%, black) 24%, transparent) 0 0.04em, transparent 0.04em 0.42em),
+    repeating-linear-gradient(180deg, color-mix(in oklab, color-mix(in oklab, var(--primitive-teal) 82%, black) 18%, transparent) 0 0.04em, transparent 0.04em 0.42em);
+  background-size: 260% 100%, 0.84em 0.84em, 0.84em 0.84em;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 1px 0 color-mix(in oklab, var(--primitive-neumo-light) 78%, transparent));
+}
+
+@keyframes kt-blueprint-pan {
+  from {
+    background-position: 0% 0, 0 0, 0 0;
+  }
+  to {
+    background-position: 100% 0, 0.84em 0, 0 0.84em;
+  }
+}
+
+@keyframes kt-blueprint-rule {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 0.96em 0, 100% 0;
+  }
+}
+
+/* Motion: marker-swipe */
+.motionMarkerSwipe {
+  --kt-marker-ink: var(--kt-color);
+  --kt-marker-fill: color-mix(in oklab, var(--primitive-amber) 56%, var(--primitive-red));
+
+  position: relative;
+  display: inline-block;
+  padding-inline: 0.06em;
+  color: var(--kt-marker-ink);
+  isolation: isolate;
+}
+
+.motionMarkerSwipe::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.05em;
+  height: 0.42em;
+  border-radius: 0.06em;
+  background:
+    linear-gradient(90deg, transparent, color-mix(in oklab, var(--primitive-text-strong) 32%, transparent), transparent),
+    var(--kt-marker-fill);
+  box-shadow: 0 0 0.22em color-mix(in oklab, var(--primitive-amber) 24%, transparent);
+  transform: scaleX(0.16);
+  transform-origin: left;
+  animation: kt-marker-swipe 2.7s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
+  z-index: -1;
+}
+
+:global(html[data-primitive-theme="light"]) .motionMarkerSwipe {
+  --kt-marker-ink: var(--primitive-text-strong);
+  --kt-marker-fill: color-mix(in oklab, var(--primitive-amber) 48%, var(--primitive-red));
+}
+
+:global(html[data-primitive-theme="light"]) .motionMarkerSwipe::before {
+  opacity: 0.54;
+  box-shadow: none;
+}
+
+@keyframes kt-marker-swipe {
+  from {
+    transform: scaleX(0.16);
+  }
+  62%,
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Motion: meter-step */
+.motionMeterStep {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.2em;
+  color: transparent;
+  background: linear-gradient(90deg, var(--kt-color), var(--primitive-amber), var(--primitive-red));
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: kt-meter-step-text 2.8s steps(5, end) infinite alternate;
+}
+
+.motionMeterStep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.03em;
+  height: 0.09em;
+  border-radius: 999px;
+  background:
+    repeating-linear-gradient(90deg, var(--primitive-green) 0 10%, transparent 10% 13%),
+    linear-gradient(90deg, var(--primitive-green), var(--primitive-amber), var(--primitive-red));
+  box-shadow: 0 0 0.16em color-mix(in oklab, var(--primitive-amber) 24%, transparent);
+  clip-path: inset(0 76% 0 0);
+  animation: kt-meter-step-bar 2.8s steps(5, end) infinite alternate;
+  pointer-events: none;
+}
+
+:global(html[data-primitive-theme="light"]) .motionMeterStep {
+  background: linear-gradient(90deg, var(--primitive-text-strong), color-mix(in oklab, var(--primitive-amber) 64%, black), color-mix(in oklab, var(--primitive-red) 66%, black));
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+:global(html[data-primitive-theme="light"]) .motionMeterStep::after {
+  box-shadow: none;
+}
+
+@keyframes kt-meter-step-text {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes kt-meter-step-bar {
+  from {
+    clip-path: inset(0 76% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Motion: impact-stack */
+.motionImpactStack {
+  display: inline-block;
+  color: var(--kt-color);
+  text-shadow:
+    0.055em 0.055em 0 var(--primitive-red),
+    0.11em 0.11em 0 color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  transform-origin: 50% 80%;
+  animation: kt-impact-stack 1.9s cubic-bezier(0.18, 1.25, 0.28, 1) infinite;
+}
+
+:global(html[data-primitive-theme="light"]) .motionImpactStack {
+  color: var(--primitive-text-strong);
+  text-shadow:
+    0.045em 0.045em 0 color-mix(in oklab, var(--primitive-red) 32%, transparent),
+    0.09em 0.09em 0 color-mix(in oklab, color-mix(in oklab, var(--primitive-teal) 82%, black) 20%, transparent);
+}
+
+@keyframes kt-impact-stack {
+  0%,
+  72%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  18% {
+    transform: translate3d(-0.035em, -0.045em, 0);
+  }
+  34% {
+    transform: translate3d(0.018em, 0.018em, 0);
+  }
+}
+
+/* Motion: signal-cut */
+.motionSignalCut {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  background:
+    linear-gradient(100deg, var(--kt-color) 0 34%, var(--primitive-teal) 42%, var(--primitive-text-strong) 48%, var(--primitive-green) 56%, var(--kt-color) 70%);
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: kt-signal-cut 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+
+.motionSignalCut::after {
+  content: "";
+  position: absolute;
+  inset: 0.08em -0.04em;
+  background: linear-gradient(100deg, transparent 38%, color-mix(in oklab, var(--primitive-teal) 42%, transparent) 48%, transparent 58%);
+  clip-path: polygon(0 0, 78% 0, 100% 100%, 22% 100%);
+  mix-blend-mode: screen;
+  opacity: 0.72;
+  transform: translateX(-110%);
+  animation: kt-signal-cut-slice 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  pointer-events: none;
+}
+
+:global(html[data-primitive-theme="light"]) .motionSignalCut {
+  background:
+    linear-gradient(100deg, var(--primitive-text-strong) 0 34%, color-mix(in oklab, var(--primitive-teal) 82%, black) 42%, var(--primitive-text-strong) 48%, color-mix(in oklab, var(--primitive-green) 84%, black) 56%, var(--primitive-text-strong) 70%);
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+:global(html[data-primitive-theme="light"]) .motionSignalCut::after {
+  background: linear-gradient(100deg, transparent 38%, color-mix(in oklab, color-mix(in oklab, var(--primitive-teal) 82%, black) 20%, transparent) 48%, transparent 58%);
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+
+@keyframes kt-signal-cut {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes kt-signal-cut-slice {
+  0%,
+  34% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(110%);
+  }
+}
+
+/* Motion: status-latch */
+.motionStatusLatch {
+  position: relative;
+  display: inline-block;
+  padding: 0.06em 0.18em 0.08em;
+  color: var(--kt-color);
+}
+
+.motionStatusLatch::before,
+.motionStatusLatch::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  width: 0.26em;
+  border-block: 0.055em solid var(--primitive-green);
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+.motionStatusLatch::before {
+  left: 0;
+  border-left: 0.055em solid var(--primitive-green);
+  transform-origin: left;
+}
+
+.motionStatusLatch::after {
+  right: 0;
+  border-right: 0.055em solid var(--primitive-teal);
+  transform-origin: right;
+}
+
+.motionStatusLatch::before,
+.motionStatusLatch::after {
+  animation: kt-status-latch 1.85s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
+}
+
+:global(html[data-primitive-theme="light"]) .motionStatusLatch {
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .motionStatusLatch::before {
+  border-color: color-mix(in oklab, var(--primitive-green) 84%, black);
+}
+
+:global(html[data-primitive-theme="light"]) .motionStatusLatch::after {
+  border-color: color-mix(in oklab, var(--primitive-teal) 82%, black);
+}
+
+@keyframes kt-status-latch {
+  from {
+    transform: scaleY(0.58);
+    filter: drop-shadow(0 0 0 color-mix(in oklab, var(--primitive-green) 0%, transparent));
+  }
+  to {
+    transform: scaleY(1);
+    filter: drop-shadow(0 0 0.14em color-mix(in oklab, var(--primitive-green) 32%, transparent));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motionLetterRise span[data-glyph],
+  .motionOutlineFill,
+  .motionMarqueeTrack,
+  .motionTypeOn,
+  .motionWeightMorph,
+  .motionAxisSwing,
+  .motionScanlineWipe::after,
+  .motionColorSweep,
+  .motionItalicShift,
+  .motionHeatShimmer,
+  .motionStampPop span[data-glyph],
+  .motionLaneSplit,
+  .motionSparkTrail::after,
+  .motionTorqueTilt,
+  .motionChromeGlint,
+  .motionSignalBounce span[data-glyph],
+  .motionRoadBlur,
+  .motionArcFlash,
+  .motionBoostSqueeze,
+  .motionBayDoorReveal,
+  .motionRubberBurn,
+  .motionGaugeSweep::after,
+  .motionWeldFlicker,
+  .motionDynoPull,
+  .motionPistonStroke span[data-glyph],
+  .motionNeonIdle,
+  .motionValveTick span[data-glyph],
+  .motionExhaustWave,
+  .motionOilSlick,
+  .motionGridLock,
+  .motionRelayPulse,
+  .motionRelayPulse::after,
+  .motionCircuitTrace,
+  .motionCircuitTrace::before,
+  .motionCircuitTrace::after,
+  .motionRedlineRamp,
+  .motionRedlineRamp::after,
+  .motionClutchDrop span[data-glyph],
+  .motionTurboSpool,
+  .motionTurboSpool::after,
+  .motionBrakePulse span[data-glyph],
+  .motionPaintMask,
+  .motionPaintMask::after,
+  .motionRouteDraw::after,
+  .motionReceiptStamp,
+  .motionSparkPlugFire span[data-glyph],
+  .motionHoistLift span[data-glyph],
+  .motionTachoNeedle::after,
+  .motionVisorScan,
+  .motionVisorScan::after,
+  .motionCheckerWave,
+  .motionCheckerWave::after,
+  .motionBlueprintPan,
+  .motionBlueprintPan::after,
+  .motionMarkerSwipe::before,
+  .motionMeterStep,
+  .motionMeterStep::after,
+  .motionImpactStack,
+  .motionSignalCut,
+  .motionSignalCut::after,
+  .motionStatusLatch::before,
+  .motionStatusLatch::after {
+    animation: none;
+  }
+  .root[data-motion="marquee"],
+  .motionMarqueeWrap {
+    contain: paint;
+  }
+  .motionMarqueeTrack {
+    display: block;
+    padding-inline: 0;
+    transform: none;
+    white-space: normal;
+    will-change: auto;
+  }
+  .motionMarqueeTrack > span {
+    display: none;
+  }
+  .motionMarqueeTrack > span:first-child {
+    display: inline;
+  }
+  .motionTypeOn {
+    width: 100%;
+    border-right-color: transparent;
+  }
+  .motionOutlineFill {
+    color: var(--primitive-amber);
+    -webkit-text-stroke-color: transparent;
+    background: none;
+  }
+  .motionScanlineWipe {
+    background: var(--primitive-teal);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .motionColorSweep {
+    background: var(--primitive-amber);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .motionItalicShift {
+    transform: none;
+    opacity: 1;
+    font-style: normal;
+  }
+  .motionSparkTrail::after {
+    transform: scaleX(1);
+  }
+  .motionBayDoorReveal {
+    clip-path: inset(0);
+  }
+  .motionGaugeSweep::after {
+    transform: scaleX(1);
+  }
+  .motionTorqueTilt,
+  .motionRoadBlur,
+  .motionBoostSqueeze,
+  .motionRubberBurn,
+  .motionDynoPull,
+  .motionExhaustWave,
+  .motionGridLock {
+    transform: none;
+    filter: none;
+    text-shadow: none;
+  }
+  .motionGridLock {
+    text-shadow: none;
+  }
+  .motionRelayPulse {
+    color: var(--primitive-teal);
+    background: none;
+    filter: none;
+  }
+  .motionRelayPulse::after {
+    width: 100%;
+    transform: none;
+    opacity: 0.7;
+  }
+  .motionCircuitTrace {
+    color: var(--kt-color);
+    background: none;
+    filter: none;
+  }
+  .motionCircuitTrace::before {
+    opacity: 0.72;
+    transform: none;
+  }
+  .motionCircuitTrace::after {
+    opacity: 0;
+  }
+  .motionRedlineRamp,
+  .motionTurboSpool,
+  .motionPaintMask,
+  .motionVisorScan,
+  .motionCheckerWave,
+  .motionBlueprintPan,
+  .motionMeterStep,
+  .motionSignalCut {
+    color: var(--kt-color);
+    background: none;
+    filter: none;
+  }
+  .motionTurboSpool::after,
+  .motionPaintMask::after,
+  .motionVisorScan::after,
+  .motionSignalCut::after {
+    opacity: 0;
+  }
+  .motionRouteDraw::after,
+  .motionRedlineRamp::after,
+  .motionBlueprintPan::after,
+  .motionMeterStep::after {
+    transform: none;
+    width: auto;
+    clip-path: none;
+  }
+  .motionReceiptStamp,
+  .motionTachoNeedle::after,
+  .motionCheckerWave,
+  .motionImpactStack {
+    transform: none;
+    box-shadow: none;
+    text-shadow: none;
+  }
+  .motionMarkerSwipe::before {
+    transform: scaleX(1);
+  }
+  .motionStatusLatch::before,
+  .motionStatusLatch::after {
+    transform: none;
+    filter: none;
+  }
+}

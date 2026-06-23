@@ -1,0 +1,155 @@
+.bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+  box-shadow:
+    var(--primitive-shadow-soft),
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: var(--primitive-body);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.bar[data-hidden="true"] {
+  opacity: 0.45;
+  pointer-events: none;
+  transform: translateY(4px);
+}
+
+.count {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  color: color-mix(in oklab, var(--primitive-teal) 22%, var(--primitive-text-strong));
+}
+
+.countValue {
+  font-family: var(--primitive-font-display);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.countLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.countContext {
+  color: var(--primitive-body);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.actionBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-stroke, var(--primitive-line));
+  background: var(--btn-bg, var(--primitive-glass-soft));
+  color: var(--btn-ink, var(--primitive-text-strong));
+  font-family: var(--primitive-font-body);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.actionBtn:hover:not(:disabled),
+.actionBtn:focus-visible:not(:disabled) {
+  border-color: var(--btn-stroke-hover, var(--primitive-line-strong));
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.actionBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.actionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tone_neutral {
+  --btn-bg: color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+  --btn-stroke: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  --btn-stroke-hover: color-mix(in oklab, var(--primitive-text-strong) 42%, transparent);
+  --btn-ink: var(--primitive-text-strong);
+}
+
+.tone_amber {
+  --btn-bg: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  --btn-stroke: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --btn-stroke-hover: color-mix(in oklab, var(--primitive-amber) 85%, transparent);
+  --btn-ink: color-mix(in oklab, var(--primitive-amber) 62%, var(--primitive-text-strong));
+}
+
+.tone_red {
+  --btn-bg: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  --btn-stroke: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --btn-stroke-hover: color-mix(in oklab, var(--primitive-red) 85%, transparent);
+  --btn-ink: color-mix(in oklab, var(--primitive-red) 45%, var(--primitive-text-strong));
+}
+
+.dismissBtn {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.dismissBtn:hover:not(:disabled),
+.dismissBtn:focus-visible:not(:disabled) {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.dismissBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .actionBtn,
+  .dismissBtn {
+    transition: none;
+  }
+  .actionBtn:hover {
+    transform: none;
+  }
+}

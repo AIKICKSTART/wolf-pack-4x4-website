@@ -1,0 +1,130 @@
+.preview {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 50%),
+    var(--primitive-code-bg);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.kicker {
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.fileName {
+  padding: 3px 9px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+}
+
+.tree,
+.children {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1px;
+}
+
+.node {
+  display: block;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, auto) minmax(0, 1fr);
+  gap: 8px;
+  align-items: baseline;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: transparent;
+  transition: background 160ms ease;
+}
+
+.row:hover {
+  background: var(--primitive-glass-soft);
+}
+
+.rowHeader {
+  background: var(--primitive-texture-stroke);
+}
+
+.toggle {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 20px;
+  border: 0;
+  border-radius: 5px;
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+
+.toggle:hover,
+.toggle:focus-visible {
+  background: var(--primitive-field-hover);
+  outline: none;
+}
+
+.caret {
+  transition: transform 180ms ease;
+}
+
+.caretOpen {
+  transform: rotate(90deg);
+}
+
+.bullet {
+  width: 6px;
+  height: 6px;
+  margin: 8px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 12%, transparent);
+}
+
+.declaration {
+  color: var(--primitive-code-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.005em;
+  line-height: 1.5;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.comment {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .toggle,
+  .caret {
+    transition: none;
+  }
+}

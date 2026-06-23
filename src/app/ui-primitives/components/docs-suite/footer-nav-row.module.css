@@ -1,0 +1,111 @@
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding-top: 22px;
+  border-top: 1px solid var(--primitive-line);
+  font-variant-numeric: tabular-nums;
+}
+
+.cell {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel);
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 180ms var(--primitive-ease-out), border-color 180ms ease, background 180ms ease;
+}
+
+.cellNext {
+  text-align: right;
+}
+
+.cell:hover,
+.cell:focus-visible {
+  transform: translateY(-1px);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+  outline: none;
+}
+
+.cellEmpty {
+  pointer-events: none;
+  opacity: 0.42;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.cellNext .kicker {
+  justify-content: flex-end;
+}
+
+.arrow {
+  width: 14px;
+  height: 14px;
+  display: inline-grid;
+  place-items: center;
+  color: currentColor;
+}
+
+.category {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1.04;
+}
+
+.hint {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .cellNext {
+    text-align: left;
+  }
+
+  .cellNext .kicker {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    transition: none;
+  }
+}

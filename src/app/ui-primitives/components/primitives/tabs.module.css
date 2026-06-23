@@ -1,0 +1,310 @@
+/* ============================================================
+   Tabs — Carbon & Red shared-DNA tablist.
+   underline | pill | segmented. Token-only; auto light/dark.
+   ============================================================ */
+
+.root {
+  --tabs-h: var(--primitive-size-pill-lg);
+  --tabs-pad-x: var(--primitive-space-3);
+  --tabs-gap: var(--primitive-space-1);
+  --tabs-font: var(--primitive-text-sm);
+
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  gap: var(--tabs-gap);
+  max-width: 100%;
+  font-family: var(--primitive-font-body);
+}
+
+.fullWidth {
+  display: flex;
+  width: 100%;
+}
+
+.fullWidth .tab {
+  flex: 1 1 0;
+  justify-content: center;
+}
+
+/* ---- sizes ---- */
+.sizeSm {
+  --tabs-h: var(--primitive-size-pill-md);
+  --tabs-pad-x: var(--primitive-space-2-5);
+  --tabs-gap: var(--primitive-space-0-5);
+  --tabs-font: var(--primitive-text-xs);
+}
+
+.sizeMd {
+  --tabs-h: var(--primitive-size-pill-lg);
+  --tabs-pad-x: var(--primitive-space-3);
+  --tabs-gap: var(--primitive-space-1);
+  --tabs-font: var(--primitive-text-sm);
+}
+
+.sizeLg {
+  --tabs-h: var(--primitive-size-row-md);
+  --tabs-pad-x: var(--primitive-space-4);
+  --tabs-gap: var(--primitive-space-1-5);
+  --tabs-font: var(--primitive-text-base);
+}
+
+/* ---- shared trigger ---- */
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2);
+  height: var(--tabs-h);
+  padding: 0 var(--tabs-pad-x);
+  margin: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: inherit;
+  font-size: var(--tabs-font);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: var(--primitive-leading-none);
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  user-select: none;
+  font-variant-numeric: tabular-nums;
+  transition:
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.tab:hover {
+  color: var(--primitive-body);
+}
+
+.tab:active {
+  transform: translateY(var(--primitive-space-px));
+}
+
+.tab:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+  color: var(--primitive-text-strong);
+}
+
+.tab:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.tabActive {
+  color: var(--primitive-text-strong);
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+  color: currentColor;
+  opacity: 0.82;
+}
+
+.tabActive .icon {
+  opacity: 1;
+}
+
+.label {
+  display: inline-block;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--primitive-size-ui-2xs);
+  height: var(--primitive-radius-xl);
+  padding: 0 var(--primitive-space-1-5);
+  margin-right: calc(-1 * var(--primitive-space-1));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: var(--primitive-leading-none);
+  font-variant-numeric: tabular-nums;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.tabActive .badge {
+  background: color-mix(in srgb, var(--primitive-red) 22%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 30%, white);
+}
+
+/* ============================================================
+   UNDERLINE — flush row, active bottom rule in --primitive-red.
+   ============================================================ */
+.variantUnderline {
+  gap: var(--primitive-space-5);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.variantUnderline.fullWidth .tab {
+  flex: 1 1 0;
+}
+
+.variantUnderline .tab {
+  padding-inline: 0;
+  border-radius: 0;
+}
+
+.variantUnderline .tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: var(--primitive-space-0-5);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-red);
+  box-shadow: 0 0 var(--primitive-space-2) color-mix(in srgb, var(--primitive-red) 50%, transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--primitive-duration-normal) var(--primitive-ease-out),
+    opacity var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.variantUnderline .tab:hover::after {
+  transform: scaleX(0.5);
+  opacity: 0.4;
+}
+
+.variantUnderline .tabActive::after,
+.variantUnderline .tabActive:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.variantUnderline .tab:active {
+  transform: none;
+}
+
+/* ============================================================
+   PILL — individually rounded triggers, active rides btn surface.
+   ============================================================ */
+.variantPill .tab {
+  border-radius: var(--primitive-radius-pill);
+}
+
+.variantPill .tab:hover {
+  background: var(--primitive-field-bg);
+}
+
+.variantPill .tabActive,
+.variantPill .tabActive:hover {
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  border-color: color-mix(in srgb, var(--primitive-red) 60%, transparent);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.variantPill .tabActive .badge {
+  background: color-mix(in srgb, var(--primitive-canvas) 28%, transparent);
+  color: var(--primitive-btn-primary-fg);
+}
+
+.variantPill .tabActive .icon {
+  opacity: 1;
+}
+
+/* ============================================================
+   SEGMENTED — single recessed track, sliding metallic active seg.
+   ============================================================ */
+.variantSegmented {
+  gap: 0;
+  padding: var(--primitive-space-1);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-recessed);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-dark),
+    inset -1px -1px 0 var(--primitive-neumo-light);
+}
+
+.variantSegmented .tab {
+  border-radius: var(--primitive-radius-sm);
+}
+
+.variantSegmented .tab + .tab {
+  margin-left: var(--primitive-space-0-5);
+}
+
+.variantSegmented .tab:hover {
+  color: var(--primitive-body);
+  background: var(--primitive-control-surface);
+}
+
+.variantSegmented .tabActive,
+.variantSegmented .tabActive:hover {
+  color: var(--primitive-btn-primary-fg);
+  background:
+    var(--primitive-metallic-sheen),
+    var(--primitive-btn-primary-bg);
+  border-color: color-mix(in srgb, var(--primitive-red) 55%, transparent);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    0 var(--primitive-space-1) var(--primitive-space-3)
+      color-mix(in oklab, var(--primitive-red) 34%, transparent);
+}
+
+.variantSegmented .tabActive .badge {
+  background: color-mix(in srgb, var(--primitive-canvas) 30%, transparent);
+  color: var(--primitive-btn-primary-fg);
+}
+
+.variantSegmented .tabActive .icon {
+  opacity: 1;
+}
+
+/* ============================================================
+   LIGHT THEME PARITY
+   ============================================================ */
+:global(html[data-primitive-theme="light"]) .tab:focus-visible {
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .tabActive .badge {
+  background: color-mix(in srgb, var(--primitive-red) 12%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 70%, black);
+}
+
+:global(html[data-primitive-theme="light"]) .variantSegmented {
+  background: var(--primitive-field-bg);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    inset 0 -1px 0 color-mix(in srgb, var(--primitive-text-strong) 6%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .variantSegmented .tab:hover {
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 70%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab,
+  .tab:active,
+  .variantUnderline .tab::after,
+  .badge {
+    transition: none;
+    transform: none;
+  }
+}

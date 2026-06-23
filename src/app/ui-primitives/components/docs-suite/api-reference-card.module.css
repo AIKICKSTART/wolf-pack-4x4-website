@@ -1,0 +1,214 @@
+.card {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: grid;
+  gap: 10px;
+}
+
+.signature {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.method {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  min-height: 28px;
+  padding: 0 12px;
+  border-radius: 6px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.methodGet {
+  color: var(--primitive-teal);
+  background: color-mix(in srgb, var(--primitive-teal) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primitive-teal) 50%, transparent);
+}
+
+.methodPost {
+  color: var(--primitive-green);
+  background: color-mix(in srgb, var(--primitive-green) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primitive-green) 50%, transparent);
+}
+
+.methodPatch {
+  color: var(--primitive-amber);
+  background: color-mix(in srgb, var(--primitive-amber) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primitive-amber) 50%, transparent);
+}
+
+.methodPut {
+  /* PUT has no brand-palette token (GET=teal, POST=green, PATCH=amber,
+     DELETE=red map to primitives). Violet is the documented HTTP-method
+     data colour; alpha tints derive from it via color-mix. */
+  --primitive-method-put: #c084fc;
+  color: var(--primitive-method-put);
+  background: color-mix(in srgb, var(--primitive-method-put) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primitive-method-put) 50%, transparent);
+}
+
+.methodDelete {
+  color: var(--primitive-red);
+  background: color-mix(in srgb, var(--primitive-red) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primitive-red) 52%, transparent);
+}
+
+.path {
+  flex: 1 1 240px;
+  padding: 8px 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: var(--primitive-code-bg);
+  color: var(--primitive-code-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 13px;
+  letter-spacing: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.tryIt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 14px;
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 18%, transparent), color-mix(in oklab, var(--primitive-text-strong) 4%, transparent)),
+    var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 140ms ease, border-color 140ms ease;
+}
+
+.tryIt:hover,
+.tryIt:focus-visible {
+  transform: translateY(-1px);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 42%, transparent);
+  outline: none;
+}
+
+.tryIt svg {
+  width: 12px;
+  height: 12px;
+}
+
+.description {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.params {
+  display: grid;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 0.6fr 2fr;
+  gap: 12px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--primitive-line);
+  font-size: 12px;
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.rowHead {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.paramName {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+}
+
+.paramType {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.paramRequired {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.requiredYes {
+  color: var(--primitive-red);
+}
+
+.paramDesc {
+  color: var(--primitive-body);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tryIt {
+    transition: none;
+  }
+}

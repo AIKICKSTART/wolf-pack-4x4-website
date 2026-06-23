@@ -1,0 +1,153 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding-bottom: var(--primitive-space-3);
+  border-bottom: 1px dashed var(--primitive-line);
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.scope {
+  display: inline-flex;
+  align-self: start;
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.fieldLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.select,
+.input {
+  padding: 7px var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+.select:focus,
+.input:focus {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 0;
+  border-color: var(--primitive-focus-ring);
+}
+
+.formatRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-2);
+  align-items: center;
+}
+
+.swatch {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--primitive-radius-sm);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  text-shadow: 0 1px 2px color-mix(in oklab, var(--primitive-media-overlay) 73%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+.foot {
+  display: flex;
+  gap: var(--primitive-space-2);
+}
+
+.apply,
+.remove {
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-line-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.apply {
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  border-color: transparent;
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.apply:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.apply:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-btn-primary-shadow), var(--primitive-focus-shadow);
+}
+
+.remove {
+  background: transparent;
+  color: var(--primitive-muted);
+}
+
+.remove:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+  color: var(--primitive-text-strong);
+}

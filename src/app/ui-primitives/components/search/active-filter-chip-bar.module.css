@@ -1,0 +1,137 @@
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px dashed var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent),
+    color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  font-family: var(--primitive-font-body);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  height: var(--primitive-space-6);
+  padding: 0 9px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 22%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.empty {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  height: var(--primitive-space-7);
+  padding: 0 var(--primitive-space-1) 0 var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent),
+    color-mix(in oklab, var(--primitive-teal) 14%, var(--primitive-canvas));
+  color: color-mix(in oklab, var(--primitive-teal) 30%, var(--primitive-text-strong));
+  font-size: var(--primitive-text-xs);
+}
+
+.chipGroup {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.chipSep {
+  color: var(--primitive-muted);
+}
+
+.chipLabel {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-medium);
+}
+
+.chipDismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--primitive-space-5);
+  height: var(--primitive-space-5);
+  border: 0;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-strong);
+  color: color-mix(in oklab, var(--primitive-teal) 30%, var(--primitive-text-strong));
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.chipDismiss:hover {
+  background: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.chipDismiss:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primitive-focus-ring);
+}
+
+.clearAll {
+  appearance: none;
+  margin-left: auto;
+  height: var(--primitive-space-7);
+  padding: 0 var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.clearAll:hover {
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.clearAll:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primitive-focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chipDismiss,
+  .clearAll {
+    transition: none;
+  }
+}

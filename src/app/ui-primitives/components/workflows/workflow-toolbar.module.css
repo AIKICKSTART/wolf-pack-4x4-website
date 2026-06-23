@@ -1,0 +1,247 @@
+.toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: var(--primitive-space-3) 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.left {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-h5);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 180ms ease;
+}
+
+.statusChip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.statusChip:hover {
+  filter: brightness(1.1);
+}
+
+.statusDraft {
+  color: var(--primitive-muted);
+  border: 1px solid var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.statusActive {
+  color: var(--primitive-green);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+}
+
+.statusPaused {
+  color: var(--primitive-amber);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+}
+
+.statusArchived {
+  color: var(--primitive-red);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--primitive-muted);
+}
+
+.metaRow span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.right {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Icon buttons — secondary carbon button DNA from the central system. */
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: filter 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.iconBtn:hover {
+  filter: brightness(1.18);
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-btn-secondary-fg);
+}
+
+.iconBtn:focus-visible {
+  outline: none;
+  border-color: var(--primitive-focus-ring);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.iconBtn svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+.iconBtnDisabled,
+.iconBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.divider {
+  width: 1px;
+  height: 22px;
+  background: var(--primitive-line);
+}
+
+/* Secondary action (Share) — carbon-fibre body button DNA. */
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2) 14px;
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.actionBtn:hover {
+  filter: brightness(1.18);
+  border-color: var(--primitive-line-strong);
+}
+
+.actionBtn:focus-visible {
+  outline: none;
+  border-color: var(--primitive-focus-ring);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.actionBtn svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+/* Primary action (Test) — central metallic-red CTA DNA, amber hover. */
+.actionBtnPrimary {
+  border: none;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  filter: none;
+}
+
+.actionBtnPrimary:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  filter: none;
+}
+
+.actionBtnPrimary:focus-visible {
+  box-shadow: var(--primitive-btn-primary-shadow), var(--primitive-focus-shadow);
+}
+
+/* Save (success intent) — green semantic, but follows the button shape/shadow. */
+.actionBtnSave {
+  border-color: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+  color: color-mix(in oklab, var(--primitive-green) 30%, var(--primitive-text-strong));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 12%, transparent),
+    0 10px 24px color-mix(in oklab, var(--primitive-green) 22%, transparent);
+  filter: none;
+}
+
+.actionBtnSave:hover {
+  background: color-mix(in oklab, var(--primitive-green) 22%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 78%, transparent);
+  filter: none;
+}
+
+.versionChip {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  color: var(--primitive-muted);
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statusChip,
+  .iconBtn,
+  .actionBtn {
+    transition: none;
+  }
+}

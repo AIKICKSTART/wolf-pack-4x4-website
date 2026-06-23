@@ -1,0 +1,96 @@
+.wrapper {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--primitive-green) 10%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 84%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.campaign {
+  font-weight: var(--primitive-weight-bold);
+  font-size: var(--primitive-text-md);
+  color: var(--primitive-text-strong);
+}
+
+.pulse {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-green) 6%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-green);
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.84); opacity: 0.6; }
+}
+
+.metrics {
+  border-top: 1px solid var(--primitive-line-muted);
+  border-bottom: 1px solid var(--primitive-line-muted);
+  padding: 14px 0;
+}
+
+.trends {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.trend {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.trendLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulseDot {
+    animation: none;
+  }
+}

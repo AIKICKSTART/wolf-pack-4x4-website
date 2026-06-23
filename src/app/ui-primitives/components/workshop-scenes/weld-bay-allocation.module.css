@@ -1,0 +1,195 @@
+.scene {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), 0 30px 60px color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: end;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.identity {
+  display: grid;
+  gap: 4px;
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 30px;
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+}
+
+.subhead {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  max-width: 70ch;
+  line-height: 1.55;
+}
+
+.bayCrew {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.bayCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent);
+}
+
+.bayCardBody {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.bayName {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1;
+}
+
+.bayTech {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dropZone {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px dashed color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 9px, color-mix(in oklab, var(--primitive-teal) 4%, transparent) 9px 10px);
+}
+
+.dropZoneTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.draggables {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.dragCard {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 7.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 2%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  color: var(--primitive-body);
+  cursor: grab;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.dragCard:hover,
+.dragCard:focus-visible {
+  transform: translateY(-2px) rotate(-0.4deg);
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  box-shadow: 0 22px 40px color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+  outline: none;
+}
+
+.dragCard header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dragCard strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  line-height: 1.1;
+}
+
+.dragCard span {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.tip {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dragCard {
+    transition: none;
+  }
+}
+
+@media (max-width: 880px) {
+  .bayCrew {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .head {
+    grid-template-columns: 1fr;
+  }
+}

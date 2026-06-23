@@ -1,0 +1,148 @@
+.trail {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: color 140ms ease;
+}
+
+.crumb:hover,
+.crumb:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.crumbCurrent {
+  color: var(--primitive-text-strong);
+}
+
+.separator {
+  color: var(--primitive-muted);
+  opacity: 0.6;
+}
+
+.treeWrap {
+  position: relative;
+}
+
+.treeBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 999px;
+  background: var(--primitive-control-surface);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+
+.treeBtn:hover,
+.treeBtn:focus-visible {
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-field-hover);
+  outline: none;
+}
+
+.chev {
+  width: 10px;
+  height: 10px;
+  color: var(--primitive-muted);
+  transition: transform 160ms ease;
+}
+
+.chevOpen {
+  transform: rotate(180deg);
+}
+
+.treePanel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 30;
+  min-width: 260px;
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background: var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-deep);
+  backdrop-filter: blur(20px);
+}
+
+.treeLink {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--primitive-body);
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 120ms ease, background 120ms ease;
+}
+
+.treeLink:hover,
+.treeLink:focus-visible {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-field-hover);
+  outline: none;
+}
+
+.treeLinkActive {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.treeMark {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primitive-muted);
+}
+
+.treeLinkActive .treeMark {
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primitive-red) 22%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chev,
+  .treeBtn,
+  .crumb,
+  .treeLink {
+    transition: none;
+  }
+}

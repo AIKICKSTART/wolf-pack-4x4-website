@@ -1,0 +1,186 @@
+.root {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 0 0 var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3) var(--primitive-space-3) var(--primitive-space-3);
+  border: 1px solid var(--card-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    var(--card-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 84%, transparent);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) ease,
+    box-shadow var(--primitive-duration-fast) ease;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 5%, transparent),
+    0 10px 22px color-mix(in oklab, var(--primitive-canvas) 30%, transparent);
+}
+
+.card:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 14px 26px color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+}
+
+.card[data-selected="true"] {
+  border-color: var(--card-border, var(--primitive-line-strong));
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    0 0 0 1px var(--card-border, var(--primitive-line-strong)),
+    0 14px 30px color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.card:focus-within {
+  outline: none;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    0 0 0 2px color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.cardName {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tierBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tierBadge[data-tone="violet"] {
+  background: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  color: var(--primitive-teal);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+.tierBadge[data-tone="teal"] {
+  background: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  color: var(--primitive-teal);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+.tierBadge[data-tone="green"] {
+  background: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+  color: var(--primitive-green);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent);
+}
+
+.tierBadge[data-tone="amber"] {
+  background: color-mix(in oklab, var(--primitive-amber) 14%, transparent);
+  color: var(--primitive-amber);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.tierBadge[data-tone="red"] {
+  background: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  color: var(--primitive-red);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.tierBadge[data-tone="neutral"] {
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  color: var(--primitive-body);
+  border: 1px solid var(--primitive-line);
+}
+
+.vendor {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.statChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.statChip[data-mute="true"] {
+  color: var(--primitive-muted);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.check {
+  position: absolute;
+  top: var(--primitive-space-2-5);
+  right: var(--primitive-space-2-5);
+  display: grid;
+  place-items: center;
+  inline-size: 18px;
+  block-size: 18px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 55%, transparent);
+  color: var(--primitive-teal);
+}

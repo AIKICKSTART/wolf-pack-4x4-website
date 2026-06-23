@@ -1,0 +1,136 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 0% 100%, color-mix(in oklab, var(--primitive-green) 10%, transparent), transparent 50%),
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-glass-soft) 24%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+}
+
+.headText {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.kicker {
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+}
+
+.caption {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--primitive-body);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.postman {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  border-radius: 8px;
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.postman:hover,
+.postman:focus-visible {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.tablist {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-control-surface);
+  width: fit-content;
+}
+
+.tab {
+  min-height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--primitive-body);
+  background: transparent;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.tab:hover,
+.tab:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.tabActive {
+  color: var(--primitive-canvas);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 24%, transparent), transparent 60%),
+    var(--primitive-green);
+  box-shadow: 0 8px 18px color-mix(in oklab, var(--primitive-green) 20%, transparent);
+}
+
+.panel {
+  display: grid;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab,
+  .postman {
+    transition: none;
+  }
+  .postman:hover,
+  .postman:focus-visible {
+    transform: none;
+  }
+}

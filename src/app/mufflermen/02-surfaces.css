@@ -1,0 +1,197 @@
+
+
+/* ── liquid-mercury plate (replaces old chrome-plate) ──────── */
+/* A polished disc / button surface built from radial highlights
+   rather than a horizon line — reads as a 3D rounded object. */
+.chrome-plate {
+  position: relative;
+  background:
+    /* top specular */
+    radial-gradient(ellipse 78% 42% at 50% 14%, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.35) 22%, transparent 50%),
+    /* counter-light bounce from below */
+    radial-gradient(ellipse 70% 36% at 50% 92%, rgba(255,255,255,0.18) 0%, transparent 60%),
+    /* contact shadow inside the body */
+    radial-gradient(ellipse 100% 60% at 50% 78%, rgba(0,0,0,0.45) 0%, transparent 65%),
+    /* base graduated metal — cool top → warm middle → deep low */
+    linear-gradient(180deg,
+      #f3f4f8 0%, #d6d8de 18%, #aaadb4 36%,
+      #6e7178 55%, #3c3e45 75%, #1c1e25 100%);
+  color: #0a0a0a;
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,0.95),
+    inset 0 -2px 6px rgba(0,0,0,0.55),
+    inset 1px 0 0 rgba(255,255,255,0.25),
+    inset -1px 0 0 rgba(0,0,0,0.4),
+    0 22px 50px -14px rgba(0,0,0,0.85),
+    0 2px 0 rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+.chrome-plate::before {
+  /* subtle anisotropic streaks — brushed finish */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: repeating-linear-gradient(90deg,
+    rgba(255,255,255,0.04) 0 1px, transparent 1px 3px);
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+}
+.chrome-plate::after {
+  /* slow specular sweep */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(112deg,
+    transparent 38%, rgba(255,255,255,0.45) 50%, transparent 62%);
+  transform: translateX(-120%);
+  animation: sheen 9s linear infinite 2s;
+}
+@keyframes sheen {
+  0%   { transform: translateX(-120%); }
+  60%  { transform: translateX(120%); }
+  100% { transform: translateX(120%); }
+}
+
+/* ── obsidian glass (replaces dark-chrome) ─────────────────── */
+/* Deep mirror with iridescent aurora — premium dark surface */
+.chrome-dark {
+  position: relative;
+  background:
+    /* aurora — cool teal upper left */
+    radial-gradient(circle at 28% 18%, rgba(70,150,200,0.20) 0%, transparent 42%),
+    /* aurora — warm purple lower right */
+    radial-gradient(circle at 78% 78%, rgba(180,90,200,0.16) 0%, transparent 48%),
+    /* sharp top specular */
+    radial-gradient(ellipse 65% 35% at 50% 6%, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.06) 30%, transparent 60%),
+    /* deep gradient base */
+    linear-gradient(180deg, #1e2028 0%, #0c0d12 50%, #050608 100%);
+  color: var(--ink);
+  border: 1px solid rgba(255,255,255,0.13);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.7),
+    inset 1px 0 0 rgba(255,255,255,0.04),
+    inset -1px 0 0 rgba(0,0,0,0.4),
+    0 22px 50px -14px rgba(0,0,0,0.9);
+  overflow: hidden;
+}
+.chrome-dark::before {
+  /* iridescent shimmer band */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(112deg, transparent 30%, rgba(110,180,255,0.10) 48%, rgba(200,120,255,0.08) 56%, transparent 72%);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
+.chrome-dark::after {
+  /* slow shimmer sweep */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(112deg, transparent 35%, rgba(255,255,255,0.10) 50%, transparent 65%);
+  transform: translateX(-120%);
+  animation: sheen 14s linear infinite 4s;
+}
+
+/* ── wet metallic paint surface ───────────────────────────── */
+.paint {
+  position: relative; overflow: hidden;
+  color: #fff;
+  background:
+    var(--paint-clear),
+    var(--paint-base);
+  border: 1px solid rgba(255,180,180,0.35);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,0.55),
+    inset 0 -4px 8px rgba(0,0,0,0.6),
+    0 26px 60px -18px rgba(0,140,255,0.55),
+    0 3px 0 rgba(0,0,0,0.4);
+}
+.paint::before {
+  /* flake speckle */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image: var(--flake);
+  background-size: 160px 160px;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+}
+.paint::after {
+  /* water beads */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image: var(--beads);
+  background-size: 220px 220px;
+  background-position: 0 0;
+  opacity: calc(0.95 * var(--bead-opacity, 0.85));
+}
+
+/* gunmetal paint */
+.paint-gun {
+  position: relative; overflow: hidden;
+  color: #fff;
+  background:
+    var(--paint-clear),
+    var(--paint-gun-base);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -2px 6px rgba(0,0,0,0.6),
+    0 22px 50px -16px rgba(0,0,0,0.7);
+}
+.paint-gun::before {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image: var(--flake);
+  background-size: 160px 160px;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+}
+.paint-gun::after {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image: var(--beads);
+  background-size: 220px 220px;
+  opacity: calc(0.65 * var(--bead-opacity, 0.85));
+}
+
+/* ── glass card (frosted, photoreal) ──────────────────────── */
+.glass {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0) 35%, rgba(255,255,255,0.015) 100%),
+    var(--glass-tint);
+  backdrop-filter: blur(var(--glass-blur)) saturate(170%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(170%);
+  border: 1px solid var(--hairline);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.16),
+    inset 1px 0 0 rgba(255,255,255,0.04),
+    inset -1px 0 0 rgba(0,0,0,0.3),
+    inset 0 -1px 0 rgba(0,0,0,0.5),
+    0 30px 80px -22px rgba(0,0,0,0.75);
+}
+.glass::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(140% 90% at -10% -10%, rgba(255,255,255,0.12), rgba(255,255,255,0) 50%);
+  mix-blend-mode: screen;
+}
+
+/* glass + beads (rain-on-window) */
+.glass-wet::before {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image: var(--beads-fine);
+  background-size: 240px 240px;
+  opacity: 0.55;
+}
+
+/* ── neumorphic gunmetal ──────────────────────────────────── */
+.neumo {
+  position: relative;
+  background: linear-gradient(180deg, #20202a 0%, #12121a 100%);
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow:
+    -12px -12px 30px rgba(255,255,255,0.025),
+     16px 16px 40px rgba(0,0,0,0.75),
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    inset 0 -1px 0 rgba(0,0,0,0.6);
+}
+.neumo-inset {
+  position: relative;
+  background: linear-gradient(180deg, #08080c, #14141c);
+  box-shadow:
+    inset 8px 8px 18px rgba(0,0,0,0.85),
+    inset -5px -5px 14px rgba(255,255,255,0.03),
+    0 1px 0 rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.04);
+}

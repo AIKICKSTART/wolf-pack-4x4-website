@@ -1,0 +1,151 @@
+.rail {
+  gap: 14px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 14px;
+  padding: var(--primitive-space-2) var(--primitive-space-2) var(--primitive-space-2) 0;
+  position: relative;
+}
+
+.connector {
+  position: relative;
+  width: 28px;
+  display: grid;
+  place-items: center;
+}
+
+.connectorLine {
+  position: absolute;
+  top: var(--primitive-space-1);
+  bottom: -4px;
+  left: 50%;
+  width: 1px;
+  background: var(--primitive-line);
+  transform: translateX(-50%);
+}
+
+.list li:last-child .connectorLine {
+  display: none;
+}
+
+.connectorDot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid color-mix(in srgb, var(--so-tone, var(--primitive-text-strong)) 32%, var(--primitive-line));
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--primitive-text-strong) 18%, transparent), transparent 60%),
+    color-mix(in srgb, var(--so-tone, var(--primitive-muted)) 14%, var(--primitive-code-bg));
+  color: var(--primitive-text-strong);
+}
+
+.indexLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--primitive-muted);
+}
+
+.activePulse {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--so-tone, var(--primitive-teal));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--so-tone, var(--primitive-teal)) 18%, transparent);
+  animation: soRailPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes soRailPulse {
+  0%, 100% { transform: scale(0.92); opacity: 0.85; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+  padding: var(--primitive-space-1-5) 0;
+}
+
+.bodyRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.label {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  text-decoration: none;
+}
+
+a.label:hover,
+a.label:focus-visible {
+  color: var(--so-tone, var(--primitive-teal));
+  outline: none;
+}
+
+.metaRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.caption {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+}
+
+.duration {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.itemActive .label {
+  color: var(--so-tone, var(--primitive-teal));
+}
+
+.itemDone .label {
+  color: var(--primitive-muted);
+}
+
+.itemSkipped .label {
+  color: var(--primitive-muted);
+  text-decoration: line-through;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .activePulse { animation: none; }
+}
+
+:global([data-primitive-theme="light"]) .label {
+  color: var(--primitive-text-strong);
+}
+
+:global([data-primitive-theme="light"]) .itemDone .label,
+:global([data-primitive-theme="light"]) .itemSkipped .label {
+  color: var(--primitive-muted);
+}

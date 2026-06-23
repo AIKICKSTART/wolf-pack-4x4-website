@@ -1,0 +1,186 @@
+.card {
+  --tone-color: var(--primitive-green);
+  --tone-line: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--tone-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--tone-fill), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.tone_low {
+  --tone-color: var(--primitive-green);
+  --tone-line: color-mix(in oklab, var(--primitive-green) 36%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+}
+
+.tone_med {
+  --tone-color: var(--primitive-amber);
+  --tone-line: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+}
+
+.tone_high {
+  --tone-color: var(--primitive-red);
+  --tone-line: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.tone_manual {
+  --tone-color: var(--primitive-teal);
+  --tone-line: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  color: var(--tone-color);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+.meterRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: center;
+}
+
+.meterTrack {
+  position: relative;
+  height: 10px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--primitive-green) 16%, transparent) 0%,
+      color-mix(in oklab, var(--primitive-amber) 16%, transparent) 50%,
+      color-mix(in oklab, var(--primitive-red) 16%, transparent) 100%
+    );
+  overflow: hidden;
+}
+
+.meterFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, transparent, var(--tone-color));
+  mix-blend-mode: screen;
+  transition: width var(--primitive-duration-slow) var(--primitive-ease-out);
+}
+
+.meterMarker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+.levelChip {
+  padding: var(--primitive-space-1-5) 14px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--tone-line);
+  background: var(--tone-fill);
+  color: var(--tone-color);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.scale {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.body {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+  color: var(--primitive-body);
+}
+
+.factors {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.factorChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--chip-line, var(--primitive-line));
+  background: var(--chip-fill, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--chip-color, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.factorChip[data-tone="positive"] {
+  --chip-color: var(--primitive-green);
+  --chip-line: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+}
+
+.factorChip[data-tone="neutral"] {
+  --chip-color: var(--primitive-body);
+  --chip-line: var(--primitive-line);
+}
+
+.factorChip[data-tone="negative"] {
+  --chip-color: var(--primitive-red);
+  --chip-line: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+}
+
+.factorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meterFill {
+    transition: none;
+  }
+}

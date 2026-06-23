@@ -1,0 +1,186 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: var(--primitive-space-3);
+  padding-bottom: var(--primitive-space-3);
+  border-bottom: 1px dashed var(--primitive-line);
+}
+
+.headMain {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.letter {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.06em;
+}
+
+.kicker {
+  display: block;
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: var(--primitive-space-0-5) 0 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h5);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.remove {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line);
+  background: transparent;
+  color: var(--primitive-muted);
+  cursor: pointer;
+}
+
+.remove svg {
+  width: 11px;
+  height: 11px;
+}
+
+.remove:hover {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 46%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.fieldLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.select,
+.input,
+.textarea {
+  padding: 7px var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+.textarea {
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.select:focus,
+.input:focus,
+.textarea:focus {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 0;
+  border-color: var(--primitive-focus-ring);
+}
+
+.toggle {
+  display: grid;
+  grid-template-columns: 0 auto 1fr;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggleTrack {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 18px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-strong);
+  border: 1px solid var(--primitive-line);
+  transition: background-color 160ms ease;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: var(--primitive-space-px);
+  left: var(--primitive-space-px);
+  width: 14px;
+  height: 14px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  transition: transform 160ms ease;
+}
+
+.toggle input:checked + .toggleTrack {
+  background: var(--primitive-red);
+  border-color: var(--primitive-red-dark);
+}
+
+.toggle input:checked + .toggleTrack .toggleThumb {
+  transform: translateX(16px);
+}
+
+.toggleLabel {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggleTrack,
+  .toggleThumb {
+    transition: none;
+  }
+}

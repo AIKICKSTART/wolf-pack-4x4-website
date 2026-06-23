@@ -1,0 +1,139 @@
+.tile {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-4) 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  color: var(--primitive-body);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  --tile-tone: var(--primitive-teal);
+}
+
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 100% 0%, var(--tile-glow, color-mix(in oklab, var(--primitive-teal) 14%, transparent)), transparent 65%);
+}
+
+.tile > * {
+  position: relative;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.deltaUp {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}
+
+.deltaDown {
+  color: var(--primitive-green);
+  border-color: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+}
+
+.deltaFlat {
+  color: var(--primitive-muted);
+}
+
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+}
+
+.value {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-tight);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--primitive-leading-none);
+}
+
+.limit {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--primitive-muted);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.progress {
+  margin-top: var(--primitive-space-0-5);
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.usedPct {
+  color: var(--tile-tone);
+}
+
+.toneRed {
+  --tile-tone: var(--primitive-red);
+  --tile-glow: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}
+.toneAmber {
+  --tile-tone: var(--primitive-amber);
+  --tile-glow: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+.toneTeal {
+  --tile-tone: var(--primitive-teal);
+  --tile-glow: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+}
+.toneGreen {
+  --tile-tone: var(--primitive-green);
+  --tile-glow: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+}
+.toneNeutral {
+  --tile-tone: color-mix(in oklab, var(--primitive-text-strong) 74%, transparent);
+  --tile-glow: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}

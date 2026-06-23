@@ -1,0 +1,62 @@
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--primitive-font-mono);
+}
+
+.trayEmpty {
+  display: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-recessed);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease,
+    background-color 160ms ease, color 160ms ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  border-color: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.btnPressed {
+  border-color: color-mix(in oklab, var(--primitive-teal) 55%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.glyph {
+  font-size: var(--primitive-text-xs);
+  line-height: var(--primitive-leading-none);
+}
+
+.count {
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.04em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn:hover,
+  .btn:focus-visible {
+    transition: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,338 @@
+/* /ui-primitives/marketing — index + sub-route shell */
+
+.page {
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: clamp(var(--primitive-space-5), 3vw, var(--primitive-space-9));
+}
+
+.main {
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: clamp(var(--primitive-space-5), 3vw, var(--primitive-space-9));
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.dnaPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+  gap: var(--primitive-space-6);
+  padding: clamp(var(--primitive-space-5), 3vw, var(--primitive-space-8));
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 24%, var(--primitive-line));
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-red) 13%, transparent), transparent 58%),
+    linear-gradient(135deg, var(--primitive-panel-strong), var(--primitive-recessed));
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.dnaKicker {
+  display: inline-flex;
+  margin-bottom: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.dnaPanel h2 {
+  margin: 0;
+  max-width: 12ch;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(var(--primitive-text-2xl), 4vw, var(--primitive-h2));
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.dnaPanel p {
+  margin: var(--primitive-space-4) 0 0;
+  max-width: 62ch;
+  font-size: var(--primitive-text-base);
+  line-height: var(--primitive-leading-relaxed);
+  color: var(--primitive-body);
+}
+
+.dnaPanel dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  margin: 0;
+}
+
+.dnaPanel dl div {
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-glass-soft);
+}
+
+.dnaPanel dt {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.dnaPanel dd {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+  color: var(--primitive-body);
+}
+
+.notice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  width: max-content;
+  max-width: 100%;
+}
+
+.notice::before {
+  content: "";
+  width: var(--primitive-space-2);
+  height: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 var(--primitive-space-1) color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--primitive-space-5);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at 100% 0%, var(--accent-soft, color-mix(in oklab, var(--primitive-amber) 16%, transparent)), transparent 60%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--primitive-duration-normal) var(--primitive-ease-out), border-color var(--primitive-duration-normal) var(--primitive-ease-out), box-shadow var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, var(--primitive-texture-stroke) 3px 4px);
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent, color-mix(in oklab, var(--primitive-amber) 42%, transparent));
+  box-shadow: var(--primitive-shadow-deep);
+}
+
+.card:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-shadow-deep), var(--primitive-focus-shadow);
+}
+
+.thumb {
+  position: relative;
+  height: 132px;
+  border-radius: var(--primitive-radius-md);
+  background:
+    radial-gradient(ellipse at 24% 22%, var(--accent-soft, color-mix(in oklab, var(--primitive-amber) 22%, transparent)), transparent 60%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-teal)) 0%, var(--primitive-canvas) 100%);
+  border: 1px solid var(--primitive-line-muted);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.thumbInner {
+  position: relative;
+  width: 86%;
+  height: 76%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line-strong);
+  padding: var(--primitive-space-2-5);
+  background: var(--primitive-recessed);
+}
+
+.thumbHeadline {
+  display: block;
+  height: 12px;
+  width: 70%;
+  border-radius: var(--primitive-radius-sm);
+  background: var(--accent, var(--primitive-amber));
+  opacity: 0.85;
+}
+
+.thumbRows {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.thumbRow {
+  display: block;
+  height: 6px;
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-field-strong);
+}
+
+.thumbRow:nth-child(1) { width: 90%; }
+.thumbRow:nth-child(2) { width: 64%; }
+.thumbRow:nth-child(3) { width: 78%; }
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.cardKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent, var(--primitive-amber));
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: 1.04;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.cardBody {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaAction {
+  color: var(--accent, var(--primitive-amber));
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.accentRed {
+  --accent: var(--primitive-red);
+  --accent-soft: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+}
+
+.accentAmber {
+  --accent: var(--primitive-amber);
+  --accent-soft: color-mix(in oklab, var(--primitive-amber) 24%, transparent);
+}
+
+.accentTeal {
+  --accent: var(--primitive-teal);
+  --accent-soft: color-mix(in oklab, var(--primitive-teal) 24%, transparent);
+}
+
+.accentGreen {
+  --accent: var(--primitive-green);
+  --accent-soft: color-mix(in oklab, var(--primitive-green) 24%, transparent);
+}
+
+.stage {
+  display: grid;
+  gap: var(--primitive-space-6);
+}
+
+.stageFrame {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-6);
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--primitive-amber) 8%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+}
+
+.stageCaption {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: border-color var(--primitive-duration-fast) var(--primitive-ease-out);
+  }
+  .card:hover,
+  .card:focus-visible {
+    transform: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .dnaPanel,
+  .dnaPanel dl {
+    grid-template-columns: 1fr;
+  }
+
+  .dnaPanel h2 {
+    max-width: 18ch;
+  }
+}

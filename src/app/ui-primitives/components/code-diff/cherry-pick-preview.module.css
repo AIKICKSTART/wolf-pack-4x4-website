@@ -1,0 +1,210 @@
+.preview {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 50%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  color: color-mix(in oklab, var(--primitive-teal) 45%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.head svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+.commitSummary {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-3) 14px;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.shaRow {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  flex-wrap: wrap;
+}
+
+.sha {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-0) var(--primitive-space-2);
+  min-height: 22px;
+  border-radius: 6px;
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.author {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+}
+
+.subject {
+  margin: var(--primitive-space-0);
+  color: var(--primitive-text-strong);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-bold);
+  line-height: 1.4;
+}
+
+.targetRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+}
+
+.targetLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.targetChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  min-height: 26px;
+  padding: var(--primitive-space-0) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.targetChip svg {
+  width: var(--primitive-icon-xs);
+  height: var(--primitive-icon-xs);
+}
+
+.conflictChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  min-height: 26px;
+  padding: var(--primitive-space-0) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid currentColor;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.conflictClean {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+}
+
+.conflictPredicted {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+}
+
+.conflictUnknown {
+  color: var(--primitive-muted);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border-color: var(--primitive-line);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  padding-top: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.apply {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: 36px;
+  padding: var(--primitive-space-0) var(--primitive-space-4);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 55%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 28%, transparent), color-mix(in oklab, var(--primitive-teal) 8%, transparent)),
+    color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  color: color-mix(in oklab, var(--primitive-teal) 16%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.apply:hover,
+.apply:focus-visible {
+  outline: none;
+  transform: translateY(-1px);
+  border-color: color-mix(in oklab, var(--primitive-teal) 45%, var(--primitive-text-strong));
+}
+
+.cancel {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: var(--primitive-space-0) 14px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 140ms ease;
+}
+
+.cancel:hover,
+.cancel:focus-visible {
+  outline: none;
+  border-color: var(--primitive-text-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apply,
+  .cancel {
+    transition: none;
+  }
+}

@@ -1,0 +1,300 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  align-items: start;
+  justify-items: center;
+  padding: clamp(20px, 6vh, 80px) 16px 16px;
+  background: var(--primitive-media-overlay);
+  backdrop-filter: blur(8px);
+  z-index: 90;
+}
+
+.modal {
+  width: min(100%, 680px);
+  max-height: min(72vh, 720px);
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 0;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 16px;
+  background: var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-deep);
+  color: var(--primitive-body);
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+  animation: dropIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropIn {
+  from {
+    transform: translateY(-12px);
+    opacity: 0;
+  }
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  color: var(--primitive-muted);
+}
+
+.input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--primitive-text-strong);
+  font: inherit;
+  font-size: 16px;
+  letter-spacing: 0;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--primitive-muted);
+}
+
+.escHint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.escKey {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 22px;
+  padding: 0 6px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 1.5%, transparent);
+}
+
+.filterChip {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 999px;
+  background: var(--primitive-control-surface);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.filterChip:hover,
+.filterChip:focus-visible {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.filterChipActive {
+  color: var(--primitive-text-on-accent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 55%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+}
+
+.results {
+  display: grid;
+  gap: 14px;
+  padding: 12px 8px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.group {
+  display: grid;
+  gap: 2px;
+}
+
+.groupHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 12px;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.groupCount {
+  color: var(--primitive-muted);
+}
+
+.hit {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.hit:hover,
+.hit:focus-visible {
+  border-color: var(--primitive-line);
+  background: var(--primitive-field-hover);
+  outline: none;
+}
+
+.hitActive {
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.hitMark {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--primitive-field-bg);
+  color: var(--primitive-amber);
+}
+
+.hitBody {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.hitTitle {
+  color: var(--primitive-text-strong);
+  font-size: 14px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hitSnippet {
+  color: var(--primitive-muted);
+  font-size: 12px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hitSurface {
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.kbdRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 5px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.empty {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  padding: 28px 12px;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.footHint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal {
+    animation: none;
+  }
+  .hit,
+  .filterChip {
+    transition: none;
+  }
+}

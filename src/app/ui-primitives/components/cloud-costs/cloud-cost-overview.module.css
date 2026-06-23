@@ -1,0 +1,110 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-teal) 14%, transparent), transparent 60%),
+    radial-gradient(circle at 0% 100%, color-mix(in oklab, var(--primitive-amber) 8%, transparent), transparent 50%),
+    var(--primitive-panel-strong);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, color-mix(in srgb, var(--primitive-text-on-accent) 1.8%, transparent) 3px 4px);
+  mix-blend-mode: overlay;
+}
+
+.head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.headLeft {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  line-height: 1.1;
+}
+
+.tiles {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+}
+
+.meter {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--primitive-canvas) 28%, transparent);
+}
+
+.meterHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.meterLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.meterValue {
+  font-family: var(--primitive-font-display);
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.chartWrap {
+  position: relative;
+  z-index: 1;
+  padding: 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--primitive-canvas) 24%, transparent);
+}

@@ -1,0 +1,190 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 40%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    var(--primitive-shadow-soft);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto auto;
+  gap: var(--primitive-space-1) var(--primitive-space-3);
+  align-items: baseline;
+}
+
+.kicker {
+  grid-column: 1 / -1;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.score {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+  color: var(--primitive-text-strong);
+}
+
+.scoreNumber {
+  font-family: var(--primitive-font-display);
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.005em;
+}
+
+.scoreTotal {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  letter-spacing: 0.08em;
+}
+
+.stars {
+  grid-column: 2;
+  grid-row: 2;
+  display: inline-flex;
+  gap: var(--primitive-space-0-5);
+  justify-self: end;
+}
+
+.star {
+  font-size: var(--primitive-text-lg);
+  color: color-mix(in oklab, var(--primitive-text-strong) 20%, transparent);
+  line-height: var(--primitive-leading-none);
+}
+
+.starFull {
+  color: var(--primitive-amber);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.responses {
+  grid-column: 1 / -1;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr) 36px;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+}
+
+.barRating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-size: var(--primitive-text-md);
+  line-height: 1;
+}
+
+.barRatingNum {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.08em;
+  color: var(--primitive-muted);
+}
+
+.barTrack {
+  position: relative;
+  height: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  overflow: hidden;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transition: width var(--primitive-duration-normal) ease;
+}
+
+.barGood {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primitive-green) 50%, transparent), var(--primitive-green));
+}
+
+.barOk {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primitive-amber) 40%, transparent), var(--primitive-amber));
+}
+
+.barBad {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 40%, transparent), var(--primitive-red));
+}
+
+.barCount {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-text-strong);
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+
+.quote {
+  margin: 0;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-left: 3px solid var(--primitive-amber);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.quoteBody {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.6;
+  color: var(--primitive-body);
+  font-style: italic;
+}
+
+.quoteFoot {
+  margin-top: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barFill {
+    transition: none;
+  }
+}

@@ -1,0 +1,195 @@
+.row {
+  display: grid;
+  grid-template-columns: auto minmax(160px, 1fr) auto auto auto;
+  gap: 14px;
+  align-items: center;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-recessed) 68.75%, transparent);
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.row:hover {
+  border-color: var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.directionGlyph {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-muted);
+}
+
+.row[data-direction="inbound"] .directionGlyph {
+  background: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  color: var(--primitive-green);
+}
+
+.row[data-direction="outbound"] .directionGlyph {
+  background: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  color: var(--primitive-teal);
+}
+
+.row[data-direction="missed"] .directionGlyph {
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-text-strong));
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.callerName {
+  color: var(--primitive-text-strong);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.callerNumber {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.callerNumber:hover {
+  color: var(--primitive-teal);
+}
+
+.topic {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.4;
+}
+
+.meta {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  justify-items: end;
+  font-family: var(--primitive-font-mono);
+}
+
+.timestamp {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.duration {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: 700;
+}
+
+.recording,
+.noRecording {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 5px var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.recording {
+  appearance: none;
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  color: var(--primitive-teal);
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.recording:hover,
+.recording:focus-visible {
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+  outline: none;
+}
+
+.recording[aria-pressed="true"] {
+  background: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 46%, transparent);
+  color: var(--primitive-green);
+}
+
+.noRecording {
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-recessed) 68.75%, transparent);
+  color: var(--primitive-muted);
+}
+
+.recordingLabel {
+  font-weight: 600;
+}
+
+.playingBars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: var(--primitive-space-0-5);
+  height: 12px;
+}
+
+.playingBars span {
+  display: block;
+  width: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  animation: equalize 800ms ease-in-out infinite;
+}
+
+.playingBars span:nth-child(1) { height: 60%; animation-delay: 0ms; }
+.playingBars span:nth-child(2) { height: 100%; animation-delay: 120ms; }
+.playingBars span:nth-child(3) { height: 40%; animation-delay: 240ms; }
+
+@keyframes equalize {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .recording {
+    transition: none;
+  }
+
+  .playingBars span {
+    animation: none;
+    transform: scaleY(0.7);
+  }
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: auto minmax(140px, 1fr) auto;
+  }
+
+  .meta {
+    grid-column: 2 / -1;
+    justify-items: start;
+    grid-auto-flow: column;
+    gap: var(--primitive-space-3);
+  }
+
+  .recording,
+  .noRecording {
+    grid-column: 2 / -1;
+    justify-self: start;
+  }
+}

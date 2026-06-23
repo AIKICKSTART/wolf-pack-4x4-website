@@ -1,0 +1,42 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.badge { fill: currentColor; opacity: 0.16; }
+.badgeStroke { stroke: currentColor; fill: none; stroke-width: 1.4; stroke-linejoin: round; }
+.innerRing { stroke: currentColor; fill: none; opacity: 0.4; stroke-width: 0.8; stroke-dasharray: 1.6 1.4; }
+.o { fill: currentColor; opacity: 0.95; }
+.f { fill: currentColor; opacity: 0.95; }
+.bar { stroke: currentColor; opacity: 0.7; stroke-linecap: round; }
+.dot { fill: var(--primitive-red); opacity: 0.95; }
+
+.motionPulse .badge { animation: monogramGlow 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 6s linear infinite; transform-origin: 12px 12px; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .badgeStroke, .motionDraw .innerRing { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .dot { animation: monogramPulse 0.3s ease-in-out infinite; }
+
+@keyframes monogramGlow {
+  0%, 100% { opacity: 0.16; }
+  50% { opacity: 0.5; }
+}
+@keyframes monogramPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .badge { fill: transparent; }
+[data-variant="outline"] .o,
+[data-variant="outline"] .f { fill: transparent; stroke: currentColor; stroke-width: 1; opacity: 1; }
+
+[data-variant="filled"] .badge { opacity: 0.5; }
+[data-variant="filled"] .innerRing { opacity: 0.85; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .badge, .dot { animation: none !important; transition: none !important; }
+}

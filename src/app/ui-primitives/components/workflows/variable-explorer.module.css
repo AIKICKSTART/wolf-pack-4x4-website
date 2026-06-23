@@ -1,0 +1,176 @@
+.explorer {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  width: 300px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.copyHint {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--primitive-muted);
+}
+
+.tree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.tree::-webkit-scrollbar { width: 6px; }
+.tree::-webkit-scrollbar-thumb { background: color-mix(in oklab, var(--primitive-text-strong) 10%, transparent); border-radius: 3px; }
+
+.nodeRow {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  border: 1px solid transparent;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.nodeRow:hover {
+  background:
+    linear-gradient(0deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 5%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  border-color: var(--primitive-line);
+}
+
+.caret {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--primitive-muted);
+  cursor: pointer;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+}
+
+.caretLeaf {
+  color: color-mix(in oklab, var(--primitive-text-strong) 25%, transparent);
+  cursor: default;
+}
+
+.label {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.path {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sample {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.typeChip {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid currentColor;
+  color: var(--primitive-muted);
+}
+
+.typeString { color: var(--primitive-teal); }
+.typeNumber { color: var(--primitive-amber); }
+.typeBoolean { color: var(--primitive-green); }
+.typeObject { color: color-mix(in oklab, var(--primitive-text-strong) 70%, transparent); }
+.typeArray { color: var(--primitive-red); }
+.typeDate { color: color-mix(in oklab, var(--primitive-violet) 78%, transparent); }
+
+.children {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0 0 0 18px;
+  display: grid;
+  gap: var(--primitive-space-1);
+  border-left: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+}
+
+.children > li {
+  position: relative;
+}
+
+.copyChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.copyChip:hover {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+}
+
+.copyChipCopied {
+  border-color: var(--primitive-green);
+  color: var(--primitive-green);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nodeRow,
+  .copyChip {
+    transition: none;
+  }
+}

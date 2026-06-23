@@ -1,0 +1,104 @@
+.card {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.kicker {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-lg);
+  font-weight: 700;
+}
+
+.callout {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+}
+
+.callout strong {
+  color: var(--primitive-amber);
+  font-weight: 600;
+}
+
+.chartWrap {
+  display: grid;
+  gap: 14px;
+}
+
+.cumList {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cumRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-recessed) 68.75%, transparent);
+}
+
+.cumRank {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+}
+
+.cumLabel {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+}
+
+.cumCount {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 600;
+}
+
+.cumPct {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primitive-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cumPct[data-flag="over"] {
+  color: var(--primitive-amber);
+}

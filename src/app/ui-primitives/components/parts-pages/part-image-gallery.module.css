@@ -1,0 +1,177 @@
+.gallery {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 24% 22%, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 58%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-teal)) 0%, var(--primitive-canvas) 100%);
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+}
+
+.stageZoomed .image {
+  transform: scale(1.42);
+}
+
+.fallback {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  text-align: center;
+  padding: var(--primitive-space-8);
+}
+
+.fallback strong {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.fallback span {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.zoomBtn {
+  position: absolute;
+  inset-block-start: 12px;
+  inset-inline-end: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 46%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  z-index: 2;
+  transition: background 160ms ease, transform 200ms ease;
+}
+
+.zoomBtn:hover,
+.zoomBtn:focus-visible {
+  background: color-mix(in oklab, var(--primitive-canvas) 66%, transparent);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.watermark {
+  background:
+    radial-gradient(circle at 24% 22%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 58%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-teal)) 0%, var(--primitive-canvas) 100%);
+}
+
+.watermarkChip {
+  position: absolute;
+  inset-block-start: 12px;
+  inset-inline-start: 12px;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.caption {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(68px, 1fr));
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.thumb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-glass-soft);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb:hover {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 36%, transparent);
+}
+
+.thumbActive {
+  border-color: var(--primitive-amber);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+}
+
+.thumbFallback {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  color: var(--primitive-muted);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image,
+  .zoomBtn,
+  .thumb {
+    transition: none;
+  }
+  .stageZoomed .image {
+    transform: none;
+  }
+}

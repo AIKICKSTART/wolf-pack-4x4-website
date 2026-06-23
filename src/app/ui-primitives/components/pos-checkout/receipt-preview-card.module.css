@@ -1,0 +1,196 @@
+.frame {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 0% 100%, color-mix(in oklab, var(--primitive-amber) 6%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.receiptKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.frameMeta {
+  display: flex;
+  gap: var(--primitive-space-3);
+  justify-content: space-between;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.08em;
+  color: var(--primitive-muted);
+}
+
+.paper {
+  /* Skeuomorphic thermal-paper render: cream stock + warm ink, anchored to
+     central tokens via color-mix so the receipt re-tints with the palette. */
+  --receipt-paper: color-mix(in oklab, var(--primitive-amber) 16%, white);
+  --receipt-ink: color-mix(in oklab, var(--primitive-amber) 12%, black);
+  position: relative;
+  background: var(--receipt-paper);
+  color: var(--receipt-ink);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.45;
+  padding: 22px var(--primitive-space-5);
+  border-radius: var(--primitive-radius-sm);
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  box-shadow: 0 32px 60px -22px var(--primitive-media-overlay);
+  font-variant-numeric: tabular-nums;
+}
+
+.paper::before,
+.paper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 4px,
+      var(--receipt-paper) 4px 8px,
+      color-mix(in oklab, var(--receipt-ink) 4%, transparent) 8px 12px
+    );
+}
+
+.paper::before {
+  top: -6px;
+  clip-path: polygon(0 100%, 4% 0, 8% 100%, 12% 0, 16% 100%, 20% 0, 24% 100%, 28% 0, 32% 100%, 36% 0, 40% 100%, 44% 0, 48% 100%, 52% 0, 56% 100%, 60% 0, 64% 100%, 68% 0, 72% 100%, 76% 0, 80% 100%, 84% 0, 88% 100%, 92% 0, 96% 100%, 100% 0);
+}
+
+.paper::after {
+  bottom: -6px;
+  clip-path: polygon(0 0, 4% 100%, 8% 0, 12% 100%, 16% 0, 20% 100%, 24% 0, 28% 100%, 32% 0, 36% 100%, 40% 0, 44% 100%, 48% 0, 52% 100%, 56% 0, 60% 100%, 64% 0, 68% 100%, 72% 0, 76% 100%, 80% 0, 84% 100%, 88% 0, 92% 100%, 96% 0, 100% 100%);
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: var(--primitive-space-3);
+}
+
+.logo {
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--receipt-ink);
+  color: var(--receipt-paper);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.brandName {
+  margin: var(--primitive-space-2) 0 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--receipt-ink);
+}
+
+.brandTag {
+  margin: var(--primitive-space-0-5) 0 0;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px dashed color-mix(in oklab, var(--receipt-ink) 40%, transparent);
+  margin: var(--primitive-space-3) 0;
+}
+
+.lineRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-1);
+  margin-bottom: var(--primitive-space-1-5);
+}
+
+.lineTitle {
+  font-weight: 600;
+}
+
+.lineMeta {
+  font-size: 11px;
+  color: color-mix(in oklab, var(--receipt-ink) 70%, transparent);
+  grid-column: 1 / -1;
+}
+
+.linePrice {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.totalsRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--primitive-space-1);
+}
+
+.grand {
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-top: 2px solid var(--receipt-ink);
+  border-bottom: 2px solid var(--receipt-ink);
+  padding: var(--primitive-space-1-5) 0;
+  margin: var(--primitive-space-2) 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tenderRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.barcode {
+  display: grid;
+  grid-template-columns: repeat(40, 1fr);
+  height: 28px;
+  gap: var(--primitive-space-px);
+  margin: var(--primitive-space-2) auto var(--primitive-space-1);
+  max-width: 220px;
+}
+
+.barcodeBit {
+  background: var(--receipt-ink);
+}
+
+.barcodeBit[data-thin="true"] {
+  opacity: 0.55;
+}
+
+.barcodeBit[data-empty="true"] {
+  background: transparent;
+}
+
+.muted {
+  font-size: var(--primitive-text-2xs);
+  color: color-mix(in oklab, var(--receipt-ink) 66%, transparent);
+  letter-spacing: 0.1em;
+}

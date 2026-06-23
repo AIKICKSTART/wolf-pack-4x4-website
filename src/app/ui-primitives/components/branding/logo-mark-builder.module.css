@@ -1,0 +1,147 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 22px;
+  align-items: stretch;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.preview {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 30% 18%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 50%),
+    radial-gradient(circle at 80% 80%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 50%),
+    color-mix(in srgb, var(--primitive-canvas) 22%, transparent);
+  align-content: center;
+  justify-items: center;
+}
+
+.previewSvg {
+  width: min(260px, 100%);
+  height: auto;
+  filter: drop-shadow(0 18px 32px color-mix(in srgb, var(--primitive-canvas) 42%, transparent));
+}
+
+.previewMeta {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.controls {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.group {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.groupLabel {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.groupRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: 36px;
+  padding: 0 var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.pill:hover,
+.pill:focus-visible {
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.pillActive {
+  color: var(--primitive-text-on-accent);
+  border-color: var(--primitive-red);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 14%, transparent), transparent),
+    color-mix(in oklab, var(--primitive-red) 36%, transparent);
+  box-shadow: 0 10px 24px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.pillIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  color: var(--primitive-body);
+}
+
+.pillActive .pillIcon {
+  color: var(--primitive-text-on-accent);
+}
+
+.shapeThumb {
+  width: var(--primitive-icon-md);
+  height: var(--primitive-icon-md);
+}
+
+.toneSwatch {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid color-mix(in srgb, var(--primitive-canvas) 40%, transparent);
+}
+
+@media (max-width: 860px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill {
+    transition: none;
+  }
+  .pill:hover,
+  .pill:focus-visible {
+    transform: none;
+  }
+}

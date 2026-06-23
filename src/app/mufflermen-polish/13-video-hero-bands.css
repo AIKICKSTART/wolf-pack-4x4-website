@@ -1,0 +1,561 @@
+
+
+/* Prebuilt video-hero showcase bands inserted into the public homepage.
+   The heroes consume --primitive-* tokens, so they follow heritage-cream
+   (light) and mufflermen-classic (dark) automatically. This only frames them
+   into the page's editorial rhythm; .reveal handles the scroll animation. */
+.mufflermen-public .video-hero-band {
+  padding-bottom: clamp(48px, 6vw, 96px);
+}
+
+.mufflermen-public .video-hero-stage {
+  margin-top: clamp(20px, 3vw, 36px);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  box-shadow: var(--primitive-card-shadow);
+}
+
+.mufflermen-public .video-hero-stage > section {
+  max-width: none;
+  width: 100%;
+}
+
+.mufflermen-public .exhaust-video-stage {
+  border-radius: 0;
+  border-inline: 0;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.exhaust-video-hero {
+  position: relative;
+  min-height: min(820px, 78svh);
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  background: var(--surface-night);
+}
+
+.exhaust-video-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% center;
+  filter: brightness(0.78) contrast(1.12) saturate(1.05);
+}
+
+.exhaust-video-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.58) 34%, rgba(0, 0, 0, 0.18) 64%, rgba(0, 0, 0, 0.74) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.82)),
+    radial-gradient(circle at 18% 20%, rgba(0, 140, 255, 0.34), transparent 34rem);
+}
+
+.exhaust-video-shade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 96px);
+  mask-image: linear-gradient(180deg, transparent, #000 22%, #000 78%, transparent);
+}
+
+.exhaust-video-frame {
+  width: min(100% - 40px, 1400px);
+  margin-inline: auto;
+  padding-block: clamp(72px, 10vw, 132px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.72fr);
+  align-items: end;
+  gap: clamp(32px, 6vw, 96px);
+}
+
+.exhaust-video-copy {
+  max-width: 780px;
+}
+
+.exhaust-video-copy h3 {
+  max-width: 760px;
+  margin: 18px 0 22px;
+  color: #fff;
+  font-size: clamp(4.2rem, 7vw, 8.2rem);
+  line-height: 0.87;
+  text-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.42),
+    0 26px 70px rgba(0, 0, 0, 0.6);
+}
+
+.exhaust-video-copy p {
+  max-width: 620px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1rem, 1.2vw, 1.18rem);
+  line-height: 1.7;
+}
+
+.exhaust-video-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.exhaust-video-proof {
+  display: grid;
+  gap: 12px;
+  max-width: 460px;
+  margin-left: auto;
+}
+
+.exhaust-video-proof div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 16px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(90deg, rgba(0, 140, 255, 0.13), transparent 64%),
+    rgba(9, 10, 14, 0.68);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 20px 40px -32px rgba(0, 0, 0, 0.86);
+}
+
+.exhaust-video-proof span {
+  grid-row: span 2;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+}
+
+.exhaust-video-proof strong {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.exhaust-video-proof small {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+html[data-mufflermen-theme="light"] .exhaust-video-hero {
+  background: #15120e;
+}
+
+html[data-mufflermen-theme="light"] .exhaust-video-bg {
+  filter: brightness(0.88) contrast(1.1) saturate(1.04);
+}
+
+html[data-mufflermen-theme="light"] .exhaust-video-shade {
+  background:
+    linear-gradient(90deg, rgba(12, 10, 9, 0.82) 0%, rgba(12, 10, 9, 0.52) 34%, rgba(12, 10, 9, 0.12) 64%, rgba(12, 10, 9, 0.66) 100%),
+    linear-gradient(180deg, rgba(246, 239, 224, 0.08), rgba(8, 7, 6, 0.72)),
+    radial-gradient(circle at 18% 20%, rgba(154, 104, 46, 0.16), transparent 34rem);
+}
+
+html[data-mufflermen-theme="light"] .exhaust-video-proof div {
+  border-color: rgba(255, 255, 255, 0.24);
+  background:
+    linear-gradient(90deg, rgba(154, 104, 46, 0.14), rgba(255, 255, 255, 0.05) 72%),
+    rgba(28, 24, 20, 0.62);
+}
+
+@media (max-width: 980px) {
+  .exhaust-video-frame {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .exhaust-video-proof {
+    max-width: none;
+    margin-left: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .exhaust-video-hero {
+    min-height: auto;
+  }
+
+  .exhaust-video-frame {
+    width: min(100% - 32px, 1400px);
+    padding-block: 58px;
+  }
+
+  .exhaust-video-copy h3 {
+    font-size: 4rem;
+  }
+
+  .exhaust-video-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .exhaust-video-proof {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   HERITAGE-CREAM (light) CORRECTIONS
+   The dark theme applies saturated red overlays on card hover and a
+   dark footer shell + ungated white !important text. None of that was
+   overridden for light, so it read as broken on cream. Refine here.
+   Appended last so it wins on source order at equal specificity.
+   ============================================================ */
+
+/* 1 — Card hover: swap the dark-theme red FILL (.service::before) for a
+   restrained oxblood edge, and soften the hover glass sheen, so text on
+   cream keeps full contrast on hover/focus. */
+html[data-mufflermen-theme="light"] .service::before {
+  background:
+    linear-gradient(90deg, rgba(154, 104, 46, 0.1), transparent 34%),
+    radial-gradient(58% 80% at 0% 50%, rgba(154, 104, 46, 0.06), transparent 64%);
+}
+
+html[data-mufflermen-theme="light"] .service:hover::before,
+html[data-mufflermen-theme="light"] .service:focus-within::before {
+  opacity: 0.5;
+}
+
+html[data-mufflermen-theme="light"] .service:hover.glass::after,
+html[data-mufflermen-theme="light"] .service:focus-within.glass::after,
+html[data-mufflermen-theme="light"] .route-panel:hover.glass::after,
+html[data-mufflermen-theme="light"] .route-panel:focus-within.glass::after,
+html[data-mufflermen-theme="light"] .review-card:hover.glass::after,
+html[data-mufflermen-theme="light"] .feature:hover.glass::after,
+html[data-mufflermen-theme="light"] .seo-card:hover.glass::after {
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background:
+    radial-gradient(72% 64% at 18% 10%, rgba(255, 255, 255, 0.7), transparent 62%),
+    radial-gradient(62% 68% at 88% 88%, rgba(154, 104, 46, 0.12), transparent 70%),
+    linear-gradient(116deg, transparent 32%, rgba(28, 32, 38, 0.05), transparent 72%);
+}
+
+/* 2 — Footer: heritage-cream surface (was a dark shell that left the hours
+   column unreadable), with readable headings, links and muted rows. */
+html[data-mufflermen-theme="light"] .footer {
+  /* The dark-token group (cinema sections + .footer) hijacks these to white
+     for video overlays; the footer is on cream, so restore heritage tokens. */
+  --ink: #1f140d;
+  --body: #3f4751;
+  --body-strong: #232932;
+  --muted: #6f6151;
+  --hairline: rgba(60, 30, 20, 0.16);
+  color: var(--body);
+  background:
+    radial-gradient(circle at 8% 0, rgba(154, 104, 46, 0.06), transparent 26rem),
+    linear-gradient(180deg, #efe9dd 0%, #e6dfd1 100%);
+  border-top: 1px solid rgba(60, 30, 20, 0.16);
+}
+
+html[data-mufflermen-theme="light"] .footer p,
+html[data-mufflermen-theme="light"] .footer li,
+html[data-mufflermen-theme="light"] .footer a {
+  color: var(--body);
+}
+
+html[data-mufflermen-theme="light"] .footer a:hover {
+  color: var(--accent);
+}
+
+/* Override the ungated `rgba(255,255,255,.72) !important` footer whites so
+   headings + muted rows are dark on cream. */
+html[data-mufflermen-theme="light"] .footer .footer-heading {
+  color: var(--ink) !important;
+}
+
+html[data-mufflermen-theme="light"] .footer-bottom small,
+html[data-mufflermen-theme="light"] .footer-bottom .links a,
+html[data-mufflermen-theme="light"] .footer span[style*="var(--muted)"],
+html[data-mufflermen-theme="light"] .footer li[style*="var(--muted)"] {
+  color: var(--muted) !important;
+}
+
+/* 3 — Brand icons are now lucide VECTOR line-icons (the old Carbon&Red glyphs
+   were low-res raster PNGs wrapped in SVG). Crisp accent stroke, seated in a
+   refined well that reads on both cream and obsidian. */
+.brand-glyph-icon {
+  width: 34px;
+  height: 34px;
+  color: var(--accent);
+  filter: drop-shadow(0 4px 12px var(--accent-glow, rgba(0, 140, 255, 0.28)));
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Beat the legacy `.service-icon svg { width:24; color:currentColor }` rule
+   (higher specificity) so the lucide icon is accent-red at full size.
+   Colour is set explicitly per theme — `var(--accent)` resolves to the light
+   oxblood on <html> even in dark, so we pin bright signal-red for dark. */
+.service-icon .brand-glyph-icon,
+.conversion-icon .brand-glyph-icon,
+.quote-capture-icon .brand-glyph-icon {
+  width: 34px;
+  height: 34px;
+  color: var(--ink-signal);
+  stroke-width: 1.75;
+}
+
+html[data-mufflermen-theme="light"] .service-icon .brand-glyph-icon,
+html[data-mufflermen-theme="light"] .conversion-icon .brand-glyph-icon,
+html[data-mufflermen-theme="light"] .quote-capture-icon .brand-glyph-icon {
+  color: var(--ink-heritage-red);
+}
+
+.service-icon,
+.conversion-icon,
+.quote-capture-icon {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  border: 1px solid var(--hairline);
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.08), transparent 68%),
+    var(--canvas-2, rgba(255, 255, 255, 0.03));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 16px 32px -24px rgba(0, 0, 0, 0.6);
+}
+
+html[data-mufflermen-theme="light"] .service-icon,
+html[data-mufflermen-theme="light"] .conversion-icon,
+html[data-mufflermen-theme="light"] .quote-capture-icon {
+  border-color: rgba(122, 31, 31, 0.16);
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.85), rgba(255, 248, 234, 0.5) 62%),
+    rgba(255, 250, 240, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 16px 30px -24px rgba(61, 54, 44, 0.4);
+}
+
+/* Dark: carbon-fibre twill icon wells so the bright-red glyph sits on the same
+   machined material as the carbon CTA buttons. */
+html[data-mufflermen-theme="dark"] .service-icon,
+html[data-mufflermen-theme="dark"] .conversion-icon,
+html[data-mufflermen-theme="dark"] .quote-capture-icon {
+  border-color: rgba(255, 255, 255, 0.12);
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.42) 0 1px, transparent 1px 3px),
+    linear-gradient(135deg, #1b1e25 0%, #0b0c11 60%);
+  background-size: 6px 6px, 6px 6px, 100% 100%;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 14px 28px -22px rgba(0, 0, 0, 0.72);
+}
+
+.service:hover .brand-glyph-icon,
+.service:focus-within .brand-glyph-icon {
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* 4 — Carbon-fibre secondary CTAs. The chrome/secondary button now uses the
+   primitive carbon-fibre twill body + a bright chrome edge so it reads on both
+   cream sections and dark video, pairing with the metallic-red primary.
+   (--primitive-carbon-weave is scoped to the ui-primitives module, inlined.) */
+/* Exact port of the canonical `.siteButtonChrome` carbon-fibre button from the
+   /ui-primitives/actions DNA page: twin carbon-weave twills + chrome bezel +
+   teal-tinted clearcoat. Self-contained dark, so it reads on cream and
+   obsidian alike. */
+.btn-chrome {
+  color: #f7f9fb;
+  border: 1px solid rgba(188, 218, 234, 0.52);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.035) 24%, rgba(0, 0, 0, 0.62) 100%),
+    linear-gradient(103deg, transparent 0 37%, rgba(255, 255, 255, 0.2) 48%, rgba(88, 190, 244, 0.12) 54%, transparent 68%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 5px, rgba(0, 0, 0, 0.48) 5px 7px, transparent 7px 11px),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 5px, rgba(0, 0, 0, 0.52) 5px 7px, transparent 7px 11px),
+    linear-gradient(135deg, #030508 0%, #0d141c 48%, #020306 100%);
+  background-color: #04060a;
+  background-size: auto, auto, 12px 12px, 12px 12px, auto;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.56),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.82),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.09),
+    0 18px 38px rgba(0, 0, 0, 0.42),
+    0 0 30px rgba(104, 191, 238, 0.16);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 8px rgba(255, 255, 255, 0.16);
+}
+
+.btn-chrome:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in oklab, var(--accent) 46%, rgba(188, 218, 234, 0.52));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 20px 42px rgba(0, 0, 0, 0.5),
+    0 0 34px rgba(104, 191, 238, 0.22);
+}
+
+/* On dark video, secondary GHOST buttons stay frosted glass (carbon would
+   vanish); the carbon chrome button already reads via its chrome edge. */
+.hero-cinema .btn-ghost,
+.rollout-main .btn-ghost {
+  border-color: rgba(255, 255, 255, 0.34);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05)),
+    rgba(12, 12, 16, 0.34);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.hero-cinema .btn-ghost:hover,
+.rollout-main .btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1)),
+    rgba(12, 12, 16, 0.42);
+}
+
+/* ============================================================
+   CANONICAL CTA BUTTONS — ported verbatim from /ui-primitives/actions
+   (siteButtonRed / siteButtonChrome / siteButtonGhost). Applied to the public
+   homepage CTAs IDENTICALLY in light + dark. High specificity + !important so
+   they beat the theme-gated `.btn` treatments (the dark cream-chrome rule).
+   ============================================================ */
+html .mufflermen-public .btn.btn-red {
+  color: #fff !important;
+  border: 1px solid var(--accent-deep, #005bd1) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 46%),
+    radial-gradient(circle at 30% 0%, #ff6b70, transparent 38%),
+    linear-gradient(180deg, var(--ink-signal), #005bd1) !important;
+  background-color: #005bd1 !important;
+  box-shadow:
+    0 18px 42px rgba(0, 140, 255, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38) !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.34) !important;
+}
+
+html .mufflermen-public .btn.btn-chrome {
+  color: #f7f9fb !important;
+  border: 1px solid rgba(188, 218, 234, 0.52) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.035) 24%, rgba(0, 0, 0, 0.62) 100%),
+    linear-gradient(103deg, transparent 0 37%, rgba(255, 255, 255, 0.2) 48%, rgba(88, 190, 244, 0.12) 54%, transparent 68%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 5px, rgba(0, 0, 0, 0.48) 5px 7px, transparent 7px 11px),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 5px, rgba(0, 0, 0, 0.52) 5px 7px, transparent 7px 11px),
+    linear-gradient(135deg, #030508 0%, #0d141c 48%, #020306 100%) !important;
+  background-color: #04060a !important;
+  background-size: auto, auto, 12px 12px, 12px 12px, auto !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.56),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.82),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.09),
+    0 18px 38px rgba(0, 0, 0, 0.42),
+    0 0 30px rgba(104, 191, 238, 0.16) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 8px rgba(255, 255, 255, 0.16) !important;
+}
+
+html .mufflermen-public .btn.btn-ghost {
+  color: var(--ink) !important;
+  border: 1px solid var(--hairline, rgba(255, 255, 255, 0.18)) !important;
+  background: color-mix(in srgb, var(--ink) 5%, transparent) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  backdrop-filter: blur(14px) !important;
+  text-shadow: none !important;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ink) 8%, transparent) !important;
+}
+
+/* Over the dark cinema video, ghost stays white-on-glass regardless of theme. */
+html .mufflermen-public .hero-cinema .btn.btn-ghost,
+html .mufflermen-public .hero-row .btn.btn-ghost,
+html .mufflermen-public .rollout-cinema .btn.btn-ghost {
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.34) !important;
+  background: rgba(12, 12, 16, 0.34) !important;
+}
+
+html .mufflermen-public .btn.btn-red:hover,
+html .mufflermen-public .btn.btn-chrome:hover,
+html .mufflermen-public .btn.btn-ghost:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+html .mufflermen-public .btn.btn-chrome .arrow,
+html .mufflermen-public .btn.btn-red .arrow {
+  color: currentColor !important;
+  border-color: currentColor !important;
+}
+
+/* 5 — Brand tag pills → premium Badge feel: rounded pill, soft tone surface,
+   subtle red lift on the accent variant. */
+.tag {
+  border-radius: 999px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.tag.red {
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 140, 255, 0.14),
+    0 8px 18px -12px rgba(0, 140, 255, 0.45);
+}
+
+html[data-mufflermen-theme="light"] .tag {
+  border-color: rgba(122, 31, 31, 0.18);
+  background: rgba(122, 31, 31, 0.05);
+  color: var(--body-strong);
+}
+
+html[data-mufflermen-theme="light"] .tag.red {
+  color: var(--accent);
+  border-color: rgba(0, 140, 255, 0.3);
+  background: rgba(0, 140, 255, 0.07);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 140, 255, 0.12),
+    0 8px 18px -12px rgba(0, 140, 255, 0.32);
+}
+
+/* 6 — Capability marquee: soft fade edges (was a hard cut) + readable heritage
+   ink in light (base white was near-invisible on cream). */
+.marquee {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+
+html[data-mufflermen-theme="light"] .marquee span {
+  color: rgba(42, 29, 18, 0.55);
+}
+
+/* 7 — Review avatars carried an empty chrome disc; seat a brand glyph in it. */
+.avatar.chrome-plate {
+  display: grid;
+  place-items: center;
+}
+
+.avatar-glyph {
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+  opacity: 0.92;
+}

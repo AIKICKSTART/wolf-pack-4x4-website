@@ -1,0 +1,30 @@
+/* Trigger node — wraps shared node chassis with trigger-specific accents. */
+
+.pulseDot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primitive-amber);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primitive-amber) 70%, transparent);
+}
+
+.pulseDot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  animation: triggerPulse 1.8s ease-out infinite;
+}
+
+@keyframes triggerPulse {
+  0% { transform: scale(0.85); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulseDot::after {
+    animation: none;
+  }
+}

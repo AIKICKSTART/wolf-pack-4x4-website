@@ -1,0 +1,257 @@
+/* =========================================================
+   AUTH SHELL — split-screen brand x form composition
+   left: editorial brand panel w/ grain + ambient gradient
+   right: glass form surface anchored center
+   ========================================================= */
+
+.shell {
+  --auth-accent: var(--primitive-red);
+  --auth-accent-soft: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  --auth-ink: var(--primitive-body);
+  --auth-haze: color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  min-height: 760px;
+  height: calc(100svh - 4rem);
+  max-height: 980px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-panel-strong);
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 32px 78px color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+}
+
+.shell.toneAmber {
+  --auth-accent: var(--primitive-amber);
+  --auth-accent-soft: color-mix(in oklab, var(--primitive-amber) 34%, transparent);
+}
+
+.shell.toneTeal {
+  --auth-accent: var(--primitive-teal);
+  --auth-accent-soft: color-mix(in oklab, var(--primitive-teal) 34%, transparent);
+}
+
+/* ───── brand pane ───── */
+
+.brandPane {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--primitive-space-7);
+  padding: clamp(28px, 3vw, 48px);
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 78% 0%, var(--auth-accent-soft), transparent 56%),
+    radial-gradient(ellipse at 10% 100%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 50%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-canvas) 20%, transparent)),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 92%, var(--primitive-text-strong)) 0%, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-text-strong)) 50%, var(--primitive-canvas) 100%);
+  overflow: hidden;
+}
+
+.brandPane::before {
+  /* faint scanline atmosphere */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 2px,
+    color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent) 2px 3px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.brandPane::after {
+  /* film grain */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='220' height='220' filter='url(%23g)'/></svg>");
+  background-size: 220px 220px;
+}
+
+.brandPane > * {
+  position: relative;
+  z-index: 2;
+}
+
+.brandHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+}
+
+.brandLockup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.brandBadge {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--primitive-radius-md);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  letter-spacing: 0.04em;
+  color: var(--primitive-canvas);
+  background: linear-gradient(135deg, var(--auth-accent), var(--primitive-amber));
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 18%, transparent), 0 12px 26px color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+}
+
+.brandStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.brandStatus::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  animation: pulseDot 2.4s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.18); }
+}
+
+.brandBody {
+  align-self: end;
+  display: grid;
+  gap: 22px;
+  max-width: 36ch;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--auth-accent);
+}
+
+.kicker::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--auth-accent), transparent);
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(40px, 5.4vw, 84px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 6px 24px color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.tagline {
+  margin: 0;
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.6;
+  color: var(--auth-ink);
+  max-width: 42ch;
+}
+
+.brandFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+  padding-top: 18px;
+  border-top: 1px solid var(--primitive-line-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.buttonDnaLink {
+  min-height: 32px;
+  padding-inline: 10px;
+}
+
+.brandFootSlot {
+  margin-top: 14px;
+}
+
+/* ───── form pane ───── */
+
+.formPane {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: clamp(32px, 4vw, 64px);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 36%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+}
+
+.formInner {
+  width: 100%;
+  max-width: 460px;
+}
+
+@media (max-width: 920px) {
+  .shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: auto;
+    max-height: none;
+  }
+
+  .brandPane {
+    min-height: 340px;
+    padding: var(--primitive-space-7) var(--primitive-space-6) var(--primitive-space-8);
+  }
+
+  .brandPane::before {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brandStatus::before {
+    animation: none;
+  }
+}

@@ -1,0 +1,62 @@
+.card {
+  display: grid;
+  gap: 0;
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  border-radius: var(--primitive-radius-xl);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 100% 100%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 50%),
+    var(--primitive-panel);
+}
+
+.visual {
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: var(--primitive-space-4);
+  min-height: 220px;
+  padding: var(--primitive-space-7);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 50% 100%, color-mix(in oklab, var(--primitive-amber) 18%, transparent), transparent 60%),
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-teal) 22%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-canvas) 62%, transparent);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.visualGlow {
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(
+    from 0deg,
+    color-mix(in oklab, var(--primitive-teal) 20%, transparent),
+    color-mix(in oklab, var(--primitive-amber) 18%, transparent),
+    color-mix(in oklab, var(--primitive-red) 16%, transparent),
+    color-mix(in oklab, var(--primitive-teal) 20%, transparent)
+  );
+  filter: blur(48px);
+  opacity: 0.46;
+  z-index: -1;
+  animation: orbit 28s linear infinite;
+}
+
+.visualPlate {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-text-strong);
+  text-transform: uppercase;
+  text-shadow: 0 4px 14px color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+}
+
+@keyframes orbit {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visualGlow {
+    animation: none;
+  }
+}

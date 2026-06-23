@@ -1,0 +1,175 @@
+.palette {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--primitive-space-0);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    radial-gradient(ellipse at 80% -20%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 50%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  overflow: hidden;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 32px 60px color-mix(in oklab, var(--primitive-recessed) 100%, transparent);
+  max-height: 540px;
+  font-variant-numeric: tabular-nums;
+}
+
+.closed {
+  opacity: 0.5;
+  filter: saturate(0.6);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 16px 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-3) var(--primitive-space-4);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.searchIcon {
+  color: var(--primitive-muted);
+}
+
+.input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.005em;
+  caret-color: var(--primitive-teal);
+  width: 100%;
+}
+
+.input::placeholder {
+  color: var(--primitive-muted);
+}
+
+.shortcut {
+  display: inline-flex;
+}
+
+.list {
+  overflow-y: auto;
+  padding: var(--primitive-space-2) var(--primitive-space-1-5);
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.section {
+  padding: var(--primitive-space-1) 0;
+}
+
+.sectionHead {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  margin: var(--primitive-space-1) var(--primitive-space-3) var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-weight: var(--primitive-weight-medium);
+}
+
+.sectionList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-px);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+
+.item:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.itemActive {
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  outline: 1px solid color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+
+.itemSuggestion {
+  background: linear-gradient(90deg, color-mix(in oklab, color-mix(in oklab, var(--primitive-teal) 58%, var(--primitive-red)) 8%, transparent), transparent 80%);
+  border: 1px solid color-mix(in oklab, color-mix(in oklab, var(--primitive-teal) 58%, var(--primitive-red)) 22%, transparent);
+}
+
+.itemBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.itemLabel {
+  color: var(--primitive-text-strong);
+  font-size: 13.5px;
+  font-weight: var(--primitive-weight-medium);
+  letter-spacing: 0.005em;
+}
+
+.itemHint {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--primitive-muted);
+}
+
+.itemShortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+}
+
+.empty {
+  margin: 0;
+  padding: var(--primitive-space-6) var(--primitive-space-4);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+  text-align: center;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border-top: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+  flex-wrap: wrap;
+}
+
+.footHint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
+}

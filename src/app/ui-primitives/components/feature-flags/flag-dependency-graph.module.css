@@ -1,0 +1,74 @@
+.graph {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 40%),
+    var(--primitive-panel);
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  color: var(--primitive-muted);
+}
+
+.cycleChip {
+  margin: var(--primitive-space-0);
+  width: max-content;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.edge {
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 24%, transparent);
+  stroke-width: 1.5;
+  color: color-mix(in oklab, var(--primitive-text-strong) 24%, transparent);
+}
+
+.node {
+  --node-color: var(--primitive-body);
+  --node-bg: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: var(--node-color);
+}
+
+.nodeCircle {
+  fill: var(--node-bg);
+  stroke: var(--node-color);
+  stroke-width: 1.5;
+}
+
+.nodeLabel {
+  fill: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.toneNeutral { --node-color: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent); --node-bg: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent); }
+.toneRed { --node-color: var(--primitive-red); --node-bg: color-mix(in oklab, var(--primitive-red) 16%, transparent); }
+.toneAmber { --node-color: var(--primitive-amber); --node-bg: color-mix(in oklab, var(--primitive-amber) 16%, transparent); }
+.toneTeal { --node-color: var(--primitive-teal); --node-bg: color-mix(in oklab, var(--primitive-teal) 16%, transparent); }
+.toneGreen { --node-color: var(--primitive-green); --node-bg: color-mix(in oklab, var(--primitive-green) 16%, transparent); }
+
+.nodeKilled .nodeCircle {
+  stroke-dasharray: 4 3;
+  stroke: var(--primitive-red);
+  fill: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+}
+
+.nodeKilled .nodeLabel {
+  fill: var(--primitive-red);
+  text-decoration: line-through;
+}

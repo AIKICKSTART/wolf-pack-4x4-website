@@ -1,0 +1,299 @@
+/* ── 27 - button contrast (owner rule: never red beside red) ──────
+   Every button/link group carries AT MOST one obsidium-red CTA; the
+   rest of the group wears a contrasting style from the existing DNA:
+     red    = --cta-red-* tokens (24-brand-consistency.css)
+     carbon = the .btn-chrome carbon weave (13-video-hero-bands:458)
+     chrome = the silver .btn-chrome recipe (mufflermen/03-buttons.css)
+     ghost  = hairline glass (.seo-cta-ghost family, 26-presentation)
+   Fixes here:
+     A. contact band: address/phone/email become quiet carbon rows,
+        "Send vehicle details" stays the single red.
+     B. conversion dock (home + seo + >=1024 side rail): CALL red,
+        QUOTE carbon, PARTS chrome, MAP ghost (data-tone hooks).
+     C. link clouds: quiet chips, only .seo-link-cloud-primary is red.
+     D. homepage blog head "All articles": ghost (cards keep one red).
+   Carbon + chrome are dark/metal plates so they read on heritage
+   cream as-is; light theme only retunes the ghost hairlines. */
+
+:root {
+  --cta-carbon-border: rgba(188, 218, 234, 0.52);
+  --cta-carbon-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.035) 24%, rgba(0, 0, 0, 0.62) 100%),
+    linear-gradient(103deg, transparent 0 37%, rgba(255, 255, 255, 0.2) 48%, rgba(88, 190, 244, 0.12) 54%, transparent 68%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 5px, rgba(0, 0, 0, 0.48) 5px 7px, transparent 7px 11px),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 5px, rgba(0, 0, 0, 0.52) 5px 7px, transparent 7px 11px),
+    linear-gradient(135deg, #030508 0%, #0d141c 48%, #020306 100%);
+  --cta-carbon-bg-size: auto, auto, 12px 12px, 12px 12px, auto;
+  /* lower-key weave for non-CTA plates (contact rows, chips) */
+  --cta-carbon-quiet-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.012) 30%, rgba(0, 0, 0, 0.4) 100%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 5px, rgba(0, 0, 0, 0.4) 5px 7px, transparent 7px 11px),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 5px, rgba(0, 0, 0, 0.42) 5px 7px, transparent 7px 11px),
+    linear-gradient(135deg, #07090d 0%, #0c1118 52%, #05070a 100%);
+  --cta-carbon-quiet-bg-size: auto, 12px 12px, 12px 12px, auto;
+  --cta-chrome-border: rgba(255, 255, 255, 0.6);
+  --cta-chrome-bg:
+    linear-gradient(180deg, #fafbff 0%, #e8eaef 22%, #cfd2da 48%, #aeb1ba 70%, #8e9199 100%);
+  --cta-chrome-bg-hover:
+    linear-gradient(180deg, #ffffff 0%, #f0f2f7 22%, #d8dbe3 48%, #b8bbc4 70%, #989ba3 100%);
+  --cta-chrome-shadow:
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.32),
+    0 14px 30px -12px rgba(0, 0, 0, 0.55);
+}
+
+/* ── A. Contact band: quiet carbon rows + one red CTA ──────────────
+   22-cta-buttons paints every .seo-contact-card a red (four stacked
+   red bars). The three contact rows step down to quiet carbon plates
+   with mono text; the trailing "Send vehicle details" link keeps the
+   canonical red from 22. */
+.seo-contact-card a.seo-contact-row,
+html[data-mufflermen-theme="light"] .seo-contact-card a.seo-contact-row {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  gap: 10px;
+  min-height: 46px;
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: #e9e5db;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--cta-carbon-quiet-bg);
+  background-color: #07090d;
+  background-size: var(--cta-carbon-quiet-bg-size);
+  text-shadow: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* the liquid red shine pseudo (04-public-contact-forms) reads as a
+   red hover on what must stay a quiet row - off for these three */
+.seo-contact-card a.seo-contact-row::before {
+  display: none;
+}
+
+.seo-contact-card a.seo-contact-row:hover,
+.seo-contact-card a.seo-contact-row:focus-visible,
+html[data-mufflermen-theme="light"] .seo-contact-card a.seo-contact-row:hover,
+html[data-mufflermen-theme="light"] .seo-contact-card a.seo-contact-row:focus-visible {
+  color: #ffffff;
+  border-color: var(--cta-carbon-border);
+  background: var(--cta-carbon-quiet-bg);
+  background-color: #07090d;
+  background-size: var(--cta-carbon-quiet-bg-size);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.5),
+    0 0 22px -8px rgba(104, 191, 238, 0.3);
+}
+
+.seo-contact-card a.seo-contact-row:focus-visible,
+html[data-mufflermen-theme="light"] .seo-contact-card a.seo-contact-row:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent, #008cff) 70%, transparent);
+  outline-offset: 2px;
+}
+
+/* ── B. Conversion dock: CALL red / QUOTE carbon / PARTS chrome /
+   MAP ghost. Covers the home dock, the seo dock and the >=1024
+   side-rail variant (same anchors). 09-public-theme-contract still
+   paints a:nth-child(2) red positionally - the tone selectors below
+   load later at equal-or-higher specificity and win. */
+.public-conversion-dock a[data-tone="carbon"],
+html[data-mufflermen-theme="light"] .public-conversion-dock a[data-tone="carbon"] {
+  color: #f7f9fb;
+  border-color: var(--cta-carbon-border);
+  background: var(--cta-carbon-bg);
+  background-color: #04060a;
+  background-size: var(--cta-carbon-bg-size);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.72),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 10px 24px -16px rgba(0, 0, 0, 0.6),
+    0 0 18px rgba(104, 191, 238, 0.14);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 8px rgba(255, 255, 255, 0.16);
+}
+
+.public-conversion-dock a[data-tone="carbon"]:hover,
+.public-conversion-dock a[data-tone="carbon"]:focus-visible {
+  color: #ffffff;
+  border-color: color-mix(in oklab, var(--accent) 46%, rgba(188, 218, 234, 0.52));
+  background: var(--cta-carbon-bg);
+  background-color: #04060a;
+  background-size: var(--cta-carbon-bg-size);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.72),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 12px 26px -16px rgba(0, 0, 0, 0.7),
+    0 0 22px rgba(104, 191, 238, 0.22);
+}
+
+.public-conversion-dock a[data-tone="chrome"],
+html[data-mufflermen-theme="light"] .public-conversion-dock a[data-tone="chrome"] {
+  color: #0a0a0a;
+  border-color: var(--cta-chrome-border);
+  background: var(--cta-chrome-bg);
+  background-color: #cfd2da;
+  box-shadow: var(--cta-chrome-shadow);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.public-conversion-dock a[data-tone="chrome"]:hover,
+.public-conversion-dock a[data-tone="chrome"]:focus-visible,
+html[data-mufflermen-theme="light"] .public-conversion-dock a[data-tone="chrome"]:hover,
+html[data-mufflermen-theme="light"] .public-conversion-dock a[data-tone="chrome"]:focus-visible {
+  color: #0a0a0a;
+  border-color: rgba(255, 255, 255, 0.78);
+  background: var(--cta-chrome-bg-hover);
+  background-color: #d8dbe3;
+  box-shadow: var(--cta-chrome-shadow);
+}
+
+.public-conversion-dock a[data-tone="ghost"] {
+  color: rgba(255, 255, 255, 0.88);
+  border-color: rgba(255, 255, 255, 0.3);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)),
+    rgba(12, 12, 16, 0.3);
+  box-shadow: none;
+}
+
+.public-conversion-dock a[data-tone="ghost"]:hover,
+.public-conversion-dock a[data-tone="ghost"]:focus-visible {
+  color: #ffffff;
+  border-color: color-mix(in srgb, var(--accent, #008cff) 56%, transparent);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
+    rgba(12, 12, 16, 0.38);
+}
+
+html[data-mufflermen-theme="light"] .public-conversion-dock a[data-tone="ghost"] {
+  color: #33271b;
+  border-color: rgba(61, 45, 31, 0.42);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.66), rgba(255, 248, 234, 0.3)),
+    rgba(255, 252, 246, 0.6);
+}
+
+html[data-mufflermen-theme="light"] .public-conversion-dock a[data-tone="ghost"]:hover,
+html[data-mufflermen-theme="light"] .public-conversion-dock a[data-tone="ghost"]:focus-visible {
+  color: #1c150e;
+  border-color: rgba(159, 21, 29, 0.46);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(245, 226, 205, 0.62)),
+    rgba(255, 252, 246, 0.82);
+}
+
+/* ── C. Link clouds: a wall of adjacent red chips breaks the rule
+   hardest. Chips step down to quiet plates; the one designated
+   primary chip ("View all service areas") keeps the canonical red.
+   Parts pages in light theme already get the cream !important
+   treatment from 12-dark-floor and are untouched. */
+.seo-link-cloud a:not(.seo-link-cloud-primary) {
+  color: #e9e5db;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: var(--cta-carbon-quiet-bg);
+  background-color: #07090d;
+  background-size: var(--cta-carbon-quiet-bg-size);
+  text-shadow: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.seo-link-cloud a:not(.seo-link-cloud-primary):hover,
+.seo-link-cloud a:not(.seo-link-cloud-primary):focus-visible {
+  color: #ffffff;
+  border-color: var(--cta-carbon-border);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 18px -8px rgba(104, 191, 238, 0.32);
+}
+
+html[data-mufflermen-theme="light"] .seo-link-cloud a:not(.seo-link-cloud-primary) {
+  color: #33271b;
+  border-color: rgba(61, 45, 31, 0.4);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 248, 234, 0.34)),
+    rgba(255, 250, 240, 0.78);
+  background-size: auto;
+  text-shadow: none;
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.86),
+    inset -1px -1px 0 rgba(61, 54, 44, 0.08);
+}
+
+html[data-mufflermen-theme="light"] .seo-link-cloud a:not(.seo-link-cloud-primary):hover,
+html[data-mufflermen-theme="light"] .seo-link-cloud a:not(.seo-link-cloud-primary):focus-visible {
+  color: #1c150e;
+  border-color: rgba(159, 21, 29, 0.46);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.86),
+    0 10px 26px -18px rgba(190, 0, 16, 0.4);
+}
+
+.seo-link-cloud a:not(.seo-link-cloud-primary):focus-visible,
+html[data-mufflermen-theme="light"] .seo-link-cloud a:not(.seo-link-cloud-primary):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent, #008cff) 70%, transparent);
+  outline-offset: 2px;
+}
+
+/* current catalogue page: red hairline marker, not a red fill */
+.seo-link-cloud a:not(.seo-link-cloud-primary)[aria-current="page"],
+html[data-mufflermen-theme="light"] .seo-link-cloud a:not(.seo-link-cloud-primary)[aria-current="page"] {
+  border-color: color-mix(in srgb, var(--accent, #008cff) 64%, transparent);
+}
+
+/* the single allowed red chip aligns to the canonical red tokens */
+html .seo-link-cloud a.seo-link-cloud-primary,
+html[data-mufflermen-theme="light"] .seo-link-cloud a.seo-link-cloud-primary {
+  color: #fff;
+  border-color: var(--cta-red-border);
+  background: var(--cta-red-bg);
+  background-color: #3f1fbf;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+html .seo-link-cloud a.seo-link-cloud-primary:hover,
+html .seo-link-cloud a.seo-link-cloud-primary:focus-visible {
+  background: var(--cta-red-bg-hover);
+  background-color: #005bd1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ── D. Homepage blog column: the "All articles" head link sat in
+   the same red as every card's "Read article" CTA below it. Head
+   link goes ghost; each card keeps its single red. */
+.homepage-cms-post-head a,
+html[data-mufflermen-theme="light"] .homepage-cms-post-head a {
+  color: var(--ink, #e9e5db);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: color-mix(in srgb, var(--ink, #fff) 5%, transparent);
+  text-shadow: none;
+  box-shadow: none;
+}
+
+html[data-mufflermen-theme="light"] .homepage-cms-post-head a {
+  border-color: rgba(61, 45, 31, 0.46);
+}
+
+.homepage-cms-post-head a:hover,
+.homepage-cms-post-head a:focus-visible,
+html[data-mufflermen-theme="light"] .homepage-cms-post-head a:hover,
+html[data-mufflermen-theme="light"] .homepage-cms-post-head a:focus-visible {
+  color: var(--ink, #fff);
+  border-color: color-mix(in srgb, var(--accent, #008cff) 64%, transparent);
+  background: color-mix(in srgb, var(--accent, #008cff) 8%, transparent);
+  box-shadow: none;
+}
+
+.homepage-cms-post-head a:focus-visible,
+html[data-mufflermen-theme="light"] .homepage-cms-post-head a:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent, #008cff) 70%, transparent);
+  outline-offset: 2px;
+}

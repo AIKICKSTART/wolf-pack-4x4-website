@@ -1,0 +1,119 @@
+.host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: var(--primitive-space-3) var(--primitive-space-3) 0;
+  pointer-events: none;
+}
+
+.toast {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-3) var(--primitive-space-3) var(--primitive-space-3) 14px;
+  border-radius: var(--primitive-radius-xl);
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    var(--primitive-panel-strong);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 36px color-mix(in oklab, var(--primitive-canvas) 45%, transparent);
+  color: var(--primitive-text-strong);
+  pointer-events: auto;
+  transform: translateY(-130%);
+  opacity: 0;
+  transition: transform 280ms var(--primitive-ease-out), opacity 200ms ease;
+}
+
+.toastOpen {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.toneInfo .icon {
+  color: var(--primitive-teal);
+}
+
+.toneSuccess .icon {
+  color: var(--primitive-green);
+}
+
+.toneWarning .icon {
+  color: var(--primitive-amber);
+}
+
+.toneError .icon {
+  color: var(--primitive-red);
+}
+
+.toneSuccess {
+  border-color: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+}
+
+.toneWarning {
+  border-color: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.toneError {
+  border-color: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.005em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.4;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+}
+
+.close {
+  appearance: none;
+  width: var(--primitive-space-6);
+  height: var(--primitive-space-6);
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: var(--primitive-muted);
+  border: 0;
+  cursor: pointer;
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
+  }
+}

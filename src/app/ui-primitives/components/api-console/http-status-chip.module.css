@@ -1,0 +1,66 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2) var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border: 1px solid var(--chip-line, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--chip-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--chip-fg, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.compact {
+  padding-right: var(--primitive-space-1-5);
+}
+
+.dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--chip-fg, var(--primitive-body));
+  box-shadow: 0 0 0 3px var(--chip-halo, transparent);
+}
+
+.code {
+  letter-spacing: 0.06em;
+}
+
+.reason {
+  color: var(--chip-fg-soft, color-mix(in oklab, var(--chip-fg, currentColor), transparent 30%));
+  letter-spacing: 0.06em;
+}
+
+.tone2xx {
+  --chip-line: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  --chip-fg: var(--primitive-green);
+  --chip-halo: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+.tone3xx {
+  --chip-line: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --chip-fg: var(--primitive-teal);
+  --chip-halo: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+}
+
+.tone4xx {
+  --chip-line: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  --chip-fg: var(--primitive-amber);
+  --chip-halo: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.tone5xx {
+  --chip-line: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  --chip-fg: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-text-strong));
+  --chip-halo: color-mix(in oklab, var(--primitive-red) 24%, transparent);
+}

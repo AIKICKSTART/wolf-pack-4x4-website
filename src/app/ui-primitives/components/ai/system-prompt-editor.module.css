@@ -1,0 +1,175 @@
+.panel {
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 55%),
+    var(--primitive-surface-2);
+  box-shadow: inset 0 1px 0 var(--primitive-neumo-light);
+  font-family: var(--primitive-font-body);
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-3) var(--primitive-space-3);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+
+.head:hover {
+  background: var(--primitive-field-bg);
+}
+
+.head:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: -2px;
+}
+
+.icon {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in srgb, var(--primitive-amber) 15%, transparent);
+  color: var(--primitive-amber);
+}
+
+.headMeta {
+  display: grid;
+  gap: 0;
+  flex: 1 1 auto;
+}
+
+.kicker {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.subhead {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+}
+
+.caret {
+  color: var(--primitive-muted);
+  transition: transform 200ms ease;
+}
+
+.caretOpen {
+  transform: rotate(180deg);
+  color: var(--primitive-amber);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+}
+
+.fieldLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.counter {
+  color: var(--primitive-amber);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 132px;
+  padding: var(--primitive-space-3) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font: inherit;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--primitive-focus-ring);
+  background: var(--primitive-field-hover);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.resetBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  min-height: 30px;
+  padding: 0 var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-surface-3);
+  color: var(--primitive-body);
+  font: inherit;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.resetBtn:hover:not(:disabled),
+.resetBtn:focus-visible:not(:disabled) {
+  color: var(--primitive-amber);
+  border-color: color-mix(in srgb, var(--primitive-amber) 45%, transparent);
+  background: var(--primitive-surface-hover);
+  outline: none;
+}
+
+.resetBtn:focus-visible:not(:disabled) {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.resetBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret,
+  .textarea,
+  .resetBtn {
+    transition: none;
+  }
+}

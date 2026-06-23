@@ -1,0 +1,108 @@
+.surface {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-card-bg);
+}
+
+.header {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  color: var(--primitive-text-strong);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+.swatch {
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-md);
+  background: var(--swatch-color, var(--primitive-canvas));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 16%, transparent),
+    0 6px 18px var(--primitive-recessed);
+}
+
+.info {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.hex {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.08em;
+}
+
+.role {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.copyBtn:hover {
+  background: var(--primitive-glass-strong);
+  color: var(--primitive-text-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copyBtn {
+    transition: none;
+  }
+}

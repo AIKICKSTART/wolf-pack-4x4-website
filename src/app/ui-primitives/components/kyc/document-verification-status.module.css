@@ -1,0 +1,178 @@
+.card {
+  --tone-color: var(--primitive-amber);
+  --tone-surface: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  --tone-line: color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--tone-line);
+  border-left: 3px solid var(--tone-color);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--tone-surface), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.tone_pending {
+  --tone-color: var(--primitive-muted);
+  --tone-surface: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  --tone-line: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+}
+
+.tone_review {
+  --tone-color: var(--primitive-amber);
+  --tone-surface: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  --tone-line: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+}
+
+.tone_approved {
+  --tone-color: var(--primitive-green);
+  --tone-surface: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  --tone-line: color-mix(in oklab, var(--primitive-green) 36%, transparent);
+}
+
+.tone_rejected {
+  --tone-color: var(--primitive-red);
+  --tone-surface: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  --tone-line: color-mix(in oklab, var(--primitive-red) 36%, transparent);
+}
+
+.tone_action {
+  --tone-color: var(--primitive-teal);
+  --tone-surface: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --tone-line: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: flex-start;
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  color: var(--tone-color);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+.reference {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 5px var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--tone-line);
+  background: var(--tone-surface);
+  color: var(--tone-color);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.statusGlyph {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-recessed);
+  color: var(--tone-color);
+}
+
+.body {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+.etaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  font-family: var(--primitive-font-mono);
+}
+
+.etaLabel {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.etaValue {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.05em;
+}
+
+.reviewer {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+}
+
+.reviewerLabel {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.reviewerName {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.reviewerTeam {
+  font-size: 11px;
+  color: var(--primitive-muted);
+}

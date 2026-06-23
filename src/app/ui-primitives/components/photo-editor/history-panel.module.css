@@ -1,0 +1,177 @@
+.panel {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--primitive-space-2-5);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+}
+
+.title {
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.list {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1) 0;
+  overflow-y: auto;
+  max-height: 360px;
+  scrollbar-width: thin;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 28px 38px minmax(0, 1fr) auto;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-recessed);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-standard), background var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.step:hover,
+.step:focus-visible {
+  border-color: var(--primitive-line-strong);
+  outline: none;
+  background: var(--primitive-glass-soft);
+}
+
+.stepCurrent {
+  border-color: var(--primitive-teal);
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--primitive-teal) 18%, transparent),
+      color-mix(in oklab, var(--primitive-teal) 4%, transparent));
+}
+
+.stepFuture {
+  opacity: 0.46;
+}
+
+.idx {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--primitive-glass-strong);
+  border: 1px solid var(--primitive-line);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  color: var(--primitive-text-strong);
+}
+
+.idxCurrent {
+  background: var(--primitive-teal);
+  border-color: var(--primitive-teal);
+  color: var(--primitive-canvas);
+}
+
+.snap {
+  position: relative;
+  width: 38px;
+  height: 28px;
+  border-radius: var(--primitive-radius-sm);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-teal) 40%, transparent), color-mix(in oklab, var(--primitive-amber) 32%, transparent)),
+    var(--primitive-panel-strong);
+  border: 1px solid var(--primitive-line-strong);
+}
+
+.snap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 6px, var(--primitive-glass-strong) 6px 7px);
+  mix-blend-mode: overlay;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.time {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  white-space: nowrap;
+}
+
+.jumpBtn {
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: var(--primitive-space-0-5);
+  width: max-content;
+}
+
+.stepCurrent .jumpBtn {
+  border-color: var(--primitive-teal);
+  color: var(--primitive-text-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    transition: none;
+  }
+}

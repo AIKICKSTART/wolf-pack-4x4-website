@@ -1,0 +1,216 @@
+.block {
+  display: grid;
+  gap: 18px;
+}
+
+.head {
+  display: grid;
+  gap: 6px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  line-height: 1.1;
+}
+
+.desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+  max-width: 62ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--plan-count, 3), minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.plan {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+}
+
+.planRecommended {
+  border-color: var(--primitive-amber);
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-canvas) 95%, transparent);
+  box-shadow: 0 24px 60px color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  transform: translateY(-4px);
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 12px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-amber);
+  color: var(--primitive-canvas);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+}
+
+.planHead {
+  display: grid;
+  gap: 6px;
+}
+
+.planTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.tagline {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.price {
+  margin: 8px 0 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.price strong {
+  font-family: var(--primitive-font-display);
+  font-size: 32px;
+  letter-spacing: var(--primitive-tracking-normal);
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.priceUnit {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.features {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 13px;
+  color: var(--primitive-body);
+  line-height: 1.45;
+}
+
+.featureIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  color: var(--primitive-green);
+}
+
+.featureDisabled {
+  color: var(--primitive-muted);
+  text-decoration: line-through;
+}
+
+.featureDisabled .featureIcon {
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+}
+
+/* Default plan CTA — shared carbon secondary button DNA */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 var(--primitive-space-5);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    background var(--primitive-duration-fast) var(--primitive-ease-standard),
+    color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  border-color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, var(--primitive-btn-secondary-bg));
+  outline: none;
+}
+
+/* Recommended plan CTA — shared metallic primary button DNA (red → amber hover) */
+.planRecommended .cta {
+  background: var(--primitive-btn-primary-bg);
+  border-color: transparent;
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.planRecommended .cta:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+  .planRecommended {
+    transform: none;
+  }
+}

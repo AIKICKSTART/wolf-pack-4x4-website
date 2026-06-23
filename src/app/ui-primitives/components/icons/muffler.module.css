@@ -1,0 +1,49 @@
+.host {
+  display: inline-flex;
+  color: var(--animated-icon-tone, currentColor);
+  transform-origin: 50% 50%;
+}
+
+.host svg { display: block; }
+
+.body { fill: currentColor; opacity: 0.18; }
+.stroke { stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.inlet { stroke: currentColor; fill: none; stroke-linecap: round; }
+.endCap { stroke: currentColor; fill: currentColor; opacity: 0.42; stroke-width: 0.9; }
+.seam { stroke: currentColor; fill: none; stroke-width: 0.9; opacity: 0.4; }
+.perf { fill: currentColor; opacity: 0.55; }
+.heat { fill: currentColor; opacity: 0; transform-origin: 21.4px 12px; animation: mufflerHeat 1.6s ease-in-out infinite; }
+.heat[data-h="2"] { animation-delay: 0.4s; }
+.heat[data-h="3"] { animation-delay: 0.8s; }
+
+@keyframes mufflerHeat {
+  0%, 100% { opacity: 0; transform: translate(0, 0); }
+  40% { opacity: 0.55; transform: translate(2px, -1px); }
+  80% { opacity: 0; transform: translate(5px, -2px); }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .stroke { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .heat { animation-duration: 0.5s !important; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-6deg); } 75% { transform: rotate(6deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .body { fill: transparent; }
+[data-variant="outline"] .endCap { fill: transparent; opacity: 0.7; }
+[data-variant="outline"] .perf { opacity: 0.8; }
+
+[data-variant="filled"] .body { opacity: 0.9; }
+[data-variant="filled"] .perf { fill: var(--primitive-canvas); opacity: 1; }
+[data-variant="filled"] .endCap { fill: var(--primitive-canvas); opacity: 0.7; }
+[data-variant="filled"] .seam { stroke: var(--primitive-canvas); opacity: 0.4; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .heat { animation: none !important; transition: none !important; }
+}

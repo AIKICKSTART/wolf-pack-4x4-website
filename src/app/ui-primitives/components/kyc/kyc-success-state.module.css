@@ -1,0 +1,153 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-7);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 30%, transparent);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 50% 0%, color-mix(in oklab, var(--primitive-green) 18%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 70%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  text-align: center;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.confettiHost {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.checkMark {
+  justify-self: center;
+  filter: drop-shadow(0 16px 36px color-mix(in oklab, var(--primitive-green) 28%, transparent));
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-2);
+  justify-items: center;
+}
+
+.kicker {
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.headline {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3.4vw, 38px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  max-width: 540px;
+}
+
+.body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--primitive-body);
+  max-width: 520px;
+}
+
+.ctas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+.ctaItem {
+  display: block;
+}
+
+.cta {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 200ms ease, border-color 200ms ease;
+}
+
+.cta:hover,
+.cta:focus-visible {
+  transform: translateY(-1px);
+  border-color: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  outline: none;
+}
+
+.ctaGlyph {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-green) 32%, transparent), color-mix(in oklab, var(--primitive-teal) 18%, transparent));
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+}
+
+.ctaCopy {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.ctaLabel {
+  color: var(--primitive-text-strong);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.ctaDescription {
+  color: var(--primitive-muted);
+  font-size: 12.5px;
+}
+
+.ctaArrow {
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-weight: 800;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+}

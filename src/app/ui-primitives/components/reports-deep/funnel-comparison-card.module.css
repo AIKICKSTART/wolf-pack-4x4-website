@@ -1,0 +1,194 @@
+.card {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 16px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  color: var(--primitive-text-strong);
+  font-weight: 700;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.legendCurrent,
+.legendPrior {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primitive-text-strong);
+}
+
+.legendCurrent::before,
+.legendPrior::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 4px;
+  border-radius: 999px;
+}
+
+.legendCurrent::before {
+  background: var(--primitive-teal);
+}
+
+.legendPrior::before {
+  background: var(--primitive-amber);
+}
+
+.stageList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.stage {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-surface-3);
+}
+
+.stageHead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.stageIndex {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--primitive-muted);
+}
+
+.stageLabel {
+  font-size: 14px;
+  color: var(--primitive-text-strong);
+  font-weight: 600;
+}
+
+.stageDelta {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+}
+
+.tonePositive {
+  color: var(--primitive-green);
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+}
+
+.toneNegative {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+}
+
+.toneNeutral {
+  color: var(--primitive-muted);
+  background: var(--primitive-glass-soft);
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: 90px 1fr 90px;
+  gap: 8px;
+  align-items: center;
+}
+
+.barLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.barTrack {
+  position: relative;
+  height: 8px;
+  background: var(--primitive-meter-track);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.barFill {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  border-radius: 999px;
+  transition: width 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.barCurrent {
+  background: linear-gradient(90deg, var(--primitive-teal), color-mix(in oklab, var(--primitive-teal) 60%, transparent));
+}
+
+.barPrior {
+  background: linear-gradient(90deg, var(--primitive-amber), color-mix(in oklab, var(--primitive-amber) 50%, transparent));
+  opacity: 0.78;
+}
+
+.barValue {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  text-align: right;
+  color: var(--primitive-text-strong);
+}
+
+.stageFoot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barFill {
+    transition: none;
+  }
+}

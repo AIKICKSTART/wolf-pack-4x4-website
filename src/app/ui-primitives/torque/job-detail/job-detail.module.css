@@ -1,0 +1,677 @@
+/* Workshop job detail — a single work-order cockpit composed from registered
+   primitives plus bespoke brand chrome (command band, Torque avatar, logged
+   time-entries table, high-value approval gate). Light + dark parity via
+   --primitive-* tokens; motion is opacity/transform only and reduced-motion is
+   honoured. Figures use tabular-nums. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1520px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Command / hero band ------------------------------------------------- */
+
+.command {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  padding: clamp(20px, 2.6vw, 32px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 58%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.command::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  opacity: 0.6;
+}
+
+.commandHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--primitive-text-on-accent) 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 26px color-mix(in oklab, var(--primitive-red) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.torqueId {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.torqueName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.torqueRole {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+.commandWo {
+  margin-left: auto;
+  align-self: flex-start;
+  padding: var(--primitive-space-1) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+  background: var(--primitive-panel);
+}
+
+.commandTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3.4vw, 42px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.commandTitle em {
+  font-style: normal;
+  color: var(--primitive-red);
+}
+
+.commandCopy {
+  margin: 0;
+  max-width: 78ch;
+  font-size: var(--primitive-text-base);
+  line-height: 1.6;
+  color: var(--primitive-body);
+}
+
+.commandMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2) 18px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaDot {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.metaDot::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+/* ---- Region heads -------------------------------------------------------- */
+
+.region {
+  display: grid;
+}
+
+.regionHead {
+  display: grid;
+  gap: var(--primitive-space-2);
+  margin-bottom: var(--primitive-space-4);
+}
+
+.regionKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.regionTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.regionSub {
+  margin: 0;
+  max-width: 72ch;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-muted);
+}
+
+/* ---- Header grid: ticket + customer + health ----------------------------- */
+
+.headerGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(14px, 1.8vw, 22px);
+  align-items: start;
+}
+
+.headerTicket,
+.headerCustomer,
+.headerHealth {
+  display: grid;
+  min-width: 0;
+}
+
+/* ---- Quote + parts split ------------------------------------------------- */
+
+.quoteSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  align-items: start;
+}
+
+.quoteFrame,
+.partsFrame,
+.crewFrame,
+.timeFrame,
+.dviFrame,
+.payFrame {
+  display: grid;
+  min-width: 0;
+}
+
+.payFrame {
+  max-width: 560px;
+}
+
+/* ---- Crew + time split --------------------------------------------------- */
+
+.crewSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  align-items: start;
+}
+
+/* ---- Logged time-entries card (bespoke chrome) --------------------------- */
+
+.timeCard {
+  display: grid;
+  gap: 14px;
+  padding: clamp(16px, 1.8vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.timeHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.timeKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.timeTitle {
+  margin: var(--primitive-space-1) 0 0;
+  font-family: var(--primitive-font-display);
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.timeTotals {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+}
+
+.timeTotals div {
+  display: grid;
+  gap: 3px;
+  text-align: right;
+}
+
+.timeTotals dt {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.timeFigure {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+}
+
+.timeFigure[data-tone="amber"] {
+  color: var(--primitive-amber);
+}
+
+.timeTable {
+  display: grid;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  overflow: hidden;
+}
+
+.timeRowHead,
+.timeRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-2-5) 14px;
+}
+
+.timeRowHead {
+  background: var(--primitive-panel-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.timeRow + .timeRow,
+.timeRowHead + .timeRow {
+  border-top: 1px solid var(--primitive-line);
+}
+
+.timeColTime,
+.timeColHours {
+  text-align: right;
+}
+
+.timeTask {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.timeTech {
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.timeTaskLabel {
+  font-size: var(--primitive-text-sm);
+  line-height: 1.4;
+  color: var(--primitive-muted);
+}
+
+.timeWhen {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-body);
+  white-space: nowrap;
+  text-align: right;
+}
+
+.timeHours {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ---- DVI + status timeline split ---------------------------------------- */
+
+.dviSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  align-items: start;
+}
+
+.timelineFrame {
+  display: grid;
+  gap: 14px;
+  padding: clamp(16px, 1.8vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+  min-width: 0;
+}
+
+.timelineHead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-1) var(--primitive-space-2-5);
+}
+
+.timelineHead .regionKicker {
+  grid-column: 1 / -1;
+}
+
+.timelineTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.timelineBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 3px var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+}
+
+.timelineBadge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-green);
+}
+
+/* ---- High-value approval gate (bespoke chrome) --------------------------- */
+
+.gate {
+  position: relative;
+  display: grid;
+  gap: clamp(16px, 2vw, 22px);
+  padding: clamp(18px, 2.4vw, 30px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(130% 130% at 100% 0%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.gate::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--primitive-red);
+}
+
+.gateHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-4) var(--primitive-space-5);
+  align-items: start;
+}
+
+.gateKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.gateTitle {
+  margin: var(--primitive-space-1-5) 0 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.gateSub {
+  margin: var(--primitive-space-2) 0 0;
+  max-width: 64ch;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-muted);
+}
+
+.gateBadges {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-2);
+  align-items: flex-end;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gateStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 18px);
+}
+
+.gateFoot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-4) var(--primitive-space-6);
+  align-items: center;
+  justify-content: space-between;
+  padding-top: clamp(14px, 1.8vw, 20px);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.gateBalance {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  margin: 0;
+}
+
+.gateBalanceLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.gateBalanceValue {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+}
+
+.gateBalanceSub {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+.gateActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+}
+
+.gateApprove,
+.gateHold {
+  appearance: none;
+  cursor: pointer;
+  padding: 11px var(--primitive-space-5);
+  border-radius: var(--primitive-btn-radius);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    transform var(--primitive-duration-fast) ease,
+    box-shadow var(--primitive-duration-fast) ease,
+    background var(--primitive-duration-fast) ease;
+}
+
+.gateApprove {
+  border: 1px solid transparent;
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.gateHold {
+  border: 1px solid var(--primitive-btn-secondary-border);
+  color: var(--primitive-btn-secondary-fg);
+  background: var(--primitive-btn-secondary-bg);
+}
+
+.gateApprove:hover {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.gateHold:hover {
+  transform: translateY(-1px);
+}
+
+.gateApprove:active,
+.gateHold:active {
+  transform: translateY(0);
+}
+
+.gateApprove:focus-visible,
+.gateHold:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .headerGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .headerHealth {
+    grid-column: 1 / -1;
+  }
+  .quoteSplit,
+  .crewSplit,
+  .dviSplit {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .headerGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .gateHead {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .gateBadges {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .gateStats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .gateActions {
+    width: 100%;
+  }
+  .gateApprove,
+  .gateHold {
+    flex: 1 1 auto;
+  }
+  .commandWo {
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gateApprove,
+  .gateHold {
+    transition: none;
+  }
+  .gateApprove:hover,
+  .gateHold:hover,
+  .gateApprove:active,
+  .gateHold:active {
+    transform: none;
+  }
+}

@@ -1,0 +1,198 @@
+.card {
+  --node-accent: var(--primitive-teal);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+
+  position: absolute;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 188px;
+  max-width: 232px;
+  padding: var(--primitive-space-3) 14px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), transparent 60%),
+    radial-gradient(ellipse at 0% 0%, var(--node-accent-soft), transparent 65%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 16px 32px color-mix(in oklab, var(--primitive-canvas) 50%, transparent),
+    0 0 0 1px var(--node-accent-soft);
+  font-family: var(--primitive-font-body);
+  transform: translate(-50%, -50%);
+  isolation: isolate;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--node-accent-glow), transparent 50%) border-box;
+  -webkit-mask:
+    linear-gradient(var(--primitive-text-strong) 0 0) padding-box,
+    linear-gradient(var(--primitive-text-strong) 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  gap: 9px;
+  align-items: center;
+}
+
+.iconBadge {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  color: var(--node-accent);
+  background: var(--node-accent-soft);
+  border: 1px solid var(--node-accent-glow);
+}
+
+.iconBadge svg {
+  width: 15px;
+  height: 15px;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+  line-height: 1.25;
+  letter-spacing: 0.005em;
+}
+
+.ip {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-amber);
+  letter-spacing: 0.04em;
+}
+
+.meta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  letter-spacing: 0.04em;
+}
+
+.regionChip {
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.healthDot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.healthDot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.healthHealthy {
+  background: var(--primitive-green);
+  box-shadow: 0 0 6px color-mix(in oklab, var(--primitive-green) 65%, transparent);
+}
+
+.healthDegraded {
+  background: var(--primitive-amber);
+  box-shadow: 0 0 6px color-mix(in oklab, var(--primitive-amber) 70%, transparent);
+}
+
+.healthDegraded::after {
+  background: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  animation: degradePulse 1.6s ease-out infinite;
+}
+
+.healthFailed {
+  background: var(--primitive-red);
+  box-shadow: 0 0 6px color-mix(in oklab, var(--primitive-red) 70%, transparent);
+}
+
+.healthFailed::after {
+  background: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  animation: degradePulse 1.2s ease-out infinite;
+}
+
+.healthUnknown {
+  background: color-mix(in oklab, var(--primitive-text-strong) 40%, transparent);
+  box-shadow: 0 0 4px color-mix(in oklab, var(--primitive-text-strong) 40%, transparent);
+}
+
+@keyframes degradePulse {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.toneTeal {
+  --node-accent: var(--primitive-teal);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+.toneAmber {
+  --node-accent: var(--primitive-amber);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.toneRed {
+  --node-accent: var(--primitive-red);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.toneGreen {
+  --node-accent: var(--primitive-green);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+}
+
+.toneNeutral {
+  --node-accent: color-mix(in oklab, var(--primitive-text-strong) 75%, transparent);
+  --node-accent-soft: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  --node-accent-glow: color-mix(in oklab, var(--primitive-text-strong) 20%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .healthDot::after {
+    animation: none;
+    display: none;
+  }
+}

@@ -1,0 +1,122 @@
+/* Parts search rail — composes search/InlineSearchInput + search/FacetedFilterSidebar.
+   The only parts-specific surface here is the category-nav block, which threads
+   a per-category tone (red/amber/teal/green) into the active link colour. */
+
+.rail {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel-strong);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), 0 22px 48px color-mix(in oklab, var(--primitive-canvas) 36%, transparent);
+}
+
+.section {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.categoryList {
+  display: grid;
+  gap: var(--primitive-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.categoryLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid transparent;
+  border-radius: var(--primitive-radius-md);
+  background: transparent;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.categoryLink::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  margin-right: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-xs);
+  background: var(--accent, var(--primitive-amber));
+  opacity: 0.7;
+}
+
+.categoryLink:hover {
+  background: var(--primitive-glass-soft);
+  border-color: var(--primitive-line);
+  color: var(--primitive-text-strong);
+}
+
+.categoryLink[aria-current="page"] {
+  background: var(--accent-soft, color-mix(in oklab, var(--primitive-amber) 8%, transparent));
+  border-color: var(--accent-line, color-mix(in oklab, var(--primitive-amber) 32%, transparent));
+  color: var(--primitive-text-strong);
+}
+
+.categoryLabel {
+  display: inline-flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.categoryCount {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+}
+
+.toneRed {
+  --accent: var(--primitive-red);
+  --accent-soft: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.toneAmber {
+  --accent: var(--primitive-amber);
+  --accent-soft: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+}
+
+.toneTeal {
+  --accent: var(--primitive-teal);
+  --accent-soft: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+
+.toneGreen {
+  --accent: var(--primitive-green);
+  --accent-soft: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .categoryLink {
+    transition: none;
+  }
+}

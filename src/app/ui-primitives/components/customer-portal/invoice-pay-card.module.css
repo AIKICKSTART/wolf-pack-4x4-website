@@ -1,0 +1,317 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent) 3px 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cardPaid {
+  border-color: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 8%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--primitive-space-3);
+}
+
+.headLeft {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-lg);
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+.rego {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+  letter-spacing: 0.12em;
+}
+
+.amounts {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.amountRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-1) 0;
+}
+
+.amountRow dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.amountRow dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+}
+
+.amountTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-3);
+  padding-top: var(--primitive-space-2-5);
+  margin-top: var(--primitive-space-1);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.amountTotal dt {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.amountTotal dd {
+  margin: 0;
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  letter-spacing: 0.01em;
+}
+
+.due {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent);
+}
+
+.dueLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.dueValue {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+}
+
+.options {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.optionsLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  padding: 0;
+}
+
+.optionsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.option {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.option:hover,
+.option:focus-within {
+  border-color: var(--primitive-line-strong);
+}
+
+.optionSelected {
+  border-color: color-mix(in oklab, var(--primitive-amber) 62%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-amber) 30%, transparent);
+}
+
+.optionInput {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.optionLogo {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--primitive-text-strong);
+  overflow: hidden;
+}
+
+.optionText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.optionLabel {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+}
+
+.optionHint {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+}
+
+.paidNote {
+  margin: 0;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-green) 6%, transparent);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.footHint {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.payButton {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  padding: var(--primitive-space-3) 22px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 60%, transparent);
+  background: linear-gradient(180deg, var(--primitive-green), color-mix(in oklab, var(--primitive-green) 72%, var(--primitive-canvas)));
+  color: var(--primitive-canvas);
+  font-weight: var(--primitive-weight-bold);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: var(--primitive-font-mono);
+  transition: filter 180ms ease;
+}
+
+.payButton:hover:not(:disabled),
+.payButton:focus-visible:not(:disabled) {
+  filter: brightness(1.08);
+  outline: none;
+}
+
+.payButton:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.payButton:disabled {
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-muted);
+  border-color: var(--primitive-line);
+  cursor: not-allowed;
+}
+
+@media (max-width: 540px) {
+  .amountTotal dd {
+    font-size: var(--primitive-text-xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .option,
+  .payButton {
+    transition: none;
+  }
+}

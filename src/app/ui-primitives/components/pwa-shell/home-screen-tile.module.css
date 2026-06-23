@@ -1,0 +1,146 @@
+.root {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(circle at 110% -10%, color-mix(in oklab, var(--primitive-amber) 18%, transparent), transparent 50%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), transparent),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  overflow: hidden;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 220ms var(--primitive-ease-out), border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.root:hover,
+.root:focus-visible {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 25%, transparent);
+  box-shadow: var(--primitive-shadow-soft);
+  outline: none;
+}
+
+.toneRed {
+  background:
+    radial-gradient(circle at 110% -10%, color-mix(in oklab, var(--primitive-red) 24%, transparent), transparent 50%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), transparent),
+    var(--primitive-panel);
+}
+
+.toneTeal {
+  background:
+    radial-gradient(circle at 110% -10%, color-mix(in oklab, var(--primitive-teal) 24%, transparent), transparent 50%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), transparent),
+    var(--primitive-panel);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-amber);
+}
+
+.iconRed { color: var(--primitive-red); }
+.iconTeal { color: var(--primitive-teal); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+.hint {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.5;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 6px 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.metric {
+  display: grid;
+  gap: 1px;
+}
+
+.metricLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.metricValue {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+}
+
+.trend {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  font-weight: var(--primitive-weight-bold);
+}
+
+.trendUp { color: var(--primitive-green); }
+.trendDown { color: var(--primitive-red); }
+.trendFlat { color: var(--primitive-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    transition: none;
+  }
+}

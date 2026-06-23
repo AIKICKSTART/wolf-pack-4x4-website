@@ -1,0 +1,262 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-6);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.kicker {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  margin-bottom: var(--primitive-space-1);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  line-height: 1.1;
+}
+
+.stamp {
+  display: block;
+  margin-top: var(--primitive-space-1);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.section {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.change {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+}
+
+.changeTitle {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.changeRow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--primitive-font-mono);
+}
+
+.changeOriginal {
+  font-size: 12px;
+  color: var(--primitive-muted);
+  text-decoration: line-through;
+}
+
+.changeArrow {
+  color: var(--primitive-amber);
+}
+
+.changeRevised {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  letter-spacing: var(--primitive-tracking-normal);
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.totals {
+  display: grid;
+  gap: 6px;
+}
+
+.totalsRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.original {
+  color: var(--primitive-muted);
+  text-decoration: line-through;
+  font-feature-settings: "tnum" 1;
+}
+
+.revised {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  letter-spacing: var(--primitive-tracking-normal);
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+  text-transform: none;
+}
+
+.note {
+  display: grid;
+  gap: 10px;
+}
+
+.quote {
+  margin: 0;
+  padding: 14px var(--primitive-space-4);
+  border-left: 3px solid var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  padding-top: var(--primitive-space-1-5);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.accept,
+.counter,
+.reject {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-standard),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+/* Primary success action — shared button shadow DNA, success-green semantic fill */
+.accept {
+  border: 0;
+  background: linear-gradient(135deg, var(--primitive-green),
+    color-mix(in oklab, var(--primitive-green) 56%, var(--primitive-canvas)));
+  color: var(--primitive-text-on-accent);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.accept:hover {
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+/* Secondary / ghost actions — tokenized semantic outlines on the shared shape */
+.counter {
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  background: transparent;
+  color: color-mix(in oklab, var(--primitive-amber) 60%, var(--primitive-text-strong));
+}
+
+.reject {
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  background: transparent;
+  color: color-mix(in oklab, var(--primitive-red) 45%, var(--primitive-text-strong));
+}
+
+.accept:hover,
+.counter:hover,
+.reject:hover {
+  transform: translateY(-1px);
+}
+
+.counter:hover {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-text-strong);
+}
+
+.reject:hover {
+  border-color: var(--primitive-red);
+  color: var(--primitive-text-strong);
+}
+
+.accept:focus-visible {
+  outline: 2px solid var(--primitive-green);
+  outline-offset: 4px;
+}
+
+.counter:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 4px;
+}
+
+.reject:focus-visible {
+  outline: 2px solid var(--primitive-red);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accept,
+  .counter,
+  .reject {
+    transition: none;
+  }
+  .accept:hover,
+  .counter:hover,
+  .reject:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,89 @@
+.card {
+  gap: 18px;
+}
+
+.fieldset {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in srgb, var(--primitive-text-strong) 2%, transparent);
+}
+
+.legend {
+  padding: 0 var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.hoursGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.hourRow {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in srgb, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.hourRowClosed {
+  background: var(--primitive-recessed);
+  opacity: 0.86;
+}
+
+.dayLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.hourValue {
+  font-size: 12.5px;
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.servicesGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+:global([data-primitive-theme="light"]) .fieldset {
+  background: var(--primitive-glass-soft);
+  border-color: var(--primitive-line);
+}
+
+:global([data-primitive-theme="light"]) .hourValue {
+  color: var(--primitive-text-strong);
+}
+
+:global([data-primitive-theme="light"]) .hourRow {
+  background: var(--primitive-glass-strong);
+  border-color: var(--primitive-line);
+}

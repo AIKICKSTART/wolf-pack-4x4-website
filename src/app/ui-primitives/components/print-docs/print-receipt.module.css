@@ -1,0 +1,175 @@
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+  justify-items: center;
+  text-align: center;
+  padding: var(--primitive-space-1) 0 var(--primitive-space-1-5);
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-ink);
+  color: var(--primitive-canvas);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.head strong {
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primitive-ink);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.head span {
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  color: var(--primitive-ink-soft);
+  letter-spacing: 0.04em;
+}
+
+.txnMeta {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  font-family: var(--primitive-font-mono);
+}
+
+.txnMeta div {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: var(--primitive-space-2);
+  font-size: 9.5px;
+}
+
+.txnMeta span {
+  color: var(--primitive-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.txnMeta strong {
+  color: var(--primitive-ink);
+  font-weight: 700;
+  font-size: var(--primitive-text-2xs);
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-image: linear-gradient(90deg, var(--primitive-ink) 50%, transparent 50%);
+  background-size: 4px 1px;
+  background-repeat: repeat-x;
+  margin: var(--primitive-space-1) 0;
+}
+
+.items {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  gap: var(--primitive-space-px);
+}
+
+.itemLine {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+}
+
+.itemName {
+  color: var(--primitive-ink);
+  font-weight: 700;
+}
+
+.itemAmount {
+  color: var(--primitive-ink);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.itemSku {
+  color: var(--primitive-muted);
+  font-size: 9px;
+  letter-spacing: 0.02em;
+}
+
+.totals {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+}
+
+.totals div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-2);
+  font-size: var(--primitive-text-2xs);
+}
+
+.totals dt {
+  color: var(--primitive-ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.totals dd {
+  margin: 0;
+  color: var(--primitive-ink);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.totalRow {
+  margin-top: var(--primitive-space-1);
+  padding-top: var(--primitive-space-1);
+  border-top: 1px solid var(--primitive-ink);
+}
+
+.totalRow dt,
+.totalRow dd {
+  font-size: 12px !important;
+  color: var(--primitive-ink) !important;
+}
+
+.barcode {
+  display: grid;
+  place-items: center;
+  padding: var(--primitive-space-1-5) 0 var(--primitive-space-0-5);
+}
+
+.footer {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  justify-items: center;
+  text-align: center;
+  font-family: var(--primitive-font-mono);
+}
+
+.footer span {
+  color: var(--primitive-ink-soft);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
+@media print {
+  @page {
+    size: 80mm auto;
+    margin: 4mm;
+  }
+}

@@ -1,0 +1,183 @@
+.row {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4) 18px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.keyBlock {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+}
+
+.key {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border-radius: 6px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sourceTag {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.missingChip,
+.completeChip {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+}
+
+.missingChip {
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  color: var(--primitive-red);
+}
+
+.completeChip {
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  color: var(--primitive-green);
+}
+
+.source {
+  margin: 0;
+  font-size: 14px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.01em;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-left: 2px solid var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  border-radius: 6px;
+}
+
+.targets {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.target {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+}
+
+.targetMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  flex-wrap: wrap;
+}
+
+.targetTag {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.statusChip,
+.reviewerChip {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--chip-line, var(--primitive-line-strong));
+  background: var(--chip-fill, var(--primitive-field-bg));
+  color: var(--chip-color, var(--primitive-body));
+}
+
+.statusChip[data-status="translated"],
+.statusChip[data-status="approved"] {
+  --chip-color: var(--primitive-green);
+  --chip-line: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+}
+
+.statusChip[data-status="missing"] {
+  --chip-color: var(--primitive-red);
+  --chip-line: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.statusChip[data-status="stale"],
+.statusChip[data-status="fuzzy"] {
+  --chip-color: var(--primitive-amber);
+  --chip-line: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+}
+
+.statusChip[data-status="pending-review"] {
+  --chip-color: var(--primitive-teal);
+  --chip-line: color-mix(in oklab, var(--primitive-teal) 45%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+}
+
+.reviewerChip[data-reviewer="approved"] {
+  --chip-color: var(--primitive-green);
+  --chip-line: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+}
+
+.reviewerChip[data-reviewer="rejected"] {
+  --chip-color: var(--primitive-red);
+  --chip-line: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.reviewerChip[data-reviewer="pending"] {
+  --chip-color: var(--primitive-amber);
+  --chip-line: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --chip-fill: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+}
+
+.targetValue {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.01em;
+}
+
+.targetValue[data-empty="true"] {
+  font-style: italic;
+  color: var(--primitive-muted);
+}

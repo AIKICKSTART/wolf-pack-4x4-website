@@ -1,0 +1,156 @@
+.section {
+  display: grid;
+  gap: clamp(28px, 4vw, 52px);
+}
+
+.banner {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-6);
+  align-items: center;
+  padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 48px);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 36%, var(--primitive-line-strong));
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-carbon-weave);
+  background-size: auto, var(--primitive-carbon-weave-size);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.bannerGlow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 92% 0%, color-mix(in oklab, var(--primitive-red) 30%, transparent), transparent 50%),
+    radial-gradient(ellipse at 0% 100%, color-mix(in oklab, var(--primitive-amber) 22%, transparent), transparent 52%);
+}
+
+.bannerCopy {
+  display: grid;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.bannerTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+.kicker {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.heading {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h2);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  letter-spacing: var(--primitive-tracking-tight);
+  text-transform: uppercase;
+}
+
+.body {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-md);
+  line-height: var(--primitive-leading-normal);
+}
+
+.cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  min-height: 52px;
+  padding: 0 var(--primitive-space-7);
+  border-radius: var(--primitive-btn-radius);
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    transform var(--primitive-duration-normal) var(--primitive-ease-out),
+    background var(--primitive-duration-normal) var(--primitive-ease-out),
+    color var(--primitive-duration-normal) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.ctaIcon {
+  display: inline-grid;
+  place-items: center;
+  transition: transform var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.cta:hover .ctaIcon,
+.cta:focus-visible .ctaIcon {
+  transform: translateX(4px);
+}
+
+.ctaIcon svg {
+  width: var(--primitive-icon-md);
+  height: var(--primitive-icon-md);
+  stroke-width: var(--primitive-icon-stroke);
+}
+
+/* StatCounterRow + FeatureSpotlight bring their own section padding — flatten
+   it so the composed section keeps one rhythm. */
+.section > :global(section) {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (max-width: 767px) {
+  .banner {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta,
+  .ctaIcon {
+    transition: none;
+  }
+
+  .cta:hover,
+  .cta:focus-visible,
+  .cta:hover .ctaIcon,
+  .cta:focus-visible .ctaIcon {
+    transform: none;
+  }
+}

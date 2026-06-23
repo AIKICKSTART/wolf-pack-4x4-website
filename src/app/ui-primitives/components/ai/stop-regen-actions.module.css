@@ -1,0 +1,81 @@
+.row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-body);
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  min-height: 28px;
+  padding: 0 var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-surface-3);
+  color: var(--primitive-body);
+  font: inherit;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease,
+    transform 160ms ease;
+}
+
+.action:hover:not(:disabled),
+.action:focus-visible:not(:disabled) {
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in srgb, var(--primitive-amber) 50%, transparent);
+  background: color-mix(in srgb, var(--primitive-amber) 10%, transparent);
+  outline: none;
+}
+
+.action:focus-visible:not(:disabled) {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.action:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.action[data-action="stop"]:not(:disabled) {
+  color: var(--primitive-red);
+  border-color: color-mix(in srgb, var(--primitive-red) 45%, transparent);
+  background: color-mix(in srgb, var(--primitive-red) 8%, transparent);
+}
+
+.action[data-action="stop"]:not(:disabled):hover,
+.action[data-action="stop"]:not(:disabled):focus-visible {
+  color: var(--primitive-text-on-accent);
+  border-color: var(--primitive-red);
+  background: linear-gradient(180deg, var(--primitive-red), var(--primitive-red-dark));
+}
+
+.action:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.icon {
+  display: inline-grid;
+  place-items: center;
+  color: inherit;
+}
+
+.label {
+  color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+  }
+
+  .action:active:not(:disabled) {
+    transform: none;
+  }
+}

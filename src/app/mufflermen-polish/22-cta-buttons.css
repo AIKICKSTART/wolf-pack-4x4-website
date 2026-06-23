@@ -1,0 +1,98 @@
+/* ── CTA button DNA — both themes ────────────────────────────────
+   Owner directive: card/action links that read as bare text (blog
+   "Read article", areas "View hub", products fitment links, contact
+   bars, homepage card "more" links) wear the canonical dark-red CTA
+   pill in BOTH themes. The red DNA previously existed only inside the
+   light-theme gate (20-public-nav.css:501) — dark theme fell back to
+   the 06-seo-routes underlined-text base, and padding was 0 so even
+   light pills set text flush against the rounded edge.
+
+   THE red = the obsidium hero/header CTA recipe (16-obsidium-red.css
+   .btn.btn-red) — owner-designated canonical. Tokens defined in
+   24-brand-consistency.css; fallbacks repeat the canonical values.
+   Light-theme mirrors outrank the 07/20 theme-gated restyles.
+   Topic chips (.seo-link-cloud) are styled in 24, compact size. */
+
+.seo-card a,
+.seo-contact-card a,
+.homepage-cms-post-head a,
+.homepage-cms-card a,
+.service .more,
+.route-panel .more,
+html[data-mufflermen-theme="light"] .seo-card a,
+html[data-mufflermen-theme="light"] .seo-contact-card a,
+html[data-mufflermen-theme="light"] .homepage-cms-post-head a,
+html[data-mufflermen-theme="light"] .homepage-cms-card a,
+html[data-mufflermen-theme="light"] .service .more,
+html[data-mufflermen-theme="light"] .route-panel .more {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  width: fit-content;
+  padding: 8px 22px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+  border: 1px solid var(--cta-red-border, rgba(0, 67, 150, 0.82));
+  background: var(
+    --cta-red-bg,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.02) 42%, rgba(0, 0, 0, 0.26) 100%),
+    radial-gradient(circle at 32% 0%, rgba(124, 60, 255, 0.72), transparent 40%),
+    linear-gradient(180deg, #0077ff 0%, #3f1fbf 52%, #130b3d 100%)
+  );
+  background-color: #3f1fbf;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.42);
+  box-shadow: var(
+    --cta-red-shadow,
+    0 16px 36px rgba(19, 11, 61, 0.38),
+    0 0 34px -20px rgba(0, 119, 255, 0.72),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.34)
+  );
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.seo-card a:hover,
+.seo-card a:focus-visible,
+.seo-contact-card a:hover,
+.seo-contact-card a:focus-visible,
+.homepage-cms-post-head a:hover,
+.homepage-cms-post-head a:focus-visible,
+.homepage-cms-card a:hover,
+.homepage-cms-card a:focus-visible,
+.service .more:hover,
+.service .more:focus-visible,
+.route-panel .more:hover,
+.route-panel .more:focus-visible,
+html[data-mufflermen-theme="light"] .seo-card a:hover,
+html[data-mufflermen-theme="light"] .seo-card a:focus-visible,
+html[data-mufflermen-theme="light"] .seo-contact-card a:hover,
+html[data-mufflermen-theme="light"] .seo-contact-card a:focus-visible,
+html[data-mufflermen-theme="light"] .homepage-cms-card a:hover,
+html[data-mufflermen-theme="light"] .homepage-cms-card a:focus-visible,
+html[data-mufflermen-theme="light"] .service .more:hover,
+html[data-mufflermen-theme="light"] .route-panel .more:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+  background: var(
+    --cta-red-bg-hover,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.03) 42%, rgba(0, 0, 0, 0.24) 100%),
+    radial-gradient(circle at 34% 0%, rgba(143, 92, 255, 0.82), transparent 42%),
+    linear-gradient(180deg, #2098ff 0%, #005bd1 52%, #130b3d 100%)
+  );
+  box-shadow: var(
+    --cta-red-shadow-hover,
+    0 20px 44px rgba(19, 11, 61, 0.46),
+    0 0 38px -18px rgba(0, 119, 255, 0.78),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.34)
+  );
+}

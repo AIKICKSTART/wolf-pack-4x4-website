@@ -1,0 +1,90 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  margin: 0;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  list-style: none;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-soft);
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.variant_dots .dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  transition: background 220ms ease, transform 220ms ease;
+}
+
+.variant_dots .itemComplete .dot {
+  background: color-mix(in srgb, var(--dot-tone, var(--primitive-teal)) 70%, transparent);
+}
+
+.variant_dots .itemCurrent .dot {
+  background: var(--dot-tone, var(--primitive-teal));
+  transform: scale(1.4);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--dot-tone, var(--primitive-teal)) 24%, transparent);
+}
+
+.variant_bars {
+  gap: 4px;
+  padding: 7px 12px;
+}
+
+.variant_bars .dot {
+  display: block;
+  width: 18px;
+  height: 4px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  transition: background var(--primitive-duration-normal) var(--primitive-ease-out),
+    width var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.variant_bars .itemComplete .dot {
+  background: color-mix(in srgb, var(--dot-tone, var(--primitive-teal)) 80%, transparent);
+}
+
+.variant_bars .itemCurrent .dot {
+  background: var(--dot-tone, var(--primitive-teal));
+  width: 30px;
+}
+
+.variant_counter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--primitive-font-mono);
+  padding: 8px 14px;
+}
+
+.counterCurrent {
+  font-size: var(--primitive-text-md);
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.04em;
+}
+
+.counterSeparator {
+  color: var(--primitive-muted);
+}
+
+.counterTotal {
+  font-size: 13px;
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    transition: none;
+  }
+}

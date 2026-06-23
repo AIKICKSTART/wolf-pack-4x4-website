@@ -1,0 +1,389 @@
+/* =========================================================
+   DUAL EXPOSURE HERO — double-exposure footage read through
+   a bold typographic silhouette (screen/lighten blend)
+   ========================================================= */
+
+.hero {
+  --de-canvas: var(--primitive-canvas);
+  --de-red: var(--primitive-red);
+  --de-amber: var(--primitive-amber);
+  --de-ink: var(--primitive-text-strong);
+  --de-body: var(--primitive-body);
+
+  position: relative;
+  width: 100%;
+  min-height: clamp(520px, 84svh, 800px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--de-ink);
+  background:
+    radial-gradient(ellipse at 72% 18%, color-mix(in oklab, var(--de-amber) 16%, transparent), transparent 60%),
+    radial-gradient(ellipse at 14% 88%, color-mix(in oklab, var(--de-red) 22%, transparent), transparent 64%),
+    linear-gradient(180deg, var(--de-canvas) 0%, color-mix(in oklab, var(--de-canvas) 84%, black) 100%);
+  font-family: var(--primitive-font-body);
+}
+
+/* ---- Base exposure layer: toned, desaturated footage ---- */
+.baseLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.55) contrast(1.08) brightness(0.5);
+}
+
+.baseTone {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--de-canvas) 30%, transparent) 0%, transparent 30%, transparent 54%, color-mix(in oklab, var(--de-canvas) 88%, transparent) 100%),
+    linear-gradient(118deg, color-mix(in oklab, var(--de-canvas) 78%, transparent) 0%, transparent 56%),
+    radial-gradient(circle at 70% 30%, color-mix(in oklab, var(--de-red) 26%, transparent), transparent 58%);
+  mix-blend-mode: multiply;
+}
+
+/* ---- Silhouette stage: the second exposure, clipped to the type ---- */
+.silhouetteStage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  /* The toned/bright footage inside the letterforms lightens over the dark
+     base exposure so both images read as one composited frame. */
+  mix-blend-mode: screen;
+}
+
+.maskSvg {
+  width: min(118%, 1320px);
+  height: auto;
+  /* Lift the silhouette toward the upper portion so the copy block reads
+     clearly over the lower half on every breakpoint. */
+  transform: translateY(-7%);
+}
+
+.maskText {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.012em;
+}
+.maskText[data-lines="1"] {
+  font-size: 300px;
+}
+.maskText[data-lines="2"] {
+  font-size: 210px;
+}
+
+.maskedFill {
+  position: relative;
+  width: 1000px;
+  height: 560px;
+}
+
+.videoBright {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* The bright, lifted exposure that reads through the letterforms. */
+  filter: saturate(1.25) contrast(1.18) brightness(1.18);
+}
+
+.maskedTone {
+  position: absolute;
+  inset: 0;
+  /* Amber/red duotone cast applied to the bright footage — the classic
+     double-exposure colour grade. This tints the footage in place; the whole
+     silhouette stage then screens over the dark base exposure. */
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--de-amber) 58%, transparent) 0%, color-mix(in oklab, var(--de-red) 56%, transparent) 100%);
+  mix-blend-mode: overlay;
+}
+
+/* Soft glow echo so the silhouette edge feels intentional and premium. */
+.silhouetteGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 42%, color-mix(in oklab, var(--de-amber) 18%, transparent), transparent 58%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+/* ---- Atmosphere ---- */
+.scan {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 2px,
+    color-mix(in oklab, var(--de-canvas) 40%, transparent) 3px,
+    transparent 4px
+  );
+  opacity: 0.26;
+  mix-blend-mode: overlay;
+  animation: scanDrift 7s linear infinite;
+}
+
+@keyframes scanDrift {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, 8px, 0); }
+}
+
+.grain {
+  position: absolute;
+  inset: -10%;
+  z-index: 3;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 230px 230px;
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+  animation: grainShift 2s steps(7) infinite;
+}
+
+@keyframes grainShift {
+  0% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(-10px, 6px, 0); }
+  50% { transform: translate3d(7px, -8px, 0); }
+  75% { transform: translate3d(-6px, -5px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 56%, transparent 40%, color-mix(in oklab, var(--de-canvas) 72%, transparent) 100%);
+}
+
+/* ---- Copy ---- */
+.copy {
+  position: relative;
+  z-index: 6;
+  align-self: end;
+  justify-self: start;
+  display: grid;
+  gap: 20px;
+  max-width: 680px;
+  padding: 0 clamp(28px, 6vw, 104px) clamp(40px, 7svh, 92px);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--de-amber);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--de-red);
+  box-shadow: 0 0 14px var(--de-red);
+  animation: kickerPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes kickerPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.62); }
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 1.2rem + 4.4vw, 4.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--de-ink);
+  text-shadow: 0 2px 30px color-mix(in oklab, var(--de-canvas) 70%, transparent);
+}
+.headlineLine {
+  display: block;
+}
+/* The first line picks up the amber exposure tint to echo the silhouette. */
+.headlineLine:first-child {
+  color: var(--de-amber);
+  -webkit-text-stroke: 0.5px color-mix(in oklab, var(--de-amber) 60%, transparent);
+}
+
+.subhead {
+  font-family: var(--primitive-font-body);
+  font-size: clamp(14.5px, 0.9rem + 0.35vw, 18px);
+  line-height: 1.55;
+  color: var(--de-body);
+  margin: 0;
+  max-width: 52ch;
+}
+
+.cta {
+  margin-top: 6px;
+  width: max-content;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform 240ms var(--primitive-ease-out),
+    background 240ms,
+    color 240ms,
+    box-shadow 240ms;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--de-amber);
+  border-radius: var(--primitive-radius-sm);
+  z-index: -1;
+  opacity: 0.45;
+  transition: inset 240ms;
+}
+.cta:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-2px);
+}
+.cta:hover::before {
+  inset: -7px;
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:active::before {
+  inset: -3px;
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+.meta {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 clamp(28px, 6vw, 104px) clamp(20px, 3svh, 40px);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--de-ink) 46%, transparent);
+  flex-wrap: wrap;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---- Responsive: keep the silhouette legible + on-canvas down to 320px ---- */
+@media (max-width: 900px) {
+  .maskSvg {
+    width: 132%;
+    transform: translateY(-12%);
+  }
+  .maskText[data-lines="1"] { font-size: 270px; }
+  .maskText[data-lines="2"] { font-size: 200px; }
+}
+
+@media (max-width: 560px) {
+  .hero { min-height: clamp(480px, 86svh, 720px); }
+  .maskSvg {
+    width: 152%;
+    transform: translateY(-16%);
+  }
+  .maskText[data-lines="1"] { font-size: 240px; }
+  .maskText[data-lines="2"] { font-size: 188px; }
+  .meta { font-size: 9px; gap: 14px; }
+}
+
+/* ---- Light theme: keep the double-exposure intentional on bright canvas ---- */
+:global(html[data-primitive-theme="light"]) .hero {
+  --de-ink: var(--primitive-text-strong);
+  --de-body: var(--primitive-body);
+}
+:global(html[data-primitive-theme="light"]) .video {
+  filter: grayscale(0.5) contrast(1.05) brightness(0.62);
+}
+:global(html[data-primitive-theme="light"]) .baseTone {
+  mix-blend-mode: multiply;
+  opacity: 0.92;
+}
+:global(html[data-primitive-theme="light"]) .headlineLine:first-child {
+  color: var(--de-red);
+  -webkit-text-stroke: 0;
+}
+
+/* ---- Reduced motion: clean static duotone composition, no live video ---- */
+@media (prefers-reduced-motion: reduce) {
+  .scan,
+  .grain,
+  .kicker i {
+    animation: none;
+  }
+  .cta {
+    transition: none;
+  }
+  .video,
+  .videoBright {
+    display: none;
+  }
+  .baseLayer {
+    background:
+      radial-gradient(ellipse at 70% 28%, color-mix(in oklab, var(--de-red) 28%, transparent), transparent 60%),
+      linear-gradient(150deg, color-mix(in oklab, var(--de-canvas) 88%, black) 0%, var(--de-canvas) 100%);
+  }
+  .maskedFill {
+    background:
+      linear-gradient(135deg, var(--de-amber) 0%, var(--de-red) 100%);
+  }
+  .scan {
+    opacity: 0.16;
+  }
+}

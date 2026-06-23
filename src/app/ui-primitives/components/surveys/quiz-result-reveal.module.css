@@ -1,0 +1,280 @@
+.surface {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--band-tone, var(--primitive-line));
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 0% 0%, var(--band-soft, color-mix(in oklab, var(--primitive-amber) 16%, transparent)), transparent 60%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  position: relative;
+  overflow: hidden;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.scoreBlock {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 18px;
+  border: 1px solid var(--band-tone, var(--primitive-line));
+  border-radius: var(--primitive-radius-xl);
+  background: color-mix(in oklab, var(--primitive-code-bg) 60%, transparent);
+  text-align: center;
+  justify-items: center;
+}
+
+.scoreFigure {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-display);
+  line-height: 1;
+  color: var(--primitive-text-strong);
+}
+
+.scoreEarned {
+  font-size: 56px;
+  color: var(--band-tone, var(--primitive-amber));
+}
+
+.scoreSep {
+  font-size: var(--primitive-text-3xl);
+  opacity: 0.5;
+}
+
+.scoreTotal {
+  font-size: var(--primitive-text-3xl);
+  color: var(--primitive-body);
+}
+
+.bandChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1-5) 14px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--band-tone, var(--primitive-amber));
+  color: color-mix(in oklab, var(--primitive-amber) 18%, black);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.percent {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.summary {
+  margin: var(--primitive-space-2) 0 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+  color: var(--primitive-body);
+  max-width: 42ch;
+}
+
+.feedbackBlock {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.subhead {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.feedback {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.fbRow {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-code-bg) 60%, transparent);
+}
+
+.fbChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.fbCorrect {
+  background: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  color: var(--primitive-green);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.fbPartial {
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  color: var(--primitive-amber);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+}
+
+.fbIncorrect {
+  background: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  color: var(--primitive-red);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.fbBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.fbLabel {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.fbNote {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  line-height: 1.4;
+}
+
+.fbPoints {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-mono);
+}
+
+.fbEarned {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.fbSep {
+  opacity: 0.5;
+}
+
+.fbMax {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.retry,
+.share {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-standard), background var(--primitive-duration-fast) var(--primitive-ease-standard), box-shadow var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+/* Primary CTA — central premium button DNA (metallic-red → amber hover). */
+.retry {
+  background: var(--primitive-btn-primary-bg);
+  border-color: transparent;
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.retry:hover,
+.retry:focus-visible {
+  background: var(--primitive-btn-primary-hover-bg);
+  border-color: transparent;
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.retry:disabled {
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  border-color: var(--primitive-line);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.share:hover,
+.share:focus-visible {
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.bandFail {
+  --band-tone: var(--primitive-red);
+  --band-soft: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.bandPass {
+  --band-tone: var(--primitive-amber);
+  --band-soft: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.bandDistinction {
+  --band-tone: var(--primitive-green);
+  --band-soft: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .retry,
+  .share {
+    transition: none;
+  }
+}

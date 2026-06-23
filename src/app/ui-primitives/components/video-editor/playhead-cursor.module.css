@@ -1,0 +1,80 @@
+.playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  z-index: 4;
+  pointer-events: auto;
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primitive-red) 42%, transparent));
+}
+
+.playhead:focus-visible {
+  outline: none;
+}
+
+.playhead:focus-visible .line {
+  background: linear-gradient(180deg, var(--primitive-amber), color-mix(in oklab, var(--primitive-amber) 18%, transparent));
+  box-shadow: 0 0 12px color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.full { height: 100%; }
+.compact { height: 64px; }
+
+.chip {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-red);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 18%, transparent), transparent 64%),
+    color-mix(in oklab, var(--primitive-red) 92%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.chip strong {
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.frameDot {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primitive-canvas) 28%, transparent);
+  font-size: 8px;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  color: color-mix(in oklab, var(--primitive-text-strong) 86%, transparent);
+}
+
+.line {
+  position: absolute;
+  top: 4px;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--primitive-red), color-mix(in oklab, var(--primitive-red) 16%, transparent));
+}
+
+.tail {
+  position: absolute;
+  bottom: -6px;
+  left: -5px;
+  width: 11px;
+  height: 6px;
+  background: var(--primitive-red);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}

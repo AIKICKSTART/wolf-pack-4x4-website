@@ -1,0 +1,160 @@
+.badge {
+  --plan-tone: var(--primitive-amber);
+  --plan-tone-soft: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --plan-tone-stroke: color-mix(in oklab, var(--primitive-amber) 55%, transparent);
+  --plan-glaze: linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 0.5%, transparent));
+  --plan-top-light: color-mix(in oklab, var(--primitive-text-on-accent) 12%, transparent);
+
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border: 1px solid var(--plan-tone-stroke);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    var(--plan-glaze),
+    var(--plan-tone-soft);
+  box-shadow:
+    inset 0 1px 0 var(--plan-top-light),
+    0 16px 38px color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+:global(html[data-primitive-theme="light"]) .badge {
+  --plan-glaze: linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 55%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 8%, transparent));
+  --plan-top-light: color-mix(in oklab, var(--primitive-text-on-accent) 70%, transparent);
+  box-shadow:
+    inset 0 1px 0 var(--plan-top-light),
+    var(--primitive-shadow-soft);
+}
+
+.badge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(circle at 20% 0%, var(--plan-tone-soft), transparent 60%);
+  opacity: 0.7;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 28%, transparent);
+  color: var(--plan-tone);
+  box-shadow: inset 0 0 0 1px var(--plan-tone-stroke);
+}
+
+.label {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.kicker {
+  color: var(--plan-tone);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.tier {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+}
+
+.caption {
+  padding-left: var(--primitive-space-3);
+  border-left: 1px solid color-mix(in oklab, var(--primitive-text-on-accent) 14%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+}
+
+.sizeSm {
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  gap: var(--primitive-space-2);
+}
+
+.sizeSm .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.sizeSm .tier {
+  font-size: var(--primitive-text-sm);
+}
+
+.sizeSm .caption {
+  font-size: var(--primitive-text-2xs);
+}
+
+.sizeLg {
+  padding: var(--primitive-space-3) var(--primitive-space-5);
+  gap: var(--primitive-space-4);
+}
+
+.sizeLg .icon {
+  width: 36px;
+  height: 36px;
+}
+
+.sizeLg .tier {
+  font-size: var(--primitive-text-2xl);
+}
+
+.toneStarter {
+  --plan-tone: var(--primitive-body);
+  --plan-tone-soft: color-mix(in oklab, var(--primitive-body) 10%, transparent);
+  --plan-tone-stroke: color-mix(in oklab, var(--primitive-body) 32%, transparent);
+}
+
+.toneWorkshop {
+  --plan-tone: var(--primitive-amber);
+  --plan-tone-soft: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --plan-tone-stroke: color-mix(in oklab, var(--primitive-amber) 55%, transparent);
+}
+
+.toneFleet {
+  --plan-tone: var(--primitive-teal);
+  --plan-tone-soft: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  --plan-tone-stroke: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+}
+
+.toneEnterprise {
+  --plan-tone: var(--primitive-amber);
+  --plan-tone-soft: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  --plan-tone-stroke: color-mix(in oklab, var(--primitive-amber) 65%, transparent);
+}
+
+.toneEnterprise.badge {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 40%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 0.5%, transparent)),
+    color-mix(in oklab, var(--primitive-red-dark) 42%, var(--primitive-canvas));
+}
+
+/* Enterprise keeps its luxury dark base in both themes — force legible light type + glaze on it. */
+:global(html[data-primitive-theme="light"]) .toneEnterprise.badge {
+  --plan-glaze: linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 8%, transparent), color-mix(in oklab, var(--primitive-text-on-accent) 1%, transparent));
+  --plan-top-light: color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .toneEnterprise .tier {
+  color: var(--primitive-text-on-accent);
+}

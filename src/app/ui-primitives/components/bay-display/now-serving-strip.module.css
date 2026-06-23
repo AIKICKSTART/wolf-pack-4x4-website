@@ -1,0 +1,98 @@
+.strip {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 4.5%, transparent),
+      color-mix(in oklab, var(--primitive-text-on-accent) 1%, transparent)
+    ),
+    var(--primitive-panel);
+  overflow: hidden;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: 14px 22px;
+  background:
+    linear-gradient(135deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(12px, 0.95vw, 16px);
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.scroll {
+  padding: var(--primitive-space-3) 0;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-4);
+  white-space: nowrap;
+  color: var(--primitive-body);
+  font-family: var(--ff-ts-bebas, var(--primitive-font-display));
+  font-size: clamp(20px, 1.6vw, 28px);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.bay {
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  font-weight: 400;
+  color: var(--primitive-amber);
+  letter-spacing: 0.04em;
+}
+
+.vehicle {
+  color: var(--primitive-text-strong);
+  font-weight: 400;
+}
+
+.status {
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: 6px;
+  font-size: 0.78em;
+  letter-spacing: 0.18em;
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-text-strong);
+}
+
+.status[data-status="dyno"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.status[data-status="ready"] {
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+}
+
+.status[data-status="in-bay"] {
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+}
+
+.status[data-status="diagnostic"] {
+  border-color: color-mix(in oklab, var(--primitive-teal) 45%, transparent);
+  color: var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+}
+
+.dot {
+  color: var(--primitive-red);
+  font-size: 1.2em;
+}

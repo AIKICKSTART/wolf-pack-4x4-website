@@ -1,0 +1,127 @@
+.pin {
+  position: absolute;
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  margin-top: -28px;
+  border: 0;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background:
+    linear-gradient(135deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  cursor: pointer;
+  isolation: isolate;
+  box-shadow: 0 6px 16px color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.pin::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50% 50% 50% 0;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(circle at center, color-mix(in oklab, var(--primitive-red) 40%, transparent), transparent 70%);
+  opacity: 0.6;
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+.pinResolved {
+  background:
+    linear-gradient(135deg, var(--primitive-green), color-mix(in oklab, var(--primitive-green) 60%, var(--primitive-canvas)));
+  box-shadow: 0 6px 16px color-mix(in oklab, var(--primitive-green) 40%, transparent);
+}
+
+.pinResolved::before {
+  background: radial-gradient(circle at center, color-mix(in oklab, var(--primitive-green) 40%, transparent), transparent 70%);
+}
+
+.pinReopened {
+  background:
+    linear-gradient(135deg, var(--primitive-amber), color-mix(in oklab, var(--primitive-amber) 55%, var(--primitive-canvas)));
+  box-shadow: 0 6px 16px color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.pinReopened::before {
+  background: radial-gradient(circle at center, color-mix(in oklab, var(--primitive-amber) 40%, transparent), transparent 70%);
+}
+
+.pin:hover,
+.pin:focus-visible {
+  transform: rotate(-45deg) scale(1.08);
+  outline: none;
+}
+
+.pinSelected {
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--primitive-teal) 40%, transparent),
+    0 8px 20px color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.02em;
+  transform: rotate(45deg);
+  color: var(--primitive-text-on-accent);
+}
+
+.tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) rotate(45deg);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-panel-strong);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.pin:hover .tooltip,
+.pin:focus-visible .tooltip {
+  opacity: 1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.65;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pin::before {
+    animation: none;
+    opacity: 0.3;
+  }
+  .pin,
+  .tooltip {
+    transition: none;
+  }
+  .pin:hover,
+  .pin:focus-visible {
+    transform: rotate(-45deg);
+  }
+}

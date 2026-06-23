@@ -1,0 +1,103 @@
+.stage {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  border-radius: var(--primitive-radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(circle at 12% 16%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 40%),
+    radial-gradient(circle at 88% 84%, color-mix(in oklab, var(--primitive-amber) 6%, transparent), transparent 36%),
+    var(--primitive-panel);
+  isolation: isolate;
+  font-family: var(--primitive-font-body);
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.caption {
+  position: absolute;
+  top: var(--primitive-space-4);
+  left: 18px;
+  z-index: 2;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.cursors {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.cursor {
+  position: absolute;
+  display: inline-flex;
+  align-items: flex-start;
+  transform: translate(-4px, -4px);
+  transition: top 220ms var(--primitive-ease-out),
+    left 220ms var(--primitive-ease-out);
+  will-change: top, left;
+  pointer-events: none;
+}
+
+.pointer {
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0 3px 6px color-mix(in oklab, var(--primitive-canvas) 45%, transparent));
+}
+
+.pointerStroke {
+  stroke: color-mix(in oklab, var(--primitive-canvas) 45%, transparent);
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  margin-left: var(--primitive-space-0-5);
+  margin-top: var(--primitive-space-3);
+  padding: var(--primitive-space-1) 9px;
+  border-radius: var(--primitive-radius-md);
+  background: currentColor;
+  color: var(--primitive-canvas);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+}
+
+.label .name,
+.label .hint {
+  color: var(--primitive-canvas);
+}
+
+.hint {
+  opacity: 0.62;
+  font-weight: var(--primitive-weight-medium);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.04em;
+}
+
+.toneBlue { color: var(--primitive-teal); }
+.toneAmber { color: var(--primitive-amber); }
+.tonePurple { color: var(--primitive-violet); }
+.toneGreen { color: var(--primitive-green); }
+.tonePink { color: color-mix(in oklab, var(--primitive-red) 58%, white); }
+.toneOrange { color: color-mix(in oklab, var(--primitive-amber) 58%, var(--primitive-red)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    transition: none;
+  }
+}

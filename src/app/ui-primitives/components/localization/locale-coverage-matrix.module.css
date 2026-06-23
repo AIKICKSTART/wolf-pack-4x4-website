@@ -1,0 +1,152 @@
+.root {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.legend {
+  display: flex;
+  gap: var(--primitive-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.legendDot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid currentColor;
+}
+
+.legendDot[data-state="translated"] {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+}
+.legendDot[data-state="partial"] {
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+}
+.legendDot[data-state="missing"] {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+}
+.legendDot[data-state="na"] {
+  color: var(--primitive-muted);
+  background: var(--primitive-field-bg);
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-bottom: 1px dashed var(--primitive-line);
+}
+
+.featureCol {
+  text-align: left;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+}
+
+.featureCell {
+  text-align: left;
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.005em;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  border-right: 1px solid var(--primitive-line);
+}
+
+.table thead th {
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid currentColor;
+  font-size: var(--primitive-text-sm);
+}
+
+.cell[data-state="translated"] {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+}
+.cell[data-state="partial"] {
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+}
+.cell[data-state="missing"] {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+.cell[data-state="na"] {
+  color: var(--primitive-muted);
+  background: var(--primitive-field-bg);
+  border-style: dashed;
+}

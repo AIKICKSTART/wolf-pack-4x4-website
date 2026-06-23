@@ -1,0 +1,92 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2) 14px var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-control-surface);
+  font: inherit;
+  cursor: pointer;
+  color: var(--primitive-body);
+  transition: border-color var(--primitive-duration-normal) var(--primitive-ease-standard), background var(--primitive-duration-normal) var(--primitive-ease-standard);
+  position: relative;
+}
+
+.pill:hover,
+.pill:focus-visible {
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.dotShell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--dot-color, var(--primitive-muted));
+  box-shadow: 0 0 0 2px var(--dot-ring, var(--primitive-line-muted));
+  position: relative;
+  z-index: 1;
+}
+
+.dotPulse {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--primitive-radius-round);
+  background: var(--dot-color, var(--primitive-muted));
+  opacity: 0.5;
+  animation: pulse 1800ms var(--primitive-ease-out) infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.75); opacity: 0.55; }
+  80% { transform: scale(1.9); opacity: 0; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+.label {
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.hint {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  color: var(--primitive-muted);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: lowercase;
+  margin-left: var(--primitive-space-1);
+  white-space: nowrap;
+}
+
+.caret {
+  display: inline-flex;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid var(--primitive-muted);
+  margin-left: var(--primitive-space-1-5);
+}
+
+.toneGreen { --dot-color: var(--primitive-green); --dot-ring: color-mix(in oklab, var(--primitive-green) 18%, transparent); }
+.toneAmber { --dot-color: var(--primitive-amber); --dot-ring: color-mix(in oklab, var(--primitive-amber) 22%, transparent); }
+.toneRed { --dot-color: var(--primitive-red); --dot-ring: color-mix(in oklab, var(--primitive-red) 22%, transparent); }
+.toneViolet { --dot-color: var(--primitive-violet); --dot-ring: color-mix(in oklab, var(--primitive-violet) 22%, transparent); }
+.toneNeutral { --dot-color: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent); --dot-ring: var(--primitive-line-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .dotPulse { animation: none; opacity: 0; }
+  .pill { transition: none; }
+}

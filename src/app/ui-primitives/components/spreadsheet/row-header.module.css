@@ -1,0 +1,96 @@
+.header {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  height: 30px;
+  padding: 0 var(--primitive-space-1-5);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1.5%, transparent)),
+    var(--primitive-code-bg);
+  border-right: 1px solid var(--primitive-line-strong);
+  border-bottom: 1px solid var(--primitive-line);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+}
+
+.selected {
+  background: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.frozen {
+  box-shadow: 0 2px 0 var(--primitive-amber);
+}
+
+.number {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.freeze {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--primitive-muted);
+  cursor: pointer;
+}
+
+.freeze svg {
+  width: 9px;
+  height: 9px;
+}
+
+.freeze:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border-color: var(--primitive-line);
+  color: var(--primitive-text-strong);
+}
+
+.freezeActive {
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-amber) 46%, transparent);
+  color: var(--primitive-amber);
+}
+
+.resizeHandle {
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 6px;
+  width: 100%;
+  cursor: row-resize;
+  z-index: 4;
+}
+
+.resizeHandle::after {
+  content: "";
+  position: absolute;
+  inset: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  background: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  border-radius: var(--primitive-radius-xs);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.resizeHandle:hover::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resizeHandle::after {
+    transition: none;
+  }
+}

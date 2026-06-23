@@ -1,0 +1,16 @@
+.section {
+  display: grid;
+  gap: clamp(28px, 4vw, 56px);
+}
+
+/* PricingCtaSection + FeatureGrid bring their own section padding — flatten the
+   horizontal padding so the two stack on one shared rhythm. */
+.section > :global(section) {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.included {
+  border-top: 1px solid var(--primitive-line);
+  padding-top: clamp(28px, 4vw, 48px);
+}

@@ -1,0 +1,236 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--chip-border, var(--primitive-line));
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-violet) 8%, transparent), transparent 50%),
+    linear-gradient(180deg, var(--card-glow, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent)), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    var(--primitive-shadow-soft);
+  position: relative;
+  isolation: isolate;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.aiGlyph {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--primitive-violet) 16%, transparent);
+  color: color-mix(in oklab, var(--primitive-violet) 72%, var(--primitive-text-strong));
+  font-size: var(--primitive-text-xs);
+  border: 1px solid color-mix(in oklab, var(--primitive-violet) 40%, transparent);
+}
+
+.confidenceChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--chip-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--chip-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--chip-fg, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: var(--primitive-leading-none);
+}
+
+.suggestion {
+  margin: 0;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.rationale {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr);
+  gap: var(--primitive-space-2-5);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.5;
+  color: var(--primitive-body);
+}
+
+.rationaleKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.rationaleBody {
+  color: var(--primitive-body);
+  font-style: italic;
+}
+
+.source {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.actions {
+  display: flex;
+  gap: var(--primitive-space-2);
+  flex-wrap: wrap;
+}
+
+.useBtn,
+.refineBtn,
+.rejectBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--primitive-space-8);
+  padding: 0 14px;
+  border-radius: var(--primitive-btn-radius);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--primitive-duration-fast) ease,
+    border-color var(--primitive-duration-fast) ease,
+    background var(--primitive-duration-fast) ease,
+    color var(--primitive-duration-fast) ease,
+    box-shadow var(--primitive-duration-fast) ease;
+}
+
+.useBtn {
+  border: 0;
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  color: var(--primitive-btn-primary-fg);
+}
+
+.refineBtn {
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+}
+
+.rejectBtn {
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-body);
+}
+
+.useBtn:hover,
+.useBtn:focus-visible {
+  outline: none;
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.refineBtn:hover,
+.refineBtn:focus-visible,
+.rejectBtn:hover,
+.rejectBtn:focus-visible {
+  outline: none;
+  transform: translateY(-1px);
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+}
+
+.chosen {
+  filter: saturate(1.3);
+  border-color: var(--primitive-line-strong);
+}
+
+.toneRed {
+  --chip-bg: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --chip-fg: var(--primitive-red);
+  --card-glow: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+}
+
+.toneAmber {
+  --chip-bg: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --chip-fg: var(--primitive-amber);
+  --card-glow: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+}
+
+.toneTeal {
+  --chip-bg: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-teal) 34%, transparent);
+  --chip-fg: var(--primitive-teal);
+  --card-glow: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+}
+
+.toneGreen {
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --chip-fg: var(--primitive-green);
+  --card-glow: color-mix(in oklab, var(--primitive-green) 5%, transparent);
+}
+
+.toneNeutral {
+  --chip-bg: color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent);
+  --chip-border: var(--primitive-line);
+  --chip-fg: var(--primitive-body);
+  --card-glow: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.toneViolet {
+  --chip-bg: color-mix(in oklab, var(--primitive-violet) 12%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-violet) 34%, transparent);
+  --chip-fg: color-mix(in oklab, var(--primitive-violet) 72%, var(--primitive-text-strong));
+  --card-glow: color-mix(in oklab, var(--primitive-violet) 6%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .useBtn,
+  .refineBtn,
+  .rejectBtn {
+    transition: none;
+  }
+  .useBtn:hover,
+  .useBtn:focus-visible,
+  .refineBtn:hover,
+  .refineBtn:focus-visible,
+  .rejectBtn:hover,
+  .rejectBtn:focus-visible {
+    transform: none;
+  }
+}

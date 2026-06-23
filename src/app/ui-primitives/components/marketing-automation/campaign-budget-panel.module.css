@@ -1,0 +1,165 @@
+.panel {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(140% 90% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 6%, transparent), transparent 60%),
+    var(--primitive-panel);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-3);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: var(--primitive-space-1) 0 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.pacing {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 5px var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pacing[data-tone="green"] { color: var(--primitive-green); border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent); background: color-mix(in oklab, var(--primitive-green) 10%, transparent); }
+.pacing[data-tone="amber"] { color: var(--primitive-amber); border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent); background: color-mix(in oklab, var(--primitive-amber) 10%, transparent); }
+.pacing[data-tone="red"] { color: var(--primitive-red); border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent); background: color-mix(in oklab, var(--primitive-red) 10%, transparent); }
+
+.totals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.totalCell {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.totalLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.totalValue {
+  font-family: var(--primitive-font-display, inherit);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.totalDelta {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-body);
+}
+
+.curve {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.curveLabel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.curveCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+}
+
+.actualLine {
+  fill: none;
+  stroke: var(--primitive-amber);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.actualArea {
+  fill: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.idealLine {
+  fill: none;
+  stroke: var(--primitive-teal);
+  stroke-width: 1.4;
+  stroke-dasharray: 4 4;
+}
+
+.axisLabel {
+  fill: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.legend {
+  display: flex;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.legendSwatch {
+  width: 18px;
+  height: 2px;
+  border-radius: var(--primitive-radius-xs);
+}
+
+.legendSwatchActual { background: var(--primitive-amber); }
+.legendSwatchIdeal { background: var(--primitive-teal); }

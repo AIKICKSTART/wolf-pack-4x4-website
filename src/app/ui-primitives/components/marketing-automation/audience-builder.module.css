@@ -1,0 +1,194 @@
+.wrapper {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in oklab, var(--primitive-green) 6%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.estimate {
+  display: grid;
+  text-align: right;
+  gap: var(--primitive-space-0-5);
+}
+
+.estimateLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.estimateValue {
+  font-family: var(--primitive-font-display, inherit);
+  font-size: 24px;
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.estimateDelta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-green);
+  font-variant-numeric: tabular-nums;
+}
+
+.estimateDelta[data-direction="down"] {
+  color: var(--primitive-red);
+}
+
+.groups {
+  display: grid;
+  gap: 14px;
+}
+
+.group {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: 14px 14px 14px 60px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.groupLogic {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  bottom: 14px;
+  width: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-md);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.groupLogicAnd { background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 24%, transparent), color-mix(in oklab, var(--primitive-green) 8%, transparent)); border: 1px solid color-mix(in oklab, var(--primitive-green) 45%, transparent); }
+.groupLogicOr { background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 24%, transparent), color-mix(in oklab, var(--primitive-teal) 8%, transparent)); border: 1px solid color-mix(in oklab, var(--primitive-teal) 45%, transparent); }
+
+.groupHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.groupTitle {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.operatorToggle {
+  display: inline-flex;
+  gap: var(--primitive-space-1);
+  padding: 3px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 20%, transparent);
+}
+
+.operatorButton {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--primitive-muted);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-radius-pill);
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.operatorButton[aria-checked="true"] {
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.operatorButton:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 1px;
+}
+
+.predicateRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-panel-strong);
+}
+
+.predicateMeta {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.predicateKind {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.predicateLabel {
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+}
+
+.predicateValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .operatorButton {
+    transition: none;
+  }
+}

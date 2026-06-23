@@ -1,0 +1,234 @@
+.certFrame {
+  position: relative;
+  padding: var(--primitive-space-6);
+  height: 100%;
+  background: linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-amber) 6%, var(--primitive-canvas)) 100%);
+}
+
+.ornament {
+  position: absolute;
+  inset: var(--primitive-space-3);
+  pointer-events: none;
+  border: 2px solid var(--primitive-ink);
+  border-radius: var(--primitive-radius-sm);
+}
+
+.ornament::before {
+  content: "";
+  position: absolute;
+  inset: var(--primitive-space-1);
+  border: 1px solid var(--primitive-red);
+  border-radius: var(--primitive-radius-xs);
+}
+
+.cornerTL,
+.cornerTR,
+.cornerBL,
+.cornerBR {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: var(--primitive-ink);
+}
+
+.cornerTL {
+  top: -8px;
+  left: -8px;
+  border-top: 3px solid var(--primitive-ink);
+  border-left: 3px solid var(--primitive-ink);
+}
+
+.cornerTR {
+  top: -8px;
+  right: -8px;
+  border-top: 3px solid var(--primitive-ink);
+  border-right: 3px solid var(--primitive-ink);
+}
+
+.cornerBL {
+  bottom: -8px;
+  left: -8px;
+  border-bottom: 3px solid var(--primitive-ink);
+  border-left: 3px solid var(--primitive-ink);
+}
+
+.cornerBR {
+  bottom: -8px;
+  right: -8px;
+  border-bottom: 3px solid var(--primitive-ink);
+  border-right: 3px solid var(--primitive-ink);
+}
+
+.inner {
+  position: relative;
+  padding: var(--primitive-space-7) 26px;
+  display: grid;
+  gap: 18px;
+  text-align: center;
+  z-index: 1;
+}
+
+.crest {
+  display: grid;
+  justify-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.crestRing {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle, var(--primitive-canvas) 60%, color-mix(in oklab, var(--primitive-amber) 12%, var(--primitive-canvas)) 60% 70%, var(--primitive-canvas) 70%),
+    var(--primitive-ink);
+  border: 2px solid var(--primitive-ink);
+  position: relative;
+  box-shadow: inset 0 0 0 3px var(--primitive-canvas), inset 0 0 0 4px var(--primitive-red);
+}
+
+.crestRing span {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--primitive-ink);
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  display: grid;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-display);
+  font-size: 42px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primitive-ink);
+  line-height: 1;
+}
+
+.title span {
+  font-size: var(--primitive-text-md);
+  font-weight: 400;
+  letter-spacing: 0.5em;
+  color: var(--primitive-red);
+}
+
+.preamble {
+  margin: 0 auto;
+  max-width: 60ch;
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-ink-soft);
+  line-height: 1.6;
+}
+
+.certDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--primitive-space-2) var(--primitive-space-6);
+  margin: var(--primitive-space-3) 0 0;
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border-top: 1px solid var(--primitive-ink);
+  border-bottom: 1px solid var(--primitive-ink);
+  text-align: left;
+}
+
+.certDetails div {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.certDetails dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.certDetails dd {
+  margin: 0;
+  color: var(--primitive-ink);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  font-weight: 700;
+}
+
+.certFooter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-6);
+  align-items: end;
+  text-align: left;
+  margin-top: var(--primitive-space-1);
+}
+
+.signatures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.signatures > div {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.signLine {
+  height: 1px;
+  background: var(--primitive-ink);
+  margin: var(--primitive-space-7) 0 var(--primitive-space-1);
+}
+
+.signatures strong {
+  color: var(--primitive-ink);
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.signatures small {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.verify {
+  display: grid;
+  justify-items: center;
+}
+
+.workshopFooter {
+  margin: var(--primitive-space-2) 0 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media print {
+  .certFrame,
+  .inner {
+    background: var(--primitive-canvas);
+  }
+
+  .certFooter,
+  .signatures {
+    break-inside: avoid;
+  }
+}

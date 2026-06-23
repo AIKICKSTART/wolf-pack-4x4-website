@@ -1,0 +1,125 @@
+.section {
+  display: grid;
+  gap: clamp(28px, 3.6vw, 44px);
+  padding: clamp(48px, 6vw, 96px) clamp(20px, 4vw, 56px);
+}
+
+.header {
+  display: grid;
+  gap: var(--primitive-space-3);
+  max-width: 720px;
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 0.96;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.body {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-md);
+  line-height: 1.6;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--primitive-card-border);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-card-bg);
+  box-shadow: var(--primitive-card-shadow);
+  overflow: hidden;
+  list-style: none;
+}
+
+.cell {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-2);
+  padding: clamp(20px, 3vw, 32px);
+  border-right: 1px solid var(--primitive-line);
+}
+
+.cell::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: clamp(20px, 3vw, 32px);
+  width: 28px;
+  height: 2px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--cell-tone, var(--primitive-amber));
+}
+
+.cell:last-child {
+  border-right: 0;
+}
+
+.cell .body {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+.value {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(46px, 6vw, 84px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: -0.02em;
+  line-height: var(--primitive-leading-none);
+  font-variant-numeric: tabular-nums;
+  color: var(--cell-tone, var(--primitive-amber));
+}
+
+.label {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.toneRed {
+  --cell-tone: var(--primitive-red);
+}
+
+.toneAmber {
+  --cell-tone: var(--primitive-amber);
+}
+
+.toneTeal {
+  --cell-tone: var(--primitive-teal);
+}
+
+.toneGreen {
+  --cell-tone: var(--primitive-green);
+}
+
+@media (max-width: 760px) {
+  .cell {
+    border-right: 0;
+    border-bottom: 1px solid var(--primitive-line);
+  }
+  .cell:last-child {
+    border-bottom: 0;
+  }
+}

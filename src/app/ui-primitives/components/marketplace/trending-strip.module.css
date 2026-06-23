@@ -1,0 +1,205 @@
+.strip {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), var(--primitive-shadow-soft);
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+}
+
+.controls {
+  display: inline-flex;
+  gap: var(--primitive-space-1-5);
+}
+
+/* Icon control — shared carbon button DNA. */
+.ctrl {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-body);
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-out), color var(--primitive-duration-fast) var(--primitive-ease-out), box-shadow var(--primitive-duration-fast) var(--primitive-ease-out), transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.ctrl:hover,
+.ctrl:focus-visible {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-btn-primary-shadow), var(--primitive-focus-shadow);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.ctrl:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 240px);
+  gap: var(--primitive-space-3);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding-bottom: var(--primitive-space-1);
+}
+
+.scroller::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scroller::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+  background: var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+}
+
+.item {
+  scroll-snap-align: start;
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-recessed);
+  text-decoration: none;
+  color: var(--primitive-body);
+  min-width: 0;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-out), transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.item:hover,
+.item:focus-visible {
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.itemHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.rank {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 46%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 14%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.12em;
+}
+
+.momentum {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  height: 22px;
+  padding: 0 var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.06em;
+}
+
+.momentumUp {
+  color: var(--primitive-green);
+  border-color: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+}
+
+.momentumDown {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.momentumFlat {
+  color: var(--primitive-muted);
+}
+
+.itemName {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.itemAuthor {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.itemTrend {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroller {
+    scroll-behavior: auto;
+  }
+  .ctrl,
+  .item {
+    transition: none;
+  }
+  .ctrl:hover,
+  .ctrl:focus-visible,
+  .item:hover,
+  .item:focus-visible {
+    transform: none;
+  }
+}

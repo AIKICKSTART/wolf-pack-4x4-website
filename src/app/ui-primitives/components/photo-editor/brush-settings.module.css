@@ -1,0 +1,167 @@
+.wrap {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+}
+
+.title {
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 110px;
+  padding: var(--primitive-space-3);
+  border: 1px dashed var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(ellipse at 30% 20%, var(--primitive-glass-strong), transparent 60%),
+    var(--primitive-recessed);
+}
+
+.tip {
+  width: var(--tip-size, 80px);
+  height: var(--tip-size, 80px);
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      var(--tip-color, var(--primitive-icon-obsidian)) 0%,
+      var(--tip-color, var(--primitive-icon-obsidian)) calc(var(--tip-hardness, 0.4) * 100%),
+      transparent 100%
+    );
+  filter: blur(calc((1 - var(--tip-hardness, 0.4)) * 2.5px));
+  opacity: var(--tip-opacity, 0.78);
+}
+
+.controls {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr) 56px;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.fieldValue {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-text-strong);
+  text-align: right;
+}
+
+.slider {
+  position: relative;
+  height: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-strong);
+  overflow: hidden;
+}
+
+.sliderFill {
+  position: absolute;
+  inset: 0;
+  width: var(--slider-fill, 50%);
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primitive-teal), var(--primitive-amber));
+}
+
+.sliderThumb {
+  position: absolute;
+  top: 50%;
+  left: var(--slider-fill, 50%);
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  border: 2px solid var(--primitive-canvas);
+  box-shadow: 0 3px 8px color-mix(in oklab, var(--primitive-overlay) 88%, transparent);
+}
+
+.colourRow {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+}
+
+.colourBar {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-recessed);
+}
+
+.colourChip {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--colour-hex, var(--primitive-icon-obsidian));
+  border: 1px solid var(--primitive-line-strong);
+}
+
+.hexValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+  color: var(--primitive-text-strong);
+}
+
+.swatchRow {
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--primitive-space-1);
+}
+
+.swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid var(--primitive-line-strong);
+  background: var(--swatch-hex);
+  cursor: pointer;
+}

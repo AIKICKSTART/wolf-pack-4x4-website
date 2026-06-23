@@ -1,0 +1,108 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: var(--primitive-space-4);
+  background: var(--primitive-media-overlay);
+  backdrop-filter: blur(6px);
+}
+
+.dialog {
+  width: min(100%, 520px);
+  gap: var(--primitive-space-4);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid color-mix(in srgb, var(--primitive-amber) 42%, transparent);
+  background: color-mix(in srgb, var(--primitive-amber) 8%, transparent);
+}
+
+.consequencesBlock {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.consequenceList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.consequence {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: var(--primitive-space-2-5);
+  align-items: start;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in srgb, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.consequenceSevere {
+  border-color: color-mix(in srgb, var(--primitive-red) 42%, transparent);
+  background: color-mix(in srgb, var(--primitive-red) 8%, transparent);
+}
+
+.consequenceGlyph {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-recessed);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.consequenceSevere .consequenceGlyph {
+  background: color-mix(in srgb, var(--primitive-red) 18%, transparent);
+  color: var(--primitive-red);
+}
+
+.consequenceCopy {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.consequenceLabel {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.005em;
+}
+
+.consequenceDetail {
+  font-size: var(--primitive-text-xs);
+  line-height: 1.5;
+  color: var(--primitive-body);
+}
+
+.foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--primitive-space-2);
+  flex-wrap: wrap;
+}
+
+:global([data-primitive-theme="light"]) .consequenceLabel {
+  color: var(--primitive-text-strong);
+}

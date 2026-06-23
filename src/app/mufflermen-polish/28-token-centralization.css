@@ -1,0 +1,63 @@
+/* ── Token centralization (owner ask 2026-06-11) ──────────────────
+   The homepage section components carried inline style={{...}} colour
+   attributes (color / textShadow). They are classes here now, so both
+   themes stay manageable from the token blocks:
+     mufflermen/00-tokens-ambient.css        (base tokens)
+     mufflermen-polish/24-brand-consistency.css (:root cta/silver/brand)
+     mufflermen-polish/16-obsidium-red.css   (per-theme accent values)
+
+   CASCADE NOTE — read before editing. 16-obsidium-red.css and
+   19-quote-page.css keyed several !important recipes off the literal
+   style attribute ([style*="var(--accent)"]). Those selectors no longer
+   match the migrated elements, so their exact winning declarations are
+   reproduced below with the same values, importance and specificity
+   ladder:
+     base accent        was 16-obsidium-red  html .mufflermen-public [style*="var(--accent)"]
+     cinema bright red  was 16-obsidium-red  html body … h2 span[style*="var(--accent)"]
+     #services accent   was 19-quote-page    …#services .display span[style*="var(--accent)"]
+   Keep the !important: 17-showcase-final.css (.experience-stat-value)
+   and 19-quote-page.css (.experience-stat-value-accent) still aim
+   !important colour rules at the same elements and must keep losing /
+   winning exactly as they did against the old attribute selectors. */
+
+/* Plain-token fallbacks (also covers any render outside .mufflermen-public). */
+.tk-ink { color: var(--ink); }
+.tk-accent {
+  color: var(--accent);
+  text-shadow: var(--muff-accent-shadow);
+}
+.tk-cinema-ink { color: var(--muff-cinema-ink, var(--ink)); }
+.tk-cinema-muted { color: var(--muff-cinema-muted); }
+
+/* Public-site authority — replicates the strength the old attribute
+   selectors had over theme-gate restyles. */
+html .mufflermen-public .tk-ink { color: var(--ink) !important; }
+html .mufflermen-public .tk-cinema-ink { color: var(--muff-cinema-ink, var(--ink)) !important; }
+html .mufflermen-public .tk-cinema-muted { color: var(--muff-cinema-muted) !important; }
+
+html .mufflermen-public .tk-accent {
+  color: var(--accent) !important;
+  text-shadow: var(--muff-accent-shadow) !important;
+}
+
+/* Cinema frames: brighter signal red for TEXT over the near-black
+   video bands — the deep --accent fill red is only 2.1:1 against
+   #040000 and fails WCAG 1.4.3 (see 16-obsidium-red.css). */
+html body .mufflermen-public .arch-text h2 span.tk-accent,
+html body .mufflermen-public .hoist-text h2 span.tk-accent,
+html body .mufflermen-public .rollout-main h2 span.tk-accent {
+  color: var(--muff-cinema-accent, var(--ink-signal)) !important;
+  text-shadow: var(--muff-accent-shadow) !important;
+}
+
+/* #services display accent — deep red on the services band (light/base),
+   slightly lifted red in dark (was 19-quote-page.css). */
+.mufflermen-public #services .display span.tk-accent {
+  color: var(--accent-deep) !important;
+  text-shadow: 0 12px 34px color-mix(in oklab, var(--accent-deep) 18%, transparent) !important;
+}
+
+html[data-mufflermen-theme="dark"] .mufflermen-public #services .display span.tk-accent {
+  color: #b31621 !important;
+  text-shadow: 0 14px 36px rgba(137, 10, 17, 0.3) !important;
+}

@@ -1,0 +1,232 @@
+.diagram {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 22px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent),
+    var(--primitive-panel);
+}
+
+@media (max-width: 760px) {
+  .diagram {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vehicleShell {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border: 1px dashed var(--primitive-line);
+  border-radius: 12px;
+  background:
+    radial-gradient(ellipse at 50% 18%, color-mix(in oklab, var(--primitive-teal) 6%, transparent), transparent 70%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 20px,
+      color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 20px 21px
+    ),
+    var(--primitive-recessed);
+  isolation: isolate;
+  min-height: 280px;
+}
+
+.cabin {
+  position: absolute;
+  top: 32%;
+  left: 22%;
+  right: 22%;
+  height: 32%;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 12%, transparent), color-mix(in oklab, var(--primitive-text-strong) 2%, transparent)),
+    var(--primitive-recessed);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+.bonnet {
+  position: absolute;
+  top: 12%;
+  left: 28%;
+  right: 28%;
+  height: 20%;
+  border-radius: 14px 14px 4px 4px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 8%, transparent), color-mix(in oklab, var(--primitive-text-strong) 2%, transparent));
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.tray {
+  position: absolute;
+  bottom: 12%;
+  left: 28%;
+  right: 28%;
+  height: 20%;
+  border-radius: 4px 4px 14px 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent), color-mix(in oklab, var(--primitive-text-strong) 6%, transparent));
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.tyre {
+  position: absolute;
+  width: 18%;
+  aspect-ratio: 1 / 1.6;
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 70%, transparent), color-mix(in oklab, var(--primitive-canvas) 35%, transparent));
+  border: 2px solid var(--tyre-tone, var(--primitive-line));
+  color: var(--primitive-text-strong);
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  isolation: isolate;
+  z-index: 2;
+  padding: 6px;
+}
+
+.tyre[data-tone="green"] {
+  --tyre-tone: var(--primitive-green);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-green) 16%, transparent);
+}
+
+.tyre[data-tone="teal"] {
+  --tyre-tone: var(--primitive-teal);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+}
+
+.tyre[data-tone="amber"] {
+  --tyre-tone: var(--primitive-amber);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+}
+
+.tyre[data-tone="red"] {
+  --tyre-tone: var(--primitive-red);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.tyre:hover,
+.tyre:focus-visible {
+  transform: scale(1.04);
+  outline: none;
+}
+
+.tyreActive {
+  transform: scale(1.06);
+  box-shadow: 0 0 0 5px var(--tyre-tone, var(--primitive-line-strong)) !important;
+}
+
+.tyreLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tyre-tone, var(--primitive-text-strong));
+}
+
+.tyreTread {
+  font-family: var(--primitive-font-display);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+}
+
+.pos-front-left {
+  top: 8%;
+  left: 6%;
+}
+
+.pos-front-right {
+  top: 8%;
+  right: 6%;
+}
+
+.pos-rear-left {
+  bottom: 8%;
+  left: 6%;
+}
+
+.pos-rear-right {
+  bottom: 8%;
+  right: 6%;
+}
+
+.chart {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.chartHeading {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.bars {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bar {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  background: var(--primitive-recessed);
+  transition: opacity 200ms ease;
+}
+
+.dim {
+  opacity: 0.42;
+}
+
+.barHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.spec {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  color: var(--primitive-muted);
+}
+
+.legalLine {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tyre,
+  .tyre:hover,
+  .tyre:focus-visible,
+  .tyreActive {
+    transition: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,123 @@
+.wrap {
+  /* EU-region accent — points at the central, theme-aware violet token. */
+  --compliance-violet: var(--primitive-violet);
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.vendorCell {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.vendorName {
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+}
+
+.service {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+  letter-spacing: 0.02em;
+}
+
+.locationChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 3px 9px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.locationDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: currentColor;
+}
+
+.locationAu {
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  color: var(--primitive-green);
+}
+
+.locationUs {
+  border-color: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+  color: var(--primitive-teal);
+}
+
+.locationEu {
+  border-color: color-mix(in oklab, var(--compliance-violet) 32%, transparent);
+  background: color-mix(in oklab, var(--compliance-violet) 8%, transparent);
+  color: var(--compliance-violet);
+}
+
+.locationOther {
+  border-color: color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-amber);
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--chip-border, var(--primitive-line));
+  background: var(--chip-bg, var(--primitive-glass-soft));
+  color: var(--chip-fg, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: currentColor;
+}
+
+.dpiaApproved {
+  --chip-border: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  --chip-fg: var(--primitive-green);
+}
+
+.dpiaPending {
+  --chip-border: color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  --chip-fg: var(--primitive-amber);
+}
+
+.dpiaRejected {
+  --chip-border: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  --chip-bg: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  --chip-fg: var(--primitive-red);
+}
+
+.dpiaNotReq {
+  --chip-border: var(--primitive-line-strong);
+  --chip-bg: var(--primitive-glass-soft);
+  --chip-fg: var(--primitive-body);
+}
+
+.review {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+}

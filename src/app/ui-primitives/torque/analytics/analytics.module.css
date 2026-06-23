@@ -1,0 +1,350 @@
+/* Business analytics — bespoke chrome composed from primitive tokens.
+   Control band with placeholder Torque avatar + date-range control, chart
+   frames, social engagement rows, agent-cost footer, and the top-pages table
+   section. Light + dark parity via --primitive-* tokens; motion is
+   opacity/transform only and is disabled under prefers-reduced-motion. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Control band -------------------------------------------------------- */
+
+.controlBand {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(16px, 2.4vw, 28px) clamp(20px, 3vw, 40px);
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(16px, 2.2vw, 26px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 150% at 0% 0%, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 56%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 9%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.controlBand::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  opacity: 0.5;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, white 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: 25px;
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 24px color-mix(in oklab, var(--primitive-red) 38%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, white 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.identityText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.torqueName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.bizName {
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.bizRegion {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+.controlGroup {
+  display: grid;
+  gap: var(--primitive-space-2);
+  justify-items: start;
+}
+
+.controlLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.rangeNote {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-body);
+}
+
+/* ---- KPI / chart inner content ------------------------------------------- */
+
+.kpiSpark {
+  display: block;
+  margin-top: var(--primitive-space-2);
+}
+
+.chartFrame {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.tileNote {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  line-height: var(--primitive-leading-normal);
+  color: var(--primitive-muted);
+}
+
+/* Social donut + engagement rows */
+.socialFrame {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+  gap: clamp(12px, 2vw, 22px);
+  align-items: center;
+}
+
+.socialList {
+  display: grid;
+  gap: var(--primitive-space-1);
+  margin: 0;
+  min-width: 0;
+}
+
+.socialRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-2-5);
+  align-items: baseline;
+  padding: 9px var(--primitive-space-0-5);
+  border-bottom: 1px solid var(--primitive-line-muted);
+}
+
+.socialRow:last-child {
+  border-bottom: 0;
+}
+
+.socialLabel {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.socialValueRow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+  margin: 0;
+}
+
+.socialValue {
+  font-size: var(--primitive-text-base);
+  font-weight: var(--primitive-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+}
+
+.socialUnit {
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-regular);
+  color: var(--primitive-muted);
+}
+
+.socialDelta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  font-size: var(--primitive-text-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.socialUp {
+  color: var(--primitive-green);
+}
+.socialDown {
+  color: var(--primitive-red);
+}
+.socialFlat {
+  color: var(--primitive-muted);
+}
+
+/* Agent-cost footer under the gauge cluster */
+.costFooter {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  justify-items: center;
+  padding-top: var(--primitive-space-2-5);
+  border-top: 1px solid var(--primitive-line-muted);
+  text-align: center;
+}
+
+.costSparkLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.costFigure {
+  font-size: var(--primitive-text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-body);
+}
+
+/* ---- Top-pages table ----------------------------------------------------- */
+
+.tableSection {
+  display: grid;
+  gap: 14px;
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.tableHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.tableKicker {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.tableTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.tableBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.tableBadge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-teal);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+}
+
+.pageCell {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.pageName {
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.pagePath {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-body);
+}
+
+.trendCell {
+  display: inline-flex;
+  justify-content: flex-end;
+  width: 96px;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .controlBand {
+    justify-content: flex-start;
+  }
+  .controlGroup {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .socialFrame {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+  .socialList {
+    width: 100%;
+  }
+}

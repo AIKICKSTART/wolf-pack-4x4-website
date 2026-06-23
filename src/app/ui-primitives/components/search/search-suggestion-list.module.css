@@ -1,0 +1,157 @@
+.surface {
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in oklab, var(--primitive-teal) 6%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), transparent),
+    var(--primitive-panel-strong);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-glass-strong),
+    0 24px 60px -24px color-mix(in oklab, var(--primitive-overlay) 66%, transparent);
+  backdrop-filter: blur(18px) saturate(1.18);
+  -webkit-backdrop-filter: blur(18px) saturate(1.18);
+  overflow: hidden;
+}
+
+.surface:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 var(--primitive-glass-strong),
+    0 0 0 2px var(--primitive-focus-ring),
+    0 24px 60px -24px color-mix(in oklab, var(--primitive-overlay) 66%, transparent);
+}
+
+.empty {
+  margin: 0;
+  padding: 26px var(--primitive-space-6);
+  text-align: center;
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-sm);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: var(--primitive-space-1-5);
+  display: grid;
+  gap: var(--primitive-space-1);
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.groupItem {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.groupHead {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3) var(--primitive-space-1-5);
+}
+
+.groupIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--primitive-icon-md);
+  height: var(--primitive-icon-md);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-strong);
+  color: var(--primitive-teal);
+}
+
+.groupLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.groupList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: 9px var(--primitive-space-3);
+  border-radius: var(--primitive-radius-lg);
+  cursor: pointer;
+  color: color-mix(in oklab, var(--primitive-muted) 30%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  transition: background 140ms ease, transform 140ms ease;
+}
+
+.item[data-active="true"] {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 12%, transparent), color-mix(in oklab, var(--primitive-teal) 4%, transparent)),
+    var(--primitive-glass-soft);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  transform: translateY(-1px);
+}
+
+.itemIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--primitive-icon-lg);
+  height: var(--primitive-icon-lg);
+  color: var(--primitive-amber);
+}
+
+.itemBullet {
+  width: var(--primitive-space-1-5);
+  height: var(--primitive-space-1-5);
+  margin-left: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-line-strong);
+}
+
+.itemBody {
+  display: grid;
+  min-width: 0;
+  gap: var(--primitive-space-0-5);
+}
+
+.itemLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.itemMeta {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.itemArrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primitive-muted);
+}
+
+.item[data-active="true"] .itemArrow {
+  color: var(--primitive-text-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .item[data-active="true"] {
+    transition: none;
+    transform: none;
+  }
+}

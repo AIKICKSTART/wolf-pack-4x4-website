@@ -1,0 +1,40 @@
+.block {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  justify-items: center;
+}
+
+.svg {
+  display: block;
+  width: var(--qr-size, 128px);
+  height: var(--qr-size, 128px);
+  border: 1px solid var(--primitive-ink-soft);
+  padding: var(--primitive-space-1);
+  background: var(--primitive-canvas);
+}
+
+.paperFill {
+  fill: var(--primitive-canvas);
+}
+
+.inkFill {
+  fill: var(--primitive-ink);
+}
+
+.label {
+  font-family: var(--primitive-font-mono, "Courier New", monospace);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--primitive-ink);
+  text-align: center;
+  text-transform: uppercase;
+  word-break: break-all;
+  max-width: var(--qr-size, 128px);
+}
+
+@media print {
+  .svg {
+    width: 28mm;
+    height: 28mm;
+  }
+}

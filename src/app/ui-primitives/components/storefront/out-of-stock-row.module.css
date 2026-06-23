@@ -1,0 +1,260 @@
+.row {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr) auto minmax(220px, 320px);
+  gap: var(--primitive-space-4);
+  align-items: center;
+  padding: var(--primitive-space-4);
+  border: 1px solid color-mix(in srgb, var(--primitive-red) 32%, transparent);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--primitive-red) 10%, transparent), transparent 50%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-card-shadow);
+}
+
+@media (max-width: 920px) {
+  .row {
+    grid-template-columns: 80px minmax(0, 1fr);
+    grid-template-areas:
+      "media body"
+      "aside aside"
+      "notify notify";
+  }
+  .media {
+    grid-area: media;
+  }
+  .body {
+    grid-area: body;
+  }
+  .aside {
+    grid-area: aside;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .notify {
+    grid-area: notify;
+  }
+}
+
+.media {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  background:
+    repeating-linear-gradient(135deg, var(--primitive-texture-stroke) 0 4px, transparent 4px 8px),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 16%, var(--primitive-canvas)) 0%, var(--primitive-canvas) 100%);
+  overflow: hidden;
+}
+
+.glyph {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  color: color-mix(in oklab, var(--primitive-text-strong) 65%, transparent);
+  letter-spacing: 0.06em;
+}
+
+.oosBadge {
+  position: absolute;
+  bottom: var(--primitive-space-1);
+  right: var(--primitive-space-1);
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.brand {
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.sku {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.eta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--primitive-space-1-5);
+}
+
+.alternateBtn {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line-strong);
+  background: var(--primitive-surface-3);
+  color: var(--primitive-teal);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.alternateBtn:hover {
+  border-color: var(--primitive-teal);
+  background: color-mix(in srgb, var(--primitive-teal) 10%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.alternateBtn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.notify {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.notifyLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.notifyRow {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: 0 var(--primitive-space-3);
+  height: 36px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+}
+
+.notifyRow:focus-within {
+  border-color: var(--primitive-amber);
+}
+
+.notifyIcon {
+  color: var(--primitive-muted);
+}
+
+.notifyInput {
+  border: 0;
+  background: transparent;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: 12.5px;
+}
+
+.notifyInput::placeholder {
+  color: var(--primitive-muted);
+}
+
+.notifyInput:focus-visible {
+  outline: none;
+}
+
+.notifyInput[aria-invalid="true"] {
+  color: var(--primitive-red);
+}
+
+.notifyBtn {
+  border: 0;
+  border-radius: var(--primitive-btn-radius);
+  padding: 0 var(--primitive-space-3);
+  height: 26px;
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.notifyBtn:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.notifyBtn:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 2px;
+}
+
+.error {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.confirmed {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in srgb, var(--primitive-green) 50%, transparent);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in srgb, var(--primitive-green) 8%, transparent);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,132 @@
+.rail {
+  display: grid;
+  gap: 18px;
+  padding: clamp(20px, 1.8vw, 28px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 5%, transparent),
+      color-mix(in oklab, var(--primitive-text-on-accent) 1%, transparent)
+    ),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(11px, 0.85vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  font-weight: 400;
+  font-size: clamp(28px, 2.4vw, 44px);
+  letter-spacing: 0.012em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 1fr);
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primitive-line) transparent;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-4) 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 2.5%, transparent);
+  min-width: 240px;
+}
+
+.card[data-position="next"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-text-on-accent) 4%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.card[data-position="soon"] {
+  border-color: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.vehicle {
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  font-weight: 400;
+  font-size: clamp(22px, 1.8vw, 30px);
+  line-height: 1.05;
+  letter-spacing: 0.008em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.customer {
+  font-family: var(--ff-ts-bebas, var(--primitive-font-display));
+  font-size: clamp(14px, 1vw, 18px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+  gap: var(--primitive-space-2-5);
+  padding-top: var(--primitive-space-2);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.meta span {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.meta em {
+  font-style: normal;
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(9px, 0.7vw, 11px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.meta strong {
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  font-weight: 400;
+  font-size: clamp(16px, 1.2vw, 22px);
+  color: var(--primitive-text-strong);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,308 @@
+/* Shared deploy-console primitive shell — dark-canonical DevOps surface. */
+
+.shell {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-strong) 4.5%, transparent), color-mix(in srgb, var(--primitive-text-strong) 0.5%, transparent) 60%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--primitive-teal) 7%, transparent), transparent 60%),
+    color-mix(in srgb, var(--primitive-code-bg) 96%, transparent);
+  color: var(--primitive-body);
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-glass-soft),
+    inset -16px -16px 32px color-mix(in srgb, var(--primitive-canvas) 22%, transparent),
+    0 16px 36px var(--primitive-recessed);
+}
+
+.shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    color-mix(in srgb, var(--primitive-text-strong) 1.8%, transparent) 3px 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+.shellHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.shellIdentity {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  color: var(--primitive-text-strong);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.mono {
+  font-family: var(--primitive-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tone helpers shared across the deploy-console primitives. */
+.toneRed {
+  --dc-tone: var(--primitive-red);
+  --dc-tone-soft: color-mix(in srgb, var(--primitive-red) 18%, transparent);
+}
+.toneAmber {
+  --dc-tone: var(--primitive-amber);
+  --dc-tone-soft: color-mix(in srgb, var(--primitive-amber) 16%, transparent);
+}
+.toneTeal {
+  --dc-tone: var(--primitive-teal);
+  --dc-tone-soft: color-mix(in srgb, var(--primitive-teal) 16%, transparent);
+}
+.toneGreen {
+  --dc-tone: var(--primitive-green);
+  --dc-tone-soft: color-mix(in srgb, var(--primitive-green) 16%, transparent);
+}
+.toneNeutral {
+  --dc-tone: var(--primitive-muted);
+  --dc-tone-soft: var(--primitive-line-muted);
+}
+.toneViolet {
+  --dc-tone: var(--primitive-violet);
+  --dc-tone-soft: color-mix(in srgb, var(--dc-tone) 16%, transparent);
+}
+
+/* Generic chip used inside several primitives. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--dc-tone) 35%, transparent);
+  background: color-mix(in srgb, var(--dc-tone) 18%, transparent);
+  color: color-mix(in srgb, var(--dc-tone) 90%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--dc-tone);
+}
+
+.chipQuiet {
+  border-color: var(--primitive-line);
+  background: color-mix(in srgb, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-muted);
+}
+
+.chipQuiet::before {
+  background: var(--primitive-muted);
+}
+
+/* Generic table-ish row used by env editor, dns row etc. */
+.row {
+  display: grid;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.rowGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.rowActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.iconButton:hover,
+.iconButton:focus-visible {
+  border-color: var(--dc-tone, var(--primitive-line-strong));
+  background: color-mix(in srgb, var(--dc-tone, var(--primitive-text-strong)) 14%, color-mix(in srgb, var(--primitive-text-strong) 4%, transparent));
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.iconButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.iconButton svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+}
+
+/* Button used by deploy gate, rollback, traffic shift. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid color-mix(in srgb, var(--dc-tone, var(--primitive-text-strong)) 32%, var(--primitive-line));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--dc-tone, var(--primitive-text-strong)) 14%, color-mix(in srgb, var(--primitive-text-strong) 2%, transparent));
+  color: color-mix(in srgb, var(--dc-tone, var(--primitive-text-strong)) 92%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.button:hover:not(:disabled),
+.button:focus-visible:not(:disabled) {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--dc-tone, var(--primitive-text-strong)) 22%, color-mix(in srgb, var(--primitive-text-strong) 2%, transparent));
+  outline: none;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.buttonPrimary {
+  background: var(--dc-tone);
+  color: var(--primitive-canvas);
+}
+
+.buttonPrimary:hover:not(:disabled),
+.buttonPrimary:focus-visible:not(:disabled) {
+  background: color-mix(in srgb, var(--dc-tone) 86%, var(--primitive-text-strong));
+}
+
+.buttonGhost {
+  background: color-mix(in srgb, var(--primitive-text-strong) 2.5%, transparent);
+  border-color: var(--primitive-line);
+  color: var(--primitive-body);
+}
+
+.divider {
+  height: 1px;
+  background: var(--primitive-line);
+  margin: 0;
+  border: none;
+}
+
+.section {
+  display: grid;
+  gap: 12px;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sectionLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.dl {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 16px;
+  margin: 0;
+  font-size: 12.5px;
+}
+
+.dl dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.dl dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .iconButton {
+    transition: none;
+  }
+}

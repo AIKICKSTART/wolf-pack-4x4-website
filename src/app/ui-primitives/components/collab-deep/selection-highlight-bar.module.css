@@ -1,0 +1,82 @@
+.bar {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-body);
+}
+
+.context {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.row {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: var(--primitive-radius-md);
+  overflow: hidden;
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--selection-tint, var(--primitive-teal)) 18%, transparent);
+}
+
+.flag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  background: var(--selection-tint, var(--primitive-teal));
+  color: var(--primitive-canvas);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.flagName {
+  color: var(--primitive-canvas);
+  white-space: nowrap;
+}
+
+.selection {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-1) var(--primitive-space-3);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--selection-tint, var(--primitive-teal)) 26%, transparent),
+      color-mix(in srgb, var(--selection-tint, var(--primitive-teal)) 18%, transparent)
+    );
+  border-top: 1px solid color-mix(in srgb, var(--selection-tint, var(--primitive-teal)) 50%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--selection-tint, var(--primitive-teal)) 50%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--selection-tint, var(--primitive-teal)) 50%, transparent);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+}
+
+.selection::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--selection-tint, var(--primitive-teal));
+}
+
+.selectionText {
+  font-family: var(--primitive-font-body);
+  font-weight: var(--primitive-weight-medium);
+}
+
+.count {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--primitive-text-strong) 80%, var(--selection-tint, var(--primitive-teal)) 20%);
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,487 @@
+/* Shared system-onboarding primitive shell — dark-canonical tenant
+ * activation surface used by all 14 primitives + the full onboarding
+ * composition. Mirrors the deploy-console shell conventions so the
+ * tokens, helpers and chip patterns stay consistent across families. */
+
+.shell {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in srgb, var(--primitive-glass-soft) 10%, transparent) 60%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--primitive-red) 8%, transparent), transparent 56%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-glass-soft),
+    inset -16px -16px 32px color-mix(in srgb, var(--primitive-canvas) 22%, transparent),
+    var(--primitive-shadow-soft);
+}
+
+.shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    color-mix(in srgb, var(--primitive-text-strong) 2%, transparent) 3px 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+}
+
+.shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+.shellHead {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.shellHeadRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.005em;
+  color: var(--primitive-text-strong);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.mono {
+  font-family: var(--primitive-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tone helpers shared by all sub-primitives. */
+.toneRed { --so-tone: var(--primitive-red); --so-tone-soft: color-mix(in srgb, var(--primitive-red) 18%, transparent); }
+.toneAmber { --so-tone: var(--primitive-amber); --so-tone-soft: color-mix(in srgb, var(--primitive-amber) 16%, transparent); }
+.toneTeal { --so-tone: var(--primitive-teal); --so-tone-soft: color-mix(in srgb, var(--primitive-teal) 16%, transparent); }
+.toneGreen { --so-tone: var(--primitive-green); --so-tone-soft: color-mix(in srgb, var(--primitive-green) 16%, transparent); }
+.toneNeutral { --so-tone: var(--primitive-muted); --so-tone-soft: var(--primitive-glass-strong); }
+.toneViolet { --so-tone: var(--primitive-violet); --so-tone-soft: color-mix(in srgb, var(--primitive-violet) 16%, transparent); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid color-mix(in srgb, var(--so-tone, var(--primitive-text-strong)) 35%, transparent);
+  background: color-mix(in srgb, var(--so-tone, var(--primitive-text-strong)) 18%, transparent);
+  color: color-mix(in srgb, var(--so-tone, var(--primitive-text-strong)) 92%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--so-tone, var(--primitive-text-strong));
+}
+
+.chipQuiet {
+  border-color: var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+}
+
+.chipQuiet::before {
+  background: var(--primitive-muted);
+}
+
+.chipSoft {
+  border-color: color-mix(in srgb, var(--so-tone, var(--primitive-text-strong)) 22%, transparent);
+  background: color-mix(in srgb, var(--primitive-text-strong) 3%, transparent);
+  color: color-mix(in srgb, var(--so-tone, var(--primitive-text-strong)) 86%, var(--primitive-text-strong));
+}
+
+/* Shared button DNA — every button in this family routes through .button.
+   Base (secondary) = central carbon body; .buttonPrimary = central metallic-red
+   CTA (amber hover); .buttonGhost = quiet carbon. Drawn from --primitive-btn-*. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2);
+  padding: 9px var(--primitive-space-3);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  box-shadow: var(--primitive-shadow-inset);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform var(--primitive-duration-fast) var(--primitive-ease-standard),
+    filter var(--primitive-duration-fast) var(--primitive-ease-standard),
+    background var(--primitive-duration-fast) var(--primitive-ease-standard),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.button:hover:not(:disabled),
+.button:focus-visible:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: var(--so-tone, var(--primitive-line-strong));
+  filter: brightness(1.08);
+}
+
+.button:focus-visible:not(:disabled) {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-shadow-inset), var(--primitive-focus-shadow);
+}
+
+.button:disabled,
+.button[data-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.buttonPrimary {
+  border-color: transparent;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.buttonPrimary:hover:not(:disabled),
+.buttonPrimary:focus-visible:not(:disabled) {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  filter: none;
+}
+
+.buttonPrimary:focus-visible:not(:disabled) {
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+.buttonGhost {
+  background: var(--primitive-glass-soft);
+  border-color: var(--primitive-line);
+  color: var(--primitive-body);
+  box-shadow: none;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition:
+    border-color var(--primitive-duration-normal) var(--primitive-ease-standard),
+    background var(--primitive-duration-normal) var(--primitive-ease-standard),
+    color var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+.iconButton:hover,
+.iconButton:focus-visible {
+  border-color: var(--so-tone, var(--primitive-line-strong));
+  background: color-mix(in srgb, var(--so-tone, var(--primitive-text-strong)) 14%, var(--primitive-glass-soft));
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.iconButton svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+  stroke-width: 2;
+}
+
+/* Form atoms shared across account / workshop / brand setup steps. */
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: 13.5px;
+  line-height: 1.4;
+  transition:
+    border-color var(--primitive-duration-normal) var(--primitive-ease-standard),
+    background var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: color-mix(in srgb, var(--so-tone, var(--primitive-teal)) 60%, var(--primitive-line-strong));
+  outline: none;
+  background: color-mix(in srgb, var(--primitive-canvas) 46%, transparent);
+}
+
+.textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.fieldError {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  color: var(--primitive-red);
+}
+
+.fieldRow {
+  display: grid;
+  gap: var(--primitive-space-3);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.fieldGroup {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.helper {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  line-height: 1.5;
+}
+
+/* Generic row used by integration / team invite / migration rows. */
+.row {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in srgb, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.rowGrid {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.divider {
+  height: 1px;
+  background: var(--primitive-line);
+  margin: 0;
+  border: none;
+}
+
+.section {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.sectionLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.dl {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-1-5) var(--primitive-space-4);
+  margin: 0;
+  font-size: 12.5px;
+}
+
+.dl dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.dl dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  font-weight: var(--primitive-weight-semibold);
+}
+
+/* Switch / checkbox shared atom. */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  cursor: pointer;
+  font-size: 12.5px;
+  color: var(--primitive-body);
+}
+
+.switchControl {
+  position: relative;
+  width: 34px;
+  height: 20px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-strong);
+  border: 1px solid var(--primitive-line);
+  flex-shrink: 0;
+  transition:
+    background var(--primitive-duration-normal) var(--primitive-ease-standard),
+    border-color var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+.switchControl::after {
+  content: "";
+  position: absolute;
+  top: var(--primitive-space-0-5);
+  left: var(--primitive-space-0-5);
+  width: 14px;
+  height: 14px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  transition: transform var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+.switchInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.switchInput:checked + .switchControl {
+  background: color-mix(in srgb, var(--so-tone, var(--primitive-green)) 40%, transparent);
+  border-color: var(--so-tone, var(--primitive-green));
+}
+
+.switchInput:checked + .switchControl::after {
+  transform: translateX(14px);
+}
+
+.switchInput:focus-visible + .switchControl {
+  outline: 2px solid color-mix(in srgb, var(--so-tone, var(--primitive-text-strong)) 60%, transparent);
+  outline-offset: 2px;
+}
+
+/* Light-theme overrides (canonical = dark, polished light) */
+:global([data-primitive-theme="light"]) .shell {
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), color-mix(in srgb, var(--primitive-glass-strong) 88%, transparent) 60%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--primitive-red) 6%, transparent), transparent 56%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-glass-strong),
+    var(--primitive-shadow-soft);
+}
+
+:global([data-primitive-theme="light"]) .title {
+  color: var(--primitive-text-strong);
+}
+
+:global([data-primitive-theme="light"]) .subtitle,
+:global([data-primitive-theme="light"]) .helper {
+  color: var(--primitive-muted);
+}
+
+:global([data-primitive-theme="light"]) .input,
+:global([data-primitive-theme="light"]) .select,
+:global([data-primitive-theme="light"]) .textarea {
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+}
+
+:global([data-primitive-theme="light"]) .row {
+  background: var(--primitive-glass-strong);
+  border-color: var(--primitive-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .iconButton,
+  .input,
+  .select,
+  .textarea,
+  .switchControl,
+  .switchControl::after {
+    transition: none;
+  }
+}

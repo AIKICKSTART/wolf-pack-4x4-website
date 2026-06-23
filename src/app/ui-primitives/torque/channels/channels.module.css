@@ -1,0 +1,503 @@
+/* Platform channels — bespoke chrome composed from primitive tokens.
+   Identity band, Torque avatar, editorial section frames, channel grids,
+   bespoke Telegram authorised-users list, and an add-channel directory.
+   Light + dark parity via --primitive-* tokens; motion is opacity/transform only. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Identity band ------------------------------------------------------- */
+
+.band {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: clamp(20px, 2.6vw, 32px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 58%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  opacity: 0.6;
+}
+
+.bandHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--primitive-text-strong) 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 26px color-mix(in oklab, var(--primitive-red) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.torqueId {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.torqueName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.torqueRole {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+.bandTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3.4vw, 42px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.bandTitle em {
+  font-style: normal;
+  color: var(--primitive-red);
+}
+
+.bandCopy {
+  margin: 0;
+  max-width: 64ch;
+  font-size: var(--primitive-text-base);
+  line-height: 1.6;
+  color: var(--primitive-body);
+}
+
+.bandMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2) 18px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaDot {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-variant-numeric: tabular-nums;
+}
+
+.metaDot::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+.slugMono {
+  font-family: var(--primitive-font-mono);
+  font-variant-numeric: tabular-nums;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Console body -------------------------------------------------------- */
+
+.body {
+  display: grid;
+  gap: clamp(18px, 2.4vw, 28px);
+  min-width: 0;
+}
+
+/* ---- Section frame ------------------------------------------------------- */
+
+.section {
+  display: grid;
+  gap: clamp(14px, 1.6vw, 20px);
+  padding: clamp(16px, 2vw, 24px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+  scroll-margin-top: clamp(16px, 4vw, 32px);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+}
+
+.sectionText {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.sectionKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.sectionDesc {
+  margin: 0;
+  max-width: 70ch;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--primitive-muted);
+}
+
+.sectionAside {
+  flex: 0 0 auto;
+}
+
+.tally {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.tally strong {
+  font-size: var(--primitive-text-base);
+  color: var(--primitive-text-strong);
+}
+
+/* ---- Connected channels grid --------------------------------------------- */
+
+.channelGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.channelGlyph {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: var(--primitive-leading-none);
+  color: var(--primitive-text-strong);
+}
+
+/* ---- Channel health ------------------------------------------------------ */
+
+.healthGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--primitive-space-3);
+}
+
+/* ---- Add a channel (directory) ------------------------------------------- */
+
+.directoryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--primitive-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.directoryItem {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  transition: border-color var(--primitive-duration, 200ms) ease;
+}
+
+.directoryItemOn {
+  border-color: var(--primitive-red);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-red) 28%, transparent);
+}
+
+.directoryCta {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 9px var(--primitive-space-3);
+  border: 1px solid transparent;
+  border-radius: 11px;
+  background: var(--primitive-surface-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--primitive-text-strong);
+  cursor: pointer;
+  transition:
+    transform var(--primitive-duration, 200ms) ease,
+    box-shadow var(--primitive-duration, 200ms) ease,
+    background var(--primitive-duration, 200ms) ease,
+    border-color var(--primitive-duration, 200ms) ease;
+}
+
+.directoryCta:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.directoryCta:focus-visible {
+  outline: none;
+  border-color: var(--primitive-red);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.directoryCta:disabled {
+  cursor: not-allowed;
+  opacity: 0.78;
+}
+
+.directoryItemOn .directoryCta {
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+}
+
+/* ---- Telegram bot setup -------------------------------------------------- */
+
+.telegramGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(12px, 1.6vw, 18px);
+  align-items: start;
+}
+
+.telegramConfig {
+  display: grid;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.telegramTest {
+  min-width: 0;
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+/* ---- Authorised users list (bespoke composition) ------------------------- */
+
+.authCard {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: clamp(14px, 1.6vw, 18px);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-surface-3);
+}
+
+.authHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.authList {
+  display: grid;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.authRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-panel);
+}
+
+.authAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--primitive-text-strong) 28%, transparent), transparent 56%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.authIdentity {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.authName {
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.authHandle {
+  font-family: var(--primitive-font-mono);
+  font-size: 11.5px;
+  color: var(--primitive-muted);
+}
+
+.authRole {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  text-align: right;
+}
+
+.authBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) 9px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  white-space: nowrap;
+}
+
+.authBadgeAdmin {
+  border-color: transparent;
+  background: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  color: var(--primitive-red);
+}
+
+/* ---- Routing ------------------------------------------------------------- */
+
+.routingStack {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+/* ---- Audit --------------------------------------------------------------- */
+
+.auditStack {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .telegramGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .sectionHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .authRow {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+  .authRole {
+    grid-column: 2 / -1;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main {
+    scroll-behavior: auto;
+  }
+  .directoryCta {
+    transition: none;
+  }
+  .directoryCta:hover:not(:disabled) {
+    transform: none;
+  }
+}

@@ -1,0 +1,73 @@
+.ring {
+  pointer-events: none;
+  opacity: 0;
+  animation: ringIn 700ms var(--primitive-ease-out) forwards;
+}
+
+.ring:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.ring:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 1.2;
+  stroke-dasharray: 4 6;
+}
+
+.ringInner {
+  stroke: var(--primitive-red);
+  opacity: 0.85;
+}
+
+.ringMid {
+  stroke: var(--primitive-amber);
+  opacity: 0.7;
+}
+
+.ringOuter {
+  stroke: var(--primitive-teal);
+  opacity: 0.6;
+}
+
+.chip {
+  fill: color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  stroke: var(--primitive-line-strong);
+  stroke-width: 1;
+}
+
+.chipLabel {
+  fill: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.06em;
+}
+
+.center {
+  fill: var(--primitive-red);
+  stroke: var(--primitive-text-strong);
+  stroke-width: 1;
+}
+
+@keyframes ringIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+    transform-origin: center;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring {
+    animation: none;
+    opacity: 1;
+  }
+}

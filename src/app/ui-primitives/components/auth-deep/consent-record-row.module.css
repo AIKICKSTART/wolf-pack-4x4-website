@@ -1,0 +1,201 @@
+.row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.6fr) minmax(260px, 2fr) auto auto;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 18px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.row[data-status="withdrawn"] {
+  opacity: 0.75;
+  background: color-mix(in oklab, var(--primitive-muted) 5%, transparent);
+}
+
+.row[data-status="expired"] {
+  border-color: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.row[data-status="accepted"] {
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 50px;
+  border-radius: 6px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  background: linear-gradient(135deg, color-mix(in oklab, var(--primitive-amber) 20%, transparent), color-mix(in oklab, var(--primitive-amber) 4%, transparent));
+  flex-shrink: 0;
+}
+
+.iconPage {
+  width: 24px;
+  height: 32px;
+  background-image: repeating-linear-gradient(0deg, transparent 0 4px, var(--primitive-amber) 4px 5px);
+  opacity: 0.8;
+}
+
+.iconFold {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, var(--primitive-panel) 50%, var(--primitive-amber) 50%);
+  border-right: 1px solid var(--primitive-amber);
+  border-top: 1px solid var(--primitive-amber);
+}
+
+.identityText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.kind {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.version {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  color: var(--primitive-muted);
+}
+
+.version strong {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.source {
+  font-size: 11px;
+  color: var(--primitive-body);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+}
+
+.facts > div {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.facts dt {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.facts dd {
+  margin: 0;
+  font-size: 11px;
+  color: var(--primitive-text-strong);
+}
+
+.numeric {
+  font-family: var(--primitive-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.statusBlock {
+  display: flex;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  gap: var(--primitive-space-2);
+}
+
+.btnGhost,
+.btnDanger {
+  padding: var(--primitive-space-2) 14px;
+  border-radius: var(--primitive-radius-md);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.btnGhost {
+  background: transparent;
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-body);
+}
+
+.btnGhost:hover {
+  border-color: var(--primitive-teal);
+  color: var(--primitive-text-strong);
+}
+
+.btnDanger {
+  background: color-mix(in oklab, var(--primitive-red) 5%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  color: var(--primitive-red);
+}
+
+.btnDanger:hover:not(:disabled) {
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+}
+
+.btnDanger:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.btnGhost:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 3px;
+}
+
+.btnDanger:focus-visible {
+  outline: 2px solid var(--primitive-red);
+  outline-offset: 3px;
+}
+
+@media (max-width: 980px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btnGhost,
+  .btnDanger {
+    transition: none;
+  }
+}

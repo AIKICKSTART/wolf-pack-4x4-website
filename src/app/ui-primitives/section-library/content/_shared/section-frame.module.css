@@ -1,0 +1,291 @@
+/* ============================================================
+   Section-library content group — shared section shell.
+   Token-driven only: every color/space/radius/type/motion value
+   resolves to a central --primitive-* token. The .dashboard scope
+   (applied by PrimitivesShell) provides the token values.
+   ============================================================ */
+
+.section {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-7);
+  width: 100%;
+  padding: var(--primitive-space-9) var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 38%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  isolation: isolate;
+  overflow: clip;
+}
+
+/* Carbon-weave atmosphere layered under the section body. */
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--primitive-carbon-weave);
+  background-size: var(--primitive-carbon-weave-size);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.header {
+  display: grid;
+  gap: var(--primitive-space-2);
+  max-width: 64ch;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.kicker::before {
+  content: "";
+  width: var(--primitive-space-6);
+  height: var(--primitive-space-px);
+  background: linear-gradient(90deg, var(--primitive-red), transparent);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h2);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  letter-spacing: var(--primitive-tracking-tight);
+  text-transform: uppercase;
+}
+
+.lede {
+  margin: 0;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-lg);
+  line-height: var(--primitive-leading-normal);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-6);
+}
+
+/* Two-up editorial split (blog/parts). Stacks under tablet. */
+.split {
+  display: grid;
+  gap: var(--primitive-space-6);
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.rail {
+  display: grid;
+  gap: var(--primitive-space-4);
+  align-content: start;
+}
+
+/* Three-up bento grid (parts categories / local services). */
+.grid3 {
+  display: grid;
+  gap: var(--primitive-space-4);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid2 {
+  display: grid;
+  gap: var(--primitive-space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Footer CTA strip shared by sections — metallic primary button DNA. */
+.ctaStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--primitive-space-5) var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 60%),
+    var(--primitive-glass-soft);
+}
+
+.ctaStripCopy {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.ctaStripCopy strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h5);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: var(--primitive-tracking-tight);
+}
+
+.ctaStripCopy span {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+/* Primary CTA — carbon-fibre body, metallic-red → amber hover (button DNA). */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: 44px;
+  padding: 0 var(--primitive-space-6);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-btn-radius);
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background var(--primitive-duration-normal) var(--primitive-ease-out),
+    color var(--primitive-duration-normal) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+/* Secondary / ghost — carbon-fibre body. */
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: 44px;
+  padding: 0 var(--primitive-space-5);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  color: var(--primitive-btn-secondary-fg);
+  background: var(--primitive-btn-secondary-bg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color var(--primitive-duration-normal) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.ctaSecondary:hover,
+.ctaSecondary:focus-visible {
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.ctaSecondary:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+/* Eyebrow meta row (blog byline / parts coverage). */
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-4);
+  align-items: center;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.metaRow span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.metaDot {
+  width: var(--primitive-space-1);
+  height: var(--primitive-space-1);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-amber);
+}
+
+/* ---- Responsive: 320 → 1920 ---- */
+@media (max-width: 1024px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .grid3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: var(--primitive-space-7) var(--primitive-space-4);
+    border-radius: var(--primitive-radius-lg);
+  }
+  .grid2,
+  .grid3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ctaStrip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cta,
+  .ctaSecondary {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta,
+  .ctaSecondary {
+    transition: none;
+  }
+  .cta:hover,
+  .cta:focus-visible,
+  .ctaSecondary:hover,
+  .ctaSecondary:focus-visible {
+    transform: none;
+  }
+}

@@ -1,0 +1,282 @@
+.page {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px) var(--primitive-space-14);
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 84% 0%, color-mix(in oklab, var(--primitive-amber) 14%, transparent), transparent 36%),
+    radial-gradient(circle at 8% 100%, color-mix(in oklab, var(--primitive-teal) 14%, transparent), transparent 40%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+.canvas {
+  width: min(100%, 1400px);
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+}
+
+.scene {
+  display: grid;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+}
+
+/* ---- Top bar ------------------------------------------------------------ */
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 42%),
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, white 0.8%, transparent)),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 6%, transparent),
+    0 22px 56px color-mix(in oklab, black 26%, transparent);
+}
+
+/* Placeholder circular Torque avatar — real mascot lands later. */
+.avatar {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  line-height: var(--primitive-leading-none);
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in oklab, white 42%, transparent), transparent 46%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-red) 35%, white),
+    0 12px 26px color-mix(in oklab, var(--primitive-red-dark) 45%, transparent);
+}
+
+.avatarInitial {
+  position: relative;
+  z-index: 1;
+  transform: translateY(1px);
+}
+
+.barText {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+  margin-inline-end: auto;
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.barTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(17px, 2.2vw, 22px);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: -0.01em;
+}
+
+.barTools {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.fileCount {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+}
+
+.fileCountNum {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.viewToggle {
+  display: inline-flex;
+  padding: 3px;
+  gap: var(--primitive-space-0-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 11px;
+  background: var(--primitive-control-surface);
+}
+
+.viewBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: none;
+  border-radius: var(--primitive-radius-md);
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition:
+    background var(--primitive-duration-fast) ease,
+    color var(--primitive-duration-fast) ease;
+}
+
+.viewBtn:hover {
+  color: var(--primitive-text-strong);
+}
+
+.viewBtn[data-active="true"] {
+  background: var(--primitive-control-active);
+  color: var(--primitive-text-strong);
+  box-shadow: inset 0 1px 0 var(--primitive-glass-strong);
+}
+
+.viewBtn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---- Three-column layout ------------------------------------------------ */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 240px) minmax(0, 1fr) minmax(280px, 340px);
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+.colLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.treeCol {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-4) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, white 4%, transparent), color-mix(in oklab, white 0.4%, transparent)),
+    var(--primitive-surface-1);
+  box-shadow: inset 0 1px 0 var(--primitive-glass-soft);
+}
+
+.treeCol .colLabel {
+  padding-inline-start: var(--primitive-space-2);
+}
+
+.mainCol {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.breadcrumb {
+  padding: var(--primitive-space-1) var(--primitive-space-0-5);
+}
+
+.fileSurface {
+  padding: var(--primitive-space-1-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, white 3.5%, transparent), color-mix(in oklab, white 0.4%, transparent)),
+    var(--primitive-surface-1);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-glass-soft),
+    0 18px 44px color-mix(in oklab, black 20%, transparent);
+  overflow: hidden;
+}
+
+.bulkBar {
+  margin-top: var(--primitive-space-0-5);
+}
+
+.sideCol {
+  display: grid;
+  gap: var(--primitive-space-4);
+  position: sticky;
+  top: var(--primitive-space-5);
+}
+
+.versions {
+  margin-top: 0;
+}
+
+/* ---- Upload row --------------------------------------------------------- */
+
+.uploadCol {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: 18px 18px var(--primitive-space-2);
+  border: 1px dashed var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-xl);
+  background: color-mix(in oklab, white 1.8%, transparent);
+}
+
+/* ---- Responsive --------------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+  }
+
+  .treeCol {
+    grid-column: 1 / -1;
+  }
+
+  .sideCol {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bar {
+    align-items: flex-start;
+  }
+
+  .barTools {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewBtn {
+    transition: none;
+  }
+}

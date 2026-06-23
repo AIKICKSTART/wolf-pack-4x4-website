@@ -1,0 +1,486 @@
+/* User profile — bespoke chrome composed from primitive tokens.
+   Cover banner, Torque avatar, profile card, activity tiles, preference rows,
+   session list and recent-actions log. Light + dark parity via --primitive-*
+   tokens; motion is opacity/transform only and reduced-motion aware. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Cover banner -------------------------------------------------------- */
+
+.cover {
+  position: relative;
+  display: grid;
+  border: 1px solid var(--primitive-line);
+  border-radius: 22px;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.coverMedia {
+  position: relative;
+  height: clamp(150px, 22vw, 240px);
+}
+
+.coverImage {
+  object-fit: cover;
+  filter: saturate(1.05);
+}
+
+.coverScrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, black 0%, transparent) 28%, color-mix(in oklab, black 72%, transparent) 100%),
+    radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, var(--primitive-red) 34%, transparent), transparent 56%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 18%, transparent), transparent 58%);
+}
+
+.coverScrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    color-mix(in oklab, white 3%, transparent) 3px 4px
+  );
+  opacity: 0.7;
+}
+
+.coverBadge {
+  position: absolute;
+  top: var(--primitive-space-4);
+  left: var(--primitive-space-4);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: var(--primitive-space-1-5) 13px var(--primitive-space-1-5) 9px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, black 50%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid color-mix(in oklab, white 16%, transparent);
+}
+
+.coverBadgeText {
+  display: grid;
+  gap: 1px;
+}
+
+.coverBadgeName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-text-on-accent);
+}
+
+.coverBadgeRole {
+  font-size: var(--primitive-text-xs);
+  color: color-mix(in oklab, white 78%, transparent);
+}
+
+/* Identity strip overlapping the cover image. */
+.identityStrip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+  margin-top: clamp(-56px, -5vw, -40px);
+  padding: 0 clamp(16px, 2.4vw, 28px) clamp(16px, 2.2vw, 24px);
+  position: relative;
+  z-index: 1;
+}
+
+.identityLeft {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot art lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: clamp(72px, 9vw, 96px);
+  height: clamp(72px, 9vw, 96px);
+  flex: 0 0 auto;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, white 46%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(34px, 4.4vw, 46px);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  border: 3px solid var(--primitive-panel-strong);
+  box-shadow:
+    0 12px 30px color-mix(in oklab, var(--primitive-red) 42%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, white 20%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(2px);
+}
+
+.identityText {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+  padding-bottom: var(--primitive-space-1);
+}
+
+.identityName {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3.4vw, 40px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.identityName em {
+  font-style: normal;
+  color: var(--primitive-red);
+}
+
+.identityMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-1-5) 14px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.identityMeta b {
+  color: var(--primitive-body);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.identityActions {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+/* ---- Shared buttons ------------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 9px 15px;
+  border-radius: 11px;
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.01em;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-surface-3);
+  color: var(--primitive-text-strong);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform var(--primitive-duration-fast) ease,
+    background-color var(--primitive-duration-fast) ease,
+    border-color var(--primitive-duration-fast) ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in oklab, var(--primitive-red) 40%, var(--primitive-line));
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--primitive-red);
+  outline-offset: 2px;
+}
+
+.btnPrimary {
+  background: var(--primitive-btn-primary-bg);
+  border-color: transparent;
+  border-radius: var(--primitive-btn-radius);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.btnPrimary:hover {
+  border-color: transparent;
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+/* ---- Layout -------------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(16px, 2.2vw, 26px);
+  align-items: start;
+}
+
+.colMain,
+.colSide {
+  display: grid;
+  gap: clamp(16px, 2.2vw, 24px);
+  min-width: 0;
+}
+
+/* ---- Section frame ------------------------------------------------------- */
+
+.section {
+  display: grid;
+  gap: clamp(13px, 1.6vw, 18px);
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+  scroll-margin-top: clamp(16px, 4vw, 32px);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+}
+
+.sectionText {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.sectionKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(17px, 1.9vw, 22px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.sectionDesc {
+  margin: 0;
+  max-width: 64ch;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-muted);
+}
+
+.sectionAside {
+  flex: 0 0 auto;
+}
+
+.tally {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.tally strong {
+  font-size: var(--primitive-text-base);
+  color: var(--primitive-text-strong);
+}
+
+/* ---- Bio block ----------------------------------------------------------- */
+
+.bio {
+  margin: 0;
+  font-size: var(--primitive-text-base);
+  line-height: 1.6;
+  color: var(--primitive-body);
+  max-width: 60ch;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+}
+
+.contactField {
+  display: grid;
+  gap: 3px;
+  padding: 11px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-surface-3);
+}
+
+.contactField dt {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.contactField dd {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+/* ---- Activity tiles ------------------------------------------------------ */
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+/* ---- Shared row stack ---------------------------------------------------- */
+
+.rowStack {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+/* ---- Sessions footnote --------------------------------------------------- */
+
+.sessionFoot {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  margin: var(--primitive-space-0-5) 0 0;
+  font-size: 12.5px;
+  color: var(--primitive-muted);
+}
+
+.sessionFoot strong {
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.revokeAllBtn {
+  margin-left: auto;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-semibold);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 35%, var(--primitive-line));
+  background: transparent;
+  color: var(--primitive-red);
+  cursor: pointer;
+  transition:
+    background-color var(--primitive-duration-fast) ease,
+    transform var(--primitive-duration-fast) ease;
+}
+
+.revokeAllBtn:hover:not(:disabled) {
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  transform: translateY(-1px);
+}
+
+.revokeAllBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.revokeAllBtn:focus-visible {
+  outline: 2px solid var(--primitive-red);
+  outline-offset: 2px;
+}
+
+/* ---- Live region (visually hidden) -------------------------------------- */
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .statGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sectionHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .identityStrip {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .identityActions {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btnPrimary,
+  .revokeAllBtn {
+    transition: none;
+  }
+  .btn:hover,
+  .btnPrimary:hover,
+  .revokeAllBtn:hover:not(:disabled) {
+    transform: none;
+  }
+  .main {
+    scroll-behavior: auto;
+  }
+}

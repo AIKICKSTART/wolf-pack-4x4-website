@@ -1,0 +1,64 @@
+.waveform {
+  --wf-bar: var(--primitive-line-strong);
+  --wf-bar-played: var(--primitive-red);
+  --wf-progress: 0%;
+
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.compact {
+  height: 60px;
+}
+
+.detailed {
+  height: 96px;
+}
+
+.bar {
+  fill: var(--wf-bar);
+  transition: fill 200ms ease;
+}
+
+.barPlayed {
+  fill: var(--wf-bar-played);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--wf-bar-played) 40%, transparent));
+  transition: fill 200ms ease;
+}
+
+.placeholder .bar,
+.placeholder .barPlayed {
+  fill: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  filter: none;
+}
+
+.toneRed {
+  --wf-bar-played: var(--primitive-red);
+}
+
+.toneAmber {
+  --wf-bar-played: var(--primitive-amber);
+}
+
+.toneTeal {
+  --wf-bar-played: var(--primitive-teal);
+}
+
+.toneGreen {
+  --wf-bar-played: var(--primitive-green);
+}
+
+.toneNeutral {
+  --wf-bar-played: color-mix(in oklab, var(--primitive-text-strong) 78%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .barPlayed {
+    transition: none;
+  }
+  .barPlayed {
+    filter: none;
+  }
+}

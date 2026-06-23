@@ -1,0 +1,121 @@
+.figure {
+  display: grid;
+  gap: var(--primitive-space-3);
+  margin: 0;
+  width: 100%;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.axisLabel {
+  fill: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 8.5px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.cell {
+  fill: color-mix(in oklab, var(--heat-tone) 0%, var(--primitive-line));
+  animation: cellIn 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: center;
+  transform-box: fill-box;
+  transition:
+    transform var(--dur, 160ms) cubic-bezier(0.22, 1, 0.36, 1),
+    filter var(--dur, 160ms) ease;
+}
+
+/* Designed hover: the pointed-at day pops and rings in its own tone. */
+.cell:hover {
+  transform: scale(1.32);
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--heat-tone) 60%, transparent));
+}
+
+.cell[data-bucket="0"] {
+  fill: color-mix(in oklab, var(--primitive-line) 60%, transparent);
+}
+.cell[data-bucket="1"] {
+  fill: color-mix(in oklab, var(--heat-tone) 18%, var(--primitive-line) 50%);
+}
+.cell[data-bucket="2"] {
+  fill: color-mix(in oklab, var(--heat-tone) 36%, var(--primitive-line) 35%);
+}
+.cell[data-bucket="3"] {
+  fill: color-mix(in oklab, var(--heat-tone) 58%, transparent);
+}
+.cell[data-bucket="4"] {
+  fill: color-mix(in oklab, var(--heat-tone) 78%, transparent);
+}
+.cell[data-bucket="5"] {
+  fill: var(--heat-tone);
+  filter: drop-shadow(0 0 4px color-mix(in oklab, var(--heat-tone) 50%, transparent));
+}
+
+@keyframes cellIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  color: var(--primitive-muted);
+  text-transform: uppercase;
+}
+
+.legendLabel {
+  margin: var(--primitive-space-0) var(--primitive-space-1-5);
+}
+
+.legendSwatch {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--primitive-radius-xs);
+}
+
+.legendSwatch[data-bucket="0"] {
+  background: color-mix(in oklab, var(--primitive-line) 60%, transparent);
+}
+.legendSwatch[data-bucket="1"] {
+  background: color-mix(in oklab, var(--heat-tone) 18%, var(--primitive-line) 50%);
+}
+.legendSwatch[data-bucket="2"] {
+  background: color-mix(in oklab, var(--heat-tone) 36%, var(--primitive-line) 35%);
+}
+.legendSwatch[data-bucket="3"] {
+  background: color-mix(in oklab, var(--heat-tone) 58%, transparent);
+}
+.legendSwatch[data-bucket="4"] {
+  background: color-mix(in oklab, var(--heat-tone) 78%, transparent);
+}
+.legendSwatch[data-bucket="5"] {
+  background: var(--heat-tone);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    animation: none;
+    transform: none;
+    transition: none;
+  }
+  .cell:hover {
+    transform: none;
+  }
+}

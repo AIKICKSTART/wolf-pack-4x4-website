@@ -1,0 +1,614 @@
+/* Torque — Approval gate screen. Composed from existing primitives.
+   Light + dark parity via --primitive-* tokens. No hardcoded palette. */
+
+.main {
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: clamp(20px, 3vw, 36px);
+  max-width: 1420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.demoSurface {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: clamp(16px, 2.4vw, 28px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--primitive-red) 12%, transparent), transparent 52%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  backdrop-filter: blur(18px) saturate(1.1);
+}
+
+.demoLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+/* ── Console layout: queue rail + detail card ───────────────────────────── */
+
+.console {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: clamp(14px, 1.8vw, 22px);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .console {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.queueRail {
+  display: grid;
+  gap: 14px;
+  position: sticky;
+  top: 18px;
+}
+
+@media (max-width: 900px) {
+  .queueRail {
+    position: static;
+  }
+}
+
+.queueStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--primitive-space-2-5);
+}
+
+.queueHint {
+  display: flex;
+  gap: var(--primitive-space-2);
+  align-items: flex-start;
+  margin: 0;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px dashed var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.5;
+}
+
+.queueHint svg {
+  flex-shrink: 0;
+  margin-top: var(--primitive-space-0-5);
+  color: var(--primitive-teal);
+}
+
+/* ── Detail card ────────────────────────────────────────────────────────── */
+
+.detail {
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: clamp(16px, 2vw, 26px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 30%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-surface-shadow);
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.detail[data-decision="approved"] {
+  border-color: color-mix(in srgb, var(--primitive-green) 60%, var(--primitive-line));
+}
+
+.detail[data-decision="rejected"] {
+  border-color: color-mix(in srgb, var(--primitive-red) 55%, var(--primitive-line));
+  opacity: 0.92;
+}
+
+.detailHead {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+}
+
+@media (max-width: 560px) {
+  .detailHead {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+}
+
+/* Placeholder Torque avatar — initial "T" on a brand-red gradient.
+   Real mascot lands later. */
+.torqueAvatar {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 24%, color-mix(in srgb, var(--primitive-amber) 70%, transparent), transparent 60%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 40%, transparent),
+    0 6px 18px color-mix(in srgb, var(--primitive-red) 40%, transparent);
+}
+
+.detailHeadText {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.detailKicker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+.detailRef {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.detailDot {
+  opacity: 0.5;
+}
+
+.detailRequested {
+  font-variant-numeric: tabular-nums;
+}
+
+.detailTitle {
+  margin: var(--primitive-space-0-5) 0 0;
+  font-size: clamp(18px, 2.4vw, 24px);
+  line-height: 1.15;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  color: var(--primitive-text-strong);
+}
+
+.detailSummary {
+  margin: 0;
+  font-size: var(--primitive-text-sm); /* no exact --primitive-text token at var(--primitive-text-sm); left literal */
+  line-height: 1.5;
+  color: var(--primitive-body);
+}
+
+.detailTarget {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  margin: var(--primitive-space-1) 0 0;
+  font-size: 12.5px;
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.detailTargetLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+/* ── Decision badge ─────────────────────────────────────────────────────── */
+
+.decisionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  border: 1px solid var(--primitive-line);
+}
+
+.decisionBadge[data-decision="pending"] {
+  color: var(--primitive-amber);
+  background: color-mix(in srgb, var(--primitive-amber) 14%, transparent);
+  border-color: color-mix(in srgb, var(--primitive-amber) 40%, var(--primitive-line));
+}
+
+.decisionBadge[data-decision="approved"] {
+  color: var(--primitive-green);
+  background: color-mix(in srgb, var(--primitive-green) 16%, transparent);
+  border-color: color-mix(in srgb, var(--primitive-green) 48%, var(--primitive-line));
+}
+
+.decisionBadge[data-decision="rejected"] {
+  color: var(--primitive-red);
+  background: color-mix(in srgb, var(--primitive-red) 14%, transparent);
+  border-color: color-mix(in srgb, var(--primitive-red) 44%, var(--primitive-line));
+}
+
+.pendingPulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--primitive-amber) 60%, transparent);
+  animation: pulse 1.8s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primitive-amber) 55%, transparent); }
+  70% { box-shadow: 0 0 0 6px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* ── Confidence meter ───────────────────────────────────────────────────── */
+
+.confidenceRow {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-glass-soft);
+}
+
+.confidenceText {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.confidenceLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.confidenceValue {
+  font-size: var(--primitive-text-lg);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+}
+
+/* ── Stat grid ──────────────────────────────────────────────────────────── */
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+@media (max-width: 640px) {
+  .statGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ── Block heads (shared by risks / preview / diff) ─────────────────────── */
+
+.blockHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  margin-bottom: var(--primitive-space-3);
+}
+
+.blockTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+}
+
+.blockTitle svg {
+  color: var(--primitive-red);
+}
+
+.blockMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Risk flags ─────────────────────────────────────────────────────────── */
+
+.risks {
+  padding: var(--primitive-space-4) 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-glass-soft);
+}
+
+.riskList {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.riskItem {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-left-width: 3px;
+  border-radius: 10px;
+  background: var(--primitive-surface-3);
+}
+
+.riskItem[data-severity="high"] {
+  border-left-color: var(--primitive-red);
+}
+
+.riskItem[data-severity="medium"] {
+  border-left-color: var(--primitive-amber);
+}
+
+.riskItem[data-severity="low"] {
+  border-left-color: var(--primitive-teal);
+}
+
+.riskDot {
+  width: 9px;
+  height: 9px;
+  margin-top: 5px;
+  border-radius: 50%;
+}
+
+.riskItem[data-severity="high"] .riskDot { background: var(--primitive-red); }
+.riskItem[data-severity="medium"] .riskDot { background: var(--primitive-amber); }
+.riskItem[data-severity="low"] .riskDot { background: var(--primitive-teal); }
+
+.riskBody {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.riskLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-size: var(--primitive-text-sm);
+  font-weight: 650;
+  color: var(--primitive-text-strong);
+}
+
+.riskDetail {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Preview + diff split ───────────────────────────────────────────────── */
+
+.previewSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 760px) {
+  .previewSplit {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.preview,
+.diff {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  align-content: start;
+  padding: var(--primitive-space-4) 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-glass-soft);
+}
+
+.previewBody {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-surface-3);
+}
+
+.previewLead {
+  margin: 0;
+  font-size: var(--primitive-text-base);
+  font-weight: var(--primitive-weight-bold);
+  line-height: 1.3;
+  color: var(--primitive-text-strong);
+}
+
+.previewLine {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.previewGap {
+  display: block;
+  height: 6px;
+}
+
+/* ── Gate / decision footer ─────────────────────────────────────────────── */
+
+.gate {
+  display: grid;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.gateNote {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--primitive-muted);
+}
+
+.gateNote svg {
+  color: var(--primitive-green);
+}
+
+.gateActions {
+  display: flex;
+  gap: var(--primitive-space-2-5);
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.rejectBtn,
+.approveBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: var(--primitive-space-2-5) 18px;
+  border-radius: var(--primitive-btn-radius);
+  font: inherit;
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: transform 160ms var(--primitive-ease-out),
+    box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.rejectBtn {
+  color: var(--primitive-btn-secondary-fg);
+  background: var(--primitive-btn-secondary-bg);
+  border: 1px solid var(--primitive-btn-secondary-border);
+}
+
+.rejectBtn:hover:not(:disabled),
+.rejectBtn:focus-visible {
+  border-color: color-mix(in srgb, var(--primitive-red) 50%, var(--primitive-line));
+  color: var(--primitive-red);
+  transform: translateY(-1px);
+}
+
+.approveBtn {
+  color: var(--primitive-btn-primary-fg);
+  border: 1px solid transparent;
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.approveBtn:hover:not(:disabled),
+.approveBtn:focus-visible {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  transform: translateY(-1px);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.rejectBtn:focus-visible,
+.approveBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.rejectBtn:disabled,
+.approveBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Typed-confirmation dock (high-risk approvals) ──────────────────────── */
+
+.phraseDock {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid color-mix(in srgb, var(--primitive-red) 40%, var(--primitive-line));
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in srgb, var(--primitive-red) 8%, var(--primitive-glass-soft));
+}
+
+.phraseLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.phraseInput {
+  padding: 9px var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 9px;
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font: inherit;
+  font-size: var(--primitive-text-sm);
+  font-family: var(--primitive-font-mono);
+  letter-spacing: 0.06em;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.phraseInput[data-matches="true"] {
+  border-color: color-mix(in srgb, var(--primitive-green) 55%, var(--primitive-line));
+}
+
+.phraseInput:focus-visible {
+  outline: none;
+  border-color: var(--primitive-focus-ring);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.phraseHint {
+  font-size: 11.5px;
+  color: var(--primitive-muted);
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .pendingPulse {
+    animation: none;
+  }
+  .rejectBtn,
+  .approveBtn,
+  .detail,
+  .phraseInput {
+    transition: none;
+  }
+  .rejectBtn:hover:not(:disabled),
+  .approveBtn:hover:not(:disabled) {
+    transform: none;
+  }
+}

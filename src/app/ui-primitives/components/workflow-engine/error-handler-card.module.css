@@ -1,0 +1,209 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4) 18px 14px;
+  border: 1px solid color-mix(in srgb, var(--card-tone, var(--primitive-red)) 22%, var(--primitive-line));
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--card-tone) 8%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-canvas) 90%, transparent);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 4%, transparent),
+    0 14px 30px color-mix(in oklab, var(--primitive-overlay) 70.8333%, transparent);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  inline-size: 30px;
+  block-size: 30px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid color-mix(in srgb, var(--card-tone) 36%, var(--primitive-line));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--card-tone) 20%, transparent), color-mix(in srgb, var(--card-tone) 4%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 85%, transparent);
+  color: var(--card-tone);
+}
+
+.headText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+}
+
+.severityChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid color-mix(in srgb, var(--card-tone) 36%, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in srgb, var(--card-tone) 12%, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--card-tone);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.attachRow {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.fieldValue {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  word-break: break-all;
+  letter-spacing: 0.02em;
+}
+
+.actions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.action {
+  display: grid;
+  grid-template-columns: 36px auto minmax(0, 1fr) auto;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in srgb, var(--action-tone, var(--primitive-line)) 22%, var(--primitive-line));
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--action-tone) 5%, transparent), transparent),
+    color-mix(in oklab, var(--primitive-canvas) 74%, transparent);
+}
+
+.actionIndex {
+  display: grid;
+  place-items: center;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 84%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.actionIcon {
+  display: grid;
+  place-items: center;
+  inline-size: 28px;
+  block-size: 28px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid color-mix(in srgb, var(--action-tone) 36%, var(--primitive-line));
+  background: color-mix(in srgb, var(--action-tone) 12%, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--action-tone);
+}
+
+.actionBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.actionKind {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--action-tone);
+}
+
+.actionLabel {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actionTarget {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+}
+
+.hitsChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
+  .action {
+    grid-template-columns: 36px auto minmax(0, 1fr);
+  }
+  .hitsChip {
+    grid-column: 1 / -1;
+    justify-self: end;
+  }
+}

@@ -1,0 +1,111 @@
+.kbd {
+  --kbd-bg: var(--primitive-control-surface);
+  --kbd-stroke: var(--primitive-line-strong);
+  --kbd-stroke-bottom: var(--primitive-line-muted);
+  --kbd-ink: var(--primitive-text-strong);
+  --kbd-height: 22px;
+  --kbd-padding: 0 6px;
+  --kbd-font: 11px;
+  --kbd-radius: 5px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--kbd-height);
+  height: var(--kbd-height);
+  padding: var(--kbd-padding);
+  border-radius: var(--kbd-radius);
+  background: var(--kbd-bg);
+  color: var(--kbd-ink);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--kbd-font);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.04em;
+  line-height: var(--primitive-leading-none);
+  box-shadow:
+    inset 0 1px 0 var(--kbd-stroke),
+    inset 0 -1px 0 var(--kbd-stroke-bottom),
+    0 1px 0 var(--primitive-shadow-outline),
+    0 2px 4px var(--primitive-shadow-outline);
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+
+.kbd:active,
+.kbd.pressed {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    0 0 0 1px var(--primitive-shadow-outline);
+}
+
+.sizeSm {
+  --kbd-height: 18px;
+  --kbd-padding: 0 5px;
+  --kbd-font: 10px;
+  --kbd-radius: 4px;
+}
+
+.sizeMd {
+  --kbd-height: 22px;
+  --kbd-padding: 0 6px;
+  --kbd-font: 11px;
+  --kbd-radius: 5px;
+}
+
+.sizeLg {
+  --kbd-height: 28px;
+  --kbd-padding: 0 8px;
+  --kbd-font: 13px;
+  --kbd-radius: 6px;
+}
+
+.group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--primitive-font-mono);
+}
+
+.groupItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.separator {
+  color: var(--primitive-muted);
+  font-size: 0.9em;
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-normal);
+  padding: 0 2px;
+  user-select: none;
+}
+
+:global(html[data-primitive-theme="light"]) .kbd {
+  --kbd-bg: linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 96%, transparent), color-mix(in srgb, var(--primitive-panel-strong) 90%, transparent));
+  --kbd-stroke: color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent);
+  --kbd-stroke-bottom: color-mix(in srgb, var(--primitive-text-strong) 20%, transparent);
+  --kbd-ink: var(--primitive-text-strong);
+
+  border: 1px solid color-mix(in srgb, var(--primitive-text-strong) 16%, transparent);
+  box-shadow:
+    inset 0 1px 0 var(--kbd-stroke),
+    inset 0 -1px 0 var(--kbd-stroke-bottom),
+    0 1px 0 color-mix(in srgb, var(--primitive-text-strong) 18%, transparent),
+    0 6px 10px color-mix(in srgb, var(--primitive-body) 12%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .kbd:active,
+:global(html[data-primitive-theme="light"]) .kbd.pressed {
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 68%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--primitive-text-strong) 18%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kbd,
+  .kbd:active {
+    transition: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,148 @@
+.tile {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-5) var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    radial-gradient(ellipse at 100% 0%, var(--tile-tone, color-mix(in oklab, var(--primitive-teal) 18%, transparent)), transparent 56%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 4%, transparent),
+    0 18px 38px color-mix(in oklab, var(--primitive-recessed) 87.5%, transparent);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.tile > * {
+  position: relative;
+  z-index: 1;
+}
+
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent) 3px 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.periodChip {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  white-space: nowrap;
+}
+
+.body {
+  display: flex;
+  align-items: baseline;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.value {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(32px, 3.4vw, 44px);
+  line-height: var(--primitive-leading-none);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  font-feature-settings: "tnum" 1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+}
+
+.unit {
+  font-family: var(--primitive-font-mono);
+  font-style: normal;
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.delta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.08em;
+  border: 1px solid var(--primitive-line);
+}
+
+.deltaUp {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.deltaDown {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.deltaFlat {
+  color: var(--primitive-muted);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.spark {
+  display: block;
+  height: 48px;
+  width: 100%;
+}
+
+.spark > svg {
+  width: 100%;
+}
+
+.caption {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    transition: none;
+  }
+}

@@ -1,0 +1,105 @@
+.row {
+  border-bottom: 1px solid var(--primitive-line);
+  transition: background var(--primitive-duration-fast) ease;
+}
+
+.row:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.row[data-status="failed"] {
+  background: color-mix(in oklab, var(--primitive-red) 4%, transparent);
+}
+
+.row[data-status="running"] {
+  background: color-mix(in oklab, var(--primitive-amber) 3.5%, transparent);
+}
+
+.row > td {
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  vertical-align: middle;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+}
+
+.cellId {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.id {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.04em;
+}
+
+.queue {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.cellKind,
+.cellStatus,
+.cellDuration,
+.cellAttempt {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.cellActions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* secondary / ghost row action — shared carbon button DNA */
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  margin-left: var(--primitive-space-1-5);
+  padding: 5px var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) ease, color var(--primitive-duration-fast) ease, background var(--primitive-duration-fast) ease;
+}
+
+.actionBtn:hover,
+.actionBtn:focus-visible {
+  border-color: var(--primitive-teal);
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  outline: none;
+}
+
+.actionBtn:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.actionRetry:hover,
+.actionRetry:focus-visible {
+  border-color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .actionBtn {
+    transition: none;
+  }
+}

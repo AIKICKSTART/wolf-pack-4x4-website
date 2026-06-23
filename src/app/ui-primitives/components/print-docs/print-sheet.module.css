@@ -1,0 +1,137 @@
+.printSheet {
+  /* Light-theme overrides for printable surfaces */
+  --primitive-canvas: #ffffff;
+  --primitive-panel: #ffffff;
+  --primitive-panel-strong: #fafaf7;
+  --primitive-body: #111114;
+  --primitive-muted: #4b4e58;
+  --primitive-line: #d9d8d2;
+  --primitive-line-strong: #b6b4ad;
+  --primitive-red: #b3171c;
+  --primitive-red-dark: #76090e;
+  --primitive-amber: #a06600;
+  --primitive-green: #1a7341;
+  --primitive-paper-tint: #f7f5ef;
+  --primitive-paper-rule: #e7e4dd;
+  /* Paper ink + fill palette — extends the local light-theme token layer so
+     every print document references one source instead of repeating literals.
+     --primitive-ink is the document near-black (a touch deeper than body). */
+  --primitive-ink: #0d0d10;
+  --primitive-ink-soft: #1f1f24;
+  --primitive-paper-card: #fdfcf7;
+  --primitive-paper-head: #f3f1ea;
+  --primitive-paper-zebra: #faf9f4;
+  --primitive-font-display: "Geist", "Times New Roman", Georgia, serif;
+  --primitive-font-body: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --primitive-font-mono: "Geist Mono", "Courier New", monospace;
+
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 100%;
+  background-color: var(--primitive-canvas);
+  background-image:
+    radial-gradient(circle at 12% -8%, color-mix(in oklab, var(--primitive-ink) 2.5%, transparent), transparent 30%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, var(--primitive-paper-tint) 100%);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-xs);
+  line-height: var(--primitive-leading-normal);
+  letter-spacing: var(--primitive-tracking-normal);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, var(--primitive-ink) 4%, transparent),
+    0 24px 60px color-mix(in oklab, var(--primitive-ink) 18%, transparent),
+    0 60px 120px color-mix(in oklab, var(--primitive-ink) 12%, transparent);
+}
+
+.printSheet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 23px, color-mix(in oklab, var(--primitive-ink) 1.2%, transparent) 23px 24px);
+  z-index: 0;
+}
+
+.printSheet > * {
+  position: relative;
+  z-index: 1;
+}
+
+.formatA4 {
+  aspect-ratio: 1 / 1.414;
+  padding: 22mm 18mm;
+}
+
+.formatLetter {
+  aspect-ratio: 8.5 / 11;
+  padding: 20mm 18mm;
+}
+
+.formatReceipt {
+  max-width: 80mm;
+  margin: 0 auto;
+  padding: 6mm 5mm;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  line-height: 1.35;
+  background:
+    repeating-linear-gradient(180deg, var(--primitive-canvas) 0 5px, color-mix(in oklab, var(--primitive-amber) 4%, var(--primitive-canvas)) 5px 6px);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, var(--primitive-ink) 4%, transparent),
+    0 18px 32px color-mix(in oklab, var(--primitive-ink) 18%, transparent);
+}
+
+.sheetHeader {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.sheetBody {
+  display: grid;
+  gap: 18px;
+  padding: 14px 0;
+}
+
+.sheetFooter {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding-top: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+
+  .formatLetter:global(.printSheet) {
+    /* keep selector specificity */
+  }
+
+  .printSheet {
+    aspect-ratio: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    background: var(--primitive-canvas);
+  }
+
+  .printSheet::before {
+    display: none;
+  }
+
+  .formatReceipt {
+    max-width: none;
+  }
+}

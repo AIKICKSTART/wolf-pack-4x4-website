@@ -1,0 +1,208 @@
+.card {
+  display: grid;
+  gap: 12px;
+  padding: 16px 18px 14px;
+  border: 1px solid color-mix(in srgb, var(--card-tone, var(--primitive-line)) 22%, var(--primitive-line));
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--card-tone) 9%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-canvas) 90%, transparent);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 4%, transparent),
+    0 14px 30px color-mix(in oklab, var(--primitive-overlay) 70.8333%, transparent);
+}
+
+.card[data-status="running"] .statusDot {
+  animation: stepPulse 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card[data-status="running"] .statusDot { animation: none; }
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--card-tone) 36%, var(--primitive-line));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--card-tone) 20%, transparent), color-mix(in srgb, var(--card-tone) 5%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 85%, transparent);
+  color: var(--card-tone);
+}
+
+.headText {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.subtitle {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+  word-break: break-all;
+}
+
+.kindChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid color-mix(in srgb, var(--card-tone) 36%, var(--primitive-line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--card-tone) 12%, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--card-tone);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.statusRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid color-mix(in srgb, var(--card-tone) 36%, var(--primitive-line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--card-tone) 10%, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--card-tone);
+}
+
+.statusDot {
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.metricChip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.metricLabel {
+  text-transform: uppercase;
+}
+
+.metricValue {
+  color: var(--primitive-text-strong);
+  font-size: 11px;
+}
+
+.ports {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.portCol,
+.portColRight {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.portColLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.portList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+
+.portRow,
+.portRowRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.portRowRight {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.portName {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.04em;
+}
+
+.portDot {
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 999px;
+  background: var(--card-tone);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--card-tone) 18%, transparent);
+}
+
+@keyframes stepPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+}

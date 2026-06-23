@@ -1,0 +1,452 @@
+/* =========================================================
+   LIQUID BLOB HERO — video revealed through an organic liquid
+   blob mask (objectBoundingBox SVG clip) that slowly morphs
+   between two bezier-lobe shapes; chrome rim-light on the edge.
+   Headline sits beside it. Fully token-driven (light + dark).
+   ========================================================= */
+
+.hero {
+  --blob-size: clamp(260px, 42vw, 560px);
+
+  position: relative;
+  width: 100%;
+  min-height: clamp(560px, 88svh, 860px);
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(56px, 8svh, 112px) clamp(24px, 6vw, 96px) clamp(72px, 9svh, 124px);
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 78% 28%, color-mix(in oklab, var(--primitive-amber) 15%, transparent), transparent 56%),
+    radial-gradient(ellipse at 12% 88%, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 62%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 98%, var(--primitive-teal)) 100%);
+  font-family: var(--primitive-font-body);
+}
+
+/* Slow drifting bloom behind the blob — pure atmosphere. */
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 72% 46%,
+    color-mix(in oklab, var(--primitive-amber) 22%, transparent) 0%,
+    transparent 44%
+  );
+  opacity: 0.7;
+  animation: blobBloom 11s ease-in-out infinite;
+}
+
+/* Faint technical grid, masked toward the blob for depth. */
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--primitive-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--primitive-line) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(circle at 74% 46%, transparent 24%, black 76%);
+  mask-image: radial-gradient(circle at 74% 46%, transparent 24%, black 76%);
+  opacity: 0.42;
+}
+
+/* Off-document SVG defs (clip path lives here). */
+.defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: center;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* ---- Copy column ---- */
+.copy {
+  display: grid;
+  gap: clamp(14px, 1.8vw, 22px);
+  max-width: 56ch;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  text-shadow: 0 0 18px color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--primitive-red);
+  box-shadow: 0 0 14px var(--primitive-red);
+  animation: kickerPulse 1.4s ease-in-out infinite;
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 1.4rem + 5vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 2px 28px color-mix(in oklab, black 50%, transparent);
+}
+
+.subhead {
+  font-family: var(--primitive-font-body);
+  font-size: clamp(14px, 0.85rem + 0.45vw, 18px);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 46ch;
+  color: color-mix(in oklab, var(--primitive-text-strong) 84%, transparent);
+}
+
+.spec {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  width: max-content;
+  padding: 9px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 999px;
+  background: var(--primitive-glass-soft);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 70%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.spec svg {
+  color: var(--primitive-amber);
+}
+
+.cta {
+  margin-top: 4px;
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-radius-pill);
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 240ms,
+    box-shadow 240ms;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-red);
+  opacity: 0.42;
+  z-index: -1;
+  transition: inset 240ms;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  color: var(--primitive-btn-primary-hover-fg);
+}
+.cta:hover::before {
+  inset: -8px;
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:active::before {
+  inset: -4px;
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+/* ---- Blob stage ---- */
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  justify-self: center;
+}
+
+.blobWrap {
+  position: relative;
+  width: var(--blob-size);
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  /* Gentle floating sway — transform only, compositor-friendly. */
+  animation: blobFloat 13s ease-in-out infinite;
+  filter: drop-shadow(0 36px 80px color-mix(in oklab, black 50%, transparent));
+}
+
+/* Chrome rim sits behind the masked media, slightly larger, so the
+   metallic stroke peeks around the morphing liquid edge. */
+.rim {
+  position: absolute;
+  inset: -3%;
+  width: 106%;
+  height: 106%;
+  overflow: visible;
+  pointer-events: none;
+}
+.rimPath {
+  filter: drop-shadow(0 0 10px color-mix(in oklab, var(--primitive-amber) 34%, transparent));
+}
+
+.clip {
+  position: absolute;
+  inset: 0;
+  background: var(--primitive-canvas);
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.12) saturate(1.14);
+  transform: scale(1.04);
+}
+
+/* Specular sheen + amber inner rim so the blob reads liquid + branded. */
+.gloss {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 36% 26%, color-mix(in oklab, var(--primitive-text-strong) 34%, transparent) 0%, transparent 32%),
+    radial-gradient(circle at 70% 84%, color-mix(in oklab, var(--primitive-red) 30%, transparent) 0%, transparent 40%),
+    linear-gradient(150deg, color-mix(in oklab, var(--primitive-text-strong) 12%, transparent) 0%, transparent 26%, transparent 72%, color-mix(in oklab, black 40%, transparent) 100%);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
+
+.tag {
+  position: absolute;
+  bottom: -10px;
+  right: 6%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: color-mix(in oklab, var(--primitive-canvas) 72%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  border-radius: 999px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+}
+.tag i {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--primitive-amber);
+  box-shadow: 0 0 10px var(--primitive-amber);
+}
+
+.meta {
+  position: absolute;
+  z-index: 2;
+  left: clamp(24px, 6vw, 96px);
+  right: clamp(24px, 6vw, 96px);
+  bottom: clamp(26px, 4svh, 48px);
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---- Keyframes (compositor-friendly: transform/opacity only) ---- */
+@keyframes blobFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(1.4deg);
+  }
+}
+
+@keyframes blobBloom {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.85;
+  }
+}
+
+@keyframes kickerPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.6);
+  }
+}
+
+/* ---- Responsive: stack on narrow viewports, keep blob in frame ---- */
+@media (max-width: 860px) {
+  .hero {
+    --blob-size: clamp(240px, 70vw, 460px);
+    min-height: auto;
+    padding-bottom: clamp(96px, 16svh, 150px);
+  }
+  .layout {
+    grid-template-columns: 1fr;
+    gap: clamp(32px, 8vw, 56px);
+  }
+  .stage {
+    order: -1;
+  }
+  .copy {
+    max-width: none;
+    justify-items: start;
+  }
+  .meta {
+    justify-content: center;
+    gap: 14px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero {
+    --blob-size: min(82vw, 360px);
+  }
+  .meta {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+  }
+  .tag {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
+/* ---- Light theme parity ---- */
+:global(html[data-primitive-theme="light"]) .hero {
+  color: var(--primitive-text-strong);
+}
+:global(html[data-primitive-theme="light"]) .blobWrap {
+  filter: drop-shadow(0 30px 64px color-mix(in oklab, var(--primitive-text-strong) 24%, transparent));
+}
+:global(html[data-primitive-theme="light"]) .headline {
+  text-shadow: 0 2px 18px color-mix(in oklab, var(--primitive-text-strong) 60%, transparent);
+}
+:global(html[data-primitive-theme="light"]) .gloss {
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+}
+:global(html[data-primitive-theme="light"]) .tag {
+  background: color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+}
+
+/* ---- Reduced motion: clean, static, premium composition ---- */
+.hero[data-reduced="true"] .atmosphere,
+.hero[data-reduced="true"] .blobWrap,
+.hero[data-reduced="true"] .kicker i {
+  animation: none;
+}
+.hero[data-reduced="true"] .blobWrap {
+  transform: none;
+}
+.hero[data-reduced="true"] .video {
+  display: none;
+}
+.hero[data-reduced="true"] .clip {
+  background:
+    radial-gradient(circle at 36% 28%, color-mix(in oklab, var(--primitive-amber) 24%, transparent), transparent 52%),
+    linear-gradient(158deg, color-mix(in oklab, var(--primitive-canvas) 95%, var(--primitive-teal)) 0%, var(--primitive-canvas) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atmosphere,
+  .blobWrap,
+  .kicker i,
+  .cta,
+  .ctaArrow,
+  .rimPath {
+    animation: none;
+    transition: none;
+  }
+  .blobWrap {
+    transform: none;
+  }
+  .video {
+    display: none;
+  }
+  .clip {
+    background:
+      radial-gradient(circle at 36% 28%, color-mix(in oklab, var(--primitive-amber) 24%, transparent), transparent 52%),
+      linear-gradient(158deg, color-mix(in oklab, var(--primitive-canvas) 95%, var(--primitive-teal)) 0%, var(--primitive-canvas) 100%);
+  }
+  .gloss {
+    opacity: 0.6;
+  }
+}

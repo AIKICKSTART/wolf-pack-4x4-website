@@ -1,0 +1,239 @@
+.chip {
+  --chip-bg: var(--primitive-field-bg);
+  --chip-stroke: var(--primitive-line);
+  --chip-stroke-hover: var(--primitive-line-strong);
+  --chip-ink: var(--primitive-body);
+  --chip-glow: transparent;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  margin: 0;
+  border: 1px solid var(--chip-stroke);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--chip-bg);
+  color: var(--chip-ink);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-medium);
+  letter-spacing: 0.01em;
+  line-height: var(--primitive-leading-none);
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  user-select: none;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease,
+    transform 180ms ease, box-shadow 180ms ease;
+}
+
+.chip:hover {
+  border-color: var(--chip-stroke-hover);
+  background: var(--primitive-field-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--primitive-shadow-soft), 0 0 0 0 var(--chip-glow);
+}
+
+.chip:active {
+  transform: translateY(0);
+}
+
+.chip:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 1px var(--primitive-canvas),
+    0 0 0 3px var(--chip-stroke-hover);
+}
+
+.label {
+  display: inline-block;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: currentColor;
+  opacity: 0.78;
+}
+
+.dismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-right: -4px;
+  margin-left: 2px;
+  border-radius: var(--primitive-radius-pill);
+  color: currentColor;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 160ms ease, background 160ms ease;
+}
+
+.dismiss:hover {
+  opacity: 1;
+  background: var(--primitive-field-hover);
+}
+
+.dismiss:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 1px;
+  opacity: 1;
+}
+
+/* selected */
+.selected {
+  background: var(--primitive-control-active), var(--chip-bg);
+  border-color: var(--chip-stroke-hover);
+  color: var(--primitive-text-strong);
+  box-shadow: inset 0 1px 0 var(--primitive-neumo-light), 0 0 18px var(--chip-glow);
+}
+
+.selected::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, var(--chip-glow), transparent 60%);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* disabled */
+.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* tones */
+.toneNeutral {
+  --chip-bg: var(--primitive-field-bg);
+  --chip-stroke: var(--primitive-line);
+  --chip-stroke-hover: var(--primitive-line-strong);
+  --chip-glow: var(--primitive-line-muted);
+}
+
+.toneRed {
+  --chip-bg: color-mix(in oklab, var(--primitive-red) 22%, var(--primitive-recessed));
+  --chip-stroke: color-mix(in srgb, var(--primitive-red) 40%, transparent);
+  --chip-stroke-hover: color-mix(in srgb, var(--primitive-red) 78%, transparent);
+  --chip-ink: color-mix(in oklab, var(--primitive-red) 28%, white);
+  --chip-glow: color-mix(in srgb, var(--primitive-red) 35%, transparent);
+}
+
+.toneAmber {
+  --chip-bg: color-mix(in oklab, var(--primitive-amber) 22%, var(--primitive-recessed));
+  --chip-stroke: color-mix(in srgb, var(--primitive-amber) 42%, transparent);
+  --chip-stroke-hover: color-mix(in srgb, var(--primitive-amber) 85%, transparent);
+  --chip-ink: color-mix(in oklab, var(--primitive-amber) 42%, white);
+  --chip-glow: color-mix(in srgb, var(--primitive-amber) 32%, transparent);
+}
+
+.toneTeal {
+  --chip-bg: color-mix(in oklab, var(--primitive-teal) 22%, var(--primitive-recessed));
+  --chip-stroke: color-mix(in srgb, var(--primitive-teal) 42%, transparent);
+  --chip-stroke-hover: color-mix(in srgb, var(--primitive-teal) 85%, transparent);
+  --chip-ink: color-mix(in oklab, var(--primitive-teal) 34%, white);
+  --chip-glow: color-mix(in srgb, var(--primitive-teal) 32%, transparent);
+}
+
+.toneGreen {
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 22%, var(--primitive-recessed));
+  --chip-stroke: color-mix(in srgb, var(--primitive-green) 40%, transparent);
+  --chip-stroke-hover: color-mix(in srgb, var(--primitive-green) 85%, transparent);
+  --chip-ink: color-mix(in oklab, var(--primitive-green) 36%, white);
+  --chip-glow: color-mix(in srgb, var(--primitive-green) 32%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .chip {
+  --chip-bg: color-mix(in srgb, var(--primitive-text-on-accent) 72%, transparent);
+  --chip-stroke: color-mix(in srgb, var(--primitive-text-strong) 14%, transparent);
+  --chip-stroke-hover: color-mix(in srgb, var(--primitive-text-strong) 28%, transparent);
+  --chip-ink: var(--primitive-body);
+  --chip-glow: color-mix(in srgb, var(--primitive-body) 8%, transparent);
+
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 78%, transparent),
+    0 6px 14px color-mix(in srgb, var(--primitive-body) 8%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .chip:hover {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 88%, transparent), color-mix(in srgb, var(--primitive-panel-strong) 72%, transparent)),
+    var(--chip-bg);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent),
+    0 12px 22px color-mix(in srgb, var(--primitive-body) 14%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .selected {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--chip-glow) 74%, color-mix(in srgb, var(--primitive-text-on-accent) 84%, transparent)), color-mix(in srgb, var(--primitive-text-on-accent) 78%, transparent)),
+    var(--chip-bg);
+  color: var(--primitive-text-strong);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--primitive-text-on-accent) 62%, transparent),
+    0 12px 24px color-mix(in srgb, var(--primitive-body) 12%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .dismiss:hover {
+  background: color-mix(in srgb, var(--primitive-text-strong) 8%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .toneNeutral {
+  --chip-bg: color-mix(in srgb, var(--primitive-text-on-accent) 76%, transparent);
+  --chip-stroke: color-mix(in srgb, var(--primitive-text-strong) 14%, transparent);
+  --chip-stroke-hover: color-mix(in srgb, var(--primitive-text-strong) 28%, transparent);
+  --chip-glow: color-mix(in srgb, var(--primitive-body) 16%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .toneRed {
+  --chip-bg: color-mix(in srgb, var(--primitive-panel-strong) 82%, transparent);
+  --chip-stroke: color-mix(in srgb, var(--primitive-red) 32%, transparent);
+  --chip-stroke-hover: color-mix(in srgb, var(--primitive-red) 58%, transparent);
+  --chip-ink: color-mix(in oklab, var(--primitive-red) 72%, black);
+  --chip-glow: color-mix(in srgb, var(--primitive-red) 18%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .toneAmber {
+  --chip-bg: color-mix(in srgb, var(--primitive-panel-strong) 86%, transparent);
+  --chip-stroke: color-mix(in srgb, var(--primitive-amber) 34%, transparent);
+  --chip-stroke-hover: color-mix(in srgb, var(--primitive-amber) 62%, transparent);
+  --chip-ink: color-mix(in oklab, var(--primitive-amber) 64%, black);
+  --chip-glow: color-mix(in srgb, var(--primitive-amber) 18%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .toneTeal {
+  --chip-bg: color-mix(in srgb, var(--primitive-panel-strong) 86%, transparent);
+  --chip-stroke: color-mix(in srgb, var(--primitive-teal) 34%, transparent);
+  --chip-stroke-hover: color-mix(in srgb, var(--primitive-teal) 62%, transparent);
+  --chip-ink: color-mix(in oklab, var(--primitive-teal) 76%, black);
+  --chip-glow: color-mix(in srgb, var(--primitive-teal) 18%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .toneGreen {
+  --chip-bg: color-mix(in srgb, var(--primitive-panel-strong) 86%, transparent);
+  --chip-stroke: color-mix(in srgb, var(--primitive-green) 34%, transparent);
+  --chip-stroke-hover: color-mix(in srgb, var(--primitive-green) 62%, transparent);
+  --chip-ink: color-mix(in oklab, var(--primitive-green) 72%, black);
+  --chip-glow: color-mix(in srgb, var(--primitive-green) 18%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .chip:hover,
+  .chip:active,
+  .dismiss {
+    transition: none;
+    transform: none;
+  }
+}

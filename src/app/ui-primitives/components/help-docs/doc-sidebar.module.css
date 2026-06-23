@@ -1,0 +1,104 @@
+.sidebar {
+  display: grid;
+  gap: 18px;
+  padding: 18px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  font-family: var(--primitive-font-body);
+}
+
+.section {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.sectionToggle {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  background: transparent;
+  border: 0;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    background var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.sectionToggle:hover,
+.sectionToggle:focus-visible {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  outline: none;
+}
+
+.chevron {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-sm);
+  transition: transform 180ms ease;
+}
+
+.chevron[data-open="false"] {
+  transform: rotate(-90deg);
+}
+
+.links {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid var(--primitive-line-muted);
+  margin-left: var(--primitive-space-2);
+}
+
+.link {
+  display: block;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  margin-left: var(--primitive-space-1-5);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-standard),
+    color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border-color: var(--primitive-line);
+  outline: none;
+}
+
+.linkActive {
+  color: var(--primitive-text-strong);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 80%),
+    color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sectionToggle,
+  .chevron,
+  .link {
+    transition: none;
+  }
+}

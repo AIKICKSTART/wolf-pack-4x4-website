@@ -1,0 +1,77 @@
+.wrap {
+  --tx-tone: var(--primitive-teal);
+
+  position: relative;
+  display: grid;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  min-width: 84px;
+  border-radius: 8px;
+  border: 1px dashed var(--tx-tone);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel);
+  color: var(--primitive-text-strong);
+}
+
+.kind-cut { --tx-tone: color-mix(in oklab, var(--primitive-text-strong) 30%, transparent); border-style: solid; }
+.kind-cross-fade { --tx-tone: var(--primitive-amber); }
+.kind-dissolve { --tx-tone: var(--primitive-teal); }
+.kind-wipe { --tx-tone: var(--primitive-green); }
+
+.selected {
+  border-style: solid;
+  box-shadow: 0 0 0 1px var(--tx-tone), 0 6px 14px color-mix(in oklab, var(--primitive-canvas) 36%, transparent);
+}
+
+.glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 18px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.glyph svg {
+  width: 24px;
+  height: 18px;
+}
+
+.copy {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.kindLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tx-tone);
+}
+
+.durationChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--primitive-glass-strong);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.sub {
+  font-family: var(--primitive-font-body);
+  font-size: 10px;
+  color: var(--primitive-muted);
+  letter-spacing: 0.02em;
+}

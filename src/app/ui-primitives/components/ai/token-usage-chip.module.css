@@ -1,0 +1,107 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: 30px;
+  padding: var(--primitive-space-1) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-surface-2);
+  box-shadow: inset 0 1px 0 var(--primitive-neumo-light);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-body);
+  vertical-align: middle;
+}
+
+.icon {
+  color: var(--primitive-amber);
+}
+
+.label {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.value {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.budget {
+  color: var(--primitive-muted);
+  font-weight: var(--primitive-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.meter {
+  position: relative;
+  display: inline-block;
+  width: 64px;
+  height: 4px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-meter-track);
+  overflow: hidden;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--primitive-green);
+  transition: width 200ms ease;
+}
+
+.tone_calm .icon {
+  color: var(--primitive-green);
+}
+
+.tone_calm .fill {
+  background: linear-gradient(90deg, var(--primitive-green), var(--primitive-teal));
+}
+
+.tone_amber {
+  border-color: color-mix(in srgb, var(--primitive-amber) 40%, transparent);
+}
+
+.tone_amber .icon {
+  color: var(--primitive-amber);
+}
+
+.tone_amber .fill {
+  background: linear-gradient(
+    90deg,
+    var(--primitive-amber),
+    color-mix(in srgb, var(--primitive-amber) 78%, var(--primitive-text-on-accent))
+  );
+  box-shadow: 0 0 8px color-mix(in srgb, var(--primitive-amber) 55%, transparent);
+}
+
+.tone_red {
+  border-color: color-mix(in srgb, var(--primitive-red) 50%, transparent);
+  background: color-mix(in srgb, var(--primitive-red) 8%, transparent);
+}
+
+.tone_red .icon {
+  color: var(--primitive-red);
+}
+
+.tone_red .label {
+  color: var(--primitive-red);
+}
+
+.tone_red .fill {
+  background: linear-gradient(90deg, var(--primitive-amber), var(--primitive-red));
+  box-shadow: 0 0 10px color-mix(in srgb, var(--primitive-red) 55%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+}

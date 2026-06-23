@@ -1,0 +1,39 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.dial { stroke: currentColor; fill: none; stroke-width: 1.4; }
+.face { fill: currentColor; opacity: 0.1; }
+.innerRing { stroke: currentColor; fill: none; opacity: 0.25; }
+.center { fill: currentColor; }
+.centerInner { fill: var(--primitive-canvas); }
+.tick { stroke: currentColor; stroke-width: 1.2; opacity: 0.85; stroke-linecap: round; }
+.tickHalf { stroke: currentColor; opacity: 0.5; stroke-linecap: round; }
+.numeral { fill: currentColor; font-family: var(--primitive-font-mono, monospace); font-size: 3.4px; font-weight: 800; opacity: 0.7; }
+.hour { stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; transform-origin: 12px 12px; animation: clockHour 12s linear infinite; }
+.minute { stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; transform-origin: 12px 12px; animation: clockMinute 1.4s linear infinite; }
+.second { stroke: var(--primitive-red); stroke-width: 0.8; stroke-linecap: round; transform-origin: 12px 12px; animation: clockSecond 60s linear infinite; }
+
+@keyframes clockHour { to { transform: rotate(360deg); } }
+@keyframes clockMinute { to { transform: rotate(360deg); } }
+@keyframes clockSecond { to { transform: rotate(360deg); } }
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate .minute, .motionRotate .hour { animation-duration: 1s, 3s; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .dial, .motionDraw .tick { stroke-dasharray: 60; stroke-dashoffset: 60; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .minute { animation-duration: 0.3s; }
+.motionSpark .hour { animation-duration: 1s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .face { fill: transparent; }
+
+[data-variant="filled"] .face { opacity: 0.3; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .hour, .minute, .second { animation: none !important; transition: none !important; }
+}

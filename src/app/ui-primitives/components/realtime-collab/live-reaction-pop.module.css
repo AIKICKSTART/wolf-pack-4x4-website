@@ -1,0 +1,70 @@
+.pop {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  animation: liveReactionFloat 1.8s ease-out forwards;
+  pointer-events: none;
+  font-family: var(--primitive-font-body);
+}
+
+.glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-lg);
+  background: currentColor;
+  color: var(--primitive-canvas);
+  font-size: var(--primitive-text-lg);
+  line-height: var(--primitive-leading-none);
+  box-shadow: 0 8px 20px color-mix(in oklab, var(--primitive-canvas) 45%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.chip {
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-sm);
+  background: currentColor;
+  color: var(--primitive-canvas);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.toneBlue { color: var(--primitive-teal); }
+.toneAmber { color: var(--primitive-amber); }
+.tonePurple { color: var(--primitive-violet); }
+.toneGreen { color: var(--primitive-green); }
+.tonePink { color: color-mix(in oklab, var(--primitive-red) 58%, white); }
+.toneOrange { color: color-mix(in oklab, var(--primitive-amber) 58%, var(--primitive-red)); }
+
+@keyframes liveReactionFloat {
+  0% {
+    transform: translate(-50%, -60%) scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -110%) scale(1.05);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(-50%, -130%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -180%) scale(0.95);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pop {
+    animation: none;
+    transform: translate(-50%, -110%);
+  }
+}

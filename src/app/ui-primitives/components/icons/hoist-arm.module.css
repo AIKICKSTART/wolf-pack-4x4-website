@@ -1,0 +1,53 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.column { fill: currentColor; opacity: 0.85; stroke: currentColor; stroke-width: 0.9; stroke-linejoin: round; }
+.columnFront { fill: var(--primitive-canvas); opacity: 0.25; }
+.basePlate { fill: currentColor; opacity: 0.95; stroke: currentColor; stroke-width: 0.9; }
+.anchor { fill: var(--primitive-canvas); }
+.pivot { fill: currentColor; opacity: 0.92; stroke: currentColor; stroke-width: 1; }
+.pivotInner { fill: var(--primitive-canvas); }
+.armGroup { transform-origin: 4.7px 6px; }
+.arm { fill: currentColor; opacity: 0.85; stroke: currentColor; stroke-width: 0.9; }
+.armUpper { fill: var(--primitive-canvas); opacity: 0.25; }
+.armJoint { stroke: var(--primitive-canvas); opacity: 0.55; stroke-linecap: round; stroke-width: 0.5; }
+.padArm { fill: currentColor; opacity: 0.85; }
+.padSurface { fill: currentColor; opacity: 0.65; stroke: currentColor; stroke-width: 0.9; }
+.padRubber { fill: var(--primitive-canvas); opacity: 0.3; }
+.gripLine { stroke: var(--primitive-canvas); opacity: 0.55; stroke-linecap: round; }
+.hydraulic { stroke: currentColor; stroke-linecap: round; opacity: 0.85; }
+.hydraulicInner { stroke: var(--primitive-canvas); opacity: 0.6; stroke-linecap: round; }
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate .armGroup { animation: hoistArmSwing 4s ease-in-out infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift .armGroup { animation: hoistArmLift 3.2s ease-in-out infinite; }
+.motionDraw .column, .motionDraw .arm { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .armGroup { animation: hoistArmLift 0.6s ease-in-out infinite; }
+
+@keyframes hoistArmSwing {
+  0%, 100% { transform: rotate(0); }
+  50% { transform: rotate(-12deg); }
+}
+@keyframes hoistArmLift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.5px); }
+}
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-2deg); } 75% { transform: rotate(2deg); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .column,
+[data-variant="outline"] .basePlate,
+[data-variant="outline"] .pivot,
+[data-variant="outline"] .arm,
+[data-variant="outline"] .padArm,
+[data-variant="outline"] .padSurface { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .column { opacity: 1; }
+[data-variant="filled"] .arm { opacity: 0.95; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .armGroup { animation: none !important; transition: none !important; }
+}

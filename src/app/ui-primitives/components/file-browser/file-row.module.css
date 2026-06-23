@@ -1,0 +1,107 @@
+.row {
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) ease, color var(--primitive-duration-fast) ease;
+}
+
+.row > td {
+  padding: var(--primitive-space-2-5) 14px;
+  border-bottom: 1px solid var(--primitive-line);
+  font-size: var(--primitive-text-sm);
+  vertical-align: middle;
+}
+
+.row:hover,
+.row:focus-visible {
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.rowSelected {
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.rowSelected:hover {
+  background: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+}
+
+.iconCell {
+  width: 38px;
+  padding-inline-end: 0 !important;
+}
+
+.nameCell {
+  min-width: 0;
+}
+
+.name {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  word-break: break-all;
+}
+
+.sizeCell,
+.modifiedCell {
+  width: 1%;
+  white-space: nowrap;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+}
+
+.ownerCell {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.ownerInner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.ownerName {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+}
+
+.actionsCell {
+  width: 1%;
+  text-align: right;
+}
+
+.chevronBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--primitive-muted);
+  cursor: pointer;
+  transition: color var(--primitive-duration-fast) ease, background var(--primitive-duration-fast) ease, border-color var(--primitive-duration-fast) ease;
+}
+
+.chevronBtn:hover {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-glass-soft);
+  border-color: var(--primitive-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .chevronBtn {
+    transition: none;
+  }
+}

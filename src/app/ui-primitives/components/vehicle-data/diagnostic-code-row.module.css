@@ -1,0 +1,114 @@
+.row {
+  border-bottom: 1px solid color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.row:hover {
+  background: color-mix(in oklab, var(--primitive-teal) 5%, transparent);
+}
+
+.rowCritical {
+  background: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+}
+
+.codeCell {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-3) 14px;
+  vertical-align: middle;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+  text-align: left;
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+}
+
+.glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-recessed);
+  color: var(--primitive-muted);
+}
+
+.rowCritical .glyph {
+  background: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  color: var(--primitive-red);
+}
+
+.codeId {
+  font-variant-numeric: tabular-nums;
+}
+
+.descCell {
+  padding: var(--primitive-space-3) 14px;
+  vertical-align: middle;
+}
+
+.descTitle {
+  display: block;
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.descMeta {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin-top: var(--primitive-space-0-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.sevCell {
+  padding: var(--primitive-space-3) 14px;
+  vertical-align: middle;
+}
+
+.actionCell {
+  padding: var(--primitive-space-3) 14px;
+  vertical-align: middle;
+  text-align: right;
+}
+
+.fixLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+  text-decoration: none;
+}
+
+.fixLink:hover,
+.fixLink:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.fixEmpty {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    transition: none;
+  }
+}

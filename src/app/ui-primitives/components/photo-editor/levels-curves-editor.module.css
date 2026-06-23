@@ -1,0 +1,195 @@
+.wrap {
+  display: grid;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+}
+
+.title {
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  display: inline-flex;
+  gap: var(--primitive-space-1);
+}
+
+.tabs {
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-recessed);
+  width: max-content;
+}
+
+.tab {
+  padding: var(--primitive-space-1-5) 14px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+}
+
+.tabActive {
+  background: var(--primitive-teal);
+  color: var(--primitive-canvas);
+}
+
+.stage {
+  position: relative;
+  height: 200px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 24px, var(--primitive-glass-soft) 24px 25px),
+    repeating-linear-gradient(90deg, transparent 0 24px, var(--primitive-glass-soft) 24px 25px),
+    color-mix(in oklab, var(--primitive-overlay) 84%, transparent);
+  overflow: hidden;
+}
+
+.histogram {
+  position: absolute;
+  inset: var(--primitive-space-1-5);
+  display: grid;
+  grid-template-columns: repeat(var(--bucket-count, 64), 1fr);
+  align-items: end;
+  gap: var(--primitive-space-px);
+}
+
+.bucket {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 42%, transparent), color-mix(in oklab, var(--primitive-teal) 18%, transparent));
+  height: var(--bucket-height, 0%);
+  min-height: 1px;
+  border-radius: 1px;
+}
+
+.svgCurve {
+  position: absolute;
+  inset: 0;
+}
+
+.diagonal {
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  stroke-dasharray: 4 4;
+}
+
+.curveLine {
+  fill: none;
+  stroke: var(--primitive-amber);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.anchor {
+  fill: var(--primitive-text-strong);
+  stroke: var(--primitive-amber);
+  stroke-width: 2;
+}
+
+.markers {
+  position: absolute;
+  inset: var(--primitive-space-1-5);
+  pointer-events: none;
+}
+
+.marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--marker-color, var(--primitive-teal));
+  left: var(--marker-pos, 50%);
+  transform: translateX(-50%);
+}
+
+.marker::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: var(--marker-color, var(--primitive-teal));
+  border: 1px solid var(--primitive-canvas);
+}
+
+.markerBlack { --marker-color: var(--primitive-canvas); }
+.markerMid { --marker-color: var(--primitive-amber); }
+.markerWhite { --marker-color: var(--primitive-icon-obsidian); }
+
+.sliders {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.sliderCard {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-recessed);
+}
+
+.sliderLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.sliderValue {
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-text-strong);
+}
+
+.sliderBar {
+  position: relative;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-strong);
+  overflow: hidden;
+}
+
+.sliderFill {
+  position: absolute;
+  inset: 0;
+  width: var(--bar-width, 50%);
+  background: var(--bar-color, var(--primitive-teal));
+  border-radius: inherit;
+}

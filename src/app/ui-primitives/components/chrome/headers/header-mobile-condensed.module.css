@@ -1,0 +1,153 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 96%, transparent), color-mix(in oklab, var(--primitive-canvas) 92%, transparent)),
+    var(--primitive-canvas);
+  backdrop-filter: blur(16px);
+  color: var(--primitive-text-strong);
+  transition: padding 200ms ease, box-shadow 200ms ease;
+}
+
+.headerShrunk {
+  padding: 6px 14px;
+  box-shadow: 0 16px 32px color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.iconBtn {
+  appearance: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-text-strong);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 8%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent)),
+    color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+  cursor: pointer;
+  position: relative;
+  transition: width 200ms ease, height 200ms ease;
+}
+
+.headerShrunk .iconBtn {
+  width: 36px;
+  height: 36px;
+}
+
+.iconBtn:hover {
+  border-color: var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}
+
+.iconBtn:focus-visible {
+  border-color: var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.cartBadge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  min-width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 0 0 2px var(--primitive-canvas);
+}
+
+.brand {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 0;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 200ms ease;
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.brand img {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+}
+
+.headerShrunk .brand img {
+  width: 26px;
+  height: 26px;
+}
+
+.brandWordmark {
+  margin-top: 2px;
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.headerShrunk .brandWordmark {
+  display: none;
+}
+
+.iconRow {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .iconBtn,
+  .brand,
+  .brand img {
+    transition: none;
+  }
+}
+
+:global(html[data-primitive-theme="light"]) .header {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 96%, transparent), color-mix(in oklab, var(--primitive-canvas) 92%, transparent)),
+    var(--primitive-canvas);
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .iconBtn {
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .brandWordmark {
+  color: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .cartBadge {
+  box-shadow: 0 0 0 2px var(--primitive-text-strong);
+}

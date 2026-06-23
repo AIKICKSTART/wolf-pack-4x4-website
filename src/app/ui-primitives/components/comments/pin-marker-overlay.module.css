@@ -1,0 +1,59 @@
+.overlay {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  overflow: hidden;
+  isolation: isolate;
+  font-family: var(--primitive-font-mono);
+}
+
+.target {
+  position: relative;
+  display: block;
+  width: 100%;
+  z-index: 0;
+}
+
+.pins {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.pins > * {
+  pointer-events: auto;
+}
+
+.gridLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+}
+
+.caption {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 3;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}

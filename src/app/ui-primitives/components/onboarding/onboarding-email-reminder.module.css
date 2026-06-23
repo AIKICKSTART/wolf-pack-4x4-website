@@ -1,0 +1,153 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-panel) 86%, var(--primitive-canvas));
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.kicker {
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sendsAt {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 3px var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.envelope {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-surface-2) 86%, var(--primitive-canvas));
+  overflow: hidden;
+}
+
+.envSeam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primitive-amber), transparent);
+  opacity: 0.4;
+}
+
+.envHead {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  align-items: baseline;
+  gap: var(--primitive-space-2-5);
+}
+
+.envFromLabel,
+.envSubjectLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.envFrom {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.envSubjectRow {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  align-items: baseline;
+  gap: var(--primitive-space-2-5);
+}
+
+.envSubject {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(15px, 1.8vw, 19px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.envPreview {
+  margin: 0;
+  padding-top: var(--primitive-space-1-5);
+  border-top: 1px dashed var(--primitive-line);
+  color: var(--primitive-body);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pauseLink {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2);
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+
+.pauseLink:hover,
+.pauseLink:focus-visible {
+  color: var(--primitive-text-strong);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pauseLink {
+    transition: none;
+  }
+}

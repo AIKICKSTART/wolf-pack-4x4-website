@@ -1,0 +1,454 @@
+/* Parts & inventory — bespoke chrome composed from primitive tokens.
+   Torque command band, warehouse switcher, searchable catalogue + supplier rail.
+   Light + dark parity via --primitive-* tokens; motion is opacity/transform only. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Command band -------------------------------------------------------- */
+
+.command {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(18px, 2.4vw, 32px);
+  align-items: stretch;
+  padding: clamp(20px, 2.6vw, 32px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 58%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.command::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  opacity: 0.6;
+}
+
+.commandMain {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-width: 0;
+}
+
+.commandHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 auto;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, white 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: 27px;
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 26px color-mix(in oklab, var(--primitive-red) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, white 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.torqueId {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.torqueName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.torqueRole {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+.commandTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 1.04;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.commandTitle em {
+  font-style: normal;
+  color: var(--primitive-red);
+}
+
+.commandCopy {
+  margin: 0;
+  max-width: 56ch;
+  font-size: var(--primitive-text-base);
+  line-height: 1.6;
+  color: var(--primitive-body);
+}
+
+.commandMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2) 18px;
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaDot {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.metaDot::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+.switcher {
+  margin-top: var(--primitive-space-1);
+}
+
+/* KPI grid */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  align-content: start;
+  min-width: 0;
+}
+
+.kpiCard {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Catalogue ----------------------------------------------------------- */
+
+.catalogue {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: clamp(16px, 2vw, 24px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.catalogueHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.catalogueKicker {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.catalogueTitle {
+  margin: var(--primitive-space-1) 0 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+/* Search field */
+.searchField {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: min(320px, 100%);
+  flex: 1 1 240px;
+  max-width: 360px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: var(--primitive-space-3);
+  color: var(--primitive-muted);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 11px 14px 11px 36px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 11px;
+  background: var(--primitive-surface-3);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.searchInput::placeholder {
+  color: var(--primitive-muted);
+}
+
+.searchInput:focus-visible {
+  outline: none;
+  border-color: var(--primitive-red);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+/* Supplier filter chips */
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+/* ---- Table cells --------------------------------------------------------- */
+
+.partCell {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 11px;
+  align-items: center;
+  min-width: 0;
+}
+
+.partThumb {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 40px;
+  flex: 0 0 auto;
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: 9px;
+  overflow: hidden;
+  background: var(--primitive-surface-3);
+}
+
+.partThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.partText {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.partName {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  line-height: 1.25;
+  color: var(--primitive-text-strong);
+}
+
+.partMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+.partSku {
+  font-family: var(--primitive-font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--primitive-body);
+}
+
+.supplierCell {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.rowMeter {
+  min-width: 200px;
+}
+
+.priceCell {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+/* Reorder action button */
+.reorderBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 7px 14px;
+  border: 1px solid var(--primitive-red);
+  border-radius: 9px;
+  background: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  color: var(--primitive-red);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 200ms var(--primitive-ease-out),
+    background-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.reorderBtn:hover,
+.reorderBtn:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  outline: none;
+}
+
+.reorderBtn:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.reorderBtn[data-done="true"] {
+  border-color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  color: var(--primitive-green);
+  cursor: default;
+}
+
+.reorderBtn:disabled {
+  opacity: 1;
+}
+
+.resultCount {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-muted);
+}
+
+.resultCount strong {
+  color: var(--primitive-text-strong);
+}
+
+/* Visually-hidden live region for reorder confirmations. */
+.srStatus {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Supplier rail ------------------------------------------------------- */
+
+.supplierRail {
+  display: grid;
+  gap: var(--primitive-space-4);
+}
+
+.railHead {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.railTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.supplierGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 14px;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .command {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .kpiGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .catalogueHead {
+    align-items: stretch;
+  }
+  .searchField {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reorderBtn {
+    transition: none;
+  }
+  .reorderBtn:hover,
+  .reorderBtn:focus-visible {
+    transform: none;
+  }
+}

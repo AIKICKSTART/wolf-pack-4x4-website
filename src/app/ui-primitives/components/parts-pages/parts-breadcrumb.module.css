@@ -1,0 +1,17 @@
+/* Parts-specific breadcrumb adapter — wraps the generic Breadcrumb primitive.
+   Threads a category tone into the leaf (current page) segment via CSS scope. */
+
+.wrap {
+  --tone: var(--primitive-amber);
+  display: inline-flex;
+  width: fit-content;
+}
+
+.wrap nav[aria-label] ol > li:last-child > span[aria-current="page"] {
+  color: var(--tone);
+}
+
+.toneRed { --tone: var(--primitive-red); }
+.toneAmber { --tone: var(--primitive-amber); }
+.toneTeal { --tone: var(--primitive-teal); }
+.toneGreen { --tone: var(--primitive-green); }

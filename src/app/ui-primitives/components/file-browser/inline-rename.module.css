@@ -1,0 +1,95 @@
+.display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  max-width: 100%;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid transparent;
+  border-radius: var(--primitive-radius-md);
+  background: transparent;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  cursor: text;
+  transition: background var(--primitive-duration-fast) ease, border-color var(--primitive-duration-fast) ease;
+}
+
+.display:hover,
+.display:focus-visible {
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border-color: var(--primitive-line);
+  outline: none;
+}
+
+.displayLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0.005em;
+}
+
+.hint {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  opacity: 0;
+  transition: opacity var(--primitive-duration-fast) ease;
+}
+
+.display:hover .hint,
+.display:focus-visible .hint {
+  opacity: 1;
+}
+
+.editor {
+  display: inline-grid;
+  gap: var(--primitive-space-1);
+  max-width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-teal);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.005em;
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+}
+
+.inputError {
+  border-color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 14%, transparent);
+}
+
+.error {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.help {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .display,
+  .hint {
+    transition: none;
+  }
+}

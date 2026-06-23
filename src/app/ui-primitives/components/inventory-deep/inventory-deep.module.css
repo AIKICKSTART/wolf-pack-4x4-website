@@ -1,0 +1,87 @@
+/* Shared style tokens for the inventory-deep primitive pack.
+ *
+ * Each primitive owns its layout-specific CSS file; this module
+ * carries the surface, kicker, and tone-band defaults that recur
+ * across the pack so the visual language stays consistent.
+ */
+
+.wrap {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-amber) 8%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.wrapTeal {
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+}
+
+.wrapRed {
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+}
+
+.wrapGreen {
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-green) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 1.1;
+  letter-spacing: var(--primitive-tracking-normal);
+  color: var(--primitive-text-strong);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.numeric {
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.headRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.chipRow {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}

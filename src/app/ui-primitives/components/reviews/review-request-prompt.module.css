@@ -1,0 +1,167 @@
+.card {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 100% 0, color-mix(in oklab, var(--primitive-green) 10%, transparent), transparent 50%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.kicker {
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.form {
+  display: grid;
+  gap: 14px;
+}
+
+.fieldLabel {
+  display: grid;
+  gap: 6px;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.textarea {
+  min-height: 120px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: 14px;
+  line-height: var(--primitive-leading-normal);
+  resize: vertical;
+}
+
+.textarea:focus-visible {
+  border-color: var(--primitive-focus-ring);
+  background: var(--primitive-field-hover);
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.helper {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.submit {
+  min-height: 42px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: var(--primitive-btn-radius);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 70%, white) 0%,
+      var(--primitive-green) 46%, color-mix(in oklab, var(--primitive-green) 72%, black) 100%);
+  color: var(--primitive-text-on-accent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 34%, transparent),
+    inset 0 -1px 0 var(--primitive-overlay),
+    0 10px 24px color-mix(in oklab, var(--primitive-green) 38%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submit:not(:disabled):hover,
+.submit:not(:disabled):focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 50%, transparent),
+    inset 0 -1px 0 var(--primitive-overlay),
+    0 14px 30px color-mix(in oklab, var(--primitive-green) 44%, transparent);
+}
+
+.submit:not(:disabled):focus-visible {
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 50%, transparent),
+    inset 0 -1px 0 var(--primitive-overlay),
+    0 14px 30px color-mix(in oklab, var(--primitive-green) 44%, transparent),
+    var(--primitive-focus-shadow);
+}
+
+.success {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--primitive-green) 32%, var(--primitive-line));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--primitive-green) 12%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.successTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: var(--primitive-weight-bold);
+}
+
+.successBody {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submit {
+    transition: none;
+  }
+  .submit:hover,
+  .submit:focus-visible {
+    transform: none;
+  }
+}

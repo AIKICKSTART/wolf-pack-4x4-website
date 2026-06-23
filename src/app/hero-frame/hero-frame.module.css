@@ -1,0 +1,48 @@
+/* Chrome-free hero-frame layout. Carries the primitive token scope (.dashboard
+   is applied alongside .bare so every --primitive-* token resolves) but
+   neutralises the dashboard's sidebar grid so the embedded hero renders
+   full-bleed at the iframe's real viewport width. No sidebar, no nav. */
+
+.bare {
+  display: block !important;
+  min-height: 100svh;
+  margin: 0;
+  padding: 0 !important;
+  gap: 0 !important;
+  grid-template-columns: none !important;
+  background: var(--primitive-canvas);
+  color: var(--primitive-text-strong);
+}
+
+.bare * {
+  box-sizing: border-box;
+}
+
+/* Bare full-bleed hero stage. The parent preview supplies the device chrome. */
+.stage {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  background: var(--primitive-canvas);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  overflow-x: clip;
+  isolation: isolate;
+}
+
+/* Whichever hero <section> lands inside the stage fills the viewport so the
+   per-viewport iframe always shows a real full-height hero. */
+.stage > section {
+  min-height: 100svh;
+}
+
+.logo {
+  position: absolute;
+  top: clamp(12px, 3vw, 24px);
+  left: clamp(12px, 3vw, 24px);
+  z-index: 40;
+  width: clamp(84px, 22vw, 168px);
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 22px color-mix(in oklab, var(--primitive-canvas) 60%, transparent));
+}

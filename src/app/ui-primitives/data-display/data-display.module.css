@@ -1,0 +1,327 @@
+.page {
+  min-height: 100svh;
+  padding: var(--primitive-space-7) var(--primitive-space-7) 80px;
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 84% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 36%),
+    radial-gradient(circle at 8% 100%, color-mix(in oklab, var(--primitive-teal) 14%, transparent), transparent 40%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+.section {
+  width: min(100%, 1400px);
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+}
+
+.sectionHead {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-3xl);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1;
+}
+
+.subhead {
+  margin: 0;
+  max-width: 70ch;
+  color: var(--primitive-body);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.overviewShell {
+  width: min(100%, 1400px);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--primitive-space-4);
+}
+
+.leadPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(360px, 0.8fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.leadCopy {
+  display: grid;
+  align-content: center;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 42%),
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.signalGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.surfaceTable {
+  display: grid;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+  overflow: hidden;
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.surfaceTableHead,
+.surfaceRow {
+  display: grid;
+  grid-template-columns: minmax(280px, 1.25fr) minmax(190px, 0.8fr) minmax(210px, 0.9fr) 120px;
+  gap: var(--primitive-space-4);
+  align-items: center;
+  min-width: 920px;
+}
+
+.surfaceTableHead {
+  padding: var(--primitive-space-3) var(--primitive-space-4);
+  border-bottom: 1px solid var(--primitive-line-strong);
+  background: var(--primitive-recessed);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.surfaceRow {
+  padding: 14px var(--primitive-space-4);
+  color: var(--primitive-body);
+  text-decoration: none;
+  border-top: 1px solid var(--primitive-line);
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.surfaceRow:first-of-type {
+  border-top: 0;
+}
+
+.surfaceRow:hover,
+.surfaceRow:focus-visible {
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 46%),
+    var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.thumbIndex {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.surfaceName {
+  display: grid;
+  grid-template-columns: 32px 32px minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: center;
+  min-width: 0;
+}
+
+.surfaceName svg {
+  width: 18px;
+  height: 18px;
+  color: var(--primitive-amber);
+}
+
+.surfaceName strong {
+  display: block;
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+}
+
+.surfaceName small {
+  display: block;
+  margin-top: 5px;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.45;
+}
+
+.stateCell {
+  display: inline-flex;
+  align-items: center;
+}
+
+.stateCell span {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 9px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--state-border, var(--primitive-line));
+  background: var(--state-bg, var(--primitive-field-bg));
+  color: var(--state-fg, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.stateCell span[data-state="Live"] {
+  --state-border: color-mix(in oklab, var(--primitive-green) 44%, transparent);
+  --state-bg: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  --state-fg: var(--primitive-green);
+}
+
+.stateCell span[data-state="Reference"] {
+  --state-border: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  --state-bg: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --state-fg: var(--primitive-teal);
+}
+
+.stateCell span[data-state="Composable"] {
+  --state-border: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  --state-bg: color-mix(in oklab, var(--primitive-amber) 11%, transparent);
+  --state-fg: var(--primitive-amber);
+}
+
+.compositionSection {
+  width: min(100%, 1400px);
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+.compositionRows {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.compositionRow {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.7fr) minmax(180px, 0.8fr) minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: center;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+}
+
+.compositionRow h3,
+.compositionRow p {
+  margin: 0;
+}
+
+.compositionRow h3 {
+  margin-top: var(--primitive-space-2);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.compositionRow p {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+}
+
+.compositionRow p:first-of-type {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surfaceRow {
+    transition: none;
+  }
+}
+
+@media (max-width: 1120px) {
+  .leadPanel,
+  .signalGrid,
+  .compositionRows {
+    grid-template-columns: 1fr;
+  }
+
+  .leadPanel {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    gap: 22px;
+    padding: 18px;
+  }
+
+  .sectionTitle {
+    font-size: var(--primitive-text-2xl);
+  }
+
+  .leadCopy {
+    padding: var(--primitive-space-5);
+  }
+
+  .surfaceTable {
+    overflow-x: auto;
+  }
+
+  .compositionRow {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,38 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.tank { fill: currentColor; opacity: 0.85; stroke: currentColor; stroke-width: 0.9; stroke-linejoin: round; }
+.core { fill: currentColor; opacity: 0.18; }
+.coreStroke { stroke: currentColor; fill: none; stroke-width: 1; }
+.fin { stroke: currentColor; opacity: 0.55; stroke-width: 0.45; }
+.tube { stroke: currentColor; fill: none; opacity: 0.35; stroke-linecap: round; }
+.hose { fill: currentColor; opacity: 0.7; stroke: currentColor; stroke-width: 0.9; }
+.hoseCap { fill: currentColor; opacity: 0.45; stroke: currentColor; stroke-width: 0.6; }
+.cap { fill: currentColor; opacity: 0.95; stroke: currentColor; stroke-width: 0.9; }
+.capInner { fill: var(--primitive-canvas); }
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .coreStroke, .motionDraw .tank, .motionDraw .tube { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .fin { opacity: 0.85; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .tank,
+[data-variant="outline"] .core,
+[data-variant="outline"] .hose,
+[data-variant="outline"] .cap { fill: transparent; opacity: 1; }
+[data-variant="outline"] .capInner { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .core { opacity: 0.5; }
+[data-variant="filled"] .tank { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host * { animation: none !important; transition: none !important; }
+}

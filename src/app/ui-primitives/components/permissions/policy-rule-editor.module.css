@@ -1,0 +1,187 @@
+.editor {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 92% 6%, color-mix(in oklab, var(--primitive-teal) 6%, transparent), transparent 50%),
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), 0 22px 56px color-mix(in oklab, var(--primitive-canvas) 30%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.kicker {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hint {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+}
+
+.rule {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.connective {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  min-width: 88px;
+}
+
+.slot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.slotControl {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 36px;
+  padding: 0 36px 0 14px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 36%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 6%, transparent), transparent 50%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.slotControl:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 2px;
+}
+
+.slotGlyph {
+  position: absolute;
+  right: var(--primitive-space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primitive-teal);
+  font-size: var(--primitive-text-xs);
+  pointer-events: none;
+}
+
+.outcomeGroup {
+  display: inline-flex;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+}
+
+.outcomeBtn {
+  appearance: none;
+  padding: var(--primitive-space-1-5) 14px;
+  border: 0;
+  border-radius: var(--primitive-radius-pill);
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.outcomeBtn[data-outcome="allow"][data-active="true"] {
+  background: var(--primitive-green);
+  color: color-mix(in oklab, var(--primitive-green) 16%, var(--primitive-canvas));
+}
+
+.outcomeBtn[data-outcome="deny"][data-active="true"] {
+  background: var(--primitive-red);
+  color: var(--primitive-text-strong);
+}
+
+.outcomeBtn:hover,
+.outcomeBtn:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.preview {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-4);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    repeating-linear-gradient(45deg, transparent 0 8px, color-mix(in oklab, var(--primitive-amber) 3%, transparent) 8px 10px),
+    color-mix(in oklab, color-mix(in oklab, var(--primitive-amber) 8%, var(--primitive-canvas)) 80%, transparent);
+}
+
+.previewKicker {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.previewLine {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.previewLine strong {
+  color: var(--primitive-text-strong);
+  font-weight: 800;
+}
+
+.previewLine strong[data-outcome="allow"] {
+  color: var(--primitive-green);
+}
+
+.previewLine strong[data-outcome="deny"] {
+  color: var(--primitive-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .outcomeBtn {
+    transition: none;
+  }
+}

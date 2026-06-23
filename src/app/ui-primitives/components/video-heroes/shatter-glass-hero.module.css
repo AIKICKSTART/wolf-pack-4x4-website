@@ -1,0 +1,474 @@
+/* =========================================================
+   SHATTER GLASS HERO — video fragmented into angular glass
+   shards (clip-path polygons) with crack seams + glints that
+   settle in with a micro-stagger.
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(540px, 86svh, 860px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 64% 30%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 58%),
+    radial-gradient(ellipse at 14% 88%, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 66%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 90%, white) 100%);
+  font-family: var(--primitive-font-body);
+}
+
+/* Soft impact glow behind the shards */
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 52% 40%, color-mix(in oklab, var(--primitive-amber) 22%, transparent), transparent 46%),
+    radial-gradient(circle at 50% 42%, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), transparent 38%);
+  opacity: 0.7;
+}
+
+/* The shard field fills the whole frame */
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.shard {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* Each shard is a clip-path polygon set inline; transform settles it home */
+  transform: translate3d(var(--shard-dx, 0), var(--shard-dy, 0), 0)
+    rotate(var(--shard-rot, 0deg));
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: shardSettle 760ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--shard-delay, 0ms);
+  /* Hairline bevel so the shard edges catch light */
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 14%, transparent),
+    inset -1px -1px 0 color-mix(in oklab, black 32%, transparent);
+}
+
+@keyframes shardSettle {
+  0% {
+    transform: translate3d(var(--shard-dx, 0), var(--shard-dy, 0), 0)
+      rotate(var(--shard-rot, 0deg));
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  82% {
+    transform: translate3d(
+        calc(var(--shard-dx, 0) * -0.06),
+        calc(var(--shard-dy, 0) * -0.06),
+        0
+      )
+      rotate(calc(var(--shard-rot, 0deg) * -0.18));
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.82) contrast(1.14) saturate(1.08);
+}
+
+/* Diagonal specular streak crossing select shards */
+.glint {
+  position: absolute;
+  inset: -40%;
+  pointer-events: none;
+  background: linear-gradient(
+    104deg,
+    transparent 42%,
+    color-mix(in oklab, var(--primitive-text-strong) 42%, transparent) 49%,
+    color-mix(in oklab, var(--primitive-text-strong) 6%, transparent) 53%,
+    transparent 60%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translateX(-30%);
+  animation: glintSweep 5.6s ease-in-out infinite;
+  animation-delay: var(--shard-delay, 0ms);
+}
+
+@keyframes glintSweep {
+  0%,
+  72% {
+    opacity: 0;
+    transform: translateX(-34%);
+  }
+  80% {
+    opacity: 0.9;
+  }
+  92% {
+    opacity: 0;
+    transform: translateX(34%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(34%);
+  }
+}
+
+/* Crack seams traced over the shard boundaries */
+.cracks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.seamGroup,
+.hairlineGroup {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.seam {
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 1px color-mix(in oklab, black 70%, transparent));
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: crackDraw 900ms ease-out forwards;
+  animation-delay: 320ms;
+}
+
+/* Amber inner glow on the fracture, layered via a second pass */
+.seamGroup {
+  filter: drop-shadow(0 0 2px color-mix(in oklab, var(--primitive-amber) 70%, transparent));
+}
+
+.hairline {
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 26%, transparent);
+  stroke-width: 0.6;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: crackDraw 1100ms ease-out forwards;
+  animation-delay: 540ms;
+}
+
+@keyframes crackDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Frosted bevel around the outer frame edge */
+.frostEdge {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    inset 0 0 80px color-mix(in oklab, black 55%, transparent);
+}
+
+/* Readability scrim so copy sits over the glass */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, black 36%, transparent) 0%,
+      color-mix(in oklab, black 4%, transparent) 30%,
+      color-mix(in oklab, black 4%, transparent) 48%,
+      color-mix(in oklab, black 78%, transparent) 94%
+    ),
+    linear-gradient(98deg, color-mix(in oklab, black 72%, transparent) 0%, transparent 56%);
+}
+
+/* ---------- Copy ---------- */
+.copy {
+  position: relative;
+  z-index: 6;
+  align-self: center;
+  justify-self: start;
+  display: grid;
+  gap: 22px;
+  max-width: 680px;
+  padding: 0 clamp(28px, 7vw, 110px);
+  margin-top: clamp(40px, 8svh, 72px);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  text-shadow: 0 0 18px color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  background: var(--primitive-red);
+  border-radius: 999px;
+  box-shadow: 0 0 14px var(--primitive-red);
+  animation: kickerPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes kickerPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.6);
+  }
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 1.4rem + 5.4vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  color: white;
+  text-shadow:
+    0 0 32px color-mix(in oklab, black 60%, transparent),
+    0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+}
+
+.subhead {
+  font-family: var(--primitive-font-body);
+  font-size: clamp(15px, 0.9rem + 0.4vw, 19px);
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--primitive-text-strong) 86%, transparent);
+  margin: 0;
+  max-width: 52ch;
+}
+
+.cta {
+  margin-top: 6px;
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 240ms;
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--primitive-red);
+  border-radius: 4px;
+  z-index: -1;
+  opacity: 0.42;
+  transition: inset 240ms;
+}
+.cta:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  transform: translateY(-2px);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+.cta:hover::before {
+  inset: -7px;
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:active::before {
+  inset: -3px;
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+.meta {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 clamp(28px, 7vw, 110px) clamp(36px, 6svh, 72px);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 46%, transparent);
+  flex-wrap: wrap;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .copy {
+    gap: 18px;
+  }
+  .meta {
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    gap: 12px;
+  }
+  /* Fewer, softer shards read better on a narrow viewport */
+  .glint {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .meta span:nth-child(2) {
+    display: none;
+  }
+}
+
+/* ---------- Light parity ---------- */
+:global(html[data-primitive-theme="light"]) .hero {
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 64% 30%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 58%),
+    radial-gradient(ellipse at 14% 88%, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 66%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-teal)) 100%);
+}
+:global(html[data-primitive-theme="light"]) .video {
+  filter: brightness(0.96) contrast(1.08) saturate(1.05);
+}
+:global(html[data-primitive-theme="light"]) .shard {
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 55%, transparent),
+    inset -1px -1px 0 color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+}
+:global(html[data-primitive-theme="light"]) .seam {
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 85%, transparent);
+  filter: drop-shadow(0 0 1px color-mix(in oklab, var(--primitive-text-strong) 50%, transparent));
+}
+:global(html[data-primitive-theme="light"]) .hairline {
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 60%, transparent);
+}
+:global(html[data-primitive-theme="light"]) .scrim {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, black 22%, transparent) 0%,
+      color-mix(in oklab, black 2%, transparent) 30%,
+      color-mix(in oklab, black 4%, transparent) 48%,
+      color-mix(in oklab, black 60%, transparent) 94%
+    ),
+    linear-gradient(98deg, color-mix(in oklab, black 50%, transparent) 0%, transparent 56%);
+}
+:global(html[data-primitive-theme="light"]) .frostEdge {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 10%, transparent),
+    inset 0 0 80px color-mix(in oklab, black 32%, transparent);
+}
+:global(html[data-primitive-theme="light"]) .headline {
+  color: white;
+}
+:global(html[data-primitive-theme="light"]) .subhead {
+  color: color-mix(in oklab, var(--primitive-text-strong) 92%, transparent);
+  text-shadow: 0 1px 12px color-mix(in oklab, black 50%, transparent);
+}
+:global(html[data-primitive-theme="light"]) .meta {
+  color: color-mix(in oklab, var(--primitive-text-strong) 70%, transparent);
+}
+
+/* ---------- Reduced motion: clean static composition ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .shard {
+    transform: none;
+    opacity: 1;
+    animation: none;
+  }
+  .glint {
+    display: none;
+  }
+  .seam,
+  .hairline {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  .kicker i {
+    animation: none;
+  }
+  .cta {
+    transition: none;
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+  .video {
+    /* Stop the looping feed for opt-out users; poster holds the frame. */
+    display: none;
+  }
+}
+
+/* Belt-and-braces static state driven from JS (matchMedia) so the shards never
+   start mid-animation when motion is disabled. */
+.stage[data-static] .shard {
+  transform: none;
+  opacity: 1;
+  animation: none;
+}
+.stage[data-static] .video {
+  display: none;
+}
+.stage[data-static] .glint {
+  display: none;
+}
+.stage[data-static] .seam,
+.stage[data-static] .hairline {
+  stroke-dashoffset: 0;
+  animation: none;
+}

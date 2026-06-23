@@ -1,0 +1,478 @@
+/* =========================================================
+   DIAGONAL SPLIT HERO — copy + media divided by a sharp
+   angled seam with a red edge-light. Both planes are
+   clipped from one shared seam geometry so they meet exactly.
+   ========================================================= */
+
+.hero {
+  /* Seam geometry: the diagonal runs from the top edge at --seam-top
+     to the bottom edge at --seam-bottom (as fractions of the width).
+     Both planes derive their clip-path from these two values, so the
+     line, the wash, and the wedges always share the identical edge. */
+  --seam-top: 62%;
+  --seam-bottom: 38%;
+
+  position: relative;
+  width: 100%;
+  min-height: clamp(520px, 84svh, 800px);
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 78% 30%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 58%),
+    radial-gradient(ellipse at 14% 84%, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 64%),
+    linear-gradient(150deg, color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-teal)) 0%, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-teal)) 100%);
+  font-family: var(--primitive-font-body);
+}
+
+/* ---- MEDIA PLANE (lower-right wedge) ---- */
+.mediaPlane {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  /* upper-right → seam-top → seam-bottom → lower-right */
+  clip-path: polygon(
+    var(--seam-top) 0,
+    100% 0,
+    100% 100%,
+    var(--seam-bottom) 100%
+  );
+  background: color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-teal));
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.96) contrast(1.12) saturate(1.08);
+}
+
+.mediaWash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(118deg, color-mix(in oklab, black 62%, transparent) 0%, transparent 44%),
+    linear-gradient(180deg, transparent 56%, color-mix(in oklab, black 55%, transparent) 100%),
+    radial-gradient(ellipse at 72% 32%, transparent 36%, color-mix(in oklab, black 46%, transparent) 100%);
+}
+
+.mediaTag {
+  position: absolute;
+  right: clamp(16px, 3vw, 40px);
+  bottom: clamp(54px, 8vh, 88px);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  background: color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.mediaTag i {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-red);
+  box-shadow: 0 0 10px var(--primitive-red);
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+/* ---- COPY PLANE (upper-left wedge) — solid surface ---- */
+.copyPlane {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  /* top-left → seam-top → seam-bottom → bottom-left */
+  clip-path: polygon(
+    0 0,
+    var(--seam-top) 0,
+    var(--seam-bottom) 100%,
+    0 100%
+  );
+  background:
+    radial-gradient(ellipse at 8% 12%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 52%),
+    linear-gradient(150deg,
+      color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-teal)) 0%,
+      var(--primitive-canvas) 100%);
+  border-right: 0;
+  box-shadow: inset -40px 0 60px color-mix(in oklab, black 45%, transparent);
+}
+
+/* ---- SEAM: the bright angled divider ---- */
+.seam {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  /* The seam is a thin band straddling the cut. We clip a rectangle
+     to the seam diagonal using the same two anchor points, expanded
+     a few % on each side to give the line + glow width. */
+  clip-path: polygon(
+    calc(var(--seam-top) - 1.4%) 0,
+    calc(var(--seam-top) + 1.4%) 0,
+    calc(var(--seam-bottom) + 1.4%) 100%,
+    calc(var(--seam-bottom) - 1.4%) 100%
+  );
+}
+
+.seamGlow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--primitive-red) 55%, transparent) 50%,
+    transparent 100%
+  );
+  filter: blur(6px);
+  opacity: 0.9;
+}
+
+.seamLine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 44%,
+    var(--primitive-red) 50%,
+    color-mix(in oklab, white 70%, var(--primitive-red)) 50.5%,
+    var(--primitive-red) 51%,
+    transparent 56%
+  );
+  box-shadow:
+    0 0 14px color-mix(in oklab, var(--primitive-red) 70%, transparent),
+    0 0 38px color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+/* Travelling spark along the seam */
+.seamSpark {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 22%;
+  top: -22%;
+  background: linear-gradient(
+    90deg,
+    transparent 40%,
+    color-mix(in oklab, white 92%, transparent) 50%,
+    transparent 60%
+  );
+  filter: blur(1px);
+  animation: sparkRun 4.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes sparkRun {
+  0% { transform: translateY(0); opacity: 0; }
+  8% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { transform: translateY(560%); opacity: 0; }
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.65); }
+}
+
+/* ---- Corner registration marks ---- */
+.marks {
+  position: absolute;
+  inset: clamp(18px, 3vw, 36px);
+  z-index: 4;
+  pointer-events: none;
+}
+.marks > span {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+}
+.marks > span:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+.marks > span:nth-child(2) {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+/* ---- Foreground copy (sits over the copy plane) ---- */
+.copy {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  gap: 20px;
+  max-width: min(46%, 560px);
+  height: 100%;
+  align-content: center;
+  padding: clamp(40px, 6vw, 96px);
+  padding-right: clamp(24px, 4vw, 56px);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--primitive-red);
+  box-shadow: 0 0 14px var(--primitive-red);
+  animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 1.3rem + 5vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 0 30px color-mix(in oklab, black 55%, transparent);
+}
+
+.subhead {
+  font-family: var(--primitive-font-body);
+  font-size: clamp(14px, 0.88rem + 0.4vw, 18px);
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--primitive-text-strong) 80%, transparent);
+  margin: 0;
+  max-width: 42ch;
+}
+
+.cta {
+  margin-top: 8px;
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform 240ms var(--primitive-ease-out),
+    background 240ms,
+    color 240ms,
+    box-shadow 240ms;
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--primitive-red);
+  border-radius: var(--primitive-radius-sm);
+  z-index: -1;
+  opacity: 0.42;
+  transition: inset 240ms;
+}
+.cta:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-2px);
+}
+.cta:hover::before {
+  inset: -7px;
+  border-color: var(--primitive-amber);
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:active::before {
+  inset: -3px;
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+.meta {
+  position: absolute;
+  left: clamp(40px, 6vw, 96px);
+  bottom: clamp(20px, 3vh, 36px);
+  z-index: 5;
+  display: flex;
+  gap: 24px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 46%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   RESPONSIVE — flatten the diagonal to a softer angle, then
+   to a clean horizontal split on narrow screens so the copy
+   never collides with the media and nothing overflows.
+   ========================================================= */
+@media (max-width: 900px) {
+  .hero {
+    /* shallower seam so copy keeps room */
+    --seam-top: 78%;
+    --seam-bottom: 54%;
+  }
+  .copy {
+    max-width: min(64%, 520px);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    /* Horizontal split: copy on top, media on the bottom.
+       Anchors become vertical fractions via the rotated planes below. */
+    min-height: clamp(560px, 92svh, 760px);
+  }
+  .mediaPlane {
+    /* bottom band */
+    clip-path: polygon(0 58%, 100% 46%, 100% 100%, 0 100%);
+  }
+  .copyPlane {
+    /* top band */
+    clip-path: polygon(0 0, 100% 0, 100% 46%, 0 58%);
+  }
+  .seam {
+    clip-path: polygon(0 calc(58% - 1.2%), 100% calc(46% - 1.2%), 100% calc(46% + 1.2%), 0 calc(58% + 1.2%));
+  }
+  .seamLine {
+    background: linear-gradient(
+      0deg,
+      transparent 30%,
+      var(--primitive-red) 50%,
+      color-mix(in oklab, white 70%, var(--primitive-red)) 50.5%,
+      var(--primitive-red) 51%,
+      transparent 70%
+    );
+  }
+  .seamGlow {
+    background: linear-gradient(
+      0deg,
+      transparent 0%,
+      color-mix(in oklab, var(--primitive-red) 55%, transparent) 50%,
+      transparent 100%
+    );
+  }
+  .seamSpark {
+    top: 0;
+    left: -22%;
+    right: auto;
+    width: 22%;
+    height: 100%;
+    background: linear-gradient(
+      0deg,
+      transparent 40%,
+      color-mix(in oklab, white 90%, transparent) 50%,
+      transparent 60%
+    );
+    animation: sparkRunH 4.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  }
+  .copy {
+    max-width: 100%;
+    height: auto;
+    align-content: start;
+    padding: clamp(32px, 8vw, 56px) clamp(24px, 7vw, 44px);
+    padding-top: clamp(40px, 11vw, 72px);
+    gap: 16px;
+  }
+  .mediaTag {
+    bottom: clamp(40px, 7vh, 64px);
+  }
+  .meta {
+    left: clamp(24px, 7vw, 44px);
+  }
+}
+
+@keyframes sparkRunH {
+  0% { transform: translateX(0); opacity: 0; }
+  8% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { transform: translateX(560%); opacity: 0; }
+}
+
+/* ---- LIGHT THEME PARITY: media wash + copy plane lift on light canvas ---- */
+:global(html[data-primitive-theme="light"]) .copyPlane {
+  background:
+    radial-gradient(ellipse at 8% 12%, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 52%),
+    linear-gradient(150deg,
+      color-mix(in oklab, var(--primitive-canvas) 92%, white) 0%,
+      var(--primitive-canvas) 100%);
+  box-shadow: inset -40px 0 60px color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+:global(html[data-primitive-theme="light"]) .hero {
+  background:
+    radial-gradient(ellipse at 78% 30%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 58%),
+    radial-gradient(ellipse at 14% 84%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 64%),
+    linear-gradient(150deg, color-mix(in oklab, var(--primitive-canvas) 92%, var(--primitive-teal)) 0%, color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-teal)) 100%);
+}
+:global(html[data-primitive-theme="light"]) .meta {
+  color: color-mix(in oklab, var(--primitive-text-strong) 56%, transparent);
+}
+
+/* ---- REDUCED MOTION: neutralise to a clean static composition ---- */
+@media (prefers-reduced-motion: reduce) {
+  .video {
+    display: none;
+  }
+  .seamSpark,
+  .kicker i,
+  .mediaTag i {
+    animation: none;
+  }
+  .seamSpark {
+    display: none;
+  }
+  .cta,
+  .ctaArrow {
+    transition: none;
+  }
+  .mediaPlane {
+    background:
+      radial-gradient(ellipse at 70% 36%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 56%),
+      linear-gradient(150deg, color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-teal)) 0%, color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-teal)) 100%);
+  }
+}

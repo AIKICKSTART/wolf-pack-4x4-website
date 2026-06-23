@@ -1,0 +1,442 @@
+.page {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 56px) 80px;
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 84% 0%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 38%),
+    radial-gradient(circle at 6% 100%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 40%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+.canvas {
+  width: min(100%, 1280px);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--primitive-space-6);
+}
+
+/* ── Hero / identity band ──────────────────────────────────────────────── */
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-5);
+  padding: clamp(16px, 2vw, 24px) clamp(18px, 2.4vw, 28px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.6%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), var(--primitive-shadow-soft);
+}
+
+.heroIdentity {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+}
+
+.avatar {
+  flex: none;
+  inline-size: 56px;
+  block-size: 56px;
+  border-radius: var(--primitive-radius-pill);
+  display: grid;
+  place-items: center;
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in oklab, var(--primitive-text-strong) 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 40%, transparent),
+    0 8px 22px color-mix(in srgb, var(--primitive-red) 42%, transparent);
+}
+
+.heroCopy {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 2.2vw, 32px);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1.02;
+}
+
+.heroSub {
+  margin: 0;
+  max-width: 54ch;
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+}
+
+.heroStatus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  align-items: center;
+}
+
+/* ── Metric strip ──────────────────────────────────────────────────────── */
+
+.metricStrip {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+/* Align figures with tabular-nums where they sit in a row. */
+.metrics {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Terminal window ───────────────────────────────────────────────────── */
+
+.console {
+  display: grid;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-xl);
+  overflow: hidden;
+  background: var(--primitive-panel-strong);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), var(--primitive-shadow-deep);
+}
+
+.windowBar {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border-bottom: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel);
+}
+
+.trafficLights {
+  display: inline-flex;
+  gap: 7px;
+}
+
+.light {
+  inline-size: 11px;
+  block-size: 11px;
+  border-radius: var(--primitive-radius-pill);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-shadow-outline) 43%, transparent);
+}
+
+.light[data-tone="red"] {
+  background: var(--primitive-red);
+}
+
+.light[data-tone="amber"] {
+  background: var(--primitive-amber);
+}
+
+.light[data-tone="green"] {
+  background: var(--primitive-green);
+}
+
+.windowTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-inline: auto;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.windowFlag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border: 1px solid color-mix(in srgb, var(--primitive-amber) 50%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Session tabs ──────────────────────────────────────────────────────── */
+
+.tabs {
+  display: flex;
+  gap: var(--primitive-space-0-5);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5) 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  background: var(--primitive-panel);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  flex: none;
+  padding: 9px 14px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: color var(--duration-fast, 150ms) ease, background-color var(--duration-fast, 150ms) ease;
+}
+
+.tab:hover {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-glass-soft);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: -2px;
+}
+
+.tabActive {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-panel-strong);
+  border-color: var(--primitive-line);
+  box-shadow: inset 0 2px 0 var(--primitive-red);
+}
+
+.tabDot {
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-muted);
+}
+
+.tabDot[data-tone="success"],
+.tabDot[data-tone="green"] {
+  background: var(--primitive-green);
+}
+
+.tabDot[data-tone="warn"],
+.tabDot[data-tone="amber"] {
+  background: var(--primitive-amber);
+}
+
+.tabDot[data-tone="info"] {
+  background: var(--primitive-teal);
+}
+
+.tabDot[data-tone="error"] {
+  background: var(--primitive-red);
+}
+
+.tabDot[data-tone="brand"] {
+  background: var(--primitive-red);
+}
+
+.tabLabel {
+  white-space: nowrap;
+}
+
+/* ── Console body ──────────────────────────────────────────────────────── */
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: clamp(14px, 1.8vw, 22px);
+}
+
+.sessionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.sessionHost {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.scrollback {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Run detail (output-preview pane) ──────────────────────────────────── */
+
+.runDetail {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.runDetailLabel,
+.suggestionsLabel {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ── Read-only prompt row ──────────────────────────────────────────────── */
+
+.promptRow {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: 11px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 7px,
+      color-mix(in oklab, var(--primitive-amber) 4%, transparent) 7px,
+      color-mix(in oklab, var(--primitive-amber) 4%, transparent) 8px
+    ),
+    var(--primitive-glass-soft);
+}
+
+.promptGlyph {
+  flex: none;
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  white-space: nowrap;
+}
+
+.promptInput {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+}
+
+.promptInput::placeholder {
+  color: var(--primitive-muted);
+  opacity: 1;
+}
+
+.promptInput:disabled {
+  cursor: not-allowed;
+}
+
+.promptHint {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-muted);
+}
+
+/* ── Recent command chips ──────────────────────────────────────────────── */
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.suggestionsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.suggestion code {
+  display: inline-block;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+/* ── Composition note ──────────────────────────────────────────────────── */
+
+.note {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: 18px 22px;
+  border-left: 2px solid var(--primitive-red);
+  border-radius: 0 var(--primitive-radius-lg) var(--primitive-radius-lg) 0;
+  background: var(--primitive-glass-soft);
+}
+
+.note span {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.note p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  max-width: 78ch;
+}
+
+@media (max-width: 720px) {
+  .windowTitle {
+    display: none;
+  }
+
+  .promptHint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}

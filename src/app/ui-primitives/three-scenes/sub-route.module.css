@@ -1,0 +1,257 @@
+.page {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px) 80px;
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--primitive-line) 38%, transparent) 1px, transparent 1px) 0 0 / 96px 96px,
+    radial-gradient(circle at 84% 0%, color-mix(in srgb, var(--primitive-teal) 13%, transparent), transparent 36%),
+    radial-gradient(circle at 8% 100%, color-mix(in srgb, var(--primitive-red) 11%, transparent), transparent 40%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+.shell {
+  width: min(100%, 1400px);
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+.statusRail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  min-width: 0;
+}
+
+.sceneLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.36fr);
+  gap: var(--primitive-space-4);
+  align-items: stretch;
+}
+
+.sceneStage,
+.aboutPanel,
+.controlsPanel,
+.motionPanel {
+  position: relative;
+  min-width: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    color-mix(in srgb, var(--primitive-panel) 84%, transparent);
+  box-shadow: var(--primitive-surface-shadow);
+  overflow: hidden;
+}
+
+.sceneStage::before,
+.aboutPanel::before,
+.motionPanel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--primitive-teal) 14%, transparent), transparent 38%),
+    linear-gradient(90deg, color-mix(in srgb, var(--primitive-red) 10%, transparent), transparent 42%);
+}
+
+.sceneStage {
+  display: grid;
+  min-height: 520px;
+  padding: var(--primitive-space-2-5);
+}
+
+.sceneSlot {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.infoRail {
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.aboutPanel {
+  display: grid;
+  gap: 18px;
+  padding: var(--primitive-space-5);
+}
+
+.aboutPanel > * {
+  position: relative;
+}
+
+.panelHead,
+.panelHeadCompact {
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.panelHeadCompact {
+  padding: 18px 18px 0;
+}
+
+.panelKicker {
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.panelTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.panelHead p,
+.motionPanel p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.58;
+}
+
+.panelHeadCompact h3 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.controlsPanel {
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-4);
+}
+
+.controlsRow {
+  position: relative;
+  display: grid;
+  gap: 0;
+}
+
+.controlItem {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+  padding: var(--primitive-space-3) 18px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.controlItem span:last-child {
+  min-width: 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.metricsPanel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+}
+
+.motionPanel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+}
+
+.motionPanel > * {
+  position: relative;
+}
+
+.routeAppendix {
+  display: grid;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+}
+
+:global(html[data-primitive-theme="light"]) .page {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--primitive-line) 58%, transparent) 1px, transparent 1px) 0 0 / 96px 96px,
+    radial-gradient(circle at 84% 0%, color-mix(in srgb, var(--primitive-teal) 10%, transparent), transparent 36%),
+    radial-gradient(circle at 8% 100%, color-mix(in srgb, var(--primitive-red) 9%, transparent), transparent 40%),
+    var(--primitive-canvas);
+}
+
+@media (max-width: 1160px) {
+  .sceneLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .infoRail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .aboutPanel,
+  .controlsPanel,
+  .metricsPanel,
+  .motionPanel {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding-inline: var(--primitive-space-2-5);
+  }
+
+  .sceneStage {
+    min-height: 360px;
+    padding: var(--primitive-space-1-5);
+  }
+
+  .sceneSlot {
+    min-height: 348px;
+  }
+
+  .infoRail,
+  .metricsPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .panelTitle {
+    font-size: 25px;
+  }
+
+  .motionPanel {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}

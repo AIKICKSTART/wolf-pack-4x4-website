@@ -1,0 +1,130 @@
+.band {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: clamp(20px, 2.6vw, 28px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 60%),
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 56%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.left {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  width: fit-content;
+  padding: 5px 11px;
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.fromLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.priceHelper {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 7px 11px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-soft);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.chipDot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+}
+
+.chipGst {
+  color: var(--primitive-teal);
+  border-color: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+.chipGst .chipDot {
+  background: var(--primitive-teal);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+}
+
+.chipDeposit {
+  color: var(--primitive-amber);
+  border-color: color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+}
+.chipDeposit .chipDot {
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.chipFinance {
+  color: var(--primitive-green);
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+.chipFinance .chipDot {
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+@media (max-width: 720px) {
+  .band {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .chips {
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,163 @@
+.toast {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px var(--primitive-space-4);
+  border-radius: 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 60%, white);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, color-mix(in oklab, var(--primitive-amber) 65%, white) 16%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-amber) 12%, var(--primitive-canvas));
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--primitive-amber) 18%, transparent),
+    0 30px 60px color-mix(in oklab, black 46%, transparent),
+    0 0 32px color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  overflow: hidden;
+  animation: achievementSlide 480ms var(--primitive-ease-out) both;
+  min-width: 280px;
+  max-width: 480px;
+  isolation: isolate;
+}
+
+.toast::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, transparent 30%, color-mix(in oklab, color-mix(in oklab, var(--primitive-amber) 65%, white) 32%, transparent) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: achievementShimmer 2400ms linear infinite;
+  z-index: -1;
+}
+
+.confettiHost {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.confettiHost > * {
+  position: absolute;
+  inset: 0;
+}
+
+.trophyWrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 50%, white);
+  background:
+    radial-gradient(circle at 40% 28%, color-mix(in oklab, var(--primitive-text-strong) 32%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, color-mix(in oklab, var(--primitive-amber) 65%, white) 32%, transparent), color-mix(in oklab, color-mix(in oklab, var(--primitive-amber) 72%, black) 50%, transparent));
+  z-index: 1;
+}
+
+.trophy {
+  filter: drop-shadow(0 4px 6px color-mix(in oklab, black 40%, transparent));
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.kicker {
+  color: color-mix(in oklab, var(--primitive-amber) 65%, white);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.body {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+  line-height: var(--primitive-leading-normal);
+}
+
+.points {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 60%, white);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 18%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  color: color-mix(in oklab, var(--primitive-amber) 65%, white);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.close {
+  appearance: none;
+  position: relative;
+  z-index: 1;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, white);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: color-mix(in oklab, var(--primitive-amber) 65%, white);
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.close:hover,
+.close:focus-visible {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-glass-strong);
+  outline: none;
+}
+
+@keyframes achievementSlide {
+  from { transform: translateY(-12px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes achievementShimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+  .toast::before {
+    animation: none;
+  }
+}

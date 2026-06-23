@@ -1,0 +1,257 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 0% 100%, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.steps {
+  display: flex;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.stepIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.stepIndicatorActive {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+}
+
+.stepIndicatorDone {
+  border-color: var(--primitive-green);
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+}
+
+.stepBody {
+  display: grid;
+  gap: var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-recessed);
+  padding: 14px;
+}
+
+.bodyTitle {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.itemList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.itemMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+}
+
+.itemPrice {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.itemCheckbox {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  flex: 1;
+}
+
+.itemCheckbox input {
+  accent-color: var(--primitive-red);
+  width: 16px;
+  height: 16px;
+}
+
+.reasons {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.reasonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.methodGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.methodOption {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.methodOption input {
+  accent-color: var(--primitive-amber);
+}
+
+.methodOptionActive {
+  border-color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.confirm {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-red);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+}
+
+.confirmLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.confirmValue {
+  font-family: var(--primitive-font-display);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+}
+
+.confirmMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-body);
+}
+
+.controls {
+  display: flex;
+  gap: var(--primitive-space-2);
+  justify-content: flex-end;
+}
+
+.btn {
+  border: 1px solid currentColor;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.btn:hover:not(:disabled) {
+  background: color-mix(in oklab, var(--primitive-teal) 10%, var(--primitive-btn-secondary-bg));
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btnBack {
+  color: var(--primitive-muted);
+}
+
+.btnNext {
+  color: var(--primitive-amber);
+}
+
+.btnConfirm {
+  color: var(--primitive-red);
+}

@@ -1,0 +1,233 @@
+.root {
+  --toggle-tone: var(--primitive-green);
+
+  /* md geometry — overridden by size modifiers */
+  --toggle-track-w: var(--primitive-space-11);
+  --toggle-track-h: var(--primitive-space-6);
+  --toggle-thumb: var(--primitive-space-5);
+  --toggle-gap: var(--primitive-space-0-5);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.sizeSm {
+  --toggle-track-w: var(--primitive-space-9);
+  --toggle-track-h: var(--primitive-space-5);
+  --toggle-thumb: var(--primitive-space-4);
+  --toggle-gap: var(--primitive-space-px);
+}
+
+.sizeMd {
+  --toggle-track-w: var(--primitive-space-11);
+  --toggle-track-h: var(--primitive-space-6);
+  --toggle-thumb: var(--primitive-space-5);
+  --toggle-gap: var(--primitive-space-0-5);
+}
+
+/* ---- control (the role=switch button) ---- */
+.control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  width: var(--toggle-track-w);
+  height: var(--toggle-track-h);
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  border-radius: var(--primitive-radius-pill);
+  cursor: pointer;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.control:focus-visible {
+  outline: none;
+}
+
+.control:focus-visible .track {
+  box-shadow:
+    inset 0 2px 4px var(--primitive-neumo-dark),
+    var(--primitive-focus-shadow);
+}
+
+/* ---- track (recessed channel) ---- */
+.track {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-recessed);
+  border: 1px solid var(--primitive-line);
+  box-shadow:
+    inset 0 2px 4px var(--primitive-neumo-dark),
+    inset 0 -1px 0 var(--primitive-neumo-light);
+  overflow: hidden;
+  transition:
+    background var(--primitive-duration-normal) var(--primitive-ease-standard),
+    border-color var(--primitive-duration-normal) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+/* tone fill that rises as it turns on */
+.track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--toggle-tone) 86%, white) 0%,
+    var(--toggle-tone) 48%,
+    color-mix(in oklab, var(--toggle-tone) 76%, black) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+/* ---- thumb (chrome / metallic knob) ---- */
+.thumb {
+  position: absolute;
+  top: 50%;
+  left: var(--toggle-gap);
+  width: var(--toggle-thumb);
+  height: var(--toggle-thumb);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-chrome-edge);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    inset 0 -1px 1px var(--primitive-neumo-dark),
+    0 1px 3px var(--primitive-shadow-raised),
+    0 2px 6px var(--primitive-shadow-deep);
+  transform: translate(0, -50%);
+  transition:
+    transform var(--primitive-duration-normal) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-standard);
+  z-index: 1;
+}
+
+/* metallic sheen highlight across the top of the knob */
+.thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--primitive-metallic-sheen);
+  pointer-events: none;
+}
+
+/* ---- hover / active ---- */
+.root:not(.disabled) .control:hover .track {
+  border-color: var(--primitive-line-strong);
+}
+
+.root:not(.disabled) .control:hover .thumb {
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    inset 0 -1px 1px var(--primitive-neumo-dark),
+    0 2px 4px var(--primitive-shadow-raised),
+    0 3px 8px var(--primitive-shadow-deep);
+}
+
+.root:not(.disabled) .control:active .thumb {
+  /* press: knob squashes slightly toward the track */
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    inset 0 -1px 1px var(--primitive-neumo-dark),
+    0 1px 2px var(--primitive-shadow-raised);
+}
+
+/* ---- on state ---- */
+.on .track {
+  border-color: color-mix(in oklab, var(--toggle-tone) 60%, var(--primitive-line-strong));
+  box-shadow:
+    inset 0 2px 5px color-mix(in oklab, var(--toggle-tone) 30%, var(--primitive-neumo-dark)),
+    0 0 16px color-mix(in oklab, var(--toggle-tone) 32%, transparent);
+}
+
+.on .track::before {
+  opacity: 1;
+}
+
+.on .thumb {
+  transform: translate(
+    calc(var(--toggle-track-w) - var(--toggle-thumb) - var(--toggle-gap) * 2),
+    -50%
+  );
+}
+
+.on:not(.disabled) .control:active .thumb {
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    inset 0 -1px 1px var(--primitive-neumo-dark),
+    0 1px 2px var(--primitive-shadow-raised);
+}
+
+/* ---- label ---- */
+.label {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-medium);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: var(--primitive-leading-snug);
+  color: var(--primitive-body);
+  cursor: pointer;
+  user-select: none;
+}
+
+.sizeSm .label {
+  font-size: var(--primitive-text-xs);
+}
+
+.on .label {
+  color: var(--primitive-text-strong);
+}
+
+/* ---- disabled ---- */
+.disabled,
+.disabled .control,
+.disabled .label {
+  cursor: not-allowed;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+/* ---- light theme parity ---- */
+:global(html[data-primitive-theme="light"]) .track {
+  background: var(--primitive-field-strong);
+  border-color: color-mix(in srgb, var(--primitive-text-strong) 16%, transparent);
+  box-shadow:
+    inset 0 2px 4px color-mix(in srgb, var(--primitive-body) 14%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 70%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .on .track {
+  border-color: color-mix(in oklab, var(--toggle-tone) 52%, transparent);
+  box-shadow:
+    inset 0 2px 5px color-mix(in oklab, var(--toggle-tone) 26%, transparent),
+    0 4px 12px color-mix(in oklab, var(--toggle-tone) 22%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .thumb {
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 80%, transparent),
+    inset 0 -1px 1px color-mix(in srgb, var(--primitive-body) 18%, transparent),
+    0 1px 3px color-mix(in srgb, var(--primitive-body) 16%, transparent),
+    0 3px 7px color-mix(in srgb, var(--primitive-body) 12%, transparent);
+}
+
+/* ---- reduced motion: instant ---- */
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .track::before,
+  .thumb {
+    transition: none;
+  }
+}

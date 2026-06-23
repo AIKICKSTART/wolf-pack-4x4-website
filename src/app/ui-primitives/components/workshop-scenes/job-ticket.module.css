@@ -1,0 +1,304 @@
+.ticket {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), 0 28px 60px color-mix(in oklab, var(--primitive-canvas) 34%, transparent);
+  overflow: hidden;
+}
+
+.ticket::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primitive-red), var(--primitive-amber));
+}
+
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+  padding-left: var(--primitive-space-2);
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.number {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.numberDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  box-shadow: 0 0 12px var(--primitive-red);
+}
+
+.customerRow {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+.customerName {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1;
+}
+
+.suburb {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.statusCluster {
+  display: flex;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.vehicle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent);
+}
+
+.vehicleMain {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.vehicleTitle {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1.05;
+}
+
+.vehicleMeta {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.rego {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+  border-radius: 6px;
+  /* Skeuomorphic AU number plate: fixed white plate + dark stamped text.
+     Brand/data literals kept constant in both themes by design. */
+  background:
+    linear-gradient(180deg, #fff, #d6d8de 70%);
+  color: #0c0d13;
+  font-family: var(--primitive-font-display-alt, var(--primitive-font-display));
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), inset 0 -1px 0 rgba(0, 0, 0, 0.34);
+}
+
+.services {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.servicesTitle,
+.budgetTitle,
+.photosTitle {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.serviceChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.budget {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.budgetMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+}
+
+.budgetMeta strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+}
+
+.photos {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.photoStrip {
+  display: flex;
+  gap: var(--primitive-space-2);
+  overflow-x: auto;
+  padding-bottom: var(--primitive-space-1);
+}
+
+.photoThumb {
+  flex: 0 0 auto;
+  width: 88px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primitive-amber) 18%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  border-top: 1px solid var(--primitive-line);
+  padding-top: 14px;
+}
+
+/* Secondary action → shared carbon button DNA */
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  min-height: 36px;
+  padding: 0 var(--primitive-space-3);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.action:hover,
+.action:focus-visible {
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.action:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+/* Primary action → shared metallic button DNA (red → amber on hover) */
+.actionPrimary {
+  border: 0;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.actionPrimary:hover,
+.actionPrimary:focus-visible {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.actionPrimary:focus-visible {
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .head {
+    grid-template-columns: 1fr;
+  }
+
+  .statusCluster {
+    justify-content: flex-start;
+  }
+
+  .vehicle {
+    grid-template-columns: 1fr;
+  }
+
+  .rego {
+    justify-self: start;
+  }
+}

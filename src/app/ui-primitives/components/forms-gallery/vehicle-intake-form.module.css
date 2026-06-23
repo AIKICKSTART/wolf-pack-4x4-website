@@ -1,0 +1,358 @@
+/* Vehicle intake — rego, cascading vehicle, fuel, photos */
+
+.form {
+  display: grid;
+  gap: var(--primitive-space-6);
+  width: min(100%, 820px);
+  padding: clamp(24px, 4vw, 36px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    var(--primitive-shadow-soft);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.eyebrow {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.lede {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.lookupRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-2-5);
+  align-items: end;
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.input,
+.select {
+  width: 100%;
+  min-height: 46px;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-base);
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.regoInput {
+  font-family: var(--primitive-font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.select {
+  appearance: none;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, transparent),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8' fill='none' stroke='%23c7c9d0' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><polyline points='1 1 7 7 13 1'/></svg>") no-repeat right 14px center;
+  padding-right: 36px;
+}
+
+.input:focus-visible,
+.select:focus-visible {
+  border-color: var(--primitive-red);
+  outline: none;
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--primitive-red) 18%, transparent),
+    var(--primitive-shadow-soft);
+}
+
+.lookupBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid var(--primitive-red);
+  border-radius: var(--primitive-btn-radius);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-red) 8%, var(--primitive-btn-secondary-bg));
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.lookupBtn:hover,
+.lookupBtn:focus-visible {
+  background: color-mix(in oklab, var(--primitive-red) 18%, var(--primitive-btn-secondary-bg));
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.cascade {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.fuelRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.fuelChip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-1);
+  min-height: 56px;
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.fuelChip input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fuelChip svg {
+  width: 18px;
+  height: 18px;
+}
+
+.fuelChipOn {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-red);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-red) 8%, transparent);
+}
+
+.fuelChip:hover:not(.fuelChipOn),
+.fuelChip:focus-within {
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  outline: none;
+}
+
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.photoSlot {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2);
+  align-content: end;
+  padding: 14px;
+  min-height: 130px;
+  border: 1px dashed var(--primitive-line-strong);
+  border-radius: 10px;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 6px, var(--primitive-glass-soft) 6px 7px),
+    var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+
+.photoSlot:hover,
+.photoSlot:focus-visible {
+  border-color: var(--primitive-red);
+  background: var(--primitive-glass-strong);
+  outline: none;
+  color: var(--primitive-text-strong);
+}
+
+.photoSlotFilled {
+  border-style: solid;
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 50%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-text-strong);
+}
+
+.photoLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-body) 78%, transparent);
+}
+
+.photoState {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-base);
+  line-height: 1.45;
+  resize: vertical;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.textarea:focus-visible {
+  border-color: var(--primitive-red);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.help {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+}
+
+.actions {
+  display: flex;
+  gap: var(--primitive-space-3);
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: 14px 22px;
+  border: 0;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, color 200ms ease;
+}
+
+.primaryBtn:hover,
+.primaryBtn:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+@media (max-width: 760px) {
+  .cascade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .fuelRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .photoGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .lookupRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .select,
+  .lookupBtn,
+  .fuelChip,
+  .photoSlot,
+  .primaryBtn,
+  .textarea {
+    transition: border-color 100ms ease;
+  }
+  .primaryBtn:hover,
+  .primaryBtn:focus-visible,
+  .lookupBtn:hover,
+  .lookupBtn:focus-visible {
+    transform: none;
+  }
+}

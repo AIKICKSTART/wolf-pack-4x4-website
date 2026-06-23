@@ -1,0 +1,190 @@
+.row {
+  --fp-teal: var(--primitive-teal);
+  --fp-green: var(--primitive-green);
+  --fp-amber: var(--primitive-amber);
+  --fp-violet: color-mix(in oklab, var(--primitive-teal) 52%, var(--primitive-red));
+
+  position: relative;
+  display: grid;
+  grid-template-columns: 32px minmax(120px, 1.2fr) minmax(140px, 1fr) minmax(120px, 1fr) auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-surface-1);
+  box-shadow: inset 0 1px 0 var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  text-align: left;
+  width: 100%;
+  overflow: hidden;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+/* left rail accent keyed to the channel colour, lit on hover/focus-within */
+.row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: var(--primitive-space-2-5);
+  bottom: var(--primitive-space-2-5);
+  width: 2px;
+  border-radius: var(--primitive-radius-pill);
+  background: currentColor;
+  color: var(--fp-teal);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.row:has(.channelEmail)::before { color: var(--fp-teal); }
+.row:has(.channelSms)::before { color: var(--fp-green); }
+.row:has(.channelSlack)::before { color: var(--fp-violet); }
+.row:has(.channelWebhook)::before { color: var(--fp-amber); }
+
+.row:hover,
+.row:focus-within {
+  border-color: var(--primitive-line-strong);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-glass-strong),
+    0 8px 22px var(--primitive-shadow-outline);
+}
+
+.row:hover::before,
+.row:focus-within::before {
+  opacity: 0.85;
+}
+
+.channelIcon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+}
+
+.channelEmail { color: var(--fp-teal); border-color: color-mix(in oklab, var(--fp-teal) 40%, transparent); background: color-mix(in oklab, var(--fp-teal) 10%, transparent); }
+.channelSms { color: var(--fp-green); border-color: color-mix(in oklab, var(--fp-green) 40%, transparent); background: color-mix(in oklab, var(--fp-green) 10%, transparent); }
+.channelSlack { color: var(--fp-violet); border-color: color-mix(in oklab, var(--fp-violet) 42%, transparent); background: color-mix(in oklab, var(--fp-violet) 12%, transparent); }
+.channelWebhook { color: var(--fp-amber); border-color: color-mix(in oklab, var(--fp-amber) 40%, transparent); background: color-mix(in oklab, var(--fp-amber) 10%, transparent); }
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.triggerLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.recipient {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.template {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.templateLabel {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.channelBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 3px var(--primitive-space-2);
+  border: 1px solid currentColor;
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.toggle {
+  position: relative;
+  width: 34px;
+  height: 20px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-meter-track);
+  border: 1px solid var(--primitive-line);
+  box-shadow: inset 0 1px 2px var(--primitive-shadow-outline);
+  cursor: pointer;
+  transition: background 220ms ease, border-color 220ms ease;
+}
+
+.toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.toggleOn {
+  background: color-mix(in oklab, var(--fp-green) 36%, transparent);
+  border-color: color-mix(in oklab, var(--fp-green) 55%, transparent);
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--primitive-text-strong);
+  box-shadow: 0 1px 3px var(--primitive-shadow-outline);
+  transition: transform 220ms var(--primitive-ease-out);
+}
+
+.toggleOn .toggleThumb {
+  transform: translateX(14px);
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 32px 1fr auto;
+    grid-template-areas:
+      "icon body toggle"
+      "icon channel toggle"
+      "icon template toggle";
+  }
+  .channelIcon { grid-area: icon; }
+  .body { grid-area: body; }
+  .channelBadge { grid-area: channel; justify-self: start; }
+  .template { grid-area: template; }
+  .toggle { grid-area: toggle; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .row::before,
+  .toggle,
+  .toggleThumb {
+    transition: none;
+  }
+}

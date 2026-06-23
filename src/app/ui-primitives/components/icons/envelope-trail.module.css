@@ -1,0 +1,50 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.envelopeGroup { transform-origin: 14.5px 12px; animation: envelopeGlide 2.4s ease-in-out infinite; }
+.body { fill: currentColor; opacity: 0.85; }
+.bodyStroke { stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linejoin: round; }
+.flap { stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linejoin: round; }
+.flapFill { fill: currentColor; opacity: 0.4; }
+.fold { stroke: currentColor; fill: none; stroke-width: 1.1; opacity: 0.7; }
+.foldLine { stroke: currentColor; fill: none; stroke-width: 0.9; opacity: 0.5; }
+.seal { fill: var(--primitive-red); opacity: 0.92; stroke: currentColor; stroke-width: 0.7; }
+.sealGlow { fill: var(--primitive-red); opacity: 0.25; }
+.sealMark { stroke: var(--primitive-canvas); opacity: 0.7; stroke-linecap: round; }
+.trail { stroke: currentColor; fill: none; stroke-linecap: round; opacity: 0; animation: envelopeTrail 2.4s ease-in-out infinite; }
+.trail[data-t="2"] { animation-delay: 0.2s; }
+.trail[data-t="3"] { animation-delay: 0.4s; }
+
+@keyframes envelopeGlide {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(2px, -2px); }
+}
+@keyframes envelopeTrail {
+  0% { opacity: 0; transform: translateX(2px); }
+  40% { opacity: 0.8; }
+  100% { opacity: 0; transform: translateX(-4px); }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle .envelopeGroup { animation-duration: 0.5s; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .bodyStroke, .motionDraw .flap, .motionDraw .foldLine { stroke-dasharray: 70; stroke-dashoffset: 70; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .trail { animation-duration: 0.6s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .body,
+[data-variant="outline"] .flapFill,
+[data-variant="outline"] .sealGlow { fill: transparent; }
+[data-variant="outline"] .seal { fill: transparent; stroke: currentColor; stroke-width: 1.1; opacity: 1; }
+
+[data-variant="filled"] .body { opacity: 0.95; }
+[data-variant="filled"] .flapFill { opacity: 0.7; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .envelopeGroup, .trail { animation: none !important; transition: none !important; }
+}

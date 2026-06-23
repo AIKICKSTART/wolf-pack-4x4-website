@@ -1,0 +1,238 @@
+.page {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px) 64px;
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 88% 0%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 38%),
+    radial-gradient(circle at 6% 100%, color-mix(in oklab, var(--primitive-amber) 14%, transparent), transparent 44%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--primitive-space-6);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.headerCopy {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.eyebrow {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.04;
+  margin: 0;
+  letter-spacing: 0.01em;
+  color: var(--primitive-text-strong);
+}
+
+.subhead {
+  margin: 0;
+  max-width: 64ch;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--primitive-muted);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+  transition: border-color 220ms ease, transform 220ms ease;
+}
+
+.backLink:hover {
+  border-color: var(--primitive-teal);
+  transform: translateX(2px);
+}
+
+.backLink svg {
+  width: 14px;
+  height: 14px;
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.statCard {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 18px 18px var(--primitive-space-5);
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    var(--primitive-panel);
+  overflow: hidden;
+}
+
+.statCard::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+}
+
+.statCard[data-tone="teal"]::after {
+  background: linear-gradient(90deg, transparent, var(--primitive-teal), transparent);
+}
+.statCard[data-tone="red"]::after {
+  background: linear-gradient(90deg, transparent, var(--primitive-red), transparent);
+}
+.statCard[data-tone="amber"]::after {
+  background: linear-gradient(90deg, transparent, var(--primitive-amber), transparent);
+}
+.statCard[data-tone="green"]::after {
+  background: linear-gradient(90deg, transparent, var(--primitive-green), transparent);
+}
+
+.statIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+.statIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.statCard[data-tone="teal"] .statIcon svg {
+  color: var(--primitive-teal);
+}
+.statCard[data-tone="red"] .statIcon svg {
+  color: var(--primitive-red);
+}
+.statCard[data-tone="amber"] .statIcon svg {
+  color: var(--primitive-amber);
+}
+.statCard[data-tone="green"] .statIcon svg {
+  color: var(--primitive-green);
+}
+
+.statLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statValue {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1;
+  color: var(--primitive-text-strong);
+}
+
+.statDelta {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-green);
+}
+
+.chartRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.chartCard {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px var(--primitive-space-6) var(--primitive-space-6);
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.chartHead {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.chartKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.chartTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  line-height: 1.06;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.01em;
+}
+
+.heatmapSection {
+  display: grid;
+  gap: 14px;
+  padding: 22px var(--primitive-space-6);
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.heatmapHead {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+@media (max-width: 980px) {
+  .chartRow {
+    grid-template-columns: 1fr;
+  }
+  .statsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .header {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}

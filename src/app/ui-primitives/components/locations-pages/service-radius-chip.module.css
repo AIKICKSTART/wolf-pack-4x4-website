@@ -1,0 +1,83 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: var(--primitive-space-3) var(--primitive-space-4);
+  border: 1px solid var(--band-tone, var(--primitive-line));
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 100% 0%, var(--band-soft, transparent) 0%, transparent 60%),
+    var(--primitive-glass-soft);
+  max-width: 320px;
+}
+
+.miniMap {
+  flex: 0 0 auto;
+  width: 88px;
+  height: 88px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--primitive-line);
+}
+
+.miniMap > * {
+  width: 100%;
+  height: 100%;
+}
+
+.copy {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.value {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-tight);
+  line-height: var(--primitive-leading-none);
+  color: var(--band-tone, var(--primitive-amber));
+}
+
+.band {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.bandCore {
+  --band-tone: var(--primitive-red);
+  --band-soft: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.bandNear {
+  --band-tone: var(--primitive-amber);
+  --band-soft: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.bandRegional {
+  --band-tone: var(--primitive-teal);
+  --band-soft: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+}
+
+.bandExtended {
+  --band-tone: var(--primitive-green);
+  --band-soft: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+}
+
+.bandService {
+  --band-tone: var(--primitive-body);
+  --band-soft: color-mix(in oklab, var(--primitive-body) 12%, transparent);
+}

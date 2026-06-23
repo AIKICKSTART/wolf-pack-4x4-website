@@ -1,0 +1,95 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3) var(--primitive-space-1-5) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.interactive {
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.interactive:hover {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-glass-strong);
+  border-color: var(--primitive-line-strong);
+}
+
+.interactive:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-focus-ring) 55%, transparent);
+}
+
+.active {
+  border-color: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 16%, transparent), color-mix(in oklab, var(--primitive-green) 4%, transparent)),
+    color-mix(in oklab, var(--primitive-green) 12%, var(--primitive-overlay));
+  color: var(--primitive-text-strong);
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: var(--primitive-teal);
+}
+
+.active .icon {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-px);
+  min-width: 0;
+}
+
+.label {
+  color: var(--primitive-text-strong);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.kind {
+  color: var(--primitive-muted);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dot {
+  color: var(--primitive-green);
+  font-size: 9px;
+}
+
+.switch {
+  margin-left: var(--primitive-space-1);
+  padding-left: var(--primitive-space-2);
+  border-left: 1px solid var(--primitive-line);
+  color: var(--primitive-teal);
+  font-size: 9px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive {
+    transition: none;
+  }
+}

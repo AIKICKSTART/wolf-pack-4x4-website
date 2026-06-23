@@ -1,0 +1,218 @@
+.root {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: 22px 20px 20px;
+  border-radius: 22px;
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(circle at 50% -20%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 50%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  overflow: hidden;
+  box-shadow: var(--primitive-shadow-deep);
+}
+
+.brand {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.brandIcon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  color: var(--primitive-red);
+}
+
+.brandName {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.brandDomain {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.body {
+  display: grid;
+  gap: 12px;
+  text-align: center;
+  padding: 8px 4px 4px;
+}
+
+.glyph {
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 28%, color-mix(in oklab, var(--primitive-text-strong) 32%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 20%, transparent), color-mix(in oklab, var(--primitive-teal) 5%, transparent));
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  color: var(--primitive-teal);
+  box-shadow: 0 18px 36px color-mix(in oklab, var(--primitive-teal) 28%, transparent);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.rationale {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+.benefits {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  text-align: left;
+}
+
+.benefit {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 10px;
+  align-items: start;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.45;
+}
+
+.benefitIcon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 45%, transparent);
+  color: var(--primitive-green);
+}
+
+.actions {
+  display: grid;
+  gap: 8px;
+}
+
+.allowBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2);
+  height: 44px;
+  padding: 0 18px;
+  border: none;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition:
+    transform var(--primitive-duration-fast) var(--primitive-ease-standard),
+    background var(--primitive-duration-fast) var(--primitive-ease-standard),
+    color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.allowBtn:hover {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.allowBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-btn-primary-shadow), var(--primitive-focus-shadow);
+}
+
+.denyBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background var(--primitive-duration-fast) var(--primitive-ease-standard),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.denyBtn:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, var(--primitive-btn-secondary-bg));
+  border-color: var(--primitive-line-strong);
+}
+
+.denyBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.fine {
+  margin: 0;
+  padding-top: var(--primitive-space-2);
+  border-top: 1px dashed var(--primitive-line);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .allowBtn,
+  .denyBtn {
+    transition: none;
+  }
+}

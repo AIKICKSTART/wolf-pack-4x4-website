@@ -1,0 +1,121 @@
+.note {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  width: 220px;
+  padding: 18px var(--primitive-space-4) 14px;
+  border-radius: var(--primitive-radius-sm);
+  color: color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-amber));
+  font-family: var(--primitive-font-body);
+  isolation: isolate;
+  box-shadow:
+    0 18px 28px color-mix(in oklab, var(--primitive-canvas) 32%, transparent),
+    0 2px 4px color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+  transform: rotate(var(--rotate, -2deg));
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.note::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  width: 64px;
+  height: 16px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 40%, transparent);
+  border-radius: var(--primitive-radius-xs);
+  box-shadow: 0 4px 6px color-mix(in oklab, var(--primitive-canvas) 18%, transparent);
+}
+
+.note:hover {
+  transform: rotate(var(--rotate, -2deg)) translateY(-3px);
+  box-shadow:
+    0 28px 40px color-mix(in oklab, var(--primitive-canvas) 40%, transparent),
+    0 4px 6px color-mix(in oklab, var(--primitive-canvas) 24%, transparent);
+}
+
+.toneYellow {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-amber) 78%, var(--primitive-text-strong)), var(--primitive-amber));
+  --rotate: -2deg;
+}
+
+.tonePink {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 50%, var(--primitive-text-strong)), color-mix(in oklab, var(--primitive-red) 70%, var(--primitive-text-strong)));
+  --rotate: 2deg;
+}
+
+.toneTeal {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-teal) 60%, var(--primitive-text-strong)), var(--primitive-teal));
+  color: color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-teal));
+  --rotate: -1.5deg;
+}
+
+.toneAmber {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-amber) 72%, var(--primitive-red)), color-mix(in oklab, var(--primitive-amber) 40%, var(--primitive-red)));
+  --rotate: 3deg;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.authorDot {
+  width: var(--primitive-space-2);
+  height: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-round);
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.body {
+  margin: 0;
+  font-size: 14px;
+  line-height: var(--primitive-leading-normal);
+  color: inherit;
+  font-family: var(--primitive-font-body);
+  font-weight: var(--primitive-weight-medium);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  margin-top: var(--primitive-space-1);
+  padding-top: var(--primitive-space-2);
+  border-top: 1px dashed color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.72;
+}
+
+.dragHandle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  margin-left: auto;
+  color: inherit;
+  cursor: grab;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .note,
+  .note:hover {
+    transition: none;
+    transform: rotate(var(--rotate, -2deg));
+  }
+}

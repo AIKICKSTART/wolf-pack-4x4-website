@@ -1,0 +1,157 @@
+.tile {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--tile-stroke, var(--primitive-line));
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--tile-bg, var(--primitive-panel));
+  color: var(--primitive-body);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tile-ink, var(--primitive-muted));
+}
+
+.context {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--primitive-muted);
+}
+
+.body {
+  display: grid;
+  gap: 10px;
+}
+
+.timer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.timerValue {
+  font-family: var(--primitive-font-display);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.timerTarget {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.bar {
+  position: relative;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--primitive-line-muted);
+  overflow: hidden;
+}
+
+.barFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--tile-ink-strong, var(--primitive-text-strong));
+  border-radius: inherit;
+  transition: width 240ms ease;
+}
+
+.alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 45%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.alertGlyph {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primitive-red) 85%, transparent);
+  color: var(--primitive-text-on-accent);
+  font-weight: 700;
+}
+
+.tone_green {
+  --tile-bg: color-mix(in oklab, var(--primitive-green) 10%, var(--primitive-panel));
+  --tile-stroke: color-mix(in oklab, var(--primitive-green) 36%, transparent);
+  --tile-ink: color-mix(in oklab, var(--primitive-green) 55%, var(--primitive-text-strong));
+  --tile-ink-strong: var(--primitive-green);
+}
+
+.tone_amber {
+  --tile-bg: color-mix(in oklab, var(--primitive-amber) 10%, var(--primitive-panel));
+  --tile-stroke: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  --tile-ink: color-mix(in oklab, var(--primitive-amber) 62%, var(--primitive-text-strong));
+  --tile-ink-strong: var(--primitive-amber);
+}
+
+.tone_red {
+  --tile-bg: color-mix(in oklab, var(--primitive-red) 10%, var(--primitive-panel));
+  --tile-stroke: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  --tile-ink: color-mix(in oklab, var(--primitive-red) 45%, var(--primitive-text-strong));
+  --tile-ink-strong: var(--primitive-red);
+}
+
+.tone_neutral {
+  --tile-bg: var(--primitive-panel);
+  --tile-stroke: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  --tile-ink: color-mix(in oklab, var(--primitive-text-strong) 70%, transparent);
+  --tile-ink-strong: var(--primitive-text-strong);
+}
+
+.tone_teal {
+  --tile-bg: color-mix(in oklab, var(--primitive-teal) 10%, var(--primitive-panel));
+  --tile-stroke: color-mix(in oklab, var(--primitive-teal) 36%, transparent);
+  --tile-ink: color-mix(in oklab, var(--primitive-teal) 50%, var(--primitive-text-strong));
+  --tile-ink-strong: var(--primitive-teal);
+}
+
+.tone_violet {
+  --tile-bg: color-mix(in oklab, var(--primitive-violet) 10%, var(--primitive-panel));
+  --tile-stroke: color-mix(in oklab, var(--primitive-violet) 36%, transparent);
+  --tile-ink: color-mix(in oklab, var(--primitive-violet) 50%, var(--primitive-text-strong));
+  --tile-ink-strong: var(--primitive-violet);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barFill {
+    transition: none;
+  }
+}

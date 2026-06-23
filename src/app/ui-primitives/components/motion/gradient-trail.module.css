@@ -1,0 +1,45 @@
+/* Gradient trail primitive — traces a stroke along an SVG path. */
+
+.root {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.track {
+  fill: none;
+  stroke: var(--gradient-trail-track, var(--primitive-line-muted));
+  stroke-width: var(--gradient-trail-thickness, 2);
+}
+
+.trail {
+  fill: none;
+  stroke-width: var(--gradient-trail-thickness, 2);
+  stroke-linecap: round;
+  stroke-dasharray: var(--gradient-trail-length, 0);
+  stroke-dashoffset: var(--gradient-trail-length, 0);
+  animation: gradient-trail-draw var(--gradient-trail-duration, 2400ms) var(--primitive-ease-out) infinite;
+}
+
+@keyframes gradient-trail-draw {
+  0% {
+    stroke-dashoffset: var(--gradient-trail-length, 0);
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: calc(var(--gradient-trail-length, 0) * -1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trail {
+    animation: none;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}

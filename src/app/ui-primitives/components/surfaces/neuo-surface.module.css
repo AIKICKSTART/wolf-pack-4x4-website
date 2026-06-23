@@ -1,0 +1,139 @@
+/* =========================================================
+   NEUO SURFACE — ultra-polished neumorphism
+   Paired inner+outer shadows tuned to the canvas. No borders.
+   Soft directional light from top-left. Token-driven so the
+   bevel reads correctly in both light and dark themes.
+   ========================================================= */
+
+.surface {
+  /* directional light vector — sourced from theme tokens */
+  --neuo-light: var(--primitive-neumo-light);
+  --neuo-shadow: var(--primitive-neumo-dark);
+  --neuo-base: var(--primitive-panel-strong);
+  --neuo-radius: 22px;
+  --neuo-distance: 18px;
+  --neuo-blur: 36px;
+  --neuo-inner-light: var(--primitive-neumo-light);
+  --neuo-inner-shadow: var(--primitive-neumo-dark);
+  --neuo-glow: var(--primitive-line-muted);
+  --neuo-lift: 0px;
+
+  position: relative;
+  display: block;
+  border-radius: var(--neuo-radius);
+  padding: var(--primitive-space-6);
+  color: var(--primitive-body);
+  background:
+    /* very subtle radial highlight from the light direction */
+    radial-gradient(circle at 22% 14%, var(--neuo-light), transparent 52%),
+    /* tonal base — sits on top of the dashboard canvas */
+    var(--neuo-base);
+  box-shadow:
+    /* outer light (top-left) */
+    calc(var(--neuo-distance) * -1) calc(var(--neuo-distance) * -1) var(--neuo-blur) var(--neuo-light),
+    /* outer shadow (bottom-right) */
+    var(--neuo-distance) var(--neuo-distance) var(--neuo-blur) var(--neuo-shadow),
+    /* inner micro-bevel — hairline highlight then hairline shadow */
+    inset 0 1px 0 var(--neuo-light),
+    inset 0 -1px 0 var(--neuo-shadow);
+  isolation: isolate;
+  transform: translate3d(0, var(--neuo-lift), 0);
+  transition:
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-out),
+    transform var(--primitive-duration-normal) var(--primitive-ease-out),
+    background var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+/* =========================================================
+   raised hover — the bevel deepens and the panel floats a hair
+   ========================================================= */
+
+.surface:hover {
+  --neuo-lift: -2px;
+  box-shadow:
+    calc(var(--neuo-distance) * -1.15) calc(var(--neuo-distance) * -1.15) calc(var(--neuo-blur) * 1.12) var(--neuo-light),
+    calc(var(--neuo-distance) * 1.15) calc(var(--neuo-distance) * 1.15) calc(var(--neuo-blur) * 1.12) var(--neuo-shadow),
+    inset 0 1px 0 var(--neuo-light),
+    inset 0 -1px 0 var(--neuo-shadow);
+}
+
+.surface:focus-within {
+  --neuo-lift: -2px;
+  box-shadow:
+    calc(var(--neuo-distance) * -1) calc(var(--neuo-distance) * -1) var(--neuo-blur) var(--neuo-light),
+    var(--neuo-distance) var(--neuo-distance) var(--neuo-blur) var(--neuo-shadow),
+    inset 0 1px 0 var(--neuo-light),
+    inset 0 -1px 0 var(--neuo-shadow),
+    var(--primitive-focus-shadow);
+}
+
+/* =========================================================
+   pressed state — swap to inset shadow pattern
+   ========================================================= */
+
+.pressed,
+.surface:active {
+  --neuo-lift: 0px;
+  background:
+    radial-gradient(circle at 78% 86%, var(--neuo-light), transparent 55%),
+    var(--neuo-base);
+  box-shadow:
+    /* outer ring collapses */
+    0 0 0 var(--neuo-light),
+    0 0 0 var(--neuo-shadow),
+    /* inner inverted light — deep bevel */
+    inset calc(var(--neuo-distance) * 0.55) calc(var(--neuo-distance) * 0.55) calc(var(--neuo-blur) * 0.7) var(--neuo-inner-shadow),
+    inset calc(var(--neuo-distance) * -0.55) calc(var(--neuo-distance) * -0.55) calc(var(--neuo-blur) * 0.7) var(--neuo-inner-light);
+}
+
+/* keep the focus ring visible while pressed via keyboard */
+.pressed:focus-within,
+.surface:active:focus-within {
+  box-shadow:
+    inset calc(var(--neuo-distance) * 0.55) calc(var(--neuo-distance) * 0.55) calc(var(--neuo-blur) * 0.7) var(--neuo-inner-shadow),
+    inset calc(var(--neuo-distance) * -0.55) calc(var(--neuo-distance) * -0.55) calc(var(--neuo-blur) * 0.7) var(--neuo-inner-light),
+    var(--primitive-focus-shadow);
+}
+
+/* =========================================================
+   tone variants — keep within the dashboard palette, lit so
+   the bevel direction stays consistent across themes
+   ========================================================= */
+
+.toneObsidian {
+  --neuo-base:
+    linear-gradient(160deg, var(--primitive-surface-2) 0%, var(--primitive-panel) 100%);
+}
+
+.toneAsh {
+  --neuo-base:
+    linear-gradient(160deg, var(--primitive-surface-3) 0%, var(--primitive-surface-2) 100%);
+  color: var(--primitive-text-strong);
+}
+
+.toneAmber {
+  --neuo-base:
+    linear-gradient(160deg, color-mix(in oklab, var(--primitive-amber) 18%, transparent) 0%, var(--primitive-panel-strong) 70%),
+    var(--primitive-panel-strong);
+  --neuo-light: color-mix(in oklab, var(--primitive-amber) 16%, var(--primitive-text-strong));
+  color: var(--primitive-text-strong);
+}
+
+.toneAmber.pressed,
+.toneAmber:active {
+  background:
+    radial-gradient(circle at 78% 86%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 55%),
+    var(--neuo-base);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface {
+    transition: none;
+  }
+
+  .surface:hover,
+  .surface:focus-within,
+  .surface:active {
+    --neuo-lift: 0px;
+  }
+}

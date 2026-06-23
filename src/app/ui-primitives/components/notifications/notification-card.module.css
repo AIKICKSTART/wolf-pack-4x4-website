@@ -1,0 +1,245 @@
+.card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-surface-2);
+  color: var(--primitive-body);
+  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease,
+    background 200ms ease;
+  position: relative;
+  isolation: isolate;
+}
+
+.card[data-unread="true"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 36%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 60%),
+    var(--primitive-surface-2);
+}
+
+.card[data-unread="true"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  border-radius: var(--primitive-radius-lg) 0 0 var(--primitive-radius-lg);
+  background: var(--primitive-red);
+  z-index: -1;
+}
+
+.card:hover {
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-1px);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.glyph {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--tone-line, var(--primitive-line));
+  background: var(--tone-fill, var(--primitive-surface-3));
+  color: var(--tone-ink, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.glyph[data-tone="info"] {
+  --tone-line: color-mix(in oklab, var(--primitive-teal) 38%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  --tone-ink: var(--primitive-teal);
+}
+
+.glyph[data-tone="success"] {
+  --tone-line: color-mix(in oklab, var(--primitive-green) 38%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  --tone-ink: var(--primitive-green);
+}
+
+.glyph[data-tone="warn"] {
+  --tone-line: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-amber) 13%, transparent);
+  --tone-ink: var(--primitive-amber);
+}
+
+.glyph[data-tone="error"] {
+  --tone-line: color-mix(in oklab, var(--destructive) 42%, transparent);
+  --tone-fill: color-mix(in oklab, var(--destructive) 12%, transparent);
+  --tone-ink: var(--destructive);
+}
+
+.glyph[data-tone="system"] {
+  --tone-line: var(--primitive-line-strong);
+  --tone-fill: var(--primitive-surface-3);
+  --tone-ink: var(--primitive-body);
+}
+
+.body {
+  min-width: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.sub {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+  color: var(--primitive-body);
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  font-family: var(--primitive-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--primitive-text-2xs);
+  color: var(--primitive-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.metaDot {
+  width: 3px;
+  height: 3px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-muted);
+}
+
+.actionsRow {
+  display: flex;
+  gap: var(--primitive-space-2);
+  margin-top: var(--primitive-space-1);
+  flex-wrap: wrap;
+}
+
+.actionPrimary,
+.actionSecondary {
+  appearance: none;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease,
+    transform 160ms ease, box-shadow 160ms ease;
+}
+
+.actionPrimary {
+  border: 0;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.actionPrimary:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.actionPrimary:active {
+  transform: translateY(1px);
+}
+
+.actionPrimary:focus-visible,
+.actionSecondary:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.actionSecondary {
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+}
+
+.actionSecondary:hover {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+  background: var(--primitive-surface-hover);
+}
+
+.actionSecondary:active {
+  transform: translateY(1px);
+}
+
+.rightCol {
+  display: grid;
+  gap: var(--primitive-space-2);
+  justify-items: end;
+  align-content: start;
+}
+
+.markRead {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: var(--primitive-space-1) var(--primitive-space-1-5);
+  border-radius: 6px;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.markRead:hover {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-surface-hover);
+}
+
+.markRead:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .actionPrimary,
+  .actionSecondary {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}

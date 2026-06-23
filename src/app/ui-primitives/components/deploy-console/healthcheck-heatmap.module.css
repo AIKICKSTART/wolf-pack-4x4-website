@@ -1,0 +1,186 @@
+.heatmap {
+  --col-label: minmax(180px, 1.2fr);
+  --col-uptime: 130px;
+  display: grid;
+  gap: 14px;
+}
+
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  border: 1px solid var(--primitive-line);
+}
+
+.grid {
+  display: grid;
+  gap: 4px;
+}
+
+.headRow,
+.row {
+  display: grid;
+  grid-template-columns: var(--col-label) 1fr var(--col-uptime);
+  gap: 14px;
+  align-items: center;
+}
+
+.headRow {
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.cornerCell {
+  display: flex;
+  align-items: center;
+}
+
+.hoursAxis {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  color: var(--primitive-muted);
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+  padding: 0 4px;
+}
+
+.hourTick {
+  text-align: left;
+}
+
+.uptimeHead {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  text-align: right;
+}
+
+.row {
+  padding: 8px 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--primitive-line) 80%, transparent);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.rowLabel {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rowName {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.rowPath {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+}
+
+.rowMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.cells {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 3px;
+}
+
+.cell {
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid color-mix(in srgb, currentColor 30%, var(--primitive-line));
+  background: currentColor;
+  color: color-mix(in srgb, var(--primitive-text-strong) 6%, transparent);
+}
+
+.bucketOk {
+  color: color-mix(in srgb, var(--primitive-green) 88%, transparent);
+}
+
+.bucketWarn {
+  color: color-mix(in srgb, var(--primitive-amber) 88%, transparent);
+}
+
+.bucketFail {
+  color: color-mix(in srgb, var(--primitive-red) 88%, transparent);
+}
+
+.bucketNoData {
+  color: color-mix(in srgb, var(--primitive-text-strong) 6%, transparent);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0 4px,
+    color-mix(in srgb, var(--primitive-text-strong) 4%, transparent) 4px 6px
+  );
+}
+
+.uptime {
+  display: grid;
+  gap: 2px;
+  text-align: right;
+  font-family: var(--primitive-font-mono);
+  color: var(--dc-tone);
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.uptimeMeta {
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .heatmap {
+    --col-label: 1fr;
+    --col-uptime: auto;
+  }
+
+  .headRow,
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .cells {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}

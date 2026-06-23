@@ -1,0 +1,347 @@
+
+
+/* Obsidium red pass: reduce the bright signal-red into a deeper black-cherry
+   finish while keeping CTAs readable and obviously clickable. */
+html {
+  --obsidium-red: #0077ff;
+  --obsidium-red-mid: #3f1fbf;
+  --obsidium-red-deep: #130b3d;
+  --obsidium-red-edge: #05071f;
+  --obsidium-red-highlight: #7c3cff;
+}
+
+html[data-mufflermen-theme="dark"] {
+  --accent: var(--obsidium-red);
+  --accent-deep: var(--obsidium-red-deep);
+  --accent-glow: rgba(63, 31, 191, 0.38);
+  --muff-accent-shadow: 0 5px 24px rgba(63, 31, 191, 0.34);
+  --primitive-red: var(--accent);
+  --primitive-line-strong: rgba(0, 119, 255, 0.28);
+  --primitive-btn-primary-bg: linear-gradient(135deg, #008cff, var(--obsidium-red-deep));
+  --primitive-btn-primary-hover-bg: linear-gradient(135deg, var(--obsidium-red-highlight), #130b3d);
+  --primitive-btn-primary-shadow: 0 18px 42px -20px rgba(63, 31, 191, 0.76);
+  --primitive-btn-primary-hover-shadow: 0 24px 54px -22px rgba(63, 31, 191, 0.84);
+  --primitive-focus-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2);
+}
+
+html[data-mufflermen-theme="light"] {
+  --accent: #005bd1;
+  --accent-deep: #130b3d;
+  --accent-glow: rgba(0, 91, 209, 0.2);
+  --muff-accent-shadow: 0 5px 20px rgba(0, 91, 209, 0.16);
+  --primitive-red: var(--accent);
+  --primitive-line-strong: rgba(0, 91, 209, 0.24);
+  --primitive-btn-primary-bg: linear-gradient(135deg, #0077ff, #130b3d);
+  --primitive-btn-primary-hover-bg: linear-gradient(135deg, #2098ff, #130b3d);
+  --primitive-btn-primary-shadow: 0 18px 42px -24px rgba(0, 91, 209, 0.48);
+  --primitive-btn-primary-hover-shadow: 0 24px 54px -26px rgba(0, 91, 209, 0.56);
+  --primitive-focus-shadow: 0 0 0 3px rgba(0, 91, 209, 0.16);
+}
+
+.mufflermen-public .label-red,
+.mufflermen-public .type-reveal.accent .ch,
+.mufflermen-public [style*="var(--accent)"] {
+  color: var(--accent) !important;
+  text-shadow: var(--muff-accent-shadow) !important;
+}
+
+.mufflermen-public .hero-eyebrow .dot,
+.mufflermen-public .red-stripe,
+.mufflermen-public .marquee span::after,
+.mufflermen-public .services-stamp .label::before,
+.mufflermen-public .footer-heading::before,
+.mufflermen-public .feature-tag,
+.mufflermen-public .service-icon .brand-glyph-icon,
+.mufflermen-public .conversion-icon .brand-glyph-icon,
+.mufflermen-public .quote-capture-icon .brand-glyph-icon {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+.mufflermen-public .hero-eyebrow .dot,
+.mufflermen-public .marquee span::after,
+.mufflermen-public .services-stamp .label::before,
+.mufflermen-public .footer-heading::before {
+  background: var(--accent) !important;
+  box-shadow: 0 0 12px var(--accent-glow) !important;
+}
+
+html .mufflermen-public .btn.btn-red,
+html[data-mufflermen-theme="light"] .mufflermen-public .nav-meta .btn-red,
+html[data-mufflermen-theme="light"] .mufflermen-public .nav-meta .btn-red:visited {
+  color: #fff !important;
+  border-color: var(--cta-red-border) !important;
+  background: var(--cta-red-bg) !important;
+  background-color: var(--obsidium-red-mid) !important;
+  box-shadow: var(--cta-red-shadow) !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.42) !important;
+}
+
+html .mufflermen-public .btn.btn-red:hover,
+html .mufflermen-public .btn.btn-red:focus-visible {
+  border-color: rgba(63, 31, 191, 0.9) !important;
+  background: var(--cta-red-bg-hover) !important;
+  box-shadow: var(--cta-red-shadow-hover) !important;
+}
+
+.mufflermen-public .paint {
+  background:
+    var(--paint-clear),
+    radial-gradient(120% 100% at 50% -10%, var(--obsidium-red-highlight) 0%, var(--obsidium-red) 30%, #2a1270 64%, var(--obsidium-red-edge) 100%) !important;
+  border-color: rgba(0, 119, 255, 0.42) !important;
+  box-shadow:
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.62),
+    0 24px 54px -22px rgba(19, 11, 61, 0.78),
+    0 3px 0 rgba(0, 0, 0, 0.42) !important;
+}
+
+html[data-mufflermen-theme="light"] .mufflermen-public .tag.red,
+html[data-mufflermen-theme="light"] .mufflermen-public .label-red {
+  color: var(--accent) !important;
+}
+
+/* ============================================================
+   DESIGN LOOP 1/30 — open-design agent improvements (both themes safe)
+   ============================================================ */
+
+/* UX: distinct focus-visible ring on carbon/ghost CTAs (a11y + designed feel). */
+.btn-chrome:focus-visible,
+.btn-carbon:focus-visible,
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Accent discipline (light): soften the repeated red eyebrow + marquee dots so
+   the brand red reads as a deliberate signal, not a flood. Dark keeps full punch. */
+html[data-mufflermen-theme="light"] .label-red {
+  opacity: 0.88;
+}
+
+html[data-mufflermen-theme="light"] .marquee span::after {
+  background: rgba(0, 140, 255, 0.62);
+  box-shadow: 0 0 6px rgba(0, 140, 255, 0.22);
+}
+
+/* === DESIGN LOOP 2/30 — open-design agent improvements (both themes) === */
+
+/* FAQ: keyboard focus ring + hover/open underline reveal (a11y + designed feel). */
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.faq-q { position: relative; }
+.faq-q::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.faq-item:hover .faq-q::after,
+.faq-item[open] .faq-q::after {
+  width: 100%;
+}
+
+/* Mobile body-copy comfort. */
+@media (max-width: 480px) {
+  .lead, .body-md, .hero-sub, .arch-text .sub, .hoist-text .sub {
+    max-width: 55ch;
+    line-height: 1.68;
+  }
+}
+
+/* === DESIGN LOOP 3/30 — theme-aware focus rings (a11y, both themes) === */
+html[data-mufflermen-theme="light"] {
+  --primitive-focus-shadow: 0 0 0 3px rgba(0, 140, 255, 0.16);
+}
+html[data-mufflermen-theme="dark"] {
+  --primitive-focus-shadow: 0 0 0 3px rgba(0, 140, 255, 0.18);
+}
+.sound-mini:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 65%, transparent);
+  outline-offset: 4px;
+}
+
+/* === DESIGN LOOP 4/30 — link affordance, snappier reveal, section rhythm === */
+
+/* Animated underline on inline body links (both themes via tokens). */
+.section p a,
+.lead a,
+.faq-item p a,
+.review-card p a,
+.conversion-panel p a {
+  position: relative;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+.section p a::after,
+.lead a::after,
+.faq-item p a::after,
+.review-card p a::after,
+.conversion-panel p a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+  transition: width 0.3s cubic-bezier(.2, .7, .2, 1);
+}
+.section p a:hover::after,
+.section p a:focus-visible::after,
+.lead a:hover::after,
+.lead a:focus-visible::after,
+.faq-item p a:hover::after,
+.faq-item p a:focus-visible::after,
+.review-card p a:hover::after,
+.review-card p a:focus-visible::after,
+.conversion-panel p a:hover::after,
+.conversion-panel p a:focus-visible::after {
+  width: 100%;
+}
+
+/* Snappier scroll-reveal cascade. */
+.reveal {
+  transition: opacity .6s cubic-bezier(.2, .7, .2, 1), transform .6s cubic-bezier(.2, .7, .2, 1);
+}
+.reveal.d1 { transition-delay: .06s; }
+.reveal.d2 { transition-delay: .12s; }
+.reveal.d3 { transition-delay: .18s; }
+.reveal.d4 { transition-delay: .24s; }
+
+/* Section-head rhythm — fluid breathing room. */
+.section-head { margin-bottom: clamp(52px, 8vw, 88px); }
+
+/* === DESIGN LOOP 5/30 — numeric stability + accent discipline === */
+
+/* Lock figure widths so CountUp + dynamic numbers don't jitter horizontally. */
+.hero-stat .v,
+.feature-specs .v,
+.spec-cell .v,
+.est-badge .core .n,
+.cinema-badge .core .n,
+.arch-tier .n,
+.step .n {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Conversion band: soften the red wash so it accents rather than floods. */
+.conversion-pathways::before {
+  background:
+    radial-gradient(45% 38% at 20% 30%, var(--accent-glow), transparent 78%),
+    radial-gradient(38% 32% at 82% 42%, rgba(112, 140, 255, 0.12), transparent 70%),
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.035), transparent);
+  opacity: 0.62;
+}
+
+/* === DESIGN LOOP 6/30 — a11y focus + accent discipline === */
+.nav-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+.route-panel .more:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+html[data-mufflermen-theme="dark"] .review-card .quote-mark {
+  opacity: 0.32;
+}
+.marquee {
+  padding: clamp(32px, 3vw, 48px) 0;
+}
+html[data-mufflermen-theme="dark"] .step .pill {
+  background: rgba(0, 140, 255, 0.04);
+  border-color: rgba(0, 140, 255, 0.16);
+}
+html[data-mufflermen-theme="dark"] .marquee span::after {
+  box-shadow: 0 0 6px var(--accent-glow);
+}
+
+/* === DESIGN LOOP 8/30 — dark service-card tactile depth === */
+html[data-mufflermen-theme="dark"] .service {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.08),
+    inset -1px 0 0 rgba(0, 0, 0, 0.2),
+    0 28px 82px -38px rgba(0, 0, 0, 0.88);
+}
+
+/* Final Obsidium red authority. Keep this last so generated design-loop
+   additions cannot reintroduce the brighter signal-red palette. */
+html[data-mufflermen-theme="dark"],
+html[data-mufflermen-theme="dark"] .mufflermen-public {
+  --accent: var(--obsidium-red) !important;
+  --accent-deep: var(--obsidium-red-deep) !important;
+  --accent-glow: rgba(63, 31, 191, 0.38) !important;
+  --muff-accent-shadow: 0 5px 24px rgba(63, 31, 191, 0.34) !important;
+  --primitive-red: var(--accent) !important;
+  --primitive-line-strong: rgba(0, 119, 255, 0.28) !important;
+  --primitive-focus-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2) !important;
+}
+
+html[data-mufflermen-theme="light"],
+html[data-mufflermen-theme="light"] .mufflermen-public {
+  --accent: #005bd1 !important;
+  --accent-deep: #130b3d !important;
+  --accent-glow: rgba(0, 91, 209, 0.2) !important;
+  --muff-accent-shadow: 0 5px 20px rgba(0, 91, 209, 0.16) !important;
+  --primitive-red: var(--accent) !important;
+  --primitive-line-strong: rgba(0, 91, 209, 0.24) !important;
+  --primitive-focus-shadow: 0 0 0 3px rgba(0, 91, 209, 0.16) !important;
+}
+
+html .mufflermen-public .btn.btn-red,
+html .mufflermen-public .btn.btn-red:visited {
+  border-color: var(--cta-red-border) !important;
+  background: var(--cta-red-bg) !important;
+  background-color: var(--obsidium-red-mid) !important;
+  box-shadow: var(--cta-red-shadow) !important;
+}
+
+html .mufflermen-public .label-red,
+html .mufflermen-public .type-reveal.accent .ch,
+html .mufflermen-public [style*="var(--accent)"] {
+  color: var(--accent) !important;
+  text-shadow: var(--muff-accent-shadow) !important;
+}
+
+html .mufflermen-public .hero-eyebrow .dot,
+html .mufflermen-public .marquee span::after,
+html .mufflermen-public .services-stamp .label::before,
+html .mufflermen-public .footer-heading::before,
+html .mufflermen-public .step .pill,
+html .mufflermen-public .tag.red {
+  border-color: color-mix(in srgb, var(--accent) 36%, transparent) !important;
+  background: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+  box-shadow: 0 0 8px var(--accent-glow) !important;
+}
+
+html .mufflermen-public .hero-eyebrow .dot,
+html .mufflermen-public .marquee span::after,
+html .mufflermen-public .services-stamp .label::before,
+html .mufflermen-public .footer-heading::before {
+  background: var(--accent) !important;
+}
+
+html body .mufflermen-public .arch-text h2 span[style*="var(--accent)"],
+html body .mufflermen-public .hoist-text h2 span[style*="var(--accent)"],
+html body .mufflermen-public .rollout-main h2 span[style*="var(--accent)"],
+html body .mufflermen-public .seo-hero.has-cover .seo-kicker,
+html body .mufflermen-public .public-image-card-caption span {
+  /* Brighter signal red for TEXT over the near-black cinema frames — the deep
+     --accent fill red is only 2.1:1 against #040000 and fails WCAG 1.4.3.
+     #008cff reads ~4.5:1 there. Button/fill accents keep using --accent. */
+  color: var(--muff-cinema-accent, var(--ink-signal)) !important;
+  text-shadow: var(--muff-accent-shadow) !important;
+}

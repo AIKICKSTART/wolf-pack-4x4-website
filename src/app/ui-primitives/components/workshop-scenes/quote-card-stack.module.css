@@ -1,0 +1,304 @@
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 60px var(--primitive-space-6);
+  perspective: 1600px;
+}
+
+.deck {
+  position: relative;
+  width: min(100%, 420px);
+  height: 460px;
+  transform-style: preserve-3d;
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 7%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    var(--primitive-panel);
+  box-shadow: 0 38px 80px color-mix(in oklab, var(--primitive-canvas) 40%, transparent), inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  transform-origin: 50% 100%;
+  transition: transform 280ms var(--primitive-ease-out), box-shadow 280ms ease;
+}
+
+.card[data-position="0"] {
+  z-index: 4;
+  transform: translateY(0) rotate(0deg) scale(1);
+}
+
+.card[data-position="1"] {
+  z-index: 3;
+  transform: translateY(10px) rotate(2.4deg) scale(0.97);
+  opacity: 0.94;
+}
+
+.card[data-position="2"] {
+  z-index: 2;
+  transform: translateY(20px) rotate(-1.8deg) scale(0.94);
+  opacity: 0.85;
+}
+
+.card[data-position="3"] {
+  z-index: 1;
+  transform: translateY(30px) rotate(3.6deg) scale(0.91);
+  opacity: 0.7;
+}
+
+.card[data-position="overflow"] {
+  display: none;
+}
+
+.cardHead {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.kicker::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  box-shadow: 0 0 10px var(--primitive-red);
+}
+
+.customer {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1;
+}
+
+.suburb {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.cardBody {
+  display: grid;
+  gap: var(--primitive-space-3);
+  align-content: start;
+}
+
+.vehicle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.vehicleBody strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.vehicleBody span {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.rego {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 var(--primitive-space-2-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+  border-radius: var(--primitive-radius-sm);
+  /* Skeuomorphic AU number plate: fixed white plate + dark stamped text.
+     Brand/data literals kept constant in both themes by design. */
+  background:
+    linear-gradient(180deg, #fff, #d6d8de 70%);
+  color: #0c0d13;
+  font-family: var(--primitive-font-display-alt, var(--primitive-font-display));
+  font-size: 14px;
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.serviceChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: var(--primitive-space-2-5);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.priceRow span {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.priceRow strong {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-3xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+  padding-top: var(--primitive-space-2-5);
+}
+
+/* Shared button shape DNA; distinct intents keep semantic color below */
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-1-5);
+  min-height: 44px;
+  border-radius: var(--primitive-btn-radius);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.action svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+/* Decline → shared carbon secondary DNA */
+.actionDecline {
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+}
+
+/* Amend → amber-intent ghost on the shared button shape */
+.actionAmend {
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  color: var(--primitive-amber);
+}
+
+/* Approve → success-intent metallic fill on the shared button shape */
+.actionApprove {
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-green) 72%, transparent);
+  color: var(--primitive-canvas);
+}
+
+.action:hover,
+.action:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.action:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.actionDecline:hover,
+.actionDecline:focus-visible {
+  border-color: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  color: var(--primitive-red);
+}
+
+.cardCount {
+  position: absolute;
+  top: -32px;
+  right: var(--primitive-space-1);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 5px var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 85%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cardCount strong {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .action {
+    transition: none;
+  }
+
+  .card[data-position="1"],
+  .card[data-position="2"],
+  .card[data-position="3"] {
+    transform: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 520px) {
+  .deck {
+    height: 520px;
+  }
+
+  .actions {
+    grid-template-columns: 1fr;
+  }
+}

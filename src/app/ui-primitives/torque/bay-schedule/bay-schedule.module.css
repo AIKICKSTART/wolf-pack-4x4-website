@@ -1,0 +1,534 @@
+/* Bay schedule & calendar — bespoke chrome composed from primitive tokens.
+   Torque scheduler band + placeholder avatar, week-posture stat strip, the
+   two-column board/rail layout, week-grid frame, per-bay + technician lanes,
+   conflict rail and media frame. Light + dark parity via --primitive-* tokens;
+   motion is opacity/transform only and respects reduced-motion. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Scheduler band ------------------------------------------------------ */
+
+.band {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: clamp(18px, 2.4vw, 32px);
+  align-items: center;
+  padding: clamp(20px, 2.6vw, 32px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 58%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  opacity: 0.6;
+}
+
+.bandMain {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.bandHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--primitive-text-on-accent) 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 26px color-mix(in oklab, var(--primitive-red) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.torqueId {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.torqueName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.torqueRole {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+.bandTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 3.4vw, 42px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.bandTitle em {
+  font-style: normal;
+  color: var(--primitive-red);
+}
+
+.bandCopy {
+  margin: 0;
+  max-width: 60ch;
+  font-size: var(--primitive-text-base);
+  line-height: 1.6;
+  color: var(--primitive-body);
+}
+
+.bandMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2) 18px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaDot {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.metaDot::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+/* ---- Week-posture stat strip --------------------------------------------- */
+
+.bandAside {
+  display: grid;
+  gap: var(--primitive-space-3);
+  align-content: start;
+  min-width: 0;
+}
+
+.bandAsideHead {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statStrip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+}
+
+.stat {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: 13px 14px 13px 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 13px;
+  background: var(--primitive-surface-3);
+  overflow: hidden;
+}
+
+.stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--stat-tone, var(--primitive-muted));
+}
+
+.statLabel {
+  font-size: var(--primitive-text-xs);
+  line-height: 1.3;
+  color: var(--primitive-muted);
+}
+
+.statValue {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+}
+
+.statRed {
+  --stat-tone: var(--primitive-red);
+}
+.statAmber {
+  --stat-tone: var(--primitive-amber);
+}
+.statTeal {
+  --stat-tone: var(--primitive-teal);
+}
+.statGreen {
+  --stat-tone: var(--primitive-green);
+}
+
+/* ---- Two-column layout --------------------------------------------------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+  gap: clamp(18px, 2.2vw, 28px);
+  align-items: start;
+}
+
+.column {
+  display: grid;
+  gap: clamp(18px, 2.2vw, 28px);
+  min-width: 0;
+}
+
+.rail {
+  position: sticky;
+  top: 18px;
+  display: grid;
+  gap: clamp(16px, 1.8vw, 22px);
+  align-content: start;
+  min-width: 0;
+}
+
+/* ---- Week grid frame ----------------------------------------------------- */
+
+.weekFrame {
+  /* Give the week grid breathing room and a horizontal scroll on small
+     screens so the seven day columns never crush. */
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.weekFrame > * {
+  min-width: 720px;
+}
+
+.weekLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2) var(--primitive-space-4);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+}
+
+.weekLegend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.weekLegend span::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--legend-tone, var(--primitive-muted));
+}
+
+.weekLegend span[data-tone="red"] {
+  --legend-tone: var(--primitive-red);
+}
+.weekLegend span[data-tone="amber"] {
+  --legend-tone: var(--primitive-amber);
+}
+.weekLegend span[data-tone="teal"] {
+  --legend-tone: var(--primitive-teal);
+}
+.weekLegend span[data-tone="green"] {
+  --legend-tone: var(--primitive-green);
+}
+.weekLegend span[data-tone="neutral"] {
+  --legend-tone: var(--primitive-muted);
+}
+
+/* ---- Per-bay lane -------------------------------------------------------- */
+
+.bayLane {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.bayLaneItem {
+  display: grid;
+  min-width: 0;
+}
+
+/* ---- Tile inner content -------------------------------------------------- */
+
+.tileFrame {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.tileNote {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  line-height: 1.5;
+  color: var(--primitive-muted);
+}
+
+/* ---- Technician lane (rail) ---------------------------------------------- */
+
+.techFrame {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: clamp(16px, 2vw, 20px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.techHead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5) var(--primitive-space-3);
+}
+
+.techKicker {
+  grid-column: 1 / -1;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.techTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.techBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-teal);
+}
+
+.techBadge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primitive-teal);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+}
+
+.techLane {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.techLaneItem {
+  display: grid;
+  min-width: 0;
+}
+
+.techLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  margin: 0;
+  padding: var(--primitive-space-2-5) 0 0;
+  list-style: none;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.techLegend li {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+/* ---- Conflict rail ------------------------------------------------------- */
+
+.conflictFrame {
+  display: grid;
+  gap: var(--primitive-space-3);
+  align-content: start;
+  padding: clamp(16px, 2vw, 20px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background:
+    radial-gradient(140% 120% at 100% 0%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 60%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.conflictHead {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.conflictKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.conflictTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.conflictList {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.conflictItem {
+  display: grid;
+  min-width: 0;
+}
+
+/* ---- Media frame --------------------------------------------------------- */
+
+.mediaFrame {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.mediaHead {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.mediaKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.mediaTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .rail {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .band {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .bayLane {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .statStrip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

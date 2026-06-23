@@ -1,0 +1,23 @@
+/* MarketingPerformanceDashboard — performance + integrations layout. */
+
+.surface {
+  display: grid;
+  gap: 18px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+.row > * {
+  min-width: 0;
+}
+
+@media (max-width: 1080px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

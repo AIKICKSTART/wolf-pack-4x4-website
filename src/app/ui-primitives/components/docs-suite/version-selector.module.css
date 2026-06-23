@@ -1,0 +1,159 @@
+.root {
+  position: relative;
+  display: inline-block;
+  font-family: var(--primitive-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.trigger {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  background: var(--primitive-control-surface);
+  color: var(--primitive-text-strong);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.trigger:hover,
+.trigger:focus-visible {
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-field-hover);
+  outline: none;
+}
+
+.triggerLabel {
+  color: var(--primitive-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.triggerValue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primitive-text-strong);
+}
+
+.chev {
+  width: 12px;
+  height: 12px;
+  color: var(--primitive-muted);
+  transition: transform 180ms ease;
+}
+
+.chevOpen {
+  transform: rotate(180deg);
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 30;
+  width: 280px;
+  display: grid;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background: var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-deep);
+  backdrop-filter: blur(20px);
+}
+
+.option {
+  appearance: none;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--primitive-body);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.option:hover,
+.option:focus-visible {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-field-hover);
+  border-color: var(--primitive-line);
+  outline: none;
+}
+
+.optionActive {
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primitive-muted);
+}
+
+.dotCurrent {
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primitive-green) 24%, transparent);
+}
+
+.optionMain {
+  display: grid;
+  gap: 2px;
+}
+
+.optionLabel {
+  color: var(--primitive-text-strong);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.optionReleased {
+  color: var(--primitive-muted);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.breakingBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 7px;
+  min-height: 20px;
+  border-radius: 999px;
+  color: var(--primitive-red);
+  border: 1px solid color-mix(in srgb, var(--primitive-red) 48%, transparent);
+  background: color-mix(in srgb, var(--primitive-red) 18%, transparent);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chev {
+    transition: none;
+  }
+}

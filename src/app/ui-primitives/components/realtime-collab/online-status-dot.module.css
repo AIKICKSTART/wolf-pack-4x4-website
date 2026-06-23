@@ -1,0 +1,110 @@
+.row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  color: var(--primitive-body);
+}
+
+.label {
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  font-weight: var(--primitive-weight-bold);
+}
+
+.dot {
+  --dot-size: 10px;
+  display: inline-block;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: var(--primitive-radius-round);
+  position: relative;
+  flex: none;
+  background: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+.sizeXs { --dot-size: 6px; }
+.sizeSm { --dot-size: 10px; }
+.sizeMd { --dot-size: 14px; }
+.sizeLg { --dot-size: 18px; }
+
+.statusOnline {
+  background: radial-gradient(circle at 30% 30%,
+    color-mix(in oklab, var(--primitive-green) 55%, white),
+    var(--primitive-green) 60%,
+    color-mix(in oklab, var(--primitive-green) 55%, black) 100%);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-canvas) 40%, transparent),
+    0 0 12px color-mix(in oklab, var(--primitive-green) 60%, transparent);
+}
+
+.statusIdle {
+  background: radial-gradient(circle at 30% 30%,
+    color-mix(in oklab, var(--primitive-amber) 60%, white),
+    var(--primitive-amber) 60%,
+    color-mix(in oklab, var(--primitive-amber) 55%, black) 100%);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-canvas) 40%, transparent),
+    0 0 10px color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+}
+
+.statusBusy {
+  background: radial-gradient(circle at 30% 30%,
+    color-mix(in oklab, var(--primitive-red) 55%, white),
+    var(--primitive-red) 60%,
+    color-mix(in oklab, var(--primitive-red-dark) 70%, black) 100%);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-canvas) 40%, transparent),
+    0 0 10px color-mix(in oklab, var(--primitive-red) 55%, transparent);
+}
+
+.statusOffline {
+  background: radial-gradient(circle at 30% 30%,
+    color-mix(in oklab, var(--primitive-muted) 40%, var(--primitive-canvas)),
+    color-mix(in oklab, var(--primitive-muted) 18%, var(--primitive-canvas)) 60%,
+    var(--primitive-canvas) 100%);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+}
+
+.pulse.statusOnline::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  animation: onlineStatusPulse 1.6s ease-out infinite;
+}
+
+.pulse.statusBusy::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  animation: onlineStatusPulse 1.6s ease-out infinite;
+}
+
+.pulse.statusIdle::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+  animation: onlineStatusPulse 1.6s ease-out infinite;
+}
+
+@keyframes onlineStatusPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.85);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse::after {
+    animation: none;
+    opacity: 0;
+  }
+}

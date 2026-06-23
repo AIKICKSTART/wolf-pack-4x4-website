@@ -1,0 +1,160 @@
+/* Big Shoulders Inline — outline-fill tile. */
+
+.tile {
+  position: relative;
+  display: grid;
+  gap: clamp(16px, 1.6vw, 22px);
+  padding: clamp(22px, 2.6vw, 34px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 8% 92%, color-mix(in oklab, var(--primitive-teal) 14%, transparent), transparent 56%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), color-mix(in oklab, var(--primitive-canvas) 18%, transparent)),
+    var(--primitive-panel-strong);
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), 0 22px 50px color-mix(in oklab, var(--primitive-canvas) 38%, transparent);
+}
+
+.headRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.name {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.categoryBadge {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-body);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.display {
+  font-family: var(--ff-ts-bigshoulders), Impact, sans-serif;
+  font-size: clamp(56px, 7.6vw, 120px);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.94;
+  text-transform: uppercase;
+  margin: 0;
+  background: linear-gradient(
+    90deg,
+    var(--primitive-amber) 0%,
+    var(--primitive-red) 38%,
+    var(--primitive-amber) 76%,
+    var(--primitive-red) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1.4px var(--primitive-amber);
+  animation: bigshoulders-fill 4.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes bigshoulders-fill {
+  0% {
+    background-position: 110% 0;
+    -webkit-text-stroke-color: var(--primitive-amber);
+  }
+  50% {
+    background-position: -10% 0;
+    -webkit-text-stroke-color: transparent;
+  }
+  100% {
+    background-position: 110% 0;
+    -webkit-text-stroke-color: var(--primitive-amber);
+  }
+}
+
+.body {
+  font-family: var(--ff-ts-bigshoulders), Impact, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+  margin: 0;
+  max-width: 64ch;
+}
+
+.caption {
+  font-family: var(--ff-ts-bigshoulders), Impact, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  margin: 0;
+}
+
+.scale {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 14px;
+  border-top: 1px solid var(--primitive-line);
+  padding-top: clamp(14px, 1.6vw, 18px);
+}
+
+.scaleItem {
+  display: grid;
+  gap: 4px;
+}
+
+.scaleSample {
+  font-family: var(--ff-ts-bigshoulders), Impact, sans-serif;
+  font-size: 30px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--foreground, var(--primitive-text-strong));
+}
+
+.scaleLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+:global(html[data-primitive-theme="light"]) .tile {
+  background:
+    radial-gradient(ellipse at 8% 92%, color-mix(in oklab, var(--primitive-teal) 11%, transparent), transparent 56%),
+    linear-gradient(145deg, color-mix(in oklab, var(--primitive-field-strong) 96%, transparent), color-mix(in oklab, var(--primitive-surface-3) 89%, transparent)),
+    var(--primitive-panel-strong);
+  border-color: var(--primitive-line);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-neumo-light) 98%, transparent),
+    0 22px 44px color-mix(in oklab, var(--primitive-shadow-outline) 64%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .categoryBadge {
+  background: color-mix(in oklab, var(--primitive-field-strong) 73%, transparent);
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .display {
+    animation: none;
+    -webkit-text-stroke-color: transparent;
+    background-position: 50% 0;
+  }
+}

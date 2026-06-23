@@ -1,0 +1,238 @@
+.rail {
+  --fp-teal: var(--primitive-teal);
+  --fp-green: var(--primitive-green);
+  --fp-amber: var(--primitive-amber);
+
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: clamp(16px, 2vw, 20px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 70%),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-glass-strong),
+    var(--primitive-shadow-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  isolation: isolate;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  display: block;
+  margin-bottom: var(--primitive-space-1);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(16px, 2.2vw, 18px);
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: -0.01em;
+}
+
+.percentBlock {
+  text-align: right;
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.percentValue {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(24px, 4.4vw, 30px);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+}
+
+.percentLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--primitive-space-2);
+}
+
+.step {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-recessed);
+  box-shadow: inset 0 1px 0 var(--primitive-glass-soft);
+  min-width: 0;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.stepCurrent {
+  border-color: color-mix(in oklab, var(--fp-teal) 55%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--fp-teal) 10%, transparent), transparent 70%),
+    var(--primitive-recessed);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--fp-teal) 22%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--fp-teal) 32%, transparent),
+    0 10px 26px color-mix(in oklab, var(--fp-teal) 14%, transparent);
+}
+
+.stepComplete {
+  border-color: color-mix(in oklab, var(--fp-green) 45%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--fp-green) 6%, transparent), transparent 70%),
+    var(--primitive-recessed);
+}
+
+.stepSkipped {
+  border-color: color-mix(in oklab, var(--fp-amber) 40%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--fp-amber) 5%, transparent), transparent 70%),
+    var(--primitive-recessed);
+}
+
+.stepHead {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.indexBubble {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+  flex-shrink: 0;
+}
+
+.indexBubbleComplete {
+  border-color: var(--fp-green);
+  background: color-mix(in oklab, var(--fp-green) 18%, transparent);
+  color: var(--fp-green);
+}
+
+.indexBubbleCurrent {
+  border-color: var(--fp-teal);
+  background: color-mix(in oklab, var(--fp-teal) 18%, transparent);
+  color: var(--fp-teal);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--fp-teal) 14%, transparent);
+}
+
+/* current-step ring pulses to mark "you are here" */
+@media (prefers-reduced-motion: no-preference) {
+  .indexBubbleCurrent {
+    animation: stepRingPulse 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes stepRingPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--fp-teal) 14%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 5px color-mix(in oklab, var(--fp-teal) 8%, transparent);
+  }
+}
+
+.indexBubbleSkipped {
+  border-color: color-mix(in oklab, var(--fp-amber) 55%, transparent);
+  color: var(--fp-amber);
+}
+
+.stepTitle {
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.stepMeta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.barTrack {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-meter-track);
+  box-shadow: inset 0 1px 1px var(--primitive-shadow-outline);
+  overflow: hidden;
+}
+
+.barFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: var(--primitive-radius-pill);
+  background: linear-gradient(90deg, var(--fp-teal), color-mix(in oklab, var(--fp-teal) 64%, white));
+  box-shadow: 0 0 6px color-mix(in oklab, var(--fp-teal) 40%, transparent);
+  transition: width 320ms var(--primitive-ease-out);
+}
+
+.barFillComplete {
+  background: linear-gradient(90deg, var(--fp-green), color-mix(in oklab, var(--fp-green) 60%, white));
+  box-shadow: 0 0 6px color-mix(in oklab, var(--fp-green) 40%, transparent);
+}
+
+@media (max-width: 600px) {
+  .steps {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step,
+  .barFill {
+    transition: none;
+  }
+}

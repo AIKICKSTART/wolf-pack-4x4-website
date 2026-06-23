@@ -1,0 +1,98 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) 9px;
+  border: 1px solid var(--chip-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--chip-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--chip-fg, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: var(--primitive-leading-none);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--chip-dot, color-mix(in oklab, var(--primitive-text-strong) 50%, transparent));
+  box-shadow: 0 0 0 2px var(--chip-dot-halo, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent));
+}
+
+.critical .dot {
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+.label {
+  display: inline-block;
+}
+
+.toneRed {
+  --chip-bg: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --chip-fg: var(--primitive-red);
+  --chip-dot: var(--primitive-red);
+  --chip-dot-halo: color-mix(in oklab, var(--primitive-red) 26%, transparent);
+}
+
+.toneAmber {
+  --chip-bg: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  --chip-fg: var(--primitive-amber);
+  --chip-dot: var(--primitive-amber);
+  --chip-dot-halo: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+}
+
+.toneTeal {
+  --chip-bg: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-teal) 34%, transparent);
+  --chip-fg: var(--primitive-teal);
+  --chip-dot: var(--primitive-teal);
+  --chip-dot-halo: color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+}
+
+.toneGreen {
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-green) 34%, transparent);
+  --chip-fg: var(--primitive-green);
+  --chip-dot: var(--primitive-green);
+  --chip-dot-halo: color-mix(in oklab, var(--primitive-green) 22%, transparent);
+}
+
+.toneNeutral {
+  --chip-bg: color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent);
+  --chip-border: var(--primitive-line);
+  --chip-fg: var(--primitive-body);
+  --chip-dot: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent);
+  --chip-dot-halo: var(--primitive-line-muted);
+}
+
+.toneViolet {
+  --chip-bg: color-mix(in oklab, var(--primitive-violet) 12%, transparent);
+  --chip-border: color-mix(in oklab, var(--primitive-violet) 36%, transparent);
+  --chip-fg: color-mix(in oklab, var(--primitive-violet) 72%, var(--primitive-text-strong));
+  --chip-dot: var(--primitive-violet);
+  --chip-dot-halo: color-mix(in oklab, var(--primitive-violet) 22%, transparent);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 5px color-mix(in oklab, var(--primitive-red) 0%, transparent);
+    transform: scale(1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .critical .dot {
+    animation: none;
+  }
+}

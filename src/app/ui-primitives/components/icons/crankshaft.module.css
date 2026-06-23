@@ -1,0 +1,42 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.shaft { stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; }
+.shaftSolid { fill: currentColor; opacity: 0.85; stroke: currentColor; stroke-width: 0.9; }
+.mainBearing { fill: currentColor; opacity: 0.45; stroke: currentColor; stroke-width: 1.2; }
+.mainBearingInner { fill: var(--primitive-canvas); }
+.lobeGroup { transform-origin: 12px 12px; }
+.lobe { fill: currentColor; opacity: 0.85; }
+.counterweight { fill: currentColor; opacity: 0.85; }
+.counterweightStroke { stroke: currentColor; fill: none; stroke-width: 1.2; stroke-linejoin: round; }
+.web { fill: currentColor; opacity: 0.65; }
+.webStroke { stroke: currentColor; fill: none; stroke-width: 1.1; }
+.pin { fill: currentColor; opacity: 0.95; stroke: currentColor; stroke-width: 0.9; }
+.pinHole { fill: var(--primitive-canvas); }
+.bearing { stroke: currentColor; opacity: 0.45; stroke-width: 0.9; }
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate .lobeGroup { animation: iconRotate 2.4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .counterweightStroke, .motionDraw .webStroke { stroke-dasharray: 70; stroke-dashoffset: 70; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .lobeGroup { animation: iconRotate 0.4s linear infinite; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .counterweight,
+[data-variant="outline"] .web,
+[data-variant="outline"] .shaftSolid,
+[data-variant="outline"] .mainBearing,
+[data-variant="outline"] .pin { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .counterweight { opacity: 1; }
+[data-variant="filled"] .web { opacity: 0.95; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .lobeGroup { animation: none !important; transition: none !important; }
+}

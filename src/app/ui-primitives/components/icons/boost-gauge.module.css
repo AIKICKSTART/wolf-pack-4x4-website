@@ -1,0 +1,53 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.bezel { stroke: currentColor; fill: none; stroke-width: 1.4; }
+.bezelOuter { fill: currentColor; opacity: 0.12; }
+.face { fill: currentColor; opacity: 0.05; stroke: currentColor; stroke-width: 0.7; opacity: 0.25; }
+.body { stroke: currentColor; fill: none; stroke-width: 1.4; }
+.major { stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; opacity: 0.85; }
+.minor { stroke: currentColor; stroke-width: 0.8; stroke-linecap: round; opacity: 0.5; }
+.redMark { stroke: currentColor; opacity: 1; stroke-linecap: round; }
+.zero { stroke: currentColor; opacity: 1; stroke-linecap: round; }
+.track { stroke: currentColor; opacity: 0.25; stroke-width: 3.6; stroke-linecap: round; fill: none; }
+.fill { stroke: currentColor; stroke-width: 3.6; stroke-linecap: round; fill: none; stroke-dasharray: 26 100; stroke-dashoffset: 0; animation: boostSurge 2.2s ease-in-out infinite; }
+.needle { stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; transform-origin: 12px 12px; animation: boostNeedle 2.4s ease-in-out infinite; }
+.hub { fill: currentColor; }
+.hubInner { fill: var(--primitive-canvas); }
+.dot { fill: currentColor; }
+.labelMinus, .labelPlus { fill: currentColor; font-family: var(--primitive-font-mono, monospace); font-size: 5px; font-weight: 800; opacity: 0.7; }
+.unit { fill: currentColor; font-family: var(--primitive-font-mono, monospace); font-size: 3.4px; font-weight: 800; letter-spacing: 0.1em; opacity: 0.75; }
+.label { fill: currentColor; font-family: var(--primitive-font-mono, monospace); font-size: 4.4px; font-weight: 800; opacity: 0.85; letter-spacing: 0.06em; }
+
+@keyframes boostSurge {
+  0%, 100% { stroke-dasharray: 6 100; }
+  50% { stroke-dasharray: 26 100; }
+}
+@keyframes boostNeedle {
+  0%, 100% { transform: rotate(-30deg); }
+  60% { transform: rotate(20deg); }
+  70% { transform: rotate(15deg); }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .bezel, .motionDraw .body, .motionDraw .track { stroke-dasharray: 70; stroke-dashoffset: 70; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .needle { animation-duration: 0.5s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .bezelOuter,
+[data-variant="outline"] .face { fill: transparent; }
+
+[data-variant="filled"] .bezelOuter { opacity: 0.5; }
+[data-variant="filled"] .face { opacity: 0.6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .fill, .needle { animation: none !important; transition: none !important; }
+}

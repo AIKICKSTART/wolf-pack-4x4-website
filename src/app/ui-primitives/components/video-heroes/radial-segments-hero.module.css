@@ -1,0 +1,618 @@
+/* =========================================================
+   RADIAL SEGMENTS HERO — pie-wedge shutters fan/rotate open
+   from the centre to reveal a video disc, ringed by a chrome
+   rim with a chrome hub at the pivot. The distinctive shape
+   is a 12-segment radial dial / aperture fan.
+   ========================================================= */
+
+.hero {
+  --dial-size: clamp(280px, 76vw, 700px);
+  --rim-thickness: clamp(8px, 1.3vw, 15px);
+  --wedge-fill: color-mix(in oklab, var(--primitive-canvas) 96%, var(--primitive-teal));
+
+  position: relative;
+  width: 100%;
+  min-height: clamp(560px, 92svh, 880px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(48px, 7svh, 104px) clamp(20px, 5vw, 80px) clamp(72px, 8svh, 120px);
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 50% 40%, color-mix(in oklab, var(--primitive-amber) 14%, transparent), transparent 58%),
+    radial-gradient(ellipse at 86% 88%, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 64%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-teal)) 100%);
+  font-family: var(--primitive-font-body);
+}
+
+/* Atmospheric bloom that breathes behind the dial. */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 42%,
+    color-mix(in oklab, var(--primitive-amber) 20%, transparent) 0%,
+    transparent 46%
+  );
+  opacity: 0.7;
+  animation: dialBloom 6s ease-in-out infinite;
+}
+
+/* Faint technical grid, masked away from the dial centre for depth. */
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--primitive-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--primitive-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(circle at 50% 42%, transparent 28%, black 76%);
+  mask-image: radial-gradient(circle at 50% 42%, transparent 28%, black 76%);
+  opacity: 0.5;
+}
+
+/* ---- Dial stage ---- */
+.stage {
+  position: relative;
+  z-index: 1;
+  grid-row: 1;
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.dial {
+  position: relative;
+  width: var(--dial-size);
+  height: var(--dial-size);
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+/* The video disc that sits beneath the wedge shutters. */
+.disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  clip-path: circle(50% at 50% 50%);
+  background: var(--primitive-canvas);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-amber) 30%, transparent),
+    0 40px 120px color-mix(in oklab, black 55%, transparent);
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.12) saturate(1.12);
+  transform: scale(1.04);
+}
+
+/* Specular sweep over the exposed disc. */
+.discSheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 38% 30%, color-mix(in oklab, var(--primitive-text-strong) 20%, transparent) 0%, transparent 34%),
+    linear-gradient(150deg, color-mix(in oklab, var(--primitive-text-strong) 8%, transparent) 0%, transparent 30%, transparent 70%, color-mix(in oklab, black 40%, transparent) 100%);
+  mix-blend-mode: screen;
+}
+
+/* ---- Wedge shutters ---- */
+.wedges {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  clip-path: circle(50% at 50% 50%);
+}
+
+/* Each wedge is an opaque pie slice that rotates about the centre and
+   fades away to reveal its segment of the video. clip-path + the rotation
+   pivot come from inline styles; only transform/opacity animate here. */
+.wedge {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50%;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-teal)) 0%,
+      var(--wedge-fill) 60%,
+      color-mix(in oklab, var(--primitive-canvas) 96%, black) 100%
+    );
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  animation: wedgeFan 1500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--wedge-delay, 0ms);
+}
+
+/* Brushed-metal highlight catching each wedge so the closed dial reads
+   as a machined disc rather than flat panels. */
+.wedge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from var(--wedge-mid, 0deg) at 50% 50%,
+    color-mix(in oklab, var(--primitive-text-strong) 16%, transparent) 0deg,
+    transparent 8deg,
+    transparent 352deg,
+    color-mix(in oklab, var(--primitive-text-strong) 16%, transparent) 360deg
+  );
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+/* ---- Radial spoke dividers ---- */
+.spokes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  overflow: hidden;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.spoke {
+  position: absolute;
+  top: -2%;
+  left: 50%;
+  width: 1px;
+  height: 52%;
+  margin-left: -0.5px;
+  transform-origin: 50% 100%;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--primitive-amber) 60%, transparent) 0%,
+    color-mix(in oklab, var(--primitive-amber) 16%, transparent) 70%,
+    transparent 100%
+  );
+  opacity: 0.85;
+}
+
+/* ---- Chrome rim ---- */
+.rim {
+  position: absolute;
+  inset: calc(-1 * var(--rim-thickness));
+  border-radius: 50%;
+  pointer-events: none;
+  padding: var(--rim-thickness);
+  background: conic-gradient(
+    from 220deg,
+    color-mix(in oklab, var(--primitive-text-strong) 97%, black) 0deg,
+    color-mix(in oklab, var(--primitive-text-strong) 57%, black) 60deg,
+    color-mix(in oklab, var(--primitive-text-strong) 22%, black) 120deg,
+    color-mix(in oklab, var(--primitive-text-strong) 80%, black) 200deg,
+    color-mix(in oklab, var(--primitive-text-strong) 45%, black) 260deg,
+    color-mix(in oklab, var(--primitive-text-strong) 94%, black) 320deg,
+    color-mix(in oklab, var(--primitive-text-strong) 97%, black) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(black 0 0) content-box,
+    linear-gradient(black 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(black 0 0) content-box,
+    linear-gradient(black 0 0);
+  mask-composite: exclude;
+  filter: drop-shadow(0 10px 26px color-mix(in oklab, black 50%, transparent));
+  animation: rimSpin 28s linear infinite;
+}
+
+.rimGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow:
+    0 0 0 2px color-mix(in oklab, var(--primitive-amber) 55%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 50%, transparent),
+    0 0 46px color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+}
+
+/* ---- Arcing rim label ---- */
+.arc {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  animation: rimSpin 64s linear infinite reverse;
+}
+
+.arcText {
+  font-family: var(--primitive-font-mono);
+  font-size: 6.4px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  fill: color-mix(in oklab, var(--primitive-amber) 78%, var(--primitive-text-strong));
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Chrome hub (the fan pivot) ---- */
+.hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(40px, 9%, 72px);
+  height: clamp(40px, 9%, 72px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+}
+
+.hubFace {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 36% 30%, color-mix(in oklab, var(--primitive-text-strong) 90%, transparent) 0%, transparent 38%),
+    conic-gradient(
+      from 200deg,
+      color-mix(in oklab, var(--primitive-text-strong) 95%, black) 0deg,
+      color-mix(in oklab, var(--primitive-text-strong) 62%, black) 70deg,
+      color-mix(in oklab, var(--primitive-text-strong) 26%, black) 150deg,
+      color-mix(in oklab, var(--primitive-text-strong) 84%, black) 230deg,
+      color-mix(in oklab, var(--primitive-text-strong) 47%, black) 300deg,
+      color-mix(in oklab, var(--primitive-text-strong) 95%, black) 360deg
+    );
+  box-shadow:
+    0 0 0 2px color-mix(in oklab, var(--primitive-amber) 50%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 60%, transparent),
+    0 8px 22px color-mix(in oklab, black 50%, transparent);
+  animation: rimSpin 18s linear infinite;
+}
+
+.hubBolt {
+  position: relative;
+  width: 34%;
+  height: 34%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 40% 34%, white 0%, transparent 44%),
+    radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--primitive-text-strong) 82%, black) 0%, color-mix(in oklab, var(--primitive-text-strong) 43%, black) 100%);
+  box-shadow:
+    inset 0 1px 1px color-mix(in oklab, var(--primitive-text-strong) 70%, transparent),
+    inset 0 -1px 2px color-mix(in oklab, black 40%, transparent);
+}
+
+/* ---- Centred copy ---- */
+.copy {
+  position: relative;
+  z-index: 3;
+  grid-row: 1;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: clamp(14px, 2.4vh, 22px);
+  max-width: min(640px, 90vw);
+  padding: 0 8px;
+  pointer-events: none;
+}
+.copy > * {
+  pointer-events: auto;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primitive-canvas) 56%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 38%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kicker i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--primitive-red);
+  box-shadow: 0 0 14px var(--primitive-red);
+  animation: kickerPulse 1.4s ease-in-out infinite;
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 1.4rem + 6vw, 6.4rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--primitive-text-strong);
+  text-shadow:
+    0 2px 30px color-mix(in oklab, black 60%, transparent),
+    0 0 1px color-mix(in oklab, black 40%, transparent);
+}
+
+.subhead {
+  font-family: var(--primitive-font-body);
+  font-size: clamp(14px, 0.85rem + 0.45vw, 18px);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 48ch;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 1px 16px color-mix(in oklab, black 70%, transparent);
+}
+
+.cta {
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-radius-pill);
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 240ms,
+    box-shadow 240ms;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-red);
+  opacity: 0.42;
+  z-index: -1;
+  transition: inset 240ms;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  color: var(--primitive-btn-primary-hover-fg);
+}
+.cta:hover::before {
+  inset: -8px;
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:active::before {
+  inset: -4px;
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.ctaDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: white;
+  box-shadow: 0 0 10px color-mix(in oklab, var(--primitive-text-strong) 80%, transparent);
+}
+
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+.meta {
+  position: relative;
+  z-index: 3;
+  grid-row: 2;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 52%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---- Keyframes (compositor-friendly: transform/opacity only) ---- */
+/* Each wedge starts rotated/scaled-in around the hub, then fans out to
+   rest while fading, exposing its slice of the video underneath. */
+@keyframes wedgeFan {
+  0% {
+    transform: rotate(-46deg) scale(0.62);
+    opacity: 1;
+  }
+  62% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes rimSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hub .hubFace {
+  /* Counter-rotate the hub face independently from the rim spin handled
+     above; declared here to keep the hub anchored visually. */
+  transform-origin: 50% 50%;
+}
+
+@keyframes dialBloom {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+@keyframes kickerPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.6);
+  }
+}
+
+/* ---- Responsive: keep the dial inside the viewport on small screens ---- */
+@media (max-width: 600px) {
+  .hero {
+    --dial-size: clamp(232px, 84vw, 420px);
+  }
+  .arcText {
+    font-size: 5.6px;
+  }
+  .meta {
+    justify-content: center;
+    gap: 14px;
+    font-size: 9px;
+  }
+  .headline {
+    text-shadow: 0 2px 22px color-mix(in oklab, black 80%, transparent);
+  }
+}
+
+/* ---- Light theme parity ---- */
+:global(html[data-primitive-theme="light"]) .hero {
+  color: var(--primitive-text-strong);
+  --wedge-fill: color-mix(in oklab, var(--primitive-text-strong) 14%, var(--primitive-canvas));
+}
+:global(html[data-primitive-theme="light"]) .wedge {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 97%, black) 0%,
+      var(--wedge-fill) 60%,
+      color-mix(in oklab, var(--primitive-text-strong) 22%, color-mix(in oklab, var(--primitive-text-strong) 84%, black)) 100%
+    );
+}
+:global(html[data-primitive-theme="light"]) .rim {
+  background: conic-gradient(
+    from 220deg,
+    white 0deg,
+    color-mix(in oklab, var(--primitive-text-strong) 73%, black) 60deg,
+    color-mix(in oklab, var(--primitive-text-strong) 43%, black) 120deg,
+    color-mix(in oklab, var(--primitive-text-strong) 88%, black) 200deg,
+    color-mix(in oklab, var(--primitive-text-strong) 58%, black) 260deg,
+    color-mix(in oklab, var(--primitive-text-strong) 97%, black) 320deg,
+    white 360deg
+  );
+  filter: drop-shadow(0 10px 24px color-mix(in oklab, var(--primitive-text-strong) 26%, transparent));
+}
+:global(html[data-primitive-theme="light"]) .rimGlow {
+  box-shadow:
+    0 0 0 2px color-mix(in oklab, var(--primitive-amber) 70%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 80%, transparent),
+    0 0 38px color-mix(in oklab, var(--primitive-amber) 28%, transparent);
+}
+:global(html[data-primitive-theme="light"]) .hubFace {
+  background:
+    radial-gradient(circle at 36% 30%, color-mix(in oklab, var(--primitive-text-strong) 95%, transparent) 0%, transparent 38%),
+    conic-gradient(
+      from 200deg,
+      white 0deg,
+      color-mix(in oklab, var(--primitive-text-strong) 78%, black) 70deg,
+      color-mix(in oklab, var(--primitive-text-strong) 46%, black) 150deg,
+      color-mix(in oklab, var(--primitive-text-strong) 90%, black) 230deg,
+      color-mix(in oklab, var(--primitive-text-strong) 63%, black) 300deg,
+      white 360deg
+    );
+}
+:global(html[data-primitive-theme="light"]) .headline {
+  text-shadow: 0 2px 18px color-mix(in oklab, var(--primitive-text-strong) 70%, transparent);
+}
+:global(html[data-primitive-theme="light"]) .subhead {
+  text-shadow: 0 1px 12px color-mix(in oklab, var(--primitive-text-strong) 80%, transparent);
+}
+:global(html[data-primitive-theme="light"]) .kicker {
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+}
+
+/* ---- Reduced motion (attribute hook): static, fully-open dial ---- */
+.hero[data-reduced="true"] .wedge,
+.hero[data-reduced="true"] .rim,
+.hero[data-reduced="true"] .arc,
+.hero[data-reduced="true"] .backdrop,
+.hero[data-reduced="true"] .hubFace,
+.hero[data-reduced="true"] .kicker i {
+  animation: none;
+}
+.hero[data-reduced="true"] .wedge {
+  transform: rotate(0deg) scale(1);
+  opacity: 0;
+}
+.hero[data-reduced="true"] .video {
+  transform: scale(1.04);
+}
+
+/* ---- Reduced motion (media query): clean static composition ---- */
+@media (prefers-reduced-motion: reduce) {
+  .wedge,
+  .rim,
+  .arc,
+  .backdrop,
+  .hubFace,
+  .kicker i,
+  .cta,
+  .ctaArrow {
+    animation: none;
+    transition: none;
+  }
+  .wedge {
+    transform: rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  .video {
+    transform: scale(1.04);
+    display: none;
+  }
+  .disc {
+    background:
+      radial-gradient(circle at 38% 30%, color-mix(in oklab, var(--primitive-amber) 22%, transparent), transparent 50%),
+      linear-gradient(160deg, color-mix(in oklab, var(--primitive-canvas) 95%, var(--primitive-teal)) 0%, var(--primitive-canvas) 100%);
+  }
+  .discSheen {
+    opacity: 0.6;
+  }
+}

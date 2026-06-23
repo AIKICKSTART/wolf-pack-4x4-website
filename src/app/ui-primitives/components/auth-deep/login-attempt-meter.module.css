@@ -1,0 +1,263 @@
+.wrap {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.wrap[data-state="locked"] {
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  border-color: color-mix(in oklab, var(--primitive-red) 36%, transparent);
+}
+
+.wrap[data-state="open"] {
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-green) 12%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.kicker {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  margin-bottom: var(--primitive-space-1);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.meterBlock {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: 14px;
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+.meterTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.meterLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.meterValue {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-display);
+  color: var(--primitive-text-strong);
+}
+
+.meterValue strong {
+  font-size: 26px;
+}
+
+.meterDivider {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-lg);
+  margin: 0 var(--primitive-space-0-5);
+}
+
+.meterValue .numeric {
+  font-variant-numeric: tabular-nums;
+}
+
+.ticks {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--primitive-space-1-5);
+  height: 12px;
+}
+
+.tick {
+  border-radius: 3px;
+  background: var(--primitive-line-muted);
+  transition: background 200ms ease;
+}
+
+.tick[data-on="true"] {
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-amber) 15%, transparent) inset;
+}
+
+.wrap[data-state="locked"] .tick[data-on="true"] {
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-red) 18%, transparent) inset;
+}
+
+.tick[data-final="true"] {
+  outline: 1px dashed var(--primitive-red);
+  outline-offset: -2px;
+}
+
+.numeric {
+  font-variant-numeric: tabular-nums;
+}
+
+.countdownBlock {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: 14px var(--primitive-space-4);
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+}
+
+.countdownKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.countdown {
+  font-family: var(--primitive-font-mono);
+  font-size: 32px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.12em;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--primitive-space-3);
+  margin: 0;
+}
+
+.facts > div {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.facts dt {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.facts dd {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+}
+
+.foot {
+  display: flex;
+  gap: var(--primitive-space-2);
+  justify-content: flex-end;
+}
+
+.btnSecondary,
+.btnPrimary {
+  padding: var(--primitive-space-2) 14px;
+  border-radius: var(--primitive-radius-md);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.btnSecondary {
+  background: transparent;
+  border: 1px solid var(--primitive-line-strong);
+  color: var(--primitive-body);
+}
+
+.btnSecondary:hover:not(:disabled) {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-text-strong);
+}
+
+.btnSecondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btnPrimary {
+  background: var(--primitive-btn-primary-bg);
+  border: 1px solid transparent;
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.btnPrimary:hover:not(:disabled) {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.btnPrimary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btnSecondary:focus-visible,
+.btnPrimary:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 3px;
+}
+
+.srOnly {
+  position: absolute;
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tick,
+  .btnSecondary,
+  .btnPrimary {
+    transition: none;
+  }
+}

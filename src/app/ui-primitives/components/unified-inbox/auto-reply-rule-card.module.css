@@ -1,0 +1,180 @@
+.card {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.cardOn {
+  border-color: color-mix(in oklab, var(--primitive-green) 36%, transparent);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-green) 8%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-green) 8%, var(--primitive-panel));
+}
+
+.cardOff {
+  opacity: 0.85;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kindTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.kindGlyph {
+  display: grid;
+  place-items: center;
+}
+
+.toggle {
+  appearance: none;
+  position: relative;
+  width: 42px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.toggle::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--primitive-text-strong) 70%, transparent);
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.toggleOn {
+  background: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 85%, transparent);
+}
+
+.toggleOn::after {
+  background: var(--primitive-green);
+  transform: translateX(20px);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+}
+
+.schedule {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+}
+
+.body {
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 2px solid var(--primitive-line);
+  background: var(--primitive-field-bg);
+  border-radius: 0 8px 8px 0;
+  color: var(--primitive-body);
+  font-size: 13px;
+  line-height: 1.45;
+  font-style: italic;
+}
+
+.body p {
+  margin: 0;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.channelChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 999px;
+  background: var(--primitive-field-bg);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--primitive-body);
+}
+
+.editBtn {
+  appearance: none;
+  padding: 6px 12px;
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-body);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.editBtn:hover,
+.editBtn:focus-visible {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+  box-shadow: var(--primitive-focus-shadow);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .toggle::after,
+  .editBtn {
+    transition: none;
+  }
+}

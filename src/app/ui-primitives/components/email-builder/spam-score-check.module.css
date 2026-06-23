@@ -1,0 +1,174 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding-bottom: var(--primitive-space-2-5);
+  border-bottom: 1px dashed var(--primitive-line);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.scoreRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.score {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2) 14px;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+  font-family: var(--primitive-font-display);
+}
+
+.score[data-tone="green"] { border-color: color-mix(in oklab, var(--primitive-green) 60%, transparent); color: var(--primitive-text-strong); }
+.score[data-tone="amber"] { border-color: color-mix(in oklab, var(--primitive-amber) 60%, transparent); color: var(--primitive-text-strong); }
+.score[data-tone="red"] { border-color: color-mix(in oklab, var(--primitive-red) 60%, transparent); color: var(--primitive-text-strong); }
+
+.scoreValue {
+  font-size: 24px;
+  letter-spacing: 0.02em;
+}
+
+.scoreSlash {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.analysed {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.analysedRow {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--primitive-space-3);
+  align-items: baseline;
+}
+
+.analysedLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.analysedValue {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.warningList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.warning {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  transition: opacity 200ms ease;
+}
+
+.warningIgnored {
+  opacity: 0.45;
+}
+
+.warningMessage {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+}
+
+/* Secondary/ghost action — central carbon-body secondary DNA. */
+.ignoreBtn {
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.ignoreBtn:hover,
+.ignoreBtn:focus-visible {
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.ignoreBtn:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .warning,
+  .ignoreBtn {
+    transition: none;
+  }
+}

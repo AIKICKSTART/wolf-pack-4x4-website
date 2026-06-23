@@ -1,0 +1,219 @@
+.composer {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  border-radius: 14px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--primitive-amber) 6%, transparent),
+      color-mix(in oklab, var(--primitive-amber) 6%, transparent) 8px,
+      color-mix(in oklab, var(--primitive-amber) 2.5%, transparent) 8px,
+      color-mix(in oklab, var(--primitive-amber) 2.5%, transparent) 16px
+    ),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 4%, transparent),
+    var(--primitive-shadow-soft);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-amber) 14%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: var(--primitive-weight-black);
+  line-height: var(--primitive-leading-none);
+}
+
+.badgeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-amber) 28%, transparent);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 76px;
+  max-height: 200px;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font: inherit;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  resize: none;
+  outline: none;
+  transition: border-color var(--primitive-duration-fast) ease, background var(--primitive-duration-fast) ease;
+  box-sizing: border-box;
+}
+
+.textarea::placeholder {
+  color: var(--primitive-muted);
+}
+
+.textarea:focus-visible {
+  border-color: color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  background: var(--primitive-field-hover);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.hint {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.saveBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: var(--primitive-space-8);
+  padding: 0 14px;
+  border: 0;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--primitive-duration-fast) ease,
+    background var(--primitive-duration-fast) ease,
+    color var(--primitive-duration-fast) ease,
+    box-shadow var(--primitive-duration-fast) ease;
+}
+
+.saveBtn:hover:not(:disabled),
+.saveBtn:focus-visible:not(:disabled) {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.saveBtn:focus-visible:not(:disabled) {
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+.saveBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.mentionMenu {
+  display: grid;
+  gap: var(--primitive-space-1);
+  margin: 0;
+  padding: var(--primitive-space-1-5);
+  list-style: none;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 10px;
+  background: var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.mentionItem {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  width: 100%;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--primitive-body);
+  font: inherit;
+  font-size: var(--primitive-text-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) ease, color var(--primitive-duration-fast) ease;
+}
+
+.mentionItem:hover,
+.mentionItem:focus-visible {
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.mentionGlyph {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-weight: var(--primitive-weight-black);
+}
+
+.mentionName {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.mentionRole {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .textarea,
+  .saveBtn,
+  .mentionItem {
+    transition: none;
+  }
+  .saveBtn:hover:not(:disabled),
+  .saveBtn:focus-visible:not(:disabled) {
+    transform: none;
+  }
+}

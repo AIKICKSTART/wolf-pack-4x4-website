@@ -1,0 +1,121 @@
+.root {
+  display: grid;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  display: grid;
+  gap: 2px;
+}
+
+.kind {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.role {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.tier {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border: 1px solid currentColor;
+  border-radius: var(--primitive-radius-pill);
+  color: var(--tier-color, var(--primitive-teal));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.bars {
+  display: flex;
+  align-items: end;
+  gap: 4px;
+  height: 28px;
+}
+
+.bar {
+  flex: 1;
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  transition: background 200ms ease, border-color 200ms ease, height 200ms ease;
+}
+
+.barLit {
+  background: var(--tier-color, var(--primitive-teal));
+  border-color: var(--tier-color, var(--primitive-teal));
+  box-shadow: 0 0 8px var(--tier-color, var(--primitive-teal));
+}
+
+.barOffline {
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.metric {
+  display: grid;
+  gap: 2px;
+}
+
+.metricLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.metricValue {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.metricUnit {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.12em;
+}

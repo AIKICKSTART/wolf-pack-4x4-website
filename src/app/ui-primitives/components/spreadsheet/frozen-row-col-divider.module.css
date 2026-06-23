@@ -1,0 +1,77 @@
+.divider {
+  position: relative;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.row {
+  width: 100%;
+  height: 8px;
+}
+
+.column {
+  width: 8px;
+  height: 100%;
+}
+
+.line {
+  position: absolute;
+  inset: 0;
+}
+
+.row .line {
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  width: 100%;
+  background: var(--divider-color, var(--primitive-amber));
+  box-shadow: 0 6px 14px var(--divider-shadow, color-mix(in oklab, var(--primitive-amber) 45%, transparent));
+}
+
+.column .line {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: var(--divider-color, var(--primitive-amber));
+  box-shadow: 6px 0 14px var(--divider-shadow, color-mix(in oklab, var(--primitive-amber) 45%, transparent));
+}
+
+.toneAmber {
+  --divider-color: var(--primitive-amber);
+  --divider-shadow: color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+  --divider-fg: var(--primitive-amber);
+}
+
+.toneTeal {
+  --divider-color: var(--primitive-teal);
+  --divider-shadow: color-mix(in oklab, var(--primitive-teal) 45%, transparent);
+  --divider-fg: var(--primitive-teal);
+}
+
+.toneRed {
+  --divider-color: var(--primitive-red);
+  --divider-shadow: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  --divider-fg: var(--primitive-red);
+}
+
+.plate {
+  position: relative;
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  color: var(--divider-fg, var(--primitive-amber));
+  border: 1px solid var(--divider-color, var(--primitive-amber));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.column .plate {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}

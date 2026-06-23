@@ -1,0 +1,133 @@
+.wrap {
+  display: grid;
+}
+
+.flagCell {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.flagName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--primitive-text-strong);
+}
+
+.flagKey {
+  width: max-content;
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 24%, transparent);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+}
+
+.envChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--env-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--env-bg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent));
+  color: var(--env-fg, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.envDev {
+  --env-border: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  --env-bg: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+  --env-fg: var(--primitive-teal);
+}
+
+.envStaging {
+  --env-border: color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  --env-bg: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  --env-fg: var(--primitive-amber);
+}
+
+.envProd {
+  --env-border: color-mix(in oklab, var(--primitive-red) 34%, transparent);
+  --env-bg: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  --env-fg: var(--primitive-red);
+}
+
+.changeCell {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.fromValue,
+.toValue {
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-sm);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+}
+
+.fromValue {
+  border: 1px solid var(--primitive-field-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in oklab, var(--primitive-text-strong) 36%, transparent);
+}
+
+.toValue {
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 34%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  color: var(--primitive-green);
+}
+
+.arrow {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+}
+
+.note {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px dashed var(--primitive-line);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+}
+
+.whoCell {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.who {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+}
+
+.whoRole {
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  color: var(--primitive-muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.when {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-body);
+}

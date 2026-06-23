@@ -1,0 +1,152 @@
+.section {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  padding: clamp(28px, 4vw, 48px) clamp(22px, 4vw, 44px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at 100% 0%, var(--accent-soft, color-mix(in oklab, var(--primitive-amber) 16%, transparent)), transparent 58%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel-strong);
+  isolation: isolate;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 10%, var(--accent, var(--primitive-amber)) 50%, transparent 90%);
+  opacity: 0.7;
+}
+
+.gallery {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  min-height: 380px;
+}
+
+.summary {
+  display: grid;
+  gap: var(--primitive-space-4);
+  align-content: start;
+}
+
+.sku {
+  width: fit-content;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--accent-line, color-mix(in oklab, var(--primitive-amber) 32%, transparent));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--accent-soft, color-mix(in oklab, var(--primitive-amber) 6%, transparent));
+  color: var(--accent, var(--primitive-amber));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 3.6vw, 48px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.summaryText {
+  margin: 0;
+  max-width: 50ch;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-base);
+  line-height: 1.55;
+}
+
+.metaChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  align-items: center;
+}
+
+.fitment {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2-5);
+  padding: 14px 22px;
+  border: 1px solid transparent;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 200ms ease, background 200ms ease, box-shadow 200ms ease;
+  width: fit-content;
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  transform: translateY(-2px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.toneRed {
+  --accent: var(--primitive-red);
+  --accent-soft: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.toneAmber {
+  --accent: var(--primitive-amber);
+  --accent-soft: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.toneTeal {
+  --accent: var(--primitive-teal);
+  --accent-soft: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+.toneGreen {
+  --accent: var(--primitive-green);
+  --accent-soft: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+}
+
+@media (max-width: 900px) {
+  .section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+  .cta:hover,
+  .cta:focus-visible {
+    transform: none;
+  }
+}

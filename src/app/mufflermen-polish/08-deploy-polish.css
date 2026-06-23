@@ -1,0 +1,536 @@
+
+
+/* Deployment polish: founder image, UI primitive video assets, and Heritage Cream cards. */
+.home-founder-grid.home-founder-grid-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.home-founder-card.home-founder-card-lead {
+  min-height: clamp(420px, 46vw, 640px);
+}
+
+.home-founder-card.home-founder-card-lead > img {
+  min-height: 100%;
+  object-position: 32% 42%;
+}
+
+.home-founder-card.home-founder-card-lead > div {
+  gap: 18px;
+}
+
+.home-founder-card.home-founder-card-lead > div p + p {
+  margin-top: 2px;
+}
+
+.primitive-marketing-section {
+  padding-top: clamp(96px, 8vw, 140px);
+  scroll-margin-top: 160px;
+}
+
+.primitive-video-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.34fr) minmax(280px, 0.66fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.primitive-video-hero-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(420px, 42vw, 680px);
+  padding: 10px;
+}
+
+.primitive-video-hero-shell > section {
+  min-height: inherit;
+}
+
+.primitive-video-rail {
+  display: grid;
+  gap: 18px;
+}
+
+.primitive-video-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: minmax(150px, 0.82fr) auto;
+  min-height: 0;
+}
+
+.primitive-video-card video {
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.primitive-video-card > div {
+  padding: clamp(18px, 2vw, 24px);
+}
+
+.primitive-video-card h3 {
+  margin: 8px 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 2.6vw, 40px);
+  line-height: 0.94;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.primitive-video-card p {
+  margin: 0;
+  color: var(--body);
+}
+
+.vehicle-collections-section {
+  padding-top: clamp(120px, 9vw, 164px);
+  scroll-margin-top: 170px;
+}
+
+.vehicle-collection-feature {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.vehicle-collection-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100%;
+}
+
+.vehicle-collection-card::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto;
+  z-index: 0;
+  height: 64%;
+  background:
+    radial-gradient(circle at 30% 35%, color-mix(in srgb, var(--vehicle-tone, var(--accent)) 42%, transparent), transparent 58%),
+    radial-gradient(circle at 70% 30%, rgba(255,255,255,0.16), transparent 46%);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.vehicle-collection-card-yellow {
+  --vehicle-tone: #f3c537;
+}
+
+.vehicle-collection-card-red {
+  --vehicle-tone: #d91b2b;
+}
+
+.vehicle-collection-card-black {
+  --vehicle-tone: #20242b;
+}
+
+.vehicle-collection-hero {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.vehicle-collection-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.96) contrast(1.04) brightness(1.02);
+}
+
+.vehicle-collection-badge {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: grid;
+  gap: 2px;
+  min-width: 116px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  background: rgba(6, 7, 10, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 20px 34px -20px rgba(0,0,0,0.78);
+  backdrop-filter: blur(14px);
+}
+
+.vehicle-collection-badge span,
+.vehicle-collection-badge strong {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.vehicle-collection-badge span {
+  color: rgba(255,255,255,0.66);
+  font-size: 9px;
+}
+
+.vehicle-collection-badge strong {
+  color: #fff;
+  font-size: 13px;
+}
+
+.vehicle-collection-copy {
+  position: relative;
+  z-index: 1;
+  padding: clamp(20px, 2.2vw, 28px);
+}
+
+.vehicle-collection-copy h3 {
+  margin: 10px 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 3.1vw, 52px);
+  line-height: 0.88;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.vehicle-collection-copy p {
+  margin: 0;
+  color: var(--body);
+}
+
+.vehicle-frame-strip {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  gap: 1px;
+  padding: 0 10px 10px;
+}
+
+.vehicle-frame-strip figure {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  min-height: 92px;
+  margin: 0;
+  background: #08090c;
+}
+
+.vehicle-frame-strip img {
+  width: 100%;
+  height: 100%;
+  min-height: 92px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.96) contrast(1.04) brightness(1.02);
+}
+
+.vehicle-frame-strip figcaption {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.9);
+}
+
+.brand-assets-story {
+  padding-top: clamp(92px, 8vw, 136px);
+  scroll-margin-top: 160px;
+}
+
+.brand-assets-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.brand-asset-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: minmax(180px, auto) 1fr;
+  min-height: 100%;
+}
+
+.brand-asset-card.is-wide {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.brand-asset-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 210px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.08) contrast(1.08);
+}
+
+.brand-asset-card.is-wide img {
+  min-height: 430px;
+}
+
+.brand-asset-card > div {
+  padding: clamp(18px, 2vw, 26px);
+}
+
+.brand-asset-card h3 {
+  margin: 9px 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 2.4vw, 42px);
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.brand-asset-card p {
+  margin: 0;
+  color: var(--body);
+}
+
+html[data-mufflermen-theme="light"] .primitive-marketing-section .section-head h2,
+html[data-mufflermen-theme="light"] .vehicle-collections-section .section-head h2,
+html[data-mufflermen-theme="light"] .brand-assets-story .section-head h2,
+html[data-mufflermen-theme="light"] .home-founder-team .section-head h2 {
+  color: var(--ink-espresso);
+}
+
+html[data-mufflermen-theme="light"] .primitive-marketing-section .lead,
+html[data-mufflermen-theme="light"] .vehicle-collections-section .lead,
+html[data-mufflermen-theme="light"] .brand-assets-story .lead,
+html[data-mufflermen-theme="light"] .home-founder-team .lead,
+html[data-mufflermen-theme="light"] .primitive-video-card p,
+html[data-mufflermen-theme="light"] .vehicle-collection-copy p,
+html[data-mufflermen-theme="light"] .brand-asset-card p,
+html[data-mufflermen-theme="light"] .home-founder-card p {
+  color: rgba(45, 37, 28, 0.82);
+}
+
+html[data-mufflermen-theme="light"] .primitive-video-card h3,
+html[data-mufflermen-theme="light"] .vehicle-collection-copy h3,
+html[data-mufflermen-theme="light"] .brand-asset-card h3,
+html[data-mufflermen-theme="light"] .home-founder-card h3 {
+  color: var(--ink-espresso);
+}
+
+html[data-mufflermen-theme="light"] .primitive-video-hero-shell > section {
+  --primitive-text-strong: #fff;
+  --primitive-body: rgba(255, 255, 255, 0.86);
+  --primitive-muted: rgba(255, 255, 255, 0.66);
+}
+
+html[data-mufflermen-theme="light"] .service,
+html[data-mufflermen-theme="light"] .route-panel,
+html[data-mufflermen-theme="light"] .homepage-cms-feature,
+html[data-mufflermen-theme="light"] .homepage-cms-card,
+html[data-mufflermen-theme="light"] .feature,
+html[data-mufflermen-theme="light"] .feature-specs > div,
+html[data-mufflermen-theme="light"] .spec-cell,
+html[data-mufflermen-theme="light"] .step,
+html[data-mufflermen-theme="light"] .review-card,
+html[data-mufflermen-theme="light"] .faq-item,
+html[data-mufflermen-theme="light"] .home-founder-card,
+html[data-mufflermen-theme="light"] .primitive-video-hero-shell,
+html[data-mufflermen-theme="light"] .primitive-video-card,
+html[data-mufflermen-theme="light"] .vehicle-collection-card,
+html[data-mufflermen-theme="light"] .brand-asset-card,
+html[data-mufflermen-theme="light"] .public-contact-form,
+html[data-mufflermen-theme="light"] .public-contact-details,
+html[data-mufflermen-theme="light"] .seo-card,
+html[data-mufflermen-theme="light"] .seo-contact-card,
+html[data-mufflermen-theme="light"] .parts-empty,
+html[data-mufflermen-theme="light"] .part-result {
+  border-color: rgba(83, 70, 50, 0.2);
+  background:
+    radial-gradient(72% 78% at 10% 0%, rgba(255, 255, 255, 0.78), transparent 58%),
+    radial-gradient(70% 80% at 88% 88%, rgba(122, 31, 31, 0.16), transparent 68%),
+    linear-gradient(145deg, rgba(255, 251, 240, 0.95), rgba(235, 224, 202, 0.86) 54%, rgba(198, 151, 86, 0.18)),
+    #f6efe0;
+  box-shadow:
+    24px 34px 72px -42px rgba(54, 43, 28, 0.52),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.86),
+    inset -1px -1px 0 rgba(87, 68, 43, 0.1);
+}
+
+html[data-mufflermen-theme="light"] .feature-specs .v.chrome-text {
+  background: none;
+  color: var(--ink-espresso);
+  -webkit-text-fill-color: currentColor;
+  filter: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+html[data-mufflermen-theme="light"] .feature-body .body-md {
+  color: rgba(45, 37, 28, 0.82);
+  text-shadow: none;
+}
+
+html[data-mufflermen-theme="light"] .brand-carbon-icon-img {
+  filter:
+    drop-shadow(0 14px 24px rgba(54, 43, 28, 0.24))
+    drop-shadow(0 0 12px rgba(122, 31, 31, 0.12));
+}
+
+html[data-mufflermen-theme="light"] .service.glass::after,
+html[data-mufflermen-theme="light"] .route-panel.glass::after,
+html[data-mufflermen-theme="light"] .homepage-cms-feature.glass::after,
+html[data-mufflermen-theme="light"] .feature.glass::after,
+html[data-mufflermen-theme="light"] .review-card.glass::after,
+html[data-mufflermen-theme="light"] .faq-item.glass::after,
+html[data-mufflermen-theme="light"] .home-founder-card.glass::after,
+html[data-mufflermen-theme="light"] .primitive-video-hero-shell.glass::after,
+html[data-mufflermen-theme="light"] .primitive-video-card.glass::after,
+html[data-mufflermen-theme="light"] .vehicle-collection-card.glass::after,
+html[data-mufflermen-theme="light"] .brand-asset-card.glass::after,
+html[data-mufflermen-theme="light"] .seo-card.glass::after,
+html[data-mufflermen-theme="light"] .seo-contact-card.glass::after,
+html[data-mufflermen-theme="light"] .parts-empty.glass::after,
+html[data-mufflermen-theme="light"] .part-result.glass::after,
+html[data-mufflermen-theme="light"] .homepage-cms-card.neumo::after,
+html[data-mufflermen-theme="light"] .step.neumo::after,
+html[data-mufflermen-theme="light"] .review-card.neumo::after {
+  opacity: 0.34;
+  mix-blend-mode: multiply;
+  background:
+    linear-gradient(118deg, transparent 34%, rgba(122, 31, 31, 0.08), transparent 72%),
+    radial-gradient(70% 58% at 18% 10%, rgba(255, 255, 255, 0.72), transparent 62%);
+}
+
+html[data-mufflermen-theme="light"] .home-founder-card.home-founder-card-lead > div {
+  background: transparent;
+}
+
+html[data-mufflermen-theme="light"] .home-founder-card.glass::after,
+html[data-mufflermen-theme="light"] .primitive-video-hero-shell.glass::after,
+html[data-mufflermen-theme="light"] .primitive-video-card.glass::after,
+html[data-mufflermen-theme="light"] .vehicle-collection-card.glass::after,
+html[data-mufflermen-theme="light"] .brand-asset-card.glass::after {
+  display: none;
+}
+
+html[data-mufflermen-theme="light"] .home-founder-card img,
+html[data-mufflermen-theme="light"] .primitive-video-card video,
+html[data-mufflermen-theme="light"] .primitive-video-hero-shell video,
+html[data-mufflermen-theme="light"] .brand-asset-card img {
+  filter: saturate(1.06) contrast(1.08) brightness(0.98);
+}
+
+html[data-mufflermen-theme="light"] .vehicle-collection-card img {
+  filter: saturate(0.96) contrast(1.04) brightness(1.02);
+}
+
+html[data-mufflermen-theme="light"] .vehicle-collection-badge {
+  background: rgba(17, 15, 13, 0.82);
+  border-color: rgba(255,255,255,0.34);
+}
+
+@media (max-width: 1100px) {
+  .primitive-video-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .primitive-video-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vehicle-collection-feature {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vehicle-collection-card {
+    grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+
+  .vehicle-frame-strip {
+    grid-column: 1 / -1;
+  }
+
+  .brand-assets-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-inner {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 10px;
+  }
+
+  .nav-logo {
+    justify-self: center;
+  }
+
+  .nav-logo img {
+    height: 40px;
+    max-width: min(112px, 42vw);
+  }
+
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 8px;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 32px;
+    padding: 0 4px;
+    border-radius: 6px;
+    font-size: 10px;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.1;
+  }
+
+  .home-founder-card.home-founder-card-lead {
+    min-height: 0;
+  }
+
+  .home-founder-card.home-founder-card-lead > img {
+    height: auto !important;
+    min-height: 0;
+    object-fit: contain;
+    object-position: center;
+    background: #050506;
+  }
+
+  .primitive-video-rail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vehicle-collection-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vehicle-frame-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brand-assets-grid,
+  .brand-asset-card.is-wide {
+    grid-template-columns: minmax(0, 1fr);
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .brand-asset-card.is-wide img {
+    min-height: 260px;
+  }
+}

@@ -1,0 +1,182 @@
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "head head head"
+    "body body body"
+    "actions actions actions";
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4) 18px;
+  border: 1px solid var(--primitive-line);
+  border-left: 3px solid var(--card-tone, var(--primitive-line-strong));
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  transition:
+    border-color var(--primitive-duration-normal) var(--primitive-ease-standard),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-standard),
+    transform var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+.cardSelected {
+  border-color: var(--card-tone, var(--primitive-amber));
+  box-shadow:
+    0 0 0 1px var(--card-tone, var(--primitive-amber)),
+    0 18px 42px color-mix(in oklab, var(--primitive-overlay) 88%, transparent);
+  transform: translateY(-1px);
+}
+
+.head {
+  grid-area: head;
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.index {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  color: var(--card-tone, var(--primitive-muted));
+}
+
+.typeChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border: 1px solid var(--card-tone-border, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--card-tone-bg, var(--primitive-glass-soft));
+  color: var(--card-tone-ink, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.requiredFlag {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  color: var(--primitive-red);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.body {
+  grid-area: body;
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.promptLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.prompt {
+  margin: 0;
+  font-size: var(--primitive-text-base);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  line-height: 1.4;
+}
+
+.helper {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+}
+
+.actions {
+  grid-area: actions;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--primitive-space-1-5);
+}
+
+.action {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-standard), color var(--primitive-duration-fast) var(--primitive-ease-standard), background var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.action:hover,
+.action:focus-visible {
+  border-color: var(--card-tone, var(--primitive-line-strong));
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  outline: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.toneTeal {
+  --card-tone: var(--primitive-teal);
+  --card-tone-bg: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  --card-tone-border: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  --card-tone-ink: color-mix(in oklab, var(--primitive-teal) 55%, var(--primitive-text-strong));
+}
+
+.toneAmber {
+  --card-tone: var(--primitive-amber);
+  --card-tone-bg: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --card-tone-border: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --card-tone-ink: color-mix(in oklab, var(--primitive-amber) 58%, var(--primitive-text-strong));
+}
+
+.toneViolet {
+  --card-tone: color-mix(in oklab, var(--primitive-violet) 60%, var(--primitive-text-strong));
+  --card-tone-bg: color-mix(in oklab, var(--primitive-violet) 18%, transparent);
+  --card-tone-border: color-mix(in oklab, var(--primitive-violet) 40%, transparent);
+  --card-tone-ink: color-mix(in oklab, var(--primitive-violet) 42%, var(--primitive-text-strong));
+}
+
+.toneGreen {
+  --card-tone: var(--primitive-green);
+  --card-tone-bg: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --card-tone-border: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --card-tone-ink: color-mix(in oklab, var(--primitive-green) 50%, var(--primitive-text-strong));
+}
+
+.toneRed {
+  --card-tone: var(--primitive-red);
+  --card-tone-bg: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --card-tone-border: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --card-tone-ink: color-mix(in oklab, var(--primitive-red) 50%, var(--primitive-text-strong));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .action {
+    transition: none;
+  }
+}

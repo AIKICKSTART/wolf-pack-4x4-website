@@ -1,0 +1,213 @@
+/* state-server-error — Snapped exhaust pipe with sparks.
+   Hard-error surface, role=alert. */
+
+.surface {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: center;
+  padding: clamp(24px, 3vw, 48px);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 35%, transparent);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 18% 8%, color-mix(in oklab, var(--primitive-red) 22%, transparent), transparent 48%),
+    radial-gradient(ellipse at 92% 92%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 52%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-canvas) 28%, transparent)),
+    var(--primitive-panel-strong);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-red) 18%, transparent),
+    0 32px 72px color-mix(in oklab, var(--primitive-canvas) 46%, transparent);
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--primitive-body);
+}
+
+.alertStrip {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--primitive-red) 0 12px,
+    transparent 12px 18px
+  );
+  opacity: 0.85;
+  animation: alertScroll 8s linear infinite;
+  background-size: 200% 100%;
+}
+
+.surface > *:not(.alertStrip) {
+  position: relative;
+  z-index: 1;
+}
+
+.figure {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+}
+
+.illustration {
+  width: min(100%, 340px);
+  height: auto;
+}
+
+.illustration .sparkA,
+.illustration .sparkB,
+.illustration .sparkC {
+  transform-origin: center;
+  animation: sparkPulse 1.4s ease-in-out infinite;
+}
+
+.illustration .sparkB {
+  animation-delay: 0.3s;
+}
+
+.illustration .sparkC {
+  animation-delay: 0.55s;
+}
+
+.caption {
+  margin-top: 14px;
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.body {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.code {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  width: fit-content;
+  padding: 5px 11px;
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.code::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  box-shadow: 0 0 10px var(--primitive-red);
+  animation: blip 1.4s ease-in-out infinite;
+}
+
+.headline {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(36px, 4.6vw, 66px);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+.message {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--primitive-body);
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.55;
+}
+
+.refLine {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-left: 2px solid var(--primitive-red);
+  border-radius: 0 var(--primitive-radius-md) var(--primitive-radius-md) 0;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.refLine dt {
+  margin: 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.refLine dd {
+  margin: 0;
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  word-break: break-all;
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+}
+
+@keyframes sparkPulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes alertScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes blip {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .illustration .sparkA,
+  .illustration .sparkB,
+  .illustration .sparkC,
+  .alertStrip,
+  .code::before {
+    animation: none;
+  }
+
+  .illustration .sparkA,
+  .illustration .sparkB,
+  .illustration .sparkC {
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 860px) {
+  .surface {
+    grid-template-columns: 1fr;
+  }
+}

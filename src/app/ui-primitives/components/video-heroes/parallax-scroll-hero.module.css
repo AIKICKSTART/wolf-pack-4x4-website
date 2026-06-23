@@ -1,0 +1,227 @@
+/* =========================================================
+   PARALLAX SCROLL HERO — text fixed, video shifts on scroll
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 90svh;
+  background:
+    radial-gradient(circle at 14% 24%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 56%),
+    linear-gradient(180deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 84%, var(--primitive-teal)) 100%);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  padding: clamp(48px, 8svh, 96px) clamp(28px, 6vw, 96px);
+  display: grid;
+  align-items: center;
+}
+
+.gridLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(28px, 5vw, 80px);
+  align-items: center;
+  width: 100%;
+}
+
+.headBlock {
+  display: grid;
+  gap: 18px;
+  position: relative;
+  padding-left: 28px;
+}
+.headBlock::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--primitive-red), transparent);
+}
+
+.numeral {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(80px, 12vw, 168px);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--primitive-amber);
+  margin-bottom: -18px;
+  user-select: none;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.tag {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 1.4rem + 4.2vw, 5.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  margin: 0;
+}
+
+.subhead {
+  font-size: var(--primitive-text-md);
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--primitive-text-strong) 78%, transparent);
+  margin: 6px 0 0;
+  max-width: 44ch;
+}
+
+.cta {
+  margin-top: var(--primitive-space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: 12px 22px;
+  width: max-content;
+  background: var(--primitive-btn-secondary-bg);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  transition: all 240ms var(--primitive-ease-out);
+}
+.cta:hover {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, var(--primitive-canvas));
+  transform: translateY(-2px);
+}
+.cta:hover em,
+.cta:focus-visible em {
+  transform: translate(4px, -4px);
+}
+.cta:active {
+  transform: translateY(0);
+  background: color-mix(in oklab, var(--primitive-amber) 14%, var(--primitive-canvas));
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 4px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+.cta em {
+  font-style: normal;
+  font-size: var(--primitive-text-md);
+  transition: transform 200ms ease;
+}
+
+.viewport {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  overflow: hidden;
+  background: color-mix(in oklab, var(--primitive-canvas) 92%, white);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 5%, transparent),
+    0 38px 80px color-mix(in oklab, black 60%, transparent);
+}
+
+.viewportInner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.video {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.tintOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, black 0%, transparent) 30%, color-mix(in oklab, black 55%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 38%);
+  pointer-events: none;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--primitive-text-strong) 0%, transparent) 0px,
+    color-mix(in oklab, var(--primitive-text-strong) 0%, transparent) 2px,
+    color-mix(in oklab, var(--primitive-text-strong) 3%, transparent) 2px,
+    color-mix(in oklab, var(--primitive-text-strong) 3%, transparent) 3px
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.viewportLabel {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) 14px;
+  background: color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  font-family: var(--primitive-font-mono);
+  color: var(--primitive-amber);
+}
+.viewportLabel span {
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  opacity: 0.7;
+}
+.viewportLabel strong {
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.18em;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.numeralStripe {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -52px;
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  font-family: var(--primitive-font-display);
+  font-size: 76px;
+  line-height: 0.88;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  pointer-events: none;
+  user-select: none;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+@media (max-width: 880px) {
+  .gridLayout { grid-template-columns: 1fr; }
+  .numeralStripe { display: none; }
+  .viewport { aspect-ratio: 16 / 11; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video { inset: 0; width: 100%; height: 100%; }
+}

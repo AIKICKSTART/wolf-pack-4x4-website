@@ -1,0 +1,144 @@
+.figure {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  width: 100%;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: var(--primitive-font-mono);
+}
+
+.grid {
+  stroke: var(--primitive-line);
+}
+
+.gridLine {
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+  opacity: 0.55;
+}
+
+/* Solid zero-line anchors the columns — depth + data-viz polish. */
+.baseline {
+  stroke: var(--primitive-line-strong);
+  stroke-width: 1;
+  stroke-dasharray: none;
+  opacity: 0.9;
+}
+
+.axisLabel {
+  fill: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.valueLabel {
+  fill: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.78;
+  transition: opacity var(--dur, 200ms) ease;
+}
+
+.barGroup {
+  transform-origin: bottom;
+  animation: pop 540ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Token-driven lift reads in both themes; black rgba shadows looked muddy in light mode. */
+.bar {
+  filter: drop-shadow(0 2px 6px var(--primitive-shadow-outline));
+  transition:
+    filter var(--dur, 200ms) ease,
+    opacity var(--dur, 200ms) ease;
+}
+
+/* Designed hover: dim the cohort, spotlight the hovered column. */
+.bars:hover .bar {
+  opacity: 0.5;
+}
+
+.bars:hover .bar:hover {
+  opacity: 1;
+  filter: drop-shadow(0 4px 12px var(--primitive-shadow-outline))
+    drop-shadow(0 0 10px color-mix(in oklab, currentColor 35%, transparent));
+}
+
+.barGroup:hover .valueLabel {
+  opacity: 1;
+}
+
+@keyframes pop {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2) var(--primitive-space-4);
+  padding: 0;
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 3px 8px 3px 4px;
+  border-radius: var(--primitive-radius-pill);
+  transition: background var(--dur, 200ms) ease;
+}
+
+.legendItem:hover {
+  background: var(--primitive-surface-3);
+  color: var(--primitive-body);
+}
+
+.legendSwatch {
+  width: 12px;
+  height: 8px;
+  border-radius: var(--primitive-radius-xs);
+  background: var(--swatch);
+  transition: box-shadow var(--dur, 200ms) ease;
+}
+
+.legendItem:hover .legendSwatch {
+  box-shadow: 0 0 8px color-mix(in oklab, var(--swatch) 60%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barGroup {
+    animation: none;
+    transform: none;
+  }
+  .bar,
+  .valueLabel,
+  .legendItem,
+  .legendSwatch {
+    transition: none;
+  }
+}

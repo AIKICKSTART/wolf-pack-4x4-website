@@ -1,0 +1,166 @@
+.tree {
+  display: block;
+  padding: var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-card-bg);
+}
+
+.root,
+.children {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.children {
+  position: relative;
+}
+
+.children::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 0;
+  bottom: var(--primitive-space-1);
+  width: 1px;
+  background: linear-gradient(180deg, var(--primitive-line) 0%, transparent 100%);
+}
+
+.item {
+  position: relative;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: 5px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-md);
+  transition: background 160ms ease;
+}
+
+.row:hover {
+  background: var(--primitive-glass-soft);
+}
+
+.rowSelected {
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.rowDragTarget {
+  background: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-teal) 55%, transparent);
+}
+
+.chevron {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border: 0;
+  border-radius: var(--primitive-radius-sm);
+  color: var(--primitive-muted);
+  cursor: pointer;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.chevron:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.chevron svg {
+  transition: transform 160ms ease;
+}
+
+.chevronOpen {
+  transform: rotate(90deg);
+}
+
+.chevronDot {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-line);
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--primitive-body);
+  font-size: 12.5px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.icon {
+  color: var(--primitive-amber);
+  display: inline-grid;
+  place-items: center;
+}
+
+.rowSelected .icon {
+  color: var(--primitive-red);
+}
+
+.name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.count {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  min-width: 22px;
+  justify-content: center;
+}
+
+.rowSelected .count {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+}
+
+.dragTargetChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  border: 1px dashed color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .chevron,
+  .chevron svg {
+    transition: none;
+  }
+}

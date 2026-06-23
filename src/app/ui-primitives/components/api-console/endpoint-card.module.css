@@ -1,0 +1,198 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    color-mix(in oklab, var(--primitive-panel) 75.6098%, transparent);
+  box-shadow: var(--primitive-surface-shadow);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-surface-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.deprecated {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in oklab, var(--primitive-amber) 4%, transparent) 6px 7px),
+    color-mix(in oklab, var(--primitive-panel) 75.6098%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.methodChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--m-line, var(--primitive-line));
+  border-radius: var(--primitive-radius-sm);
+  background: var(--m-bg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent));
+  color: var(--m-fg, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.methodGet {
+  --m-line: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  --m-fg: var(--primitive-green);
+}
+
+.methodPost {
+  --m-line: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  --m-fg: var(--primitive-teal);
+}
+
+.methodPut {
+  --m-line: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  --m-fg: var(--primitive-amber);
+}
+
+.methodPatch {
+  --m-line: color-mix(in oklab, color-mix(in oklab, var(--primitive-amber) 80%, var(--primitive-red)) 50%, transparent);
+  --m-bg: color-mix(in oklab, color-mix(in oklab, var(--primitive-amber) 80%, var(--primitive-red)) 12%, transparent);
+  --m-fg: color-mix(in oklab, var(--primitive-amber) 80%, var(--primitive-red));
+}
+
+.methodDelete {
+  --m-line: color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  --m-fg: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-text-strong));
+}
+
+.methodHead {
+  --m-line: color-mix(in oklab, var(--primitive-text-strong) 28%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  --m-fg: color-mix(in oklab, var(--primitive-muted) 45%, var(--primitive-text-strong));
+}
+
+.methodOptions {
+  --m-line: color-mix(in oklab, var(--primitive-muted) 42%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-muted) 12%, transparent);
+  --m-fg: color-mix(in oklab, var(--primitive-muted) 55%, var(--primitive-text-strong));
+}
+
+.path {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deprecatedTag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.description {
+  margin: var(--primitive-space-0);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  flex-wrap: wrap;
+}
+
+.versionChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tryBtn,
+.tryStatic {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5) var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-red);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.tryBtn:hover,
+.tryBtn:focus-visible {
+  border-color: var(--primitive-amber);
+  background: var(--primitive-amber);
+  color: var(--primitive-text-on-accent);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.tryStatic {
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .tryBtn {
+    transition: none;
+  }
+  .card:hover,
+  .card:focus-within,
+  .tryBtn:hover,
+  .tryBtn:focus-visible {
+    transform: none;
+  }
+}

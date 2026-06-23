@@ -1,0 +1,94 @@
+.ticker {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 4%, transparent),
+      color-mix(in oklab, var(--primitive-text-on-accent) 1%, transparent)
+    ),
+    var(--primitive-panel);
+  overflow: hidden;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: 14px 22px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--primitive-green) 22%, var(--primitive-canvas)),
+    var(--primitive-canvas)
+  );
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(12px, 0.9vw, 15px);
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  border-right: 1px solid var(--primitive-line);
+}
+
+.scroll {
+  padding: var(--primitive-space-3) 0;
+}
+
+.item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+  white-space: nowrap;
+  color: var(--primitive-body);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 6%, transparent);
+  border: 1px solid var(--primitive-line);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(10px, 0.78vw, 12px);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.item[data-kind="footy"] .chip {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+}
+
+.item[data-kind="event"] .chip {
+  color: var(--primitive-teal);
+  border-color: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+}
+
+.item[data-kind="notice"] .chip {
+  color: var(--primitive-amber);
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+}
+
+.headline {
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  font-weight: 400;
+  font-size: clamp(20px, 1.6vw, 28px);
+  letter-spacing: 0.008em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.detail {
+  font-style: normal;
+  font-family: var(--ff-ts-bebas, var(--primitive-font-display));
+  font-size: clamp(14px, 1.1vw, 18px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}

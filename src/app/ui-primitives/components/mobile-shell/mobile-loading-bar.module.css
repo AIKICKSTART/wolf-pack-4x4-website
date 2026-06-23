@@ -1,0 +1,81 @@
+.bar {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  background: var(--primitive-glass-soft);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.active {
+  opacity: 1;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--primitive-radius-pill);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, transparent, var(--bar-tone, var(--primitive-red)), transparent);
+}
+
+.toneRed {
+  --bar-tone: var(--primitive-red);
+}
+
+.toneAmber {
+  --bar-tone: var(--primitive-amber);
+}
+
+.toneTeal {
+  --bar-tone: var(--primitive-teal);
+}
+
+.indeterminate .fill {
+  transform: scaleX(0.35) translateX(-100%);
+  animation: mlbDrift 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  background: linear-gradient(90deg, transparent 0%, var(--bar-tone, var(--primitive-red)) 50%, transparent 100%);
+  box-shadow: 0 0 10px var(--bar-tone, var(--primitive-red));
+}
+
+.determinate .fill {
+  transform: scaleX(0);
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(90deg, var(--bar-tone, var(--primitive-red)), var(--primitive-amber));
+  box-shadow: 0 0 8px var(--bar-tone, var(--primitive-red));
+}
+
+@keyframes mlbDrift {
+  0% {
+    transform: translateX(-100%) scaleX(0.4);
+  }
+  60% {
+    transform: translateX(60%) scaleX(0.6);
+  }
+  100% {
+    transform: translateX(160%) scaleX(0.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indeterminate .fill {
+    animation: mlbPulse 1.8s ease-in-out infinite;
+    transform: scaleX(0.5);
+  }
+  .bar,
+  .determinate .fill {
+    transition: none;
+  }
+}
+
+@keyframes mlbPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}

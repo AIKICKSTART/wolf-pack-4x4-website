@@ -1,0 +1,153 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-control-surface);
+  box-shadow: var(--primitive-surface-shadow);
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+  isolation: isolate;
+  position: relative;
+}
+
+.cardShip {
+  border-color: color-mix(in srgb, var(--primitive-green) 60%, var(--primitive-line));
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--primitive-green) 18%, transparent), transparent 56%),
+    var(--primitive-control-surface);
+}
+
+.cardIterate {
+  border-color: color-mix(in srgb, var(--primitive-amber) 60%, var(--primitive-line));
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--primitive-amber) 18%, transparent), transparent 56%),
+    var(--primitive-control-surface);
+}
+
+.cardKill {
+  border-color: color-mix(in srgb, var(--primitive-red) 60%, var(--primitive-line));
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--primitive-red) 18%, transparent), transparent 56%),
+    var(--primitive-control-surface);
+}
+
+.cardKeep {
+  border-color: color-mix(in srgb, var(--primitive-teal) 60%, var(--primitive-line));
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--primitive-teal) 18%, transparent), transparent 56%),
+    var(--primitive-control-surface);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.headline {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+.glyph {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-lg);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+.glyphShip { color: var(--primitive-green); background: color-mix(in srgb, var(--primitive-green) 18%, transparent); border-color: color-mix(in srgb, var(--primitive-green) 50%, var(--primitive-line)); }
+.glyphIterate { color: var(--primitive-amber); background: color-mix(in srgb, var(--primitive-amber) 18%, transparent); border-color: color-mix(in srgb, var(--primitive-amber) 50%, var(--primitive-line)); }
+.glyphKill { color: var(--primitive-red); background: color-mix(in srgb, var(--primitive-red) 18%, transparent); border-color: color-mix(in srgb, var(--primitive-red) 50%, var(--primitive-line)); }
+.glyphKeep { color: var(--primitive-teal); background: color-mix(in srgb, var(--primitive-teal) 18%, transparent); border-color: color-mix(in srgb, var(--primitive-teal) 50%, var(--primitive-line)); }
+
+.title {
+  margin: var(--primitive-space-0);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: var(--primitive-weight-bold);
+  line-height: 1.1;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.subtitle {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.rationaleHeading {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.rationaleList {
+  margin: var(--primitive-space-0);
+  padding-left: var(--primitive-space-4);
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+  line-height: var(--primitive-leading-normal);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.confidenceBar {
+  display: grid;
+  gap: var(--primitive-space-1);
+  width: 180px;
+}
+
+.confidenceTrack {
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  overflow: hidden;
+}
+
+.confidenceFill {
+  height: 100%;
+  background: var(--primitive-green);
+}
+
+.confidenceLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--primitive-text-2xs);
+  color: var(--primitive-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

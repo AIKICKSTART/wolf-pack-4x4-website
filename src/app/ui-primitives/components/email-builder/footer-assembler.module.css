@@ -1,0 +1,204 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding-bottom: var(--primitive-space-2-5);
+  border-bottom: 1px dashed var(--primitive-line);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-h6);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.input,
+.textarea {
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  outline: none;
+  transition: border-color 200ms ease;
+  resize: vertical;
+}
+
+.input:focus-visible,
+.textarea:focus-visible {
+  border-color: var(--primitive-teal);
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.emptyHint {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: 10px;
+  background: var(--primitive-glass-soft);
+  border: 1px solid var(--primitive-line);
+}
+
+.toggleLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.toggle {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.toggleOn {
+  background: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 60%, transparent);
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  transition: transform 200ms ease;
+}
+
+.toggleOn .toggleThumb {
+  transform: translateX(16px);
+}
+
+/* Rendered email-footer preview — simulates the email on light "paper".
+   The ink/muted hexes below are email-content brand data (matching the
+   theme-preset palette), not dashboard chrome, so they intentionally stay
+   as documented data colors to preserve the email-client appearance. */
+.preview {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-4);
+  border-radius: var(--primitive-radius-lg);
+  text-align: center;
+}
+
+.previewLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: #6b7080;
+}
+
+.previewAddress {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  color: #1f2230;
+  line-height: 1.4;
+}
+
+.socialRow {
+  display: inline-flex;
+  justify-content: center;
+  gap: var(--primitive-space-2);
+  margin: var(--primitive-space-1) auto;
+}
+
+.socialDot {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--primitive-radius-round);
+  background: #1f2230;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.legalRow {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--primitive-space-3);
+  margin: 0 auto;
+}
+
+.legalLink {
+  font-size: var(--primitive-text-xs);
+  color: #1f2230;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .toggleThumb,
+  .input,
+  .textarea {
+    transition: none;
+  }
+}

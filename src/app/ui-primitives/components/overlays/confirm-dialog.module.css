@@ -1,0 +1,223 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  backdrop-filter: blur(14px) saturate(1.18);
+  -webkit-backdrop-filter: blur(14px) saturate(1.18);
+  transition: opacity 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop[data-starting-style],
+.backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 120;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "icon body"
+    "actions actions";
+  column-gap: var(--primitive-space-4);
+  row-gap: 14px;
+  width: min(92vw, 460px);
+  padding: 22px 22px var(--primitive-space-4);
+  border: 1px solid var(--variant-border, var(--primitive-line-strong));
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  backdrop-filter: blur(22px) saturate(1.2);
+  -webkit-backdrop-filter: blur(22px) saturate(1.2);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    0 32px 90px -20px color-mix(in oklab, var(--primitive-canvas) 72%, transparent);
+  outline: none;
+  transform: translate(-50%, -50%);
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), opacity 220ms ease;
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 12px)) scale(0.97);
+}
+
+.variantDefault {
+  --variant-border: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  --variant-tone: var(--primitive-teal);
+}
+
+.variantDestructive {
+  --variant-border: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  --variant-tone: var(--primitive-red);
+}
+
+.iconCell {
+  position: relative;
+  grid-area: icon;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--variant-tone) 18%, transparent);
+  border: 1px solid color-mix(in oklab, var(--variant-tone) 42%, transparent);
+  color: var(--variant-tone);
+}
+
+.variantDestructive .iconCell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid color-mix(in oklab, var(--variant-tone) 55%, transparent);
+  animation: confirmDangerPulse 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes confirmDangerPulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+.body {
+  grid-area: body;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.description {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.actions {
+  grid-area: actions;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--primitive-space-2);
+  padding-top: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.cancelBtn,
+.confirmBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-btn-radius);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease,
+    color 160ms ease, box-shadow 160ms ease;
+}
+
+.cancelBtn {
+  background: var(--primitive-btn-secondary-bg);
+  border-color: var(--primitive-btn-secondary-border);
+  color: var(--primitive-btn-secondary-fg);
+}
+
+.cancelBtn:hover:not(:disabled) {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+  transform: translateY(-1px);
+}
+
+.cancelBtn:focus-visible,
+.confirmBtn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.confirmDefault {
+  color: var(--primitive-text-on-accent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 18%, transparent), transparent 46%),
+    linear-gradient(180deg, var(--primitive-teal), color-mix(in oklab, var(--primitive-teal) 65%, var(--primitive-canvas)));
+  border-color: color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 30%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, var(--primitive-canvas) 40%, transparent),
+    0 14px 32px color-mix(in oklab, var(--primitive-teal) 24%, transparent);
+}
+
+.confirmDefault:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.confirmDestructive {
+  color: var(--primitive-text-on-accent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 22%, transparent), transparent 46%),
+    linear-gradient(180deg, var(--primitive-red), var(--primitive-red-dark));
+  border-color: color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 32%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, var(--primitive-canvas) 40%, transparent),
+    0 14px 32px color-mix(in oklab, var(--primitive-red) 28%, transparent);
+}
+
+.confirmDestructive:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.confirmBtn:disabled,
+.cancelBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .popup,
+  .cancelBtn,
+  .confirmBtn {
+    transition: none;
+  }
+  .variantDestructive .iconCell::after {
+    animation: none;
+  }
+  .popup[data-starting-style],
+  .popup[data-ending-style] {
+    transform: translate(-50%, -50%);
+  }
+}

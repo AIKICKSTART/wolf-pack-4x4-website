@@ -1,0 +1,234 @@
+.root {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  padding: 26px 20px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 50%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  overflow: hidden;
+  text-align: center;
+}
+
+.identity {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 28%, color-mix(in oklab, var(--primitive-text-strong) 32%, transparent), transparent 60%),
+    linear-gradient(180deg, var(--primitive-red), color-mix(in oklab, var(--primitive-red) 55%, black));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 16px 30px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.crewName {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+.crewRole {
+  margin: 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.unlock {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.unlockBtn {
+  appearance: none;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(circle at 50% 28%, color-mix(in oklab, var(--primitive-text-strong) 18%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  color: var(--primitive-teal);
+  cursor: pointer;
+  box-shadow: 0 22px 50px color-mix(in oklab, var(--primitive-teal) 32%, transparent), inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  transition: transform 220ms var(--primitive-ease-out), border-color 220ms ease;
+}
+
+.unlockBtn:hover {
+  transform: scale(1.02);
+}
+
+.unlockBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--primitive-teal), 0 22px 50px color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+
+.unlockBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.unlockBtn::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  opacity: 0.55;
+  animation: bioHalo 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+.scanning::after {
+  border-color: color-mix(in oklab, var(--primitive-amber) 55%, transparent);
+}
+
+.scanning {
+  color: var(--primitive-amber);
+}
+
+.success::after {
+  border-color: color-mix(in oklab, var(--primitive-green) 70%, transparent);
+}
+
+.success {
+  color: var(--primitive-green);
+}
+
+.error::after {
+  border-color: color-mix(in oklab, var(--primitive-red) 70%, transparent);
+  animation: bioShake 320ms ease;
+}
+
+.error {
+  color: var(--primitive-red);
+}
+
+.unlockHint {
+  margin: 0;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.fallback {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px dashed var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.fallbackLabel {
+  margin: 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.pinRow {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pinDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  transition:
+    background var(--primitive-duration-fast) var(--primitive-ease-standard),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.pinDotFilled {
+  background: var(--primitive-teal);
+  border-color: var(--primitive-teal);
+  box-shadow: 0 0 8px var(--primitive-teal);
+}
+
+.fallbackBtn {
+  appearance: none;
+  display: inline-flex;
+  align-self: center;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.fallbackBtn:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, var(--primitive-btn-secondary-bg));
+}
+
+.fallbackBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@keyframes bioHalo {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+@keyframes bioShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unlockBtn::after,
+  .error::after,
+  .unlockBtn,
+  .pinDot {
+    animation: none;
+    transition: none;
+  }
+}

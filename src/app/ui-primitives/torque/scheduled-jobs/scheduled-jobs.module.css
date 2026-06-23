@@ -1,0 +1,649 @@
+/* Scheduled jobs & cron — bespoke chrome composed from primitive tokens.
+   Torque header band + avatar, posture KPIs, the jobs table chrome with
+   enable/disable toggles, run-history + trace column, and the trigger /
+   upcoming / audit side rail. Light + dark parity via --primitive-* tokens;
+   motion is opacity/transform only and respects reduced-motion. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Header band --------------------------------------------------------- */
+
+.band {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(18px, 2.4vw, 32px);
+  align-items: center;
+  padding: clamp(20px, 2.6vw, 32px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 58%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  opacity: 0.6;
+}
+
+.bandMain {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.bandHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--primitive-text-on-accent) 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 26px color-mix(in oklab, var(--primitive-red) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.torqueId {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.torqueName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.torqueRole {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+.bandTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(24px, 3.2vw, 40px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.bandTitle em {
+  font-style: normal;
+  color: var(--primitive-red);
+}
+
+.bandCopy {
+  margin: 0;
+  max-width: 58ch;
+  font-size: var(--primitive-text-base);
+  line-height: 1.6;
+  color: var(--primitive-body);
+}
+
+.bandStatus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.bandMetrics {
+  min-width: 0;
+}
+
+/* ---- Jobs table chrome --------------------------------------------------- */
+
+.tableFrame {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.tableHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.tableHeadText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.tableKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.tableTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.newJobBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px var(--primitive-space-4);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color var(--primitive-duration-fast) ease,
+    transform var(--primitive-duration-fast) ease;
+}
+
+.newJobBtn:hover {
+  background: color-mix(in oklab, var(--primitive-red) 26%, transparent);
+  transform: translateY(-1px);
+}
+
+.newJobBtn:focus-visible {
+  outline: 2px solid var(--primitive-red);
+  outline-offset: 2px;
+}
+
+.newJobBtn:active {
+  transform: translateY(0);
+}
+
+/* ---- Table cells --------------------------------------------------------- */
+
+.jobCell {
+  display: grid;
+  gap: 3px;
+  max-width: 34ch;
+}
+
+.jobName {
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.jobName[data-off="true"] {
+  color: var(--primitive-muted);
+}
+
+.jobBlurb {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--primitive-muted);
+}
+
+.jobOwner {
+  width: fit-content;
+  margin-top: 1px;
+  padding: 1px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-surface-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.scheduleCell {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.cron {
+  width: fit-content;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: 7px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-surface-3);
+  font-family: var(--primitive-font-mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+}
+
+.cadence {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+.nextRun {
+  font-family: var(--primitive-font-mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-body);
+  white-space: nowrap;
+}
+
+.nextRun[data-paused="true"] {
+  color: var(--primitive-muted);
+  font-style: italic;
+}
+
+.lastCell {
+  display: grid;
+  gap: var(--primitive-space-1);
+  justify-items: start;
+}
+
+.lastRun {
+  font-family: var(--primitive-font-mono);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-muted);
+}
+
+/* ---- Enable / disable toggle (role=switch) ------------------------------- */
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1);
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 3px;
+  border-radius: var(--primitive-radius-md);
+}
+
+.toggleTrack {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 21px;
+  flex: 0 0 auto;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line-strong);
+  background: var(--primitive-surface-3);
+  transition: background-color var(--duration-normal, 300ms) ease;
+}
+
+.toggle[data-on="true"] .toggleTrack {
+  background: var(--primitive-green);
+  border-color: transparent;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: var(--primitive-space-0-5);
+  left: var(--primitive-space-0-5);
+  width: 15px;
+  height: 15px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-on-accent);
+  box-shadow: 0 1px 3px var(--primitive-shadow-outline);
+  transition: transform var(--duration-normal, 300ms) var(--primitive-ease-out);
+}
+
+.toggle[data-on="true"] .toggleThumb {
+  transform: translateX(17px);
+}
+
+.toggle[data-on="true"] .toggleText {
+  color: var(--primitive-green);
+}
+
+/* ---- Status legend ------------------------------------------------------- */
+
+.statusLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2) 18px;
+  margin: -6px 0 0;
+  padding: 0 var(--primitive-space-1);
+  list-style: none;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+/* ---- Layout: runs column + side rail ------------------------------------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  align-items: start;
+}
+
+.column {
+  display: grid;
+  gap: clamp(16px, 2vw, 24px);
+  min-width: 0;
+}
+
+.panel {
+  display: grid;
+  gap: 14px;
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.panelHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.panelHeadText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.panelKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.panelTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.panelMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+}
+
+.runList {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+/* ---- Side rail ----------------------------------------------------------- */
+
+.rail {
+  display: grid;
+  gap: clamp(14px, 1.6vw, 20px);
+  align-content: start;
+  min-width: 0;
+}
+
+.railSection {
+  display: grid;
+  gap: 14px;
+  padding: clamp(14px, 1.8vw, 20px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.railHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.railHeadText {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.railKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.railTitle {
+  margin: 0;
+  font-size: var(--primitive-text-base);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.railCount {
+  display: inline-grid;
+  place-items: center;
+  min-width: 26px;
+  height: 24px;
+  padding: 0 var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 45%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Upcoming runs list -------------------------------------------------- */
+
+.upcomingList {
+  display: grid;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.upcomingItem {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: 11px 13px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-surface-3);
+}
+
+.upcomingDot {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--row-tone, var(--primitive-line-strong));
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--row-tone, var(--primitive-line-strong)) 22%, transparent);
+}
+
+.upcomingItem[data-tone="red"] {
+  --row-tone: var(--primitive-red);
+}
+.upcomingItem[data-tone="amber"] {
+  --row-tone: var(--primitive-amber);
+}
+.upcomingItem[data-tone="teal"] {
+  --row-tone: var(--primitive-teal);
+}
+.upcomingItem[data-tone="green"] {
+  --row-tone: var(--primitive-green);
+}
+.upcomingItem[data-tone="neutral"] {
+  --row-tone: var(--primitive-line-strong);
+}
+
+.upcomingBody {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.upcomingName {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.upcomingCadence {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+}
+
+.upcomingWhen {
+  font-family: var(--primitive-font-mono);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--primitive-body);
+  white-space: nowrap;
+}
+
+/* ---- Composition note ---------------------------------------------------- */
+
+.note {
+  margin: 0;
+  padding: clamp(14px, 1.8vw, 20px);
+  border: 1px dashed var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-surface-3);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.6;
+  color: var(--primitive-muted);
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 960px) {
+  .band {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .tableHead {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .newJobBtn {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .newJobBtn,
+  .toggleTrack,
+  .toggleThumb {
+    transition: none;
+  }
+
+  .newJobBtn:hover {
+    transform: none;
+  }
+
+  .torqueAvatar {
+    box-shadow:
+      0 6px 18px color-mix(in oklab, var(--primitive-red) 30%, transparent),
+      inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+  }
+}

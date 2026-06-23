@@ -1,0 +1,97 @@
+.tile {
+  display: grid;
+  gap: 12px;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.glyph {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--dc-tone) 40%, transparent);
+  background: color-mix(in srgb, var(--dc-tone) 14%, color-mix(in srgb, var(--primitive-text-strong) 3%, transparent));
+  color: color-mix(in srgb, var(--dc-tone) 96%, var(--primitive-text-strong));
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+.label {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.versions {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.versionRow {
+  display: grid;
+  grid-template-columns: minmax(80px, auto) 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 6px 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--primitive-line) 80%, transparent);
+}
+
+.versionRow:last-child {
+  border-bottom: none;
+}
+
+.versionRow dt {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.versionRow dd {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 13px;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  text-align: right;
+}
+
+.versionValue {
+  font-weight: 500;
+}
+
+.versionCurrent {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: var(--dc-tone) !important;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.supportWindow {
+  font-family: var(--primitive-font-mono);
+  font-size: 11.5px;
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}

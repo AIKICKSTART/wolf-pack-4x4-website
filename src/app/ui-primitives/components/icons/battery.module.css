@@ -1,0 +1,48 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.body { fill: currentColor; opacity: 0.55; }
+.bodyStroke { stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linejoin: round; }
+.topTrim { stroke: currentColor; opacity: 0.7; }
+.terminalPos { fill: var(--primitive-red); opacity: 0.92; stroke: currentColor; stroke-width: 0.9; }
+.terminalPosCap { fill: var(--primitive-red); opacity: 0.7; stroke: currentColor; stroke-width: 0.7; }
+.terminalNeg { fill: currentColor; opacity: 0.85; stroke: currentColor; stroke-width: 0.9; }
+.terminalNegCap { fill: currentColor; opacity: 0.6; stroke: currentColor; stroke-width: 0.7; }
+.cellCap { fill: var(--primitive-canvas); stroke: currentColor; stroke-width: 0.6; opacity: 0.85; }
+.posMark { stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; opacity: 0.95; }
+.negMark { stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; opacity: 0.95; }
+.voltLabel { fill: currentColor; font-family: var(--primitive-font-mono, monospace); font-size: 3px; font-weight: 800; opacity: 0.85; letter-spacing: 0.06em; }
+.chargeBar { fill: var(--primitive-canvas); opacity: 0.6; stroke: currentColor; stroke-width: 0.5; }
+.chargeFill { fill: var(--primitive-green); opacity: 0.92; animation: batteryCharge 2.4s ease-in-out infinite; transform-origin: 9.8px 19px; }
+
+@keyframes batteryCharge {
+  0%, 100% { transform: scaleX(0.5); opacity: 0.4; }
+  50% { transform: scaleX(1); opacity: 1; }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .bodyStroke { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .chargeFill { animation-duration: 0.4s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .body { fill: transparent; }
+[data-variant="outline"] .terminalPos,
+[data-variant="outline"] .terminalNeg { fill: transparent; opacity: 1; }
+[data-variant="outline"] .chargeBar,
+[data-variant="outline"] .chargeFill { fill: transparent; opacity: 1; stroke: currentColor; stroke-width: 0.8; }
+[data-variant="outline"] .cellCap { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .body { opacity: 0.9; }
+[data-variant="filled"] .chargeFill { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .chargeFill { animation: none !important; transition: none !important; }
+}

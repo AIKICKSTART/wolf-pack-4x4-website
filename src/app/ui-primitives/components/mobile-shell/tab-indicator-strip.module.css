@@ -1,0 +1,102 @@
+.strip {
+  width: 100%;
+  border-bottom: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 65%, transparent);
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  gap: var(--primitive-space-0-5);
+  padding: 0 var(--primitive-space-2);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.alignStart .track {
+  justify-content: flex-start;
+}
+
+.alignCenter .track {
+  justify-content: center;
+}
+
+.tab {
+  position: relative;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  flex: 0 0 auto;
+  padding: 14px 14px var(--primitive-space-4);
+  border: 0;
+  background: transparent;
+  color: var(--primitive-muted);
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: color 180ms ease;
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: -4px;
+  border-radius: var(--primitive-radius-md);
+}
+
+.tabActive {
+  color: var(--primitive-text-strong);
+}
+
+.tabLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tabCount {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 18px;
+  padding: 0 var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-line-muted);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.tabActive .tabCount {
+  background: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  color: var(--primitive-red);
+}
+
+.indicator {
+  position: absolute;
+  left: var(--primitive-space-3);
+  right: var(--primitive-space-3);
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primitive-red), var(--primitive-amber));
+  border-radius: var(--primitive-radius-xs) var(--primitive-radius-xs) 0 0;
+  box-shadow: 0 -2px 8px color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+  .indicator {
+    transition: none !important;
+  }
+}

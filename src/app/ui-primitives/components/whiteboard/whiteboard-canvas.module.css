@@ -1,0 +1,103 @@
+.canvas {
+  position: relative;
+  min-height: 480px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 80% 6%, color-mix(in oklab, var(--primitive-teal) 7%, transparent), transparent 50%),
+    radial-gradient(ellipse at 12% 96%, color-mix(in oklab, var(--primitive-amber) 6%, transparent), transparent 56%),
+    var(--primitive-recessed);
+  box-shadow: var(--primitive-surface-shadow);
+  isolation: isolate;
+}
+
+.dots {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--primitive-text-strong) 8.5%, transparent) 1px,
+    transparent 1.4px
+  );
+  background-size: 22px 22px;
+  background-position: 0 0;
+  opacity: 0.7;
+}
+
+:global(html[data-primitive-theme="light"]) .dots {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--primitive-text-strong) 18%, transparent) 1px,
+    transparent 1.4px
+  );
+  opacity: 0.6;
+}
+
+.flat .dots {
+  display: none;
+}
+
+.headChips {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-bottom: 1px solid var(--primitive-line);
+  background: linear-gradient(180deg, var(--primitive-glass-soft), transparent);
+  backdrop-filter: blur(8px);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.boardChip,
+.zoomChip,
+.posChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 5px var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-control-surface);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.boardChip {
+  color: var(--primitive-text-strong);
+}
+
+.boardDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 16%, transparent);
+}
+
+.zoomChip {
+  color: var(--primitive-amber);
+}
+
+.posChip {
+  color: var(--primitive-teal);
+}
+
+.surface {
+  position: relative;
+  z-index: 1;
+  min-height: 380px;
+}

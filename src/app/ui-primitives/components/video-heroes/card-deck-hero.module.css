@@ -1,0 +1,536 @@
+/* =========================================================
+   CARD DECK HERO — a fanned stack of chrome-edged video
+   cards (5 layers, top one playing) that splay out on
+   reveal. Headline sits beside the deck. Token-driven so
+   light + dark both read intentionally.
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(540px, 84svh, 860px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--primitive-text-strong);
+  background:
+    radial-gradient(ellipse at 82% 16%, color-mix(in oklab, var(--primitive-amber) 13%, transparent), transparent 58%),
+    radial-gradient(ellipse at 14% 92%, color-mix(in oklab, var(--primitive-red) 17%, transparent), transparent 62%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+/* Soft atmospheric vignette to seat the deck in depth */
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 70% 50%,
+    transparent 36%,
+    color-mix(in oklab, var(--primitive-canvas) 58%, transparent) 100%
+  );
+}
+
+/* ---- Layout: headline beside the deck ---------------------------- */
+
+.layout {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 72px);
+  width: 100%;
+  padding: clamp(64px, 9vh, 120px) clamp(24px, 6vw, 104px) clamp(48px, 6vh, 88px);
+}
+
+/* ---- Copy column ------------------------------------------------- */
+
+.copy {
+  display: grid;
+  gap: clamp(16px, 2vw, 22px);
+  max-width: 560px;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  padding: 6px 14px;
+  background: color-mix(in oklab, var(--primitive-canvas) 56%, transparent);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(9px, 0.55rem + 0.2vw, 11px);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.kickerDot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-red);
+  box-shadow: 0 0 12px var(--primitive-red);
+  animation: kickerPulse 1.5s ease-in-out infinite;
+}
+@keyframes kickerPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.62); }
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 1.2rem + 5.6vw, 6.2rem);
+  line-height: 0.9;
+  letter-spacing: -0.012em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 2px 30px color-mix(in oklab, var(--primitive-canvas) 72%, transparent);
+  text-wrap: balance;
+}
+
+.subhead {
+  font-family: var(--primitive-font-body);
+  font-size: clamp(14px, 0.85rem + 0.4vw, 18px);
+  line-height: 1.55;
+  color: var(--primitive-body);
+  margin: 0;
+  max-width: 46ch;
+}
+
+.cta {
+  margin-top: clamp(4px, 1vw, 10px);
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 30px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(13px, 0.8rem + 0.2vw, 15px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  position: relative;
+  isolation: isolate;
+  transition: transform 240ms var(--primitive-ease-out), background 240ms, color 240ms, box-shadow 240ms;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--primitive-red);
+  border-radius: var(--primitive-radius-sm);
+  z-index: -1;
+  opacity: 0.42;
+  transition: inset 240ms;
+}
+.cta:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-2px);
+}
+.cta:hover::before {
+  inset: -7px;
+  border-color: var(--primitive-amber);
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:active::before {
+  inset: -3px;
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 6px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+.ctaArrow {
+  display: inline-block;
+  font-size: 17px;
+  transition: transform 200ms ease;
+}
+
+/* ---- Stage: holds the fanned deck -------------------------------- */
+
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  perspective: 1400px;
+}
+
+/* The deck is the positioning frame; each card centres within it via
+   inset:0 + margin:auto, then splays from there. */
+.deck {
+  position: absolute;
+  inset: 0;
+}
+
+/* A single card. Each absolutely overlaps at the deck centre, then its
+   per-depth fan-out keyframe (below) splays it into the fanned stack.
+   Cards animate transform + opacity only (compositor-friendly). The
+   final keyframe holds via `forwards`, leaving the card in its fanned
+   end-state — which the static rules also set for reduced-motion. */
+.card {
+  position: absolute;
+  inset: 0;
+  width: clamp(58%, 60%, 64%);
+  aspect-ratio: 16 / 10;
+  margin: auto;
+  transform-origin: 50% 120%;
+  will-change: transform, opacity;
+  animation-duration: 760ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+/* The chrome bezel that gives each card its machined edge + drop shadow. */
+.cardChrome {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  padding: 3px;
+  overflow: hidden;
+  background:
+    linear-gradient(150deg,
+      color-mix(in oklab, var(--primitive-text-strong) 42%, transparent) 0%,
+      color-mix(in oklab, var(--primitive-line-strong) 80%, transparent) 22%,
+      color-mix(in oklab, var(--primitive-canvas) 70%, transparent) 50%,
+      color-mix(in oklab, var(--primitive-text-strong) 28%, transparent) 78%,
+      color-mix(in oklab, var(--primitive-line) 60%, transparent) 100%);
+  box-shadow:
+    0 28px 60px color-mix(in oklab, var(--primitive-canvas) 64%, transparent),
+    0 6px 18px color-mix(in oklab, var(--primitive-canvas) 50%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 24%, transparent);
+}
+
+/* Solid face for the decorative (non-playing) under-cards */
+.cardFace {
+  position: absolute;
+  inset: 3px;
+  border-radius: 7px;
+  background:
+    radial-gradient(ellipse at 30% 22%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 60%),
+    linear-gradient(160deg,
+      color-mix(in oklab, var(--primitive-canvas) 70%, var(--primitive-panel-strong)) 0%,
+      var(--primitive-canvas) 100%);
+}
+
+.video {
+  position: absolute;
+  inset: 3px;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  border-radius: 7px;
+  object-fit: cover;
+  filter: contrast(1.08) saturate(1.08);
+}
+
+/* Glass highlight sweeping the live card for a screen-glare read */
+.cardGloss {
+  position: absolute;
+  inset: 3px;
+  border-radius: 7px;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent) 0%, transparent 26%),
+    linear-gradient(118deg, transparent 38%, color-mix(in oklab, var(--primitive-text-strong) 14%, transparent) 50%, transparent 62%),
+    linear-gradient(0deg, color-mix(in oklab, var(--primitive-canvas) 40%, transparent) 0%, transparent 34%);
+  mix-blend-mode: screen;
+}
+
+/* Crop-mark corners on the live card → camera-frame texture */
+.cardFrameMarks {
+  position: absolute;
+  inset: 12px;
+  pointer-events: none;
+}
+.cardFrameMarks > span {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid color-mix(in oklab, var(--primitive-amber) 70%, transparent);
+}
+.cardFrameMarks > span:nth-child(1) { top: 0; left: 0; border-right: none; border-bottom: none; }
+.cardFrameMarks > span:nth-child(2) { top: 0; right: 0; border-left: none; border-bottom: none; }
+.cardFrameMarks > span:nth-child(3) { bottom: 0; left: 0; border-right: none; border-top: none; }
+.cardFrameMarks > span:nth-child(4) { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+.recDot {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 3px;
+  background: color-mix(in oklab, var(--primitive-canvas) 64%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.recDot i {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-red);
+  box-shadow: 0 0 10px var(--primitive-red);
+  animation: kickerPulse 1.3s ease-in-out infinite;
+}
+
+/* Mono micro-label stamped on each card's lower edge */
+.cardEdgeLabel {
+  position: absolute;
+  left: 14px;
+  bottom: 10px;
+  z-index: 2;
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(8px, 0.5rem + 0.15vw, 10px);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.cardTop .cardEdgeLabel {
+  color: var(--primitive-amber);
+}
+
+/* ---- The fan geometry -------------------------------------------- */
+/* Each depth has a target rotation + horizontal/vertical offset and its
+   own fan-out keyframe: every card starts collapsed (squared up behind
+   the top card, faded out) and splays into the fanned stack on mount.
+   The top card (data-depth 0) stays upright and forward. */
+
+.card[data-depth="0"] { z-index: 6; animation-name: fanTop; }
+.card[data-depth="1"] { z-index: 5; animation-name: fanLeftNear; }
+.card[data-depth="2"] { z-index: 4; animation-name: fanRightNear; }
+.card[data-depth="3"] { z-index: 3; animation-name: fanLeftFar; }
+.card[data-depth="4"] { z-index: 2; animation-name: fanRightFar; }
+
+@keyframes fanTop {
+  from { transform: rotate(0deg) translate(0, 4%) scale(0.94); opacity: 0; }
+  to { transform: rotate(0deg) translate(0, -2%) scale(1); opacity: 1; }
+}
+@keyframes fanLeftNear {
+  from { transform: rotate(0deg) translate(0, 0) scale(0.94); opacity: 0; }
+  to { transform: rotate(-7deg) translate(-16%, 2%) scale(0.97); opacity: 1; }
+}
+@keyframes fanRightNear {
+  from { transform: rotate(0deg) translate(0, 0) scale(0.94); opacity: 0; }
+  to { transform: rotate(7deg) translate(16%, 3%) scale(0.97); opacity: 1; }
+}
+@keyframes fanLeftFar {
+  from { transform: rotate(0deg) translate(0, 0) scale(0.94); opacity: 0; }
+  to { transform: rotate(-14deg) translate(-30%, 9%) scale(0.93); opacity: 1; }
+}
+@keyframes fanRightFar {
+  from { transform: rotate(0deg) translate(0, 0) scale(0.94); opacity: 0; }
+  to { transform: rotate(14deg) translate(30%, 10%) scale(0.93); opacity: 1; }
+}
+
+/* Under-cards dim progressively so depth reads even when overlapping */
+.card[data-depth="1"] .cardFace,
+.card[data-depth="2"] .cardFace { filter: brightness(0.84); }
+.card[data-depth="3"] .cardFace,
+.card[data-depth="4"] .cardFace { filter: brightness(0.66); }
+
+/* The live top card carries the heaviest lift + a warm rim glow */
+.cardTop .cardChrome {
+  box-shadow:
+    0 40px 80px color-mix(in oklab, var(--primitive-canvas) 70%, transparent),
+    0 10px 26px color-mix(in oklab, var(--primitive-canvas) 56%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--primitive-amber) 30%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 30%, transparent);
+}
+
+/* ---- Stage tag --------------------------------------------------- */
+
+.stageTag {
+  position: absolute;
+  bottom: -4px;
+  right: 4%;
+  z-index: 7;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: color-mix(in oklab, var(--primitive-canvas) 72%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  border-radius: var(--primitive-radius-xs);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(8px, 0.5rem + 0.15vw, 10px);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.stageTag i {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-amber);
+  box-shadow: 0 0 10px var(--primitive-amber);
+}
+
+/* ---- Footer meta ------------------------------------------------- */
+
+.meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 clamp(20px, 5vw, 64px) clamp(28px, 5vh, 60px);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(8px, 0.5rem + 0.2vw, 10px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  flex-wrap: wrap;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* =========================================================
+   RESPONSIVE — fill 320 → 1920 with no overflow/clipping.
+   The deck stacks under the headline on narrow viewports and
+   the fan tightens so rotated cards never spill the stage.
+   ========================================================= */
+
+@media (max-width: 920px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 5vw, 48px);
+    text-align: left;
+    padding-top: clamp(48px, 8vh, 96px);
+  }
+  .copy { max-width: none; }
+  .stage {
+    aspect-ratio: 16 / 11;
+    max-width: 620px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .card { width: clamp(56%, 58%, 62%); }
+}
+
+@media (max-width: 560px) {
+  .hero { min-height: clamp(560px, 92svh, 820px); }
+  .stage { aspect-ratio: 5 / 5; }
+  /* Tighten the fan so the rotated edges stay inside the stage. */
+  .card {
+    width: 66%;
+    aspect-ratio: 4 / 3;
+  }
+  /* Swap to tightened keyframes at this breakpoint. */
+  .card[data-depth="1"] { animation-name: fanLeftNearTight; }
+  .card[data-depth="2"] { animation-name: fanRightNearTight; }
+  .card[data-depth="3"] { animation-name: fanLeftFarTight; }
+  .card[data-depth="4"] { animation-name: fanRightFarTight; }
+  /* Static (JS-detected or media-query) reduced-motion end-states. */
+  .deckStatic .card[data-depth="1"] { transform: rotate(-6deg) translate(-11%, 2%) scale(0.96); }
+  .deckStatic .card[data-depth="2"] { transform: rotate(6deg) translate(11%, 3%) scale(0.96); }
+  .deckStatic .card[data-depth="3"] { transform: rotate(-11deg) translate(-20%, 7%) scale(0.92); }
+  .deckStatic .card[data-depth="4"] { transform: rotate(11deg) translate(20%, 8%) scale(0.92); }
+  .recDot { font-size: 8px; padding: 3px 7px; }
+  .cardFrameMarks { inset: 9px; }
+  .cardFrameMarks > span { width: 11px; height: 11px; }
+  .meta { justify-content: flex-start; }
+  .stageTag { right: 2%; }
+}
+
+@keyframes fanLeftNearTight {
+  from { transform: rotate(0deg) translate(0, 0) scale(0.94); opacity: 0; }
+  to { transform: rotate(-6deg) translate(-11%, 2%) scale(0.96); opacity: 1; }
+}
+@keyframes fanRightNearTight {
+  from { transform: rotate(0deg) translate(0, 0) scale(0.94); opacity: 0; }
+  to { transform: rotate(6deg) translate(11%, 3%) scale(0.96); opacity: 1; }
+}
+@keyframes fanLeftFarTight {
+  from { transform: rotate(0deg) translate(0, 0) scale(0.94); opacity: 0; }
+  to { transform: rotate(-11deg) translate(-20%, 7%) scale(0.92); opacity: 1; }
+}
+@keyframes fanRightFarTight {
+  from { transform: rotate(0deg) translate(0, 0) scale(0.94); opacity: 0; }
+  to { transform: rotate(11deg) translate(20%, 8%) scale(0.92); opacity: 1; }
+}
+
+/* =========================================================
+   REDUCED MOTION — neutralise all motion to a clean static
+   fanned composition. No fan-out transition, no pulse, no
+   playing video; the deck shape is shown fully splayed.
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Kill the fan-out animation and pin every card to its fanned end-state
+     so the deck shape still reads, just without any motion. */
+  .card {
+    animation: none;
+    opacity: 1;
+  }
+  .kickerDot,
+  .recDot i {
+    animation: none;
+  }
+  .cta,
+  .ctaArrow {
+    transition: none;
+  }
+  .video {
+    display: none;
+  }
+  /* Static poster-style fill on the live card when video is suppressed */
+  .cardTop .cardChrome::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 7px;
+    background:
+      radial-gradient(ellipse at 32% 24%, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 60%),
+      linear-gradient(160deg, color-mix(in oklab, var(--primitive-canvas) 60%, var(--primitive-panel-strong)) 0%, var(--primitive-canvas) 100%);
+  }
+  .card[data-depth="0"] { transform: rotate(0deg) translate(0, -2%) scale(1); }
+  .card[data-depth="1"] { transform: rotate(-7deg) translate(-16%, 2%) scale(0.97); }
+  .card[data-depth="2"] { transform: rotate(7deg) translate(16%, 3%) scale(0.97); }
+  .card[data-depth="3"] { transform: rotate(-14deg) translate(-30%, 9%) scale(0.93); }
+  .card[data-depth="4"] { transform: rotate(14deg) translate(30%, 10%) scale(0.93); }
+}
+
+/* JS-detected reduced motion: mirror the fanned end-state immediately so
+   first paint already shows the splayed deck (no animation, no flash). */
+.deckStatic .card {
+  animation: none;
+  opacity: 1;
+}
+.deckStatic .card[data-depth="0"] { transform: rotate(0deg) translate(0, -2%) scale(1); }
+.deckStatic .card[data-depth="1"] { transform: rotate(-7deg) translate(-16%, 2%) scale(0.97); }
+.deckStatic .card[data-depth="2"] { transform: rotate(7deg) translate(16%, 3%) scale(0.97); }
+.deckStatic .card[data-depth="3"] { transform: rotate(-14deg) translate(-30%, 9%) scale(0.93); }
+.deckStatic .card[data-depth="4"] { transform: rotate(14deg) translate(30%, 10%) scale(0.93); }

@@ -1,0 +1,98 @@
+
+
+/* ── FAQ ────────────────────────────────────────────────── */
+.faq-list { display: flex; flex-direction: column; gap: 12px; }
+.faq-item {
+  position: relative; padding: 0;
+  cursor: pointer;
+  transition: background .25s ease;
+}
+.faq-item summary {
+  list-style: none;
+  padding: 24px 32px;
+  display: grid; grid-template-columns: 80px 1fr 40px; gap: 24px;
+  align-items: center;
+  cursor: pointer;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-num {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.20em;
+  color: var(--accent); text-transform: uppercase;
+}
+.faq-q {
+  font-family: var(--font-display); font-size: clamp(20px, 2vw, 26px);
+  text-transform: uppercase; letter-spacing: 0.005em; line-height: 1.1;
+  color: var(--ink);
+}
+.faq-mark {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--hairline);
+  color: var(--body-strong); font-size: 18px; line-height: 1;
+  transition: transform .4s cubic-bezier(.2,.7,.2,1), background .25s ease, border-color .25s ease;
+}
+.faq-item[open] .faq-mark { transform: rotate(45deg); background: rgba(0,140,255,0.15); border-color: rgba(0,140,255,0.4); color: var(--accent); }
+.faq-item p {
+  margin: 0; padding: 0 32px 28px calc(32px + 80px + 24px);
+  color: var(--body); font-size: 15px; line-height: 1.65; max-width: 760px;
+}
+.faq-item:hover { background: rgba(255,255,255,0.025); }
+
+@media (max-width: 760px) {
+  .faq-item summary { grid-template-columns: 1fr 36px; gap: 16px; padding: 20px 22px; }
+  .faq-num { display: none; }
+  .faq-item p { padding: 0 22px 24px 22px; }
+}
+
+/* services h2 + stamp */
+.services-h2 { line-height: 0.92; }
+.services-stamp { display: flex; align-items: center; gap: 16px; margin-top: 28px; }
+.services-stamp-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--hairline), transparent); max-width: 200px; }
+.services-stamp .label { color: var(--muted); }
+
+/* ── design system page specifics ──────────────────────────── */
+.ds-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.ds-swatch { aspect-ratio: 4/3; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.ds-swatch .label-row { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); position: relative; z-index: 2; }
+.ds-swatch .name { font-family: var(--font-display); font-size: 22px; text-transform: uppercase; color:#fff; position: relative; z-index: 2; line-height:1; }
+.ds-swatch.dark .label-row, .ds-swatch.dark .name { color: rgba(0,0,0,0.7); }
+.ds-swatch.dark .name { color: #0a0a0a; }
+
+/* === DESIGN LOOP 2/30 — fluid type scale on secondary headings === */
+.step h3 { font-size: clamp(20px, 2.2vw, 28px); line-height: 1.08; }
+.arch-tier .name { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.08; letter-spacing: 0.005em; }
+.review-card blockquote { font-size: clamp(22px, 2.4vw, 36px); line-height: 1.1; }
+.title-lg { font-size: clamp(24px, 2.4vw, 32px); line-height: 1.08; }
+.title-md { font-size: clamp(18px, 1.6vw, 24px); line-height: 1.12; }
+
+/* === DESIGN LOOP 8/30 — a11y + type polish === */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.d1, .reveal.d2, .reveal.d3, .reveal.d4 {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    transition-delay: 0s !important;
+  }
+}
+.section-head .lead { font-weight: 300; }
+
+/* === DESIGN LOOP 9/30 — .tag aligned to Badge primitive (soft, both themes) === */
+.tag {
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in srgb, var(--body-strong) 8%, transparent);
+  border-color: color-mix(in srgb, var(--body-strong) 22%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+.tag.red {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+html[data-mufflermen-theme="light"] .tag {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+html[data-mufflermen-theme="light"] .tag.red {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}

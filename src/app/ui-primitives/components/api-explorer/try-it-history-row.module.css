@@ -1,0 +1,160 @@
+.row {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto auto auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: 9px var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-panel);
+}
+
+.timestamp {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.method {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 7px;
+  border: 1px solid var(--m-line, var(--primitive-line));
+  border-radius: var(--primitive-radius-sm);
+  background: var(--m-bg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent));
+  color: var(--m-fg, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.methodGet {
+  --m-line: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  --m-fg: var(--primitive-green);
+}
+
+.methodPost {
+  --m-line: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  --m-fg: var(--primitive-teal);
+}
+
+.methodPut {
+  --m-line: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  --m-fg: var(--primitive-amber);
+}
+
+.methodPatch {
+  --m-line: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  --m-fg: var(--primitive-amber);
+}
+
+.methodDelete {
+  --m-line: color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  --m-fg: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-text-strong));
+}
+
+.methodHead {
+  --m-line: color-mix(in oklab, var(--primitive-text-strong) 28%, transparent);
+  --m-bg: var(--primitive-line-muted);
+  --m-fg: var(--primitive-body);
+}
+
+.methodOptions {
+  --m-line: color-mix(in oklab, var(--primitive-muted) 42%, transparent);
+  --m-bg: color-mix(in oklab, var(--primitive-muted) 12%, transparent);
+  --m-fg: var(--primitive-body);
+}
+
+.path {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.duration {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.copyBtn,
+.replayBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 140ms ease, color 140ms ease;
+}
+
+.copyBtn:hover,
+.copyBtn:focus-visible,
+.replayBtn:hover,
+.replayBtn:focus-visible {
+  border-color: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  color: var(--primitive-teal);
+  outline: none;
+}
+
+.copyBtnDone {
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  color: var(--primitive-green);
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: auto 1fr auto;
+    gap: var(--primitive-space-2);
+    row-gap: var(--primitive-space-1-5);
+  }
+  .timestamp {
+    grid-column: 1 / -1;
+  }
+  .duration {
+    margin-left: auto;
+  }
+  .actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copyBtn,
+  .replayBtn {
+    transition: none;
+  }
+}

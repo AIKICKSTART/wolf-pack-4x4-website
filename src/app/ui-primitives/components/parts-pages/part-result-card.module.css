@@ -1,0 +1,206 @@
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 100% 0%, var(--accent-soft, color-mix(in oklab, var(--primitive-amber) 12%, transparent)), transparent 60%),
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel-strong);
+  transition: transform 220ms var(--primitive-ease-out), border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-line, color-mix(in oklab, var(--primitive-amber) 40%, transparent));
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.media {
+  position: relative;
+  display: grid;
+  height: 220px;
+  margin: 14px 14px 0;
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 24% 26%, var(--accent-soft, color-mix(in oklab, var(--primitive-amber) 18%, transparent)), transparent 60%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-teal)) 0%, var(--primitive-canvas) 100%);
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fallback {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-family: var(--primitive-font-display);
+  font-size: 42px;
+  letter-spacing: -0.02em;
+  color: var(--accent, var(--primitive-amber));
+}
+
+.watermark {
+  position: absolute;
+  inset-block-start: 8px;
+  inset-inline-start: 8px;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+  color: color-mix(in oklab, var(--primitive-text-strong) 72%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+.supplierTag {
+  position: absolute;
+  inset-block-end: 8px;
+  inset-inline-start: 8px;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--supplier-line, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--supplier-bg, color-mix(in oklab, var(--primitive-canvas) 42%, transparent));
+  color: var(--supplier-fg, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 14px;
+  align-content: start;
+}
+
+.sku {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.01em;
+  line-height: 1.12;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.title a {
+  color: inherit;
+  text-decoration: none;
+  background:
+    linear-gradient(transparent calc(100% - 1px), var(--accent, var(--primitive-amber)) calc(100% - 1px)) no-repeat;
+  background-size: 0 100%;
+  transition: background-size var(--primitive-duration-normal) ease;
+}
+
+.title a:hover,
+.title a:focus-visible {
+  background-size: 100% 100%;
+  outline: none;
+}
+
+.fitment {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin: var(--primitive-space-1) 0 0;
+}
+
+.supplierManta {
+  --supplier-line: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-red) 28%, transparent);
+  --supplier-fg: var(--primitive-text-strong);
+}
+
+.supplierRedback {
+  --supplier-line: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-red) 20%, transparent);
+  --supplier-fg: var(--primitive-text-strong);
+}
+
+.supplierXforce {
+  --supplier-line: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-teal) 24%, transparent);
+  --supplier-fg: var(--primitive-text-strong);
+}
+
+.supplierPacemaker {
+  --supplier-line: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-amber) 24%, transparent);
+  --supplier-fg: var(--primitive-canvas);
+}
+
+.supplierLukey {
+  --supplier-line: color-mix(in oklab, var(--primitive-amber) 48%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+  --supplier-fg: var(--primitive-canvas);
+}
+
+.supplierHushpower {
+  --supplier-line: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-green) 24%, transparent);
+  --supplier-fg: var(--primitive-canvas);
+}
+
+.supplierNeutral {
+  --supplier-line: color-mix(in oklab, var(--primitive-text-strong) 20%, transparent);
+  --supplier-bg: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  --supplier-fg: var(--primitive-text-strong);
+}
+
+.toneRed {
+  --accent: var(--primitive-red);
+  --accent-soft: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.toneAmber {
+  --accent: var(--primitive-amber);
+  --accent-soft: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.toneTeal {
+  --accent: var(--primitive-teal);
+  --accent-soft: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+.toneGreen {
+  --accent: var(--primitive-green);
+  --accent-soft: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .title a {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}

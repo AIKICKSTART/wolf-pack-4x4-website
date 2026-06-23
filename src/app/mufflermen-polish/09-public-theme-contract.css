@@ -1,0 +1,455 @@
+
+
+/* Final public theme contract: keep the shared card system readable after all
+   section-specific polish rules have loaded. */
+html[data-mufflermen-theme="dark"] .mufflermen-public,
+html[data-mufflermen-theme="dark"] .seo-page {
+  --canvas: #06060a;
+  --canvas-2: #0c0c12;
+  --gunmetal: #14141b;
+  --gunmetal-2: #1c1c25;
+  --carbon: #25252d;
+  --hairline: rgba(255,255,255,0.08);
+  --hairline-2: rgba(255,255,255,0.04);
+  --ink: #f6f6f8;
+  --body: #b8bac4;
+  --body-strong: #e2e3e8;
+  --muted: #8d909a;
+  --glass-tint: rgba(15,16,22,0.76);
+  --primitive-canvas: #06060a;
+  --primitive-panel: #0c0c12;
+  --primitive-card-bg: rgba(15,16,22,0.78);
+  --primitive-card-border: rgba(255,255,255,0.1);
+  --primitive-glass-soft: rgba(255,255,255,0.06);
+  --primitive-glass-strong: rgba(255,255,255,0.1);
+  --primitive-line: rgba(255,255,255,0.1);
+  --primitive-line-strong: rgba(0,140,255,0.34);
+  --primitive-text-strong: #f6f6f8;
+  --primitive-body: #b8bac4;
+  --primitive-muted: #8d909a;
+}
+
+html[data-mufflermen-theme="dark"] {
+  background: var(--surface-night);
+}
+
+html[data-mufflermen-theme="dark"] body:has(.mufflermen-public),
+html[data-mufflermen-theme="dark"] body:has(.seo-page),
+html[data-mufflermen-theme="dark"] .mufflermen-public,
+html[data-mufflermen-theme="dark"] .seo-page {
+  color: var(--body-strong);
+  background:
+    radial-gradient(circle at 18% 0, rgba(0,140,255,0.22), transparent 34rem),
+    radial-gradient(circle at 82% 22%, rgba(255,255,255,0.055), transparent 26rem),
+    linear-gradient(180deg, var(--surface-night) 0%, #0b0b0f 44%, var(--surface-night) 100%) !important;
+}
+
+html[data-mufflermen-theme="dark"] .section,
+html[data-mufflermen-theme="dark"] .homepage-cms,
+html[data-mufflermen-theme="dark"] .home-founder-team,
+html[data-mufflermen-theme="dark"] .primitive-marketing-section,
+html[data-mufflermen-theme="dark"] .vehicle-collections-section,
+html[data-mufflermen-theme="dark"] .brand-assets-story,
+html[data-mufflermen-theme="dark"] .seo-section {
+  color: var(--body-strong);
+  background: transparent !important;
+}
+
+html[data-mufflermen-theme="dark"] .marquee {
+  border-color: rgba(255,255,255,0.1);
+  background:
+    linear-gradient(90deg, rgba(0,140,255,0.16), rgba(255,255,255,0.05), rgba(0,140,255,0.14)),
+    #09090d !important;
+}
+
+html[data-mufflermen-theme="dark"] .marquee span {
+  color: rgba(246,246,248,0.72);
+}
+
+html[data-mufflermen-theme="dark"] .service .more,
+html[data-mufflermen-theme="dark"] .route-panel .more,
+html[data-mufflermen-theme="dark"] .btn.btn-chrome,
+html[data-mufflermen-theme="dark"] .btn.btn-ghost {
+  border-color: rgba(255,255,255,0.36) !important;
+  background:
+    linear-gradient(145deg, rgba(255,252,244,0.98), rgba(216,211,202,0.92)) !important;
+  color: var(--ink-espresso) !important;
+  text-shadow: none !important;
+}
+
+html[data-mufflermen-theme="dark"] .service .more::after,
+html[data-mufflermen-theme="dark"] .route-panel .more::after,
+html[data-mufflermen-theme="dark"] .btn.btn-chrome .arrow,
+html[data-mufflermen-theme="dark"] .btn.btn-ghost .arrow {
+  color: var(--ink-espresso) !important;
+  border-color: var(--ink-espresso) !important;
+}
+
+html[data-mufflermen-theme="dark"] .service,
+html[data-mufflermen-theme="dark"] .route-panel,
+html[data-mufflermen-theme="dark"] .homepage-cms-feature,
+html[data-mufflermen-theme="dark"] .homepage-cms-card,
+html[data-mufflermen-theme="dark"] .feature,
+html[data-mufflermen-theme="dark"] .feature-specs > div,
+html[data-mufflermen-theme="dark"] .spec-cell,
+html[data-mufflermen-theme="dark"] .step,
+html[data-mufflermen-theme="dark"] .review-card,
+html[data-mufflermen-theme="dark"] .faq-item,
+html[data-mufflermen-theme="dark"] .home-founder-card,
+html[data-mufflermen-theme="dark"] .primitive-video-hero-shell,
+html[data-mufflermen-theme="dark"] .primitive-video-card,
+html[data-mufflermen-theme="dark"] .vehicle-collection-card,
+html[data-mufflermen-theme="dark"] .brand-asset-card,
+html[data-mufflermen-theme="dark"] .public-story-grid > div:first-child,
+html[data-mufflermen-theme="dark"] .public-product-intro > div:first-child,
+html[data-mufflermen-theme="dark"] .public-service-list span,
+html[data-mufflermen-theme="dark"] .public-contact-form,
+html[data-mufflermen-theme="dark"] .public-contact-details,
+html[data-mufflermen-theme="dark"] .public-product-card,
+html[data-mufflermen-theme="dark"] .public-brand-asset,
+html[data-mufflermen-theme="dark"] .public-gallery-item,
+html[data-mufflermen-theme="dark"] .seo-card,
+html[data-mufflermen-theme="dark"] .seo-contact-card,
+html[data-mufflermen-theme="dark"] .parts-empty,
+html[data-mufflermen-theme="dark"] .part-result,
+html[data-mufflermen-theme="dark"] .seo-product {
+  border-color: rgba(255,255,255,0.1) !important;
+  background:
+    radial-gradient(82% 88% at 12% 0%, rgba(0,140,255,0.18), transparent 62%),
+    linear-gradient(145deg, rgba(31,32,40,0.92), rgba(12,13,18,0.9) 54%, rgba(5,5,8,0.96)) !important;
+  color: var(--body-strong) !important;
+  box-shadow:
+    22px 34px 78px -38px rgba(0,0,0,0.86),
+    inset 1px 1px 0 rgba(255,255,255,0.13),
+    inset -1px -1px 0 rgba(0,0,0,0.62) !important;
+}
+
+html[data-mufflermen-theme="dark"] .service h3,
+html[data-mufflermen-theme="dark"] .route-panel h3,
+html[data-mufflermen-theme="dark"] .homepage-cms-feature h3,
+html[data-mufflermen-theme="dark"] .homepage-cms-card h3,
+html[data-mufflermen-theme="dark"] .feature h3,
+html[data-mufflermen-theme="dark"] .spec-cell strong,
+html[data-mufflermen-theme="dark"] .step h3,
+html[data-mufflermen-theme="dark"] .review-card blockquote,
+html[data-mufflermen-theme="dark"] .faq-item h3,
+html[data-mufflermen-theme="dark"] .home-founder-card h3,
+html[data-mufflermen-theme="dark"] .primitive-video-card h3,
+html[data-mufflermen-theme="dark"] .vehicle-collection-copy h3,
+html[data-mufflermen-theme="dark"] .brand-asset-card h3,
+html[data-mufflermen-theme="dark"] .public-story-grid h2,
+html[data-mufflermen-theme="dark"] .public-product-intro h2,
+html[data-mufflermen-theme="dark"] .public-product-card h2,
+html[data-mufflermen-theme="dark"] .public-contact-form h2,
+html[data-mufflermen-theme="dark"] .public-contact-details h2,
+html[data-mufflermen-theme="dark"] .seo-card h2,
+html[data-mufflermen-theme="dark"] .seo-contact-card h2,
+html[data-mufflermen-theme="dark"] .parts-empty h2,
+html[data-mufflermen-theme="dark"] .part-result h2,
+html[data-mufflermen-theme="dark"] .seo-product h1,
+html[data-mufflermen-theme="dark"] .seo-product h2 {
+  color: var(--ink) !important;
+}
+
+html[data-mufflermen-theme="dark"] .service p,
+html[data-mufflermen-theme="dark"] .route-panel p,
+html[data-mufflermen-theme="dark"] .homepage-cms-feature p,
+html[data-mufflermen-theme="dark"] .homepage-cms-card p,
+html[data-mufflermen-theme="dark"] .feature p,
+html[data-mufflermen-theme="dark"] .spec-cell span,
+html[data-mufflermen-theme="dark"] .step p,
+html[data-mufflermen-theme="dark"] .faq-item p,
+html[data-mufflermen-theme="dark"] .home-founder-card p,
+html[data-mufflermen-theme="dark"] .primitive-video-card p,
+html[data-mufflermen-theme="dark"] .vehicle-collection-copy p,
+html[data-mufflermen-theme="dark"] .brand-asset-card p,
+html[data-mufflermen-theme="dark"] .public-story-grid p,
+html[data-mufflermen-theme="dark"] .public-product-intro p,
+html[data-mufflermen-theme="dark"] .public-product-card p,
+html[data-mufflermen-theme="dark"] .public-contact-form p,
+html[data-mufflermen-theme="dark"] .public-contact-details p,
+html[data-mufflermen-theme="dark"] .seo-card p,
+html[data-mufflermen-theme="dark"] .seo-contact-card p,
+html[data-mufflermen-theme="dark"] .parts-empty p,
+html[data-mufflermen-theme="dark"] .part-result p,
+html[data-mufflermen-theme="dark"] .seo-product p,
+html[data-mufflermen-theme="dark"] .seo-product li {
+  color: var(--body) !important;
+}
+
+/* Shared public conversion layer for core pages and generated SEO templates. */
+.seo-hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.seo-hero-proof span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  background: rgba(8,8,12,0.42);
+  color: rgba(255,255,255,0.86);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+
+.public-site-footer {
+  position: relative;
+  z-index: 2;
+  padding: clamp(42px, 6vw, 78px) clamp(18px, 5vw, 72px) clamp(88px, 8vw, 104px);
+  border-top: 1px solid var(--hairline);
+  background:
+    radial-gradient(44% 56% at 12% 0%, rgba(0,140,255,0.13), transparent 70%),
+    linear-gradient(180deg, rgba(8,8,12,0.94), rgba(4,4,6,0.98));
+}
+
+.public-site-footer-inner {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.25fr) repeat(3, minmax(160px, 0.7fr));
+  gap: clamp(22px, 4vw, 54px);
+  width: min(1180px, 100%);
+  margin-inline: auto;
+}
+
+.public-site-footer-brand {
+  display: grid;
+  gap: 16px;
+  max-width: 42ch;
+}
+
+.public-site-footer-brand img {
+  width: min(220px, 58vw);
+  height: auto;
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,0.36));
+}
+
+.public-site-footer p,
+.public-site-footer a {
+  color: var(--body);
+}
+
+.public-site-footer p {
+  margin: 0;
+  line-height: 1.62;
+}
+
+.public-site-footer nav,
+.public-site-footer address {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  font-style: normal;
+}
+
+.public-site-footer span {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.public-site-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  text-decoration: none;
+}
+
+.public-site-footer a:hover,
+.public-site-footer a:focus-visible {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 4px;
+}
+
+.public-conversion-dock {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(66px, 1fr));
+  width: min(560px, calc(100vw - 24px));
+  padding: 6px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02)),
+    rgba(7,7,10,0.86);
+  box-shadow:
+    0 26px 72px -32px rgba(0,0,0,0.82),
+    inset 0 1px 0 rgba(255,255,255,0.16);
+  transform: translateX(-50%);
+  backdrop-filter: blur(18px);
+}
+
+.public-conversion-dock a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  border-radius: 7px;
+  color: rgba(255,255,255,0.86);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.public-conversion-dock a:first-child,
+.public-conversion-dock a:nth-child(2) {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02)),
+    linear-gradient(135deg, var(--accent), var(--accent-deep));
+  color: #fff;
+}
+
+.public-conversion-dock a:hover,
+.public-conversion-dock a:focus-visible {
+  outline: none;
+  color: #fff;
+  background: rgba(255,255,255,0.12);
+}
+
+.public-conversion-dock a:first-child:hover,
+.public-conversion-dock a:first-child:focus-visible,
+.public-conversion-dock a:nth-child(2):hover,
+.public-conversion-dock a:nth-child(2):focus-visible {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0.04)),
+    linear-gradient(135deg, #00b8ff, var(--accent-deep));
+}
+
+.public-conversion-dock svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+html[data-mufflermen-theme="light"] .seo-hero-proof span {
+  border-color: rgba(255,255,255,0.28);
+  background: rgba(21,18,14,0.52);
+  color: rgba(255,255,255,0.9);
+}
+
+html[data-mufflermen-theme="light"] .public-site-footer {
+  border-top-color: rgba(29,34,42,0.12);
+  background:
+    radial-gradient(42% 54% at 12% 0%, rgba(154,104,46,0.11), transparent 72%),
+    linear-gradient(180deg, rgba(255,250,240,0.92), rgba(232,225,212,0.98));
+}
+
+html[data-mufflermen-theme="light"] .public-conversion-dock {
+  border-color: rgba(29,34,42,0.16);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.86), rgba(255,248,234,0.58)),
+    rgba(255,250,240,0.86);
+  box-shadow:
+    0 20px 58px -34px rgba(45,39,32,0.44),
+    inset 1px 1px 0 rgba(255,255,255,0.86);
+}
+
+html[data-mufflermen-theme="light"] .public-conversion-dock a {
+  color: var(--ink);
+}
+
+html[data-mufflermen-theme="light"] .public-conversion-dock a:first-child,
+html[data-mufflermen-theme="light"] .public-conversion-dock a:nth-child(2) {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .public-site-footer-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .seo-hero-proof {
+    gap: 6px;
+    margin-top: 18px;
+  }
+
+  .seo-hero-proof span {
+    min-height: 30px;
+    padding: 0 9px;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+  }
+
+  .public-site-footer-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .public-conversion-dock {
+    bottom: 10px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: calc(100vw - 16px);
+    border-radius: 8px;
+  }
+
+  .public-conversion-dock a {
+    gap: 5px;
+    min-height: 42px;
+  }
+
+  /* nav qualifier outranks the later 9px mobile shrink in 10-contact-pass.css */
+  nav.public-conversion-dock a {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+
+  .public-conversion-dock svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* The desktop header nav is active from ~1024, so the dock flips to the
+   right-edge rail there instead of 1180. 10-contact-pass.css owns the rail
+   from 1180 and restyles the tray after this file, so this in-between band
+   needs the html prefix to outrank those later rules. */
+@media (min-width: 1024px) and (max-width: 1179.98px) {
+  html .public-conversion-dock {
+    top: 50%;
+    right: clamp(18px, 2vw, 34px);
+    bottom: auto;
+    left: auto;
+    grid-template-columns: minmax(0, 1fr);
+    width: 78px;
+    transform: translateY(-50%);
+  }
+
+  html .public-conversion-dock a {
+    flex-direction: column;
+    gap: 6px;
+    min-height: 66px;
+    padding: 8px 6px;
+  }
+
+  html .public-conversion-dock svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* End-of-scroll clearance wherever the horizontal dock shows (<1024):
+   ~70px tray + 16px bottom offset + 18px gap. */
+@media (max-width: 1023.98px) {
+  .public-site-footer {
+    padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px));
+  }
+}

@@ -1,0 +1,157 @@
+.banner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border: 1px solid var(--bnr-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(135deg, var(--bnr-glow, color-mix(in oklab, var(--primitive-teal) 16%, transparent)), transparent 56%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 50%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-line-muted),
+    inset -16px -16px 28px color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--bnr-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-md);
+  background: var(--bnr-icon-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--bnr-fg, var(--primitive-teal));
+}
+
+.icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border: 1px solid var(--bnr-border, var(--primitive-line));
+  border-radius: 6px;
+  background: var(--bnr-chip-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--bnr-fg, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.summary {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+  color: var(--primitive-body);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-4);
+  margin: 0;
+  padding: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.metaItem {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.metaItem dt {
+  color: var(--primitive-muted);
+}
+
+.metaItem dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+}
+
+.services {
+  letter-spacing: 0.04em;
+}
+
+.toneRed {
+  --bnr-glow: color-mix(in oklab, var(--primitive-red) 20%, transparent);
+  --bnr-border: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  --bnr-fg: var(--primitive-red);
+  --bnr-icon-bg: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  --bnr-chip-bg: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.toneAmber {
+  --bnr-glow: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+  --bnr-border: color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  --bnr-fg: var(--primitive-amber);
+  --bnr-icon-bg: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  --bnr-chip-bg: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+}
+
+.toneTeal {
+  --bnr-glow: color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+  --bnr-border: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  --bnr-fg: var(--primitive-teal);
+  --bnr-icon-bg: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --bnr-chip-bg: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+}
+
+.toneGreen {
+  --bnr-glow: color-mix(in oklab, var(--primitive-green) 22%, transparent);
+  --bnr-border: color-mix(in oklab, var(--primitive-green) 30%, transparent);
+  --bnr-fg: var(--primitive-green);
+  --bnr-icon-bg: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  --bnr-chip-bg: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+}
+
+.toneNeutral {
+  --bnr-glow: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --bnr-border: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  --bnr-fg: var(--primitive-body);
+  --bnr-icon-bg: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  --bnr-chip-bg: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.toneViolet {
+  --bnr-glow: color-mix(in oklab, var(--primitive-violet) 22%, transparent);
+  --bnr-border: color-mix(in oklab, var(--primitive-violet) 32%, transparent);
+  --bnr-fg: color-mix(in oklab, var(--primitive-violet) 70%, white);
+  --bnr-icon-bg: color-mix(in oklab, var(--primitive-violet) 10%, transparent);
+  --bnr-chip-bg: color-mix(in oklab, var(--primitive-violet) 12%, transparent);
+}

@@ -1,0 +1,72 @@
+/* Author chip — shared carbon button DNA in pill form. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  height: 32px;
+  padding: 0 var(--primitive-space-3) 0 var(--primitive-space-1);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-body);
+  text-decoration: none;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-out), color var(--primitive-duration-fast) var(--primitive-ease-out), box-shadow var(--primitive-duration-fast) var(--primitive-ease-out), transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.chip:hover,
+.chip:focus-visible {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-btn-primary-shadow), var(--primitive-focus-shadow);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle at 28% 22%, color-mix(in oklab, var(--primitive-text-strong) 40%, transparent), transparent 60%),
+    linear-gradient(135deg, var(--primitive-teal), color-mix(in oklab, var(--primitive-teal) 50%, black));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.02em;
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+}
+
+.verified {
+  display: inline-grid;
+  place-items: center;
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-teal);
+  color: var(--primitive-text-on-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
+  .chip:hover,
+  .chip:focus-visible {
+    transform: none;
+  }
+}

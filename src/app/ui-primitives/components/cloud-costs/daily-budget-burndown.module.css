@@ -1,0 +1,94 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 0% 100%, color-mix(in oklab, var(--primitive-amber) 12%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.headLeft {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.metric {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--primitive-canvas) 30%, transparent);
+}
+
+.metricLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metricValue {
+  font-family: var(--primitive-font-display);
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.metricValue[data-tone="red"] {
+  color: var(--primitive-red);
+}
+
+.metricValue[data-tone="amber"] {
+  color: var(--primitive-amber);
+}
+
+.metricValue[data-tone="green"] {
+  color: var(--primitive-green);
+}
+
+.chartWrap {
+  padding: 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--primitive-canvas) 28%, transparent);
+}

@@ -1,0 +1,1029 @@
+/* Sections family — look-improvement layer.
+   These classes COMPOSE on top of the shared ui-primitives.module.css
+   surfaces; they never restyle the shared grids. Everything is driven by
+   the global --primitive-* tokens so light + dark stay in parity. Motion is
+   transform/opacity only and prefers-reduced-motion is honoured. Aligned
+   figures use tabular-nums. */
+
+/* ---------------------------------------------------------------
+   Section header — scale contrast + numbered index + accent rule
+   --------------------------------------------------------------- */
+
+.headerEyebrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding-left: 14px;
+}
+
+.headerEyebrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 4px;
+  height: 14px;
+  transform: translateY(-50%);
+  border-radius: var(--primitive-radius-pill);
+  background: linear-gradient(180deg, var(--primitive-red), var(--primitive-red-dark));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--primitive-red) 50%, transparent);
+}
+
+.headerIndex {
+  font-variant-numeric: tabular-nums;
+}
+
+.headerTitle {
+  position: relative;
+}
+
+.headerTitle::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 2px;
+  margin-top: 14px;
+  border-radius: var(--primitive-radius-pill);
+  background: linear-gradient(90deg, var(--primitive-red), var(--primitive-amber) 70%, transparent);
+  opacity: 0.85;
+}
+
+/* ---------------------------------------------------------------
+   Status pill — semantic dot + designed hover/active
+   --------------------------------------------------------------- */
+
+.pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding-left: 9px;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.pillDot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: currentColor;
+  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 22%, transparent);
+}
+
+/* ---------------------------------------------------------------
+   Foundations — swatch depth + type/material/motion atmosphere
+   --------------------------------------------------------------- */
+
+.swatchChip {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 180ms var(--ease, ease), box-shadow 180ms ease;
+}
+
+.swatchChip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(140deg, color-mix(in oklab, var(--primitive-text-strong) 42%, transparent) 0%, transparent 38%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+.swatchChip:hover {
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: 0 14px 30px color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+}
+
+.foundationCard {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.foundationCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--tone, var(--primitive-teal)) 18%, transparent), transparent 46%);
+  opacity: 0.9;
+}
+
+.foundationCard:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--tone, var(--primitive-teal)) 40%, var(--primitive-line));
+  box-shadow: var(--primitive-shadow-deep);
+}
+
+.motionList li {
+  position: relative;
+  padding-left: var(--primitive-space-5);
+}
+
+.motionList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 9px;
+  height: 9px;
+  border-radius: var(--primitive-radius-xs);
+  background: linear-gradient(135deg, var(--primitive-amber), var(--primitive-red));
+  transform: rotate(45deg);
+}
+
+.foundationRoot {
+  gap: clamp(24px, 3vw, 42px);
+}
+
+.foundationHeroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(340px, 0.75fr);
+  gap: var(--primitive-space-5);
+  align-items: stretch;
+}
+
+.foundationSourcePanel,
+.foundationIconRail,
+.foundationLayerCard,
+.foundationTokenBoard,
+.foundationExpansionPanel,
+.foundationTokenGroup,
+.foundationLineagePanel,
+.foundationExpansionCard,
+.foundationLineageCard,
+.foundationResponsivePanel,
+.foundationResponsiveCard,
+.foundationRecipe,
+.foundationGatePanel,
+.foundationGate {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), transparent 42%),
+    radial-gradient(circle at 12% 0%, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 44%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.foundationSourcePanel::before,
+.foundationIconRail::before,
+.foundationLayerCard::before,
+.foundationTokenBoard::before,
+.foundationExpansionPanel::before,
+.foundationLineagePanel::before,
+.foundationResponsivePanel::before,
+.foundationGatePanel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, var(--primitive-texture-stroke) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(0deg, var(--primitive-texture-stroke) 0 1px, transparent 1px 56px);
+  opacity: 0.72;
+}
+
+.foundationSourcePanel > *,
+.foundationIconRail > *,
+.foundationLayerCard > *,
+.foundationTokenBoard > *,
+.foundationExpansionPanel > *,
+.foundationLineagePanel > *,
+.foundationResponsivePanel > *,
+.foundationGatePanel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.foundationSourcePanel {
+  display: grid;
+  align-content: center;
+  gap: var(--primitive-space-4);
+  padding: clamp(22px, 3vw, 38px);
+  background:
+    radial-gradient(circle at 86% 0%, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 42%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 36%),
+    var(--primitive-carbon-weave);
+  background-size: auto, auto, var(--primitive-carbon-weave-size);
+}
+
+.foundationLabel,
+.foundationRailHead span,
+.foundationBoardHeader span,
+.foundationLayerIndex,
+.foundationRecipe > span,
+.foundationGate > span,
+.foundationGate strong {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.foundationSourcePanel h3 {
+  max-width: 760px;
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(38px, 5.6vw, 84px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+}
+
+.foundationSourcePanel p,
+.foundationLayerCard p,
+.foundationTokenGroup p,
+.foundationBoardHeader p,
+.foundationExpansionCard p,
+.foundationLineageCard p,
+.foundationResponsiveCard p,
+.foundationRecipe p,
+.foundationGate p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+}
+
+.foundationSourcePanel p {
+  max-width: 76ch;
+  font-size: var(--primitive-text-base);
+}
+
+.foundationStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.foundationStats span {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.foundationStats strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-3xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: var(--primitive-leading-tight);
+}
+
+.foundationIconRail {
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-5);
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-red-dark) 20%, transparent), transparent 62%),
+    color-mix(in oklab, var(--primitive-canvas) 76%, black);
+}
+
+.foundationRailHead {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  padding-bottom: var(--primitive-space-3);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.foundationRailHead strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.foundationIconGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.foundationIconTile {
+  display: grid;
+  justify-items: center;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+  margin: 0;
+  padding: var(--primitive-space-4) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent),
+    var(--primitive-recessed);
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.foundationIconTile:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, var(--primitive-line));
+}
+
+.foundationIconTile img {
+  display: block;
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px color-mix(in oklab, black 48%, transparent));
+}
+
+.foundationIconTile figcaption {
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 78%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  line-height: var(--primitive-leading-snug);
+  text-align: center;
+}
+
+.foundationLayerGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.foundationLayerCard {
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-5);
+}
+
+.foundationLayerCard h3,
+.foundationBoardHeader h3,
+.foundationRecipe h3,
+.foundationTokenGroup h4,
+.foundationExpansionCard h4,
+.foundationLineageCard h4,
+.foundationResponsiveCard h4,
+.foundationGate h4 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+}
+
+.foundationLayerCard h3 {
+  font-size: var(--primitive-text-2xl);
+}
+
+.foundationExpansionPanel,
+.foundationLineagePanel,
+.foundationResponsivePanel {
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: var(--primitive-space-5);
+}
+
+.foundationExpansionGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.foundationExpansionCard {
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-3);
+  min-height: 230px;
+  padding: var(--primitive-space-4);
+  color: inherit;
+  text-decoration: none;
+  border-left: 2px solid color-mix(in oklab, var(--primitive-amber) 62%, var(--primitive-line));
+  transition:
+    transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.foundationExpansionCard:hover,
+.foundationExpansionCard:focus-visible {
+  transform: translateY(-3px);
+  border-color: color-mix(in oklab, var(--primitive-red) 64%, var(--primitive-line));
+  box-shadow: var(--primitive-shadow-deep);
+  outline: none;
+}
+
+.foundationExpansionCard span,
+.foundationExpansionCard small {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.foundationExpansionCard h4 {
+  font-size: var(--primitive-text-xl);
+}
+
+.foundationExpansionCard div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  align-self: end;
+}
+
+.foundationExpansionCard small {
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-amber);
+}
+
+.foundationLineageGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.foundationLineageCard {
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-2);
+  min-height: 188px;
+  padding: var(--primitive-space-4);
+  border-left: 2px solid color-mix(in oklab, var(--primitive-red) 58%, var(--primitive-line));
+  background:
+    linear-gradient(145deg, color-mix(in oklab, var(--primitive-red) 9%, transparent), transparent 44%),
+    color-mix(in oklab, var(--primitive-panel) 86%, transparent);
+}
+
+.foundationLineageCard span,
+.foundationLineageCard small {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.foundationLineageCard h4,
+.foundationResponsiveCard h4 {
+  font-size: var(--primitive-text-lg);
+}
+
+.foundationLineageCard p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.foundationLineageCard small {
+  align-self: end;
+  color: var(--primitive-amber);
+  line-height: var(--primitive-leading-snug);
+  overflow-wrap: anywhere;
+}
+
+.foundationFeeds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  margin-top: var(--primitive-space-2);
+}
+
+.foundationFeeds span {
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.foundationTokenBoard,
+.foundationGatePanel {
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: var(--primitive-space-5);
+}
+
+.foundationBoardHeader {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding-bottom: var(--primitive-space-4);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.foundationBoardHeader h3 {
+  font-size: clamp(28px, 3.4vw, 52px);
+}
+
+.foundationTokenGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.foundationTokenGroup {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent),
+    color-mix(in oklab, var(--primitive-panel) 82%, transparent);
+}
+
+.foundationTokenGroup h4 {
+  font-size: var(--primitive-text-xl);
+}
+
+.foundationTokenRows {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.foundationTokenRow {
+  display: grid;
+  grid-template-columns: auto minmax(140px, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--primitive-space-3);
+  align-items: center;
+  min-width: 0;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-field-bg);
+}
+
+.foundationTokenRow code,
+.foundationTokenRow > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.foundationTokenRow code {
+  color: var(--primitive-amber);
+}
+
+.foundationTokenRow > span:last-child {
+  color: var(--primitive-muted);
+}
+
+.foundationSwatch,
+.foundationTick {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-sm);
+}
+
+.foundationSwatch {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-text-strong) 34%, transparent), transparent 46%),
+    var(--foundation-tone);
+}
+
+.foundationTick {
+  background:
+    linear-gradient(135deg, var(--primitive-red), var(--primitive-amber));
+  transform: rotate(45deg) scale(0.62);
+}
+
+.foundationResponsiveGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.foundationResponsiveCard {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 52%),
+    color-mix(in oklab, var(--primitive-panel) 84%, transparent);
+}
+
+.foundationResponsiveCard div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.foundationResponsiveCard span {
+  min-width: 0;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-recessed);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.foundationRecipeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.foundationRecipe {
+  isolation: isolate;
+  display: grid;
+  align-content: end;
+  min-height: 250px;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-5);
+}
+
+.foundationRecipe > * {
+  position: relative;
+  z-index: 1;
+}
+
+.foundationRecipe h3 {
+  font-size: var(--primitive-text-2xl);
+}
+
+.foundationRecipeCarbon {
+  background:
+    linear-gradient(180deg, transparent 44%, color-mix(in oklab, black 42%, transparent)),
+    var(--primitive-carbon-weave);
+  background-size: auto, var(--primitive-carbon-weave-size);
+}
+
+.foundationRecipeRed {
+  background:
+    var(--primitive-metallic-sheen),
+    var(--primitive-metallic-red);
+}
+
+.foundationRecipeChrome {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 18%, var(--primitive-line));
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-text-strong) 12%, transparent), transparent 16% 84%, color-mix(in oklab, var(--primitive-text-strong) 10%, transparent)),
+    radial-gradient(90% 72% at 50% 0%, color-mix(in oklab, var(--primitive-text-strong) 9%, transparent), transparent 64%),
+    linear-gradient(135deg, #08090d 0%, #121620 44%, #08090d 100%);
+}
+
+.foundationRecipeChrome::before,
+.foundationRecipeChrome::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.foundationRecipeChrome::before {
+  inset: var(--primitive-space-5) var(--primitive-space-5) auto;
+  height: 10px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-chrome-edge);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 34%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, black 72%, transparent),
+    0 16px 34px color-mix(in oklab, black 34%, transparent);
+  opacity: 0.82;
+}
+
+.foundationRecipeChrome::after {
+  inset: auto var(--primitive-space-5) var(--primitive-space-5);
+  height: 1px;
+  background: linear-gradient(90deg, var(--primitive-red), var(--primitive-amber) 46%, transparent);
+  opacity: 0.78;
+}
+
+.foundationRecipeGlass {
+  background:
+    radial-gradient(circle at 18% 0%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 48%),
+    linear-gradient(180deg, var(--primitive-glass-strong), var(--primitive-recessed)),
+    var(--primitive-panel-strong);
+  backdrop-filter: blur(18px);
+}
+
+.foundationRecipeRed span,
+.foundationRecipeRed h3,
+.foundationRecipeRed p,
+.foundationRecipeChrome span,
+.foundationRecipeChrome h3,
+.foundationRecipeChrome p {
+  color: var(--primitive-text-on-accent);
+  text-shadow: 0 1px 1px color-mix(in oklab, black 54%, transparent);
+}
+
+.foundationGateGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.foundationGate {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+}
+
+.foundationGate h4 {
+  font-size: var(--primitive-text-xl);
+}
+
+.foundationGate strong {
+  color: var(--primitive-amber);
+}
+
+:global(html[data-primitive-theme="light"]) .foundationSourcePanel,
+:global(html[data-primitive-theme="light"]) .foundationIconRail,
+:global(html[data-primitive-theme="light"]) .foundationLayerCard,
+:global(html[data-primitive-theme="light"]) .foundationTokenBoard,
+:global(html[data-primitive-theme="light"]) .foundationExpansionPanel,
+:global(html[data-primitive-theme="light"]) .foundationTokenGroup,
+:global(html[data-primitive-theme="light"]) .foundationLineagePanel,
+:global(html[data-primitive-theme="light"]) .foundationExpansionCard,
+:global(html[data-primitive-theme="light"]) .foundationLineageCard,
+:global(html[data-primitive-theme="light"]) .foundationResponsivePanel,
+:global(html[data-primitive-theme="light"]) .foundationResponsiveCard,
+:global(html[data-primitive-theme="light"]) .foundationGatePanel,
+:global(html[data-primitive-theme="light"]) .foundationGate {
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent 54%),
+    radial-gradient(circle at 12% 0%, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 44%),
+    var(--primitive-panel);
+}
+
+@media (max-width: 1180px) {
+  .foundationHeroGrid,
+  .foundationTokenGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .foundationLineageGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .foundationExpansionGrid,
+  .foundationLayerGrid,
+  .foundationRecipeGrid,
+  .foundationResponsiveGrid,
+  .foundationGateGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .foundationStats,
+  .foundationExpansionGrid,
+  .foundationLineageGrid,
+  .foundationLayerGrid,
+  .foundationRecipeGrid,
+  .foundationResponsiveGrid,
+  .foundationGateGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .foundationIconRail,
+  .foundationSourcePanel,
+  .foundationTokenBoard,
+  .foundationExpansionPanel,
+  .foundationLineagePanel,
+  .foundationResponsivePanel,
+  .foundationGatePanel {
+    padding: var(--primitive-space-4);
+  }
+
+  .foundationIconGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--primitive-space-2);
+  }
+
+  .foundationIconTile img {
+    width: 76px;
+    height: 76px;
+  }
+
+  .foundationTokenRow {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .foundationTokenRow > span:last-child {
+    grid-column: 2;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Audit board — status-tinted left edge + lift
+   --------------------------------------------------------------- */
+
+.auditCard {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-left: 3px solid color-mix(in srgb, var(--status-tone, var(--primitive-teal)) 70%, transparent);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.auditCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(105deg, color-mix(in srgb, var(--status-tone, var(--primitive-teal)) 12%, transparent), transparent 42%);
+}
+
+.auditCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--primitive-shadow-deep);
+  border-left-color: var(--status-tone, var(--primitive-teal));
+}
+
+.auditCovered {
+  --status-tone: var(--primitive-green);
+}
+
+.auditNew {
+  --status-tone: var(--primitive-amber);
+}
+
+.auditGap {
+  --status-tone: var(--primitive-red);
+}
+
+/* ---------------------------------------------------------------
+   Production — coverage matrix data-viz + numeric alignment
+   --------------------------------------------------------------- */
+
+.matrixRow {
+  transition: background 150ms ease;
+}
+
+.matrixRow:hover {
+  background: var(--primitive-surface-hover);
+}
+
+.matrixFamily {
+  font-variant-numeric: tabular-nums;
+}
+
+.gateItem {
+  position: relative;
+  transition: transform 150ms ease, color 150ms ease;
+}
+
+.gateItem:hover {
+  transform: translateX(3px);
+}
+
+.gateIndex {
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+/* ---------------------------------------------------------------
+   Workshop — quote-path stepper rhythm + domain card lift
+   --------------------------------------------------------------- */
+
+.stepConnector li {
+  position: relative;
+}
+
+.stepConnector li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: var(--primitive-space-3);
+  top: 30px;
+  bottom: -6px;
+  width: 2px;
+  border-radius: var(--primitive-radius-pill);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--primitive-red) 60%, transparent), transparent);
+  opacity: 0.7;
+}
+
+.domainCard {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.domainCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--primitive-red) 14%, transparent), transparent 44%);
+}
+
+.domainCard:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--primitive-red) 36%, var(--primitive-line));
+  box-shadow: var(--primitive-shadow-deep);
+}
+
+.priceFigure {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------
+   Sandbox — experiment-lane atmosphere + accent dot per card
+   --------------------------------------------------------------- */
+
+.labCard {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.labCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(135deg, var(--primitive-texture-stroke) 0 1px, transparent 1px 9px),
+    radial-gradient(circle at 96% 4%, color-mix(in srgb, var(--tone, var(--primitive-teal)) 18%, transparent), transparent 40%);
+  opacity: 0.8;
+}
+
+.labCard > svg {
+  color: var(--tone, var(--primitive-teal));
+}
+
+.labCard:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--tone, var(--primitive-teal)) 38%, var(--primitive-line));
+  box-shadow: var(--primitive-shadow-deep);
+}
+
+.amountFigure {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------
+   Reduced motion — drop transforms, keep state legible
+   --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .pill,
+  .swatchChip,
+  .foundationCard,
+  .auditCard,
+  .matrixRow,
+  .gateItem,
+  .domainCard,
+  .labCard {
+    transition: none;
+  }
+
+  .swatchChip:hover,
+  .foundationCard:hover,
+  .auditCard:hover,
+  .gateItem:hover,
+  .domainCard:hover,
+  .labCard:hover {
+    transform: none;
+  }
+}

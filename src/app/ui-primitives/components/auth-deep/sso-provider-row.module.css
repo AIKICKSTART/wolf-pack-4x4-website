@@ -1,0 +1,198 @@
+.row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.4fr) minmax(260px, 2fr) auto auto;
+  align-items: center;
+  gap: 18px;
+  padding: var(--primitive-space-4) 18px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.row[data-status="error"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 5%, transparent);
+}
+
+.row[data-status="active"] {
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, color-mix(in oklab, var(--primitive-teal) 36%, transparent), color-mix(in oklab, var(--primitive-teal) 6%, transparent));
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.identityText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.providerName {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.domain {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  word-break: break-all;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+}
+
+.metric {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.metric dt {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metric dd {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+}
+
+.metricValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.mask {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--primitive-text-strong);
+}
+
+.statusRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--primitive-space-1-5);
+}
+
+.errorBrief {
+  font-size: 11px;
+  color: var(--primitive-red);
+  max-width: 200px;
+  text-align: right;
+}
+
+.actions {
+  display: flex;
+  gap: var(--primitive-space-2);
+}
+
+.btnSecondary,
+.btnPrimary {
+  padding: var(--primitive-space-2) 14px;
+  border-radius: var(--primitive-radius-md);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.btnSecondary {
+  background: transparent;
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-body);
+}
+
+.btnSecondary:hover:not(:disabled) {
+  border-color: var(--primitive-teal);
+  color: var(--primitive-text-strong);
+}
+
+.btnSecondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btnPrimary {
+  background: var(--primitive-btn-primary-bg);
+  border: 1px solid transparent;
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.btnPrimary:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.btnSecondary:focus-visible,
+.btnPrimary:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 3px;
+}
+
+@media (max-width: 980px) {
+  .row {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+  .statusRow {
+    align-items: flex-start;
+  }
+  .errorBrief {
+    text-align: left;
+  }
+  .actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btnSecondary,
+  .btnPrimary {
+    transition: none;
+  }
+}

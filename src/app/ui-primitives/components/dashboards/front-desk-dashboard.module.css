@@ -1,0 +1,165 @@
+/* FrontDeskDashboard — split layout: schedule strip + customer queue + inbox. */
+
+.surface {
+  display: grid;
+  gap: 18px;
+}
+
+.quickActions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.action {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-top: 2px solid var(--action-tone, var(--primitive-line-strong));
+  border-radius: 10px;
+  background:
+    radial-gradient(120% 90% at 100% 0%, color-mix(in oklab, var(--action-tone, transparent) 12%, transparent), transparent 62%),
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-surface-1);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) ease,
+    box-shadow var(--primitive-duration-fast) ease,
+    background var(--primitive-duration-fast) ease;
+}
+
+.action:hover {
+  transform: translateY(-2px);
+  border-color: var(--action-tone, var(--primitive-line-strong));
+  box-shadow: 0 16px 34px color-mix(in oklab, var(--action-tone, var(--primitive-recessed)) 22%, color-mix(in oklab, var(--primitive-overlay) 83%, transparent));
+}
+
+.action:focus-visible {
+  outline: none;
+  border-color: var(--action-tone, var(--primitive-focus-ring));
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.action:active {
+  transform: translateY(0);
+  box-shadow: var(--primitive-shadow-inset);
+}
+
+.actionLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--action-tone, var(--primitive-muted));
+}
+
+.actionTitle {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 1.5vw, 24px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.02em;
+  line-height: 1.02;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.actionMeta {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+}
+
+.actionRed { --action-tone: var(--primitive-red); }
+.actionAmber { --action-tone: var(--primitive-amber); }
+.actionTeal { --action-tone: var(--primitive-teal); }
+.actionGreen { --action-tone: var(--primitive-green); }
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: border-color var(--primitive-duration-fast) ease, box-shadow var(--primitive-duration-fast) ease;
+  }
+
+  .action:hover,
+  .action:active {
+    transform: none;
+  }
+}
+
+.queue {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.queueItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-surface-1);
+  transition:
+    border-color var(--primitive-duration-fast) ease,
+    background var(--primitive-duration-fast) ease;
+}
+
+.queueItem:hover {
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-surface-hover);
+}
+
+.queueIdentity {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.queueName {
+  font-size: 14px;
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.queueSub {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-muted);
+}
+
+.queueChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  justify-self: end;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .quickActions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .queueItem {
+    transition: none;
+  }
+}

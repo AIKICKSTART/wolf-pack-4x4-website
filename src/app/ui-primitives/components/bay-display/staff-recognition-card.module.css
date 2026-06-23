@@ -1,0 +1,111 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: clamp(24px, 2.2vw, 36px);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-amber) 20%, transparent), transparent 50%),
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 5%, transparent),
+      color-mix(in oklab, var(--primitive-text-on-accent) 1.2%, transparent)
+    ),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-on-accent) 10%, transparent),
+    0 36px 80px color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+  overflow: hidden;
+}
+
+.head {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(12px, 0.95vw, 15px);
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.portraitRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--primitive-space-5);
+}
+
+.portrait {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.glow {
+  position: absolute;
+  inset: -10px;
+  border-radius: var(--primitive-radius-pill);
+  box-shadow:
+    0 0 0 2px color-mix(in oklab, var(--primitive-amber) 40%, transparent),
+    0 0 60px color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  pointer-events: none;
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.name {
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  font-weight: 400;
+  font-size: clamp(28px, 2.4vw, 44px);
+  line-height: 1;
+  letter-spacing: 0.012em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.role {
+  font-style: normal;
+  font-family: var(--ff-ts-bebas, var(--primitive-font-display));
+  font-size: clamp(16px, 1.2vw, 22px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.tenure {
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(10px, 0.78vw, 12px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.reason {
+  position: relative;
+  margin: 0;
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border-left: 3px solid var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 3%, transparent);
+  border-radius: 0 var(--primitive-radius-lg) var(--primitive-radius-lg) 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--ff-ts-fraunces, serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.4vw, 22px);
+  line-height: 1.45;
+}
+
+.openMark,
+.closeMark {
+  color: var(--primitive-amber);
+  font-size: 1.4em;
+  line-height: 0;
+  vertical-align: -0.15em;
+  margin: 0 var(--primitive-space-1);
+}

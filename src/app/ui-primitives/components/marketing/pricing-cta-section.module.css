@@ -1,0 +1,153 @@
+.section {
+  display: grid;
+  gap: clamp(28px, 3.6vw, 48px);
+  padding: clamp(48px, 6vw, 96px) clamp(20px, 4vw, 56px);
+}
+
+.header {
+  display: grid;
+  gap: var(--primitive-space-3);
+  max-width: 760px;
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(30px, 4.4vw, 60px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 0.94;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.body {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-md);
+  line-height: 1.6;
+}
+
+.table {
+  margin: 0;
+}
+
+.cta {
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: var(--primitive-space-7);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 80% 0%, color-mix(in srgb, var(--primitive-red) 16%, transparent), transparent 60%),
+    var(--primitive-glass-soft);
+}
+
+.footnote {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-base);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  min-height: 46px;
+  padding: 0 var(--primitive-space-6);
+  border: 1px solid transparent;
+  border-radius: var(--primitive-btn-radius);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out), border-color var(--primitive-duration-fast) var(--primitive-ease-out), background var(--primitive-duration-fast) var(--primitive-ease-out), box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.action:hover,
+.action:focus-visible {
+  transform: translateY(-1px);
+}
+
+.action:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.action:active {
+  transform: translateY(0);
+}
+
+/* Primary CTA — central metallic-red button DNA (amber on hover). */
+.actionPrimary {
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.actionPrimary:hover {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.actionPrimary:focus-visible {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+/* Secondary — central carbon-fibre button DNA. */
+.actionSecondary {
+  color: var(--primitive-btn-secondary-fg);
+  background: var(--primitive-btn-secondary-bg);
+  border-color: var(--primitive-btn-secondary-border);
+}
+
+.arrow {
+  display: inline-block;
+  width: 16px;
+  height: 1px;
+  background: currentColor;
+  position: relative;
+}
+
+.arrow::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid currentColor;
+  border-top: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: box-shadow 120ms ease;
+  }
+  .action:hover,
+  .action:focus-visible,
+  .action:active {
+    transform: none;
+  }
+}

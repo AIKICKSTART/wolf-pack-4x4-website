@@ -1,0 +1,179 @@
+.wrap {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+}
+
+.title {
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.canvas {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  border: 1px dashed var(--primitive-line);
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 60%),
+    repeating-conic-gradient(var(--primitive-texture-stroke) 0% 25%, transparent 0% 50%) 0 0 / 16px 16px,
+    var(--primitive-panel-strong);
+  overflow: hidden;
+}
+
+.proxy {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 40%, transparent);
+}
+
+.marquee {
+  position: absolute;
+  left: var(--m-x, 18%);
+  top: var(--m-y, 22%);
+  width: var(--m-w, 56%);
+  height: var(--m-h, 52%);
+  border: 1.5px dashed var(--primitive-text-strong);
+  background-image: linear-gradient(
+    90deg,
+    var(--primitive-text-strong) 50%,
+    transparent 50%
+  );
+  background-size: 8px 1.5px;
+  background-repeat: repeat-x;
+  background-position: 0 -0.75px, 0 100%, 0 0, 100% 0;
+  /* Real ant-march via animated dashed border */
+  box-shadow: inset 0 0 0 1px var(--primitive-overlay);
+}
+
+.marquee::before,
+.marquee::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background-image: linear-gradient(90deg, var(--primitive-text-strong) 50%, transparent 50%);
+  background-size: 8px 1.5px;
+  animation: marchH 600ms linear infinite;
+}
+
+.marquee::before { top: -1.5px; }
+.marquee::after { bottom: -1.5px; animation-direction: reverse; }
+
+.marqueeSideL,
+.marqueeSideR {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background-image: linear-gradient(0deg, var(--primitive-text-strong) 50%, transparent 50%);
+  background-size: 1.5px 8px;
+  animation: marchV 600ms linear infinite;
+}
+
+.marqueeSideL { left: -1.5px; }
+.marqueeSideR { right: -1.5px; animation-direction: reverse; }
+
+@keyframes marchH {
+  from { background-position: 0 0; }
+  to { background-position: 8px 0; }
+}
+
+@keyframes marchV {
+  from { background-position: 0 0; }
+  to { background-position: 0 8px; }
+}
+
+.cornerHandle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--primitive-text-strong);
+  border: 1.5px solid var(--primitive-canvas);
+  border-radius: var(--primitive-radius-xs);
+}
+
+.handleTl { top: -5px; left: -5px; }
+.handleTr { top: -5px; right: -5px; }
+.handleBl { bottom: -5px; left: -5px; }
+.handleBr { bottom: -5px; right: -5px; }
+
+.dim {
+  position: absolute;
+  bottom: var(--primitive-space-1);
+  right: var(--primitive-space-1);
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  background: var(--primitive-media-overlay);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--primitive-text-strong);
+  border-radius: 3px;
+}
+
+.modeRow {
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--primitive-space-1-5);
+  justify-content: start;
+}
+
+.modeBtn {
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.modeActive {
+  background: var(--primitive-teal);
+  color: var(--primitive-canvas);
+  border-color: var(--primitive-teal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee::before,
+  .marquee::after,
+  .marqueeSideL,
+  .marqueeSideR {
+    animation: none;
+  }
+}

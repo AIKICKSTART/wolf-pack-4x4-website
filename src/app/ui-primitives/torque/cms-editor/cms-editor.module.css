@@ -1,0 +1,359 @@
+/* Torque — CMS page editor screen. Bespoke editor chrome composed around
+   existing CMS primitives (page tree, canvas, inspector, library, publish
+   flow, responsive toolbar). Light + dark parity via --primitive-* tokens;
+   no hardcoded palette. Motion is transform/opacity only and reduced-motion
+   aware. Figures use tabular-nums. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1520px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.demoSurface {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: clamp(14px, 2.2vw, 26px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      color-mix(in srgb, var(--primitive-red) 11%, transparent),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse at 0% 0%,
+      color-mix(in srgb, var(--primitive-amber) 7%, transparent),
+      transparent 48%
+    ),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.demoLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Editor shell ───────────────────────────────────────────────────────── */
+
+.shell {
+  display: grid;
+  gap: clamp(14px, 1.8vw, 20px);
+  min-width: 0;
+}
+
+/* ── Topbar / chrome ────────────────────────────────────────────────────── */
+
+.topbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto auto;
+  gap: clamp(12px, 1.8vw, 24px);
+  align-items: center;
+  padding: 12px clamp(12px, 1.6vw, 18px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.brandGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot art lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--primitive-text-on-accent) 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 8px 22px color-mix(in oklab, var(--primitive-red) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.brandText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.brandName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.brandPage {
+  display: flex;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  font-size: var(--primitive-text-base);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.brandSlug {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+  white-space: nowrap;
+}
+
+.historyGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  flex-wrap: wrap;
+}
+
+.chromeActions {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  justify-self: end;
+}
+
+.chromeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: var(--primitive-space-2) 13px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 11px;
+  background: var(--primitive-surface-3);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    background-color 200ms ease;
+}
+
+.chromeBtn:hover,
+.chromeBtn:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--primitive-teal);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.chromeBtn:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.chromeBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.chromeBtnLabel {
+  white-space: nowrap;
+}
+
+.chromePrimary {
+  border-color: transparent;
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.chromePrimary:hover,
+.chromePrimary:focus-visible {
+  border-color: transparent;
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.saveState {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primitive-green);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Responsive toolbar (chrome) ────────────────────────────────────────── */
+
+.chromeToolbar {
+  width: 100%;
+}
+
+.previewMeta {
+  display: grid;
+  gap: var(--primitive-space-2);
+  place-content: center;
+  justify-items: center;
+  padding: clamp(24px, 5vw, 56px) 18px;
+  text-align: center;
+}
+
+.previewKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.previewTitle {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 3.2vw, 36px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.previewHint {
+  max-width: 48ch;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Workbench: tree | canvas | inspector ───────────────────────────────── */
+
+.workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr) minmax(0, 320px);
+  gap: clamp(12px, 1.6vw, 18px);
+  align-items: start;
+}
+
+.tree {
+  position: sticky;
+  top: 18px;
+  max-height: calc(100vh - 36px);
+}
+
+.canvas {
+  min-width: 0;
+}
+
+.inspector {
+  position: sticky;
+  top: 18px;
+  max-height: calc(100vh - 36px);
+}
+
+/* ── Lower deck: block library + publish flow ───────────────────────────── */
+
+.lower {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(12px, 1.6vw, 18px);
+  align-items: start;
+}
+
+.library {
+  min-width: 0;
+}
+
+.publish {
+  min-width: 0;
+  scroll-margin-top: 18px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 1180px) {
+  .workbench {
+    grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+  }
+  .inspector {
+    grid-column: 1 / -1;
+    position: static;
+    max-height: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .topbar {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--primitive-space-3);
+  }
+  .chromeActions {
+    justify-self: stretch;
+  }
+  .historyGroup {
+    justify-content: space-between;
+  }
+  .workbench {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tree {
+    position: static;
+    max-height: 380px;
+  }
+  .lower {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .chromeActions {
+    flex-wrap: wrap;
+  }
+  .chromeBtn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .saveState {
+    order: -1;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chromeBtn {
+    transition: none;
+  }
+  .chromeBtn:hover,
+  .chromeBtn:focus-visible {
+    transform: none;
+  }
+}

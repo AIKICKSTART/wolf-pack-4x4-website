@@ -1,0 +1,145 @@
+.header {
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 12% 0%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 44%),
+    radial-gradient(circle at 92% 100%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 48%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent), var(--primitive-shadow-deep);
+  min-width: 0;
+}
+
+.identity {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr) auto;
+  gap: var(--primitive-space-5);
+  align-items: center;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 28% 22%, color-mix(in oklab, var(--primitive-text-strong) 32%, transparent), transparent 60%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-text-strong) 10%, transparent), color-mix(in oklab, var(--primitive-text-strong) 2%, transparent)),
+    var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  border: 1px solid var(--primitive-line-strong);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 18%, transparent), 0 16px 40px color-mix(in oklab, var(--primitive-overlay) 83%, transparent);
+}
+
+.copy {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.byline {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 0.96;
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+}
+
+.tagline {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-base);
+  line-height: 1.55;
+}
+
+.actionSlot {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-0-5);
+  padding: var(--primitive-space-1);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-recessed);
+  width: max-content;
+  max-width: 100%;
+}
+
+.tab {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--primitive-space-4);
+  border: 0;
+  border-radius: var(--primitive-radius-md);
+  color: var(--primitive-body);
+  background: transparent;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--primitive-duration-fast) var(--primitive-ease-out), background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.tab:hover,
+.tab:focus-visible {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+  outline: none;
+}
+
+.tab[aria-selected="true"] {
+  color: var(--primitive-text-strong);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent), color-mix(in oklab, var(--primitive-text-strong) 4%, transparent)),
+    color-mix(in oklab, var(--primitive-red) 34%, transparent);
+  box-shadow: 0 6px 18px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+@media (max-width: 760px) {
+  .identity {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+  .logo {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--primitive-radius-xl);
+  }
+  .actionSlot {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}

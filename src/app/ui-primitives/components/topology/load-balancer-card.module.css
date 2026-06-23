@@ -1,0 +1,200 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 65%),
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 55%),
+    var(--primitive-panel-strong);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 18px 36px color-mix(in oklab, var(--primitive-canvas) 46%, transparent);
+  isolation: isolate;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.iconBadge {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 45%, transparent);
+}
+
+.iconBadge svg { width: 17px; height: 17px; }
+
+.headerMeta { display: grid; gap: 2px; min-width: 0; }
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.006em;
+}
+
+.subTitle {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  color: var(--primitive-muted);
+}
+
+.section { display: grid; gap: 8px; }
+
+.sectionLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.listenerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.listenerChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) 9px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--primitive-body);
+}
+
+.listenerChip strong {
+  color: var(--primitive-text-strong);
+}
+
+.listener-https {
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  color: var(--primitive-green);
+}
+.listener-http {
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  color: var(--primitive-amber);
+}
+.listener-tcp {
+  border-color: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  color: var(--primitive-teal);
+}
+.listener-udp {
+  border-color: color-mix(in oklab, var(--primitive-teal) 35%, transparent);
+  color: var(--primitive-teal);
+}
+.listener-grpc {
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  color: var(--primitive-red);
+}
+
+.healthBar {
+  --health-tone: var(--primitive-green);
+  position: relative;
+  height: 10px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border: 1px solid var(--primitive-line);
+  overflow: hidden;
+}
+
+.healthGreen { --health-tone: var(--primitive-green); }
+.healthAmber { --health-tone: var(--primitive-amber); }
+.healthRed { --health-tone: var(--primitive-red); }
+
+.healthFill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--health-tone), color-mix(in srgb, var(--health-tone) 60%, white));
+  box-shadow: 0 0 8px var(--health-tone);
+  transition: width 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.healthMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.healthMetricGreen,
+.healthMetricRed,
+.healthMetricMuted {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.healthMetricGreen { color: var(--primitive-green); }
+.healthMetricRed { color: var(--primitive-red); }
+.healthMetricMuted { color: var(--primitive-muted); }
+.healthMetricGreen svg { width: 11px; height: 11px; }
+
+.throughput {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.throughputLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.throughputValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-md);
+  font-weight: 700;
+  color: var(--primitive-teal);
+}
+
+.throughputValue small {
+  margin-left: 3px;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  letter-spacing: 0.16em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .healthFill { transition: none; }
+}

@@ -1,0 +1,187 @@
+.banner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: var(--primitive-space-7);
+  align-items: center;
+  padding: clamp(24px, 4vw, 44px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 80% 12%, color-mix(in oklab, var(--primitive-red) 22%, transparent), transparent 48%),
+    radial-gradient(circle at 12% 92%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 56%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-text-strong) 6%) 0%, var(--primitive-canvas) 100%);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent), var(--primitive-shadow-deep);
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 280px;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0 23px, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 23px 24px);
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.banner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.copy {
+  display: grid;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+}
+
+.kicker {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 0.96;
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+}
+
+.description {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-base);
+  line-height: 1.55;
+}
+
+/* Hero CTA — central metallic-red button DNA, amber hover. */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2-5);
+  width: max-content;
+  min-height: 44px;
+  padding: 0 var(--primitive-space-6);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.visual {
+  position: relative;
+  min-height: 220px;
+  border-radius: var(--primitive-radius-xl);
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--primitive-amber) 32%, transparent), transparent 50%),
+    repeating-linear-gradient(45deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 0 4px, transparent 4px 12px),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-red) 10%) 0%, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-teal) 8%) 100%);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.visualBadge {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  border-radius: var(--primitive-radius-2xl);
+  background:
+    radial-gradient(circle at 28% 22%, color-mix(in oklab, var(--primitive-text-strong) 40%, transparent), transparent 60%),
+    linear-gradient(135deg, var(--primitive-amber), color-mix(in oklab, var(--primitive-amber) 42%, black));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-3xl);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 18px 36px color-mix(in oklab, var(--primitive-amber) 32%, transparent), inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 44%, transparent);
+}
+
+.controls {
+  position: absolute;
+  inset: auto 0 var(--primitive-space-5) 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2);
+}
+
+.dot {
+  width: 28px;
+  height: 4px;
+  border: 0;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out), transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.dot:hover,
+.dot:focus-visible {
+  background: color-mix(in oklab, var(--primitive-text-strong) 36%, transparent);
+  outline: none;
+}
+
+.dotActive {
+  background: var(--primitive-amber);
+  box-shadow: 0 0 12px color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+}
+
+@media (max-width: 760px) {
+  .banner {
+    grid-template-columns: 1fr;
+  }
+  .visual {
+    min-height: 160px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta,
+  .dot {
+    transition: none;
+  }
+  .cta:hover,
+  .cta:focus-visible {
+    transform: none;
+  }
+}

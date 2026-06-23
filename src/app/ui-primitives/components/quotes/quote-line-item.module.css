@@ -1,0 +1,160 @@
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) 76px 110px auto 36px;
+  gap: 14px;
+  align-items: end;
+  padding: 16px 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  transition: border-color 180ms ease;
+}
+
+.row:hover {
+  border-color: var(--primitive-line-strong);
+}
+
+.body {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.fieldLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.select,
+.qty,
+.price {
+  height: 36px;
+  padding: 0 var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 62%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-feature-settings: "tnum" 1;
+}
+
+.select {
+  appearance: none;
+  background-image:
+    linear-gradient(135deg, transparent 50%, color-mix(in oklab, var(--primitive-text-strong) 52%, transparent) 50%),
+    linear-gradient(225deg, transparent 50%, color-mix(in oklab, var(--primitive-text-strong) 52%, transparent) 50%);
+  background-position: calc(100% - 14px) 50%, calc(100% - 8px) 50%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 28px;
+  text-overflow: ellipsis;
+}
+
+.qty,
+.price {
+  text-align: right;
+}
+
+.select:focus-visible,
+.qty:focus-visible,
+.price:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: -2px;
+}
+
+.total {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+  align-self: end;
+  padding: 4px 0;
+}
+
+.totalLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.totalValue {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  letter-spacing: var(--primitive-tracking-normal);
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.remove {
+  align-self: end;
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 60%, var(--primitive-text-strong));
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-standard),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.remove:hover {
+  background: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 62%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 28%, var(--primitive-text-strong));
+}
+
+.remove:focus-visible {
+  outline: 2px solid var(--primitive-red);
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "body body"
+      "qty price"
+      "total remove";
+  }
+  .body {
+    grid-area: body;
+  }
+  .field:nth-of-type(2) {
+    grid-area: qty;
+  }
+  .field:nth-of-type(3) {
+    grid-area: price;
+  }
+  .total {
+    grid-area: total;
+    justify-items: start;
+  }
+  .remove {
+    grid-area: remove;
+    justify-self: end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .remove {
+    transition: none;
+  }
+}

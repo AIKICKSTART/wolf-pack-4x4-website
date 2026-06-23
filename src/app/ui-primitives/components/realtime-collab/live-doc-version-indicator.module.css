@@ -1,0 +1,107 @@
+.bar {
+  --state-color: var(--primitive-green);
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2) 14px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+  font-family: var(--primitive-font-body);
+}
+
+.divider {
+  width: 1px;
+  height: 16px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.state {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--state-color);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  font-weight: var(--primitive-weight-black);
+}
+
+.stateDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--state-color);
+  box-shadow: 0 0 8px var(--state-color);
+}
+
+.stateSaved { --state-color: var(--primitive-green); }
+.stateSaving { --state-color: var(--primitive-teal); }
+.stateDirty { --state-color: var(--primitive-amber); }
+.stateOffline { --state-color: var(--primitive-muted); }
+
+.stateSaving .stateDot {
+  animation: liveDocPulse 1.4s ease-in-out infinite;
+}
+
+.stateDirty .stateDot {
+  animation: liveDocPulse 1.4s ease-in-out infinite;
+}
+
+.cloud {
+  color: var(--primitive-muted);
+  display: inline-flex;
+}
+
+.saved {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.online {
+  color: var(--primitive-teal);
+  display: inline-flex;
+}
+
+.onlineCount {
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@keyframes liveDocPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stateDot {
+    animation: none;
+  }
+}

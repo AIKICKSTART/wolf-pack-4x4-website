@@ -1,0 +1,89 @@
+.switcher {
+  --de-violet: color-mix(in oklab, var(--primitive-red) 42%, var(--primitive-focus-ring));
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 100% 100%, color-mix(in oklab, var(--de-violet) 10%, transparent), transparent 50%),
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-glass-soft) 24%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: grid;
+  gap: 4px;
+}
+
+.kicker {
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1.05;
+}
+
+.tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-control-surface);
+  width: fit-content;
+}
+
+.tab {
+  min-height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--primitive-body);
+  background: transparent;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.tab:hover,
+.tab:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.tabActive {
+  color: var(--primitive-text-on-accent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-teal) 78%, transparent);
+  box-shadow: 0 8px 18px color-mix(in oklab, var(--primitive-teal) 20%, transparent);
+}
+
+.panel {
+  display: grid;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}

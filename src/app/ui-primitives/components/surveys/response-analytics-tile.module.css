@@ -1,0 +1,149 @@
+.tile {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: start;
+}
+
+.headBody {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.question {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  line-height: 1.4;
+}
+
+.count {
+  display: grid;
+  text-align: right;
+  gap: var(--primitive-space-0-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-code-bg) 60%, transparent);
+}
+
+.countNumber {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.countLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: minmax(100px, 1.2fr) minmax(0, 2.4fr) auto;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+}
+
+.barLabel {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.barTrack {
+  position: relative;
+  height: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  overflow: hidden;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--analytics-tone, var(--primitive-amber));
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 20%, transparent);
+}
+
+.barValue {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-mono);
+}
+
+.barCount {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.barPercent {
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  color: var(--primitive-muted);
+}
+
+.toneTeal {
+  --analytics-tone: var(--primitive-teal);
+}
+
+.toneAmber {
+  --analytics-tone: var(--primitive-amber);
+}
+
+.toneViolet {
+  --analytics-tone: color-mix(in oklab, var(--primitive-violet) 60%, var(--primitive-text-strong));
+}
+
+.toneGreen {
+  --analytics-tone: var(--primitive-green);
+}
+
+.toneRed {
+  --analytics-tone: var(--primitive-red);
+}
+
+.toneNeutral {
+  --analytics-tone: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent);
+}

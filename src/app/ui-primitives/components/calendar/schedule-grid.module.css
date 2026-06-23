@@ -1,0 +1,166 @@
+.grid {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+  padding-bottom: var(--primitive-space-2-5);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--primitive-space-3);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.legend li span {
+  width: var(--primitive-space-3);
+  height: var(--primitive-space-3);
+  border-radius: 3px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-surface-3);
+}
+
+.legend li[data-state="booked"] span {
+  background: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 60%, transparent);
+}
+
+.legend li[data-state="blocked"] span {
+  background: var(--primitive-amber);
+  border-color: color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+}
+
+.matrix {
+  display: grid;
+  grid-template-columns: 80px repeat(7, minmax(0, 1fr));
+  gap: var(--primitive-space-1);
+}
+
+.corner {
+  background: transparent;
+}
+
+.weekday {
+  padding: var(--primitive-space-2) var(--primitive-space-1-5);
+  text-align: center;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hourRow {
+  display: contents;
+}
+
+.hourLabel {
+  padding: var(--primitive-space-2) var(--primitive-space-2) 0 0;
+  text-align: right;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  align-self: center;
+}
+
+.cell {
+  position: relative;
+  min-height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: var(--primitive-surface-3);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.cell:hover {
+  border-color: var(--primitive-line-strong);
+  transform: scale(1.03);
+}
+
+.cell:focus-visible {
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-focus-shadow);
+  outline: none;
+  z-index: 1;
+}
+
+.cell:active {
+  transform: scale(0.97);
+}
+
+.cell[data-state="booked"] {
+  background: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+}
+
+.cell[data-state="blocked"] {
+  background: repeating-linear-gradient(
+    -45deg,
+    color-mix(in oklab, var(--primitive-amber) 36%, transparent) 0 6px,
+    color-mix(in oklab, var(--primitive-amber) 12%, transparent) 6px 12px
+  );
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    transition: none;
+  }
+
+  .cell:hover,
+  .cell:active {
+    transform: none;
+  }
+}

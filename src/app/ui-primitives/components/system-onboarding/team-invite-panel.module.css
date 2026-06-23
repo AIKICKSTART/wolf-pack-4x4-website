@@ -1,0 +1,108 @@
+.card {
+  gap: 18px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in srgb, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lead {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  min-width: 0;
+}
+
+.copy {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.name {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.email {
+  font-family: var(--primitive-font-mono);
+  font-size: 11.5px;
+  color: var(--primitive-muted);
+}
+
+.roleChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.bulkAdd {
+  display: grid;
+  grid-template-columns: minmax(160px, 1.4fr) minmax(180px, 1.6fr) minmax(140px, 1fr) auto;
+  gap: var(--primitive-space-2-5);
+  align-items: end;
+  padding: 14px;
+  border: 1px dashed var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in srgb, var(--primitive-canvas) 18%, transparent);
+}
+
+@media (max-width: 720px) {
+  .bulkAdd {
+    grid-template-columns: 1fr;
+  }
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+:global([data-primitive-theme="light"]) .row {
+  background: var(--primitive-glass-strong);
+  border-color: var(--primitive-line);
+}
+
+:global([data-primitive-theme="light"]) .name {
+  color: var(--primitive-text-strong);
+}
+
+:global([data-primitive-theme="light"]) .roleChip {
+  background: var(--primitive-glass-strong);
+  border-color: var(--primitive-line);
+  color: var(--primitive-muted);
+}

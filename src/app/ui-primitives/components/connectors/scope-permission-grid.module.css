@@ -1,0 +1,171 @@
+.grid {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 4%, transparent),
+      color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 50%
+    ),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-panel-strong));
+  color: var(--primitive-body);
+  isolation: isolate;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    inset -18px -18px 30px color-mix(in oklab, var(--primitive-canvas) 22%, transparent),
+    0 16px 38px color-mix(in oklab, var(--primitive-canvas) 26%, transparent);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.legendKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.legendList {
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.legendDot {
+  width: 12px;
+  height: 12px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-sm);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+}
+
+.legendLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border-radius: 10px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: color-mix(in oklab, var(--primitive-canvas) 65%, transparent);
+}
+
+.scopeHead,
+.providerHead {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  text-align: left;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  position: sticky;
+  top: 0;
+}
+
+.providerHead {
+  text-align: center;
+  min-width: 88px;
+}
+
+.scopeCell {
+  text-align: left;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-bottom: 1px solid color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  vertical-align: top;
+}
+
+.scopeLabel {
+  display: block;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+}
+
+.scopeCode {
+  display: block;
+  margin-top: var(--primitive-space-0-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.02em;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.dataCell {
+  text-align: center;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-bottom: 1px solid color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border-left: 1px solid color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.cell {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid var(--cell-border, color-mix(in oklab, var(--primitive-text-strong) 8%, transparent));
+  background: var(--cell-bg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent));
+  color: var(--cell-fg, var(--primitive-muted));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.cellGranted {
+  --cell-bg: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --cell-border: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  --cell-fg: var(--primitive-green);
+}
+
+.cellRequested {
+  --cell-bg: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  --cell-border: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  --cell-fg: var(--primitive-teal);
+}
+
+.cellDenied {
+  --cell-bg: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --cell-border: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  --cell-fg: var(--primitive-red);
+}
+
+.cellNone {
+  --cell-bg: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  --cell-border: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  --cell-fg: var(--primitive-muted);
+}

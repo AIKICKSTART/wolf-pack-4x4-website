@@ -1,0 +1,161 @@
+.wrapper {
+  display: grid;
+  gap: 22px;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 2.4vw, 36px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.lede {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.6;
+}
+
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 110px;
+  gap: var(--primitive-space-2-5);
+}
+
+.tile {
+  position: relative;
+  display: grid;
+  align-content: end;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border-radius: 10px;
+  overflow: hidden;
+  color: color-mix(in oklab, var(--primitive-text-strong) 96%, transparent);
+  background: linear-gradient(160deg, color-mix(in oklab, var(--primitive-text-strong) 8%, transparent), color-mix(in srgb, var(--primitive-canvas) 20%, transparent));
+  text-shadow: 0 4px 14px color-mix(in srgb, var(--primitive-canvas) 48%, transparent);
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.tileLabel {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.tileDetail {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  opacity: 0.88;
+}
+
+.kind-image {
+  background:
+    radial-gradient(circle at 30% 18%, color-mix(in oklab, var(--primitive-amber) 32%, transparent), transparent 50%),
+    radial-gradient(circle at 80% 80%, color-mix(in oklab, var(--primitive-teal) 28%, transparent), transparent 55%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 84%, var(--primitive-text-strong)) 0%, var(--primitive-canvas) 100%);
+}
+
+.kind-swatch {
+  border: 1px solid var(--primitive-recessed);
+  color: color-mix(in oklab, var(--primitive-text-strong) 92%, transparent);
+}
+
+.kind-texture {
+  background-image:
+    repeating-linear-gradient(45deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 0 4px, transparent 4px 8px),
+    radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--primitive-amber) 18%, transparent), transparent 60%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-text-strong)) 0%, var(--primitive-canvas) 100%);
+}
+
+.kind-type {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), transparent 60%),
+    radial-gradient(ellipse at 50% 50%, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 60%),
+    var(--primitive-canvas);
+}
+
+.kind-type .tileLabel {
+  font-size: var(--primitive-text-3xl);
+  letter-spacing: var(--primitive-tracking-tight);
+}
+
+.kind-quote {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-amber) 18%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 92%, var(--primitive-text-strong));
+  color: var(--primitive-code-fg);
+}
+
+.kind-quote .tileLabel {
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-base);
+  font-style: italic;
+  line-height: 1.45;
+  text-transform: none;
+}
+
+.span-tall {
+  grid-row: span 2;
+}
+
+.span-wide {
+  grid-column: span 3;
+}
+
+.span-square {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (max-width: 980px) {
+  .masonry {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .span-wide {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 640px) {
+  .masonry {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tile {
+    grid-column: span 2;
+  }
+  .span-wide,
+  .span-square {
+    grid-column: span 2;
+  }
+}

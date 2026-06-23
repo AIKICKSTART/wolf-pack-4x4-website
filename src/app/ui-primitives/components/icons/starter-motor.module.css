@@ -1,0 +1,43 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.body { fill: currentColor; opacity: 0.55; }
+.bodyStroke { stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linejoin: round; }
+.endCap { stroke: currentColor; opacity: 0.55; }
+.vent { stroke: currentColor; opacity: 0.4; stroke-width: 0.6; stroke-linecap: round; }
+.solenoid { fill: currentColor; opacity: 0.85; }
+.solenoidStroke { stroke: currentColor; fill: none; stroke-width: 1.1; stroke-linejoin: round; }
+.cablePost { fill: var(--primitive-red); opacity: 0.92; stroke: currentColor; stroke-width: 0.5; }
+.driveHousing { fill: currentColor; opacity: 0.7; stroke: currentColor; stroke-width: 0.9; }
+.gearBody { fill: currentColor; opacity: 0.65; stroke: currentColor; stroke-width: 1.1; }
+.gearInner { fill: var(--primitive-canvas); opacity: 0.55; stroke: currentColor; stroke-width: 0.6; }
+.gearTeeth { stroke: currentColor; stroke-linecap: round; }
+.gearDrive { fill: currentColor; opacity: 0.9; }
+.gearGroup { transform-origin: 18.4px 11.7px; }
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate .gearGroup { animation: iconRotate 1.4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .bodyStroke, .motionDraw .solenoidStroke, .motionDraw .gearBody { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .gearGroup { animation: iconRotate 0.3s linear infinite; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .body,
+[data-variant="outline"] .solenoid,
+[data-variant="outline"] .driveHousing,
+[data-variant="outline"] .gearBody { fill: transparent; opacity: 1; }
+[data-variant="outline"] .gearInner { fill: transparent; opacity: 1; }
+[data-variant="outline"] .gearDrive { fill: transparent; opacity: 1; stroke: currentColor; stroke-width: 0.8; }
+
+[data-variant="filled"] .body { opacity: 0.95; }
+[data-variant="filled"] .gearBody { opacity: 0.95; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .gearGroup { animation: none !important; transition: none !important; }
+}

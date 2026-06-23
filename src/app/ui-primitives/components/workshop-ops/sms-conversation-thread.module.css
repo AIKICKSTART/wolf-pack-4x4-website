@@ -1,0 +1,315 @@
+.thread {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-panel));
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding-bottom: var(--primitive-space-3);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.identity {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.phone {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--primitive-muted);
+}
+
+.vehiclePill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1) var(--primitive-space-1-5) var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.vehicleLabel {
+  color: var(--primitive-body);
+  font-size: 11px;
+  letter-spacing: 0.005em;
+}
+
+.regoPlate {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 80%, white), color-mix(in oklab, var(--primitive-amber) 88%, black));
+  color: color-mix(in oklab, var(--primitive-amber) 18%, black);
+  font-weight: var(--primitive-weight-bold);
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid color-mix(in oklab, black 30%, transparent);
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: var(--primitive-space-3);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  border: 1px solid var(--primitive-line);
+  display: grid;
+  gap: var(--primitive-space-3);
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.bubbleRow {
+  display: flex;
+}
+
+.bubbleIn {
+  justify-content: flex-start;
+}
+
+.bubbleOut {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: min(78%, 480px);
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-text-strong);
+}
+
+.bubbleIn .bubble {
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border-color: var(--primitive-glass-strong);
+  border-bottom-left-radius: 4px;
+}
+
+.bubbleOut .bubble {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 22%, transparent), color-mix(in oklab, var(--primitive-red) 5%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-panel-strong));
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  border-bottom-right-radius: 4px;
+}
+
+.bubbleBody {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: var(--primitive-leading-normal);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.bubbleMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  justify-content: space-between;
+}
+
+.bubbleTime {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-muted);
+}
+
+.status {
+  display: inline-flex;
+}
+
+.status-read {
+  color: var(--primitive-green);
+}
+
+.templateMark {
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.templates {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.templatesLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.templateRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+/* Secondary/ghost chip — carbon body from the central button DNA. */
+.templateButton {
+  appearance: none;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.templateButton:hover {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+}
+
+.templateButtonActive {
+  border-color: var(--primitive-amber);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 70%),
+    var(--primitive-btn-secondary-bg);
+  color: var(--primitive-amber);
+}
+
+.templateButton:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.composer {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.composerLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.composerInput {
+  appearance: none;
+  background: color-mix(in oklab, var(--primitive-canvas) 58%, transparent);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  color: var(--primitive-text-strong);
+  font-size: 13.5px;
+  font-family: var(--primitive-font-body);
+  line-height: var(--primitive-leading-normal);
+  resize: vertical;
+  min-height: 72px;
+}
+
+.composerInput:focus-visible {
+  outline: none;
+  border-color: color-mix(in oklab, var(--primitive-focus-ring) 62%, transparent);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.composerFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.charCount {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-muted);
+}
+
+/* Primary send CTA — central button DNA (metallic red -> amber hover). */
+.sendButton {
+  appearance: none;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  padding: var(--primitive-space-2) 18px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid transparent;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) ease, transform var(--primitive-duration-fast) ease, box-shadow var(--primitive-duration-fast) ease;
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.sendButton:hover:not(:disabled) {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.sendButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sendButton:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (max-width: 540px) {
+  .head {
+    grid-template-columns: auto 1fr;
+  }
+  .vehiclePill {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .templateButton,
+  .composerInput,
+  .sendButton {
+    transition: none;
+  }
+}

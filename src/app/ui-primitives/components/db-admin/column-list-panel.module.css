@@ -1,0 +1,192 @@
+.panel {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    var(--primitive-surface-1);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  min-width: 320px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.qualifiedName {
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+}
+
+.qualifiedName em {
+  font-style: normal;
+  color: var(--primitive-teal);
+}
+
+.summary {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  margin-left: auto;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-line);
+  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--primitive-surface-1);
+}
+
+.row:nth-child(even) {
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.nameCol {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.nameLine {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--primitive-font-mono);
+  font-size: 13px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.01em;
+}
+
+.commentBtn {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--primitive-muted);
+  cursor: pointer;
+}
+
+.commentBtn:hover,
+.commentBtn:focus-visible {
+  color: var(--primitive-amber);
+  border-color: var(--primitive-amber);
+  outline: none;
+}
+
+.commentPopover {
+  position: absolute;
+  z-index: 30;
+  margin-top: 6px;
+  padding: 10px 12px;
+  width: 240px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 8px;
+  background: var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+  font-family: var(--primitive-font-body);
+  font-size: 12px;
+  color: var(--primitive-body);
+  line-height: 1.5;
+}
+
+.commentWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.typeText {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-amber);
+}
+
+.defaultText {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+}
+
+.chips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+.chip {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-muted);
+}
+
+.chipPk {
+  color: var(--primitive-amber);
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+}
+
+.chipFk {
+  color: var(--primitive-teal);
+  border-color: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+}
+
+.chipNull {
+  color: var(--primitive-muted);
+  border-color: var(--primitive-line);
+}
+
+.chipNotNull {
+  color: var(--primitive-green);
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .commentBtn {
+    transition: none;
+  }
+}

@@ -1,0 +1,148 @@
+/* =========================================================
+   OVERLAY NARRATIVE HERO — staggered beats over video
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 86svh;
+  background: var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  isolation: isolate;
+  display: grid;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: grayscale(0.36) contrast(1.18) saturate(0.95);
+}
+
+.fog {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at 50% 50%, color-mix(in oklab, black 32%, transparent) 0%, color-mix(in oklab, black 75%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in oklab, black 36%, transparent) 0%, color-mix(in oklab, black 20%, transparent) 50%, color-mix(in oklab, black 60%, transparent) 100%);
+}
+
+.gridLines {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.beats {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.beat {
+  position: absolute;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.05em;
+  padding: var(--primitive-space-2) 14px;
+  background: var(--primitive-media-overlay);
+  border-left: 2px solid currentColor;
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+  max-width: 90vw;
+}
+
+.tone_amber { color: var(--primitive-amber); }
+.tone_teal  { color: var(--primitive-teal); }
+.tone_red   { color: var(--primitive-red); }
+.tone_fog   { color: color-mix(in oklab, var(--primitive-text-strong) 86%, transparent); border-left-color: color-mix(in oklab, var(--primitive-text-strong) 40%, transparent); }
+
+.headlineWrap {
+  position: relative;
+  z-index: 4;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  gap: 24px;
+  max-width: 980px;
+  text-align: center;
+  padding: 0 clamp(24px, 5vw, 80px);
+}
+
+.headline {
+  font-family: var(--primitive-font-display-alt);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 1rem + 6vw, 6.4rem);
+  line-height: 0.92;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  margin: 0;
+  text-shadow: 0 2px 28px color-mix(in oklab, black 70%, transparent);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: 14px 28px;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  transition: gap 220ms, background 220ms, color 220ms, box-shadow 220ms;
+}
+.cta:hover {
+  gap: 18px;
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+.cta:active {
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+.cta:focus-visible {
+  gap: 18px;
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 4px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+.cta em {
+  font-style: normal;
+  transition: transform 220ms;
+}
+.cta:hover em,
+.cta:focus-visible em {
+  transform: translateX(4px);
+}
+
+@media (max-width: 720px) {
+  .beat { font-size: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video { display: none; }
+  .hero {
+    background:
+      linear-gradient(140deg, var(--primitive-canvas) 0%, color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-teal)) 100%);
+  }
+  .cta,
+  .cta em { transition: none; }
+}

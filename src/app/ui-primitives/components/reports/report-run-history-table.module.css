@@ -1,0 +1,84 @@
+.wrapper {
+  display: grid;
+  gap: 6px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--primitive-line);
+}
+
+.status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.statusOk {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.statusRunning {
+  color: var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+
+.statusWarn {
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+}
+
+.statusFailed {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.statusQueued {
+  color: var(--primitive-muted);
+  background: var(--primitive-glass-soft);
+}
+
+.download {
+  appearance: none;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.download:hover {
+  background: var(--primitive-surface-hover);
+  border-color: var(--primitive-teal);
+}
+
+.download[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mono {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-text-strong);
+}

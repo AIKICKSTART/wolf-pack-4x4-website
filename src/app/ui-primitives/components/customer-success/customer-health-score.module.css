@@ -1,0 +1,68 @@
+.wrapper {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--cs-tone, var(--primitive-teal)) 14%, transparent), transparent 60%),
+    var(--primitive-panel);
+  isolation: isolate;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cs-tone, var(--primitive-teal));
+}
+
+.name {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-medium);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.trend {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.meter {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.factors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.factorItem {
+  display: inline-flex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrapper {
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent), transparent 60%),
+      var(--primitive-panel);
+  }
+}

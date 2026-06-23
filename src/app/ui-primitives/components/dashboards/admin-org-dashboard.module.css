@@ -1,0 +1,129 @@
+/* AdminOrgDashboard — owner / admin organisation view. */
+
+.surface {
+  display: grid;
+  gap: 18px;
+}
+
+.integrationGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.integration {
+  --status-tone: var(--primitive-green);
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-surface-1);
+  transition:
+    border-color var(--primitive-duration-fast) ease,
+    background var(--primitive-duration-fast) ease;
+}
+
+.integration[data-status="syncing"] { --status-tone: var(--primitive-amber); }
+.integration[data-status="degraded"] { --status-tone: var(--primitive-red); }
+
+.integration:hover {
+  border-color: color-mix(in oklab, var(--status-tone) 38%, var(--primitive-line));
+  background: var(--primitive-surface-hover);
+}
+
+.integrationGlyph {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--status-tone) 16%, transparent);
+  color: var(--status-tone);
+  font-family: var(--primitive-font-mono);
+  font-weight: var(--primitive-weight-bold);
+  font-size: 14px;
+}
+
+.integrationBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.integrationName {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.integrationMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-muted);
+}
+
+.integrationStatus {
+  --status-tone: var(--primitive-green);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--status-tone);
+}
+
+.integrationStatus[data-status="syncing"] { --status-tone: var(--primitive-amber); }
+.integrationStatus[data-status="degraded"] { --status-tone: var(--primitive-red); }
+
+.integrationStatus::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--status-tone);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--status-tone) 16%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .integration {
+    transition: none;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+.row > * {
+  min-width: 0;
+}
+
+@media (max-width: 1080px) {
+  .integrationGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .integrationGrid {
+    grid-template-columns: 1fr;
+  }
+}

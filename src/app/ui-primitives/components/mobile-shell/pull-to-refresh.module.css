@@ -1,0 +1,73 @@
+.root {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 52px;
+  padding: var(--primitive-space-2) 0 var(--primitive-space-1-5);
+}
+
+.indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  color: var(--primitive-body);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 18px color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+  transition: transform 180ms var(--primitive-ease-out);
+}
+
+.armed {
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.loading {
+  border-color: color-mix(in oklab, var(--primitive-teal) 45%, transparent);
+  color: var(--primitive-text-strong);
+  opacity: 1 !important;
+}
+
+.loading .iconWrap svg {
+  animation: ptrSpin 1s linear infinite;
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  color: var(--primitive-teal);
+}
+
+.armed .iconWrap {
+  color: var(--primitive-red);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@keyframes ptrSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    transition: none;
+  }
+  .loading .iconWrap svg {
+    animation: none;
+  }
+}

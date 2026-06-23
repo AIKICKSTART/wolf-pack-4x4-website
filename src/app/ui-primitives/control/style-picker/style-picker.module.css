@@ -1,0 +1,698 @@
+/* ============================================================
+   Style picker — token-driven (every value references a
+   --primitive-* token, or sits inside color-mix(... var(--primitive-*) ...)).
+   No raw hex/rgb/hsl literals. Light/dark parity comes for free because
+   the tokens carry both schemes; profile cards/preview also re-theme live
+   because the ThemeProvider rewrites the same tokens inline.
+   ============================================================ */
+
+/* The provider wrapper. It carries the inline --primitive-* overrides for the
+   active profile; everything inside consumes them. */
+.stage {
+  display: contents;
+}
+
+.stack {
+  display: grid;
+  gap: var(--primitive-space-7);
+}
+
+.contractPanel {
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 0 0, color-mix(in oklab, var(--primitive-red) 13%, transparent), transparent 34%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), transparent 68%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-surface-shadow);
+  overflow: hidden;
+}
+
+.contractCopy {
+  display: grid;
+  gap: var(--primitive-space-2);
+  max-width: 880px;
+}
+
+.contractCopy h2 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(var(--primitive-text-3xl), 5vw, var(--primitive-display));
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0;
+  line-height: var(--primitive-leading-none);
+  text-transform: uppercase;
+}
+
+.contractCopy p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-base);
+  line-height: var(--primitive-leading-normal);
+}
+
+.contractGrid,
+.atomRail {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.contractGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.contractGrid div,
+.atomRail article {
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(145deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent),
+    var(--primitive-field-bg);
+}
+
+.contractGrid span,
+.contractGrid small,
+.atomRail span,
+.atomRail small {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-wider);
+  line-height: var(--primitive-leading-normal);
+  text-transform: uppercase;
+}
+
+.contractGrid span,
+.atomRail span {
+  color: var(--primitive-red);
+}
+
+.contractGrid strong,
+.atomRail strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+}
+
+.contractGrid small,
+.atomRail small {
+  color: var(--primitive-muted);
+  overflow-wrap: anywhere;
+}
+
+.atomRail {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--primitive-space-8);
+}
+
+@media (min-width: 1100px) {
+  .layout {
+    grid-template-columns: minmax(420px, 1.1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+@media (max-width: 920px) {
+  .contractGrid,
+  .atomRail {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Controls column --------------------------------------------------- */
+
+.controls {
+  display: grid;
+  gap: var(--primitive-space-5);
+  align-content: start;
+}
+
+.controlsHead {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.controlsKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.controlsHint {
+  margin: 0;
+  max-width: 52ch;
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+  color: var(--primitive-muted);
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+/* ---- Profile card (radio) --------------------------------------------- */
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  text-align: left;
+  cursor: pointer;
+  color: var(--primitive-body);
+  background: var(--primitive-card-bg);
+  border: 1px solid var(--primitive-card-border);
+  border-radius: var(--primitive-radius-xl);
+  box-shadow: var(--primitive-card-shadow);
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-out),
+    border-color var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-card-hover-shadow);
+}
+
+.card:active {
+  transform: translateY(0);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow), var(--primitive-card-hover-shadow);
+}
+
+.card[data-selected] {
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-card-border));
+  box-shadow:
+    var(--primitive-card-hover-shadow),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-red) 38%, transparent);
+}
+
+/* A faint clearcoat sheen sweeping the top edge — carbon/metallic depth. */
+.cardSheen {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 44%;
+  background: var(--primitive-metallic-sheen);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card > *:not(.cardSheen) {
+  position: relative;
+  z-index: 1;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+}
+
+.cardName {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-text-strong);
+  text-transform: uppercase;
+}
+
+.cardScheme {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+}
+
+.cardDescription {
+  font-size: var(--primitive-text-xs);
+  line-height: var(--primitive-leading-snug);
+  color: var(--primitive-muted);
+}
+
+/* Selected-state corner mark. */
+.cardCheck {
+  position: absolute;
+  top: var(--primitive-space-3);
+  right: var(--primitive-space-3);
+  width: var(--primitive-icon-md);
+  height: var(--primitive-icon-md);
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid var(--primitive-line-strong);
+  background: transparent;
+  transition:
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out);
+  z-index: 2;
+}
+
+.card[data-selected] .cardCheck {
+  border-color: var(--primitive-red);
+  background:
+    radial-gradient(
+      circle at center,
+      var(--primitive-red) 0 38%,
+      transparent 46%
+    );
+}
+
+/* ---- Mini swatch preview (per-profile own scope) ---------------------- */
+
+.swatch {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-panel);
+  border: 1px solid var(--primitive-line);
+  box-shadow: var(--primitive-shadow-soft);
+  overflow: hidden;
+  min-height: 96px;
+}
+
+.swatchWeave {
+  position: absolute;
+  inset: 0;
+  background-image: var(--primitive-carbon-weave);
+  background-size: var(--primitive-carbon-weave-size);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.swatchPanel {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-panel-strong);
+  border: 1px solid var(--primitive-line);
+  box-shadow: var(--primitive-shadow-raised);
+}
+
+.swatchBar,
+.swatchBarShort {
+  height: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 26%, transparent);
+}
+
+.swatchBarShort {
+  width: 58%;
+  background: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+}
+
+.swatchRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--primitive-space-2);
+  align-items: center;
+}
+
+.swatchCta {
+  width: var(--primitive-space-9);
+  height: var(--primitive-space-5);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.swatchField {
+  height: var(--primitive-space-5);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-field-bg);
+  border: 1px solid var(--primitive-line);
+}
+
+/* ---- Live preview ------------------------------------------------------ */
+
+.preview {
+  display: grid;
+  gap: var(--primitive-space-5);
+  align-content: start;
+}
+
+/* ---- Hero snippet ------------------------------------------------------ */
+
+.hero {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-7);
+  border-radius: var(--primitive-radius-2xl);
+  background: var(--primitive-panel-strong);
+  border: 1px solid var(--primitive-card-border);
+  box-shadow: var(--primitive-shadow-deep);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.heroWeave {
+  position: absolute;
+  inset: 0;
+  background-image: var(--primitive-carbon-weave);
+  background-size: var(--primitive-carbon-weave-size);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero > *:not(.heroWeave) {
+  position: relative;
+  z-index: 1;
+}
+
+.heroKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.heroTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h2);
+  font-weight: var(--primitive-weight-bold);
+  line-height: var(--primitive-leading-tight);
+  letter-spacing: var(--primitive-tracking-tight);
+  color: var(--primitive-text-strong);
+  text-wrap: balance;
+}
+
+.heroLede {
+  margin: 0;
+  max-width: 48ch;
+  font-size: var(--primitive-text-md);
+  line-height: var(--primitive-leading-normal);
+  color: var(--primitive-body);
+}
+
+.heroLede strong {
+  color: var(--primitive-amber);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+  margin-top: var(--primitive-space-2);
+}
+
+/* ---- Preview grid: card + form ---------------------------------------- */
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--primitive-space-5);
+}
+
+@media (min-width: 560px) {
+  .previewGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---- Service card ------------------------------------------------------ */
+
+.card2 {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-5);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-card-bg);
+  border: 1px solid var(--primitive-card-border);
+  box-shadow: var(--primitive-card-shadow);
+  transition: box-shadow var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.card2:hover {
+  box-shadow: var(--primitive-card-hover-shadow);
+}
+
+.card2Tag {
+  justify-self: start;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-text-on-accent);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-metallic-amber);
+}
+
+.card2Title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-text-strong);
+}
+
+.card2Body {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+  color: var(--primitive-muted);
+}
+
+.card2Stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  margin: 0;
+  padding: var(--primitive-space-3) 0;
+  border-top: 1px solid var(--primitive-line-muted);
+  border-bottom: 1px solid var(--primitive-line-muted);
+}
+
+.card2Stat {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.card2Stat dt {
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.card2Figure {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+}
+
+/* ---- Quote form -------------------------------------------------------- */
+
+.form {
+  display: grid;
+  gap: var(--primitive-space-4);
+  align-content: start;
+  padding: var(--primitive-space-5);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-panel);
+  border: 1px solid var(--primitive-card-border);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.formTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-text-strong);
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.fieldLabel {
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-medium);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.input {
+  width: 100%;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  background: var(--primitive-field-bg);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  transition:
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.input:hover {
+  background: var(--primitive-field-hover);
+}
+
+.input:focus {
+  outline: none;
+  background: var(--primitive-field-strong);
+  border-color: var(--primitive-focus-ring);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  cursor: pointer;
+}
+
+.checkbox {
+  width: var(--primitive-icon-md);
+  height: var(--primitive-icon-md);
+  accent-color: var(--primitive-red);
+  cursor: pointer;
+}
+
+.toggleLabel {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+/* ---- Buttons (CTA standard: metallic-red → amber hover) ---------------- */
+
+.btnPrimary,
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3) var(--primitive-space-5);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  cursor: pointer;
+  transition:
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.btnPrimary {
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  border: none;
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.btnPrimary:hover {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.btnPrimary:active {
+  transform: translateY(0);
+}
+
+.btnSecondary {
+  color: var(--primitive-btn-secondary-fg);
+  background: var(--primitive-btn-secondary-bg);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.btnSecondary:hover {
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-1px);
+}
+
+.btnSecondary:active {
+  transform: translateY(0);
+}
+
+.btnPrimary:focus-visible,
+.btnSecondary:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+/* ---- Reduced motion ---------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card2,
+  .input,
+  .cardCheck,
+  .btnPrimary,
+  .btnSecondary {
+    transition: none;
+  }
+
+  .card:hover,
+  .card:active,
+  .btnPrimary:hover,
+  .btnPrimary:active,
+  .btnSecondary:hover,
+  .btnSecondary:active {
+    transform: none;
+  }
+}

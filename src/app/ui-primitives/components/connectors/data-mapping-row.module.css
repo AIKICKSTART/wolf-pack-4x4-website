@@ -1,0 +1,179 @@
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: center;
+  padding: 14px 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 4%, transparent),
+      color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 50%
+    ),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-panel-strong));
+  color: var(--primitive-body);
+  isolation: isolate;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    inset -16px -16px 28px color-mix(in oklab, var(--primitive-canvas) 20%, transparent),
+    0 12px 32px color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.side {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.sideLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.field {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.type {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  width: max-content;
+}
+
+.targetMeta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  align-items: center;
+}
+
+.requiredChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.validationChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 36%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.bridge {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto;
+  gap: var(--primitive-space-1-5);
+  align-items: center;
+  min-width: 200px;
+}
+
+.bridgeLine {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--primitive-text-strong) 4%, transparent),
+    color-mix(in oklab, var(--primitive-text-strong) 20%, transparent),
+    color-mix(in oklab, var(--primitive-text-strong) 4%, transparent)
+  );
+}
+
+.bridgeArrow {
+  font-family: var(--primitive-font-mono);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-md);
+  line-height: 1;
+}
+
+.transformChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--transform-border, color-mix(in oklab, var(--primitive-text-strong) 12%, transparent));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--transform-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--transform-fg, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.transformNeutral {
+  --transform-bg: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  --transform-border: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  --transform-fg: var(--primitive-body);
+}
+
+.transformAmber {
+  --transform-bg: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  --transform-border: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  --transform-fg: var(--primitive-amber);
+}
+
+.transformTeal {
+  --transform-bg: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  --transform-border: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  --transform-fg: var(--primitive-teal);
+}
+
+.transformGreen {
+  --transform-bg: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  --transform-border: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  --transform-fg: var(--primitive-green);
+}
+
+.transformViolet {
+  --transform-bg: color-mix(in oklab, var(--primitive-focus-ring) 12%, transparent);
+  --transform-border: color-mix(in oklab, var(--primitive-focus-ring) 42%, transparent);
+  --transform-fg: var(--primitive-text-strong);
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .bridge {
+    justify-self: center;
+    grid-template-columns: 30px auto 30px auto;
+    min-width: 0;
+  }
+}

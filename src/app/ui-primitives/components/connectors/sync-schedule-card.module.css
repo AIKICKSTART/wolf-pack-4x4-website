@@ -1,0 +1,218 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 5%, transparent),
+      color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 50%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(in oklab, var(--primitive-teal) 16%, transparent),
+      transparent 52%
+    ),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-panel-strong));
+  color: var(--primitive-body);
+  isolation: isolate;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    inset -18px -18px 30px color-mix(in oklab, var(--primitive-canvas) 22%, transparent),
+    0 16px 38px color-mix(in oklab, var(--primitive-canvas) 26%, transparent);
+}
+
+.cardPaused {
+  opacity: 0.78;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--primitive-space-3);
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.jobName {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.statusActive {
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  color: var(--primitive-green);
+}
+
+.statusPaused {
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-amber);
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: currentColor;
+}
+
+.cronBlock {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  border-radius: 10px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 0 8px,
+      transparent 8px 16px
+    ),
+    color-mix(in oklab, var(--primitive-canvas) 55%, transparent);
+}
+
+.cronKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.cron {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-md);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.cadence {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+}
+
+.timelineItem {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.timelineLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.timelineValue {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.nextRun {
+  color: var(--primitive-teal);
+}
+
+.recent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.recentLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.recentList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  gap: var(--primitive-space-1);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.dotSuccess {
+  background: color-mix(in oklab, var(--primitive-green) 78%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+}
+
+.dotFail {
+  background: color-mix(in oklab, var(--primitive-red) 78%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}
+
+.dotSkipped {
+  background: color-mix(in oklab, var(--primitive-text-strong) 20%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.dotPending {
+  background: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+}
+
+@media (max-width: 540px) {
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+}

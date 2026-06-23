@@ -1,0 +1,44 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.coneBody { fill: currentColor; opacity: 0.45; }
+.coneStroke { stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linejoin: round; }
+.endCap { fill: currentColor; opacity: 0.85; stroke: currentColor; stroke-width: 1; }
+.pleat { stroke: currentColor; stroke-width: 0.5; opacity: 0.55; stroke-linecap: round; }
+.flange { fill: currentColor; opacity: 0.85; stroke: currentColor; stroke-width: 1; }
+.clamp { stroke: var(--primitive-canvas); opacity: 0.55; stroke-linecap: round; }
+.wrap { stroke: currentColor; fill: none; opacity: 0.65; stroke-width: 0.9; stroke-linecap: round; }
+.airArrow { stroke: currentColor; fill: none; stroke-width: 1.1; opacity: 0.7; }
+.airflow { stroke: currentColor; opacity: 0; animation: airDraw 1.4s ease-in-out infinite; }
+.airflow[data-a="2"] { animation-delay: 0.2s; }
+.airflow[data-a="3"] { animation-delay: 0.4s; }
+
+@keyframes airDraw {
+  0% { opacity: 0; transform: translateX(-3px); }
+  50% { opacity: 0.95; }
+  100% { opacity: 0; transform: translateX(3px); }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .coneStroke, .motionDraw .wrap { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .airflow { animation-duration: 0.4s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .coneBody,
+[data-variant="outline"] .endCap,
+[data-variant="outline"] .flange { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .coneBody { opacity: 0.9; }
+[data-variant="filled"] .flange { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .airflow { animation: none !important; transition: none !important; }
+}

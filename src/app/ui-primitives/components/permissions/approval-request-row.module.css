@@ -1,0 +1,184 @@
+.row {
+  display: grid;
+  gap: 14px;
+  padding: 18px var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 96% 0%, color-mix(in oklab, var(--primitive-amber) 6%, transparent), transparent 50%),
+    linear-gradient(180deg, var(--primitive-field-bg), transparent 60%),
+    var(--primitive-panel);
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.row:hover,
+.row:focus-within {
+  border-color: var(--primitive-line-strong);
+  background:
+    radial-gradient(ellipse at 96% 0%, color-mix(in oklab, var(--primitive-amber) 8%, transparent), transparent 50%),
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent 60%),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.headBody {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.requester {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+}
+
+.requester strong {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-base);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.requesterRole {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.action {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+}
+
+.timestamp {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.reason {
+  position: relative;
+  margin: 0;
+  padding: 14px var(--primitive-space-4) 14px var(--primitive-space-6);
+  border-left: 3px solid color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  border-radius: 0 10px 10px 0;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.reason p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  width: max-content;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.actions {
+  display: flex;
+  gap: var(--primitive-space-2);
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.btnApprove,
+.btnReject,
+.btnSnooze {
+  appearance: none;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.btnApprove {
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent 40%),
+    color-mix(in oklab, var(--primitive-green) 78%, transparent);
+  color: color-mix(in oklab, var(--primitive-green) 16%, var(--primitive-canvas));
+  border-color: color-mix(in oklab, var(--primitive-green) 70%, transparent);
+  box-shadow: 0 12px 24px color-mix(in oklab, var(--primitive-green) 16%, transparent);
+}
+
+.btnReject:hover,
+.btnReject:focus-visible {
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 28%, var(--primitive-text-strong));
+  outline: none;
+}
+
+.btnSnooze:hover,
+.btnSnooze:focus-visible {
+  border-color: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  color: var(--primitive-teal);
+  outline: none;
+}
+
+.btnApprove:hover,
+.btnApprove:focus-visible {
+  border-color: var(--primitive-text-strong);
+  box-shadow: 0 14px 30px color-mix(in oklab, var(--primitive-green) 24%, transparent);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .btnApprove,
+  .btnReject,
+  .btnSnooze {
+    transition: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .head {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .timestamp {
+    grid-column: 2;
+  }
+}

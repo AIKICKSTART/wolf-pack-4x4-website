@@ -1,0 +1,159 @@
+.card {
+  --tone-fg: var(--primitive-amber);
+  --tone-bg: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  --tone-border: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-left: 4px solid var(--tone-fg);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-glass-soft) 24%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  color: var(--primitive-body);
+}
+
+.toneWarning {
+  --tone-fg: var(--primitive-amber);
+  --tone-bg: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  --tone-border: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.toneCritical {
+  --tone-fg: var(--primitive-red);
+  --tone-bg: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+  --tone-border: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+}
+
+.toneInfo {
+  --tone-fg: var(--primitive-teal);
+  --tone-bg: color-mix(in oklab, var(--primitive-teal) 13%, transparent);
+  --tone-border: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px;
+  border: 1px solid var(--tone-border);
+  border-radius: 999px;
+  background: var(--tone-bg);
+  color: var(--tone-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.endpoint {
+  overflow: hidden;
+  max-width: 100%;
+  padding: 5px 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 8px;
+  background: var(--primitive-recessed);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.headers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px dashed var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-texture-stroke);
+}
+
+.headerLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.retryAfter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid var(--tone-border);
+  border-radius: 999px;
+  background: var(--tone-bg);
+  color: var(--tone-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.recipe {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-glass-soft) 60%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.recipe:hover,
+.recipe:focus-visible {
+  color: var(--tone-fg);
+  border-color: var(--tone-border);
+  background: var(--tone-bg);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.arrow {
+  margin-left: auto;
+  transition: transform 200ms ease;
+}
+
+.recipe:hover .arrow,
+.recipe:focus-visible .arrow {
+  transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recipe,
+  .arrow {
+    transition: none;
+  }
+  .recipe:hover,
+  .recipe:focus-visible {
+    transform: none;
+  }
+  .recipe:hover .arrow,
+  .recipe:focus-visible .arrow {
+    transform: none;
+  }
+}

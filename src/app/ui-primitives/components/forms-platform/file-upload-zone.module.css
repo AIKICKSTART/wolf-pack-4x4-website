@@ -1,0 +1,234 @@
+.zone {
+  --fp-teal: var(--primitive-teal);
+
+  position: relative;
+  display: grid;
+  gap: 14px;
+  padding: clamp(16px, 2vw, 20px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--fp-teal) 7%, transparent), transparent 55%),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-glass-strong),
+    var(--primitive-shadow-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  min-width: 280px;
+  isolation: isolate;
+}
+
+.dropArea {
+  display: grid;
+  place-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 30px 18px;
+  border: 2px dashed var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at 50% 0%, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-recessed);
+  text-align: center;
+  transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
+
+.dropAreaActive {
+  border-color: color-mix(in oklab, var(--fp-teal) 60%, transparent);
+  background:
+    radial-gradient(ellipse at 50% 0%, color-mix(in oklab, var(--fp-teal) 12%, transparent), transparent 60%),
+    var(--primitive-recessed);
+  box-shadow:
+    inset 0 0 28px color-mix(in oklab, var(--fp-teal) 14%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--fp-teal) 24%, transparent);
+}
+
+.dropIcon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(circle at 30% 25%, var(--primitive-glass-strong), transparent 70%),
+    var(--primitive-glass-soft);
+  box-shadow: inset 0 1px 0 var(--primitive-glass-strong);
+  color: var(--fp-teal);
+}
+
+.dropTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.dropHint {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--primitive-muted);
+}
+
+.browseBtn {
+  margin-top: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2) var(--primitive-space-4);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform 180ms var(--primitive-ease-out),
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.browseBtn:hover {
+  border-color: var(--fp-teal);
+  background: color-mix(in oklab, var(--fp-teal) 14%, var(--primitive-btn-secondary-bg));
+  transform: translateY(-1px);
+}
+
+.browseBtn:focus-visible {
+  outline: none;
+  border-color: var(--fp-teal);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.browseBtn:active {
+  transform: translateY(0);
+}
+
+.list {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.listHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.fileRow {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: 11px var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-recessed);
+  box-shadow: inset 0 1px 0 var(--primitive-glass-soft);
+}
+
+.fileIcon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+}
+
+.fileBody {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.fileName {
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.progressTrack {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-meter-track);
+  box-shadow: inset 0 1px 1px var(--primitive-shadow-outline);
+  overflow: hidden;
+}
+
+.progressFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: var(--primitive-radius-pill);
+  background: linear-gradient(90deg, var(--fp-teal), color-mix(in oklab, var(--fp-teal) 64%, white));
+  box-shadow: 0 0 8px color-mix(in oklab, var(--fp-teal) 40%, transparent);
+  transition: width 280ms var(--primitive-ease-out);
+}
+
+.scanBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 3px var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.scanQueued { color: var(--primitive-muted); }
+.scanScanning { border-color: color-mix(in oklab, var(--primitive-amber) 55%, transparent); background: color-mix(in oklab, var(--primitive-amber) 10%, transparent); color: var(--primitive-amber); }
+.scanClean { border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent); background: color-mix(in oklab, var(--primitive-green) 10%, transparent); color: var(--primitive-green); }
+.scanInfected { border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent); background: color-mix(in oklab, var(--primitive-red) 12%, transparent); color: var(--primitive-red); }
+
+.scanDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropArea,
+  .progressFill,
+  .browseBtn {
+    transition: none;
+  }
+
+  .browseBtn:hover,
+  .browseBtn:active {
+    transform: none;
+  }
+}

@@ -1,0 +1,83 @@
+.table {
+  /* Wrapper hook for consumers; DataTable owns its own styling. */
+}
+
+.customerCell {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.customerText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.customerName {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-medium);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.customerMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--primitive-muted);
+}
+
+.healthCell {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.healthScore {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  color: var(--primitive-text-strong);
+}
+
+.ltv {
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  color: var(--primitive-text-strong);
+}
+
+.lastContact {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--primitive-body);
+}
+
+.actionButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.actionButton:hover,
+.actionButton:focus-visible {
+  outline: none;
+  background: var(--primitive-glass-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actionButton {
+    transition: none;
+  }
+}

@@ -1,0 +1,72 @@
+.casing {
+  fill: none;
+  stroke: color-mix(in oklab, var(--primitive-canvas) 95%, transparent);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.line {
+  fill: none;
+  stroke: var(--primitive-amber);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 8 6;
+  stroke-dashoffset: 0;
+  animation: routeDash 1.6s linear infinite;
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primitive-amber) 45%, transparent));
+}
+
+.endpoint {
+  fill: color-mix(in oklab, var(--primitive-canvas) 95%, transparent);
+  stroke: var(--primitive-amber);
+  stroke-width: 1.6;
+}
+
+.endpointDot {
+  fill: var(--primitive-amber);
+}
+
+.chip {
+  filter: drop-shadow(0 8px 20px var(--primitive-media-overlay));
+}
+
+.chipBg {
+  fill: color-mix(in oklab, var(--primitive-canvas) 96%, transparent);
+  stroke: var(--primitive-line-strong);
+  stroke-width: 1;
+}
+
+.chipDistance {
+  fill: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.04em;
+}
+
+.chipEta {
+  fill: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  font-weight: var(--primitive-weight-bold);
+  text-transform: uppercase;
+}
+
+.chipDot {
+  fill: var(--primitive-amber);
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primitive-amber) 60%, transparent));
+}
+
+@keyframes routeDash {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line {
+    animation: none;
+    stroke-dasharray: none;
+  }
+}

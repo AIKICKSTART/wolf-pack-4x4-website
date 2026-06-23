@@ -1,0 +1,49 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.outer { stroke: currentColor; fill: none; stroke-width: 1.4; }
+.face { fill: currentColor; opacity: 0.08; }
+.innerCircle { stroke: currentColor; fill: none; stroke-width: 0.8; opacity: 0.35; stroke-dasharray: 2 1.4; }
+.needle { transform-origin: 12px 12px; animation: compassWobble 3.6s ease-in-out infinite; }
+.northBlade { fill: var(--primitive-red); opacity: 0.95; stroke: currentColor; stroke-width: 0.7; stroke-linejoin: round; }
+.southBlade { fill: currentColor; opacity: 0.55; stroke: currentColor; stroke-width: 0.7; stroke-linejoin: round; }
+.westBlade { fill: currentColor; opacity: 0.8; stroke: currentColor; stroke-width: 0.6; stroke-linejoin: round; }
+.eastBlade { fill: currentColor; opacity: 0.55; stroke: currentColor; stroke-width: 0.6; stroke-linejoin: round; }
+.minorBlade { fill: currentColor; opacity: 0.35; }
+.hub { fill: var(--primitive-canvas); }
+.hubRing { fill: currentColor; opacity: 0.85; }
+.tick { stroke: currentColor; opacity: 0.85; stroke-linecap: round; stroke-width: 1; }
+.tickHalf { stroke: currentColor; opacity: 0.55; stroke-linecap: round; stroke-width: 0.7; }
+.cardinal { fill: currentColor; font-family: var(--primitive-font-mono, monospace); font-size: 3.6px; font-weight: 800; opacity: 0.85; letter-spacing: 0.04em; }
+
+@keyframes compassWobble {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(8deg); }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate .needle { animation: iconRotate 3s linear infinite; }
+.motionWiggle .needle { animation-duration: 0.6s; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .outer, .motionDraw .tick { stroke-dasharray: 60; stroke-dashoffset: 60; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .needle { animation-duration: 0.4s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .face { fill: transparent; }
+[data-variant="outline"] .northBlade,
+[data-variant="outline"] .southBlade,
+[data-variant="outline"] .westBlade,
+[data-variant="outline"] .eastBlade,
+[data-variant="outline"] .minorBlade,
+[data-variant="outline"] .hubRing { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .face { opacity: 0.32; }
+[data-variant="filled"] .northBlade { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .needle { animation: none !important; transition: none !important; }
+}

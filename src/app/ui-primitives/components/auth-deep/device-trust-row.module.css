@@ -1,0 +1,205 @@
+.row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.6fr) minmax(260px, 2fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 18px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.row[data-current="true"] {
+  border-color: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 5%, transparent);
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.iconBox {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, color-mix(in oklab, var(--primitive-green) 32%, transparent), color-mix(in oklab, var(--primitive-green) 4%, transparent));
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  flex-shrink: 0;
+}
+
+.iconGlyph {
+  position: relative;
+  width: 18px;
+  height: 22px;
+  border: 2px solid var(--primitive-green);
+  border-radius: 3px;
+}
+
+.iconGlyph::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--primitive-green);
+  border-left: 2px solid var(--primitive-green);
+  border-right: 2px solid var(--primitive-green);
+  border-radius: var(--primitive-radius-round) var(--primitive-radius-round) 0 0;
+}
+
+.identityText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.deviceName {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.currentBadge {
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.os {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  color: var(--primitive-muted);
+}
+
+.fingerprint {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  color: var(--primitive-body);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: var(--primitive-space-2);
+  margin: 0;
+}
+
+.facts > div {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.facts dt {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.facts dd {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+}
+
+.numeric {
+  font-family: var(--primitive-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  display: flex;
+  gap: var(--primitive-space-2);
+}
+
+.extendBtn,
+.removeBtn {
+  padding: var(--primitive-space-2) 14px;
+  border-radius: var(--primitive-radius-md);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.extendBtn {
+  background: var(--primitive-btn-primary-bg);
+  border: 1px solid transparent;
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.extendBtn:hover:not(:disabled) {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.extendBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.removeBtn {
+  background: color-mix(in oklab, var(--primitive-red) 5%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  color: var(--primitive-red);
+}
+
+.removeBtn:hover {
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+}
+
+.extendBtn:focus-visible,
+.removeBtn:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 3px;
+}
+
+.removeBtn:focus-visible {
+  outline-color: var(--primitive-red);
+}
+
+@media (max-width: 880px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .extendBtn,
+  .removeBtn {
+    transition: none;
+  }
+}

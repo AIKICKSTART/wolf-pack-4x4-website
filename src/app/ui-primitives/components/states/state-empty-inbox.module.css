@@ -1,0 +1,165 @@
+/* state-empty-inbox — Open envelope with trailing line.
+   Soft "all caught up" surface. */
+
+.surface {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  padding: clamp(28px, 3.6vw, 52px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 50% 0%, color-mix(in oklab, var(--primitive-green) 12%, transparent), transparent 56%),
+    radial-gradient(ellipse at 92% 92%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 52%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-canvas) 20%, transparent)),
+    var(--primitive-panel-strong);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), 0 32px 72px color-mix(in oklab, var(--primitive-canvas) 38%, transparent);
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--primitive-body);
+  text-align: center;
+  place-items: center;
+}
+
+.figure {
+  margin: 0;
+  display: grid;
+  place-items: center;
+}
+
+.illustration {
+  width: min(100%, 280px);
+  height: auto;
+}
+
+.illustration .lift {
+  animation: lift 5s ease-in-out infinite;
+}
+
+.illustration .trail {
+  stroke-dasharray: 4 6;
+  animation: trailDrift 8s linear infinite;
+}
+
+.caption {
+  margin-top: var(--primitive-space-3);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.code {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 5px 11px;
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.code::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-green);
+  box-shadow: 0 0 8px var(--primitive-green);
+}
+
+.headline {
+  margin: 0;
+  max-width: 22ch;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(36px, 4.6vw, 64px);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+.message {
+  margin: 0;
+  max-width: 52ch;
+  color: var(--primitive-body);
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.55;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+  justify-content: center;
+  margin-top: var(--primitive-space-1);
+}
+
+.statCell {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 104px;
+  padding: var(--primitive-space-3) var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-glass-soft);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+}
+
+.statCell dt {
+  margin: 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.statCell dd {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  font-weight: 400;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--primitive-space-1);
+}
+
+@keyframes lift {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes trailDrift {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .illustration .lift,
+  .illustration .trail {
+    animation: none;
+  }
+}

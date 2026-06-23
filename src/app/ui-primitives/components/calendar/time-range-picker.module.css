@@ -1,0 +1,97 @@
+.range {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "from divider to"
+    "foot foot foot";
+  gap: var(--primitive-space-3);
+  align-items: stretch;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  font-family: var(--primitive-font-body);
+}
+
+.col:first-of-type {
+  grid-area: from;
+}
+
+.col:last-of-type {
+  grid-area: to;
+}
+
+.divider {
+  grid-area: divider;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  border: 1px solid var(--primitive-line);
+}
+
+.foot {
+  grid-area: foot;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-surface-3);
+}
+
+.kicker {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.foot strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  font-variant-numeric: tabular-nums;
+}
+
+.invalid .foot {
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.invalid .foot strong {
+  color: var(--primitive-red);
+}
+
+.invalid .divider {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+}
+
+@media (max-width: 720px) {
+  .range {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "from"
+      "divider"
+      "to"
+      "foot";
+  }
+}

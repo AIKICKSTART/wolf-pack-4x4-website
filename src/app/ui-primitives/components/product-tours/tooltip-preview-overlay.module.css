@@ -1,0 +1,146 @@
+.frame {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 7px,
+      color-mix(in oklab, var(--primitive-text-strong) 3%, transparent) 7px 8px
+    ),
+    var(--primitive-panel-strong);
+}
+
+.caption {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  min-height: 320px;
+  padding: 36px;
+  border: 1px dashed color-mix(in srgb, var(--preview-tone, var(--primitive-teal)) 28%, var(--primitive-line));
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at center, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 70%),
+    var(--primitive-panel);
+  overflow: hidden;
+}
+
+.target {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 220px;
+  min-height: 96px;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--preview-tone, var(--primitive-teal));
+  background: color-mix(in srgb, var(--preview-tone, var(--primitive-teal)) 12%, transparent);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--preview-tone, var(--primitive-teal)) 20%, transparent),
+    0 18px 40px var(--primitive-shadow-outline);
+}
+
+.targetDemo {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.targetGlyph {
+  font-family: var(--primitive-font-display);
+  font-size: 22px;
+  color: var(--preview-tone, var(--primitive-teal));
+}
+
+.targetLines {
+  display: grid;
+  gap: 6px;
+}
+
+.targetLineMuted,
+.targetLineStrong {
+  display: block;
+  height: 6px;
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.targetLineMuted {
+  width: 70%;
+}
+
+.targetLineStrong {
+  width: 90%;
+  background: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+}
+
+.markWrap {
+  position: absolute;
+  display: inline-flex;
+  max-width: 260px;
+}
+
+.mark_top {
+  top: 16%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mark_bottom {
+  bottom: 16%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mark_left {
+  left: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mark_right {
+  right: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mark_align_start.mark_top,
+.mark_align_start.mark_bottom {
+  left: 18%;
+  transform: none;
+}
+
+.mark_align_end.mark_top,
+.mark_align_end.mark_bottom {
+  left: auto;
+  right: 18%;
+  transform: none;
+}
+
+.mark_align_start.mark_left,
+.mark_align_start.mark_right {
+  top: 18%;
+  transform: none;
+}
+
+.mark_align_end.mark_left,
+.mark_align_end.mark_right {
+  top: auto;
+  bottom: 18%;
+  transform: none;
+}

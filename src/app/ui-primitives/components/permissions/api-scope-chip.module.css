@@ -1,0 +1,123 @@
+.wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 5px var(--primitive-space-2-5) 5px var(--primitive-space-3);
+  border: 1px solid var(--action-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, var(--primitive-field-bg), transparent 50%),
+    var(--action-bg, color-mix(in oklab, var(--primitive-canvas) 40%, transparent));
+  color: var(--action-text, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  cursor: default;
+}
+
+button.chip {
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+button.chip:hover,
+button.chip:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--action-border-strong, color-mix(in oklab, var(--primitive-text-strong) 42%, transparent));
+  outline: none;
+}
+
+.selected {
+  border-color: var(--action-border-strong, color-mix(in oklab, var(--primitive-text-strong) 50%, transparent));
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent 50%),
+    var(--action-bg-strong, var(--primitive-glass-strong));
+}
+
+.scope {
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.02em;
+}
+
+.action {
+  display: inline-grid;
+  place-items: center;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-sm);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  background: var(--action-tag-bg, var(--primitive-glass-strong));
+  color: var(--action-tag-text, currentColor);
+}
+
+.actionRead {
+  --action-border: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  --action-border-strong: color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+  --action-bg: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+  --action-bg-strong: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  --action-text: color-mix(in oklab, var(--primitive-teal) 22%, var(--primitive-text-strong));
+  --action-tag-bg: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --action-tag-text: var(--primitive-teal);
+}
+
+.actionWrite {
+  --action-border: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  --action-border-strong: color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  --action-bg: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  --action-bg-strong: color-mix(in oklab, var(--primitive-amber) 14%, transparent);
+  --action-text: color-mix(in oklab, var(--primitive-amber) 35%, var(--primitive-text-strong));
+  --action-tag-bg: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+  --action-tag-text: var(--primitive-amber);
+}
+
+.actionAdmin {
+  --action-border: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  --action-border-strong: color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  --action-bg: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  --action-bg-strong: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  --action-text: color-mix(in oklab, var(--primitive-red) 28%, var(--primitive-text-strong));
+  --action-tag-bg: color-mix(in oklab, var(--primitive-red) 26%, transparent);
+  --action-tag-text: color-mix(in oklab, var(--primitive-red) 28%, var(--primitive-text-strong));
+}
+
+.actionDelete {
+  --action-border: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  --action-border-strong: color-mix(in oklab, var(--primitive-red) 65%, transparent);
+  --action-bg: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  --action-bg-strong: color-mix(in oklab, var(--primitive-red) 20%, transparent);
+  --action-text: color-mix(in oklab, var(--primitive-red) 28%, var(--primitive-text-strong));
+  --action-tag-bg: color-mix(in oklab, var(--primitive-red) 30%, transparent);
+  --action-tag-text: color-mix(in oklab, var(--primitive-red) 28%, var(--primitive-text-strong));
+}
+
+.bubbleSlot {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: 280px;
+  z-index: 8;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.wrap:hover .bubbleSlot,
+.wrap:focus-within .bubbleSlot {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button.chip,
+  .bubbleSlot {
+    transition: none;
+  }
+}

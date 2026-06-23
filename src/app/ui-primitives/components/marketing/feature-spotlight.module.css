@@ -1,0 +1,194 @@
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  padding: clamp(48px, 6vw, 88px) clamp(20px, 4vw, 56px);
+}
+
+.reversed {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+
+.reversed .visual {
+  order: 2;
+}
+
+.reversed .copy {
+  order: 1;
+}
+
+.visual {
+  position: relative;
+  display: grid;
+  align-content: stretch;
+  min-height: 280px;
+  border: 1px solid var(--primitive-card-border);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 24% 16%, color-mix(in srgb, var(--primitive-teal) 16%, transparent), transparent 56%),
+    var(--primitive-card-bg);
+  box-shadow: var(--primitive-card-shadow);
+  overflow: hidden;
+}
+
+.copy {
+  display: grid;
+  align-content: center;
+  gap: var(--primitive-space-6);
+  max-width: 580px;
+}
+
+.kicker {
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(30px, 4.2vw, 56px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 0.94;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.body {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-md);
+  line-height: 1.62;
+}
+
+.bullets {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bullets li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: center;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-base);
+  line-height: var(--primitive-leading-normal);
+}
+
+.bulletIcon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  color: var(--primitive-green);
+  background: color-mix(in srgb, var(--primitive-green) 16%, transparent);
+}
+
+.bulletIcon svg {
+  width: 12px;
+  height: 12px;
+}
+
+.bulletDot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 0 var(--primitive-space-2);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primitive-amber) 18%, transparent);
+}
+
+/* Primary CTA — central metallic-red button DNA (amber on hover). */
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-4) var(--primitive-space-6);
+  width: fit-content;
+  border: 1px solid transparent;
+  border-radius: var(--primitive-btn-radius);
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out), background var(--primitive-duration-fast) var(--primitive-ease-out), color var(--primitive-duration-fast) var(--primitive-ease-out), box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.action:hover {
+  transform: translateY(-1px);
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.action:focus-visible {
+  outline: none;
+  transform: translateY(-1px);
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+.action:active {
+  transform: translateY(0);
+}
+
+.arrow {
+  display: inline-block;
+  width: 16px;
+  height: 1px;
+  background: currentColor;
+  position: relative;
+}
+
+.arrow::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid currentColor;
+  border-top: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+@media (max-width: 900px) {
+  .section,
+  .reversed {
+    grid-template-columns: 1fr;
+  }
+  .reversed .visual {
+    order: 1;
+  }
+  .reversed .copy {
+    order: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: box-shadow 120ms ease;
+  }
+  .action:hover,
+  .action:focus-visible,
+  .action:active {
+    transform: none;
+  }
+}

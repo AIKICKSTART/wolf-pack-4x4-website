@@ -1,0 +1,56 @@
+.callout {
+  --tone: var(--primitive-green);
+  --tone-bg: color-mix(in oklab, var(--tone) 12%, transparent);
+  --tone-border: color-mix(in oklab, var(--tone) 40%, transparent);
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border: 1px solid var(--tone-border);
+  border-left-width: 3px;
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, var(--tone-bg), transparent 60%),
+    color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.icon {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-md);
+  background: var(--tone-bg);
+  border: 1px solid var(--tone-border);
+  color: var(--tone);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.content {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+.content :global(p) {
+  margin: 0;
+}
+
+.content :global(p) + :global(p) {
+  margin-top: var(--primitive-space-1-5);
+}

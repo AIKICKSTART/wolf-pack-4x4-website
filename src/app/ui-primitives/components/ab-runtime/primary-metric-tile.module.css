@@ -1,0 +1,109 @@
+.tile {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-control-surface);
+  box-shadow: var(--primitive-surface-shadow);
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+  position: relative;
+  isolation: isolate;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+}
+
+.valueRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--primitive-space-2-5);
+}
+
+.value {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.005em;
+  color: var(--primitive-text-strong);
+  line-height: var(--primitive-leading-none);
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.unit {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+  letter-spacing: 0.04em;
+}
+
+.deltaRow {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.delta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.02em;
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.deltaUp { color: var(--primitive-green); }
+.deltaDown { color: var(--primitive-red); }
+.deltaFlat { color: var(--primitive-muted); }
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-px);
+  font-family: var(--primitive-font-display);
+  font-weight: var(--primitive-weight-bold);
+  font-size: var(--primitive-text-md);
+}
+
+.star {
+  color: var(--primitive-amber);
+}
+
+.starOff {
+  color: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.1em;
+  color: var(--primitive-muted);
+}

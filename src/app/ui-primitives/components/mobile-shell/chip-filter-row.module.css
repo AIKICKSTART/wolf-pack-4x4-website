@@ -1,0 +1,110 @@
+.row {
+  width: 100%;
+  padding: var(--primitive-space-2) 0;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-0-5) 14px var(--primitive-space-1-5);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  flex: 0 0 auto;
+  min-height: 32px;
+  padding: 0 var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--primitive-teal);
+  outline-offset: 2px;
+}
+
+.chipActive {
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent 60%),
+    color-mix(in oklab, var(--primitive-red) 85%, transparent);
+  box-shadow: 0 6px 14px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.chipLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.chipCount {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 16px;
+  padding: 0 var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-strong);
+  color: inherit;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+}
+
+.chipActive .chipCount {
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+}
+
+.clearChip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  flex: 0 0 auto;
+  min-height: 32px;
+  padding: 0 var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px dashed color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-amber);
+  appearance: none;
+  cursor: pointer;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 160ms ease;
+}
+
+.clearChip:hover,
+.clearChip:focus-visible {
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .clearChip {
+    transition: none;
+  }
+}

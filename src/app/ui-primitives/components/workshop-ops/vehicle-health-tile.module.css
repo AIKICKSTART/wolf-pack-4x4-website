@@ -1,0 +1,224 @@
+.tile {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-panel));
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.headIdentity {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: var(--primitive-space-1) 0 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.005em;
+}
+
+.owner {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.regoPlate {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 80%, white), color-mix(in oklab, var(--primitive-amber) 88%, black));
+  color: color-mix(in oklab, var(--primitive-amber) 18%, black);
+  font-weight: var(--primitive-weight-bold);
+  padding: 3px 8px;
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid color-mix(in oklab, black 30%, transparent);
+  align-self: center;
+}
+
+.serviceWindow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  align-items: center;
+}
+
+.serviceLast {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.serviceLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.serviceValue {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.005em;
+}
+
+.serviceSub {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+}
+
+.serviceCountdown {
+  display: grid;
+  gap: 0;
+  padding: var(--primitive-space-3) var(--primitive-space-4);
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  text-align: center;
+  min-width: 120px;
+}
+
+.countdownSoon {
+  background: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+}
+
+.countdownOverdue {
+  background: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 56%, transparent);
+}
+
+.countdownNumber {
+  font-family: var(--primitive-font-display);
+  font-size: 36px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.01em;
+  line-height: var(--primitive-leading-none);
+  font-feature-settings: "tnum" 1;
+}
+
+.countdownSoon .countdownNumber {
+  color: var(--primitive-amber);
+}
+
+.countdownOverdue .countdownNumber {
+  color: var(--primitive-red);
+}
+
+.countdownUnit {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  margin-top: var(--primitive-space-0-5);
+}
+
+.countdownSub {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-muted);
+  margin-top: var(--primitive-space-1);
+}
+
+.dials {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.2%, transparent);
+}
+
+.dial {
+  display: grid;
+  justify-items: center;
+  gap: var(--primitive-space-1-5);
+  text-align: center;
+}
+
+.dialRing {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.dialIcon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.dialLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.dialValue {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  letter-spacing: 0.005em;
+  color: var(--primitive-text-strong);
+  font-feature-settings: "tnum" 1;
+}
+
+.dialValue[data-tone="green"] { color: var(--primitive-green); }
+.dialValue[data-tone="teal"] { color: var(--primitive-teal); }
+.dialValue[data-tone="amber"] { color: var(--primitive-amber); }
+.dialValue[data-tone="red"] { color: var(--primitive-red); }
+
+@media (max-width: 540px) {
+  .serviceWindow {
+    grid-template-columns: 1fr;
+  }
+  .serviceCountdown {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    transition: none;
+  }
+}

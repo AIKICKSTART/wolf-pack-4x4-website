@@ -1,0 +1,168 @@
+.wrap {
+  position: relative;
+  display: inline-grid;
+  gap: 8px;
+  min-width: 220px;
+  max-width: 480px;
+}
+
+.toolbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), color-mix(in oklab, var(--primitive-glass-soft) 36%, transparent)),
+    var(--primitive-panel-strong);
+  box-shadow: 0 14px 30px color-mix(in oklab, var(--primitive-overlay) 67%, transparent);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 220ms var(--primitive-ease-out);
+}
+
+.toolbarOpen {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.field {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+}
+
+.fieldLabel {
+  color: var(--primitive-muted);
+  font-size: 9px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.field select {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0 2px;
+  outline: none;
+}
+
+.iconBtn {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-body);
+  cursor: pointer;
+}
+
+.iconBtn svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+.iconActive {
+  color: var(--primitive-text-on-accent);
+  border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 42%, transparent), transparent 78%),
+    color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.colors {
+  display: inline-flex;
+  gap: var(--primitive-space-1);
+  padding-left: var(--primitive-space-1-5);
+  border-left: 1px solid var(--primitive-line);
+}
+
+.colorDot {
+  width: var(--primitive-icon-md);
+  height: var(--primitive-icon-md);
+  border: 1px solid color-mix(in oklab, var(--primitive-overlay) 67%, transparent);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.colorDot:hover,
+.colorDot:focus-visible {
+  transform: scale(1.16);
+  outline: none;
+}
+
+.colorActive {
+  box-shadow: 0 0 0 2px var(--primitive-focus-ring);
+}
+
+.fieldBox {
+  position: relative;
+  padding: var(--primitive-space-3) 14px;
+  border: 1.5px dashed color-mix(in srgb, var(--primitive-amber) 60%, var(--primitive-line));
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-glass-soft);
+}
+
+.fieldChip {
+  position: absolute;
+  top: -10px;
+  left: var(--primitive-space-2-5);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-panel-strong);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.fieldChip svg {
+  width: 11px;
+  height: 11px;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  min-height: 1em;
+  border: 0;
+  background: transparent;
+  resize: none;
+  outline: none;
+  line-height: 1.35;
+  caret-color: var(--primitive-focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toolbar,
+  .colorDot {
+    transition: none;
+  }
+}

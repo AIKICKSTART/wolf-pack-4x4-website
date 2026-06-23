@@ -1,0 +1,294 @@
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) auto;
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+.brand {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--primitive-space-3);
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--primitive-ink), var(--primitive-ink-soft));
+  color: var(--primitive-canvas);
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.brand > div {
+  display: grid;
+  gap: var(--primitive-space-px);
+}
+
+.brand strong {
+  color: var(--primitive-ink);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.brand span {
+  color: var(--primitive-ink-soft);
+  font-size: 10.5px;
+}
+
+.docMeta {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  justify-self: end;
+  text-align: right;
+}
+
+.docMeta h1 {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--primitive-ink);
+}
+
+.docMeta dl {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+}
+
+.docMeta dl div {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: var(--primitive-space-2-5);
+  align-items: baseline;
+}
+
+.docMeta dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.docMeta dd {
+  margin: 0;
+  color: var(--primitive-ink);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.customerRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--primitive-space-3);
+}
+
+.customerBlock {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-paper-card);
+}
+
+.customerBlock address {
+  display: grid;
+  gap: 0;
+  font-style: normal;
+}
+
+.kicker,
+.sectionKicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sectionKicker {
+  display: block;
+  margin-bottom: var(--primitive-space-1-5);
+}
+
+.customerBlock strong {
+  color: var(--primitive-ink);
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.customerBlock span,
+.customerBlock p {
+  color: var(--primitive-ink-soft);
+  font-size: 11px;
+}
+
+.customerBlock p {
+  margin: var(--primitive-space-1) 0 0;
+  line-height: 1.5;
+}
+
+.scopeList {
+  display: grid;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: scope;
+}
+
+.scopeList li {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-left: 2px solid var(--primitive-ink);
+  background: var(--primitive-paper-card);
+}
+
+.scopeIndex {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--primitive-ink);
+}
+
+.scopeList strong {
+  display: block;
+  color: var(--primitive-ink);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  margin-bottom: var(--primitive-space-0-5);
+}
+
+.scopeList p {
+  margin: 0;
+  color: var(--primitive-ink-soft);
+  font-size: 10.5px;
+  line-height: 1.5;
+}
+
+.pricingTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.pricingTable thead th {
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-bottom: 2px solid var(--primitive-ink);
+  background: var(--primitive-paper-head);
+  text-align: left;
+  color: var(--primitive-ink);
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pricingTable tbody td {
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-bottom: 1px solid var(--primitive-paper-rule);
+  color: var(--primitive-ink-soft);
+}
+
+.pricingTable tfoot td {
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.footLabel {
+  text-align: right;
+  color: var(--primitive-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.numCol {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.totalRow td {
+  background: var(--primitive-ink);
+  color: var(--primitive-canvas) !important;
+  border-top: 2px solid var(--primitive-ink);
+  font-size: 13px !important;
+}
+
+.terms {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-paper-card);
+}
+
+.terms ul {
+  margin: 0;
+  padding: 0 0 0 var(--primitive-space-4);
+  display: grid;
+  gap: var(--primitive-space-1);
+  font-size: 10.5px;
+  color: var(--primitive-ink-soft);
+  line-height: 1.5;
+}
+
+.signature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--primitive-space-6);
+  margin-top: var(--primitive-space-1);
+}
+
+.signLine {
+  height: 1px;
+  background: var(--primitive-ink);
+  margin: 18px 0 var(--primitive-space-1);
+}
+
+.signature small {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media print {
+  .customerRow,
+  .scopeList li,
+  .signature,
+  .terms {
+    break-inside: avoid;
+  }
+
+  .pricingTable thead th,
+  .scopeList li,
+  .terms,
+  .customerBlock {
+    background: var(--primitive-canvas) !important;
+  }
+}

@@ -1,0 +1,174 @@
+.queue {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 56%),
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel-strong);
+  min-width: 0;
+  min-height: 360px;
+  color: var(--primitive-body);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.heading {
+  margin: 0;
+  font-size: var(--primitive-h6);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+}
+
+.depth {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.list {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-content: start;
+  min-height: 0;
+  overflow-y: auto;
+  max-height: 360px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  color: var(--primitive-body);
+  align-items: center;
+  transition: background-color var(--primitive-duration-normal) var(--primitive-ease-standard), border-color var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+.row:hover,
+.row:focus-visible {
+  background: var(--primitive-glass-soft);
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.rowActive {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 18%, transparent), transparent 70%),
+    var(--primitive-glass-soft);
+  border-color: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.topline {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.name {
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.wait {
+  margin-left: auto;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  color: var(--primitive-muted);
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.subline {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  min-width: 0;
+}
+
+.page {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  opacity: 0.7;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+.preview {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.empty {
+  padding: var(--primitive-space-5);
+  text-align: center;
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+  border: 1px dashed var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    transition: none;
+  }
+}

@@ -1,0 +1,113 @@
+.ruler {
+  display: grid;
+  grid-template-columns: 184px minmax(0, 1fr);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1.4%, transparent)),
+    var(--primitive-panel);
+  overflow: hidden;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  height: 42px;
+  border-right: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent)),
+    var(--primitive-panel-strong);
+}
+
+.metaLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaValue {
+  font-family: var(--primitive-font-display);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.metaValue small {
+  margin-left: 6px;
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--primitive-muted);
+}
+
+.zoomChip {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.scroll {
+  position: relative;
+  overflow-x: auto;
+  height: 42px;
+}
+
+.track {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent), transparent 78%),
+    color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+}
+
+.tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--primitive-text-strong) 12%, transparent) 36%);
+}
+
+.tickMajor {
+  width: 1px;
+  background: linear-gradient(180deg, var(--primitive-teal), color-mix(in oklab, var(--primitive-teal) 18%, transparent));
+  box-shadow: 0 0 6px color-mix(in oklab, var(--primitive-teal) 24%, transparent);
+}
+
+.tickLabel {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--primitive-text-strong);
+  font-style: normal;
+  text-shadow: 0 1px 0 color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+}
+
+.frameTick {
+  position: absolute;
+  bottom: 0;
+  width: 1px;
+  height: 6px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}

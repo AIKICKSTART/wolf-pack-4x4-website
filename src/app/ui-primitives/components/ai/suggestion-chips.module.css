@@ -1,0 +1,90 @@
+.strip {
+  display: block;
+  font-family: var(--primitive-font-body);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: contents;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-height: 34px;
+  padding: 0 var(--primitive-space-3) 0 var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-surface-3);
+  color: var(--primitive-body);
+  font: inherit;
+  font-size: var(--primitive-text-xs);
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease,
+    transform 160ms var(--primitive-ease-out);
+}
+
+.chip:hover,
+.chip:focus-visible {
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in srgb, var(--primitive-amber) 50%, transparent);
+  background: color-mix(in srgb, var(--primitive-amber) 10%, transparent);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.chip:focus-visible {
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.chip:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.chipIndex {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in srgb, var(--primitive-red) 18%, transparent);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.chip:hover .chipIndex,
+.chip:focus-visible .chipIndex {
+  background: color-mix(in srgb, var(--primitive-amber) 22%, transparent);
+  color: var(--primitive-amber);
+}
+
+.chipLabel {
+  font-weight: var(--primitive-weight-medium);
+  letter-spacing: 0.005em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+  }
+
+  .chip:hover,
+  .chip:focus-visible,
+  .chip:active {
+    transform: none;
+  }
+}

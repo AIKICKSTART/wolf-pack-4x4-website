@@ -1,0 +1,66 @@
+/* Legal fineprint — terms / privacy / cookies disclosure line */
+
+.fineprint {
+  display: block;
+  font-family: var(--primitive-font-body);
+  font-size: 11px;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: var(--primitive-muted);
+  max-width: 60ch;
+}
+
+.link {
+  --link-base: var(--primitive-body);
+  --link-hover: var(--primitive-amber);
+  position: relative;
+  color: var(--link-base);
+  font-weight: var(--primitive-weight-semibold);
+  text-decoration: none;
+  padding-bottom: 1px;
+  transition: color 220ms var(--primitive-ease-out);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--link-base) 0%, var(--link-base) 100%);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  transition: background var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--link-hover);
+  outline: none;
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  background:
+    linear-gradient(90deg, var(--link-hover) 0%, var(--link-hover) 100%);
+  background-size: 100% 1px;
+}
+
+.link:focus-visible {
+  border-radius: var(--primitive-radius-xs);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+}
+
+.separator {
+  margin: 0 var(--primitive-space-1);
+  color: var(--primitive-line-strong);
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .link::after {
+    transition: none;
+  }
+}

@@ -1,0 +1,183 @@
+.binder {
+  padding: 0;
+  border-radius: 14px;
+  display: block;
+  overflow: hidden;
+}
+
+.shell {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 18px;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+  flex-wrap: wrap;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: var(--primitive-space-1) 0 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  color: var(--primitive-text-strong);
+}
+
+.search {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 30%, transparent);
+  color: var(--primitive-muted);
+  min-width: 260px;
+}
+
+.search:focus-within {
+  border-color: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.searchInput {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  outline: none;
+  flex: 1;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: inherit;
+  letter-spacing: 0.02em;
+}
+
+.searchInput::placeholder {
+  color: var(--primitive-muted);
+}
+
+.tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+  border: 1px solid var(--primitive-line);
+  width: max-content;
+  max-width: 100%;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.tab:hover {
+  color: var(--primitive-text-strong);
+}
+
+.tab:focus-visible {
+  outline: none;
+  border-color: color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+}
+
+.tabActive {
+  background: color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--primitive-teal) 45%, transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.cell {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.cellInserted {
+  border-color: color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+}
+
+.insert {
+  appearance: none;
+  background: color-mix(in oklab, var(--primitive-canvas) 46%, transparent);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-md);
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.insert:hover {
+  background: color-mix(in oklab, var(--primitive-teal) 24%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+}
+
+.insert:focus-visible {
+  outline: none;
+  border-color: color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+}
+
+.cellInserted .insert {
+  color: var(--primitive-green);
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+}
+
+.empty {
+  grid-column: 1 / -1;
+  padding: var(--primitive-space-6);
+  text-align: center;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab,
+  .insert {
+    transition: none;
+  }
+}

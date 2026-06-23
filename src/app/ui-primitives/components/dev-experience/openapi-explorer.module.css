@@ -1,0 +1,177 @@
+.explorer {
+  --de-violet: color-mix(in oklab, var(--primitive-red) 42%, var(--primitive-focus-ring));
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 50%),
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-glass-soft) 24%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.endpoint {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.methodChip {
+  min-width: 54px;
+  padding: 5px 10px;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.methodGet {
+  color: var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+}
+
+.methodPost {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 13%, transparent);
+}
+
+.methodPut {
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 13%, transparent);
+}
+
+.methodPatch {
+  color: var(--de-violet);
+  background: color-mix(in oklab, var(--de-violet) 13%, transparent);
+}
+
+.methodDelete {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 13%, transparent);
+}
+
+.path {
+  min-width: 0;
+  overflow-x: auto;
+  padding: 5px 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  background: var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.summary {
+  margin: 0;
+  max-width: 70ch;
+  color: var(--primitive-body);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.tryIt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  border-radius: 8px;
+  color: var(--primitive-canvas);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 20%, transparent), transparent 60%),
+    var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.tryIt:hover,
+.tryIt:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px color-mix(in oklab, var(--primitive-green) 28%, transparent);
+  outline: none;
+}
+
+.tablist {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-control-surface);
+  width: fit-content;
+}
+
+.tab {
+  min-height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--primitive-body);
+  background: transparent;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.tab:hover,
+.tab:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.tabActive {
+  color: var(--primitive-text-on-accent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-teal) 78%, transparent);
+  box-shadow: 0 8px 18px color-mix(in oklab, var(--primitive-teal) 20%, transparent);
+}
+
+.panel {
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-recessed);
+  color: var(--primitive-body);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab,
+  .tryIt {
+    transition: none;
+  }
+  .tryIt:hover,
+  .tryIt:focus-visible {
+    transform: none;
+  }
+}

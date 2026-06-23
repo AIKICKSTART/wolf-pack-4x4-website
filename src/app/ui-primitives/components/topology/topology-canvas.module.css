@@ -1,0 +1,133 @@
+.canvas {
+  position: relative;
+  width: 100%;
+  height: var(--topology-canvas-height, 560px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 14% 6%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 56%),
+    radial-gradient(ellipse at 86% 96%, color-mix(in oklab, var(--primitive-red) 6%, transparent), transparent 60%),
+    radial-gradient(ellipse at 50% 50%, color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent), transparent 70%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent), transparent 70%),
+    var(--primitive-panel-strong);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), 0 24px 60px color-mix(in oklab, var(--primitive-canvas) 52%, transparent);
+}
+
+.starfield {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 18% 22%, color-mix(in oklab, var(--primitive-teal) 55%, transparent) 0.6px, transparent 1.4px),
+    radial-gradient(circle at 64% 72%, color-mix(in oklab, var(--primitive-text-strong) 45%, transparent) 0.6px, transparent 1.4px),
+    radial-gradient(circle at 36% 84%, color-mix(in oklab, var(--primitive-amber) 40%, transparent) 0.6px, transparent 1.4px),
+    radial-gradient(circle at 82% 14%, color-mix(in oklab, var(--primitive-green) 40%, transparent) 0.6px, transparent 1.4px),
+    radial-gradient(circle at 92% 48%, color-mix(in oklab, var(--primitive-text-strong) 40%, transparent) 0.6px, transparent 1.4px);
+  background-size: 320px 320px;
+  opacity: 0.55;
+  mix-blend-mode: screen;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--primitive-text-strong) 7.5%, transparent) 1px,
+    transparent 1.4px
+  );
+  background-size: 28px 28px;
+  background-position: 14px 14px;
+  mask-image: radial-gradient(ellipse at center, black 58%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 58%, transparent 100%);
+}
+
+.gridFine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--primitive-text-strong) 2.2%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-text-strong) 2.2%, transparent) 1px, transparent 1px);
+  background-size: 140px 140px;
+}
+
+.viewport {
+  position: relative;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  transform:
+    translate(var(--topology-canvas-pan-x, 0), var(--topology-canvas-pan-y, 0))
+    scale(var(--topology-canvas-zoom, 1));
+  transition: transform var(--primitive-duration-slow) var(--primitive-ease-out);
+}
+
+.frameLabel {
+  position: absolute;
+  left: var(--primitive-space-3);
+  bottom: var(--primitive-space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 82%, transparent);
+  backdrop-filter: blur(8px);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  pointer-events: none;
+}
+
+.frameDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-teal);
+  box-shadow: 0 0 6px color-mix(in oklab, var(--primitive-teal) 70%, transparent);
+}
+
+.cornerCompass {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  pointer-events: none;
+}
+
+.cornerCompass::before {
+  content: "";
+  position: absolute;
+  inset: var(--primitive-space-1);
+  border: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  border-radius: inherit;
+}
+
+.cornerCompass span {
+  position: relative;
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport {
+    transition: none;
+  }
+}

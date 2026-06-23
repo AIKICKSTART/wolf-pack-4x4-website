@@ -1,0 +1,184 @@
+.card {
+  display: grid;
+  gap: 22px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--primitive-teal) 10%, transparent), transparent 60%),
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 50%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at -10% -10%, var(--primitive-glass-strong), transparent 50%);
+  mix-blend-mode: screen;
+}
+
+.card:hover {
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--primitive-shadow-deep);
+}
+
+.cardDefault {
+  border-color: color-mix(in srgb, var(--primitive-amber) 42%, transparent);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--primitive-amber) 16%, transparent), transparent 60%),
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 50%),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1;
+}
+
+.logoWrap {
+  display: inline-grid;
+  place-items: center;
+  padding: 4px;
+  border-radius: 6px;
+  background: var(--primitive-glass-soft);
+  border: 1px solid var(--primitive-line);
+}
+
+.label {
+  font-family: var(--primitive-font-display);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.defaultChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid color-mix(in srgb, var(--primitive-amber) 50%, transparent);
+  background: color-mix(in srgb, var(--primitive-amber) 16%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--primitive-radius-pill);
+}
+
+.number {
+  position: relative;
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: 0.16em;
+  color: var(--primitive-text-strong);
+  z-index: 1;
+}
+
+.foot {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 18px;
+  align-items: end;
+  z-index: 1;
+}
+
+.holder,
+.expiry {
+  display: grid;
+  gap: 2px;
+}
+
+.holderLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.holderValue {
+  font-family: var(--primitive-font-display);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.actionBtn {
+  padding: 6px 12px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  background: transparent;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.actionBtn:hover {
+  border-color: var(--primitive-text-strong);
+  color: var(--primitive-text-strong);
+  background: var(--primitive-glass-soft);
+}
+
+.actionBtn:active {
+  background: var(--primitive-glass-strong);
+}
+
+.actionBtn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.removeBtn {
+  border-color: color-mix(in srgb, var(--primitive-red) 50%, transparent);
+  color: var(--primitive-red);
+}
+
+.removeBtn:hover {
+  border-color: var(--primitive-red);
+  background: color-mix(in srgb, var(--primitive-red) 16%, transparent);
+  color: var(--primitive-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .actionBtn {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}

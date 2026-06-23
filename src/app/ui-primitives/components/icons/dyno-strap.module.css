@@ -1,0 +1,37 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.handle { fill: currentColor; opacity: 0.85; }
+.handleStroke { stroke: currentColor; fill: none; stroke-width: 1.2; stroke-linejoin: round; }
+.gripRib { stroke: var(--primitive-canvas); stroke-width: 0.5; opacity: 0.55; stroke-linecap: round; }
+.spool { fill: currentColor; opacity: 0.55; stroke: currentColor; stroke-width: 1.2; }
+.spoolInner { fill: var(--primitive-canvas); opacity: 0.7; stroke: currentColor; stroke-width: 0.7; }
+.pawl { stroke: currentColor; opacity: 0.85; stroke-width: 0.9; stroke-linecap: round; }
+.strap { stroke: currentColor; fill: none; stroke-linecap: square; opacity: 0.7; }
+.stitch { stroke: var(--primitive-canvas); opacity: 0.7; stroke-linecap: round; }
+.hook { stroke: currentColor; fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.hookTip { stroke: currentColor; fill: none; stroke-width: 1.2; stroke-linecap: round; }
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate .spool { animation: iconRotate 2.4s linear infinite; transform-origin: 17.4px 7.4px; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .handleStroke, .motionDraw .strap, .motionDraw .hook { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .spool { animation-duration: 0.4s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .handle,
+[data-variant="outline"] .spool { fill: transparent; opacity: 1; }
+[data-variant="outline"] .spoolInner { fill: transparent; }
+
+[data-variant="filled"] .handle { opacity: 1; }
+[data-variant="filled"] .spool { opacity: 0.95; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .spool { animation: none !important; transition: none !important; }
+}

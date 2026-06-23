@@ -1,0 +1,155 @@
+.picker {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.hint {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+@media (max-width: 540px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tile {
+  display: grid;
+  grid-template-columns: 64px 1fr 18px;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-canvas) 62%, transparent);
+  color: var(--primitive-body);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) ease, background var(--primitive-duration-fast) ease, transform var(--primitive-duration-fast) ease;
+}
+
+.tile:hover {
+  border-color: var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-surface-2) 78%, transparent);
+}
+
+.tile:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.tileActive {
+  border-color: color-mix(in oklab, var(--primitive-amber) 65%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 14%, var(--primitive-recessed));
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--primitive-amber) 40%, transparent),
+    0 18px 38px color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+}
+
+.swatch {
+  position: relative;
+  display: grid;
+  width: 64px;
+  height: 48px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  padding: var(--primitive-space-1-5);
+  overflow: hidden;
+}
+
+.swatchLabel {
+  font-family: var(--primitive-font-display, serif);
+  font-size: var(--primitive-text-lg);
+  line-height: var(--primitive-leading-none);
+}
+
+.swatchDot {
+  position: absolute;
+  right: var(--primitive-space-1-5);
+  top: var(--primitive-space-1-5);
+  width: var(--primitive-space-2);
+  height: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-round);
+}
+
+.swatchBar {
+  position: absolute;
+  left: var(--primitive-space-1-5);
+  bottom: var(--primitive-space-1-5);
+  height: 3px;
+  width: var(--primitive-space-8);
+  border-radius: 1px;
+}
+
+.tileBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.tileName {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.tileDesc {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.checkRing {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-amber);
+  font-size: var(--primitive-text-2xs);
+}
+
+.checkRingOn {
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  border-color: var(--primitive-amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    transition: none;
+  }
+}

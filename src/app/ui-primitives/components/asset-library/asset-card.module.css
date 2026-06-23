@@ -1,0 +1,178 @@
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-card-bg);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: transform 200ms var(--primitive-ease-out),
+    border-color 200ms ease, box-shadow 200ms ease;
+  isolation: isolate;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-card-hover-shadow);
+  outline: none;
+}
+
+.card.selected {
+  border-color: var(--primitive-red);
+  box-shadow:
+    0 0 0 1px var(--primitive-red),
+    var(--primitive-card-hover-shadow);
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 30% 12%, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), transparent 50%),
+    var(--primitive-panel);
+  display: grid;
+  place-items: center;
+}
+
+.thumbImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbFallback {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  color: color-mix(in oklab, var(--primitive-text-strong) 74%, transparent);
+  letter-spacing: 0.04em;
+  line-height: 0.9;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, var(--primitive-shadow-outline));
+  pointer-events: none;
+}
+
+.kindBadge {
+  position: absolute;
+  top: var(--primitive-space-2);
+  left: var(--primitive-space-2);
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-media-overlay);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.kindImage .kindBadge {
+  background: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 70%, transparent);
+}
+
+.kindVideo .kindBadge {
+  background: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 70%, transparent);
+}
+
+.kindAudio .kindBadge {
+  background: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-amber) 70%, transparent);
+}
+
+.kindDoc .kindBadge {
+  background: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+}
+
+.kindModel .kindBadge {
+  background: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 70%, transparent);
+}
+
+.kindAnimation .kindBadge {
+  background: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 62%, transparent);
+}
+
+.kindVector .kindBadge {
+  background: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 62%, transparent);
+}
+
+.tick {
+  position: absolute;
+  top: var(--primitive-space-2);
+  right: var(--primitive-space-2);
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+  display: grid;
+  place-items: center;
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-0-5) var(--primitive-space-1) var(--primitive-space-1);
+}
+
+.name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+  line-height: 1.35;
+  word-break: break-all;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.metaChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-soft);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  .card:hover,
+  .card:focus-visible {
+    transform: none;
+  }
+}

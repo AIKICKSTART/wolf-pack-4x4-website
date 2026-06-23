@@ -1,0 +1,175 @@
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), 0 24px 50px color-mix(in oklab, var(--primitive-canvas) 30%, transparent);
+  overflow: hidden;
+}
+
+.photo {
+  position: relative;
+  min-height: 168px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 28% 24%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 48%),
+    radial-gradient(circle at 80% 88%, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 52%),
+    color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-3xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.03em;
+  overflow: hidden;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1;
+}
+
+.identityRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+}
+
+.rego {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+  border-radius: var(--primitive-radius-sm);
+  /* Skeuomorphic AU number plate: fixed white plate + dark stamped text.
+     Brand/data literals kept constant in both themes by design. */
+  background:
+    linear-gradient(180deg, #fff, #d6d8de 70%);
+  color: #0c0d13;
+  font-family: var(--primitive-font-display-alt, var(--primitive-font-display));
+  font-size: var(--primitive-text-base);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), inset 0 -1px 0 rgba(0, 0, 0, 0.34);
+}
+
+.specGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-2) 14px;
+}
+
+.specItem {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.specLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.specValue {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line);
+  padding-top: var(--primitive-space-3);
+}
+
+.historyBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 5px var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.historyBadge strong {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+}
+
+.viewLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 200ms ease;
+}
+
+.viewLink:hover,
+.viewLink:focus-visible {
+  transform: translateX(4px);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewLink {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .photo {
+    min-height: 140px;
+  }
+}

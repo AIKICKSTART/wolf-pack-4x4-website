@@ -1,0 +1,46 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.car { fill: currentColor; opacity: 0.85; }
+.carStroke { stroke: currentColor; fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.window { fill: var(--primitive-canvas); opacity: 0.5; stroke: currentColor; stroke-width: 0.9; stroke-linejoin: round; }
+.rollerFrontGroup { transform-origin: 12px 17.6px; }
+.roller { fill: currentColor; opacity: 0.5; stroke: currentColor; stroke-width: 1; }
+.rollerShadow { fill: currentColor; opacity: 0.15; }
+.rollerInner { fill: var(--primitive-canvas); opacity: 0.5; stroke: currentColor; stroke-width: 0.6; }
+.tirePrint { fill: var(--primitive-canvas); opacity: 0.6; }
+.floor { stroke: currentColor; opacity: 0.55; stroke-dasharray: 1.4 1.2; stroke-linecap: round; }
+.motionLine { stroke: currentColor; fill: none; stroke-width: 1.4; stroke-linecap: round; opacity: 0; animation: rollerStream 1.2s ease-in-out infinite; }
+.motionLine[data-l="2"] { animation-delay: 0.3s; }
+
+@keyframes rollerStream {
+  0% { opacity: 0; transform: translateX(2px); }
+  50% { opacity: 0.85; }
+  100% { opacity: 0; transform: translateX(-3px); }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate .rollerFrontGroup { animation: iconRotate 1.4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift .rollerFrontGroup { animation: iconRotate 2s linear infinite; }
+.motionDraw .carStroke { stroke-dasharray: 80; stroke-dashoffset: 80; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .rollerFrontGroup { animation: iconRotate 0.4s linear infinite; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-3deg); } 75% { transform: rotate(3deg); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .car,
+[data-variant="outline"] .roller,
+[data-variant="outline"] .rollerShadow,
+[data-variant="outline"] .tirePrint,
+[data-variant="outline"] .window { fill: transparent; opacity: 1; }
+[data-variant="outline"] .rollerInner { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .car { opacity: 0.95; }
+[data-variant="filled"] .roller { opacity: 0.85; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .rollerFrontGroup, .motionLine { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,159 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 5%, transparent),
+      color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 50%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      var(--card-glow, color-mix(in oklab, var(--primitive-teal) 16%, transparent)),
+      transparent 52%
+    ),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-panel-strong));
+  color: var(--primitive-body);
+  isolation: isolate;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    inset -18px -18px 30px color-mix(in oklab, var(--primitive-canvas) 22%, transparent),
+    0 18px 42px color-mix(in oklab, var(--primitive-canvas) 28%, transparent);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--primitive-space-3);
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.endpoint {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--status-border, color-mix(in oklab, var(--primitive-text-strong) 18%, transparent));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--status-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--status-fg, var(--primitive-text-strong));
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--status-fg, color-mix(in oklab, var(--primitive-text-strong) 60%, transparent));
+  box-shadow: 0 0 0 2px var(--status-halo, color-mix(in oklab, var(--primitive-text-strong) 10%, transparent));
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 14px;
+  padding: var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 55%, transparent);
+  margin: 0;
+}
+
+.statItem {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.statLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statValue {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.statCode {
+  color: var(--status-fg, var(--primitive-text-strong));
+}
+
+.payload {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.payloadLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statusOk {
+  --status-bg: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  --status-border: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  --status-fg: var(--primitive-green);
+  --status-halo: color-mix(in oklab, var(--primitive-green) 22%, transparent);
+  --card-glow: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+}
+
+.statusWarn {
+  --status-bg: color-mix(in oklab, var(--primitive-amber) 10%, transparent);
+  --status-border: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  --status-fg: var(--primitive-amber);
+  --status-halo: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+  --card-glow: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+}
+
+.statusFail {
+  --status-bg: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  --status-border: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  --status-fg: var(--primitive-red);
+  --status-halo: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  --card-glow: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+}
+
+.statusRunning {
+  --status-bg: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  --status-border: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  --status-fg: var(--primitive-teal);
+  --status-halo: color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+  --card-glow: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+}

@@ -1,0 +1,167 @@
+.root {
+  /* Fluid title size — overridden per size step below. */
+  --heading-title-size: clamp(28px, 3.4vw, 46px);
+  --heading-cols: 1fr;
+
+  display: grid;
+  grid-template-columns: var(--heading-cols);
+  align-items: end;
+  gap: var(--primitive-space-4);
+  width: 100%;
+  min-width: 0;
+}
+
+/* Title block: kicker + title + description. */
+.lede {
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+/* Mono uppercase amber kicker with a leading gradient rule. */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  line-height: var(--primitive-leading-none);
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  font-variant-numeric: tabular-nums;
+}
+
+.kicker::before {
+  content: "";
+  flex: 0 0 auto;
+  width: var(--primitive-space-5);
+  height: var(--primitive-space-px);
+  background: linear-gradient(90deg, var(--primitive-amber), transparent);
+}
+
+/* Display-font uppercase title, fluid by size prop. */
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--heading-title-size);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--primitive-text-strong);
+}
+
+.description {
+  margin: 0;
+  max-width: 72ch;
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-normal);
+  letter-spacing: var(--primitive-tracking-normal);
+  color: var(--primitive-body);
+}
+
+/* Right-aligned actions slot. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  padding-bottom: var(--primitive-space-px);
+}
+
+/* When focus lands inside the actions slot, lift a subtle ring on the
+   header so keyboard users get a clear, on-brand anchor. */
+.root:focus-within .actions {
+  border-radius: var(--primitive-radius-md);
+  box-shadow: var(--primitive-focus-shadow);
+  transition: box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+/* ---- size steps ---- */
+.sizeSm {
+  --heading-title-size: clamp(20px, 1.8vw, 26px);
+  gap: var(--primitive-space-3);
+}
+
+.sizeSm .lede {
+  gap: var(--primitive-space-1-5);
+}
+
+.sizeSm .description {
+  font-size: var(--primitive-text-xs);
+}
+
+.sizeMd {
+  --heading-title-size: clamp(28px, 3.4vw, 46px);
+}
+
+.sizeLg {
+  --heading-title-size: clamp(38px, 5vw, 64px);
+  gap: var(--primitive-space-5);
+}
+
+.sizeLg .lede {
+  gap: var(--primitive-space-3);
+}
+
+.sizeLg .description {
+  font-size: var(--primitive-text-base);
+  max-width: 64ch;
+}
+
+/* ---- alignment ---- */
+.alignLeft {
+  text-align: left;
+  justify-items: stretch;
+}
+
+.alignCenter {
+  text-align: center;
+  justify-items: center;
+  /* Center variant never reserves an actions column. */
+  grid-template-columns: 1fr;
+}
+
+.alignCenter .lede {
+  justify-items: center;
+}
+
+.alignCenter .kicker {
+  justify-content: center;
+}
+
+.alignCenter .kicker::after {
+  content: "";
+  flex: 0 0 auto;
+  width: var(--primitive-space-5);
+  height: var(--primitive-space-px);
+  background: linear-gradient(270deg, var(--primitive-amber), transparent);
+}
+
+.alignCenter .description {
+  margin-inline: auto;
+}
+
+/* ---- responsive: stack title + actions on narrow viewports ---- */
+@media (max-width: 640px) {
+  .root {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root:focus-within .actions {
+    transition: none;
+  }
+}

@@ -1,0 +1,74 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 5px var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: default;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+button.chip {
+  cursor: pointer;
+}
+
+button.chip:hover {
+  transform: translateY(-1px);
+}
+
+.glyph {
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--primitive-radius-sm);
+  font-size: 11px;
+}
+
+.chip[data-segment="fleet"] {
+  border-color: color-mix(in oklab, var(--primitive-teal) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+  color: var(--primitive-teal);
+}
+
+.chip[data-segment="performance"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.chip[data-segment="diy"] {
+  border-color: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-amber);
+}
+
+.chip[data-segment="trade"] {
+  border-color: color-mix(in oklab, var(--primitive-violet) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-violet) 8%, transparent);
+  color: var(--primitive-violet);
+}
+
+.chip[data-segment="retail"] {
+  border-color: color-mix(in oklab, var(--primitive-green) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  color: var(--primitive-green);
+}
+
+button.chip[aria-pressed="true"] {
+  box-shadow: 0 0 0 1px currentColor inset;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
+}

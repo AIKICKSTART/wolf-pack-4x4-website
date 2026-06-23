@@ -1,0 +1,170 @@
+.badge {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3) var(--primitive-space-1-5) var(--primitive-space-2);
+  border: 1px solid var(--tone-border, var(--primitive-line-strong));
+  border-radius: var(--primitive-radius-pill);
+  background:
+    linear-gradient(180deg, var(--tone-glow, var(--primitive-glass-strong)), transparent 60%),
+    var(--tone-fill, var(--primitive-glass-soft));
+  color: var(--tone-text, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: var(--primitive-leading-none);
+}
+
+.iconWrap {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-round);
+  background: var(--tone-icon-bg, color-mix(in oklab, var(--primitive-canvas) 40%, transparent));
+  color: var(--tone-icon, currentColor);
+}
+
+.iconWrap svg {
+  width: 14px;
+  height: 14px;
+}
+
+.body {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.code {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 18px;
+  padding: 0 var(--primitive-space-1);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+  color: var(--tone-code, var(--primitive-amber));
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.label {
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.description {
+  display: block;
+  margin-top: var(--primitive-space-0-5);
+  grid-column: 1 / -1;
+  color: var(--tone-muted, var(--primitive-muted));
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sizeSm {
+  padding: var(--primitive-space-1) var(--primitive-space-2-5) var(--primitive-space-1) var(--primitive-space-1-5);
+  gap: var(--primitive-space-1-5);
+}
+
+.sizeSm .iconWrap {
+  width: 16px;
+  height: 16px;
+}
+
+.sizeSm .iconWrap svg {
+  width: 10px;
+  height: 10px;
+}
+
+.sizeSm .label {
+  font-size: 9px;
+}
+
+.sizeMd .label {
+  font-size: 11px;
+}
+
+.sizeLg {
+  padding: 9px var(--primitive-space-4) 9px var(--primitive-space-2-5);
+  gap: var(--primitive-space-2-5);
+}
+
+.sizeLg .iconWrap {
+  width: 28px;
+  height: 28px;
+}
+
+.sizeLg .iconWrap svg {
+  width: 18px;
+  height: 18px;
+}
+
+.sizeLg .label {
+  font-size: var(--primitive-text-sm);
+}
+
+.toneOwner {
+  --tone-border: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --tone-glow: color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+  --tone-icon-bg: linear-gradient(135deg, var(--primitive-red), color-mix(in oklab, var(--primitive-red-dark) 70%, var(--primitive-canvas)));
+  --tone-icon: var(--primitive-text-strong);
+  --tone-code: color-mix(in oklab, var(--primitive-red) 28%, var(--primitive-text-strong));
+}
+
+.toneAdmin {
+  --tone-border: color-mix(in oklab, var(--primitive-teal) 46%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  --tone-icon-bg: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  --tone-icon: var(--primitive-text-strong);
+  --tone-code: var(--primitive-teal);
+}
+
+.toneWorkshop {
+  --tone-border: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --tone-icon-bg: color-mix(in oklab, var(--primitive-amber) 28%, transparent);
+  --tone-icon: color-mix(in oklab, var(--primitive-amber) 14%, var(--primitive-canvas));
+  --tone-text: var(--primitive-text-strong);
+  --tone-code: var(--primitive-amber);
+}
+
+.toneBilling {
+  --tone-border: color-mix(in oklab, var(--primitive-green) 46%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+  --tone-icon-bg: color-mix(in oklab, var(--primitive-green) 28%, transparent);
+  --tone-icon: color-mix(in oklab, var(--primitive-green) 16%, var(--primitive-canvas));
+  --tone-text: var(--primitive-text-strong);
+  --tone-code: var(--primitive-green);
+}
+
+.toneMember {
+  --tone-border: var(--primitive-line-strong);
+  --tone-fill: var(--primitive-glass-soft);
+  --tone-icon-bg: var(--primitive-glass-strong);
+  --tone-icon: var(--primitive-text-strong);
+  --tone-code: color-mix(in oklab, var(--primitive-red) 28%, var(--primitive-text-strong));
+}
+
+.toneViewer {
+  --tone-border: color-mix(in oklab, var(--primitive-muted) 60%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-muted) 16%, transparent);
+  --tone-icon-bg: color-mix(in oklab, var(--primitive-muted) 32%, transparent);
+  --tone-icon: var(--primitive-text-strong);
+  --tone-text: var(--primitive-body);
+  --tone-code: var(--primitive-muted);
+}
+
+.toneGuest {
+  --tone-border: color-mix(in oklab, var(--primitive-violet) 42%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-violet) 12%, transparent);
+  --tone-icon-bg: color-mix(in oklab, var(--primitive-violet) 28%, transparent);
+  --tone-icon: var(--primitive-text-strong);
+  --tone-code: color-mix(in oklab, var(--primitive-violet) 35%, var(--primitive-text-strong));
+}

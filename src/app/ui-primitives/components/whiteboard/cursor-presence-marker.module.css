@@ -1,0 +1,64 @@
+.marker {
+  --cursor-color: var(--primitive-teal);
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  gap: var(--primitive-space-0-5);
+  align-items: start;
+  color: var(--cursor-color);
+  transition: opacity var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+.pointer {
+  width: 22px;
+  height: 22px;
+  display: block;
+  filter: drop-shadow(0 2px 4px color-mix(in oklab, var(--primitive-overlay) 71%, transparent));
+}
+
+.pointerPath {
+  stroke: color-mix(in oklab, var(--primitive-overlay) 96%, transparent);
+}
+
+.chip {
+  margin-top: var(--primitive-space-2-5);
+  padding: 3px var(--primitive-space-2);
+  border-radius: 6px;
+  background: var(--cursor-color);
+  /* near-black contrast text fixed for the bright data-tone chip (both themes) */
+  color: #0a0b10;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px color-mix(in oklab, var(--primitive-overlay) 67%, transparent);
+}
+
+.idle {
+  opacity: 0.42;
+  animation: cursor-idle-fade 2400ms ease-in-out infinite alternate;
+}
+
+.toneYellow { --cursor-color: #ffe66a; }
+.tonePink   { --cursor-color: #ff7eb0; }
+.toneBlue   { --cursor-color: #40bcff; }
+.toneGreen  { --cursor-color: #37d67a; }
+.tonePurple { --cursor-color: #c89cff; }
+.toneOrange { --cursor-color: #ffba6a; }
+
+@keyframes cursor-idle-fade {
+  from { opacity: 0.32; }
+  to   { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marker {
+    transition: none;
+  }
+  .idle {
+    animation: none;
+    opacity: 0.42;
+  }
+}

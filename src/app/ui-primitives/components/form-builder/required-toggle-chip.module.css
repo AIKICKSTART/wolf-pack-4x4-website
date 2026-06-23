@@ -1,0 +1,78 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) 11px var(--primitive-space-1-5) var(--primitive-space-1-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 62%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) ease, background var(--primitive-duration-fast) ease, color var(--primitive-duration-fast) ease;
+}
+
+.chip:hover {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.indicator {
+  display: grid;
+  place-items: center;
+  width: var(--primitive-space-5);
+  height: var(--primitive-space-5);
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  color: color-mix(in oklab, var(--primitive-text-strong) 45%, transparent);
+  transition: background var(--primitive-duration-fast) ease, color var(--primitive-duration-fast) ease, box-shadow var(--primitive-duration-fast) ease;
+}
+
+.asterisk {
+  font-size: var(--primitive-text-xs);
+  line-height: var(--primitive-leading-none);
+  color: inherit;
+}
+
+.label {
+  color: inherit;
+}
+
+.state {
+  padding-left: var(--primitive-space-2);
+  border-left: 1px solid color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-muted);
+}
+
+.chipOn {
+  border-color: color-mix(in oklab, var(--primitive-red) 65%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 14%, var(--primitive-recessed));
+  color: var(--primitive-text-strong);
+}
+
+.chipOn .indicator {
+  background: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  color: var(--primitive-red);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.chipOn .state {
+  color: var(--primitive-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .indicator {
+    transition: none;
+  }
+}

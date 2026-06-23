@@ -1,0 +1,397 @@
+/* ============================================================
+   Button — core action primitive. Carbon & Red DNA.
+   Token-only styling (automatic light/dark parity).
+   Compositor-friendly motion: transform / opacity / box-shadow.
+   ============================================================ */
+
+.root {
+  --btn-pad-x: var(--primitive-space-4);
+  --btn-gap: var(--primitive-space-2);
+  --btn-height: var(--primitive-size-command-sm);
+  --btn-font: var(--primitive-text-sm);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  height: var(--btn-height);
+  padding: 0 var(--btn-pad-x);
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: var(--primitive-btn-radius);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--btn-font);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  line-height: var(--primitive-leading-none);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  appearance: none;
+  user-select: none;
+  isolation: isolate;
+  transition:
+    transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out),
+    opacity var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+/* Clearcoat sheen — painted-metal highlight on the top edge. Variants
+   that want it flip --btn-sheen on; others keep it transparent. */
+.root::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: var(--btn-sheen, transparent);
+  opacity: var(--btn-sheen-opacity, 0);
+  transition: opacity var(--primitive-duration-fast) var(--primitive-ease-out);
+  z-index: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  min-width: 0;
+}
+
+.label {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--primitive-icon-md);
+  height: var(--primitive-icon-md);
+  color: currentColor;
+}
+
+.icon :global(svg) {
+  width: 100%;
+  height: 100%;
+}
+
+/* press — every variant translates down 1px */
+.root:active {
+  transform: translateY(1px);
+}
+
+/* focus ring — shared focus shadow token */
+.root:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+/* disabled */
+.root:disabled,
+.root[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.root:disabled::before,
+.root[aria-disabled="true"]::before {
+  opacity: 0;
+}
+
+/* ------------------------------------------------------------
+   Sizes
+   ------------------------------------------------------------ */
+.sizeSm {
+  --btn-height: var(--primitive-size-ui-md);
+  --btn-pad-x: var(--primitive-space-3);
+  --btn-gap: var(--primitive-space-1-5);
+  --btn-font: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+}
+
+.sizeMd {
+  --btn-height: var(--primitive-size-command-sm);
+  --btn-pad-x: var(--primitive-space-4);
+  --btn-gap: var(--primitive-space-2);
+  --btn-font: var(--primitive-text-sm);
+}
+
+.sizeLg {
+  --btn-height: var(--primitive-size-command-md);
+  --btn-pad-x: var(--primitive-space-6);
+  --btn-gap: var(--primitive-space-2-5);
+  --btn-font: var(--primitive-text-md);
+}
+
+.sizeSm .icon {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+.sizeLg .icon {
+  width: var(--primitive-icon-lg);
+  height: var(--primitive-icon-lg);
+}
+
+/* ------------------------------------------------------------
+   fullWidth
+   ------------------------------------------------------------ */
+.fullWidth {
+  display: flex;
+  width: 100%;
+}
+
+/* ------------------------------------------------------------
+   Icon-only — square, centered glyph
+   ------------------------------------------------------------ */
+.iconOnly {
+  --btn-pad-x: 0;
+  width: var(--btn-height);
+  padding: 0;
+  aspect-ratio: 1 / 1;
+}
+
+/* ============================================================
+   Variant: PRIMARY — metallic-red painted body, amber hover.
+   ============================================================ */
+.primary {
+  --btn-sheen: var(--primitive-metallic-sheen);
+  --btn-sheen-opacity: 0.55;
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  border-color: color-mix(in oklab, var(--primitive-red-dark) 60%, transparent);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.primary:hover:not(:disabled) {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  border-color: color-mix(in oklab, var(--primitive-amber) 52%, transparent);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.primary:hover:not(:disabled)::before {
+  opacity: 0.7;
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    inset 0 -1px 0 var(--primitive-neumo-dark);
+}
+
+.primary:focus-visible {
+  box-shadow:
+    var(--primitive-focus-shadow),
+    var(--primitive-btn-primary-shadow);
+}
+
+/* ============================================================
+   Variant: SECONDARY — machined-black metallic body.
+   ============================================================ */
+.secondary {
+  --btn-sheen: var(--primitive-metallic-sheen);
+  --btn-sheen-opacity: 0.22;
+  color: var(--primitive-btn-secondary-fg);
+  background: var(--primitive-btn-secondary-bg);
+  border-color: var(--primitive-btn-secondary-border);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    var(--primitive-surface-shadow);
+}
+
+.secondary:hover:not(:disabled) {
+  border-color: color-mix(in oklab, var(--primitive-red) 38%, var(--primitive-line-strong));
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    var(--primitive-surface-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.secondary:hover:not(:disabled)::before {
+  opacity: 0.34;
+}
+
+.secondary:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    inset -10px -10px 18px var(--primitive-neumo-dark);
+}
+
+.secondary:focus-visible {
+  box-shadow:
+    var(--primitive-focus-shadow),
+    inset 0 1px 0 var(--primitive-neumo-light);
+}
+
+/* ============================================================
+   Variant: GHOST — transparent body, line border, field-bg hover.
+   ============================================================ */
+.ghost {
+  color: var(--primitive-text-strong);
+  background: transparent;
+  border-color: var(--primitive-line-strong);
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--primitive-field-bg);
+  border-color: color-mix(in oklab, var(--primitive-red) 32%, var(--primitive-line-strong));
+  transform: translateY(-1px);
+}
+
+.ghost:active:not(:disabled) {
+  transform: translateY(1px);
+  background: var(--primitive-field-hover);
+}
+
+/* ============================================================
+   Variant: DANGER — red painted body / on-accent foreground.
+   ============================================================ */
+.danger {
+  --btn-sheen: var(--primitive-metallic-sheen);
+  --btn-sheen-opacity: 0.4;
+  color: var(--primitive-text-on-accent);
+  background: var(--primitive-red);
+  border-color: var(--primitive-red-dark);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 28%, transparent),
+    0 10px 24px color-mix(in oklab, var(--primitive-red) 36%, transparent);
+}
+
+.danger:hover:not(:disabled) {
+  background: color-mix(in oklab, var(--primitive-red) 88%, white);
+  border-color: color-mix(in oklab, var(--primitive-red-dark) 80%, white);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 40%, transparent),
+    0 14px 30px color-mix(in oklab, var(--primitive-red) 46%, transparent);
+  transform: translateY(-1px);
+}
+
+.danger:hover:not(:disabled)::before {
+  opacity: 0.58;
+}
+
+.danger:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-dark),
+    inset 0 -1px 0 var(--primitive-neumo-light);
+}
+
+.danger:focus-visible {
+  box-shadow:
+    var(--primitive-focus-shadow),
+    0 10px 24px color-mix(in oklab, var(--primitive-red) 36%, transparent);
+}
+
+/* ============================================================
+   Variant: SUBTLE — recessed field-bg surface, quiet.
+   ============================================================ */
+.subtle {
+  color: var(--primitive-body);
+  background: var(--primitive-field-bg);
+  border-color: var(--primitive-line);
+}
+
+.subtle:hover:not(:disabled) {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-field-hover);
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-1px);
+}
+
+.subtle:active:not(:disabled) {
+  transform: translateY(1px);
+  background: var(--primitive-field-strong);
+}
+
+/* ============================================================
+   Loading — spinner overlays the centre, content fades.
+   ============================================================ */
+.loading {
+  cursor: progress;
+}
+
+.loading .content {
+  opacity: 0;
+}
+
+.spinner {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.spinner :global(svg) {
+  animation: btn-spin var(--primitive-duration-slower) linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   Light theme — re-seat ghost/subtle inks that derive from
+   dark-surface tokens so contrast reads correctly on light.
+   (Painted variants pull from already-themed brand tokens.)
+   ============================================================ */
+:global(html[data-primitive-theme="light"]) .ghost {
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in srgb, var(--primitive-text-strong) 22%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .ghost:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--primitive-text-strong) 6%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-red) 34%, color-mix(in srgb, var(--primitive-text-strong) 22%, transparent));
+}
+
+:global(html[data-primitive-theme="light"]) .subtle {
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 70%, transparent);
+  border-color: color-mix(in srgb, var(--primitive-text-strong) 14%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 80%, transparent),
+    0 6px 14px color-mix(in srgb, var(--primitive-body) 8%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .subtle:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--primitive-text-on-accent) 92%, transparent);
+  border-color: color-mix(in srgb, var(--primitive-text-strong) 26%, transparent);
+}
+
+/* ============================================================
+   Reduced motion — kill movement + spinner, keep focus ring.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .root::before,
+  .root:hover:not(:disabled),
+  .root:active:not(:disabled) {
+    transition: none;
+    transform: none;
+  }
+
+  .spinner :global(svg) {
+    animation: none;
+  }
+}

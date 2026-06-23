@@ -1,0 +1,230 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  background: color-mix(in oklab, var(--primitive-canvas) 94%, transparent);
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  transition: opacity 240ms ease;
+}
+
+.backdrop[data-starting-style],
+.backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  gap: 14px;
+  padding: 18px clamp(16px, 2.4vw, 32px);
+  background:
+    radial-gradient(circle at 50% 100%, color-mix(in oklab, var(--primitive-teal) 6%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-canvas) 98%, transparent);
+  color: var(--primitive-body);
+  outline: none;
+  transition: opacity 220ms ease;
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: 0;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: var(--primitive-space-2);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.barControls {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.zoomLabel {
+  min-width: 48px;
+  text-align: center;
+  font-family: var(--primitive-font-mono, monospace);
+  font-size: 11px;
+  color: var(--primitive-muted);
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+
+.iconBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-muted);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-radius-md);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.iconBtn:hover:not(:disabled) {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+}
+
+.iconBtn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.iconBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--primitive-radius-lg);
+  background:
+    repeating-linear-gradient(45deg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 0 12px, transparent 12px 24px),
+    var(--primitive-code-bg);
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: grab;
+}
+
+.image:active {
+  cursor: grabbing;
+}
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: color-mix(in oklab, var(--primitive-code-bg) 84%, transparent);
+  color: var(--primitive-text-strong);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.navBtn:hover {
+  background: var(--primitive-panel-strong);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+}
+
+.navBtn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.navPrev {
+  left: var(--primitive-space-4);
+}
+
+.navNext {
+  right: var(--primitive-space-4);
+}
+
+.caption {
+  margin: 0;
+  text-align: center;
+  color: var(--primitive-muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.thumbStrip {
+  display: flex;
+  justify-content: center;
+  gap: var(--primitive-space-2);
+  padding-top: var(--primitive-space-1);
+  overflow-x: auto;
+  scrollbar-gutter: stable;
+}
+
+.thumb {
+  appearance: none;
+  flex: 0 0 auto;
+  width: 76px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.thumb:hover {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+  transform: translateY(-1px);
+}
+
+.thumb:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  border-color: var(--primitive-focus-ring);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.thumbActive {
+  border-color: var(--primitive-red);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primitive-red) 55%, transparent), 0 10px 24px -10px color-mix(in oklab, var(--primitive-red) 60%, transparent);
+  transform: translateY(-3px) scale(1.04);
+}
+
+.thumbActive:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .popup,
+  .image,
+  .thumb {
+    transition: none;
+  }
+}

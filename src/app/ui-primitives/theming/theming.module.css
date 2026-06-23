@@ -1,0 +1,488 @@
+.page {
+  min-height: 100svh;
+  min-width: 0;
+  padding: var(--primitive-space-7) var(--primitive-space-7) var(--primitive-space-14);
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 86% 0%, color-mix(in srgb, var(--primitive-red) 16%, transparent), transparent 36%),
+    radial-gradient(circle at 6% 96%, color-mix(in srgb, var(--primitive-teal) 14%, transparent), transparent 40%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+  overflow-x: clip;
+}
+
+.shell {
+  width: min(100%, 1480px);
+  min-width: 0;
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--primitive-space-7);
+}
+
+.playgroundGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.demoGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.demoControls {
+  display: grid;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.controls {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+  position: sticky;
+  top: var(--primitive-space-6);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.controlGroup {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+}
+
+.controlGroupTitle {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.controlGroupTitle h3 {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.controlGroupTitle small {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.subRoute {
+  min-height: 100svh;
+  min-width: 0;
+  padding: var(--primitive-space-7) var(--primitive-space-7) var(--primitive-space-14);
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 86% 0%, color-mix(in srgb, var(--primitive-red) 14%, transparent), transparent 36%),
+    radial-gradient(circle at 6% 96%, color-mix(in srgb, var(--primitive-teal) 12%, transparent), transparent 40%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+  overflow-x: clip;
+}
+
+.subRouteShell {
+  width: min(100%, 1280px);
+  min-width: 0;
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+}
+
+.dnaBoard,
+.sourcePanel,
+.workbenchPanel {
+  display: grid;
+  gap: var(--primitive-space-5);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 94% 0%, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 38%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5.5%, transparent), color-mix(in oklab, var(--primitive-canvas) 16%, transparent)),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 7%, transparent),
+    0 28px 72px var(--primitive-recessed);
+  overflow: hidden;
+}
+
+.sourcePanel {
+  background:
+    linear-gradient(103deg, transparent 0%, color-mix(in oklab, var(--primitive-text-strong) 12%, transparent) 36%, color-mix(in oklab, var(--primitive-teal) 8%, transparent) 48%, transparent 68%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-canvas) 18%, transparent)),
+    var(--primitive-panel);
+}
+
+.workbenchPanel {
+  border-color: color-mix(in oklab, var(--primitive-teal) 28%, var(--primitive-line));
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 38%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, var(--primitive-canvas) 14%, transparent)),
+    var(--primitive-panel);
+}
+
+.boardIntro {
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  max-width: 76ch;
+}
+
+.kicker {
+  width: fit-content;
+  max-width: 100%;
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.boardIntro h2 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 3vw, 46px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.boardIntro p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-relaxed);
+}
+
+.inheritanceGrid,
+.sourceGrid,
+.workbenchGrid,
+.profileBridge,
+.tokenLedger {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--primitive-space-3);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.inheritanceCard,
+.sourceCard,
+.workbenchCard,
+.profileBridge article,
+.tokenSourceCard {
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), transparent 72%),
+    var(--primitive-panel-strong);
+  box-shadow: inset 0 1px 0 var(--primitive-glass-soft);
+}
+
+.inheritanceCard span,
+.sourceCard span,
+.workbenchCard span,
+.profileBridge span,
+.tokenSourceCard span {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.inheritanceCard h3 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.workbenchCard {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color var(--primitive-duration-normal) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.workbenchCard:hover,
+.workbenchCard:focus-visible {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--primitive-teal) 42%, var(--primitive-line));
+  box-shadow: var(--primitive-card-hover-shadow);
+  outline: none;
+}
+
+.workbenchCard strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.profileBridge article {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+}
+
+.profileBridge article > * {
+  min-width: 0;
+}
+
+.profileBridge article > span:nth-of-type(1),
+.profileBridge article > strong:nth-of-type(1),
+.profileBridge article > p:nth-of-type(1),
+.profileBridge article > code:nth-of-type(1) {
+  grid-column: 1;
+}
+
+.profileBridge article > b {
+  grid-column: 2;
+  grid-row: 1 / 5;
+  align-self: center;
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-3xl);
+  font-weight: var(--primitive-weight-regular);
+}
+
+.profileBridge article > span:nth-of-type(2),
+.profileBridge article > strong:nth-of-type(2),
+.profileBridge article > p:nth-of-type(2),
+.profileBridge article > code:nth-of-type(2) {
+  grid-column: 3;
+}
+
+.profileBridge strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.inheritanceCard p,
+.sourceCard p,
+.workbenchCard p,
+.profileBridge p,
+.tokenSourceCard p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+}
+
+.inheritanceCard ul,
+.tokenSourceCard ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inheritanceCard li,
+.tokenSourceCard li {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.inheritanceCard code,
+.sourceCard code,
+.profileBridge code,
+.tokenSourceCard code {
+  display: inline-block;
+  max-width: 100%;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-recessed);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-normal);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.sourceCard code {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.sourceCard strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.tokenSourceCard > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.tokenSourceCard strong {
+  flex: 0 0 auto;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.note {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-left-width: 3px;
+  border-left-color: var(--primitive-amber);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.note span {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.note p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.note code {
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 980px) {
+  .playgroundGrid,
+  .demoGrid {
+    grid-template-columns: 1fr;
+  }
+  .controls {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .page,
+  .subRoute {
+    gap: 22px;
+    padding: 18px;
+  }
+
+  .shell {
+    gap: 22px;
+  }
+
+  .dnaBoard,
+  .sourcePanel,
+  .workbenchPanel {
+    padding: var(--primitive-space-4);
+  }
+
+  .tokenSourceCard > div {
+    display: grid;
+    gap: var(--primitive-space-1);
+  }
+
+  .profileBridge article {
+    grid-template-columns: 1fr;
+  }
+
+  .profileBridge article > *,
+  .profileBridge article > span:nth-of-type(1),
+  .profileBridge article > strong:nth-of-type(1),
+  .profileBridge article > p:nth-of-type(1),
+  .profileBridge article > code:nth-of-type(1),
+  .profileBridge article > span:nth-of-type(2),
+  .profileBridge article > strong:nth-of-type(2),
+  .profileBridge article > p:nth-of-type(2),
+  .profileBridge article > code:nth-of-type(2) {
+    grid-column: 1;
+  }
+
+  .profileBridge article > b {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+}

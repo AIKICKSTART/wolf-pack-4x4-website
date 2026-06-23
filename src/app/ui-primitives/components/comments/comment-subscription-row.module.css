@@ -1,0 +1,92 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent),
+    var(--primitive-panel-strong);
+  font-family: var(--primitive-font-body);
+}
+
+.label {
+  display: grid;
+  gap: 2px;
+  margin-right: auto;
+  min-width: 0;
+}
+
+.title {
+  font-size: 11.5px;
+  font-family: var(--primitive-font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.detail {
+  font-size: 13px;
+  color: var(--primitive-text-strong);
+}
+
+.avatars {
+  display: inline-flex;
+  align-items: center;
+}
+
+.avatars > * + * {
+  margin-left: -8px;
+}
+
+.overflow {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--primitive-radius-round);
+  border: 1.5px solid color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  background: var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.bell {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 7px 14px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease,
+    color 160ms ease;
+}
+
+.bell:hover,
+.bell:focus-visible {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.bellActive {
+  border-color: color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  color: var(--primitive-amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bell {
+    transition: none;
+  }
+}

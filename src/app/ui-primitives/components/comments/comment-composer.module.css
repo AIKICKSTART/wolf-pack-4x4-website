@@ -1,0 +1,196 @@
+.composer {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent),
+    var(--primitive-panel-strong);
+  font-family: var(--primitive-font-body);
+}
+
+.composer:focus-within {
+  border-color: var(--primitive-line-strong);
+}
+
+.editor {
+  position: relative;
+  display: grid;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 64px;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  resize: vertical;
+  transition: border-color 160ms ease;
+}
+
+.textarea:focus-visible {
+  border-color: var(--primitive-teal);
+  outline: none;
+}
+
+.textarea::placeholder {
+  color: var(--primitive-muted);
+}
+
+.pickerWrap {
+  position: relative;
+}
+
+.pickerFloat {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  transform: translateY(-100%);
+  z-index: 4;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  justify-content: space-between;
+}
+
+.actionsLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.actionsRight {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+.iconBtn {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease,
+    background-color 160ms ease;
+}
+
+.iconBtn:hover,
+.iconBtn:focus-visible {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  outline: none;
+}
+
+.iconBtnActive {
+  border-color: color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+  color: var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+}
+
+.draft {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.draftDot {
+  width: var(--primitive-space-1-5);
+  height: var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+.draftSaving {
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-amber) 20%, transparent);
+}
+
+.send {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 7px 14px;
+  border: 0;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease,
+    background-color 160ms ease, color 160ms ease;
+}
+
+.send:hover,
+.send:focus-visible {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.send:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draftDot {
+    animation: none;
+  }
+  .send,
+  .iconBtn,
+  .textarea {
+    transition: none;
+  }
+}

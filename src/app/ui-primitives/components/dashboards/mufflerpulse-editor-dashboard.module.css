@@ -1,0 +1,209 @@
+/* MufflerpulseEditorDashboard — editor / social composer view. */
+
+.surface {
+  display: grid;
+  gap: 18px;
+}
+
+.slotStrip {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: var(--primitive-space-1-5);
+}
+
+.slot {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-surface-1);
+  transition:
+    border-color var(--primitive-duration-fast) ease,
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.slot:hover {
+  transform: translateY(-2px);
+  border-color: var(--primitive-line-strong);
+}
+
+.slotEmpty {
+  background: color-mix(in oklab, var(--primitive-amber) 6%, var(--primitive-recessed));
+  border-style: dashed;
+}
+
+.slotEmpty .slotTitle {
+  color: var(--primitive-muted);
+  font-style: italic;
+}
+
+.slotFilled {
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+
+.slotPosted {
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.slotTime {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-muted);
+}
+
+.slotTitle {
+  font-size: var(--primitive-text-xs);
+  line-height: 1.3;
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-medium);
+}
+
+.composer {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.composerHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.composerArea {
+  min-height: 120px;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-recessed);
+  color: var(--primitive-body);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.composerArea strong {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.composerActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+}
+
+.composerCount {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-muted);
+}
+
+.composerSchedule {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2) 14px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+.row > * {
+  min-width: 0;
+}
+
+.topPost {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.topPostThumb {
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(ellipse at 30% 30%, var(--primitive-glass-strong), transparent 50%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-red) 22%, transparent), color-mix(in oklab, var(--primitive-teal) 12%, transparent)),
+    var(--primitive-surface-2);
+  display: grid;
+  place-items: center;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(18px, 1.6vw, 22px);
+  color: var(--primitive-text-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.topPostTitle {
+  color: var(--primitive-text-strong);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.topPostBody {
+  margin: var(--primitive-space-1) 0 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+}
+
+.topPostMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-muted);
+}
+
+.topPostMeta strong {
+  color: var(--primitive-amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slot {
+    transition: none;
+  }
+
+  .slot:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 1080px) {
+  .slotStrip {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

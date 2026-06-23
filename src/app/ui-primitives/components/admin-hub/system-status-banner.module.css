@@ -1,0 +1,217 @@
+.banner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+  isolation: isolate;
+}
+
+.toneGreen {
+  border-color: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 8%, transparent), color-mix(in oklab, var(--primitive-green) 1.8%, transparent) 60%),
+    color-mix(in oklab, var(--primitive-green) 6%, var(--primitive-panel));
+}
+
+.toneAmber {
+  border-color: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 8%, transparent), color-mix(in oklab, var(--primitive-amber) 1.8%, transparent) 60%),
+    color-mix(in oklab, var(--primitive-amber) 6%, var(--primitive-panel));
+}
+
+.toneRed {
+  border-color: color-mix(in oklab, var(--primitive-red) 40%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 8%, transparent), color-mix(in oklab, var(--primitive-red) 1.8%, transparent) 60%),
+    color-mix(in oklab, var(--primitive-red) 6%, var(--primitive-panel));
+}
+
+.toneTeal {
+  border-color: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 8%, transparent), color-mix(in oklab, var(--primitive-teal) 1.8%, transparent) 60%),
+    color-mix(in oklab, var(--primitive-teal) 6%, var(--primitive-panel));
+}
+
+.toneNeutral {
+  border-color: var(--primitive-line);
+}
+
+.pulse {
+  position: absolute;
+  top: var(--primitive-space-4);
+  right: var(--primitive-space-4);
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-green) 20%, transparent);
+  animation: pulse 2400ms ease-in-out infinite;
+}
+
+.toneRed .pulse {
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-red) 22%, transparent);
+}
+
+.toneAmber .pulse {
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-amber) 20%, transparent);
+}
+
+.toneTeal .pulse {
+  background: var(--primitive-teal);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.7;
+  }
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+  color: var(--primitive-text-strong);
+  flex-shrink: 0;
+}
+
+.toneGreen .glyph { color: var(--primitive-green); }
+.toneAmber .glyph { color: var(--primitive-amber); }
+.toneRed .glyph { color: var(--primitive-red); }
+.toneTeal .glyph { color: var(--primitive-teal); }
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-h5);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.005em;
+  line-height: 1.2;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.note {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+  color: var(--primitive-body);
+}
+
+.services {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.service {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+  padding-top: var(--primitive-space-1);
+  border-top: 1px dashed var(--primitive-line);
+  margin-top: var(--primitive-space-1);
+}
+
+.updated {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid currentColor;
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 200ms ease;
+}
+
+.cta:hover,
+.cta:focus-visible {
+  outline: none;
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+  }
+  .cta {
+    transition: none;
+  }
+}

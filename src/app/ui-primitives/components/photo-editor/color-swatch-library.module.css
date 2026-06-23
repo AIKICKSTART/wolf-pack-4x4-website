@@ -1,0 +1,183 @@
+.wrap {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-2);
+}
+
+.title {
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.extracted {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-recessed);
+}
+
+.extractLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--primitive-space-1-5);
+}
+
+.extractBar {
+  position: relative;
+  display: flex;
+  height: 28px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--primitive-line-strong);
+}
+
+.extractCell {
+  flex: var(--cell-flex, 1);
+  background: var(--cell-color);
+  position: relative;
+}
+
+.extractCell::after {
+  content: var(--cell-hex, "");
+  position: absolute;
+  bottom: -22px;
+  left: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: color-mix(in oklab, var(--primitive-text-strong) 62%, transparent);
+  white-space: nowrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.cell {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-recessed);
+  cursor: pointer;
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-standard), transform var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.cell:hover,
+.cell:focus-visible {
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.cellActive {
+  border-color: var(--primitive-teal);
+  box-shadow: 0 0 0 1px var(--primitive-teal);
+}
+
+.swatch {
+  display: block;
+  height: 36px;
+  border-radius: 6px;
+  background: var(--swatch-color);
+  border: 1px solid var(--primitive-line-strong);
+  box-shadow: inset 0 -8px 16px var(--primitive-recessed);
+}
+
+.cellName {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cellHex {
+  font-family: var(--primitive-font-mono);
+  font-size: 8.5px;
+  color: var(--primitive-muted);
+  text-align: center;
+}
+
+.foot {
+  display: flex;
+  gap: var(--primitive-space-1-5);
+  justify-content: flex-end;
+  padding-top: var(--primitive-space-1);
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.footBtn {
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--primitive-duration-fast) var(--primitive-ease-standard),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.footBtn:hover,
+.footBtn:focus-visible {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footBtn {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    transition: none;
+  }
+}

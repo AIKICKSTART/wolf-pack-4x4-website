@@ -1,0 +1,127 @@
+.markers {
+  position: relative;
+  width: 100%;
+  padding: var(--primitive-space-7) var(--primitive-space-1) 18px;
+}
+
+.rail {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-line-muted);
+  overflow: hidden;
+}
+
+.segment {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primitive-teal) 32%, transparent), color-mix(in oklab, var(--primitive-teal) 6%, transparent));
+  border-right: 1px solid color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  pointer-events: none;
+}
+
+.segment:nth-child(even) {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primitive-amber) 28%, transparent), color-mix(in oklab, var(--primitive-amber) 4%, transparent));
+}
+
+.playhead {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  border-radius: var(--primitive-radius-xs);
+  background: linear-gradient(180deg, var(--primitive-text-strong), var(--primitive-red));
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primitive-text-strong) 60%, transparent);
+  z-index: 2;
+}
+
+.list {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.marker {
+  position: absolute;
+  top: 26px;
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+
+.markerDot,
+.markerDotActive {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+  border: 2px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-canvas);
+  color: var(--primitive-text-strong);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.markerDot:hover,
+.markerDotActive {
+  background: var(--primitive-red);
+  border-color: var(--primitive-text-strong);
+  transform: scale(1.18);
+}
+
+.markerDot:focus-visible,
+.markerDotActive:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-focus-ring) 55%, transparent);
+}
+
+.bubbleWrap {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.markerDot:hover .bubbleWrap,
+.markerDot:focus-visible .bubbleWrap,
+.markerDotActive .bubbleWrap {
+  display: inline-flex;
+}
+
+.bubbleTitle {
+  display: block;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-xs);
+}
+
+.bubbleTime {
+  display: block;
+  margin-top: var(--primitive-space-0-5);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .markerDot,
+  .markerDotActive {
+    transition: none;
+  }
+  .markerDot:hover,
+  .markerDotActive {
+    transform: none;
+  }
+}

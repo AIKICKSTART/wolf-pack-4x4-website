@@ -1,0 +1,218 @@
+.thread {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  box-shadow: var(--primitive-shadow-soft);
+  min-height: 0;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.channelTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--tag-stroke, var(--primitive-line));
+  background: var(--tag-bg, var(--primitive-glass-soft));
+  color: var(--tag-ink, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.channelGlyph {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.tone_violet {
+  --tag-bg: color-mix(in oklab, var(--primitive-violet) 16%, transparent);
+  --tag-stroke: color-mix(in oklab, var(--primitive-violet) 45%, transparent);
+  --tag-ink: color-mix(in oklab, var(--primitive-violet) 50%, var(--primitive-text-strong));
+}
+
+.tone_teal {
+  --tag-bg: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  --tag-stroke: color-mix(in oklab, var(--primitive-teal) 45%, transparent);
+  --tag-ink: color-mix(in oklab, var(--primitive-teal) 50%, var(--primitive-text-strong));
+}
+
+.tone_red {
+  --tag-bg: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --tag-stroke: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  --tag-ink: color-mix(in oklab, var(--primitive-red) 45%, var(--primitive-text-strong));
+}
+
+.tone_amber {
+  --tag-bg: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --tag-stroke: color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+  --tag-ink: color-mix(in oklab, var(--primitive-amber) 62%, var(--primitive-text-strong));
+}
+
+.tone_green {
+  --tag-bg: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --tag-stroke: color-mix(in oklab, var(--primitive-green) 45%, transparent);
+  --tag-ink: color-mix(in oklab, var(--primitive-green) 55%, var(--primitive-text-strong));
+}
+
+.tone_neutral {
+  --tag-bg: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --tag-stroke: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  --tag-ink: color-mix(in oklab, var(--primitive-text-strong) 84%, var(--primitive-muted));
+}
+
+.headBody {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.subject {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.headMeta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.customerName {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primitive-body);
+}
+
+.contact {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+}
+
+.stream {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0 0 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  max-height: 540px;
+}
+
+.row {
+  display: flex;
+}
+
+.rowInbound {
+  justify-content: flex-start;
+}
+
+.rowOutbound {
+  justify-content: flex-end;
+}
+
+.bubble {
+  display: grid;
+  gap: 6px;
+  max-width: 78%;
+  padding: 10px 14px;
+  border: 1px solid var(--bubble-stroke, var(--primitive-line));
+  border-radius: 14px;
+  background: var(--bubble-bg, var(--primitive-glass-soft));
+  color: var(--primitive-body);
+}
+
+.bubbleInbound {
+  --bubble-bg: var(--primitive-glass-soft);
+  --bubble-stroke: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  border-top-left-radius: 4px;
+}
+
+.bubbleOutbound {
+  --bubble-bg: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  --bubble-stroke: color-mix(in oklab, var(--primitive-teal) 36%, transparent);
+  border-top-right-radius: 4px;
+  color: color-mix(in oklab, var(--primitive-teal) 22%, var(--primitive-text-strong));
+}
+
+.bubbleHead {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.bubbleAuthor {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.bubbleChannelTag {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tag-ink, color-mix(in oklab, var(--primitive-teal) 50%, var(--primitive-text-strong)));
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--tag-bg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent));
+  border: 1px solid var(--tag-stroke, var(--primitive-line));
+}
+
+.body {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--primitive-text-strong);
+}
+
+.bubbleFoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.timestamp {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.readState {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}

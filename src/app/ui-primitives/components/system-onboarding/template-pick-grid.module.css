@@ -1,0 +1,119 @@
+.grid {
+  gap: 18px;
+}
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  transition:
+    border-color var(--primitive-duration-normal) var(--primitive-ease-standard),
+    background var(--primitive-duration-normal) var(--primitive-ease-standard);
+}
+
+.cardSelected {
+  border-color: var(--so-tone, var(--primitive-red));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--so-tone, var(--primitive-text-strong)) 14%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+}
+
+.cardHead {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+.thumb {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid color-mix(in srgb, var(--so-tone, var(--primitive-text-strong)) 32%, var(--primitive-line));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--so-tone, var(--primitive-text-strong)) 22%, transparent), transparent 60%),
+    color-mix(in srgb, var(--primitive-canvas) 40%, transparent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+}
+
+.cardIdentity {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.cardBody {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.cardDescription {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.featureList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.featureList li {
+  position: relative;
+  padding-left: var(--primitive-space-4);
+  font-size: 12.5px;
+  color: var(--primitive-body);
+  line-height: 1.5;
+}
+
+.featureList li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--so-tone, var(--primitive-amber));
+}
+
+.cardFoot {
+  display: flex;
+  justify-content: flex-start;
+}
+
+:global([data-primitive-theme="light"]) .card {
+  background: var(--primitive-glass-strong);
+  border-color: var(--primitive-line);
+}
+
+:global([data-primitive-theme="light"]) .cardTitle {
+  color: var(--primitive-text-strong);
+}

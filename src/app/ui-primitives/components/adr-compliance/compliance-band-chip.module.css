@@ -1,0 +1,60 @@
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-sm);
+  background: var(--band-glyph-bg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent));
+  color: var(--band-glyph-color, var(--primitive-body));
+  border: 1px solid var(--band-glyph-border, var(--primitive-line));
+}
+
+.toneLegal {
+  --band-glyph-bg: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --band-glyph-color: var(--primitive-green);
+  --band-glyph-border: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+}
+
+.toneBorderline {
+  --band-glyph-bg: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --band-glyph-color: var(--primitive-amber);
+  --band-glyph-border: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+}
+
+.toneOver {
+  --band-glyph-bg: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  --band-glyph-color: var(--primitive-red);
+  --band-glyph-border: color-mix(in oklab, var(--primitive-red) 46%, transparent);
+}
+
+.wave {
+  display: block;
+  width: 14px;
+  height: 12px;
+}
+
+.alertRing {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-red) 20%, transparent);
+  animation: ring 1.4s ease-in-out infinite;
+}
+
+@keyframes ring {
+  0%, 100% { box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-red) 20%, transparent); }
+  50% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--primitive-red) 32%, transparent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alertRing {
+    animation: none;
+  }
+}

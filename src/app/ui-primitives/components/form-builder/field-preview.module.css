@@ -1,0 +1,404 @@
+.preview {
+  display: grid;
+  gap: 14px;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--primitive-canvas) 62%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  min-width: 280px;
+}
+
+/* Preview-theme palettes (minimal / editorial / brutalist) are sample
+   FORM-DESIGN brand swatches a user picks — documented data/brand colours,
+   not the dashboard's own surface system. Workshop-dark maps to primitives. */
+.themeMinimal {
+  --preview-ink: #1c1c20;
+  --preview-paper: #fafafa;
+  --preview-border: color-mix(in oklab, var(--primitive-canvas) 12%, transparent);
+  --preview-accent: #2058ff;
+  background: var(--preview-paper);
+  color: var(--preview-ink);
+  border-color: var(--preview-border);
+}
+
+.themeWorkshop {
+  --preview-ink: #f1f2f5;
+  --preview-paper: color-mix(in oklab, var(--primitive-canvas) 85%, transparent);
+  --preview-border: var(--primitive-line);
+  --preview-accent: var(--primitive-amber);
+  background: var(--preview-paper);
+  color: var(--preview-ink);
+  border-color: var(--preview-border);
+}
+
+.themeEditorial {
+  --preview-ink: #1a1815;
+  --preview-paper: #f5efe3;
+  --preview-border: color-mix(in oklab, var(--primitive-canvas) 14%, transparent);
+  --preview-accent: #c0362b;
+  background: var(--preview-paper);
+  color: var(--preview-ink);
+  border-color: var(--preview-border);
+  font-family: var(--primitive-font-display, serif);
+}
+
+.themeBrutalist {
+  --preview-ink: #0a0a0a;
+  --preview-paper: #ffd900;
+  --preview-border: #0a0a0a;
+  --preview-accent: #ff007a;
+  background: var(--preview-paper);
+  color: var(--preview-ink);
+  border-color: var(--preview-border);
+  border-width: 2px;
+  border-radius: 0;
+  box-shadow: 6px 6px 0 #0a0a0a;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.headRow {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.headIcon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  color: inherit;
+  opacity: 0.85;
+}
+
+.themeMinimal .headIcon,
+.themeEditorial .headIcon,
+.themeBrutalist .headIcon {
+  background: color-mix(in oklab, var(--primitive-canvas) 8%, transparent);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.6;
+}
+
+.previewLabel {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: inherit;
+  letter-spacing: 0.005em;
+}
+
+.themeBrutalist .previewLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.requiredStar {
+  color: var(--primitive-red);
+  font-size: var(--primitive-text-md);
+  line-height: var(--primitive-leading-none);
+}
+
+.themeBrutalist .requiredStar {
+  color: #ff007a;
+}
+
+.help {
+  font-size: var(--primitive-text-xs);
+  color: inherit;
+  opacity: 0.7;
+}
+
+.control {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--preview-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 5%, transparent);
+  font-family: var(--primitive-font-body);
+  font-size: 14px;
+  color: inherit;
+}
+
+/* Light/brutalist preview themes render paper-white form surfaces — part of the
+   documented preview-theme brand palette, not the dashboard's surface system. */
+.themeMinimal .input,
+.themeEditorial .input {
+  background: #fff;
+}
+
+.themeBrutalist .input {
+  background: #fff;
+  border-radius: 0;
+  border-width: 2px;
+}
+
+.inputPlaceholder {
+  color: inherit;
+  opacity: 0.55;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inputTextarea {
+  min-height: 72px;
+  align-items: flex-start;
+}
+
+.inputDate,
+.inputDropdown {
+  justify-content: space-between;
+}
+
+.prefix,
+.suffix {
+  color: inherit;
+  opacity: 0.6;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+}
+
+.caret {
+  width: 1px;
+  height: var(--primitive-space-4);
+  background: currentColor;
+  opacity: 0.45;
+  animation: caretBlink 1.2s steps(2, start) infinite;
+}
+
+@keyframes caretBlink {
+  to {
+    opacity: 0;
+  }
+}
+
+.chevron {
+  font-size: var(--primitive-text-xs);
+  opacity: 0.7;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.optionChip {
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--preview-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  font-size: var(--primitive-text-xs);
+  font-family: var(--primitive-font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.themeMinimal .optionChip,
+.themeEditorial .optionChip {
+  background: color-mix(in oklab, var(--primitive-canvas) 4%, transparent);
+}
+
+.themeBrutalist .optionChip {
+  background: #fff;
+  border-radius: 0;
+  border-width: 2px;
+  text-transform: uppercase;
+}
+
+.rating {
+  display: flex;
+  gap: var(--primitive-space-1);
+  font-size: var(--primitive-text-xl);
+}
+
+.star {
+  color: inherit;
+  opacity: 0.28;
+}
+
+.starOn {
+  color: var(--preview-accent);
+  opacity: 1;
+}
+
+.upload {
+  display: grid;
+  place-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-4);
+  border: 1px dashed var(--preview-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  text-align: center;
+}
+
+.themeMinimal .upload,
+.themeEditorial .upload {
+  background: color-mix(in oklab, var(--primitive-canvas) 4%, transparent);
+}
+
+.themeBrutalist .upload {
+  background: #fff;
+  border-radius: 0;
+  border-width: 2px;
+  border-style: dashed;
+}
+
+.uploadIcon {
+  display: grid;
+  place-items: center;
+  width: var(--primitive-space-8);
+  height: var(--primitive-space-8);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  color: inherit;
+}
+
+.uploadCopy {
+  font-size: var(--primitive-text-sm);
+}
+
+.link {
+  text-decoration: underline;
+  color: var(--preview-accent);
+}
+
+.uploadHint {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.55;
+}
+
+.signature {
+  position: relative;
+  display: grid;
+  padding: 14px;
+  border: 1px solid var(--preview-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  min-height: 88px;
+}
+
+.themeMinimal .signature,
+.themeEditorial .signature {
+  background: #fff;
+}
+
+.themeBrutalist .signature {
+  background: #fff;
+  border-radius: 0;
+  border-width: 2px;
+}
+
+.signaturePath {
+  width: 100%;
+  height: 50px;
+  color: inherit;
+  opacity: 0.7;
+}
+
+.signatureBaseline {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.18;
+  margin-top: var(--primitive-space-1);
+}
+
+.signatureHint {
+  margin-top: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.55;
+}
+
+.addressGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--primitive-space-2);
+}
+
+.payment {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.paymentRow,
+.paymentSplit {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.paymentSplit {
+  grid-template-columns: 1fr 1fr;
+}
+
+.yesNoRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--primitive-space-2);
+}
+
+.yesNoBtn {
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--preview-border, var(--primitive-line));
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: inherit;
+  font-family: var(--primitive-font-body);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.themeBrutalist .yesNoBtn {
+  background: #fff;
+  border-radius: 0;
+  border-width: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.yesNoOn {
+  background: var(--preview-accent);
+  color: var(--preview-paper);
+  border-color: var(--preview-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}

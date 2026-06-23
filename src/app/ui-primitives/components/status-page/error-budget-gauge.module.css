@@ -1,0 +1,192 @@
+.gauge {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 22px var(--primitive-space-5) 18px;
+  border: 1px solid var(--g-border, var(--primitive-line));
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 50%),
+    radial-gradient(circle at 100% 0%, var(--g-glow, color-mix(in oklab, var(--primitive-green) 18%, transparent)), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-line-muted),
+    inset -16px -16px 28px color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+  text-align: center;
+  isolation: isolate;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.burnChip {
+  padding: 3px 9px;
+  border: 1px solid var(--g-border, var(--primitive-line));
+  border-radius: 6px;
+  background: var(--g-chip-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--g-fg, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.burn {
+  display: inline-flex;
+  align-items: center;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: -8px auto 0;
+}
+
+.track {
+  fill: none;
+  stroke: var(--primitive-line-muted);
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.fill {
+  fill: none;
+  stroke: var(--g-fg, var(--primitive-green));
+  stroke-width: 10;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px var(--g-glow, color-mix(in oklab, var(--primitive-green) 45%, transparent)));
+  transition: stroke 200ms ease;
+}
+
+.center {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  pointer-events: none;
+}
+
+.consumed {
+  font-family: var(--primitive-font-display);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--g-fg, var(--primitive-text-strong));
+  letter-spacing: 0.005em;
+}
+
+.consumedLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  padding-top: var(--primitive-space-2);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.meta {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  text-align: left;
+}
+
+.metaLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.02em;
+  color: var(--primitive-text-strong);
+}
+
+.trend {
+  width: 96px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.trendLine {
+  fill: none;
+  stroke: var(--g-fg, var(--primitive-green));
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.toneRed {
+  --g-border: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  --g-glow: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  --g-fg: var(--primitive-red);
+  --g-chip-bg: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+}
+
+.toneAmber {
+  --g-border: color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  --g-glow: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  --g-fg: var(--primitive-amber);
+  --g-chip-bg: color-mix(in oklab, var(--primitive-amber) 14%, transparent);
+}
+
+.toneTeal {
+  --g-border: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  --g-glow: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  --g-fg: var(--primitive-teal);
+  --g-chip-bg: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+}
+
+.toneGreen {
+  --g-border: color-mix(in oklab, var(--primitive-green) 30%, transparent);
+  --g-glow: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  --g-fg: var(--primitive-green);
+  --g-chip-bg: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+}
+
+.toneNeutral {
+  --g-border: color-mix(in oklab, var(--primitive-text-strong) 14%, transparent);
+  --g-glow: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  --g-fg: var(--primitive-text-strong);
+  --g-chip-bg: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.toneViolet {
+  --g-border: color-mix(in oklab, var(--primitive-violet) 32%, transparent);
+  --g-glow: color-mix(in oklab, var(--primitive-violet) 40%, transparent);
+  --g-fg: color-mix(in oklab, var(--primitive-violet) 70%, white);
+  --g-chip-bg: color-mix(in oklab, var(--primitive-violet) 14%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+}

@@ -1,0 +1,142 @@
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-recessed);
+}
+
+.tab {
+  position: relative;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: var(--primitive-space-2-5);
+  row-gap: var(--primitive-space-0-5);
+  align-items: center;
+  min-height: 56px;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent);
+  color: var(--primitive-body);
+  cursor: pointer;
+  text-align: left;
+  transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.tab:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.dot {
+  grid-row: 1 / span 2;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+  box-shadow: 0 0 0 3px var(--dot-halo, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent));
+}
+
+.dotOn {
+  background: var(--primitive-green);
+  --dot-halo: color-mix(in oklab, var(--primitive-green) 22%, transparent);
+}
+
+.dotOff {
+  background: color-mix(in oklab, var(--primitive-text-strong) 40%, transparent);
+  --dot-halo: var(--primitive-line-muted);
+}
+
+.dotRamping {
+  background: var(--primitive-amber);
+  --dot-halo: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+}
+
+.dotKilled {
+  background: var(--primitive-red);
+  --dot-halo: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+}
+
+.label {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.status {
+  grid-column: 2;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.count {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: center;
+  min-width: 38px;
+  height: 28px;
+  padding: var(--primitive-space-0) var(--primitive-space-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--primitive-line);
+  border-radius: 6px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  color: var(--primitive-body);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.tabActive {
+  background:
+    linear-gradient(180deg, var(--primitive-line-muted), color-mix(in oklab, var(--primitive-text-strong) 1.5%, transparent)),
+    var(--env-active-bg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  border-color: var(--env-active-border, var(--primitive-line-strong));
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-line-muted),
+    0 8px 24px var(--env-active-shadow, color-mix(in oklab, var(--primitive-canvas) 30%, transparent));
+}
+
+.tabActive .count {
+  color: var(--primitive-text-strong);
+  border-color: var(--env-active-border, var(--primitive-line-strong));
+}
+
+.envDev {
+  --env-active-bg: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+  --env-active-border: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  --env-active-shadow: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+}
+
+.envStaging {
+  --env-active-bg: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  --env-active-border: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  --env-active-shadow: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.envProd {
+  --env-active-bg: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  --env-active-border: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  --env-active-shadow: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}

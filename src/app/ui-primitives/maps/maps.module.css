@@ -1,0 +1,388 @@
+/* /ui-primitives/maps — index + sub-route shell */
+
+.page {
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: var(--primitive-space-7);
+}
+
+.main {
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: var(--primitive-space-7);
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.dnaPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: var(--primitive-space-5);
+  align-items: stretch;
+  padding: var(--primitive-space-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 30%, var(--primitive-line));
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-teal) 18%, transparent), transparent 42%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-red) 13%, transparent), transparent 46%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), transparent),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  overflow: hidden;
+}
+
+.dnaCopy {
+  display: grid;
+  align-content: center;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.dnaKicker,
+.dnaCard span {
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.dnaCopy h2 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(var(--primitive-text-3xl), 4vw, var(--primitive-h1));
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+}
+
+.dnaCopy p,
+.dnaCard p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+}
+
+.dnaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.dnaCard {
+  display: grid;
+  align-content: start;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(145deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent),
+    var(--primitive-field-bg);
+}
+
+.dnaCard strong {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-tight);
+  text-transform: uppercase;
+}
+
+.notice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  width: max-content;
+  max-width: 100%;
+}
+
+.notice::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-teal);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--primitive-space-5);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at 100% 0%, var(--accent-soft, color-mix(in oklab, var(--primitive-teal) 16%, transparent)), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 70%, var(--primitive-panel-strong));
+  color: var(--primitive-body);
+  text-decoration: none;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform var(--primitive-duration-normal) var(--primitive-ease-out),
+    border-color var(--primitive-duration-normal) ease,
+    box-shadow var(--primitive-duration-normal) ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent) 3px 4px);
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent, color-mix(in oklab, var(--primitive-teal) 42%, transparent));
+  box-shadow: 0 26px 60px var(--primitive-shadow-outline);
+  outline: none;
+}
+
+.thumb {
+  position: relative;
+  height: 132px;
+  border-radius: var(--primitive-radius-md);
+  background:
+    radial-gradient(ellipse at 22% 26%, var(--accent-soft, color-mix(in oklab, var(--primitive-teal) 22%, transparent)), transparent 60%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-teal) 22%) 0%, color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-teal) 12%) 100%);
+  border: 1px solid var(--primitive-line-muted);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.thumbInner {
+  position: relative;
+  width: 86%;
+  height: 84%;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 18px, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent) 18px 19px),
+    repeating-linear-gradient(90deg, transparent 0 18px, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent) 18px 19px),
+    radial-gradient(ellipse at 40% 60%, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 70%);
+  overflow: hidden;
+}
+
+.thumbLand {
+  position: absolute;
+  inset: 14% 30% 24% 14%;
+  border-radius: 24%;
+  background: var(--accent, color-mix(in oklab, var(--primitive-teal) 40%, transparent));
+  opacity: 0.34;
+  transform: skewX(-6deg);
+}
+
+.thumbPin {
+  position: absolute;
+  width: 12px;
+  height: 16px;
+  background: var(--accent, var(--primitive-teal));
+  clip-path: polygon(50% 100%, 0% 35%, 12% 12%, 50% 0%, 88% 12%, 100% 35%);
+  filter: drop-shadow(0 4px 6px color-mix(in oklab, var(--primitive-canvas) 55%, transparent));
+}
+
+.thumbPin1 {
+  left: 38%;
+  top: 30%;
+}
+
+.thumbPin2 {
+  left: 60%;
+  top: 50%;
+  background: var(--primitive-amber);
+}
+
+.thumbPin3 {
+  left: 28%;
+  top: 64%;
+  background: var(--primitive-red);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.cardKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent, var(--primitive-teal));
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.04;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.cardBody {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaAction {
+  color: var(--accent, var(--primitive-teal));
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.accentRed {
+  --accent: var(--primitive-red);
+  --accent-soft: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+}
+
+.accentAmber {
+  --accent: var(--primitive-amber);
+  --accent-soft: color-mix(in oklab, var(--primitive-amber) 24%, transparent);
+}
+
+.accentTeal {
+  --accent: var(--primitive-teal);
+  --accent-soft: color-mix(in oklab, var(--primitive-teal) 24%, transparent);
+}
+
+.accentGreen {
+  --accent: var(--primitive-green);
+  --accent-soft: color-mix(in oklab, var(--primitive-green) 24%, transparent);
+}
+
+.stage {
+  display: grid;
+  gap: var(--primitive-space-6);
+}
+
+.stageFrame {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-5);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 70%, var(--primitive-panel-strong));
+}
+
+.stageLegend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.legendItem {
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-body);
+}
+
+.legendItem strong {
+  display: block;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: var(--primitive-leading-none);
+  margin-bottom: var(--primitive-space-1);
+}
+
+.canvasWrap {
+  position: relative;
+  border-radius: var(--primitive-radius-lg);
+  overflow: hidden;
+}
+
+.pinLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: border-color 100ms ease;
+  }
+  .card:hover,
+  .card:focus-visible {
+    transform: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .dnaPanel,
+  .dnaGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .page,
+  .main {
+    gap: var(--primitive-space-5);
+    padding: var(--primitive-space-5);
+  }
+}

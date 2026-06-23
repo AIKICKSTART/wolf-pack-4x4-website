@@ -1,0 +1,419 @@
+/* Survey form — single page mixed input types */
+
+.form {
+  box-sizing: border-box;
+  display: grid;
+  gap: var(--primitive-space-6);
+  min-width: 0;
+  width: min(100%, 820px);
+  max-width: 100%;
+  padding: clamp(24px, 4vw, 36px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    var(--primitive-shadow-soft);
+}
+
+.form :where(fieldset, label, textarea, button, p, span) {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.progressWrap {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding-bottom: var(--primitive-space-1-5);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.progressTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+}
+
+.progressLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.progressValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--primitive-amber);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.eyebrow {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-green);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.lede {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.question {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-glass-soft);
+}
+
+.questionHead {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  justify-content: space-between;
+}
+
+.questionLabel {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.questionTag {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-green);
+}
+
+.scaleRow {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: var(--primitive-space-1-5);
+}
+
+.scaleCell {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.scaleCell input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.scaleCellOn {
+  color: color-mix(in oklab, var(--primitive-green) 14%, black);
+  border-color: var(--primitive-green);
+  background: linear-gradient(135deg, var(--primitive-green), color-mix(in oklab, var(--primitive-green) 60%, black));
+}
+
+.scaleCell:hover:not(.scaleCellOn),
+.scaleCell:focus-within {
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  outline: none;
+}
+
+.chipRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.chip {
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.chipOn {
+  border-color: var(--primitive-green);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 18%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-green) 5%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.chip:hover:not(.chipOn),
+.chip:focus-visible {
+  border-color: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  outline: none;
+}
+
+.rankList {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.rankItem {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+}
+
+.rankNumber {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primitive-green), color-mix(in oklab, var(--primitive-green) 60%, black));
+  color: color-mix(in oklab, var(--primitive-green) 14%, black);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: 800;
+}
+
+.rankLabel {
+  font-family: var(--primitive-font-body);
+  font-size: 14px;
+  color: var(--primitive-text-strong);
+}
+
+.rankCtrls {
+  display: flex;
+  gap: var(--primitive-space-1-5);
+}
+
+.rankBtn {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  cursor: pointer;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.rankBtn:hover,
+.rankBtn:focus-visible {
+  border-color: var(--primitive-green);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.rankBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 96px;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-base);
+  line-height: 1.45;
+  resize: vertical;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.textarea:focus-visible {
+  border-color: var(--primitive-green);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-green) 16%, transparent);
+}
+
+.sliderWrap {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.sliderTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.sliderLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+}
+
+.sliderValue {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  color: var(--primitive-green);
+  line-height: 1;
+}
+
+.slider {
+  width: 100%;
+  appearance: none;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: linear-gradient(90deg, var(--primitive-green) 0%, var(--primitive-amber) 60%, var(--primitive-red) 100%);
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primitive-text-strong);
+  border: 2px solid var(--primitive-green);
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--primitive-shadow-outline);
+  transition: transform 200ms ease;
+}
+
+.slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primitive-text-strong);
+  border: 2px solid var(--primitive-green);
+  cursor: pointer;
+}
+
+.slider:focus-visible::-webkit-slider-thumb {
+  transform: scale(1.1);
+}
+
+.actions {
+  display: flex;
+  gap: var(--primitive-space-3);
+  justify-content: flex-end;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: 14px 22px;
+  border: 0;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, color 200ms ease;
+}
+
+.primaryBtn:hover,
+.primaryBtn:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+@media (max-width: 720px) {
+  .scaleRow {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .chipRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .rankItem {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+  .rankCtrls {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+  .actions {
+    justify-content: stretch;
+  }
+  .primaryBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scaleCell,
+  .chip,
+  .rankBtn,
+  .textarea,
+  .primaryBtn {
+    transition: border-color 100ms ease;
+  }
+  .primaryBtn:hover,
+  .primaryBtn:focus-visible,
+  .rankBtn:hover,
+  .rankBtn:focus-visible {
+    transform: none;
+  }
+  .slider:focus-visible::-webkit-slider-thumb {
+    transform: none;
+  }
+}

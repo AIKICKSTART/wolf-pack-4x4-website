@@ -1,0 +1,107 @@
+.pin {
+  --pin-tone: var(--primitive-amber);
+
+  position: absolute;
+  top: -12px;
+  bottom: 0;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  z-index: 5;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.pin:focus-visible {
+  outline: none;
+}
+
+.pin:focus-visible .chip {
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+}
+
+.toneNeutral { --pin-tone: color-mix(in oklab, var(--primitive-text-strong) 78%, transparent); }
+.toneAmber { --pin-tone: var(--primitive-amber); }
+.toneRed { --pin-tone: var(--primitive-red); }
+.toneTeal { --pin-tone: var(--primitive-teal); }
+.toneGreen { --pin-tone: var(--primitive-green); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 18%, transparent), transparent 60%),
+    var(--pin-tone);
+  color: var(--primitive-canvas);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+}
+
+.chip strong {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  font-size: 8px;
+}
+
+.chip em {
+  font-style: normal;
+}
+
+.stem {
+  width: 2px;
+  flex: 1 1 auto;
+  background: var(--pin-tone);
+  box-shadow: 0 0 6px var(--pin-tone);
+  border-radius: 1px;
+}
+
+.tip {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid var(--pin-tone);
+}
+
+.popover {
+  position: absolute;
+  top: -8px;
+  left: calc(100% + 8px);
+  display: grid;
+  gap: 6px;
+  padding: 10px 12px;
+  width: 240px;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line-strong);
+  background: var(--primitive-panel-strong);
+  box-shadow: 0 16px 36px color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+}
+
+.popoverTitle {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.popoverNote {
+  margin: 0;
+  font-family: var(--primitive-font-body);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--primitive-text-strong);
+}

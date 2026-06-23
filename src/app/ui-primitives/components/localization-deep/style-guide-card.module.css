@@ -1,0 +1,239 @@
+.wrap {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(ellipse at 0% 0%, var(--tone-glow, color-mix(in oklab, var(--primitive-amber) 10%, transparent)), transparent 60%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.wrap[data-tone="amber"] {
+  --tone-glow: color-mix(in oklab, var(--primitive-amber) 14%, transparent);
+}
+
+.wrap[data-tone="teal"] {
+  --tone-glow: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+}
+
+.wrap[data-tone="green"] {
+  --tone-glow: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+}
+
+.wrap[data-tone="red"] {
+  --tone-glow: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+  flex-wrap: wrap;
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.locale {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.chips {
+  display: inline-flex;
+  gap: var(--primitive-space-1-5);
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--tone-line, var(--primitive-line));
+  background: var(--tone-fill, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent));
+  color: var(--tone-color, var(--primitive-body));
+}
+
+.chip[data-tone="amber"] {
+  --tone-color: var(--primitive-amber);
+  --tone-line: color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+}
+
+.chip[data-tone="teal"] {
+  --tone-color: var(--primitive-teal);
+  --tone-line: color-mix(in oklab, var(--primitive-teal) 45%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+}
+
+.chip[data-tone="green"] {
+  --tone-color: var(--primitive-green);
+  --tone-line: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  --tone-fill: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+}
+
+.voice {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--primitive-text-strong);
+  padding: var(--primitive-space-3) 14px;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  border-left: 3px solid var(--primitive-amber);
+}
+
+.section {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: 14px;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+.sectionKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.quirks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.quirk {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-amber);
+}
+
+.examples {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.example {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+.exampleContext {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.exampleRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--primitive-space-2);
+}
+
+.examplePair {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+}
+
+.examplePair[data-good="true"] {
+  border-color: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-green) 6%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+}
+
+.examplePair[data-good="false"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-red) 6%, transparent), transparent 50%),
+    color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+}
+
+.exampleTag {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.examplePair[data-good="true"] .exampleTag {
+  color: var(--primitive-green);
+}
+
+.examplePair[data-good="false"] .exampleTag {
+  color: var(--primitive-red);
+}
+
+.exampleText {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+  color: var(--primitive-text-strong);
+}
+
+@media (max-width: 720px) {
+  .exampleRow {
+    grid-template-columns: 1fr;
+  }
+}

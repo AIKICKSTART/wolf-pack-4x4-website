@@ -1,0 +1,158 @@
+.rail {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.head {
+  display: grid;
+  gap: 4px;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+}
+
+.summary {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.list {
+  display: grid;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-field-bg);
+}
+
+.body {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.role {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--primitive-muted);
+}
+
+.meta {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+}
+
+.presenceChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--chip-stroke, var(--primitive-line));
+  background: var(--chip-bg, var(--primitive-glass-soft));
+  color: var(--chip-ink, var(--primitive-text-strong));
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.loadChip {
+  display: grid;
+  grid-template-columns: auto 60px;
+  gap: 6px;
+  align-items: center;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.loadValue {
+  white-space: nowrap;
+}
+
+.loadBar {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--primitive-line-muted);
+  overflow: hidden;
+}
+
+.loadFill {
+  display: block;
+  height: 100%;
+  background: var(--chip-ink, color-mix(in oklab, var(--primitive-text-strong) 55%, transparent));
+  transition: width 240ms ease;
+}
+
+.tone_green {
+  --chip-bg: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  --chip-stroke: color-mix(in oklab, var(--primitive-green) 45%, transparent);
+  --chip-ink: var(--primitive-green);
+}
+
+.tone_amber {
+  --chip-bg: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  --chip-stroke: color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+  --chip-ink: var(--primitive-amber);
+}
+
+.tone_red {
+  --chip-bg: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  --chip-stroke: color-mix(in oklab, var(--primitive-red) 45%, transparent);
+  --chip-ink: var(--primitive-red);
+}
+
+.tone_neutral {
+  --chip-bg: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  --chip-stroke: color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  --chip-ink: color-mix(in oklab, var(--primitive-text-strong) 55%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadFill {
+    transition: none;
+  }
+}

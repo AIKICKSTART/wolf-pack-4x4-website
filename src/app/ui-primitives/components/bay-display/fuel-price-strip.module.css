@@ -1,0 +1,155 @@
+.strip {
+  display: grid;
+  gap: 14px;
+  padding: clamp(18px, 1.8vw, 26px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-amber) 18%, transparent), transparent 60%),
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-on-accent) 4.5%, transparent),
+      color-mix(in oklab, var(--primitive-text-on-accent) 1%, transparent)
+    ),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.titleWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  color: var(--primitive-amber);
+}
+
+.titleWrap strong {
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  font-weight: 400;
+  font-size: clamp(20px, 1.7vw, 28px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.asAt {
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(10px, 0.78vw, 12px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.rows {
+  display: grid;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: var(--primitive-space-3) 14px;
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 4%, transparent);
+  border-left: 3px solid transparent;
+}
+
+.row[data-trend="up"] {
+  border-left-color: var(--primitive-red);
+}
+
+.row[data-trend="down"] {
+  border-left-color: var(--primitive-green);
+}
+
+.row[data-trend="flat"] {
+  border-left-color: var(--primitive-amber);
+}
+
+.station {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.station em {
+  font-style: normal;
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(10px, 0.78vw, 12px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.station strong {
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  font-weight: 400;
+  font-size: clamp(20px, 1.6vw, 28px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.priceCell {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+}
+
+.price {
+  font-family: var(--ff-ts-anton, var(--primitive-font-display));
+  font-weight: 400;
+  font-size: clamp(28px, 2.6vw, 44px);
+  line-height: 1;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.008em;
+}
+
+.unit {
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(12px, 1vw, 16px);
+  color: var(--primitive-muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.trend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: clamp(10px, 0.78vw, 12px);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.row[data-trend="up"] .trend {
+  color: var(--primitive-red);
+}
+
+.row[data-trend="down"] .trend {
+  color: var(--primitive-green);
+}
+
+.row[data-trend="flat"] .trend {
+  color: var(--primitive-amber);
+}
+
+.trend em {
+  font-style: normal;
+}

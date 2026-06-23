@@ -1,0 +1,529 @@
+/* Skills & memory — bespoke chrome composed from primitive tokens.
+   Identity band + Torque avatar, two-column skills/memory layout, editorial
+   panel frames. Light + dark parity via --primitive-* tokens; all motion is
+   opacity/transform only and is disabled under prefers-reduced-motion. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Identity band ------------------------------------------------------- */
+
+.identityBand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-4);
+  padding: clamp(16px, 2.2vw, 26px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 58%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.identityBand::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  opacity: 0.6;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 auto;
+  border-radius: var(--primitive-radius-round);
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--primitive-text-on-accent) 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: 27px;
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 26px color-mix(in oklab, var(--primitive-red) 40%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.identityText {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.torqueName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.identityRole {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.identityBiz {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+}
+
+/* ---- Two-column layout --------------------------------------------------- */
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(16px, 2.2vw, 26px);
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---- Panel frame --------------------------------------------------------- */
+
+.panel {
+  display: grid;
+  gap: clamp(14px, 1.6vw, 18px);
+  padding: clamp(16px, 2vw, 24px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+  min-width: 0;
+}
+
+.panelHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+}
+
+.panelText {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.panelKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.panelTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.panelDesc {
+  margin: 0;
+  max-width: 60ch;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-muted);
+}
+
+.panelTally {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+  padding: 7px var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-surface-3);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  white-space: nowrap;
+}
+
+.panelTally strong {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 400;
+  color: var(--primitive-text-strong);
+}
+
+/* ---- Filter row ---------------------------------------------------------- */
+
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.emptyNote {
+  margin: 0;
+  padding: var(--primitive-space-6);
+  text-align: center;
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-muted);
+  border: 1px dashed var(--primitive-line);
+  border-radius: 14px;
+}
+
+/* ---- Numerics ------------------------------------------------------------ */
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Skill list ---------------------------------------------------------- */
+
+.skillList {
+  display: grid;
+  gap: var(--primitive-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skillRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(140px, 18vw, 188px);
+  gap: clamp(12px, 1.6vw, 22px);
+  padding: clamp(14px, 1.6vw, 18px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-surface-3);
+  transition: border-color var(--primitive-duration-fast) ease,
+    box-shadow var(--primitive-duration-fast) ease,
+    transform var(--primitive-duration-fast) ease;
+}
+
+.skillRow:hover {
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-shadow-soft);
+  transform: translateY(-1px);
+}
+
+.skillRow[data-enabled="false"] {
+  opacity: 0.74;
+}
+
+.skillRow[data-enabled="true"] {
+  border-left: 3px solid var(--primitive-red);
+}
+
+.skillMain {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+}
+
+.skillHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.skillName {
+  margin: 0;
+  font-size: var(--primitive-text-base);
+  font-weight: 650;
+  color: var(--primitive-text-strong);
+}
+
+.skillTool {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.02em;
+  color: var(--primitive-muted);
+  padding: var(--primitive-space-0-5) 7px;
+  border-radius: 7px;
+  background: var(--primitive-recessed);
+}
+
+.skillSummary {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.skillScopes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skillSide {
+  display: grid;
+  gap: var(--primitive-space-3);
+  align-content: start;
+  justify-items: end;
+}
+
+.skillStats {
+  display: grid;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  width: 100%;
+}
+
+.skillStat {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.skillStat dt {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.skillStat dd {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+/* ---- Toggle switch ------------------------------------------------------- */
+
+.toggleWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggleInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.toggleTrack {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-meter-track);
+  border: 1px solid var(--primitive-line);
+  transition: background var(--primitive-duration-fast) ease;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: var(--primitive-space-0-5);
+  left: var(--primitive-space-0-5);
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-text-strong);
+  box-shadow: 0 1px 3px var(--primitive-shadow-outline);
+  transition: transform var(--primitive-duration-fast) ease;
+}
+
+.toggleInput:checked + .toggleTrack {
+  background: linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  border-color: transparent;
+}
+
+.toggleInput:checked + .toggleTrack .toggleThumb {
+  transform: translateX(18px);
+  background: var(--primitive-text-on-accent);
+}
+
+.toggleInput:focus-visible + .toggleTrack {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.toggleLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  min-width: 22px;
+}
+
+/* ---- Memory facts -------------------------------------------------------- */
+
+.factList {
+  display: grid;
+  gap: var(--primitive-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.factCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(12px, 1.6vw, 18px);
+  align-items: center;
+  padding: clamp(14px, 1.6vw, 18px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-surface-3);
+  transition: border-color var(--primitive-duration-fast) ease,
+    box-shadow var(--primitive-duration-fast) ease,
+    transform var(--primitive-duration-fast) ease;
+}
+
+.factCard:hover {
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-shadow-soft);
+  transform: translateY(-1px);
+}
+
+.factCard[data-scope="private"] {
+  border-left: 3px solid var(--primitive-amber);
+}
+
+.factCard[data-scope="public"] {
+  border-left: 3px solid var(--primitive-green);
+}
+
+.factCard[data-scope="team"] {
+  border-left: 3px solid var(--primitive-teal);
+}
+
+.factBody {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  min-width: 0;
+}
+
+.factTopRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.factStatement {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.factMetaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2-5) 14px;
+}
+
+.factSource {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.factSourceText {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.factSourceLabel {
+  font-size: var(--primitive-text-xs);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.factConfirmed {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.factConfidence {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  justify-items: center;
+  flex: 0 0 auto;
+}
+
+.factConfidenceLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+/* ---- Reduced motion ------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .skillRow,
+  .factCard,
+  .toggleTrack,
+  .toggleThumb {
+    transition: none;
+  }
+
+  .skillRow:hover,
+  .factCard:hover {
+    transform: none;
+  }
+}

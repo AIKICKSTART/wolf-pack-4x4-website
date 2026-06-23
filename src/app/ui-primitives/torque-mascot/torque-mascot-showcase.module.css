@@ -1,0 +1,337 @@
+.main {
+  min-width: 0;
+  min-height: 100svh;
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: var(--primitive-space-7) var(--primitive-space-7) var(--primitive-space-14);
+  color: var(--primitive-body);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, white 3.5%, transparent), transparent 320px),
+    linear-gradient(90deg, color-mix(in srgb, white 2.5%, transparent) 1px, transparent 1px) 0 0 / 48px 48px,
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+  overflow-x: clip;
+}
+
+.main :where(h2, h3, p) {
+  margin: 0;
+}
+
+.hero,
+.section {
+  width: min(100%, 1400px);
+  margin: 0 auto;
+}
+
+.kicker {
+  font-size: 0.6875rem;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.panelTitle {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  margin-bottom: 18px;
+}
+
+.panelTitle h2 {
+  font-size: clamp(1.25rem, 1rem + 0.9vw, 1.7rem);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-tight);
+  color: var(--primitive-text-strong);
+}
+
+.panelTitle p {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-base);
+  max-width: 60ch;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.5fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(20px, 4vw, 56px);
+  padding: clamp(24px, 4vw, 44px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(circle at 14% 18%, color-mix(in srgb, var(--primitive-red) 18%, transparent), transparent 46%),
+    radial-gradient(circle at 88% 84%, color-mix(in srgb, var(--primitive-amber) 12%, transparent), transparent 50%),
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-deep);
+}
+
+.heroVisual {
+  display: grid;
+  place-items: center;
+}
+
+.heroCopy {
+  display: grid;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.heroCopy h2 {
+  font-size: clamp(1.5rem, 1rem + 1.8vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--primitive-text-strong);
+}
+
+.heroCopy p {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-md);
+  line-height: 1.55;
+  max-width: 62ch;
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+  margin-top: var(--primitive-space-1-5);
+}
+
+/* =========================================================
+   STATE GRID
+   ========================================================= */
+
+.stateGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.stateCard {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  transition: transform 320ms var(--primitive-ease-out),
+    box-shadow 320ms var(--primitive-ease-out);
+}
+
+.stateCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--primitive-surface-hover-shadow);
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  padding: 14px 0 var(--primitive-space-2);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 50% 42%, color-mix(in srgb, white 4%, transparent), transparent 62%),
+    var(--primitive-recessed);
+}
+
+.stateMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+}
+
+.stateName {
+  font-weight: var(--primitive-weight-bold);
+  font-size: 0.95rem;
+  color: var(--primitive-text-strong);
+}
+
+.stateToken {
+  font-family: var(--primitive-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  color: var(--primitive-muted);
+  background: var(--primitive-code-bg);
+  border: 1px solid var(--primitive-line-muted);
+}
+
+.stateCopy {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.45;
+  min-height: 2.4em;
+}
+
+/* =========================================================
+   SIZE ROW
+   ========================================================= */
+
+.sizeRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: clamp(20px, 4vw, 48px);
+  padding: var(--primitive-space-7);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.sizeItem {
+  display: grid;
+  justify-items: center;
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+}
+
+.sizeItem figcaption {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-muted);
+}
+
+/* =========================================================
+   THEME SPLIT — local dark + light token panes
+   ========================================================= */
+
+.themeSplit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.themePane {
+  position: relative;
+  padding: 22px 18px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-canvas);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.themeTag {
+  position: absolute;
+  top: var(--primitive-space-3);
+  left: 14px;
+  font-size: 0.6875rem;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.themeStrip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  padding-top: 14px;
+}
+
+.themeCell {
+  display: grid;
+  justify-items: center;
+  gap: var(--primitive-space-2);
+  width: 92px;
+}
+
+.themeCell span {
+  font-size: 0.6875rem;
+  font-weight: var(--primitive-weight-semibold);
+  text-align: center;
+  color: var(--primitive-muted);
+}
+
+/* dark pane — explicit canonical dark tokens so the pane
+   reads dark regardless of the global theme */
+.themeDark {
+  --primitive-canvas: #07080d;
+  --primitive-panel: rgba(16, 16, 22, 0.82);
+  --primitive-glass-soft: rgba(255, 255, 255, 0.05);
+  --primitive-line: rgba(255, 255, 255, 0.13);
+  --primitive-line-muted: rgba(255, 255, 255, 0.08);
+  --primitive-recessed: rgba(0, 0, 0, 0.32);
+  --primitive-body: #c7c9d0;
+  --primitive-muted: #868b98;
+  --primitive-text-strong: #ffffff;
+  --primitive-red: #e62028;
+  --primitive-red-dark: #a8141a;
+  --primitive-amber: #ffc14f;
+  --primitive-teal: #40bcff;
+  --primitive-green: #37d67a;
+  color-scheme: dark;
+}
+
+/* light pane — explicit canonical light tokens */
+.themeLight {
+  --primitive-canvas: #f2f5f4;
+  --primitive-panel: rgba(249, 251, 250, 0.78);
+  --primitive-glass-soft: rgba(255, 255, 255, 0.58);
+  --primitive-line: rgba(35, 45, 51, 0.15);
+  --primitive-line-muted: rgba(35, 45, 51, 0.09);
+  --primitive-recessed: rgba(211, 222, 221, 0.62);
+  --primitive-body: #334147;
+  --primitive-muted: #68777e;
+  --primitive-text-strong: #172027;
+  --primitive-red: #d63a26;
+  --primitive-red-dark: #962417;
+  --primitive-amber: #d96f19;
+  --primitive-teal: #087f83;
+  --primitive-green: #147853;
+  color-scheme: light;
+}
+
+/* =========================================================
+   BADGE STACK
+   ========================================================= */
+
+.badgeStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+@media (max-width: 720px) {
+  .hero {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .badgeRow {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stateCard {
+    transition: none;
+  }
+  .stateCard:hover {
+    transform: none;
+  }
+}

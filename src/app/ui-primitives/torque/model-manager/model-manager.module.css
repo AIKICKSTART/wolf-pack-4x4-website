@@ -1,0 +1,511 @@
+/* Model manager & usage — bespoke chrome composed from primitive tokens.
+   Control band with a placeholder Torque avatar + default-model selector +
+   date-range control, per-model usage cards, chart frames, budget footer, and
+   the per-model usage table. Light + dark parity via --primitive-* tokens;
+   motion is opacity/transform only and is disabled under prefers-reduced-motion. */
+
+.main {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 32px);
+  padding: clamp(18px, 3vw, 36px);
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Control band -------------------------------------------------------- */
+
+.controlBand {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(16px, 2.4vw, 28px) clamp(20px, 3vw, 40px);
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(16px, 2.2vw, 26px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 150% at 0% 0%, color-mix(in oklab, var(--primitive-red) 14%, transparent), transparent 56%),
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklab, var(--primitive-amber) 9%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.controlBand::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--primitive-texture-stroke) 3px 4px
+  );
+  opacity: 0.5;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* Placeholder circular Torque avatar — brand-red gradient, initial "T".
+   Real mascot lands later. */
+.torqueAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--primitive-text-on-accent) 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), var(--primitive-red-dark));
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: 25px;
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 24px color-mix(in oklab, var(--primitive-red) 38%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-on-accent) 18%, transparent);
+}
+
+.torqueAvatar span {
+  transform: translateY(1px);
+}
+
+.identityText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.torqueName {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.bizName {
+  font-size: var(--primitive-text-md);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.bizRegion {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+.controlStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(16px, 2.4vw, 32px);
+  align-items: flex-start;
+}
+
+.controlGroup {
+  display: grid;
+  gap: var(--primitive-space-2);
+  justify-items: start;
+}
+
+.controlLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.controlNote {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-body);
+}
+
+.controlNote strong {
+  color: var(--primitive-text-strong);
+}
+
+/* ---- KPI / chart inner content ------------------------------------------- */
+
+.kpiSpark {
+  display: block;
+  margin-top: var(--primitive-space-2);
+}
+
+.chartFrame {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.tileNote {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  line-height: 1.5;
+  color: var(--primitive-muted);
+}
+
+.comparisonStack {
+  display: grid;
+  gap: var(--primitive-space-3);
+}
+
+/* Budget footer under the gauge cluster */
+.budgetFooter {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  justify-items: center;
+  padding-top: var(--primitive-space-2-5);
+  border-top: 1px solid var(--primitive-line-muted);
+  text-align: center;
+}
+
+.budgetSparkLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.budgetFigure {
+  font-size: var(--primitive-text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-body);
+}
+
+/* ---- Available models section -------------------------------------------- */
+
+.modelsSection {
+  display: grid;
+  gap: clamp(14px, 2vw, 20px);
+  padding: clamp(16px, 2vw, 24px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.sectionKicker {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.sectionTitle {
+  margin: var(--primitive-space-1) 0 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.sectionLead {
+  margin: var(--primitive-space-2) 0 0;
+  max-width: 64ch;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.6;
+  color: var(--primitive-body);
+}
+
+/* Per-model usage cards */
+.cardList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: clamp(12px, 1.6vw, 18px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.usageCard {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+  transition: transform var(--primitive-dur, 200ms) ease, box-shadow var(--primitive-dur, 200ms) ease;
+}
+
+.usageCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--primitive-shadow-strong, var(--primitive-shadow-soft));
+}
+
+.usageCard[data-default="true"] {
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, var(--primitive-line));
+  background:
+    radial-gradient(140% 120% at 100% 0%, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+}
+
+.usageHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.usageTitleGroup {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.usageName {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  font-size: var(--primitive-text-base);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.defaultTag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 14%, transparent);
+}
+
+.usageRole {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+.usageMeter {
+  width: 100%;
+}
+
+.healthPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  flex: 0 0 auto;
+  padding: 3px 9px;
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.healthDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.healthLive {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 14%, transparent);
+}
+
+.healthFallback {
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+}
+
+.healthPaused {
+  color: var(--primitive-muted);
+  background: color-mix(in oklab, var(--primitive-muted) 16%, transparent);
+}
+
+.usageStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-1);
+  margin: 0;
+  padding-top: var(--primitive-space-3);
+  border-top: 1px solid var(--primitive-line-muted);
+}
+
+.usageStat {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.usageStat dt {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.usageStat dd {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-text-strong);
+}
+
+.usageSpark {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.usageSparkLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+/* ---- Per-model usage table ----------------------------------------------- */
+
+.tableSection {
+  display: grid;
+  gap: 14px;
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.tableHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.tableKicker {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.tableTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.tableBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.tableBadge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primitive-teal);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+}
+
+.modelCell {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.modelName {
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.modelRoute {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+  color: var(--primitive-muted);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-body);
+}
+
+.trendCell {
+  display: inline-flex;
+  justify-content: flex-end;
+  width: 96px;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .controlBand {
+    justify-content: flex-start;
+  }
+  .controlStack {
+    width: 100%;
+  }
+  .controlGroup {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .sectionHead {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .usageCard {
+    transition: none;
+  }
+  .usageCard:hover {
+    transform: none;
+  }
+}

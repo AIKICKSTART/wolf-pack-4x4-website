@@ -1,0 +1,101 @@
+.root {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 5%, transparent), transparent 60%),
+    var(--primitive-panel);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.switch {
+  display: inline-flex;
+  padding: var(--primitive-space-1);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-field-bg);
+}
+
+.switchButton {
+  padding: var(--primitive-space-1-5) 14px;
+  border-radius: var(--primitive-radius-pill);
+  border: none;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 160ms var(--primitive-ease-standard),
+    color 160ms var(--primitive-ease-standard);
+}
+
+.switchActive {
+  background: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  color: var(--primitive-teal);
+}
+
+.switchButton:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.frame {
+  position: relative;
+  padding: 18px;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px dashed var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 80%, transparent);
+  min-height: 120px;
+  transition: transform 280ms var(--primitive-ease-out);
+}
+
+.frame[data-direction="rtl"] {
+  border-color: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+.helper {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  flex-wrap: wrap;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+.helper code {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: var(--primitive-teal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame,
+  .switchButton {
+    transition: none;
+  }
+}

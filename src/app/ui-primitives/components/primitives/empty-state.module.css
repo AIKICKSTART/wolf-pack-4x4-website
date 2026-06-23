@@ -1,0 +1,86 @@
+.state {
+  display: grid;
+  gap: 18px;
+  padding: 36px 28px;
+  border-radius: var(--primitive-radius-xl);
+}
+
+.alignCenter {
+  text-align: center;
+  justify-items: center;
+}
+
+.alignStart {
+  text-align: left;
+  justify-items: start;
+}
+
+.illustration {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 30% 30%, var(--primitive-glass-strong), transparent 65%),
+    linear-gradient(135deg, var(--primitive-glass-soft), transparent);
+  border: 1px solid var(--primitive-line);
+  box-shadow: var(--primitive-surface-shadow);
+  color: var(--primitive-body);
+}
+
+.text {
+  display: grid;
+  gap: 6px;
+  max-width: 44ch;
+}
+
+.alignStart .text {
+  max-width: 56ch;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.01em;
+  color: var(--primitive-text-strong);
+  line-height: 1.1;
+}
+
+.description {
+  margin: 0;
+  font-family: var(--primitive-font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--primitive-muted);
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+:global(html[data-primitive-theme="light"]) .state {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--primitive-teal) 8%, transparent), transparent 56%),
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 78%, transparent), color-mix(in srgb, var(--primitive-panel-strong) 50%, transparent));
+  border: 1px solid color-mix(in srgb, var(--primitive-text-strong) 10%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 72%, transparent),
+    0 18px 34px color-mix(in srgb, var(--primitive-body) 10%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .illustration {
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--primitive-text-on-accent) 86%, transparent), transparent 62%),
+    linear-gradient(145deg, color-mix(in srgb, var(--primitive-text-on-accent) 82%, transparent), color-mix(in srgb, var(--primitive-panel-strong) 70%, transparent));
+  border-color: color-mix(in srgb, var(--primitive-text-strong) 12%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 86%, transparent),
+    0 16px 28px color-mix(in srgb, var(--primitive-body) 12%, transparent);
+}

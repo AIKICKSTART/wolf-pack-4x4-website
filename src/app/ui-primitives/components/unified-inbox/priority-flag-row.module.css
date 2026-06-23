@@ -1,0 +1,151 @@
+.row {
+  display: grid;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.caption {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+}
+
+.toggleGroup {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.toggle {
+  appearance: none;
+  display: grid;
+  gap: 6px;
+  align-items: center;
+  justify-items: center;
+  padding: 10px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--toggle-stroke, var(--primitive-line));
+  background: var(--toggle-bg, var(--primitive-field-bg));
+  color: var(--toggle-ink, var(--primitive-body));
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.toggle:hover,
+.toggle:focus-visible {
+  border-color: var(--toggle-stroke-hover, var(--primitive-line-strong));
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.toggleActive {
+  background: var(--toggle-active-bg, var(--primitive-line-muted));
+  border-color: var(--toggle-active-stroke, var(--primitive-text-strong));
+  color: var(--toggle-active-ink, var(--primitive-text-strong));
+  box-shadow: 0 0 0 1px var(--toggle-active-stroke, color-mix(in oklab, var(--primitive-text-strong) 55%, transparent));
+}
+
+.toggleGlyph {
+  display: grid;
+  place-items: center;
+  color: currentColor;
+}
+
+.toggleLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tone_neutral {
+  --toggle-stroke: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  --toggle-stroke-hover: color-mix(in oklab, var(--primitive-text-strong) 42%, transparent);
+  --toggle-active-bg: color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+  --toggle-active-stroke: color-mix(in oklab, var(--primitive-text-strong) 60%, transparent);
+  --toggle-active-ink: var(--primitive-text-strong);
+}
+
+.tone_teal {
+  --toggle-stroke: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+  --toggle-stroke-hover: color-mix(in oklab, var(--primitive-teal) 85%, transparent);
+  --toggle-bg: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+  --toggle-ink: color-mix(in oklab, var(--primitive-teal) 50%, var(--primitive-text-strong));
+  --toggle-active-bg: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --toggle-active-stroke: var(--primitive-teal);
+  --toggle-active-ink: var(--primitive-text-strong);
+}
+
+.tone_amber {
+  --toggle-stroke: color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  --toggle-stroke-hover: color-mix(in oklab, var(--primitive-amber) 85%, transparent);
+  --toggle-bg: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  --toggle-ink: color-mix(in oklab, var(--primitive-amber) 62%, var(--primitive-text-strong));
+  --toggle-active-bg: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --toggle-active-stroke: var(--primitive-amber);
+  --toggle-active-ink: var(--primitive-text-strong);
+}
+
+.tone_red {
+  --toggle-stroke: color-mix(in oklab, var(--primitive-red) 36%, transparent);
+  --toggle-stroke-hover: color-mix(in oklab, var(--primitive-red) 85%, transparent);
+  --toggle-bg: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+  --toggle-ink: color-mix(in oklab, var(--primitive-red) 45%, var(--primitive-text-strong));
+  --toggle-active-bg: color-mix(in oklab, var(--primitive-red) 22%, transparent);
+  --toggle-active-stroke: var(--primitive-red);
+  --toggle-active-ink: var(--primitive-text-strong);
+}
+
+.tone_green {
+  --toggle-stroke: color-mix(in oklab, var(--primitive-green) 36%, transparent);
+  --toggle-stroke-hover: color-mix(in oklab, var(--primitive-green) 85%, transparent);
+  --toggle-bg: color-mix(in oklab, var(--primitive-green) 6%, transparent);
+  --toggle-ink: color-mix(in oklab, var(--primitive-green) 55%, var(--primitive-text-strong));
+  --toggle-active-bg: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  --toggle-active-stroke: var(--primitive-green);
+  --toggle-active-ink: var(--primitive-text-strong);
+}
+
+.tone_violet {
+  --toggle-stroke: color-mix(in oklab, var(--primitive-violet) 36%, transparent);
+  --toggle-stroke-hover: color-mix(in oklab, var(--primitive-violet) 85%, transparent);
+  --toggle-bg: color-mix(in oklab, var(--primitive-violet) 6%, transparent);
+  --toggle-ink: color-mix(in oklab, var(--primitive-violet) 50%, var(--primitive-text-strong));
+  --toggle-active-bg: color-mix(in oklab, var(--primitive-violet) 18%, transparent);
+  --toggle-active-stroke: var(--primitive-violet);
+  --toggle-active-ink: var(--primitive-text-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle {
+    transition: none;
+  }
+  .toggle:hover {
+    transform: none;
+  }
+}

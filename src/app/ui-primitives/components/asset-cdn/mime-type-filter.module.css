@@ -1,0 +1,244 @@
+.panel {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-red) 8%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 90%, transparent);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.addForm {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+}
+
+.addLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.addInput {
+  appearance: none;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+}
+
+.addInput:focus-visible {
+  outline: none;
+  border-color: var(--primitive-teal);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+
+.addBtn {
+  appearance: none;
+  border: 1px solid var(--primitive-teal);
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border-radius: var(--primitive-radius-md);
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+
+.addBtn:hover {
+  background: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+
+.addBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 88px minmax(140px, 1.4fr) minmax(0, 2fr) 28px;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.rowAllow {
+  --row-tone: var(--primitive-green);
+  --row-tone-bg: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+}
+
+.rowDeny {
+  --row-tone: var(--primitive-red);
+  --row-tone-bg: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+  background:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 8px,
+      color-mix(in oklab, var(--primitive-red) 6%, transparent) 8px 9px
+    ),
+    color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+}
+
+.toggle {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: 5px var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--row-tone, var(--primitive-teal));
+  background: var(--row-tone-bg, color-mix(in oklab, var(--primitive-teal) 12%, transparent));
+  color: var(--primitive-text-strong);
+  cursor: pointer;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background-color 160ms ease;
+}
+
+.toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--row-tone, var(--primitive-teal));
+}
+
+.toggleDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--row-tone, var(--primitive-teal));
+}
+
+.toggleLabel {
+  letter-spacing: 0.14em;
+}
+
+.pattern {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.04em;
+  word-break: break-all;
+}
+
+.note {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+}
+
+.maxBytes {
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.noteText {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.remove {
+  appearance: none;
+  border: 1px solid var(--primitive-line);
+  background: transparent;
+  color: var(--primitive-muted);
+  width: 26px;
+  height: 26px;
+  border-radius: var(--primitive-radius-round);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: var(--primitive-text-lg);
+  line-height: var(--primitive-leading-none);
+  font-family: var(--primitive-font-mono);
+  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+}
+
+.remove:hover {
+  border-color: var(--primitive-red);
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 12%, transparent);
+}
+
+.remove:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+  }
+  .pattern {
+    grid-column: 1 / 4;
+  }
+  .note {
+    grid-column: 1 / 4;
+    grid-row: 3;
+  }
+  .remove {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .addBtn,
+  .toggle,
+  .remove {
+    transition: none;
+  }
+}

@@ -1,0 +1,242 @@
+/* =========================================================
+   KEN BURNS HERO — slow zoom + pan over cross-fading plates
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 84svh;
+  overflow: hidden;
+  background: var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-text-strong);
+  isolation: isolate;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.72) contrast(1.1) saturate(1.12);
+}
+
+.plate {
+  position: absolute;
+  inset: -6%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: kenBurnsCycle 18s infinite linear;
+  will-change: transform, opacity;
+  margin: 0;
+}
+
+.video + .plate {
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+}
+
+.tintEmber {
+  background-color: color-mix(in oklab, var(--primitive-canvas) 74%, var(--primitive-red));
+  background-image:
+    radial-gradient(ellipse at 40% 40%, color-mix(in oklab, var(--primitive-amber) 42%, transparent), transparent 60%),
+    radial-gradient(ellipse at 70% 70%, color-mix(in oklab, var(--primitive-red) 60%, transparent), transparent 60%),
+    linear-gradient(140deg, color-mix(in oklab, var(--primitive-canvas) 66%, var(--primitive-red)) 0%, color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-red)) 100%);
+}
+
+.tintDusk {
+  background-color: color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-teal));
+  background-image:
+    radial-gradient(ellipse at 60% 30%, color-mix(in oklab, var(--primitive-amber) 30%, transparent), transparent 60%),
+    radial-gradient(ellipse at 30% 80%, color-mix(in oklab, var(--primitive-red) 35%, var(--primitive-amber)), transparent 60%),
+    linear-gradient(140deg, color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-teal)) 0%, var(--primitive-canvas) 100%);
+}
+
+.tintAbyss {
+  background-color: color-mix(in oklab, var(--primitive-canvas) 82%, var(--primitive-teal));
+  background-image:
+    radial-gradient(ellipse at 50% 50%, color-mix(in oklab, var(--primitive-teal) 36%, transparent), transparent 56%),
+    linear-gradient(140deg, color-mix(in oklab, var(--primitive-canvas) 84%, var(--primitive-teal)) 0%, color-mix(in oklab, var(--primitive-canvas) 96%, black) 100%);
+}
+
+@keyframes kenBurnsCycle {
+  0%   { opacity: 0; transform: scale(1.05) translate(-2%, -2%); }
+  6%   { opacity: 1; }
+  28%  { opacity: 1; transform: scale(1.15) translate(2%, 2%); }
+  34%  { opacity: 0; }
+  100% { opacity: 0; transform: scale(1.15) translate(2%, 2%); }
+}
+
+.plateCaption {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  background: color-mix(in oklab, black 60%, transparent);
+  border: 1px solid var(--primitive-line-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 62%, transparent);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, black 28%, transparent) 0%, transparent 24%, color-mix(in oklab, black 72%, transparent) 100%),
+    radial-gradient(ellipse at 18% 80%, color-mix(in oklab, black 38%, transparent), transparent 56%);
+  z-index: 1;
+}
+
+.copy {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 22px;
+  align-content: end;
+  min-height: 84svh;
+  padding: 0 clamp(28px, 6vw, 96px) clamp(56px, 8svh, 112px);
+  max-width: 760px;
+}
+
+.chapter {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.chapter i {
+  width: 4px;
+  height: 4px;
+  background: var(--primitive-amber);
+  border-radius: var(--primitive-radius-pill);
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 1.4rem + 4.6vw, 5.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  margin: 0;
+  text-shadow: 0 4px 36px color-mix(in oklab, black 60%, transparent);
+}
+
+.subhead {
+  font-size: var(--primitive-text-md);
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--primitive-text-strong) 84%, transparent);
+  margin: 0;
+  max-width: 50ch;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px;
+  width: max-content;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  border: 1px solid transparent;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  border-radius: var(--primitive-btn-radius);
+  transition: border-color 220ms, background 220ms, color 220ms, box-shadow 220ms;
+}
+.cta:hover {
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  border-color: transparent;
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+.cta:hover em,
+.cta:focus-visible em {
+  transform: translate(4px, -4px);
+}
+.cta:active {
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+.cta:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 4px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+.cta em {
+  font-style: normal;
+  transition: transform 220ms;
+}
+
+.markers {
+  position: absolute;
+  top: clamp(36px, 6svh, 56px);
+  right: clamp(28px, 5vw, 64px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  z-index: 3;
+}
+.markers li {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.32em;
+  color: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+  border-left: 2px solid color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  padding-left: var(--primitive-space-2-5);
+  animation: markerHighlight 18s infinite linear;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+@keyframes markerHighlight {
+  0%, 6%, 34%, 100% {
+    color: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+    border-left-color: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  }
+  6.01%, 33.99% {
+    color: var(--primitive-amber);
+    border-left-color: var(--primitive-amber);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plate,
+  .video,
+  .markers li {
+    animation: none;
+    opacity: 1;
+  }
+  .video {
+    display: none;
+  }
+  .plate:nth-child(n + 2) { display: none; }
+}

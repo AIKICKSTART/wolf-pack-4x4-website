@@ -1,0 +1,125 @@
+.strip {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background:
+    linear-gradient(90deg, var(--primitive-glass-soft), transparent 40%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.cap {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-5);
+  background: var(--primitive-metallic-red);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.viewport {
+  position: relative;
+  flex: 1 1 auto;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
+}
+
+.track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding-left: var(--primitive-space-4);
+  will-change: transform;
+  animation: scroll 32s linear infinite;
+}
+
+.strip:hover .track,
+.strip:focus-within .track {
+  animation-play-state: paused;
+}
+
+.duplicate {
+  display: inline-flex;
+  align-items: center;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) 0;
+}
+
+.tag {
+  --tk-tone: var(--primitive-red);
+  display: inline-flex;
+  align-items: center;
+  margin-left: var(--primitive-space-4);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-xs);
+  border: 1px solid color-mix(in oklab, var(--tk-tone) 40%, var(--primitive-line));
+  background: color-mix(in oklab, var(--tk-tone) 16%, transparent);
+  color: var(--tk-tone);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.headline {
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-medium);
+  color: var(--primitive-body);
+}
+
+.sep {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-line-strong);
+}
+
+.toneRed {
+  --tk-tone: var(--primitive-red);
+}
+.toneAmber {
+  --tk-tone: var(--primitive-amber);
+}
+.toneTeal {
+  --tk-tone: var(--primitive-teal);
+}
+.toneGreen {
+  --tk-tone: var(--primitive-green);
+}
+.toneNeutral {
+  --tk-tone: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+  .viewport {
+    overflow-x: auto;
+  }
+}

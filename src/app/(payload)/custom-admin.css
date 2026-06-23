@@ -1,0 +1,118 @@
+/*
+ * Wolfpack 4x4 — Payload admin re-skin.
+ *
+ * Variable-level overrides only (the one allowed component class is
+ * .btn--style-primary). Payload derives --theme-elevation-* from the
+ * --color-base-* ramp (@payloadcms/ui/dist/scss/colors.scss):
+ *   light: --theme-elevation-N -> --color-base-N
+ *   dark:  --theme-elevation-N -> --color-base-(900 - N)  (inverted)
+ * so each scope overrides the base ramp and lets Payload's own elevation
+ * mappings resolve against it. Success / error / warning ramps untouched.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Dark — carbon + Wolfpack blue                                       */
+/* ------------------------------------------------------------------ */
+html[data-theme="dark"] {
+  /* Base ramp (light -> dark, Payload orientation). Key stops:
+     base-900 -> elevation-0 (nav/card carbon surface) #0c0d12
+     base-850 -> elevation-50 (input bg)               #14141b
+     base-800 -> elevation-100 (hover surface)         #1c1c25 */
+  --color-base-0: #f6f6f8;
+  --color-base-50: #ececf0;
+  --color-base-100: #e0e0e6;
+  --color-base-150: #d2d2da;
+  --color-base-200: #c2c2cc;
+  --color-base-250: #b1b1bd;
+  --color-base-300: #a0a0ae;
+  --color-base-350: #90909f;
+  --color-base-400: #818190;
+  --color-base-450: #727281;
+  --color-base-500: #646472;
+  --color-base-550: #575764;
+  --color-base-600: #4a4a56;
+  --color-base-650: #3e3e49;
+  --color-base-700: #32323c;
+  --color-base-750: #28282f;
+  --color-base-800: #1c1c25;
+  --color-base-850: #14141b;
+  --color-base-900: #0c0d12;
+  --color-base-950: #070809;
+  --color-base-1000: #040405;
+
+  /* App floor sits below the carbon elevation-0 surface, so the nav and
+     panels read as a distinct carbon layer (subtle brand touch). */
+  --theme-bg: #070809;
+  --theme-input-bg: #14141b;
+  --theme-text: #f6f6f8;
+  --theme-overlay: rgba(4, 5, 8, 0.78);
+  --theme-border-color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .btn--style-primary:not(.btn--disabled) {
+  --bg-color: #008cff;
+  --color: #ffffff;
+  --btn-border: 1px solid #008cff;
+  --hover-bg: #005bd1;
+  --hover-color: #ffffff;
+  --hover-btn-border: 1px solid #005bd1;
+}
+
+/* ------------------------------------------------------------------ */
+/* Light — heritage cream                                              */
+/* ------------------------------------------------------------------ */
+html[data-theme="light"] {
+  /* Warm stone ramp; base-150 doubles as the #d9d4c8 border tone. */
+  --color-base-0: #fbf6eb;
+  --color-base-50: #f3eee0;
+  --color-base-100: #eae4d4;
+  --color-base-150: #d9d4c8;
+  --color-base-200: #cbc5b6;
+  --color-base-250: #bcb6a7;
+  --color-base-300: #ada798;
+  --color-base-350: #9e988a;
+  --color-base-400: #8f8a7c;
+  --color-base-450: #817c6f;
+  --color-base-500: #737061;
+  --color-base-550: #666253;
+  --color-base-600: #595547;
+  --color-base-650: #4c483c;
+  --color-base-700: #3f3c32;
+  --color-base-750: #333028;
+  --color-base-800: #28251f;
+  --color-base-850: #1e1c17;
+  --color-base-900: #14130f;
+  --color-base-950: #0c0b09;
+  --color-base-1000: #060605;
+
+  --theme-bg: #fbf6eb;
+  --theme-input-bg: #fffaf0;
+  --theme-text: #16181d;
+  --theme-overlay: rgba(31, 28, 22, 0.5);
+  --theme-border-color: #d9d4c8;
+}
+
+html[data-theme="light"] .btn--style-primary:not(.btn--disabled) {
+  --bg-color: #008cff;
+  --color: #ffffff;
+  --btn-border: 1px solid #008cff;
+  --hover-bg: #3f1fbf;
+  --hover-color: #ffffff;
+  --hover-btn-border: 1px solid #3f1fbf;
+}
+
+/* ------------------------------------------------------------------ */
+/* Link accent                                                         */
+/* Joins Payload's cascade layer at near-zero specificity so component */
+/* classes (.btn, .pill, etc.) keep their own colors; bare anchors and */
+/* nav links (incl. the active item) pick up the Wolfpack blue.         */
+/* ------------------------------------------------------------------ */
+@layer payload-default {
+  :where(html[data-theme="dark"]) a {
+    color: #008cff;
+  }
+
+  :where(html[data-theme="light"]) a {
+    color: #005bd1;
+  }
+}

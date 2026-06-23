@@ -1,0 +1,425 @@
+.shell {
+  min-height: 100vh;
+  background: #111111;
+  color: #f6f3ee;
+  font-family: var(--ff-inter), Arial, sans-serif;
+}
+
+.topbar {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  padding: 18px clamp(18px, 4vw, 48px);
+}
+
+.brand {
+  display: grid;
+  gap: 2px;
+}
+
+.eyebrow {
+  color: #df3d2f;
+  font-family: var(--ff-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.brand h1 {
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  line-height: 1;
+  margin: 0;
+}
+
+.brand p {
+  color: rgba(246, 243, 238, 0.7);
+  margin: 2px 0 0;
+}
+
+.statusStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.healthPanel {
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+}
+
+.healthActions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.checkedAt {
+  color: rgba(246, 243, 238, 0.62);
+  font-family: var(--ff-mono), monospace;
+  font-size: 0.76rem;
+}
+
+.healthError {
+  align-items: center;
+  color: #f9b4ac;
+  display: inline-flex;
+  font-size: 0.85rem;
+  gap: 6px;
+  margin: 0;
+}
+
+.pill {
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 7px;
+  min-height: 30px;
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+.pill[data-ok="true"] {
+  background: rgba(42, 157, 143, 0.16);
+}
+
+.pill[data-ok="false"] {
+  background: rgba(223, 61, 47, 0.18);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
+  min-height: calc(100vh - 86px);
+}
+
+.rail {
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 20px;
+}
+
+.registryPanel {
+  background: rgba(246, 243, 238, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 14px;
+}
+
+.registryPanel strong {
+  font-size: 1.05rem;
+}
+
+.registryGrid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.registryGrid span {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: rgba(246, 243, 238, 0.66);
+  display: grid;
+  font-family: var(--ff-mono), monospace;
+  font-size: 0.68rem;
+  gap: 2px;
+  padding: 8px;
+  text-transform: uppercase;
+}
+
+.registryGrid b {
+  color: #f6f3ee;
+  font-family: var(--ff-inter), Arial, sans-serif;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tab {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  min-height: 42px;
+  padding: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+.tab[data-active="true"] {
+  background: #f6f3ee;
+  color: #111111;
+}
+
+.tab[data-ok="false"] {
+  border-color: rgba(223, 61, 47, 0.42);
+}
+
+.tab small {
+  color: currentColor;
+  display: block;
+  opacity: 0.72;
+}
+
+.tabStatus {
+  display: block;
+  font-family: var(--ff-mono), monospace;
+  font-size: 0.72rem;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+
+.main {
+  display: grid;
+  grid-template-rows: auto minmax(420px, 1fr);
+  min-width: 0;
+}
+
+.serviceHeader {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 20px clamp(18px, 4vw, 42px);
+}
+
+.serviceHeader h2 {
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.action {
+  align-items: center;
+  background: #df3d2f;
+  border-radius: 8px;
+  color: #ffffff;
+  display: inline-flex;
+  gap: 8px;
+  min-height: 38px;
+  padding: 9px 12px;
+  text-decoration: none;
+}
+
+.secondaryAction {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.actionButton {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.actionButton:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.launchpad {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 0 clamp(18px, 4vw, 42px) 20px;
+}
+
+.launchCard {
+  background: rgba(246, 243, 238, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  padding: 14px;
+}
+
+.launchHeader {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+}
+
+.launchHeader svg {
+  color: #df3d2f;
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.launchHeader h3 {
+  font-size: 0.98rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.launchHeader p {
+  color: rgba(246, 243, 238, 0.66);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  margin: 4px 0 0;
+}
+
+.launchLinks {
+  display: grid;
+  gap: 8px;
+}
+
+.launchLink {
+  align-items: center;
+  background: rgba(17, 17, 17, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: inherit;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  min-height: 52px;
+  min-width: 0;
+  padding: 9px 10px;
+  text-decoration: none;
+}
+
+.launchLink:hover {
+  border-color: rgba(223, 61, 47, 0.56);
+}
+
+.launchLink span:first-child {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.launchLink small {
+  color: rgba(246, 243, 238, 0.58);
+  font-size: 0.72rem;
+  line-height: 1.25;
+}
+
+.launchStatus {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  flex: 0 0 auto;
+  font-family: var(--ff-mono), monospace;
+  font-size: 0.65rem;
+  padding: 4px 7px;
+  text-transform: uppercase;
+}
+
+.launchStatus[data-ok="true"] {
+  background: rgba(42, 157, 143, 0.16);
+}
+
+.launchStatus[data-ok="false"] {
+  background: rgba(223, 61, 47, 0.18);
+}
+
+.action svg[data-spinning="true"] {
+  animation: control-spin 900ms linear infinite;
+}
+
+.frameWrap {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  min-height: 0;
+  padding: clamp(12px, 2vw, 20px);
+}
+
+.frame {
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  height: min(72vh, 860px);
+  width: 100%;
+}
+
+.launchOnly {
+  align-items: center;
+  background: rgba(246, 243, 238, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: min(72vh, 640px);
+  justify-content: center;
+  padding: 28px;
+  text-align: center;
+}
+
+.launchOnly p {
+  color: rgba(246, 243, 238, 0.72);
+  max-width: 520px;
+}
+
+.fallback {
+  color: rgba(246, 243, 238, 0.72);
+  font-size: 0.88rem;
+  margin: 10px 0 0;
+}
+
+@keyframes control-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 860px) {
+  .topbar,
+  .serviceHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .statusStrip {
+    justify-content: flex-start;
+  }
+
+  .healthPanel {
+    justify-items: start;
+  }
+
+  .healthActions {
+    justify-content: flex-start;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .launchpad {
+    grid-template-columns: 1fr;
+  }
+
+  .rail {
+    border-right: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow-x: auto;
+  }
+
+  .registryPanel {
+    min-width: 320px;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1240px) {
+  .launchpad {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

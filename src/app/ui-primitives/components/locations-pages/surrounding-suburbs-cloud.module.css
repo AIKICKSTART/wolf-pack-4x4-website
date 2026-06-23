@@ -1,0 +1,73 @@
+.section {
+  display: grid;
+  gap: var(--primitive-space-4);
+}
+
+.header {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.6vw, 28px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-tight);
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: inline-flex;
+}
+
+.link {
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.link:hover :global(.chip),
+.link:focus-visible :global(.chip) {
+  transform: translateY(-1px);
+}
+
+.itemLarge .link {
+  transform: scale(1.05);
+}
+
+.itemMedium .link {
+  transform: scale(1.0);
+}
+
+.itemSmall .link {
+  transform: scale(0.94);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .itemLarge .link,
+  .itemSmall .link,
+  .link:hover :global(.chip),
+  .link:focus-visible :global(.chip) {
+    transform: none;
+  }
+}

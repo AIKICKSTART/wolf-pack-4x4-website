@@ -1,0 +1,346 @@
+/* Torque — Social post composer screen. Composed from existing primitives.
+   Light + dark parity via --primitive-* tokens. No hardcoded palette. */
+
+.main {
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: clamp(20px, 3vw, 36px);
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.demoSurface {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: clamp(16px, 2.4vw, 28px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--primitive-red) 12%, transparent), transparent 52%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  backdrop-filter: blur(18px) saturate(1.1);
+}
+
+.demoLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+/* ── Console layout: main composer column + right rail ──────────────────── */
+
+.console {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
+  gap: clamp(14px, 1.8vw, 22px);
+  align-items: start;
+}
+
+@media (max-width: 1040px) {
+  .console {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.mainColumn {
+  display: grid;
+  gap: clamp(14px, 1.8vw, 20px);
+  min-width: 0;
+}
+
+.rail {
+  display: grid;
+  gap: clamp(14px, 1.8vw, 18px);
+  position: sticky;
+  top: 18px;
+}
+
+@media (max-width: 1040px) {
+  .rail {
+    position: static;
+  }
+}
+
+/* ── Stat row ───────────────────────────────────────────────────────────── */
+
+.statRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+@media (max-width: 880px) {
+  .statRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 460px) {
+  .statRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── Shared card chrome ─────────────────────────────────────────────────── */
+
+.mediaCard,
+.brandCard,
+.scheduleCard {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 32%),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.cardKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.cardKicker svg {
+  color: var(--primitive-red);
+}
+
+.cardTitle {
+  margin: var(--primitive-space-1) 0 0;
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.15;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  color: var(--primitive-text-strong);
+}
+
+/* ── Media card ─────────────────────────────────────────────────────────── */
+
+.mediaHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.mediaHeadText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+/* ── Brand-safe checks card ─────────────────────────────────────────────── */
+
+.brandHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.brandCount {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.brandCountValue {
+  color: var(--primitive-green);
+  font-weight: 800;
+}
+
+.checkList {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checkItem {
+  display: grid;
+  gap: 5px;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-left-width: 3px;
+  border-radius: 10px;
+  background: var(--primitive-surface-3);
+}
+
+.checkItem[data-state="pass"] {
+  border-left-color: var(--primitive-green);
+}
+
+.checkItem[data-state="warn"] {
+  border-left-color: var(--primitive-amber);
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+}
+
+.checkLabel {
+  font-size: var(--primitive-text-sm);
+  font-weight: 650;
+  color: var(--primitive-text-strong);
+}
+
+.checkDetail {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Schedule card ──────────────────────────────────────────────────────── */
+
+.scheduleHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.scheduleHashtags {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.scheduleWhen {
+  margin: 0;
+  font-size: clamp(17px, 2.2vw, 21px);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.scheduleNote {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.scheduleActions {
+  display: flex;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border-radius: var(--primitive-btn-radius);
+  font: inherit;
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: transform 160ms var(--primitive-ease-out),
+    box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.primaryBtn {
+  flex: 1 1 auto;
+  justify-content: center;
+  color: var(--primitive-btn-primary-fg);
+  border: 1px solid transparent;
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.primaryBtn:hover,
+.primaryBtn:focus-visible {
+  color: var(--primitive-btn-primary-hover-fg);
+  background: var(--primitive-btn-primary-hover-bg);
+  transform: translateY(-1px);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+.secondaryBtn {
+  color: var(--primitive-btn-secondary-fg);
+  background: var(--primitive-btn-secondary-bg);
+  border: 1px solid var(--primitive-btn-secondary-border);
+}
+
+.secondaryBtn:hover,
+.secondaryBtn:focus-visible {
+  border-color: color-mix(in srgb, var(--primitive-red) 50%, var(--primitive-line));
+  color: var(--primitive-red);
+  transform: translateY(-1px);
+}
+
+.primaryBtn:focus-visible,
+.secondaryBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.scheduleStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  margin: 0;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px dashed var(--primitive-line);
+  border-radius: 11px;
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.45;
+}
+
+.scheduleStatus svg {
+  flex-shrink: 0;
+  color: var(--primitive-teal);
+}
+
+.scheduleStatus[data-state="submitted"] {
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--primitive-green) 48%, var(--primitive-line));
+  color: var(--primitive-green);
+}
+
+.scheduleStatus[data-state="submitted"] svg {
+  color: var(--primitive-green);
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryBtn,
+  .secondaryBtn {
+    transition: none;
+  }
+  .primaryBtn:hover,
+  .secondaryBtn:hover {
+    transform: none;
+  }
+}

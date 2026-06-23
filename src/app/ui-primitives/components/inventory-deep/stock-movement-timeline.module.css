@@ -1,0 +1,145 @@
+.wrap {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-teal) 8%, transparent), transparent 60%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--primitive-space-2);
+  position: relative;
+}
+
+.list::before {
+  content: "";
+  position: absolute;
+  top: var(--primitive-space-2-5);
+  bottom: var(--primitive-space-2-5);
+  left: 5px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--primitive-text-strong) 18%, transparent) 0%,
+    color-mix(in oklab, var(--primitive-text-strong) 6%, transparent) 100%
+  );
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: var(--primitive-space-1-5) 0;
+}
+
+.dot {
+  position: relative;
+  top: var(--primitive-space-1-5);
+  width: 12px;
+  height: 12px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-muted);
+  box-shadow: 0 0 0 3px var(--primitive-panel-strong);
+}
+
+.toneGreen { background: var(--primitive-green); }
+.toneAmber { background: var(--primitive-amber); }
+.toneTeal { background: var(--primitive-teal); }
+.toneRed { background: var(--primitive-red); }
+
+.itemBody {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+.itemHead {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5);
+}
+
+.kind {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.kind.toneGreen { color: var(--primitive-green); background: transparent; }
+.kind.toneAmber { color: var(--primitive-amber); background: transparent; }
+.kind.toneTeal { color: var(--primitive-teal); background: transparent; }
+.kind.toneRed { color: var(--primitive-red); background: transparent; }
+
+.delta {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--primitive-leading-none);
+}
+
+.delta.toneGreen { color: var(--primitive-green); background: transparent; }
+.delta.toneAmber { color: var(--primitive-amber); background: transparent; }
+.delta.toneTeal { color: var(--primitive-teal); background: transparent; }
+.delta.toneRed { color: var(--primitive-red); background: transparent; }
+
+.balance {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.itemMeta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}

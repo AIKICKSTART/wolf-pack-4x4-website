@@ -1,0 +1,126 @@
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--primitive-space-6);
+  padding: 14px 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.group {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.groupLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+}
+
+.deviceBtn {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 200ms ease,
+    background 200ms ease,
+    color 200ms ease;
+}
+
+.deviceBtn:hover,
+.deviceBtn:focus-visible {
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-surface-3);
+  outline: none;
+}
+
+.deviceBtnOn {
+  border-color: color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 8%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.deviceLabel {
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.02em;
+}
+
+.deviceSize {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  cursor: pointer;
+  transition:
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.toggleOn {
+  border-color: color-mix(in oklab, var(--primitive-amber) 60%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.toggleThumb {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent);
+  position: relative;
+  transition:
+    background 200ms ease,
+    transform 200ms ease;
+}
+
+.toggleOn .toggleThumb {
+  background: var(--primitive-amber);
+  transform: translateX(2px);
+}
+
+.toggleLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deviceBtn,
+  .toggle,
+  .toggleThumb {
+    transition: none;
+  }
+}

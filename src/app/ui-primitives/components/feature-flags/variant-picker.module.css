@@ -1,0 +1,181 @@
+.wrap {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  margin: var(--primitive-space-0);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.8%, transparent) 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+}
+
+.legend {
+  padding: var(--primitive-space-0) var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.list {
+  list-style: none;
+  margin: var(--primitive-space-0);
+  padding: var(--primitive-space-0);
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--row-border, var(--primitive-line));
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--row-bg, color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent));
+}
+
+.identity {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  min-width: 0;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--row-tone, color-mix(in oklab, var(--primitive-text-strong) 40%, transparent));
+  box-shadow: 0 0 0 3px var(--row-halo, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent));
+}
+
+.name {
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-text-strong);
+  text-transform: uppercase;
+}
+
+.description {
+  display: block;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  margin-top: 2px;
+}
+
+.weightLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.weightInput {
+  width: 64px;
+  height: 34px;
+  padding: var(--primitive-space-0) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 36%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  text-align: right;
+}
+
+.weightInput:focus-visible {
+  outline: 2px solid var(--row-tone, var(--primitive-amber));
+  outline-offset: 2px;
+}
+
+.total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: 12px 14px;
+  border: 1px solid var(--total-border, var(--primitive-line));
+  border-radius: 10px;
+  background: var(--total-bg, color-mix(in oklab, var(--primitive-text-strong) 2%, transparent));
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.totalLabel {
+  color: var(--primitive-muted);
+}
+
+.totalValue {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  letter-spacing: 0;
+  color: var(--primitive-text-strong);
+}
+
+.totalHint {
+  margin-left: auto;
+  color: var(--total-hint, var(--primitive-body));
+}
+
+.totalOk {
+  --total-border: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  --total-bg: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  --total-hint: var(--primitive-green);
+}
+
+.totalBad {
+  --total-border: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+  --total-bg: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  --total-hint: var(--primitive-red);
+}
+
+.toneNeutral {
+  --row-tone: color-mix(in oklab, var(--primitive-text-strong) 50%, transparent);
+  --row-halo: var(--primitive-line-muted);
+}
+
+.toneRed {
+  --row-tone: var(--primitive-red);
+  --row-halo: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  --row-border: color-mix(in oklab, var(--primitive-red) 34%, transparent);
+  --row-bg: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+}
+
+.toneAmber {
+  --row-tone: var(--primitive-amber);
+  --row-halo: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --row-border: color-mix(in oklab, var(--primitive-amber) 34%, transparent);
+  --row-bg: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+}
+
+.toneTeal {
+  --row-tone: var(--primitive-teal);
+  --row-halo: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --row-border: color-mix(in oklab, var(--primitive-teal) 34%, transparent);
+  --row-bg: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+}
+
+.toneGreen {
+  --row-tone: var(--primitive-green);
+  --row-halo: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  --row-border: color-mix(in oklab, var(--primitive-green) 34%, transparent);
+  --row-bg: color-mix(in oklab, var(--primitive-green) 6%, transparent);
+}

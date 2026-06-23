@@ -1,0 +1,167 @@
+.wrapper {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.inner {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 18px var(--primitive-space-5);
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in srgb, var(--survey-tone, var(--primitive-teal)) 12%, transparent), transparent 60%),
+    var(--primitive-panel);
+  border: 1px solid color-mix(in srgb, var(--survey-tone, var(--primitive-teal)) 22%, var(--primitive-line));
+  border-radius: 14px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--survey-tone, var(--primitive-teal));
+}
+
+.dismiss {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: transparent;
+  color: var(--primitive-muted);
+  cursor: pointer;
+}
+
+.dismiss:hover,
+.dismiss:focus-visible {
+  outline: none;
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+}
+
+.question {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-medium);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+  line-height: 1.3;
+}
+
+.helper {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--primitive-body);
+}
+
+.choices {
+  display: grid;
+  gap: 6px;
+}
+
+.choice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-medium);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.choice:hover,
+.choice:focus-visible {
+  outline: none;
+  border-color: var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}
+
+.choiceOn {
+  border-color: var(--survey-tone, var(--primitive-teal));
+  background: color-mix(in srgb, var(--survey-tone, var(--primitive-teal)) 18%, transparent);
+}
+
+.choiceNeutral.choiceOn {
+  border-color: var(--primitive-teal);
+}
+
+.choicePositive {
+  --survey-tone: var(--primitive-green);
+}
+
+.choiceWarning {
+  --survey-tone: var(--primitive-amber);
+}
+
+.choiceNegative {
+  --survey-tone: var(--primitive-red);
+}
+
+.foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.send {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 9px var(--primitive-space-4);
+  border: none;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+  color: var(--primitive-btn-primary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--primitive-duration-normal) var(--primitive-ease-out),
+    color var(--primitive-duration-normal) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-normal) var(--primitive-ease-out),
+    transform var(--primitive-duration-normal) var(--primitive-ease-out);
+}
+
+.send:hover:not(:disabled),
+.send:focus-visible:not(:disabled) {
+  outline: none;
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.send:focus-visible:not(:disabled) {
+  box-shadow: var(--primitive-btn-primary-hover-shadow), var(--primitive-focus-shadow);
+}
+
+.send:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choice,
+  .send {
+    transition: none;
+  }
+}

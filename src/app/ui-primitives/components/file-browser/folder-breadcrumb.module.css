@@ -1,0 +1,124 @@
+.nav {
+  display: block;
+  width: 100%;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-panel);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-size: var(--primitive-text-xs);
+  font-family: var(--primitive-font-body);
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.itemCurrent .label {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primitive-amber);
+  margin-inline-end: var(--primitive-space-0-5);
+}
+
+.link {
+  color: var(--primitive-muted);
+  text-decoration: none;
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border-radius: 6px;
+  transition: color var(--primitive-duration-fast) ease, background var(--primitive-duration-fast) ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  outline: none;
+}
+
+.label {
+  color: var(--primitive-body);
+  padding: var(--primitive-space-0-5) var(--primitive-space-1);
+  letter-spacing: 0.005em;
+}
+
+.sep {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primitive-muted);
+  opacity: 0.6;
+}
+
+.overflowBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 22px;
+  background: var(--primitive-glass-soft);
+  border: 1px solid var(--primitive-line);
+  border-radius: 7px;
+  color: var(--primitive-muted);
+  cursor: pointer;
+  transition: color var(--primitive-duration-fast) ease, background var(--primitive-duration-fast) ease;
+}
+
+.overflowBtn:hover,
+.overflowBtn:focus-visible {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-line-muted);
+  outline: none;
+}
+
+.overflowMenu {
+  min-width: 200px;
+}
+
+.overflowList {
+  list-style: none;
+  margin: 0;
+  padding: var(--primitive-space-1) 0;
+}
+
+.overflowLink {
+  display: block;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  color: var(--primitive-body);
+  text-decoration: none;
+  font-size: var(--primitive-text-sm);
+  transition: background var(--primitive-duration-fast) ease, color var(--primitive-duration-fast) ease;
+}
+
+.overflowLink:hover,
+.overflowLink:focus-visible {
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .overflowBtn,
+  .overflowLink {
+    transition: none;
+  }
+}

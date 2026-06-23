@@ -1,0 +1,53 @@
+/* HermesOperatorDashboard — ops cockpit composition. */
+
+.surface {
+  display: grid;
+  gap: 18px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+.row > * {
+  min-width: 0;
+}
+
+.reachRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-3);
+}
+
+.reachValue {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 2.4vw, 36px);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: var(--primitive-leading-none);
+  font-variant-numeric: tabular-nums;
+}
+
+.reachMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--primitive-muted);
+}
+
+.matrixWrap {
+  min-width: 0;
+}
+
+@media (max-width: 1080px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

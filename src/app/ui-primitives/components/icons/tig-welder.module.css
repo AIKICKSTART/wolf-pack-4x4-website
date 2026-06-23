@@ -1,0 +1,51 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.torch { fill: currentColor; opacity: 0.92; stroke: currentColor; stroke-width: 1; stroke-linejoin: round; }
+.torchStroke { stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linejoin: round; }
+.gripRib { stroke: var(--primitive-canvas); stroke-width: 0.6; opacity: 0.55; stroke-linecap: round; }
+.head { fill: currentColor; opacity: 0.85; stroke: currentColor; stroke-width: 1; }
+.cup { fill: currentColor; opacity: 0.4; }
+.cupStroke { fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linejoin: round; }
+.cable { stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linecap: round; }
+.tungsten { stroke: currentColor; stroke-width: 1; stroke-linecap: round; }
+.tungstenTip { stroke: var(--primitive-amber); stroke-width: 1.6; stroke-linecap: round; }
+.fillerRod { stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; opacity: 0.7; stroke-dasharray: 1.6 1.4; }
+.glow { fill: currentColor; opacity: 0; animation: tigGlow 1.6s ease-in-out infinite; }
+.gas { stroke: currentColor; fill: none; stroke-width: 0.9; stroke-linecap: round; opacity: 0; animation: tigGas 1.6s ease-in-out infinite; }
+.gas[data-g="2"] { animation-delay: 0.4s; }
+.gas[data-g="3"] { animation-delay: 0.8s; }
+
+@keyframes tigGlow {
+  0%, 100% { opacity: 0; transform: scale(0.6); }
+  50% { opacity: 0.9; transform: scale(1.3); }
+}
+@keyframes tigGas {
+  0% { opacity: 0; transform: translate(0, 0); }
+  40% { opacity: 0.7; }
+  100% { opacity: 0; transform: translate(4px, 6px); }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .torchStroke, .motionDraw .cable, .motionDraw .cup { stroke-dasharray: 60; stroke-dashoffset: 60; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .glow, .motionSpark .gas { animation-duration: 0.3s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .torch,
+[data-variant="outline"] .head,
+[data-variant="outline"] .cup { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .torch { opacity: 1; }
+[data-variant="filled"] .cup { opacity: 0.85; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .glow, .gas { animation: none !important; transition: none !important; }
+}

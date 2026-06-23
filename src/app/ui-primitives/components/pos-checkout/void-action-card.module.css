@@ -1,0 +1,191 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-red);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.context {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line-muted);
+  border-radius: 10px;
+  background: var(--primitive-recessed);
+}
+
+.contextRow {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+  color: var(--primitive-body);
+}
+
+.contextRow strong {
+  color: var(--primitive-text-strong);
+  font-weight: 600;
+}
+
+.pinHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.pinLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.pinHint {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+}
+
+.pinDots {
+  display: flex;
+  gap: var(--primitive-space-2);
+}
+
+.pinDot {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+  display: grid;
+  place-items: center;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: 600;
+  color: var(--primitive-text-strong);
+}
+
+.pinDotFilled {
+  border-color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+}
+
+.pinDotError {
+  border-color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--primitive-space-1-5);
+}
+
+.key {
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+  color: var(--primitive-text-strong);
+  border-radius: var(--primitive-radius-md);
+  padding: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.key:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}
+
+.key:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.keyMuted {
+  color: var(--primitive-muted);
+}
+
+.controls {
+  display: flex;
+  gap: var(--primitive-space-2);
+  justify-content: flex-end;
+}
+
+.btn {
+  border: 1px solid currentColor;
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.btnCancel {
+  color: var(--primitive-muted);
+}
+
+.btnConfirm {
+  color: var(--primitive-red);
+}
+
+.btnConfirm:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.btnConfirm:hover:not(:disabled) {
+  background: color-mix(in oklab, var(--primitive-red) 12%, var(--primitive-btn-secondary-bg));
+}
+
+.errorMessage {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}

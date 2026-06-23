@@ -1,0 +1,196 @@
+.surface {
+  display: grid;
+  gap: 18px;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 4%, transparent), transparent 60%),
+    var(--primitive-card-bg);
+  box-shadow: var(--primitive-card-shadow);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--primitive-space-4);
+  flex-wrap: wrap;
+}
+
+.headText {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.01em;
+}
+
+.subline {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--primitive-body);
+}
+
+.impactChip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid currentColor;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.impactNeutral {
+  color: var(--primitive-muted);
+  background: var(--primitive-glass-soft);
+}
+
+.impactPositive {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+}
+
+.impactWarning {
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+}
+
+.impactNegative {
+  color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+}
+
+.tiles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--primitive-space-2-5);
+}
+
+.tile {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-glass-soft);
+  align-content: end;
+  min-height: 96px;
+}
+
+.tileCount {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: 1;
+  color: var(--primitive-text-strong);
+}
+
+.tileLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.tileCreate {
+  border-color: color-mix(in oklab, var(--primitive-green) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 6%, transparent);
+}
+
+.tileCreate .tileCount {
+  color: var(--primitive-green);
+}
+
+.tileUpdate {
+  border-color: color-mix(in oklab, var(--primitive-teal) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 6%, transparent);
+}
+
+.tileUpdate .tileCount {
+  color: var(--primitive-teal);
+}
+
+.tileSkip {
+  border-color: var(--primitive-line);
+}
+
+.tileFail {
+  border-color: color-mix(in oklab, var(--primitive-red) 36%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+}
+
+.tileFail .tileCount {
+  color: var(--primitive-red);
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--primitive-space-4);
+  flex-wrap: wrap;
+  padding-top: var(--primitive-space-3);
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.warning {
+  margin: 0;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  max-width: 60ch;
+}
+
+.commitButton {
+  padding: var(--primitive-space-2-5) 18px;
+  font: inherit;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-text-on-accent);
+  background: var(--primitive-teal);
+  border: 1px solid var(--primitive-teal);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.commitButton:hover,
+.commitButton:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.commitButton:disabled {
+  background: var(--primitive-glass-soft);
+  border-color: var(--primitive-line);
+  color: var(--primitive-muted);
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .commitButton {
+    transition: none;
+  }
+}

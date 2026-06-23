@@ -1,0 +1,99 @@
+/* CustomerPortalDashboard — customer-facing portal layout. */
+
+.surface {
+  display: grid;
+  gap: 18px;
+}
+
+.greeting {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.greetingCopy {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.greetingKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.greetingHello {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 1.7vw, 30px);
+  font-weight: var(--primitive-weight-regular);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.01em;
+  line-height: 1.04;
+}
+
+.greetingBody {
+  margin: 0;
+  font-size: 14px;
+  color: var(--primitive-body);
+  line-height: 1.55;
+}
+
+.greetingMeta {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 24%, var(--primitive-line));
+  border-radius: 10px;
+  background:
+    radial-gradient(140% 100% at 100% 0%, color-mix(in oklab, var(--primitive-teal) 10%, transparent), transparent 64%),
+    var(--primitive-surface-1);
+}
+
+.greetingMetaLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.greetingMetaValue {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 1.6vw, 26px);
+  color: var(--primitive-teal);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.vehicles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+@media (max-width: 1080px) {
+  .vehicles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .greeting,
+  .split,
+  .vehicles {
+    grid-template-columns: 1fr;
+  }
+}

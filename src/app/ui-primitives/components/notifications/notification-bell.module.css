@@ -1,0 +1,116 @@
+.bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(ellipse at 30% 0%, var(--primitive-glass-strong), transparent 60%),
+    var(--primitive-surface-2);
+  color: var(--primitive-text-strong);
+  cursor: pointer;
+  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease,
+    background 200ms ease;
+}
+
+.bell:hover {
+  border-color: var(--primitive-line-strong);
+  transform: translateY(-1px);
+  background:
+    radial-gradient(ellipse at 30% 0%, var(--primitive-glass-strong), transparent 55%),
+    var(--primitive-surface-hover);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.bell:focus-visible {
+  border-color: var(--primitive-focus-ring);
+  box-shadow: var(--primitive-focus-shadow);
+  outline: none;
+}
+
+.bell:active {
+  transform: translateY(0);
+}
+
+.bell svg {
+  display: block;
+}
+
+.pulseDot {
+  position: absolute;
+  top: var(--primitive-space-2);
+  right: var(--primitive-space-2);
+  width: 9px;
+  height: 9px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 2px var(--primitive-canvas);
+  animation: pulse 1800ms ease-in-out infinite;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 var(--primitive-space-1-5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  box-shadow: 0 0 0 2px var(--primitive-canvas), 0 6px 14px color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}
+
+.badge[data-tone="amber"] {
+  background: var(--primitive-amber);
+  color: var(--accent-foreground);
+  box-shadow: 0 0 0 2px var(--primitive-canvas), 0 6px 14px color-mix(in oklab, var(--primitive-amber) 34%, transparent);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 2px var(--primitive-canvas), 0 0 0 0 color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  }
+  50% {
+    transform: scale(1.18);
+    box-shadow: 0 0 0 2px var(--primitive-canvas), 0 0 0 6px color-mix(in oklab, var(--primitive-red) 0%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulseDot {
+    animation: none;
+  }
+  .bell {
+    transition: none;
+  }
+  .bell:hover {
+    transform: none;
+  }
+}

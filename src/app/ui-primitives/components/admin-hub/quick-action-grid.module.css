@@ -1,0 +1,170 @@
+.surface {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.helper {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.grid {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.col3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.col2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cell {
+  display: contents;
+}
+
+.action {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--primitive-space-2-5);
+  width: 100%;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent) 50%),
+    radial-gradient(circle at 100% 0%, var(--action-tone, color-mix(in oklab, var(--primitive-teal) 18%, transparent)), transparent 70%),
+    color-mix(in oklab, var(--primitive-panel) 73%, transparent);
+  color: var(--primitive-body);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 200ms var(--primitive-ease-out),
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+  font-variant-numeric: tabular-nums;
+}
+
+.action:hover,
+.action:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+  border-color: var(--primitive-line-strong);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    0 14px 32px color-mix(in oklab, var(--primitive-recessed) 100%, transparent);
+}
+
+.actionTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+}
+
+.glyph {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  color: var(--action-tone, var(--primitive-text-strong));
+  line-height: var(--primitive-leading-none);
+  letter-spacing: 0.01em;
+}
+
+.pin {
+  color: var(--primitive-muted);
+}
+
+.actionBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.actionLabel {
+  color: var(--primitive-text-strong);
+  font-size: 13.5px;
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.005em;
+}
+
+.actionDesc {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+
+.actionMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+  min-height: 18px;
+}
+
+.badge {
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--action-tone, var(--primitive-teal));
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid currentColor;
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.shortcut {
+  margin-left: auto;
+}
+
+@media (max-width: 720px) {
+  .col3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .col2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: none;
+  }
+  .action:hover,
+  .action:focus-visible {
+    transform: none;
+  }
+}

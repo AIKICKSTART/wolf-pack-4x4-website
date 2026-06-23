@@ -1,0 +1,116 @@
+.card {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+}
+
+.lockup {
+  display: grid;
+  gap: 14px;
+  align-items: center;
+  justify-items: center;
+  min-height: 168px;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 65%),
+    color-mix(in srgb, var(--primitive-canvas) 18%, transparent);
+}
+
+.variant-horizontal .lockup {
+  grid-auto-flow: column;
+  grid-template-columns: auto minmax(0, auto);
+  gap: var(--primitive-space-4);
+}
+
+.variant-mark-only .lockup,
+.variant-wordmark-only .lockup {
+  grid-template-columns: 1fr;
+}
+
+.mark {
+  width: 74px;
+  height: 74px;
+  flex: 0 0 auto;
+}
+
+.variant-mark-only .mark {
+  width: 108px;
+  height: 108px;
+}
+
+.wordstack {
+  display: grid;
+  gap: var(--primitive-space-1);
+  text-align: center;
+}
+
+.variant-horizontal .wordstack {
+  text-align: left;
+}
+
+.wordmark {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+
+.tagline {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+}
+
+.spec {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5);
+  margin: 0;
+}
+
+.spec > div {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.spec dt {
+  margin: 0;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.spec dd {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+}

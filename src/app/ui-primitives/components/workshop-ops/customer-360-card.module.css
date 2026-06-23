@@ -1,0 +1,287 @@
+.card {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-panel));
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+}
+
+.identity {
+  min-width: 0;
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.name {
+  margin: 0;
+  font-size: var(--primitive-text-xl);
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.005em;
+}
+
+.suburb {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.headChips {
+  display: flex;
+  gap: var(--primitive-space-1-5);
+  flex-wrap: wrap;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.stat {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.statLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.statValue {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 2.6vw, 28px);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.01em;
+  font-feature-settings: "tnum" 1;
+}
+
+.statHint {
+  color: var(--primitive-muted);
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.statLink {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  text-decoration: none;
+  transition: color var(--primitive-duration-fast) ease;
+}
+
+.statLink:hover {
+  color: var(--primitive-teal);
+}
+
+.vehicles {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.vehiclesHead,
+.commsHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.sectionCount {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-body);
+}
+
+.vehicleList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.vehicleRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.vehicleGlyph {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-panel));
+}
+
+.vehicleMeta {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.vehicleLabel {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.005em;
+}
+
+.vehicleSub {
+  color: var(--primitive-muted);
+  font-size: 11px;
+}
+
+.regoPlate {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 80%, white), color-mix(in oklab, var(--primitive-amber) 88%, black));
+  color: color-mix(in oklab, var(--primitive-amber) 18%, black);
+  font-weight: var(--primitive-weight-bold);
+  padding: 3px 8px;
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid color-mix(in oklab, black 30%, transparent);
+}
+
+.comms {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.commsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.commsRow {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  position: relative;
+}
+
+.commsRow::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  bottom: -10px;
+  left: 17px;
+  width: 1px;
+  background: var(--primitive-line);
+}
+
+.commsRow:last-child::before {
+  display: none;
+}
+
+.commsDot {
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-muted);
+  border: 1px solid var(--primitive-line-strong);
+}
+
+.commsRowInbound .commsDot {
+  background: var(--primitive-teal);
+  border-color: color-mix(in oklab, var(--primitive-teal) 62%, transparent);
+}
+
+.commsRowOutbound .commsDot {
+  background: var(--primitive-amber);
+  border-color: color-mix(in oklab, var(--primitive-amber) 62%, transparent);
+}
+
+.commsBody {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.commsMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.commsTime {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  color: var(--primitive-muted);
+}
+
+.commsSummary {
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .head {
+    grid-template-columns: auto 1fr;
+  }
+  .headChips {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statLink {
+    transition: none;
+  }
+}

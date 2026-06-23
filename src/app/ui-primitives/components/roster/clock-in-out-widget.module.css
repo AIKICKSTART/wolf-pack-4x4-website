@@ -1,0 +1,161 @@
+.widget {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 12% 0%, color-mix(in oklab, var(--primitive-green) 12%, transparent), transparent 38%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+}
+
+.kicker {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.readout {
+  display: grid;
+  justify-items: center;
+  gap: var(--primitive-space-1);
+  padding: 18px 0;
+  border-block: 1px solid var(--primitive-line);
+}
+
+.elapsed {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono-techno);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.elapsedLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.breakRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+}
+
+.breakRow strong {
+  color: var(--primitive-amber);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.04em;
+}
+
+.actions {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--primitive-space-2);
+}
+
+.btnIn,
+.btnOut,
+.btnBreak {
+  min-height: 46px;
+  padding: 0 14px;
+  border-radius: var(--primitive-btn-radius);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.btnIn {
+  border: var(--primitive-space-px) solid var(--primitive-btn-secondary-border);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 70%, white) 0%,
+      var(--primitive-green) 46%, color-mix(in oklab, var(--primitive-green) 72%, black) 100%);
+  color: var(--primitive-text-on-accent);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.btnOut {
+  border: var(--primitive-space-px) solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.btnBreak {
+  border: var(--primitive-space-px) solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+}
+
+.btnIn:hover,
+.btnIn:focus-visible {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 50%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, var(--primitive-canvas) 40%, transparent),
+    0 14px 30px color-mix(in oklab, var(--primitive-green) 44%, transparent);
+  outline: none;
+}
+
+.btnOut:hover,
+.btnOut:focus-visible {
+  transform: translateY(-1px);
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+  outline: none;
+}
+
+.btnBreak:hover,
+.btnBreak:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.btnIn:focus-visible,
+.btnOut:focus-visible,
+.btnBreak:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btnIn,
+  .btnOut,
+  .btnBreak {
+    transition: none;
+  }
+  .btnIn:hover,
+  .btnOut:hover,
+  .btnBreak:hover {
+    transform: none;
+  }
+}

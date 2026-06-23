@@ -1,0 +1,112 @@
+.arrow {
+  --flow-tone: var(--primitive-teal);
+  --flow-tone-glow: color-mix(in oklab, var(--primitive-teal) 55%, transparent);
+
+  position: absolute;
+  height: 0;
+  display: inline-flex;
+  align-items: center;
+  transform-origin: 0% 50%;
+  pointer-events: none;
+}
+
+.shaft {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  border-radius: var(--primitive-radius-xs);
+  background: linear-gradient(90deg, transparent, var(--flow-tone) 8%, var(--flow-tone) 92%, transparent);
+  box-shadow: 0 0 12px var(--flow-tone-glow);
+  overflow: visible;
+}
+
+.shaft::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: 0;
+  width: 28%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primitive-text-strong) 90%, transparent), transparent);
+  filter: blur(1px);
+  animation: trafficPulse 1.6s linear infinite;
+  opacity: calc(0.4 + var(--flow-intensity, 0.4));
+}
+
+.head {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--flow-tone);
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 0 6px var(--flow-tone-glow));
+}
+
+.head svg {
+  width: 18px;
+  height: 18px;
+}
+
+.rateChip {
+  position: absolute;
+  left: 50%;
+  bottom: var(--primitive-space-2);
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--flow-tone);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translateX(-50%) rotate(calc(var(--flow-counter-rotate, 0deg))) translateY(-100%);
+  box-shadow: 0 8px 18px color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+}
+
+.rateChip small {
+  font-size: var(--primitive-text-2xs);
+  color: var(--primitive-muted);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.toneGreen {
+  --flow-tone: var(--primitive-green);
+  --flow-tone-glow: color-mix(in oklab, var(--primitive-green) 55%, transparent);
+}
+
+.toneTeal {
+  --flow-tone: var(--primitive-teal);
+  --flow-tone-glow: color-mix(in oklab, var(--primitive-teal) 55%, transparent);
+}
+
+.toneAmber {
+  --flow-tone: var(--primitive-amber);
+  --flow-tone-glow: color-mix(in oklab, var(--primitive-amber) 55%, transparent);
+}
+
+.toneRed {
+  --flow-tone: var(--primitive-red);
+  --flow-tone-glow: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+}
+
+@keyframes trafficPulse {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(360%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shaft::before {
+    animation: none;
+    opacity: 0.2;
+  }
+}

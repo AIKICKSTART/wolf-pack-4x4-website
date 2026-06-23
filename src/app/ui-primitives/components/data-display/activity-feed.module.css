@@ -1,0 +1,160 @@
+.feed {
+  position: relative;
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--primitive-font-body);
+}
+
+.feed::before {
+  content: "";
+  position: absolute;
+  top: var(--primitive-space-2-5);
+  bottom: var(--primitive-space-2-5);
+  left: var(--primitive-space-5);
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--primitive-line-strong) 12%, var(--primitive-line-strong) 88%, transparent);
+  pointer-events: none;
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--primitive-space-9) minmax(0, 1fr);
+  gap: 14px;
+  padding: 14px 0;
+}
+
+.item + .item {
+  border-top: 1px solid var(--primitive-line);
+}
+
+.dotWrap {
+  display: grid;
+  place-items: center;
+  width: var(--primitive-space-9);
+  height: var(--primitive-space-9);
+}
+
+.dot {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-amber);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-amber) 16%, transparent),
+    0 0 10px color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+}
+
+.dot[data-tone="info"] {
+  background: var(--primitive-teal);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-teal) 16%, transparent),
+    0 0 10px color-mix(in oklab, var(--primitive-teal) 50%, transparent);
+}
+
+.dot[data-tone="success"] {
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-green) 16%, transparent),
+    0 0 10px color-mix(in oklab, var(--primitive-green) 50%, transparent);
+}
+
+.dot[data-tone="warn"] {
+  background: var(--primitive-amber);
+}
+
+.dot[data-tone="error"] {
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-red) 16%, transparent),
+    0 0 10px color-mix(in oklab, var(--primitive-red) 50%, transparent);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.actor {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-body);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: 14px;
+  font-weight: var(--primitive-weight-semibold);
+  line-height: 1.4;
+}
+
+.description {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+.actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  margin-top: var(--primitive-space-1);
+}
+
+.actions a,
+.actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: 5px var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.actions a:hover,
+.actions button:hover {
+  color: var(--primitive-amber);
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  background: var(--primitive-field-hover);
+}
+
+.actions a:focus-visible,
+.actions button:focus-visible {
+  color: var(--primitive-amber);
+  border-color: color-mix(in oklab, var(--primitive-amber) 50%, transparent);
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actions a,
+  .actions button {
+    transition: none;
+  }
+}

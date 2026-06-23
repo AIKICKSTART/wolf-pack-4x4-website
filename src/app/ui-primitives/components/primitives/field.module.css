@@ -1,0 +1,229 @@
+.field {
+  --field-accent: var(--primitive-teal);
+  --field-ring: var(--primitive-focus-shadow);
+
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  width: 100%;
+}
+
+/* ── Label ─────────────────────────────────────────────── */
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  cursor: default;
+}
+
+.labelText {
+  line-height: var(--primitive-leading-none);
+}
+
+.required {
+  color: var(--primitive-red);
+  font-size: var(--primitive-text-xs);
+  line-height: var(--primitive-leading-none);
+}
+
+/* ── Recessed well wrapper (holds the control) ─────────── */
+.well {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+/* The metallic sheen kiss along the top inner edge of the well. */
+.well::after {
+  content: "";
+  position: absolute;
+  inset: var(--primitive-space-px) var(--primitive-space-px) auto;
+  height: 45%;
+  border-radius: inherit;
+  background: var(--primitive-metallic-sheen);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Control base (input + textarea share this DNA) ────── */
+.input,
+.textarea {
+  position: relative;
+  z-index: 0;
+  appearance: none;
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-recessed);
+  box-shadow: var(--primitive-shadow-inset);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--primitive-tracking-normal);
+  transition:
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out),
+    background-color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--primitive-muted);
+  opacity: 1;
+}
+
+.input:hover:not(:disabled):not(:focus),
+.textarea:hover:not(:disabled):not(:focus) {
+  border-color: var(--primitive-line-strong);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent 60%),
+    var(--primitive-recessed);
+}
+
+.input:focus-visible,
+.textarea:focus-visible,
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: color-mix(in srgb, var(--field-accent) 55%, transparent);
+  box-shadow: var(--primitive-shadow-inset), var(--field-ring);
+}
+
+.input:disabled,
+.textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ── Sizes ─────────────────────────────────────────────── */
+.input.sizeSm {
+  height: var(--primitive-size-field-sm);
+  padding: 0 var(--primitive-space-3);
+  font-size: var(--primitive-text-sm);
+}
+
+.input.sizeMd {
+  height: var(--primitive-size-field-md);
+  padding: 0 var(--primitive-space-4);
+  font-size: var(--primitive-text-base);
+}
+
+.input.sizeLg {
+  height: var(--primitive-size-field-lg);
+  padding: 0 var(--primitive-space-5);
+  font-size: var(--primitive-text-md);
+}
+
+.textarea {
+  min-height: var(--primitive-size-field-lg);
+  resize: vertical;
+  line-height: var(--primitive-leading-normal);
+}
+
+.textarea.sizeSm {
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  font-size: var(--primitive-text-sm);
+}
+
+.textarea.sizeMd {
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  font-size: var(--primitive-text-base);
+}
+
+.textarea.sizeLg {
+  padding: var(--primitive-space-3) var(--primitive-space-5);
+  font-size: var(--primitive-text-md);
+}
+
+/* ── Error / invalid state ─────────────────────────────── */
+.fieldInvalid {
+  --field-accent: var(--primitive-red);
+  --field-ring: 0 0 0 3px color-mix(in srgb, var(--primitive-red) 24%, transparent);
+}
+
+.controlInvalid {
+  border-color: color-mix(in srgb, var(--primitive-red) 60%, transparent);
+}
+
+.controlInvalid:hover:not(:disabled):not(:focus) {
+  border-color: color-mix(in srgb, var(--primitive-red) 72%, transparent);
+}
+
+.controlInvalid:focus-visible,
+.controlInvalid:focus {
+  border-color: color-mix(in srgb, var(--primitive-red) 70%, transparent);
+  box-shadow:
+    var(--primitive-shadow-inset),
+    0 0 0 3px color-mix(in srgb, var(--primitive-red) 24%, transparent);
+}
+
+/* ── Hint / error message ──────────────────────────────── */
+.message {
+  margin: 0;
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-xs);
+  line-height: var(--primitive-leading-snug);
+  letter-spacing: var(--primitive-tracking-normal);
+  color: var(--primitive-muted);
+}
+
+.error {
+  color: color-mix(in oklab, var(--primitive-red) 34%, white);
+  font-weight: var(--primitive-weight-medium);
+}
+
+/* ── Light theme ───────────────────────────────────────── */
+:global(html[data-primitive-theme="light"]) .input,
+:global(html[data-primitive-theme="light"]) .textarea {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-body) 4%, transparent), transparent 60%),
+    var(--primitive-field-bg);
+  border-color: color-mix(in srgb, var(--primitive-text-strong) 14%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 86%, transparent),
+    inset -10px -10px 18px color-mix(in srgb, var(--primitive-body) 5%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .input:hover:not(:disabled):not(:focus),
+:global(html[data-primitive-theme="light"]) .textarea:hover:not(:disabled):not(:focus) {
+  border-color: color-mix(in srgb, var(--primitive-text-strong) 26%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--primitive-text-on-accent) 70%, transparent), transparent 60%),
+    var(--primitive-field-hover);
+}
+
+:global(html[data-primitive-theme="light"]) .input:focus-visible,
+:global(html[data-primitive-theme="light"]) .textarea:focus-visible,
+:global(html[data-primitive-theme="light"]) .input:focus,
+:global(html[data-primitive-theme="light"]) .textarea:focus {
+  box-shadow:
+    inset 1px 1px 0 color-mix(in srgb, var(--primitive-text-on-accent) 86%, transparent),
+    var(--field-ring);
+}
+
+:global(html[data-primitive-theme="light"]) .well::after {
+  opacity: 0.18;
+}
+
+:global(html[data-primitive-theme="light"]) .error {
+  color: color-mix(in oklab, var(--primitive-red) 64%, black);
+}
+
+/* ── Reduced motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .textarea {
+    transition: none;
+  }
+}

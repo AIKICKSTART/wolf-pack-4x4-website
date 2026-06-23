@@ -1,0 +1,116 @@
+.card {
+  display: block;
+  padding: 18px;
+  border-radius: 14px;
+  --slo-tone: var(--primitive-green);
+}
+
+.toneRed { --slo-tone: var(--primitive-red); }
+.toneAmber { --slo-tone: var(--primitive-amber); }
+.toneTeal { --slo-tone: var(--primitive-teal); }
+.toneGreen { --slo-tone: var(--primitive-green); }
+.toneNeutral { --slo-tone: color-mix(in oklab, var(--primitive-text-strong) 60%, transparent); }
+.toneViolet { --slo-tone: var(--primitive-violet); }
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  margin-bottom: 14px;
+  padding-bottom: var(--primitive-space-3);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+  color: var(--primitive-text-strong);
+  text-transform: uppercase;
+}
+
+.service {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  color: var(--primitive-muted);
+  text-transform: lowercase;
+}
+
+.description {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  margin-top: var(--primitive-space-1);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.gauge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-2-5) 18px;
+  margin: 0;
+}
+
+.cell {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.cellLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.cellValue {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: baseline;
+}
+
+.cellUnit {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--primitive-muted);
+  margin-left: var(--primitive-space-1);
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .body {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}

@@ -1,0 +1,110 @@
+.menu {
+  display: grid;
+  min-width: 240px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-deep);
+  font-family: var(--primitive-font-mono);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-bottom: 1px solid var(--primitive-line);
+  background: var(--primitive-recessed);
+}
+
+.kicker {
+  color: var(--primitive-amber);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.label {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  letter-spacing: 0.08em;
+}
+
+.close {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--primitive-muted);
+  cursor: pointer;
+}
+
+.close svg {
+  width: 10px;
+  height: 10px;
+}
+
+.close:hover {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 46%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 10%, transparent);
+}
+
+.group {
+  display: grid;
+  padding: var(--primitive-space-1);
+}
+
+.groupSep {
+  border-top: 1px solid var(--primitive-line);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: 7px var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-sm);
+  border: 0;
+  background: transparent;
+  color: var(--primitive-body);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  text-align: left;
+}
+
+.item:hover {
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+}
+
+.itemDanger {
+  color: var(--primitive-red);
+}
+
+.itemDanger:hover {
+  background: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 38%, white);
+}
+
+.kbd {
+  padding: var(--primitive-space-px) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-overlay) 83%, transparent);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+}

@@ -1,0 +1,70 @@
+.banner {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--primitive-space-4);
+  align-items: center;
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primitive-green) 16%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  inset: -30% -10% auto auto;
+  width: 50%;
+  height: 200%;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--primitive-green) 28%, transparent), transparent 70%);
+  pointer-events: none;
+}
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--primitive-radius-round);
+  background: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  color: var(--primitive-green);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 45%, transparent);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.line {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: 0.005em;
+}
+
+.meta {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-xs);
+}
+
+.chips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin-top: var(--primitive-space-1);
+}

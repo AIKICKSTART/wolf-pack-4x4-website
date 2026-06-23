@@ -1,0 +1,255 @@
+/* ── Part-card stage ─────────────────────────────────────────────
+   Owner-supplied 4K spotlight asset (carbon texture, centre spot,
+   red underglow pedestal) behind every parts-box media well, both
+   themes. Source master: muffler-men-part-card-background-4k.webp;
+   served at 1200px/39KB. Supplier thumbnails are flattened onto
+   white canvases, so the img layer uses mix-blend-mode: multiply —
+   white pixels vanish into the stage, the part keeps its ink.
+
+   Refinements (see-and-refine pass):
+   - 116% / 50% 62% crop removes the asset's baked pinstripe frame
+     so it stops double-framing against the card's own border.
+   - ::before spotlight lift brightens the backdrop under the
+     multiplied part: metalwork + spec labels stay legible instead
+     of sinking into the red-brown pedestal area.
+   - isolation keeps the multiply group inside the well so the part
+     never blends with the card glass behind it. */
+
+.seo-part-media,
+.part-result-media,
+html[data-mufflermen-theme="light"] .seo-part-media,
+html[data-mufflermen-theme="light"] .part-result-media {
+  isolation: isolate;
+  border-color: rgba(255, 255, 255, 0.14);
+  background: #16171b url("/media/parts/part-card-stage.webp") 50% 62% / 116% no-repeat;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 -20px 44px rgba(0, 0, 0, 0.32),
+    0 12px 28px rgba(0, 0, 0, 0.32);
+}
+
+/* Own the media-well ::before outright. 04-public-contact-forms gives
+   these wells a liquid-drift glass overlay (diagonal white streak +
+   red blotch, screen blend, 0.78 opacity, infinite drift) — on the
+   stage asset that read as a dirty film sloshing over the display
+   case. Pin blend/opacity/animation here so the stage stays still. */
+.seo-part-media::before,
+.part-result-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  mix-blend-mode: normal;
+  opacity: 1;
+  animation: none;
+  background:
+    radial-gradient(120% 90% at 50% 30%, rgba(255, 255, 255, 0.07), transparent 60%);
+}
+
+/* Spotlight lift under multiplied imgs only (fallback wells keep the
+   raw dark stage so their light ink stays readable). The bottom band
+   gently neutralises the red pedestal smear under spec-label rows. */
+.seo-part-media:has(img)::before,
+.part-result-media:has(img)::before {
+  background:
+    radial-gradient(58% 58% at 50% 50%, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.12) 60%, transparent 82%),
+    linear-gradient(180deg, transparent 56%, rgba(255, 238, 230, 0.13) 84%, rgba(255, 238, 230, 0.18));
+}
+
+/* Fallback wells (no supplier image) sit straight on the well's own
+   stage — no second background layer, light ink with a dark halo so
+   it reads over the spotlight centre. */
+.seo-part-fallback,
+.part-result-fallback,
+html[data-mufflermen-theme="light"] .seo-part-fallback,
+html[data-mufflermen-theme="light"] .part-result-fallback {
+  color: rgba(255, 255, 255, 0.8);
+  background: none;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.55),
+    0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+.seo-part-thumb,
+.part-result img,
+html[data-mufflermen-theme="light"] .seo-part-thumb,
+html[data-mufflermen-theme="light"] .part-result img {
+  mix-blend-mode: multiply;
+  filter:
+    brightness(1.06)
+    contrast(1.1)
+    saturate(1.04)
+    drop-shadow(0 18px 18px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 10px rgba(190, 0, 16, 0.18));
+}
+
+/* Watermarked supplier scans: clip the grey watermark toward white
+   (multiply makes near-white vanish into the lit stage) — slightly
+   brighter, gentler contrast than the clean scans. */
+.supplier-watermark-media img,
+html[data-mufflermen-theme="light"] .supplier-watermark-media img {
+  filter:
+    brightness(1.12)
+    contrast(1.05)
+    saturate(1.02)
+    drop-shadow(0 18px 18px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 10px rgba(190, 0, 16, 0.18));
+}
+
+/* Breathing room so collage thumbnails float inside the case instead
+   of pressing against its edges. */
+.part-result img {
+  padding: 16px 14px 18px;
+}
+
+/* Hover must never drop below the dark canvas-clip floor (1.16) or
+   the white slab re-appears mid-interaction. Light hover stays gentle
+   with case-toned shadows. */
+.seo-part-card:hover .seo-part-thumb,
+.seo-part-card:focus-within .seo-part-thumb,
+.part-result:hover img,
+.part-result:focus img,
+.part-result:focus-within img,
+.part-result:focus-visible img {
+  filter:
+    brightness(1.18)
+    contrast(1.1)
+    saturate(1.05)
+    drop-shadow(0 26px 30px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 16px rgba(190, 0, 16, 0.26));
+}
+
+html[data-mufflermen-theme="light"] .seo-part-card:hover .seo-part-thumb,
+html[data-mufflermen-theme="light"] .seo-part-card:focus-within .seo-part-thumb,
+html[data-mufflermen-theme="light"] .part-result:hover img,
+html[data-mufflermen-theme="light"] .part-result:focus img,
+html[data-mufflermen-theme="light"] .part-result:focus-within img,
+html[data-mufflermen-theme="light"] .part-result:focus-visible img {
+  filter:
+    brightness(1.04)
+    contrast(1.08)
+    saturate(1.04)
+    drop-shadow(0 18px 24px rgba(61, 45, 31, 0.4))
+    drop-shadow(0 0 12px rgba(159, 21, 29, 0.2));
+}
+
+/* Single-column phones: the 1/1 img ratio (06-seo-routes) makes the
+   well tower over the copy — cap it and let object-fit recentre. */
+@media (max-width: 640px) {
+  .part-result-media,
+  html[data-mufflermen-theme="light"] .part-result-media {
+    max-height: 272px;
+  }
+
+  .part-result img {
+    max-height: 272px;
+  }
+}
+
+/* ── Theme split (owner 2026-06-11): two distinct stages ─────────
+   DARK keeps the owner asset but with a hotter centre pool — the
+   near-white supplier canvases multiply into the bright zone and
+   clip invisible instead of reading as a grey slab; deeper rim
+   vignette + warmer pedestal bring the drama back.
+   LIGHT gets its own ivory display case: on a light surface the
+   white canvases dissolve perfectly under multiply, the part keeps
+   full ink, and the well belongs inside the heritage-cream cards. */
+
+/* DARK: hotter, tighter centre pool; deep rim; px-anchored pedestal.
+   The slab fix is in the img filter (brightness clips the canvas to
+   pure white so multiply becomes identity there), NOT in pool size. */
+.seo-part-media:has(img)::before,
+.part-result-media:has(img)::before {
+  background:
+    linear-gradient(180deg, transparent 60%, rgba(255, 236, 228, 0.1) 82%, rgba(255, 236, 228, 0.16)),
+    radial-gradient(58% 52% at 50% 42%, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.14) 58%, transparent 80%),
+    radial-gradient(54% 30px at 50% calc(100% - 40px), transparent 56%, rgba(190, 0, 16, 0.28) 70%, transparent 84%),
+    radial-gradient(46% 22px at 50% calc(100% - 42px), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.16) 55%, transparent 74%),
+    radial-gradient(120% 90% at 50% 50%, transparent 56%, rgba(5, 5, 8, 0.48) 100%);
+}
+
+.seo-part-thumb,
+.part-result img {
+  filter:
+    brightness(1.16)
+    contrast(1.08)
+    saturate(1.04)
+    drop-shadow(0 18px 18px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 10px rgba(190, 0, 16, 0.18));
+}
+
+/* LIGHT: ivory display case — architectural plinth anchored to the
+   bottom edge in px (survives every aspect ratio / grid crop), tight
+   stop deltas so it reads as an ellipse, not a smear. */
+html[data-mufflermen-theme="light"] .seo-part-media,
+html[data-mufflermen-theme="light"] .part-result-media {
+  border-color: rgba(61, 45, 31, 0.16);
+  background:
+    radial-gradient(72% 58% at 50% 34%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.6) 46%, transparent 78%),
+    radial-gradient(50% 28px at 50% calc(100% - 33px), rgba(61, 45, 31, 0.3), rgba(74, 32, 28, 0.22) 48%, rgba(63, 31, 191, 0.2) 66%, rgba(63, 31, 191, 0.1) 78%, transparent 90%),
+    linear-gradient(180deg, #fbf7ee 0%, #f3ecdc 58%, #e2d7be 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -18px 36px rgba(61, 45, 31, 0.1),
+    0 10px 24px rgba(61, 45, 31, 0.16);
+}
+
+/* Light wells need no spotlight lift — just a faint edge vignette
+   (this also keeps 04's liquid film off in light). */
+html[data-mufflermen-theme="light"] .seo-part-media::before,
+html[data-mufflermen-theme="light"] .part-result-media::before,
+html[data-mufflermen-theme="light"] .seo-part-media:has(img)::before,
+html[data-mufflermen-theme="light"] .part-result-media:has(img)::before {
+  background:
+    radial-gradient(120% 95% at 50% 50%, transparent 64%, rgba(61, 45, 31, 0.1) 100%);
+  mix-blend-mode: normal;
+  opacity: 1;
+  animation: none;
+}
+
+/* Light: parts keep their natural ink — no brightness push needed
+   (the canvas is already invisible on the ivory well). Softer, closer
+   drop-shadow so floating scans read as catalogue levitation. */
+html[data-mufflermen-theme="light"] .seo-part-thumb,
+html[data-mufflermen-theme="light"] .part-result img {
+  filter:
+    contrast(1.05)
+    saturate(1.02)
+    drop-shadow(0 10px 14px rgba(61, 45, 31, 0.28))
+    drop-shadow(0 0 8px rgba(159, 21, 29, 0.12));
+}
+
+/* Light fallback wells: dark ink on the ivory case. */
+html[data-mufflermen-theme="light"] .seo-part-fallback,
+html[data-mufflermen-theme="light"] .part-result-fallback {
+  color: #5b4a38;
+  text-shadow: none;
+}
+
+/* Watermarked scans, dark theme — the earlier declaration at the top
+   of this file loses to the later dark `.part-result img` block
+   (equal specificity), so re-state it here. Watermark grey ~0.8 luma
+   needs ~1.22x to clip toward white under multiply. */
+.supplier-watermark-media img {
+  filter:
+    brightness(1.22)
+    contrast(1.02)
+    saturate(1.02)
+    drop-shadow(0 18px 18px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 10px rgba(190, 0, 16, 0.18));
+}
+
+/* Watermark hover: stay above the clip threshold so the ghost never
+   animates back in on interaction. */
+.part-result.supplier-watermark-media:hover img,
+.part-result.supplier-watermark-media:focus img,
+.part-result.supplier-watermark-media:focus-within img,
+.supplier-watermark-media:hover img {
+  filter:
+    brightness(1.24)
+    contrast(1.04)
+    saturate(1.02)
+    drop-shadow(0 26px 30px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 16px rgba(190, 0, 16, 0.26));
+}

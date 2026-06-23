@@ -1,0 +1,427 @@
+.hub {
+  display: grid;
+  gap: var(--primitive-space-7);
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.dnaPanel {
+  display: grid;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+  padding: clamp(var(--primitive-space-4), 2vw, var(--primitive-space-6));
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in oklab, var(--primitive-red) 11%, transparent), transparent 62%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-panel-strong) 82%, transparent), transparent),
+    var(--primitive-carbon-weave),
+    var(--primitive-panel);
+  background-size: auto, auto, var(--primitive-carbon-weave-size), auto;
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.dnaIntro {
+  display: grid;
+  gap: var(--primitive-space-2);
+  max-width: 76ch;
+}
+
+.dnaKicker,
+.dnaCard span,
+.usageList li {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.dnaKicker,
+.dnaCard span {
+  color: color-mix(in oklab, var(--primitive-red) 76%, var(--primitive-text-strong));
+}
+
+.dnaIntro h2,
+.dnaCard h3 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+}
+
+.dnaIntro h2 {
+  font-size: var(--primitive-text-2xl);
+  line-height: 1;
+}
+
+.dnaIntro p,
+.dnaCard p {
+  margin: 0;
+  color: var(--primitive-body);
+  line-height: 1.55;
+}
+
+.dnaGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.dnaCard {
+  display: grid;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  padding: var(--primitive-space-4);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 22%, var(--primitive-line));
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-glass-soft) 72%, transparent), transparent),
+    color-mix(in oklab, var(--primitive-panel) 88%, transparent);
+}
+
+.dnaCard h3 {
+  font-size: var(--primitive-text-sm);
+  line-height: 1.2;
+}
+
+.dnaCard p {
+  font-size: var(--primitive-text-sm);
+}
+
+.usageList {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.usageList li {
+  min-width: 0;
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  color: var(--primitive-muted);
+  line-height: 1.35;
+  background: color-mix(in oklab, var(--primitive-canvas) 26%, transparent);
+  overflow-wrap: anywhere;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+  padding-bottom: var(--primitive-space-3);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.tab {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: var(--primitive-radius-pill);
+  padding: var(--primitive-space-2) var(--primitive-space-4);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.tab:hover {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-glass-strong);
+}
+
+.tab:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.tabActive {
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.tabActive:hover {
+  color: var(--primitive-btn-primary-fg);
+  background: var(--primitive-btn-primary-bg);
+}
+
+.finishRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.finishBtn {
+  appearance: none;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  padding: var(--primitive-space-1) var(--primitive-space-3);
+  background: transparent;
+  color: var(--primitive-body);
+  font: inherit;
+  cursor: pointer;
+}
+
+.finishBtnActive {
+  border-color: var(--primitive-amber);
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-amber) 14%, transparent);
+}
+
+.count {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.countPush {
+  margin-left: auto;
+}
+
+.premiumTools {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 260px);
+  gap: var(--primitive-space-3);
+  align-items: center;
+  min-width: 0;
+}
+
+.categoryRail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  min-width: 0;
+}
+
+.categoryBtn {
+  appearance: none;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  padding: var(--primitive-space-1) var(--primitive-space-3);
+  background: color-mix(in oklab, var(--primitive-panel) 86%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  min-width: 0;
+}
+
+.categoryBtn:hover {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+}
+
+.categoryBtn:focus-visible,
+.searchField input:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.categoryBtnActive {
+  border-color: color-mix(in oklab, var(--primitive-red) 72%, white);
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-red) 12%, var(--primitive-panel));
+}
+
+.categoryCount {
+  color: var(--primitive-muted);
+}
+
+.categoryBtnActive .categoryCount {
+  color: color-mix(in oklab, var(--primitive-text-strong) 82%, transparent);
+}
+
+.searchField {
+  min-width: 0;
+}
+
+.searchField input {
+  width: 100%;
+  min-height: 34px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  background: var(--primitive-panel);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.searchField input::placeholder {
+  color: var(--primitive-muted);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Premium "Carbon & Red" set — self-contained material tiles on a deep backdrop. */
+.premiumSections {
+  display: grid;
+  gap: var(--primitive-space-7);
+  min-width: 0;
+}
+
+.premiumSection {
+  display: grid;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.premiumSectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  border-bottom: 1px solid var(--primitive-line);
+  padding-bottom: var(--primitive-space-2);
+}
+
+.premiumSectionHead h2 {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.premiumSectionHead span {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.premiumGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: var(--primitive-space-4);
+  min-width: 0;
+  padding: clamp(var(--primitive-space-4), 2vw, var(--primitive-space-6));
+  border-radius: var(--primitive-radius-xl);
+  border: 1px solid var(--primitive-line);
+  background:
+    radial-gradient(120% 80% at 50% 0%, color-mix(in oklab, var(--primitive-red-dark) 12%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 70%, black);
+}
+
+.premiumCell {
+  display: grid;
+  justify-items: center;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+  margin: 0;
+  padding: var(--primitive-space-4) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-lg);
+  transition:
+    transform var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.premiumCell:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: color-mix(in oklab, var(--primitive-red) 7%, transparent);
+}
+
+.premiumCell:focus-within {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.premiumImg {
+  width: min(96px, 100%);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 6px 14px color-mix(in oklab, black 45%, transparent));
+}
+
+.premiumLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: color-mix(in oklab, var(--primitive-text-on-accent) 78%, transparent);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.tabPanel {
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab,
+  .premiumCell {
+    transition: none;
+  }
+  .premiumCell:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 1040px) {
+  .dnaGrid,
+  .usageList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .hub {
+    gap: 22px;
+  }
+
+  .dnaGrid,
+  .usageList {
+    grid-template-columns: 1fr;
+  }
+
+  .premiumTools {
+    grid-template-columns: 1fr;
+  }
+
+  .countPush {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .premiumGrid {
+    grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  }
+}

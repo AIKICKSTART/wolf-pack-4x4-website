@@ -1,0 +1,216 @@
+.card {
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) 1fr;
+  gap: 22px;
+  padding: var(--primitive-space-6);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-glass-soft) 24%, transparent) 60%),
+    radial-gradient(circle at 0% 0%, var(--posture-glow, color-mix(in oklab, var(--primitive-green) 18%, transparent)), transparent 50%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  color: var(--primitive-body);
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow:
+    inset 1px 1px 0 var(--primitive-neumo-light),
+    inset -22px -22px 36px color-mix(in oklab, var(--primitive-overlay) 50%, transparent),
+    0 22px 56px color-mix(in oklab, var(--primitive-overlay) 62%, transparent);
+}
+
+.scoreBlock {
+  display: grid;
+  place-items: center;
+  gap: var(--primitive-space-2);
+  text-align: center;
+}
+
+.dial {
+  position: relative;
+  width: 168px;
+  height: 168px;
+}
+
+.dialSvg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.dialTrack {
+  fill: none;
+  stroke: var(--primitive-glass-strong);
+  stroke-width: 12;
+}
+
+.dialFill {
+  fill: none;
+  stroke: var(--posture-fg, var(--primitive-green));
+  stroke-width: 12;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 12px var(--posture-fg, color-mix(in oklab, var(--primitive-green) 45%, transparent)));
+  transition: stroke-dashoffset var(--primitive-duration-slower) var(--primitive-ease-out);
+}
+
+.dialValue {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--primitive-font-display);
+  font-size: 64px;
+  line-height: var(--primitive-leading-none);
+  color: var(--primitive-text-strong);
+  letter-spacing: -0.02em;
+}
+
+.dialUnit {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.body {
+  display: grid;
+  gap: 14px;
+  align-content: center;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--posture-fg, var(--primitive-green));
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.factorList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.factor {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: 5px var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--factor-border, var(--primitive-line));
+  background: var(--factor-bg, var(--primitive-glass-soft));
+  color: var(--factor-fg, var(--primitive-body));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.factorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: currentColor;
+}
+
+.factorPositive {
+  --factor-border: color-mix(in oklab, var(--primitive-green) 36%, transparent);
+  --factor-bg: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  --factor-fg: var(--primitive-green);
+}
+
+.factorWarn {
+  --factor-border: color-mix(in oklab, var(--primitive-amber) 36%, transparent);
+  --factor-bg: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+  --factor-fg: var(--primitive-amber);
+}
+
+.factorNegative {
+  --factor-border: color-mix(in oklab, var(--primitive-red) 36%, transparent);
+  --factor-bg: color-mix(in oklab, var(--primitive-red) 8%, transparent);
+  --factor-fg: var(--primitive-red);
+}
+
+.trend {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-glass-soft) 50%, transparent);
+}
+
+.trendLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.spark {
+  width: 100%;
+  height: 56px;
+}
+
+.sparkPath {
+  fill: none;
+  stroke: var(--posture-fg, var(--primitive-green));
+  stroke-width: 2;
+}
+
+.sparkArea {
+  fill: color-mix(in srgb, var(--posture-fg, var(--primitive-green)) 24%, transparent);
+  stroke: none;
+}
+
+.sparkLast {
+  fill: var(--posture-fg, var(--primitive-green));
+}
+
+.toneGreen {
+  --posture-fg: var(--primitive-green);
+  --posture-glow: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+}
+
+.toneAmber {
+  --posture-fg: var(--primitive-amber);
+  --posture-glow: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+}
+
+.toneRed {
+  --posture-fg: var(--primitive-red);
+  --posture-glow: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+@media (max-width: 700px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialFill {
+    transition: none;
+  }
+}

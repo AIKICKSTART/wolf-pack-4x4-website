@@ -1,0 +1,108 @@
+.card {
+  padding: 0;
+  border-radius: var(--primitive-radius-lg);
+  border-left: 3px solid var(--card-accent, var(--primitive-line));
+  --card-accent: var(--primitive-line);
+  display: block;
+  overflow: hidden;
+}
+
+.tone_amber { --card-accent: var(--primitive-amber); }
+.tone_teal { --card-accent: var(--primitive-teal); }
+.tone_green { --card-accent: var(--primitive-green); }
+.tone_red { --card-accent: var(--primitive-red); }
+.tone_violet { --card-accent: color-mix(in oklab, var(--primitive-teal) 70%, transparent); }
+.tone_neutral { --card-accent: color-mix(in oklab, var(--primitive-text-strong) 32%, transparent); }
+
+.shell {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: 14px;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--card-accent);
+  background: color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+  color: var(--card-accent);
+}
+
+.headBody {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.anchor {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.anchor strong {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.timeline {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.04em;
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding-top: var(--primitive-space-2);
+  border-top: 1px solid var(--primitive-line);
+}
+
+.replies {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--primitive-space-4);
+  display: grid;
+  gap: var(--primitive-space-2);
+  border-left: 1px dashed var(--primitive-line);
+}
+
+.resolution {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 36%, transparent);
+}
+
+.resolutionTag {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-green);
+}
+
+.resolution p {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+}

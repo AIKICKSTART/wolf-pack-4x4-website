@@ -1,0 +1,118 @@
+.section {
+  display: grid;
+  gap: clamp(24px, 3.4vw, 40px);
+  padding: clamp(40px, 5vw, 76px) clamp(20px, 4vw, 56px);
+}
+
+.header {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  max-width: 720px;
+}
+
+.kicker {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-none);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.body {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-base);
+  line-height: 1.55;
+}
+
+.cloud {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--primitive-space-1-5);
+  margin: 0;
+  padding: var(--primitive-space-5) 0;
+  border-top: 1px solid var(--primitive-line);
+  border-bottom: 1px solid var(--primitive-line);
+  list-style: none;
+}
+
+.entry {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-4) var(--primitive-space-2);
+  border-right: 1px solid var(--primitive-line);
+  transition: opacity 200ms ease, transform 200ms ease;
+  opacity: 0.7;
+}
+
+.entry:last-child {
+  border-right: 0;
+}
+
+.entry:hover,
+.entry:focus-within {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 40px;
+  color: var(--primitive-body);
+  transition: color 200ms ease;
+}
+
+.entry:hover .mark,
+.entry:focus-within .mark {
+  color: var(--primitive-text-strong);
+}
+
+.mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.name {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .entry {
+    border-right: 0;
+    border-bottom: 1px solid var(--primitive-line);
+  }
+  .entry:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry,
+  .mark {
+    transition: none;
+  }
+  .entry:hover,
+  .entry:focus-within {
+    transform: none;
+  }
+}

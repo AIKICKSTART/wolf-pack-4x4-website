@@ -1,0 +1,234 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primitive-text-strong) 5%, transparent),
+      color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 50%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      var(--card-glow, color-mix(in oklab, var(--primitive-teal) 16%, transparent)),
+      transparent 52%
+    ),
+    color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-panel-strong));
+  color: var(--primitive-body);
+  isolation: isolate;
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    inset -18px -18px 30px color-mix(in oklab, var(--primitive-canvas) 22%, transparent),
+    0 16px 38px color-mix(in oklab, var(--primitive-canvas) 26%, transparent);
+  position: relative;
+}
+
+.cardInstalled::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  pointer-events: none;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--logo-border, color-mix(in oklab, var(--primitive-text-strong) 18%, transparent));
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--primitive-text-strong) 20%, transparent),
+      transparent 60%
+    ),
+    var(--logo-bg, color-mix(in oklab, var(--primitive-teal) 50%, transparent));
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklab, var(--primitive-text-strong) 18%, transparent),
+    inset -6px -6px 12px color-mix(in oklab, var(--primitive-canvas) 32%, transparent);
+}
+
+.logoMono {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.provider {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.category {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.verified {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 36%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-green) 8%, transparent);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.verifiedDot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-green);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primitive-green) 22%, transparent);
+}
+
+.description {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.45;
+  color: var(--primitive-body);
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--primitive-space-3);
+  border-top: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  gap: var(--primitive-space-2-5);
+}
+
+.installs {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+}
+
+.installsCount {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.installsLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 18%, transparent);
+  background: color-mix(in oklab, var(--primitive-canvas) 60%, var(--primitive-panel-strong));
+  color: var(--primitive-body);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cardInstalled .statusPill {
+  border-color: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  color: var(--primitive-green);
+}
+
+.accentBlue {
+  --card-glow: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --logo-bg: linear-gradient(
+    135deg,
+    var(--primitive-teal),
+    color-mix(in oklab, var(--primitive-teal) 50%, var(--primitive-canvas))
+  );
+  --logo-border: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+}
+
+.accentViolet {
+  --card-glow: color-mix(in oklab, var(--primitive-focus-ring) 18%, transparent);
+  --logo-bg: linear-gradient(
+    135deg,
+    var(--primitive-focus-ring),
+    color-mix(in oklab, var(--primitive-focus-ring) 45%, var(--primitive-canvas))
+  );
+  --logo-border: color-mix(in oklab, var(--primitive-focus-ring) 42%, transparent);
+}
+
+.accentAmber {
+  --card-glow: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --logo-bg: linear-gradient(
+    135deg,
+    var(--primitive-amber),
+    color-mix(in oklab, var(--primitive-amber) 55%, black)
+  );
+  --logo-border: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+}
+
+.accentTeal {
+  --card-glow: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --logo-bg: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--primitive-teal) 90%, white),
+    color-mix(in oklab, var(--primitive-teal) 45%, var(--primitive-canvas))
+  );
+  --logo-border: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+}
+
+.accentGreen {
+  --card-glow: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  --logo-bg: linear-gradient(
+    135deg,
+    var(--primitive-green),
+    color-mix(in oklab, var(--primitive-green) 50%, var(--primitive-canvas))
+  );
+  --logo-border: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+}
+
+.accentRed {
+  --card-glow: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  --logo-bg: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--primitive-red) 75%, white),
+    var(--primitive-red-dark)
+  );
+  --logo-border: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}

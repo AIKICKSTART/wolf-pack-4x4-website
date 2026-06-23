@@ -1,0 +1,42 @@
+/* Complete landing composition — every landing primitive + web/content section
+   sequenced into one page. Token-driven only (no raw colour/space/radius). */
+
+.page {
+  display: grid;
+  gap: var(--primitive-space-10);
+  padding: var(--primitive-space-8);
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.act {
+  display: grid;
+  gap: var(--primitive-space-8);
+  min-width: 0;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: var(--primitive-space-6);
+  align-items: start;
+}
+
+.events {
+  display: grid;
+  gap: var(--primitive-space-4);
+  align-content: start;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .page {
+    gap: var(--primitive-space-8);
+    padding: var(--primitive-space-5);
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}

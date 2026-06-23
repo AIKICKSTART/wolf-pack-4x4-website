@@ -1,0 +1,94 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(140% 90% at 0% 0%, var(--node-soft, var(--primitive-glass-soft)), transparent 65%),
+    var(--primitive-panel-strong);
+  color: var(--primitive-body);
+  min-width: 168px;
+  max-width: 220px;
+  isolation: isolate;
+  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card[data-active="true"] {
+  border-color: var(--node-strong, color-mix(in oklab, var(--primitive-teal) 60%, transparent));
+  box-shadow: 0 0 0 1px var(--node-strong, color-mix(in oklab, var(--primitive-teal) 25%, transparent)),
+    0 18px 38px color-mix(in oklab, var(--primitive-canvas) 45%, transparent);
+  transform: translateY(-1px);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--node-strong, var(--primitive-amber));
+}
+
+.title {
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.25;
+  letter-spacing: 0.005em;
+}
+
+.subtitle {
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--primitive-body);
+}
+
+.config {
+  appearance: none;
+  margin-top: var(--primitive-space-1);
+  padding: 5px 9px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  justify-self: start;
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.config:hover,
+.config:focus-visible {
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  color: var(--primitive-text-strong);
+  border-color: var(--node-strong, var(--primitive-line-strong));
+  outline: none;
+}
+
+.toneTrigger { --node-strong: color-mix(in oklab, var(--primitive-amber) 70%, transparent); --node-soft: color-mix(in oklab, var(--primitive-amber) 12%, transparent); }
+.toneWait { --node-strong: color-mix(in oklab, var(--primitive-body) 50%, transparent); --node-soft: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent); }
+.toneCondition { --node-strong: color-mix(in oklab, var(--primitive-teal) 70%, transparent); --node-soft: color-mix(in oklab, var(--primitive-teal) 14%, transparent); }
+.toneAction { --node-strong: color-mix(in oklab, var(--primitive-green) 70%, transparent); --node-soft: color-mix(in oklab, var(--primitive-green) 14%, transparent); }
+.toneGoal { --node-strong: color-mix(in oklab, var(--primitive-amber) 70%, transparent); --node-soft: color-mix(in oklab, var(--primitive-amber) 18%, transparent); }
+.toneExit { --node-strong: color-mix(in oklab, var(--primitive-red) 70%, transparent); --node-soft: color-mix(in oklab, var(--primitive-red) 12%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .config {
+    transition: none;
+  }
+}

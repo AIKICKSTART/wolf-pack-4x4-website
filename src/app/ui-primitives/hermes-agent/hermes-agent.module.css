@@ -1,0 +1,300 @@
+/* Hermes agent showcase + sub-route shared shell. */
+
+.page {
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: clamp(20px, 3vw, 36px);
+}
+
+.main {
+  display: grid;
+  gap: var(--primitive-space-7);
+  padding: clamp(20px, 3vw, 36px);
+  max-width: 1420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.notice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid color-mix(in srgb, var(--primitive-red) 32%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent),
+    color-mix(in srgb, var(--primitive-red) 6%, transparent);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  width: max-content;
+  max-width: 100%;
+}
+
+.notice::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primitive-red);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primitive-red) 22%, transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--primitive-space-4);
+}
+
+.card {
+  --accent-edge: var(--primitive-teal);
+  --accent-soft: color-mix(in srgb, var(--accent-edge) 16%, transparent);
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--primitive-space-3);
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, var(--accent-edge) 26%, var(--primitive-line));
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-strong), transparent 42%),
+    radial-gradient(ellipse at 100% 0%, var(--accent-soft), transparent 56%),
+    var(--primitive-surface-2);
+  color: var(--primitive-body);
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: var(--primitive-shadow-soft);
+  transition: transform var(--primitive-duration-normal) var(--primitive-ease-out),
+    border-color var(--primitive-duration-normal) ease,
+    box-shadow var(--primitive-duration-normal) ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent-edge) 50%, var(--primitive-line));
+  box-shadow: var(--primitive-surface-hover-shadow);
+  outline: none;
+}
+
+.accentRed { --accent-edge: var(--primitive-red); }
+.accentAmber { --accent-edge: var(--primitive-amber); }
+.accentTeal { --accent-edge: var(--primitive-teal); }
+.accentGreen { --accent-edge: var(--primitive-green); }
+/* Hermes "violet" brand accent — no global violet token exists, so it is
+   defined here for both themes (documented brand hex) to preserve parity. */
+.accentViolet { --hermes-violet: var(--primitive-violet); --accent-edge: var(--hermes-violet); }
+.accentNeutral { --accent-edge: var(--primitive-muted); }
+
+:global(html[data-primitive-theme="light"]) .accentViolet { --hermes-violet: var(--primitive-violet); }
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover,
+  .card:focus-visible {
+    transform: none;
+  }
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid color-mix(in srgb, var(--accent-edge) 22%, var(--primitive-line));
+  background:
+    linear-gradient(135deg, var(--primitive-glass-strong), transparent 46%),
+    radial-gradient(ellipse at 30% 12%, color-mix(in srgb, var(--accent-edge) 18%, transparent), transparent 50%),
+    var(--primitive-recessed);
+  overflow: hidden;
+  font-family: var(--primitive-font-mono);
+  color: var(--primitive-muted);
+  box-shadow: var(--primitive-shadow-inset);
+}
+
+.thumbGlyph {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(26px, 4vw, 40px);
+  color: var(--accent-edge);
+  letter-spacing: 0.04em;
+  line-height: 0.9;
+}
+
+.cardKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.cardTitle {
+  margin: var(--primitive-space-1-5) 0 var(--primitive-space-1);
+  font-size: var(--primitive-text-lg);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.cardBody {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: var(--primitive-leading-normal);
+  color: var(--primitive-body);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.metaAction {
+  color: var(--accent-edge);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  transition: gap 200ms var(--primitive-ease-out);
+}
+
+.card:hover .metaAction,
+.card:focus-visible .metaAction {
+  gap: var(--primitive-space-2-5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metaAction {
+    transition: none;
+  }
+}
+
+.demoSurface {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-surface-1);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.demoLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.demoStack {
+  display: grid;
+  gap: 18px;
+}
+
+.demoTriple {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.demoRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.demoSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.consoleShell {
+  display: grid;
+  gap: 18px;
+  grid-template-rows: auto 1fr;
+}
+
+.consoleHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.consoleGrid {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1.4fr) 320px;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.consoleCol {
+  display: grid;
+  gap: var(--primitive-space-4);
+  align-content: start;
+  min-width: 0;
+}
+
+.consoleSection {
+  display: grid;
+  gap: 18px;
+}
+
+/* Shared DNA column stack + heading — replaces ad-hoc inline grid/heading styles
+   so console sub-headings inherit the same mono-label DNA as the rest of the system. */
+.colStack {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.colHeading {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.headerStrip {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 1180px) {
+  .consoleGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  }
+  .consoleGrid > :nth-child(3) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .consoleGrid,
+  .demoSplit,
+  .headerStrip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+}

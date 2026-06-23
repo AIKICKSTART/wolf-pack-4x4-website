@@ -1,0 +1,194 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding-bottom: var(--primitive-space-2-5);
+  border-bottom: 1px dashed var(--primitive-line);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* Rendered email preview — light "paper" simulation that the heat spots
+   overlay. The paper / ink rgba values below are email-content data colors,
+   kept literal to preserve the email-client look (no dashboard token maps). */
+.canvas {
+  position: relative;
+  min-height: 340px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: rgba(244, 242, 238, 0.96);
+  overflow: hidden;
+}
+
+.canvasFrame {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-6);
+}
+
+.canvasLine {
+  height: 8px;
+  border-radius: var(--primitive-radius-sm);
+  background: rgba(31, 34, 48, 0.16);
+}
+
+.canvasHero {
+  height: 110px;
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, rgba(31, 34, 48, 0.3), rgba(31, 34, 48, 0.1)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.04) 0 12px,
+      rgba(0, 0, 0, 0.08) 12px 24px
+    );
+}
+
+.canvasButton {
+  height: 28px;
+  width: 160px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-red) 80%, transparent);
+}
+
+.canvasFooter {
+  height: 14px;
+  border-radius: var(--primitive-radius-sm);
+  background: rgba(31, 34, 48, 0.32);
+}
+
+.spot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: var(--spot-size, 44px);
+  height: var(--spot-size, 44px);
+  border-radius: var(--primitive-radius-round);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-tight);
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-bold);
+  pointer-events: none;
+}
+
+.spot[data-tone="red"] {
+  background: radial-gradient(circle, color-mix(in oklab, var(--primitive-red) 85%, transparent), color-mix(in oklab, var(--primitive-red) 15%, transparent));
+}
+
+.spot[data-tone="amber"] {
+  background: radial-gradient(circle, color-mix(in oklab, var(--primitive-amber) 85%, transparent), color-mix(in oklab, var(--primitive-amber) 15%, transparent));
+  /* dark ink for legibility on the amber hot-spot — documented data color */
+  color: #1f2230;
+}
+
+.spot[data-tone="teal"] {
+  background: radial-gradient(circle, color-mix(in oklab, var(--primitive-teal) 85%, transparent), color-mix(in oklab, var(--primitive-teal) 15%, transparent));
+}
+
+.spot[data-tone="green"] {
+  background: radial-gradient(circle, color-mix(in oklab, var(--primitive-green) 85%, transparent), color-mix(in oklab, var(--primitive-green) 15%, transparent));
+}
+
+.spotPulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0.4;
+  animation: spotPulse 2400ms ease-out infinite;
+}
+
+.spotPct {
+  position: relative;
+  z-index: 1;
+}
+
+.aside {
+  display: grid;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.asideLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.spotList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.spotRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.spotName {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+}
+
+@keyframes spotPulse {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  70% { transform: scale(1.4); opacity: 0; }
+  100% { transform: scale(0.9); opacity: 0; }
+}
+
+@media (max-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotPulse {
+    animation: none;
+  }
+}

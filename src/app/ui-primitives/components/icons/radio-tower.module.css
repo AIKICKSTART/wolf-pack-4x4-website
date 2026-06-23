@@ -1,0 +1,51 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.tower { stroke: currentColor; fill: none; stroke-width: 1.4; }
+.mast { stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; }
+.tipBlink { stroke: var(--primitive-red); stroke-width: 1.4; stroke-linecap: round; animation: towerBlink 1.4s ease-in-out infinite; opacity: 0.85; }
+.leg { stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+.cross { stroke: currentColor; stroke-width: 1.1; opacity: 0.85; stroke-linecap: round; }
+.brace { stroke: currentColor; stroke-width: 0.8; opacity: 0.55; stroke-linecap: round; }
+.tip { fill: currentColor; }
+.pad { fill: currentColor; opacity: 0.8; }
+.ground { stroke: currentColor; opacity: 0.4; stroke-dasharray: 1 1; }
+.wave { stroke: currentColor; fill: none; stroke-width: 1.4; stroke-linecap: round; opacity: 0; animation: radioWave 1.8s ease-out infinite; }
+.wave[data-w="1l"] { animation-delay: 0s; }
+.wave[data-w="1r"] { animation-delay: 0s; }
+.wave[data-w="2l"] { animation-delay: 0.45s; }
+.wave[data-w="2r"] { animation-delay: 0.45s; }
+.wave[data-w="3l"] { animation-delay: 0.9s; }
+.wave[data-w="3r"] { animation-delay: 0.9s; }
+
+@keyframes radioWave {
+  0% { opacity: 0; }
+  30% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+@keyframes towerBlink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .leg, .motionDraw .cross, .motionDraw .brace { stroke-dasharray: 70; stroke-dashoffset: 70; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .wave { animation-duration: 0.4s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .tip,
+[data-variant="outline"] .pad { fill: transparent; stroke: currentColor; stroke-width: 1; }
+
+[data-variant="filled"] .pad { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .wave, .tipBlink { animation: none !important; transition: none !important; }
+}

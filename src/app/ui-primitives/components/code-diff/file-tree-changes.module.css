@@ -1,0 +1,143 @@
+.tree {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+  font-family: var(--primitive-font-mono);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  padding-bottom: var(--primitive-space-2-5);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.headLabel {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.totalChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  min-height: 22px;
+  padding: var(--primitive-space-0) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.04em;
+}
+
+.totalChip strong {
+  color: var(--primitive-text-strong);
+}
+
+.totalAdd {
+  color: var(--primitive-green);
+  font-weight: 800;
+}
+
+.totalDel {
+  color: var(--primitive-red);
+  font-weight: 800;
+}
+
+.list {
+  margin: var(--primitive-space-0);
+  padding: var(--primitive-space-0);
+  list-style: none;
+  display: grid;
+  gap: var(--primitive-space-px);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto auto;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-1-5) var(--primitive-space-2);
+  border-radius: 6px;
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  transition: background 140ms ease;
+}
+
+.item:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.icon {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+.iconAdded { color: var(--primitive-green); }
+.iconModified { color: var(--primitive-amber); }
+.iconRenamed { color: var(--primitive-teal); }
+.iconDeleted { color: var(--primitive-red); }
+
+.path {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--primitive-text-strong);
+}
+
+.pathDeleted {
+  text-decoration: line-through;
+  color: var(--primitive-muted);
+}
+
+.counts {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  font-size: 10.5px;
+}
+
+.add {
+  color: var(--primitive-green);
+  font-weight: 800;
+}
+
+.del {
+  color: var(--primitive-red);
+  font-weight: 800;
+}
+
+.bar {
+  display: inline-grid;
+  grid-auto-flow: column;
+  gap: var(--primitive-space-px);
+  min-width: 50px;
+}
+
+.barCell {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+}
+
+.barAdd { background: var(--primitive-green); }
+.barDel { background: var(--primitive-red); }
+.barNone { background: color-mix(in oklab, var(--primitive-text-strong) 10%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
+}

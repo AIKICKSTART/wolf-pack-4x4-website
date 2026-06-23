@@ -1,0 +1,167 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 110% -10%, var(--accent-soft, color-mix(in oklab, var(--primitive-amber) 18%, transparent)), transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel-strong);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 220ms var(--primitive-ease-out), border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-line, color-mix(in oklab, var(--primitive-amber) 40%, transparent));
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent, var(--primitive-amber)), transparent);
+  opacity: 0.65;
+}
+
+.thumb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 124px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 22% 24%, var(--accent-soft, color-mix(in oklab, var(--primitive-amber) 22%, transparent)), transparent 58%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-teal)) 0%, var(--primitive-canvas) 100%);
+  overflow: hidden;
+}
+
+.thumbMark {
+  font-family: var(--primitive-font-display);
+  font-size: 38px;
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: -0.02em;
+  color: var(--accent, var(--primitive-amber));
+  text-shadow: 0 8px 18px color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.thumbRule {
+  position: absolute;
+  inset-inline: 12%;
+  bottom: 14%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent, var(--primitive-amber)) 30%, var(--accent, var(--primitive-amber)) 70%, transparent);
+  opacity: 0.55;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  align-content: start;
+}
+
+.partCount {
+  width: fit-content;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid var(--accent-line, color-mix(in oklab, var(--primitive-amber) 32%, transparent));
+  border-radius: var(--primitive-radius-pill);
+  background: var(--accent-soft, color-mix(in oklab, var(--primitive-amber) 8%, transparent));
+  color: var(--accent, var(--primitive-amber));
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.copy {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+}
+
+.suppliers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin: var(--primitive-space-1) 0 0;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  margin-top: var(--primitive-space-1);
+  color: var(--accent, var(--primitive-amber));
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 160ms ease, transform 200ms ease;
+}
+
+.cta:hover,
+.cta:focus-visible {
+  color: var(--primitive-text-strong);
+  transform: translateX(2px);
+  outline: none;
+}
+
+.toneRed {
+  --accent: var(--primitive-red);
+  --accent-soft: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.toneAmber {
+  --accent: var(--primitive-amber);
+  --accent-soft: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+}
+
+.toneTeal {
+  --accent: var(--primitive-teal);
+  --accent-soft: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-teal) 32%, transparent);
+}
+
+.toneGreen {
+  --accent: var(--primitive-green);
+  --accent-soft: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  --accent-line: color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cta {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+  .cta:hover,
+  .cta:focus-visible {
+    transform: none;
+  }
+}

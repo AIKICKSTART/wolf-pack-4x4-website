@@ -1,0 +1,92 @@
+.toc {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-4) 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+  font-family: var(--primitive-font-body);
+}
+
+.title {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+}
+
+.list {
+  display: grid;
+  gap: var(--primitive-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+.list::before {
+  content: "";
+  position: absolute;
+  inset: var(--primitive-space-1) auto var(--primitive-space-1) 0;
+  width: 1px;
+  background: var(--primitive-line-muted);
+}
+
+.item {
+  position: relative;
+  padding-left: 14px;
+}
+
+.item a {
+  display: block;
+  padding: var(--primitive-space-1-5) var(--primitive-space-1);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color var(--primitive-duration-fast) var(--primitive-ease-standard);
+}
+
+.item a:hover,
+.item a:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: none;
+}
+
+.depthTwo a {
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.depthThree {
+  padding-left: 30px;
+}
+
+.depthThree a {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+.depthThree.active a,
+.depthTwo.active a {
+  color: var(--primitive-red);
+}
+
+.active::before {
+  content: "";
+  position: absolute;
+  top: var(--primitive-space-2);
+  bottom: var(--primitive-space-2);
+  left: 0;
+  width: 2px;
+  background: var(--primitive-red);
+  border-radius: var(--primitive-radius-pill);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primitive-red) 45%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item a {
+    transition: none;
+  }
+}

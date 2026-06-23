@@ -1,0 +1,42 @@
+.host {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: var(--primitive-space-10);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  padding: var(--primitive-space-9) var(--primitive-space-8);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 10% 6%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 50%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.weave {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--primitive-carbon-weave);
+  background-size: var(--primitive-carbon-weave-size);
+  opacity: 0.35;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 65%, transparent), transparent 75%);
+}
+
+.wall,
+.brands {
+  min-width: 0;
+}
+
+.brands {
+  padding-top: var(--primitive-space-8);
+  border-top: 1px solid var(--primitive-line-muted);
+}
+
+@media (max-width: 600px) {
+  .host {
+    gap: var(--primitive-space-8);
+    padding: var(--primitive-space-6) var(--primitive-space-5);
+  }
+}

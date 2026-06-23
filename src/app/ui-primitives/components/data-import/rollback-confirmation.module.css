@@ -1,0 +1,186 @@
+.surface {
+  display: grid;
+  gap: 18px;
+  padding: var(--primitive-space-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 24%, transparent);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--primitive-red) 6%, transparent), transparent 60%),
+    var(--primitive-card-bg);
+  box-shadow: var(--primitive-card-shadow);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-red);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-lg);
+  color: var(--primitive-text-strong);
+}
+
+.subline {
+  margin: 0;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+  color: var(--primitive-body);
+  max-width: 60ch;
+}
+
+.list {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.legend {
+  padding: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-glass-soft);
+  cursor: pointer;
+}
+
+.rowActive {
+  border-color: var(--primitive-red);
+  background: color-mix(in oklab, var(--primitive-red) 6%, transparent);
+}
+
+.radio {
+  margin: 0;
+  accent-color: var(--primitive-red);
+}
+
+.rowText {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.rowLabel {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+}
+
+.rowMeta {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.expiryChip {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-card-bg);
+  color: var(--primitive-amber);
+}
+
+.confirmBlock {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding: 14px;
+  border: 1px dashed color-mix(in oklab, var(--primitive-red) 36%, transparent);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-red) 4%, transparent);
+}
+
+.confirmLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.phraseToken {
+  font-family: var(--primitive-font-mono);
+  background: var(--primitive-glass-soft);
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-sm);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.06em;
+}
+
+.confirmInput {
+  font: inherit;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+}
+
+.confirmInput:focus-visible {
+  outline: 2px solid var(--primitive-red);
+  outline-offset: 1px;
+}
+
+.confirmHint {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--primitive-muted);
+}
+
+.dangerButton {
+  font: inherit;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: var(--primitive-space-2-5) var(--primitive-space-4);
+  border-radius: 10px;
+  border: 1px solid var(--primitive-red);
+  background: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+  cursor: pointer;
+}
+
+.dangerButton:hover,
+.dangerButton:focus-visible {
+  background: var(--primitive-red-dark);
+  outline: none;
+}
+
+.dangerButton:disabled {
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  border-color: var(--primitive-line);
+  cursor: not-allowed;
+}

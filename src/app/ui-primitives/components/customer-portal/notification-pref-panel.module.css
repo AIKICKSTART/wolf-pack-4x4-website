@@ -1,0 +1,263 @@
+.panel {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 22px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent) 60%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent) 3px 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.headText {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2.2vw, 26px);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.channelLegend {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, 96px);
+  gap: var(--primitive-space-2-5);
+  align-items: end;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent);
+}
+
+.channelLegendCell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  text-align: left;
+}
+
+.channelLegendCell:not(:first-child) {
+  align-items: center;
+  text-align: center;
+}
+
+.channelIcon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-teal);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+}
+
+.channelTextStack {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.channelHead {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--primitive-text-strong);
+}
+
+.channelSub {
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  text-transform: none;
+}
+
+.topicList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.topicRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, 96px);
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent);
+}
+
+.topicText {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.topicLabel {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+.topicDesc {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.4;
+}
+
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.toggleInput {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggleTrack {
+  display: inline-flex;
+  align-items: center;
+  width: 44px;
+  height: 24px;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  padding: 0 var(--primitive-space-0-5);
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.toggleThumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primitive-text-strong);
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toggleOn .toggleTrack {
+  background: linear-gradient(180deg, var(--primitive-amber), color-mix(in oklab, var(--primitive-amber) 78%, var(--primitive-canvas)));
+  border-color: color-mix(in oklab, var(--primitive-amber) 62%, transparent);
+}
+
+.toggleOn .toggleThumb {
+  transform: translateX(20px);
+  background: var(--primitive-canvas);
+}
+
+.toggle:focus-within .toggleTrack {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.foot {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primitive-muted);
+  padding-top: var(--primitive-space-1);
+  border-top: 1px dashed color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}
+
+@media (max-width: 720px) {
+  .channelLegend,
+  .topicRow {
+    grid-template-columns: 1fr;
+    gap: var(--primitive-space-3);
+  }
+  .channelLegendCell:not(:first-child) {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: var(--primitive-space-2);
+  }
+  .topicRow {
+    padding: 14px;
+  }
+  .toggle {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggleTrack,
+  .toggleThumb {
+    transition: none;
+  }
+}

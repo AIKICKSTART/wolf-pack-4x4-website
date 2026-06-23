@@ -1,0 +1,228 @@
+/* AnimatedIcon wrapper — frames an icon component inside an optional surface
+   while honouring tone + reduced-motion globally. */
+
+.host {
+  --animated-icon-tone: var(--primitive-red);
+  --animated-icon-frame-size: 64px;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  color: var(--animated-icon-tone);
+  isolation: isolate;
+  vertical-align: middle;
+}
+
+.host::before {
+  content: attr(data-motion);
+  position: absolute;
+  right: -3px;
+  bottom: -3px;
+  max-width: 54px;
+  padding: var(--primitive-space-0-5) 5px;
+  border: 1px solid color-mix(in srgb, var(--animated-icon-tone) 38%, var(--primitive-line));
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 82%, transparent);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(2px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 3;
+}
+
+.host:hover::before,
+.host:focus-within::before,
+.host[data-state="active"]::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.host[data-motion="none"]::before {
+  content: attr(data-tone);
+}
+
+.toneRed { --animated-icon-tone: var(--primitive-red); }
+.toneAmber { --animated-icon-tone: var(--primitive-amber); }
+.toneTeal { --animated-icon-tone: var(--primitive-teal); }
+.toneGreen { --animated-icon-tone: var(--primitive-green); }
+.toneObsidian { --animated-icon-tone: var(--primitive-icon-obsidian); }
+.toneCurrent { --animated-icon-tone: currentColor; }
+
+.frame {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--animated-icon-frame-size);
+  height: var(--animated-icon-frame-size);
+  padding: 14px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    0 18px 34px -24px color-mix(in srgb, var(--animated-icon-tone) 58%, transparent);
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.frameNone {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--animated-icon-tone) 18%, transparent), transparent 62%),
+    color-mix(in srgb, var(--animated-icon-tone) 7%, color-mix(in oklab, var(--primitive-canvas) 72%, transparent));
+}
+
+.frameGlass {
+  --glass-accent: var(--animated-icon-tone);
+  --glass-tint:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--animated-icon-tone) 15%, transparent), transparent 62%),
+    var(--primitive-panel);
+}
+
+.frameNeuo {
+  --neuo-base:
+    radial-gradient(circle at 24% 16%, color-mix(in srgb, var(--animated-icon-tone) 12%, transparent), transparent 56%),
+    linear-gradient(160deg, var(--primitive-surface-2) 0%, var(--primitive-panel) 100%);
+}
+
+.frameMaterial {
+  --m3-tone-tint: color-mix(in srgb, var(--animated-icon-tone) 13%, transparent);
+  --m3-tone-accent: var(--animated-icon-tone);
+}
+
+.frameGlass,
+.frameNeuo,
+.frameMaterial {
+  color: var(--animated-icon-tone);
+}
+
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--animated-icon-tone), transparent 55%) border-box;
+  -webkit-mask:
+    linear-gradient(currentColor 0 0) padding-box,
+    linear-gradient(currentColor 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.22;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.frame:hover::after,
+.frame[data-state="hover"]::after,
+.frame[data-state="active"]::after {
+  opacity: 0.6;
+}
+
+.frame:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 var(--primitive-neumo-light),
+    0 22px 40px -24px color-mix(in srgb, var(--animated-icon-tone) 72%, transparent);
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  opacity: 0;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border-radius: 6px;
+  border: 1px solid var(--primitive-line-strong);
+  background: color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 4;
+}
+
+.host:hover .tooltip,
+.host:focus-within .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+  border-top-color: color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  transform: translateX(-50%);
+}
+
+.stateLoading {
+  position: relative;
+}
+
+.stateLoading::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 1px solid var(--animated-icon-tone);
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  animation: animatedIconSpin 1.2s linear infinite;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+@keyframes animatedIconSpin {
+  to { transform: rotate(360deg); }
+}
+
+:global(html[data-primitive-theme="light"]) .frameNone {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--animated-icon-tone) 12%, transparent), transparent 62%),
+    color-mix(in srgb, var(--animated-icon-tone) 5%, color-mix(in oklab, var(--primitive-canvas) 78%, transparent));
+}
+
+:global(html[data-primitive-theme="light"]) .host::before {
+  background: var(--primitive-panel-strong);
+  color: var(--foreground);
+}
+
+:global(html[data-primitive-theme="light"]) .tooltip {
+  background: var(--primitive-panel-strong);
+  color: var(--foreground);
+  box-shadow: 0 14px 28px -20px var(--primitive-shadow-outline);
+}
+
+:global(html[data-primitive-theme="light"]) .tooltip::after {
+  border-top-color: var(--primitive-panel-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame,
+  .host::before,
+  .tooltip,
+  .stateLoading::before {
+    transition: none;
+    animation: none;
+  }
+}

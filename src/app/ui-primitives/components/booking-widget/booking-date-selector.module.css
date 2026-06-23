@@ -1,0 +1,148 @@
+.wrap {
+  display: grid;
+  grid-template-columns: 36px 1fr 36px;
+  gap: var(--primitive-space-2);
+  align-items: center;
+  padding: var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+}
+
+.nav {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  color: var(--primitive-body);
+  background: var(--primitive-control-surface);
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.nav:hover,
+.nav:focus-visible {
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.strip {
+  display: flex;
+  gap: var(--primitive-space-2);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  padding: var(--primitive-space-1) var(--primitive-space-0-5);
+}
+
+.strip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.strip::-webkit-scrollbar-thumb {
+  background: var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+}
+
+.tile {
+  flex: 0 0 88px;
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-3) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  color: inherit;
+  background: var(--primitive-control-surface);
+  text-align: center;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.tile:hover:not(.tileDisabled),
+.tile:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--primitive-line-strong);
+  outline: none;
+}
+
+.tileSelected {
+  border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 22%, transparent), transparent 65%),
+    var(--primitive-control-active);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.tileDisabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.weekday {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.day {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-none);
+}
+
+.month {
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  text-transform: uppercase;
+}
+
+.meta {
+  margin-top: var(--primitive-space-1);
+  padding: 3px var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  color: var(--primitive-green);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.metaFew {
+  background: color-mix(in oklab, var(--primitive-amber) 18%, transparent);
+  color: var(--primitive-amber);
+}
+
+.metaFull {
+  background: color-mix(in oklab, var(--primitive-red) 20%, transparent);
+  color: var(--primitive-red);
+}
+
+.metaClosed {
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .strip {
+    transition: none;
+    scroll-behavior: auto;
+  }
+}

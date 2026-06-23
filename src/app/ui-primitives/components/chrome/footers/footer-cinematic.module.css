@@ -1,0 +1,215 @@
+.footer {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 520px;
+  isolation: isolate;
+  overflow: hidden;
+  border-top: 1px solid var(--primitive-line-strong);
+  background: var(--primitive-canvas);
+  color: var(--primitive-text-strong);
+}
+
+.bgFrame {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bgFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.4) contrast(1.05) brightness(0.6) saturate(1.1);
+}
+
+.bgFrame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 80% 12%, color-mix(in oklab, var(--primitive-red) 30%, transparent), transparent 50%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 50%, transparent) 0%, color-mix(in oklab, var(--primitive-canvas) 86%, transparent) 60%, color-mix(in oklab, var(--primitive-canvas) 98%, transparent) 100%);
+}
+
+.bgFrame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: repeating-linear-gradient(0deg, transparent 0 2px, color-mix(in oklab, var(--primitive-text-strong) 2.2%, transparent) 2px 3px);
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 36px;
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 56px);
+  align-content: end;
+}
+
+.brandBlock {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.brandHero {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+}
+
+.brandHero img {
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
+  object-fit: contain;
+  padding: 8px;
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.brandWordmark {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(46px, 5vw, 76px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 0.86;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 6px 22px color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+}
+
+.brandCaption {
+  margin-top: 6px;
+  display: block;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.tagline {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 400;
+  line-height: 1.16;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: color-mix(in oklab, var(--primitive-text-strong) 94%, transparent);
+  max-width: 480px;
+}
+
+.col {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.col h4 {
+  margin: 0 0 6px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.col ul {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.col a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: color-mix(in oklab, var(--primitive-text-strong) 86%, transparent);
+  font-family: var(--primitive-font-body);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.col a:hover {
+  color: var(--primitive-text-strong);
+}
+
+.col a:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.col svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+  color: var(--primitive-amber);
+}
+
+.bottomBar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px clamp(20px, 4vw, 56px);
+  border-top: 1px solid color-mix(in oklab, var(--primitive-text-strong) 10%, transparent);
+  background: color-mix(in oklab, var(--primitive-canvas) 96%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.bottomBar nav {
+  display: flex;
+  gap: 16px;
+}
+
+.bottomBar a {
+  color: var(--primitive-muted);
+  text-decoration: none;
+}
+
+.bottomBar a:hover {
+  color: var(--primitive-text-strong);
+}
+
+.bottomBar a:focus-visible {
+  color: var(--primitive-text-strong);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+@media (max-width: 860px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+:global(html[data-primitive-theme="light"]) .footer {
+  background: var(--primitive-text-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .bgFrame img {
+  filter: grayscale(0.2) contrast(1.05) brightness(0.55) saturate(1.1);
+}

@@ -1,0 +1,42 @@
+/* Parts price chip — composes commerce/PriceTag with a parts-specific
+   surface, label slot, and installment-plan hint. */
+
+.chip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2-5) var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 10%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    color-mix(in oklab, var(--primitive-canvas) 18%, transparent);
+  align-items: center;
+}
+
+.inline {
+  width: fit-content;
+}
+
+.stacked {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px 18px;
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.installment {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}

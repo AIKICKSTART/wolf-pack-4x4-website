@@ -1,0 +1,172 @@
+.tree {
+  padding: 0;
+  border-radius: 14px;
+  display: block;
+  overflow: hidden;
+}
+
+.shell {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4) 14px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+  padding-bottom: var(--primitive-space-2-5);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.total {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.total strong {
+  color: var(--primitive-text-strong);
+}
+
+.list,
+.children {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.children {
+  padding-left: var(--primitive-space-1);
+  margin-top: var(--primitive-space-1);
+  border-left: 1px dashed var(--primitive-line);
+  margin-left: var(--primitive-space-1-5);
+}
+
+.node {
+  border-radius: 6px;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.nodePrimary > .row .label {
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.nodeChild > .row .label {
+  color: var(--primitive-body);
+}
+
+.nodeSelected {
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+}
+
+.nodeDropTarget {
+  background: color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  outline: 1px dashed color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-1-5) var(--primitive-space-1-5) var(--primitive-space-1-5) var(--primitive-space-1);
+  border-radius: 6px;
+}
+
+.row:hover {
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.disclosure,
+.disclosureSpacer {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--primitive-radius-sm);
+  background: transparent;
+  border: 0;
+  color: var(--primitive-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.disclosureSpacer {
+  cursor: default;
+}
+
+.disclosure:hover {
+  color: var(--primitive-text-strong);
+}
+
+.disclosure:focus-visible {
+  outline: 1px solid color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+  outline-offset: 1px;
+}
+
+.label {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.04em;
+  flex: 1;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.label:focus-visible {
+  outline: 1px solid color-mix(in oklab, var(--primitive-teal) 60%, transparent);
+  outline-offset: 2px;
+  border-radius: var(--primitive-radius-xs);
+}
+
+.count {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+  padding: var(--primitive-space-0-5) var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  border: 1px solid var(--primitive-line);
+}
+
+.dropChip {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node,
+  .row {
+    transition: none;
+  }
+}

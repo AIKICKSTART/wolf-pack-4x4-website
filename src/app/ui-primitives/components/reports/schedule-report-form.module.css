@@ -1,0 +1,223 @@
+.form {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.row {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.segments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background: var(--primitive-field-bg);
+  width: max-content;
+  max-width: 100%;
+}
+
+.segment {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.segment:hover {
+  color: var(--primitive-text-strong);
+}
+
+.segmentActive {
+  background: var(--primitive-control-active);
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line);
+}
+
+.cronField {
+  display: grid;
+  gap: 6px;
+}
+
+.cronInput {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-field-bg);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.cronInput:focus {
+  outline: none;
+  border-color: var(--primitive-teal);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.formatRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.formatChip {
+  appearance: none;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.formatChipActive {
+  background: var(--primitive-control-active);
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+}
+
+.toggleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-glass-soft);
+}
+
+.toggleCopy {
+  display: grid;
+  gap: 2px;
+  font-size: 12px;
+  color: var(--primitive-body);
+}
+
+.toggleCopy strong {
+  color: var(--primitive-text-strong);
+  font-weight: 600;
+}
+
+.toggleSwitch {
+  appearance: none;
+  position: relative;
+  width: 42px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--primitive-meter-track);
+  border: 1px solid var(--primitive-line);
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+
+.toggleSwitch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--primitive-text-strong);
+  border-radius: 50%;
+  transition: transform 160ms ease;
+}
+
+.toggleSwitch[aria-checked="true"] {
+  background: var(--primitive-teal);
+}
+
+.toggleSwitch[aria-checked="true"]::after {
+  transform: translateX(18px);
+}
+
+.tagInputShell {
+  display: grid;
+  gap: 6px;
+}
+
+.tagField {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-field-bg);
+  min-height: 44px;
+}
+
+.tagField:focus-within {
+  border-color: var(--primitive-teal);
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  font-size: 11px;
+  color: var(--primitive-text-strong);
+}
+
+.tagRemove {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--primitive-text-strong);
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.tagInput {
+  flex: 1 1 120px;
+  min-width: 80px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--primitive-text-strong);
+  font-size: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggleSwitch,
+  .toggleSwitch::after {
+    transition: none;
+  }
+}

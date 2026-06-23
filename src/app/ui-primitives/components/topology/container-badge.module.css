@@ -1,0 +1,93 @@
+.badge {
+  --c-tone: var(--primitive-green);
+  --c-tone-soft: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+
+  display: inline-grid;
+  grid-template-columns: 32px 1fr;
+  gap: var(--primitive-space-2-5);
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--c-tone) 35%, var(--primitive-line));
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 80%),
+    color-mix(in oklab, var(--primitive-canvas) 70%, transparent);
+  box-shadow: 0 8px 16px color-mix(in oklab, var(--primitive-canvas) 42%, transparent);
+}
+
+.iconBadge {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--primitive-radius-md);
+  color: var(--c-tone);
+  background: var(--c-tone-soft);
+  border: 1px solid color-mix(in srgb, var(--c-tone) 45%, transparent);
+}
+
+.iconBadge svg { width: 15px; height: 15px; }
+
+.body { display: grid; gap: 4px; min-width: 0; }
+
+.image {
+  font-family: var(--primitive-font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  word-break: break-all;
+}
+
+.image strong { color: var(--primitive-text-strong); font-weight: 700; }
+.image small { color: var(--c-tone); font-size: 10.5px; }
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.statusChip,
+.restartChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-0-5) 7px;
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.statusChip { color: var(--c-tone); border-color: color-mix(in srgb, var(--c-tone) 35%, var(--primitive-line)); }
+.restartChip { color: var(--primitive-muted); }
+.restartChip svg { width: 9px; height: 9px; }
+
+.statusRunning {
+  --c-tone: var(--primitive-green);
+  --c-tone-soft: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+}
+.statusPending {
+  --c-tone: var(--primitive-teal);
+  --c-tone-soft: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+}
+.statusFailed {
+  --c-tone: var(--primitive-red);
+  --c-tone-soft: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+.statusCrashing {
+  --c-tone: var(--primitive-amber);
+  --c-tone-soft: color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+  animation: containerCrash 1.4s ease-in-out infinite;
+}
+
+@keyframes containerCrash {
+  0%, 100% { box-shadow: 0 8px 16px color-mix(in oklab, var(--primitive-canvas) 42%, transparent), 0 0 0 0 color-mix(in oklab, var(--primitive-amber) 0%, transparent); }
+  50% { box-shadow: 0 8px 16px color-mix(in oklab, var(--primitive-canvas) 42%, transparent), 0 0 0 5px color-mix(in oklab, var(--primitive-amber) 18%, transparent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statusCrashing { animation: none; }
+}

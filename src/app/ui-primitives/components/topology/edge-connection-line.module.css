@@ -1,0 +1,108 @@
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.track {
+  fill: none;
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 14%, transparent);
+  stroke-width: 1.4;
+}
+
+.flow {
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 7 8;
+  animation: edgeFlow 1.8s linear infinite;
+}
+
+.flowReverse {
+  stroke-width: 1.2;
+  stroke-dasharray: 4 6;
+  opacity: 0.65;
+  animation: edgeFlowReverse 2.4s linear infinite;
+}
+
+.toneNeutral .flow {
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 62%, transparent);
+  filter: drop-shadow(0 0 4px color-mix(in oklab, var(--primitive-text-strong) 18%, transparent));
+}
+
+.toneRed .flow {
+  stroke: var(--primitive-red);
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primitive-red) 50%, transparent));
+}
+
+.toneAmber .flow {
+  stroke: var(--primitive-amber);
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primitive-amber) 50%, transparent));
+}
+
+.toneTeal .flow {
+  stroke: var(--primitive-teal);
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primitive-teal) 50%, transparent));
+}
+
+.toneGreen .flow {
+  stroke: var(--primitive-green);
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primitive-green) 50%, transparent));
+}
+
+@keyframes edgeFlow {
+  to { stroke-dashoffset: -30; }
+}
+
+@keyframes edgeFlowReverse {
+  to { stroke-dashoffset: 30; }
+}
+
+.arrowHead { fill: currentColor; }
+
+.midChip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.protocolPill,
+.bandwidthPill {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-space-1) var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 94%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px color-mix(in oklab, var(--primitive-canvas) 46%, transparent);
+}
+
+.protocolPill {
+  border-color: color-mix(in oklab, var(--primitive-teal) 45%, transparent);
+  color: var(--primitive-teal);
+}
+
+.bandwidthPill {
+  border-color: color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+  color: var(--primitive-amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow,
+  .flowReverse {
+    animation: none;
+    stroke-dasharray: 0;
+  }
+}

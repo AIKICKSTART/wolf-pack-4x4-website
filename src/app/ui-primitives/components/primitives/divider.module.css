@@ -1,0 +1,182 @@
+.root {
+  --divider-tone: var(--primitive-line-strong);
+  /* Resolved line color: neutral uses the raw line token; accent tones get a
+     restrained mix so the rule reads as tint, not a solid bar. */
+  --divider-ink: color-mix(in oklab, var(--divider-tone) 62%, var(--primitive-line));
+  --divider-glow: transparent;
+
+  display: flex;
+  color: var(--primitive-muted);
+}
+
+/* ---- tone ---- */
+.toneLine {
+  --divider-ink: var(--primitive-line-strong);
+  --divider-glow: transparent;
+}
+
+.toneAccent {
+  --divider-ink: color-mix(in oklab, var(--divider-tone) 60%, var(--primitive-line));
+  --divider-glow: color-mix(in srgb, var(--divider-tone) 22%, transparent);
+}
+
+/* ---- orientation: horizontal ---- */
+.horizontal {
+  align-items: center;
+  width: 100%;
+  min-height: var(--primitive-space-1);
+}
+
+/* ---- orientation: vertical ---- */
+.vertical {
+  flex-direction: column;
+  align-self: stretch;
+  height: 100%;
+  min-height: var(--primitive-space-5);
+  width: var(--primitive-space-1);
+  justify-content: center;
+}
+
+/* ---- the hairline rule ---- */
+.rule {
+  flex: 1 1 auto;
+  position: relative;
+  display: block;
+  border: 0;
+}
+
+.horizontal .rule {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--divider-ink) 18%,
+    var(--divider-ink) 82%,
+    transparent 100%
+  );
+  box-shadow: 0 0 var(--primitive-space-2) var(--divider-glow);
+}
+
+.vertical .rule {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--divider-ink) 18%,
+    var(--divider-ink) 82%,
+    transparent 100%
+  );
+  box-shadow: 0 0 var(--primitive-space-2) var(--divider-glow);
+}
+
+/* Neumorphic depth: a 1px highlight offset beneath the rule so it reads as a
+   carved seam rather than a painted line. */
+.rule::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.horizontal .rule::after {
+  top: 1px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--primitive-neumo-light) 20%,
+    var(--primitive-neumo-light) 80%,
+    transparent 100%
+  );
+  opacity: 0.7;
+}
+
+.vertical .rule::after {
+  left: 1px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--primitive-neumo-light) 20%,
+    var(--primitive-neumo-light) 80%,
+    transparent 100%
+  );
+  opacity: 0.7;
+}
+
+/* ---- labeled variant ---- */
+.labeled {
+  gap: var(--primitive-space-3);
+}
+
+/* Each flanking rule fades from the label outward for an editorial split. */
+.labeled .rule:first-of-type {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--divider-ink) 90%,
+    var(--divider-ink) 100%
+  );
+}
+
+.labeled .rule:last-of-type {
+  background: linear-gradient(
+    90deg,
+    var(--divider-ink) 0%,
+    var(--divider-ink) 10%,
+    transparent 100%
+  );
+}
+
+.label {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  line-height: var(--primitive-leading-none);
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Accent tones lift the label ink to match the rule tint. */
+.toneAccent.labeled .label {
+  color: color-mix(in oklab, var(--divider-tone) 30%, var(--primitive-muted));
+}
+
+/* ---- inset ---- */
+.inset.horizontal {
+  padding-inline: var(--primitive-space-4);
+}
+
+.inset.vertical {
+  padding-block: var(--primitive-space-3);
+}
+
+/* ---- light theme parity ---- */
+:global(html[data-primitive-theme="light"]) .toneLine {
+  --divider-ink: var(--primitive-line-strong);
+}
+
+:global(html[data-primitive-theme="light"]) .toneAccent {
+  --divider-ink: color-mix(in oklab, var(--divider-tone) 46%, var(--primitive-line-strong));
+  --divider-glow: color-mix(in srgb, var(--divider-tone) 14%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .horizontal .rule::after,
+:global(html[data-primitive-theme="light"]) .vertical .rule::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .rule {
+    transition: none;
+  }
+}

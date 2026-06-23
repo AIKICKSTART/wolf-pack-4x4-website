@@ -1,0 +1,422 @@
+.page {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px) 64px;
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 80% 0%, color-mix(in oklab, var(--primitive-green) 14%, transparent), transparent 38%),
+    radial-gradient(circle at 12% 92%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 40%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--primitive-space-6);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.headerCopy {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.eyebrow {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-green);
+}
+
+.headline {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.04;
+  margin: 0;
+  letter-spacing: 0.01em;
+  color: var(--primitive-text-strong);
+}
+
+.subhead {
+  margin: 0;
+  max-width: 64ch;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--primitive-muted);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+  background: color-mix(in oklab, var(--primitive-text-strong) 2%, transparent);
+  transition: border-color 220ms ease, transform 220ms ease;
+}
+
+.backLink:hover {
+  border-color: var(--primitive-teal);
+  transform: translateX(2px);
+}
+
+.backLink svg {
+  width: 14px;
+  height: 14px;
+}
+
+.stage {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(260px, 1fr);
+  gap: 22px;
+}
+
+.estimateCard {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  padding: 28px clamp(20px, 2.4vw, 34px) 24px;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 38%),
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--primitive-green) 18%, transparent), transparent 38%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+  overflow: hidden;
+}
+
+.estimateCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 92%, color-mix(in oklab, var(--primitive-green) 18%, transparent));
+}
+
+.estimateHead {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.estimateKicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.estimateRef {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-body);
+}
+
+.estimateAmountRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--primitive-space-4);
+  flex-wrap: wrap;
+}
+
+.estimatePrefix {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.estimateAmount {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 0.92;
+  color: var(--primitive-text-strong);
+  font-weight: var(--primitive-weight-regular);
+}
+
+.estimateCurrency {
+  font-size: 0.36em;
+  color: var(--primitive-green);
+  margin-right: var(--primitive-space-1);
+  letter-spacing: 0.04em;
+}
+
+/* Reveal the dollar figure with a soft sliding mask + opacity rise.
+   Keeps the SSR markup readable while still feeling alive on first paint. */
+.estimateDigits {
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  display: inline-block;
+  animation: digitsRise 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes digitsRise {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.estimateDelta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.estimateDelta[data-tone="green"] {
+  color: var(--primitive-green);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 38%, transparent);
+}
+
+.estimateDelta svg {
+  width: 12px;
+  height: 12px;
+}
+
+.estimateTrend {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.estimateTrendCaption {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.estimateBreakdown {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breakdownRow {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px var(--primitive-space-1);
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.breakdownIcon {
+  width: 18px;
+  height: 18px;
+  color: var(--primitive-teal);
+}
+
+.breakdownCopy {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.breakdownCopy strong {
+  font-weight: var(--primitive-weight-semibold);
+  font-size: 14px;
+  color: var(--primitive-text-strong);
+}
+
+.breakdownCopy small {
+  font-size: 11px;
+  color: var(--primitive-muted);
+  letter-spacing: 0.04em;
+}
+
+.breakdownAmount {
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primitive-body);
+}
+
+.breakdownAmount[data-zero="true"] {
+  color: var(--primitive-green);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.estimateFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-4);
+  margin-top: var(--primitive-space-1);
+  padding-top: 18px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.estimateFootNote {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.estimateCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-3) 18px;
+  border: none;
+  border-radius: var(--primitive-radius-pill);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-canvas);
+  background: linear-gradient(135deg, var(--primitive-green), color-mix(in oklab, var(--primitive-green) 72%, black));
+  cursor: pointer;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  box-shadow: 0 10px 28px color-mix(in oklab, var(--primitive-green) 32%, transparent);
+}
+
+.estimateCta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px color-mix(in oklab, var(--primitive-green) 42%, transparent);
+}
+
+.estimateCta svg {
+  width: 14px;
+  height: 14px;
+}
+
+.tickerAside {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 40%),
+    var(--primitive-panel);
+  align-content: start;
+}
+
+.tickerTitle {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+  margin: 0;
+}
+
+.tickerList {
+  display: grid;
+  gap: var(--primitive-space-1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tickerRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-3) 0;
+  border-top: 1px dashed var(--primitive-line);
+  animation: slideIn 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.tickerRef {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-teal);
+}
+
+.tickerMake {
+  font-size: var(--primitive-text-sm);
+  color: var(--primitive-text-strong);
+}
+
+.tickerAmount {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-md);
+  color: var(--primitive-green);
+  letter-spacing: 0.02em;
+}
+
+.tickerFoot {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--primitive-muted);
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 880px) {
+  .header {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .stage {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .estimateDigits {
+    animation: none;
+    transform: none;
+    filter: none;
+    opacity: 1;
+  }
+  .tickerRow {
+    animation: none;
+  }
+  .estimateCta {
+    transition: none;
+  }
+}

@@ -1,0 +1,89 @@
+.line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.track {
+  fill: none;
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  stroke-width: 1.6;
+}
+
+.flow {
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 6 7;
+  animation: connectionFlow 1.6s linear infinite;
+}
+
+.toneNeutral .flow {
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 60%, transparent);
+  filter: drop-shadow(0 0 4px color-mix(in oklab, var(--primitive-text-strong) 18%, transparent));
+}
+
+.toneRed .flow {
+  stroke: var(--primitive-red);
+  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primitive-red) 45%, transparent));
+}
+
+.toneAmber .flow {
+  stroke: var(--primitive-amber);
+  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primitive-amber) 45%, transparent));
+}
+
+.toneTeal .flow {
+  stroke: var(--primitive-teal);
+  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primitive-teal) 45%, transparent));
+}
+
+.toneGreen .flow {
+  stroke: var(--primitive-green);
+  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primitive-green) 45%, transparent));
+}
+
+@keyframes connectionFlow {
+  to {
+    stroke-dashoffset: -26;
+  }
+}
+
+.arrowHead {
+  fill: currentColor;
+}
+
+.labelChip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-code-bg);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: 0 6px 18px var(--primitive-overlay);
+}
+
+.labelChipRed { border-color: color-mix(in oklab, var(--primitive-red) 55%, transparent); color: color-mix(in oklab, var(--primitive-red) 28%, var(--primitive-text-strong)); }
+.labelChipAmber { border-color: color-mix(in oklab, var(--primitive-amber) 55%, transparent); color: color-mix(in oklab, var(--primitive-amber) 30%, var(--primitive-text-strong)); }
+.labelChipTeal { border-color: color-mix(in oklab, var(--primitive-teal) 55%, transparent); color: color-mix(in oklab, var(--primitive-teal) 35%, var(--primitive-text-strong)); }
+.labelChipGreen { border-color: color-mix(in oklab, var(--primitive-green) 55%, transparent); color: color-mix(in oklab, var(--primitive-green) 30%, var(--primitive-text-strong)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .flow {
+    animation: none;
+    stroke-dasharray: 0;
+  }
+}

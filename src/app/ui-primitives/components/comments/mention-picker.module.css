@@ -1,0 +1,135 @@
+.picker {
+  position: relative;
+  display: grid;
+  gap: var(--primitive-space-2);
+  width: min(340px, 92vw);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), transparent),
+    var(--primitive-panel-strong);
+  box-shadow: var(--primitive-shadow-soft);
+  font-family: var(--primitive-font-body);
+  color: var(--primitive-body);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding-bottom: var(--primitive-space-2);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.searchIcon {
+  display: inline-grid;
+  place-items: center;
+  color: var(--primitive-muted);
+}
+
+.searchInput {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: 13.5px;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--primitive-muted);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 8px 1fr auto;
+  gap: var(--primitive-space-2-5);
+  width: 100%;
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border: 0;
+  border-radius: var(--primitive-radius-md);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 140ms ease;
+  align-items: center;
+}
+
+.item:hover,
+.itemActive {
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+}
+
+.kindDot {
+  display: inline-block;
+  width: var(--primitive-space-2);
+  height: var(--primitive-space-2);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-teal);
+}
+
+.kindUser {
+  background: var(--primitive-teal);
+}
+
+.kindTeam {
+  background: var(--primitive-amber);
+}
+
+.kindRole {
+  background: var(--primitive-red);
+}
+
+.itemBody {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.itemName {
+  font-size: 13.5px;
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.itemQualifier {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.kindBadge {
+  padding: 2px 7px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.empty {
+  margin: 0;
+  padding: var(--primitive-space-3);
+  text-align: center;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}

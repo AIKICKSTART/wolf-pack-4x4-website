@@ -1,0 +1,150 @@
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 16px;
+  background: var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: grid;
+  gap: 6px;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  color: var(--primitive-text-strong);
+  font-weight: 700;
+}
+
+.summary {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.summaryValue {
+  font-family: var(--primitive-font-display);
+  font-size: 32px;
+  line-height: 1;
+  color: var(--primitive-text-strong);
+}
+
+.summaryDelta {
+  font-family: var(--primitive-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-green);
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 32%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 10%, transparent);
+}
+
+.confidence {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.chartWrap {
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background: var(--primitive-panel-strong);
+  padding: 8px;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+}
+
+.gridLine {
+  stroke: var(--primitive-line);
+  stroke-width: 1;
+  stroke-opacity: 0.6;
+}
+
+.axisText {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  fill: var(--primitive-muted);
+}
+
+.actualPath {
+  stroke: var(--primitive-text-strong);
+  stroke-width: 2;
+}
+
+.forecastPath {
+  stroke: var(--primitive-teal);
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+}
+
+.splitLine {
+  stroke: var(--primitive-muted);
+  stroke-width: 1;
+}
+
+.legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.legendItemActual,
+.legendItemForecast,
+.legendItemBand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primitive-text-strong);
+}
+
+.legendItemActual::before {
+  content: "";
+  width: 14px;
+  height: 2px;
+  background: var(--primitive-text-strong);
+  border-radius: 999px;
+}
+
+.legendItemForecast::before {
+  content: "";
+  width: 14px;
+  height: 2px;
+  background: var(--primitive-teal);
+  border-radius: 999px;
+  outline: 1px dashed transparent;
+}
+
+.legendItemBand::before {
+  content: "";
+  width: 14px;
+  height: 10px;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-teal) 32%, transparent), color-mix(in oklab, var(--primitive-teal) 6%, transparent));
+  border-radius: 3px;
+}

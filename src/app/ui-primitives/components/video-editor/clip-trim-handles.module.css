@@ -1,0 +1,80 @@
+.wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  padding: 0;
+  border: 1px solid var(--primitive-amber);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 34%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-amber) 78%, transparent);
+  color: var(--primitive-canvas);
+  pointer-events: auto;
+  cursor: ew-resize;
+  outline: none;
+  transition: width 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.left { left: -1px; border-top-left-radius: 5px; border-bottom-left-radius: 5px; }
+.right { right: -1px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
+
+.handle:hover,
+.handle:focus-visible,
+.active {
+  width: 18px;
+  box-shadow: 0 0 14px color-mix(in oklab, var(--primitive-amber) 45%, transparent);
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primitive-text-strong) 74%, transparent), transparent 38%),
+    color-mix(in oklab, var(--primitive-amber) 92%, transparent);
+}
+
+.grip {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  gap: 3px;
+  height: 100%;
+}
+
+.grip i {
+  display: block;
+  width: 5px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--primitive-canvas) 56%, transparent);
+}
+
+.deltaChip {
+  position: absolute;
+  top: -22px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primitive-canvas) 86%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 62%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.deltaLeft { left: 0; }
+.deltaRight { right: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .handle {
+    transition: none;
+  }
+}

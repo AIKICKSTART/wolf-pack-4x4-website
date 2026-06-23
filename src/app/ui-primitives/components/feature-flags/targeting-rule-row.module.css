@@ -1,0 +1,155 @@
+.row {
+  display: grid;
+  grid-template-columns: 140px 150px minmax(0, 1fr) auto;
+  gap: var(--primitive-space-3);
+  align-items: end;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent) 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.select {
+  height: 38px;
+  padding: 0 30px 0 12px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background-color: color-mix(in oklab, var(--primitive-canvas) 36%, transparent);
+  background-image: linear-gradient(45deg, transparent 50%, var(--primitive-body) 50%),
+    linear-gradient(135deg, var(--primitive-body) 50%, transparent 50%);
+  background-position: calc(100% - 16px) 17px, calc(100% - 12px) 17px;
+  background-size: 4px 4px;
+  background-repeat: no-repeat;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  appearance: none;
+  cursor: pointer;
+}
+
+.select:focus-visible {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.subjectUser { border-color: color-mix(in oklab, var(--primitive-teal) 42%, transparent); color: var(--primitive-teal); }
+.subjectWorkspace { border-color: color-mix(in oklab, var(--primitive-amber) 42%, transparent); color: var(--primitive-amber); }
+.subjectRole { border-color: color-mix(in oklab, var(--primitive-red) 42%, transparent); color: var(--primitive-red); }
+.subjectGeo { border-color: color-mix(in oklab, var(--primitive-green) 42%, transparent); color: var(--primitive-green); }
+.subjectDevice { border-color: var(--primitive-line-strong); color: var(--primitive-text-strong); }
+
+.tagInput {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  min-height: 38px;
+  padding: var(--primitive-space-1-5);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 36%, transparent);
+}
+
+.tagInput:focus-within {
+  outline: 2px solid var(--primitive-amber);
+  outline-offset: 2px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-1) var(--primitive-space-1) var(--primitive-space-1) var(--primitive-space-2-5);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 34%, transparent);
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+}
+
+.tagRemove {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 5px;
+  background: color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+  color: var(--primitive-body);
+  cursor: pointer;
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  line-height: var(--primitive-leading-none);
+}
+
+.tagRemove:hover {
+  background: color-mix(in oklab, var(--primitive-red) 36%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.tagDraft {
+  flex: 1 1 100px;
+  min-width: 80px;
+  border: 0;
+  background: transparent;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  outline: none;
+}
+
+.remove {
+  height: 38px;
+  padding: 0 14px;
+  /* shared secondary button DNA — destructive intent keeps a red semantic
+     over the central carbon-fibre body */
+  border: 1px solid color-mix(in oklab, var(--primitive-red) 34%, transparent);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.remove:hover {
+  background: color-mix(in oklab, var(--primitive-red) 18%, var(--primitive-btn-secondary-bg));
+  border-color: var(--primitive-red);
+  color: var(--primitive-text-strong);
+}
+
+.remove:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .field:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+}

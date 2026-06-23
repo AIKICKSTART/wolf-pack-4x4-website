@@ -1,0 +1,243 @@
+.shell {
+  display: grid;
+  gap: 18px;
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: start;
+}
+
+.headBody {
+  display: grid;
+  gap: var(--primitive-space-1);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.totals {
+  display: grid;
+  text-align: right;
+  padding: var(--primitive-space-1-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-amber);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-amber) 8%, transparent);
+}
+
+.totalsLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.totalsValue {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  color: var(--primitive-amber);
+  line-height: 1;
+}
+
+.totalsUnit {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.subhead {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.questionsBlock,
+.bandsBlock,
+.thresholdRow {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.questions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.questionRow {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(0, 2fr) auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+  padding: var(--primitive-space-2) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-code-bg) 60%, transparent);
+}
+
+.questionLabel {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.questionTrack {
+  position: relative;
+  height: 6px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  overflow: hidden;
+}
+
+.questionFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primitive-teal), var(--primitive-amber));
+}
+
+.questionValue {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+}
+
+.questionPts {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.questionShare {
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  color: var(--primitive-muted);
+}
+
+.thresholdGauge {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.thresholdTrack {
+  position: relative;
+  height: 8px;
+  border-radius: var(--primitive-radius-pill);
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--primitive-red) 60%, transparent) 0%,
+    color-mix(in oklab, var(--primitive-amber) 60%, transparent) 50%,
+    color-mix(in oklab, var(--primitive-green) 60%, transparent) 100%
+  );
+}
+
+.thresholdMarker {
+  position: absolute;
+  top: -4px;
+  width: 4px;
+  height: 16px;
+  border-radius: var(--primitive-radius-xs);
+  background: var(--primitive-text-strong);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  transform: translateX(-50%);
+}
+
+.thresholdValue {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.bands {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.band {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-3);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-code-bg) 60%, transparent);
+  border: 1px solid var(--band-tone, var(--primitive-line));
+}
+
+.bandHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-space-2);
+}
+
+.bandLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--band-tone, var(--primitive-text-strong));
+}
+
+.bandRange {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  color: var(--primitive-muted);
+}
+
+.bandDescription {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+  line-height: 1.5;
+}
+
+.bandFail {
+  --band-tone: var(--primitive-red);
+}
+
+.bandPass {
+  --band-tone: var(--primitive-amber);
+}
+
+.bandDistinction {
+  --band-tone: var(--primitive-green);
+}

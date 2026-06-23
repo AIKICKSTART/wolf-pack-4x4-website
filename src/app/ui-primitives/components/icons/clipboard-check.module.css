@@ -1,0 +1,58 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.board { stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linejoin: round; }
+.boardFill { fill: currentColor; opacity: 0.16; }
+.tab { fill: currentColor; opacity: 0.45; }
+.clip { fill: currentColor; opacity: 0.9; }
+.clipBack { fill: currentColor; opacity: 0.92; stroke: currentColor; stroke-width: 1; stroke-linejoin: round; }
+.clipFront { fill: var(--primitive-canvas); opacity: 0.6; stroke: currentColor; stroke-width: 0.6; }
+.clipDetail { stroke: currentColor; opacity: 0.5; stroke-linecap: round; }
+.line { stroke: currentColor; stroke-width: 1; opacity: 0.5; stroke-linecap: round; }
+.fieldLabel { stroke: currentColor; opacity: 0.85; stroke-linecap: round; }
+.fieldFill { stroke: currentColor; opacity: 0.4; stroke-linecap: round; stroke-dasharray: 2 1.6; }
+.checkbox { fill: none; stroke: currentColor; stroke-width: 1.2; }
+.itemLine { stroke: currentColor; opacity: 0.5; stroke-linecap: round; }
+.check {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 14;
+  stroke-dashoffset: 14;
+  animation: clipCheckDraw 1.6s ease-out infinite;
+}
+
+@keyframes clipCheckDraw {
+  0% { stroke-dashoffset: 14; opacity: 0; }
+  20% { opacity: 1; }
+  60%, 90% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .board, .motionDraw .fieldLabel, .motionDraw .fieldFill { stroke-dasharray: 60; stroke-dashoffset: 60; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .check { animation-duration: 0.5s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .boardFill,
+[data-variant="outline"] .tab,
+[data-variant="outline"] .clipBack { fill: transparent; opacity: 1; }
+[data-variant="outline"] .clipFront { fill: transparent; opacity: 1; }
+
+[data-variant="filled"] .boardFill { opacity: 0.55; }
+[data-variant="filled"] .tab { opacity: 0.8; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .check { animation: none !important; transition: none !important; }
+  .check { stroke-dashoffset: 0; opacity: 1; }
+}

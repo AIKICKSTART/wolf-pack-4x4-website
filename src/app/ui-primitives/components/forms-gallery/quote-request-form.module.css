@@ -1,0 +1,323 @@
+/* Quote request — 3-step wizard with local stepper */
+
+.form {
+  display: grid;
+  gap: var(--primitive-space-6);
+  width: min(100%, 820px);
+  padding: clamp(24px, 4vw, 36px);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    var(--primitive-shadow-soft);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.eyebrow {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.lede {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--primitive-body);
+}
+
+.stepper {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.step {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  align-content: start;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+}
+
+.stepCount {
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.stepLabel {
+  font-size: var(--primitive-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--primitive-body);
+}
+
+.stepOn {
+  border-color: var(--primitive-amber);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 16%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-amber) 4%, transparent);
+  color: var(--primitive-amber);
+}
+
+.stepDone {
+  border-color: var(--primitive-green);
+  color: var(--primitive-green);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 14%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-green) 3%, transparent);
+}
+
+.stepDone .stepLabel {
+  color: var(--primitive-text-strong);
+}
+
+.stepOn .stepLabel {
+  color: var(--primitive-text-strong);
+}
+
+.fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.fieldsetTitle {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.field {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.label {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.input,
+.select {
+  width: 100%;
+  min-height: 46px;
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-base);
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.select {
+  appearance: none;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 3.5%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-canvas) 78%, transparent),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8' fill='none' stroke='%23c7c9d0' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><polyline points='1 1 7 7 13 1'/></svg>") no-repeat right 14px center;
+  padding-right: 36px;
+}
+
+.input:focus-visible,
+.select:focus-visible {
+  border-color: var(--primitive-amber);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primitive-amber) 16%, transparent);
+}
+
+.serviceWrap {
+  display: grid;
+  gap: var(--primitive-space-2);
+}
+
+.serviceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.serviceChip {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: 14px var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.serviceChipDesc {
+  font-family: var(--primitive-font-body);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--primitive-muted);
+}
+
+.serviceChipOn {
+  border-color: var(--primitive-amber);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-amber) 18%, transparent), transparent 70%),
+    color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  color: var(--primitive-text-strong);
+  transform: translateY(-1px);
+}
+
+.serviceChipOn .serviceChipDesc {
+  color: color-mix(in oklab, var(--primitive-body) 84%, transparent);
+}
+
+.serviceChip:hover:not(.serviceChipOn),
+.serviceChip:focus-visible {
+  border-color: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+  outline: none;
+}
+
+.help {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  color: var(--primitive-muted);
+}
+
+.audienceRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--primitive-space-2);
+}
+
+.actions {
+  display: flex;
+  gap: var(--primitive-space-3);
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.btnGhost,
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: 14px 22px;
+  border-radius: var(--primitive-btn-radius);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background 200ms ease, color 200ms ease;
+}
+
+.btnGhost {
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+}
+
+.btnGhost:hover,
+.btnGhost:focus-visible {
+  border-color: var(--primitive-amber);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.btnPrimary {
+  border: 0;
+  background: var(--primitive-btn-primary-bg);
+  color: var(--primitive-btn-primary-fg);
+  box-shadow: var(--primitive-btn-primary-shadow);
+}
+
+.btnPrimary:hover,
+.btnPrimary:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+  background: var(--primitive-btn-primary-hover-bg);
+  color: var(--primitive-btn-primary-hover-fg);
+  box-shadow: var(--primitive-btn-primary-hover-shadow);
+}
+
+@media (max-width: 720px) {
+  .row2,
+  .audienceRow,
+  .serviceGrid {
+    grid-template-columns: 1fr;
+  }
+  .stepper {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .select,
+  .btnGhost,
+  .btnPrimary,
+  .serviceChip {
+    transition: border-color 100ms ease;
+  }
+  .btnPrimary:hover,
+  .btnPrimary:focus-visible,
+  .btnGhost:hover,
+  .btnGhost:focus-visible {
+    transform: none;
+  }
+  .serviceChipOn {
+    transform: none;
+  }
+}

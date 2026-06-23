@@ -1,0 +1,67 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 12px 22px; }
+.host svg { display: block; }
+
+.outerFlame {
+  fill: currentColor;
+  opacity: 0.45;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+  transform-origin: 12px 22px;
+  animation: flameFlicker 0.42s ease-in-out infinite alternate;
+}
+.midFlame {
+  fill: currentColor;
+  opacity: 0.65;
+  transform-origin: 12px 22px;
+  animation: flameFlicker 0.32s ease-in-out infinite alternate-reverse;
+}
+.innerCore {
+  fill: currentColor;
+  opacity: 0.95;
+  mix-blend-mode: screen;
+  transform-origin: 12px 22px;
+  animation: flameFlicker 0.28s ease-in-out infinite alternate;
+}
+.burner { stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; opacity: 0.85; }
+.burnerBlock { fill: currentColor; opacity: 0.75; stroke: none; }
+.spark { fill: currentColor; opacity: 0; animation: flameSpark 1.2s ease-out infinite; }
+.spark[data-s="2"] { animation-delay: 0.4s; }
+.spark[data-s="3"] { animation-delay: 0.8s; }
+.cone, .inner, .line { stroke: currentColor; fill: none; opacity: 0.4; stroke-linecap: round; }
+
+@keyframes flameFlicker {
+  from { transform: scaleY(1) scaleX(1); }
+  to { transform: scaleY(1.12) scaleX(0.92); }
+}
+@keyframes flameSpark {
+  0% { opacity: 0; transform: translate(0, 0); }
+  30% { opacity: 0.9; }
+  100% { opacity: 0; transform: translate(0, -8px); }
+}
+
+.motionPulse { animation: iconPulse 1.6s ease-in-out infinite; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .outerFlame, .motionDraw .midFlame { stroke-dasharray: 50; stroke-dashoffset: 50; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .spark { animation-duration: 0.5s; }
+.motionSpark .outerFlame, .motionSpark .midFlame, .motionSpark .innerCore { animation-duration: 0.15s; }
+
+@keyframes iconPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+
+[data-variant="outline"] .outerFlame,
+[data-variant="outline"] .midFlame,
+[data-variant="outline"] .innerCore { fill: transparent; opacity: 0.95; stroke: currentColor; stroke-width: 1.3; }
+[data-variant="outline"] .burnerBlock { fill: transparent; stroke: currentColor; stroke-width: 1.2; }
+
+[data-variant="filled"] .outerFlame { opacity: 0.9; }
+[data-variant="filled"] .midFlame { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .outerFlame, .midFlame, .innerCore, .spark { animation: none !important; transition: none !important; }
+}

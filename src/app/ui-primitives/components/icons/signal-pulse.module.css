@@ -1,0 +1,40 @@
+.host { display: inline-flex; color: var(--animated-icon-tone, currentColor); transform-origin: 50% 50%; }
+.host svg { display: block; }
+
+.core { fill: currentColor; opacity: 0.92; }
+.coreGlow { fill: currentColor; opacity: 0.22; }
+.coreCenter { fill: var(--primitive-canvas); }
+.ringStatic { stroke: currentColor; fill: none; stroke-width: 0.9; opacity: 0.35; stroke-dasharray: 2 1.6; }
+.ring { stroke: currentColor; fill: none; stroke-width: 1.4; opacity: 0; transform-origin: 12px 12px; animation: signalRipple 2s ease-out infinite; }
+.ring[data-r="2"] { animation-delay: 0.5s; }
+.ring[data-r="3"] { animation-delay: 1s; }
+.cross { stroke: currentColor; fill: none; stroke-width: 1.1; opacity: 0.55; stroke-linecap: round; }
+
+@keyframes signalRipple {
+  0% { opacity: 0; transform: scale(0.4); }
+  20% { opacity: 0.85; }
+  100% { opacity: 0; transform: scale(2.1); }
+}
+
+.motionPulse .core { animation: signalCorePulse 1.4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+.motionRotate { animation: iconRotate 4s linear infinite; }
+.motionWiggle { animation: iconWiggle 1.4s ease-in-out infinite; }
+.motionDrift { animation: iconDrift 3.6s ease-in-out infinite; }
+.motionDraw .cross { stroke-dasharray: 60; stroke-dashoffset: 60; animation: iconDraw 1.4s ease-out forwards; }
+.motionSpark .ring { animation-duration: 0.6s; }
+
+@keyframes iconRotate { to { transform: rotate(360deg); } }
+@keyframes iconWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+@keyframes iconDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes iconDraw { to { stroke-dashoffset: 0; } }
+@keyframes signalCorePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.4); } }
+
+[data-variant="outline"] .core { fill: transparent; stroke: currentColor; stroke-width: 1.4; opacity: 1; }
+[data-variant="outline"] .coreGlow { fill: transparent; }
+
+[data-variant="filled"] .core { opacity: 1; }
+[data-variant="filled"] .coreGlow { opacity: 0.55; }
+
+@media (prefers-reduced-motion: reduce) {
+  .host, .host *, .ring, .core { animation: none !important; transition: none !important; }
+}

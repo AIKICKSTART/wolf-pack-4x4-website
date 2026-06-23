@@ -1,0 +1,212 @@
+.card {
+  --plugin-accent: var(--primitive-teal);
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4.5%, transparent), color-mix(in oklab, var(--primitive-text-strong) 0.5%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), var(--primitive-shadow-soft);
+  overflow: hidden;
+  isolation: isolate;
+  min-width: 0;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--plugin-accent), transparent 78%);
+  opacity: 0.85;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  gap: var(--primitive-space-4);
+  align-items: center;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--primitive-radius-lg);
+  background:
+    radial-gradient(circle at 28% 18%, color-mix(in srgb, var(--plugin-accent) 36%, transparent), transparent 62%),
+    linear-gradient(135deg, color-mix(in oklab, var(--primitive-text-strong) 8%, transparent), color-mix(in oklab, var(--primitive-text-strong) 2%, transparent)),
+    var(--primitive-recessed);
+  color: var(--plugin-accent);
+  border: 1px solid color-mix(in srgb, var(--plugin-accent) 24%, var(--primitive-line));
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.author {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-h4);
+  font-weight: var(--primitive-weight-regular);
+  line-height: var(--primitive-leading-none);
+  text-transform: uppercase;
+  letter-spacing: var(--primitive-tracking-normal);
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  height: 26px;
+  padding: 0 var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid color-mix(in srgb, var(--plugin-accent) 32%, var(--primitive-line));
+  background: color-mix(in srgb, var(--plugin-accent) 12%, var(--primitive-recessed));
+  color: var(--plugin-accent);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.statusChip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-round);
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.description {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.04em;
+}
+
+.ratingCount {
+  color: var(--primitive-muted);
+  font-weight: var(--primitive-weight-semibold);
+}
+
+.priceChip {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+/* Secondary action — shared carbon button DNA, accent edge hint. */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 var(--primitive-space-4);
+  border: 1px solid color-mix(in srgb, var(--plugin-accent) 40%, var(--primitive-btn-secondary-border));
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-black);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--primitive-btn-primary-shadow);
+  transition: border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    box-shadow var(--primitive-duration-fast) var(--primitive-ease-out),
+    transform var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+  border-color: var(--plugin-accent);
+  box-shadow: var(--primitive-btn-primary-shadow), var(--primitive-focus-shadow);
+}
+
+.toneInstalled {
+  --plugin-accent: var(--primitive-green);
+}
+
+.toneUpdate {
+  --plugin-accent: var(--primitive-amber);
+}
+
+.toneNew {
+  --plugin-accent: var(--primitive-teal);
+}
+
+.toneInstalling {
+  --plugin-accent: var(--primitive-amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+  .cta:hover,
+  .cta:focus-visible {
+    transform: none;
+  }
+}

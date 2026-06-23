@@ -1,0 +1,70 @@
+.eq {
+  --eq-color: var(--primitive-red);
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  padding: 0 var(--primitive-space-1-5);
+}
+
+.bar {
+  display: block;
+  width: 4px;
+  height: 40%;
+  border-radius: var(--primitive-radius-xs);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--eq-color) 88%, white), var(--eq-color));
+  box-shadow: 0 0 6px color-mix(in srgb, var(--eq-color) 50%, transparent);
+}
+
+.idle .bar {
+  height: 22%;
+  opacity: 0.6;
+}
+
+.active .bar {
+  animation: eqPulse 1s ease-in-out infinite;
+}
+
+@keyframes eqPulse {
+  0%, 100% {
+    height: 18%;
+  }
+  20% {
+    height: 88%;
+  }
+  40% {
+    height: 38%;
+  }
+  60% {
+    height: 72%;
+  }
+  80% {
+    height: 28%;
+  }
+}
+
+.toneRed {
+  --eq-color: var(--primitive-red);
+}
+
+.toneAmber {
+  --eq-color: var(--primitive-amber);
+}
+
+.toneTeal {
+  --eq-color: var(--primitive-teal);
+}
+
+.toneGreen {
+  --eq-color: var(--primitive-green);
+}
+
+.toneNeutral {
+  --eq-color: color-mix(in oklab, var(--primitive-text-strong) 78%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .active .bar {
+    animation: none;
+    height: 60%;
+  }
+}

@@ -1,0 +1,215 @@
+.wrapper {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.steps {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.horizontal .steps {
+  grid-template-columns: repeat(var(--step-count, 5), 1fr);
+}
+
+.horizontal .step {
+  grid-template-columns: 24px 1fr;
+  grid-template-rows: 24px auto;
+  grid-template-areas:
+    "dot connector"
+    "text text";
+  align-items: center;
+}
+
+.horizontal .text {
+  margin-top: 12px;
+}
+
+.vertical .steps {
+  grid-auto-rows: minmax(64px, auto);
+  gap: 0;
+}
+
+.vertical .step {
+  grid-template-columns: 24px 1fr;
+  grid-template-rows: 24px 1fr;
+  grid-template-areas:
+    "dot text"
+    "connector text";
+  gap: 0 16px;
+}
+
+.step {
+  position: relative;
+  display: grid;
+}
+
+.dot {
+  grid-area: dot;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid var(--primitive-line-strong);
+  background: var(--primitive-panel-strong);
+  color: var(--primitive-text-strong);
+  z-index: 2;
+}
+
+.dotInner {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-round);
+  background: currentColor;
+  opacity: 0.62;
+}
+
+.pulse {
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--primitive-radius-round);
+  background: radial-gradient(circle, currentColor 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.connector {
+  grid-area: connector;
+  position: relative;
+  overflow: hidden;
+}
+
+.horizontal .connector {
+  height: 2px;
+  margin: 0 -2px;
+  background: var(--primitive-line);
+}
+
+.vertical .connector {
+  width: 2px;
+  height: 100%;
+  min-height: 28px;
+  margin: 4px 0 4px 11px;
+  background: var(--primitive-line);
+}
+
+.connectorFill {
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.text {
+  grid-area: text;
+  display: grid;
+  gap: 2px;
+  padding-bottom: 12px;
+}
+
+.label {
+  font-family: var(--primitive-font-display);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.description {
+  font-size: 12px;
+  color: var(--primitive-body);
+}
+
+.timestamp {
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statusComplete {
+  color: var(--primitive-green);
+}
+
+.statusComplete .dot {
+  border-color: var(--primitive-green);
+  background: color-mix(in srgb, var(--primitive-green) 18%, var(--primitive-panel-strong));
+}
+
+.statusComplete .connectorFill {
+  opacity: 1;
+}
+
+.statusCurrent {
+  color: var(--primitive-amber);
+}
+
+.statusCurrent .dot {
+  border-color: var(--primitive-amber);
+  background: color-mix(in srgb, var(--primitive-amber) 18%, var(--primitive-panel-strong));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primitive-amber) 12%, transparent);
+}
+
+.statusCurrent .connectorFill {
+  opacity: 0.5;
+}
+
+.statusCurrent .label {
+  color: var(--primitive-amber);
+}
+
+.statusUpcoming {
+  color: var(--primitive-muted);
+}
+
+.statusUpcoming .label {
+  color: var(--primitive-muted);
+}
+
+.meta {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+@media (max-width: 720px) {
+  .horizontal .steps {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 0;
+  }
+  .horizontal .step {
+    grid-template-columns: 24px 1fr;
+    grid-template-rows: 24px 1fr;
+    grid-template-areas:
+      "dot text"
+      "connector text";
+    gap: 0 16px;
+  }
+  .horizontal .connector {
+    width: 2px;
+    height: 100%;
+    margin: 4px 0 4px 11px;
+    min-height: 28px;
+  }
+  .horizontal .text {
+    margin-top: 0;
+  }
+}

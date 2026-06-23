@@ -1,0 +1,44 @@
+
+
+/* ── type ──────────────────────────────────────────────────── */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+}
+.display-xl { font-size: clamp(64px, 11.5vw, 184px); }
+.display-lg { font-size: clamp(48px, 7.5vw, 112px); }
+.display-md { font-size: clamp(36px, 5vw, 76px); }
+.display-sm { font-size: clamp(28px, 3.6vw, 50px); }
+.title-lg   { font-family: var(--font-display); font-size: 28px; font-weight:400; text-transform: uppercase; letter-spacing: 0.005em; line-height: 1.05; }
+.title-md   { font-size: 20px; font-weight: 400; color: var(--body-strong); }
+.body-md    { font-size: 16px; font-weight: 300; color: var(--body); }
+.body-sm    { font-size: 14px; font-weight: 300; color: var(--body); }
+.label      { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.20em; text-transform: uppercase; color: var(--muted); }
+.label-red  { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.20em; text-transform: uppercase; color: var(--accent); }
+
+/* ── chrome text (background-clip) ─────────────────────────── */
+/* Text-specific gradient — no harsh horizon dip (which reads as a
+   strikethrough on letterforms).  A polished platinum sweep with a
+   single soft mid-tone band shifted below center. */
+.chrome-text {
+  background: linear-gradient(180deg,
+    #fafbff 0%,
+    #e0e2e8 22%,
+    #c2c5cd 42%,
+    #8a8d96 60%,
+    #b8bbc3 78%,
+    #e4e6ec 100%);
+  background-size: 100% 220%;
+  background-position: 0 30%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,0.08)) drop-shadow(0 10px 26px rgba(0,0,0,0.55));
+  animation: chrome-drift 11s ease-in-out infinite;
+}
+@keyframes chrome-drift {
+  0%, 100% { background-position: 0 28%; }
+  50%      { background-position: 0 54%; }
+}

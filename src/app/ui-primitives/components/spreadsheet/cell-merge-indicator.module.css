@@ -1,0 +1,80 @@
+.indicator {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    var(--primitive-panel);
+  font-family: var(--primitive-font-mono);
+}
+
+.glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-teal) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+  color: var(--primitive-teal);
+  font-size: var(--primitive-text-md);
+}
+
+.meta {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.label {
+  color: var(--primitive-text-strong);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.06em;
+}
+
+.detail {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.merge,
+.unmerge {
+  padding: 7px var(--primitive-space-3);
+  border-radius: var(--primitive-radius-sm);
+  border: 1px solid var(--primitive-line-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.merge {
+  background: color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+  color: var(--primitive-teal);
+  border-color: color-mix(in oklab, var(--primitive-teal) 48%, transparent);
+}
+
+.merge:hover {
+  background: color-mix(in oklab, var(--primitive-teal) 28%, transparent);
+  color: color-mix(in oklab, var(--primitive-teal) 35%, white);
+}
+
+.unmerge {
+  background: color-mix(in oklab, var(--primitive-red) 16%, transparent);
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 46%, transparent);
+}
+
+.unmerge:hover {
+  background: color-mix(in oklab, var(--primitive-red) 28%, transparent);
+  color: color-mix(in oklab, var(--primitive-red) 38%, white);
+}

@@ -1,0 +1,175 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background:
+    radial-gradient(120% 80% at 50% 0%, color-mix(in oklab, var(--primitive-teal) 6%, transparent), transparent 60%),
+    color-mix(in oklab, var(--primitive-canvas) 66%, transparent);
+  backdrop-filter: blur(14px) saturate(1.18);
+  -webkit-backdrop-filter: blur(14px) saturate(1.18);
+  transition: opacity 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop[data-starting-style],
+.backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 120;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: min(92vw, var(--basic-dialog-width, 520px));
+  max-height: min(90vh, 720px);
+  padding: 0;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent),
+    var(--primitive-panel-strong);
+  backdrop-filter: blur(22px) saturate(1.2);
+  -webkit-backdrop-filter: blur(22px) saturate(1.2);
+  color: var(--primitive-body);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 8%, transparent),
+    0 32px 90px -20px color-mix(in oklab, var(--primitive-canvas) 72%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--primitive-canvas) 40%, transparent);
+  outline: none;
+  transform: translate(-50%, -50%);
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), opacity 220ms ease;
+}
+
+.popup::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--primitive-red),
+    var(--primitive-amber) 35%,
+    var(--primitive-teal) 70%,
+    var(--primitive-green)
+  );
+  opacity: 0.6;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 16px)) scale(0.97);
+}
+
+.sizeSm {
+  --basic-dialog-width: 380px;
+}
+
+.sizeMd {
+  --basic-dialog-width: 520px;
+}
+
+.sizeLg {
+  --basic-dialog-width: 720px;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 22px var(--primitive-space-6) var(--primitive-space-4);
+  border-bottom: 1px solid var(--primitive-line);
+}
+
+.headText {
+  min-width: 0;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.title {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 1.4vw + 16px, 28px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.description {
+  margin: 0;
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+}
+
+.closeBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  color: var(--primitive-muted);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease,
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.closeBtn:hover {
+  transform: rotate(90deg);
+  background: var(--primitive-glass-strong);
+  color: var(--primitive-text-strong);
+  border-color: var(--primitive-line-strong);
+}
+
+.closeBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primitive-teal);
+}
+
+.body {
+  padding: 18px var(--primitive-space-6) 22px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  color: var(--primitive-body);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--primitive-space-2);
+  padding: 14px 22px 18px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .popup,
+  .closeBtn {
+    transition: none;
+  }
+  .closeBtn:hover {
+    transform: none;
+  }
+  .popup[data-starting-style],
+  .popup[data-ending-style] {
+    transform: translate(-50%, -50%);
+  }
+}

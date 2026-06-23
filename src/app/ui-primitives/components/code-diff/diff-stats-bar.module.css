@@ -1,0 +1,118 @@
+.bar {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), color-mix(in oklab, var(--primitive-text-strong) 1.2%, transparent)),
+    var(--primitive-panel);
+  font-family: var(--primitive-font-mono);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.counts {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.add {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  color: var(--primitive-green);
+  font-weight: 800;
+}
+
+.del {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  color: var(--primitive-red);
+  font-weight: 800;
+}
+
+.divider {
+  width: 1px;
+  height: 12px;
+  background: var(--primitive-line);
+}
+
+.filesChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  min-height: 22px;
+  padding: var(--primitive-space-0) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.filesChip strong {
+  color: var(--primitive-text-strong);
+  font-weight: 800;
+}
+
+.track {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--add-fraction, 1fr) var(--del-fraction, 1fr);
+  height: 10px;
+  border-radius: var(--primitive-radius-pill);
+  overflow: hidden;
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}
+
+.segmentAdd {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-green) 85%, transparent), var(--primitive-green));
+}
+
+.segmentDel {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 85%, transparent), var(--primitive-red));
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 10.5px;
+  color: var(--primitive-muted);
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+}
+
+.legend span::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-xs);
+  background: var(--primitive-muted);
+}
+
+.legend .legendAdd::before {
+  background: var(--primitive-green);
+}
+
+.legend .legendDel::before {
+  background: var(--primitive-red);
+}

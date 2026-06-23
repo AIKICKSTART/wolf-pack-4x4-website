@@ -1,0 +1,102 @@
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(150deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-shadow-inset);
+}
+
+.tab {
+  --tab-tone: var(--primitive-red);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2) var(--primitive-space-4);
+  border: 1px solid transparent;
+  border-radius: var(--primitive-radius-lg);
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-wide);
+  cursor: pointer;
+  transition:
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.tab:hover {
+  color: var(--primitive-body);
+  border-color: var(--primitive-line);
+  background: var(--primitive-field-hover);
+}
+
+.tab[data-active="true"] {
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--tab-tone) 46%, var(--primitive-line));
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--tab-tone) 20%, transparent), transparent 70%),
+    var(--primitive-field-strong);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--tab-tone) 24%, transparent) inset;
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.tabLabel {
+  white-space: nowrap;
+}
+
+.count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--primitive-space-5);
+  padding: 0 var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-recessed);
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  font-variant-numeric: tabular-nums;
+  transition:
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    background var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.tab[data-active="true"] .count {
+  color: var(--primitive-text-on-accent);
+  background: var(--tab-tone);
+}
+
+.toneRed {
+  --tab-tone: var(--primitive-red);
+}
+.toneAmber {
+  --tab-tone: var(--primitive-amber);
+}
+.toneTeal {
+  --tab-tone: var(--primitive-teal);
+}
+.toneGreen {
+  --tab-tone: var(--primitive-green);
+}
+.toneNeutral {
+  --tab-tone: var(--primitive-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab,
+  .count {
+    transition: none;
+  }
+}

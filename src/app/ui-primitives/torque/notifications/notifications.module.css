@@ -1,0 +1,512 @@
+/* Torque — Notifications inbox screen. Composed from existing primitives.
+   Light + dark parity via --primitive-* tokens. No hardcoded palette. */
+
+.page {
+  min-height: 100svh;
+  padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 56px) 80px;
+  display: grid;
+  gap: var(--primitive-space-7);
+  color: var(--primitive-body);
+  background:
+    radial-gradient(circle at 86% 0%, color-mix(in oklab, var(--primitive-amber) 13%, transparent), transparent 36%),
+    radial-gradient(circle at 6% 100%, color-mix(in oklab, var(--primitive-teal) 13%, transparent), transparent 42%),
+    var(--primitive-canvas);
+  font-family: var(--primitive-font-body);
+}
+
+.canvas {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+}
+
+/* ── Hero / identity band ──────────────────────────────────────────────── */
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-5);
+  padding: clamp(16px, 2vw, 24px) clamp(18px, 2.4vw, 28px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.6%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), var(--primitive-shadow-soft);
+}
+
+.heroIdentity {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+}
+
+.avatar {
+  flex: none;
+  inline-size: 56px;
+  block-size: 56px;
+  border-radius: var(--primitive-radius-pill);
+  display: grid;
+  place-items: center;
+  color: var(--primitive-text-on-accent);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-2xl);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in oklab, var(--primitive-text-strong) 42%, transparent), transparent 52%),
+    linear-gradient(150deg, var(--primitive-red), color-mix(in oklab, var(--primitive-red) 56%, black));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 40%, transparent),
+    0 8px 22px color-mix(in srgb, var(--primitive-red) 42%, transparent);
+}
+
+.heroCopy {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(22px, 2.2vw, 32px);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1.02;
+}
+
+.heroSub {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+}
+
+.heroStatus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-2);
+  align-items: center;
+}
+
+/* ── Metric strip ──────────────────────────────────────────────────────── */
+
+.metricStrip {
+  display: grid;
+  gap: var(--primitive-space-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Inbox wrapper ─────────────────────────────────────────────────────── */
+
+.inboxWrap {
+  display: grid;
+}
+
+.inbox {
+  display: grid;
+  gap: 18px;
+}
+
+/* ── Toolbar (filter + count + mark-all) ───────────────────────────────── */
+
+.toolbar {
+  position: sticky;
+  top: var(--primitive-space-2);
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-2-5) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.8%, transparent)),
+    var(--primitive-panel-strong);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), 0 14px 34px color-mix(in oklab, black 22%, transparent);
+  backdrop-filter: blur(14px) saturate(1.1);
+}
+
+.filterGroup {
+  display: inline-flex;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-1);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-glass-soft);
+}
+
+.filterButton {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  border: 0;
+  border-radius: var(--primitive-radius-pill);
+  padding: var(--primitive-space-1-5) 14px;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.filterButton:hover {
+  color: var(--primitive-text-strong);
+}
+
+.filterButton[data-active="true"] {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--primitive-red) 88%, black), var(--primitive-red));
+  color: var(--primitive-text-on-accent);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--primitive-red) 38%, transparent);
+}
+
+.filterButton:focus-visible {
+  outline: 2px solid var(--primitive-red);
+  outline-offset: 2px;
+}
+
+.filterBadge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+  color: var(--primitive-text-on-accent);
+  font-size: var(--primitive-text-2xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.toolbarMeta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-inline-end: auto;
+}
+
+.toolbarCount {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.toolbarLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.markAll {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: 10px;
+  padding: var(--primitive-space-2) 14px;
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out),
+    border-color var(--primitive-duration-fast) var(--primitive-ease-out),
+    opacity var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.markAll:hover:not(:disabled) {
+  background: var(--primitive-glass-strong);
+  border-color: var(--primitive-red);
+}
+
+.markAll:focus-visible {
+  outline: 2px solid var(--primitive-red);
+  outline-offset: 2px;
+}
+
+.markAll:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Grouped lanes ─────────────────────────────────────────────────────── */
+
+.groups {
+  display: grid;
+  gap: var(--primitive-space-5);
+}
+
+.group {
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: clamp(14px, 1.8vw, 20px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 0.4%, transparent)),
+    var(--primitive-panel);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 5%, transparent), 0 18px 44px color-mix(in oklab, black 18%, transparent);
+}
+
+.groupHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-space-3);
+  padding-block-end: var(--primitive-space-3);
+  border-block-end: 1px solid var(--primitive-line);
+}
+
+.groupHeadMain {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--primitive-space-3);
+  min-width: 0;
+}
+
+.groupIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: 34px;
+  block-size: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-body);
+}
+
+.groupIcon[data-group="approval-pending"] {
+  border-color: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-amber) 12%, transparent);
+  color: var(--primitive-amber);
+}
+
+.groupIcon[data-group="system"] {
+  border-color: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-teal) 12%, transparent);
+  color: var(--primitive-teal);
+}
+
+.groupIcon[data-group="agent"] {
+  border-color: color-mix(in srgb, var(--primitive-red) 44%, transparent);
+  background: color-mix(in srgb, var(--primitive-red) 14%, transparent);
+  color: var(--primitive-red);
+}
+
+.groupIcon[data-group="social"] {
+  border-color: color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  color: var(--primitive-green);
+}
+
+.groupIcon[data-group="seo"] {
+  border-color: var(--primitive-line-strong);
+  background: var(--primitive-glass-soft);
+  color: var(--primitive-text-strong);
+}
+
+.groupHeadCopy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.groupTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.groupBlurb {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+  line-height: 1.45;
+}
+
+.groupHeadAside {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  flex: none;
+}
+
+.groupMark {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 5px var(--primitive-space-2);
+  border-radius: 7px;
+  transition: background var(--primitive-duration-fast) var(--primitive-ease-out),
+    color var(--primitive-duration-fast) var(--primitive-ease-out),
+    opacity var(--primitive-duration-fast) var(--primitive-ease-out);
+}
+
+.groupMark:hover:not(:disabled) {
+  color: var(--primitive-text-strong);
+  background: var(--primitive-glass-soft);
+}
+
+.groupMark:focus-visible {
+  outline: 2px solid var(--primitive-red);
+  outline-offset: 2px;
+}
+
+.groupMark:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Rows ──────────────────────────────────────────────────────────────── */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.row {
+  display: grid;
+}
+
+/* ── Empty state ───────────────────────────────────────────────────────── */
+
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--primitive-space-2);
+  padding: clamp(40px, 6vw, 72px) 24px;
+  text-align: center;
+  border: 1px dashed var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-xl);
+  background: var(--primitive-glass-soft);
+}
+
+.emptyGlyph {
+  display: grid;
+  place-items: center;
+  inline-size: 52px;
+  block-size: 52px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-green) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent);
+  color: var(--primitive-green);
+}
+
+.emptyTitle {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.emptyBody {
+  margin: 0;
+  max-width: 44ch;
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.5;
+}
+
+/* ── Composition note ──────────────────────────────────────────────────── */
+
+.note {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+  padding: 18px 22px;
+  border-left: 2px solid var(--primitive-red);
+  border-radius: 0 var(--primitive-radius-lg) var(--primitive-radius-lg) 0;
+  background: var(--primitive-glass-soft);
+}
+
+.note span {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.note p {
+  margin: 0;
+  color: var(--primitive-body);
+  font-size: var(--primitive-text-sm);
+  line-height: 1.55;
+  max-width: 78ch;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .toolbar {
+    position: static;
+  }
+
+  .groupHead {
+    flex-direction: column;
+  }
+
+  .groupHeadAside {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filterButton,
+  .markAll,
+  .groupMark {
+    transition: none;
+  }
+}

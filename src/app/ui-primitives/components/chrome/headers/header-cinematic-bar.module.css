@@ -1,0 +1,270 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+  align-items: center;
+  gap: 22px;
+  padding: 14px clamp(18px, 4vw, 44px);
+  border-bottom: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-canvas) 74%, transparent), color-mix(in oklab, var(--primitive-canvas) 46%, transparent) 80%, color-mix(in oklab, var(--primitive-canvas) 18%, transparent)),
+    radial-gradient(ellipse at 88% 0%, color-mix(in oklab, var(--primitive-red) 22%, transparent), transparent 52%),
+    radial-gradient(ellipse at 4% 0%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 52%),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  backdrop-filter: blur(22px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent),
+    0 18px 38px color-mix(in oklab, var(--primitive-canvas) 38%, transparent);
+  isolation: isolate;
+  color: var(--primitive-text-strong);
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 2px,
+    color-mix(in oklab, var(--primitive-text-strong) 1.8%, transparent) 2px 3px
+  );
+  opacity: 0.7;
+}
+
+.brand {
+  display: grid;
+  grid-template-columns: 40px minmax(0, auto);
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  border-radius: 10px;
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 3px;
+}
+
+.brandImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: contain;
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--primitive-text-strong) 16%, transparent), transparent 56%),
+    color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+  padding: 4px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+}
+
+.brandLockup {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.brandWordmark {
+  font-family: var(--primitive-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  text-shadow: 0 1px 0 color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+}
+
+.brandCaption {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primitive-text-strong) 62%, transparent);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.navList {
+  display: flex;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  color: color-mix(in oklab, var(--primitive-text-strong) 78%, transparent);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 180ms ease, background 180ms ease;
+}
+
+.navLink:hover {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}
+
+.navLink:focus-visible {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.navLink[aria-current="page"] {
+  color: var(--primitive-text-on-accent);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primitive-red) 42%, transparent), color-mix(in oklab, var(--primitive-red-dark) 62%, transparent));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 24%, transparent),
+    0 8px 20px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.navLink svg {
+  width: var(--primitive-icon-sm);
+  height: var(--primitive-icon-sm);
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctaSecondary,
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.ctaSecondary:focus-visible,
+.ctaPrimary:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.ctaSecondary {
+  color: color-mix(in oklab, var(--primitive-text-strong) 92%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent);
+}
+
+.ctaSecondary:hover,
+.ctaSecondary:focus-visible {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 28%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+}
+
+.ctaPrimary {
+  color: var(--primitive-text-on-accent);
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 22%, transparent);
+  background:
+    radial-gradient(circle at 30% 0%, color-mix(in oklab, var(--primitive-red) 58%, var(--primitive-text-on-accent)), transparent 38%),
+    linear-gradient(180deg, var(--primitive-red), var(--primitive-red-dark));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 32%, transparent),
+    0 14px 32px color-mix(in oklab, var(--primitive-red) 32%, transparent);
+}
+
+.ctaPrimary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 32%, transparent),
+    0 18px 38px color-mix(in oklab, var(--primitive-red) 44%, transparent);
+}
+
+.ctaPrimary:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navLink,
+  .ctaPrimary,
+  .ctaSecondary {
+    transition: none;
+  }
+  .ctaPrimary:hover,
+  .ctaPrimary:active {
+    transform: none;
+  }
+}
+
+@media (max-width: 880px) {
+  .header {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+  .nav {
+    display: none;
+  }
+}
+
+:global(html[data-primitive-theme="light"]) .header {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-on-accent) 84%, transparent), color-mix(in oklab, var(--primitive-canvas) 74%, transparent) 80%, color-mix(in oklab, var(--primitive-canvas) 60%, transparent)),
+    radial-gradient(ellipse at 88% 0%, color-mix(in oklab, var(--primitive-red) 16%, transparent), transparent 52%),
+    radial-gradient(ellipse at 4% 0%, color-mix(in oklab, var(--primitive-teal) 12%, transparent), transparent 52%),
+    color-mix(in oklab, var(--primitive-canvas) 92%, transparent);
+  color: var(--primitive-text-strong);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--primitive-text-on-accent) 94%, transparent),
+    0 18px 38px color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .brandWordmark {
+  color: var(--primitive-text-strong);
+  text-shadow: none;
+}
+
+:global(html[data-primitive-theme="light"]) .navList {
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 72%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .navLink {
+  color: color-mix(in oklab, var(--primitive-text-strong) 72%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .navLink:hover,
+:global(html[data-primitive-theme="light"]) .navLink:focus-visible {
+  color: var(--primitive-text-strong);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+}
+
+:global(html[data-primitive-theme="light"]) .ctaSecondary {
+  color: var(--primitive-text-strong);
+  border-color: color-mix(in oklab, var(--primitive-text-strong) 13%, transparent);
+  background: color-mix(in oklab, var(--primitive-text-on-accent) 84%, transparent);
+}

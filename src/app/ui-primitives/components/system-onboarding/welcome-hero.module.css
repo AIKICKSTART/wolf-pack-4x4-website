@@ -1,0 +1,166 @@
+.hero {
+  gap: 22px;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  flex-wrap: wrap;
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: var(--primitive-weight-regular);
+  line-height: 1.02;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+}
+
+.body {
+  margin: 0;
+  max-width: 64ch;
+  font-size: var(--primitive-text-sm);
+  line-height: 1.6;
+  color: var(--primitive-body);
+}
+
+.identityRow {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(180px, 1fr) minmax(220px, 1.4fr);
+}
+
+@media (max-width: 720px) {
+  .identityRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logo {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-4);
+  margin: 0;
+  border: 1px dashed var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-lg);
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), transparent 60%),
+    var(--primitive-recessed);
+  place-items: center;
+  text-align: center;
+}
+
+.logoCaption {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.ownerCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: color-mix(in srgb, var(--primitive-text-strong) 3%, transparent);
+}
+
+.ownerCopy {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.ownerName {
+  font-size: var(--primitive-text-base);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+}
+
+.ownerRole {
+  font-size: 12.5px;
+  color: var(--primitive-body);
+}
+
+.ownerHint {
+  margin-top: var(--primitive-space-1-5);
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--primitive-space-3);
+  margin: 0;
+}
+
+.statCell {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-3) 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in srgb, var(--primitive-text-strong) 2%, transparent);
+}
+
+.statCell dt {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statCell dd {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  font-weight: var(--primitive-weight-regular);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.01em;
+}
+
+.ctaRow {
+  display: flex;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+:global([data-primitive-theme="light"]) .headline {
+  color: var(--primitive-text-strong);
+}
+
+:global([data-primitive-theme="light"]) .ownerCard {
+  background: var(--primitive-glass-strong);
+  border-color: var(--primitive-line);
+}
+
+:global([data-primitive-theme="light"]) .ownerName {
+  color: var(--primitive-text-strong);
+}
+
+:global([data-primitive-theme="light"]) .statCell {
+  background: var(--primitive-glass-strong);
+  border-color: var(--primitive-line);
+}
+
+:global([data-primitive-theme="light"]) .statCell dd {
+  color: var(--primitive-text-strong);
+}

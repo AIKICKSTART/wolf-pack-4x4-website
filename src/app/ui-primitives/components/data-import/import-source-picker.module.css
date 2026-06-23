@@ -1,0 +1,123 @@
+.fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.legend {
+  padding: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--primitive-space-3);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px 1fr 14px;
+  align-items: start;
+  gap: 14px;
+  padding: 14px var(--primitive-space-4);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-card-bg);
+  box-shadow: var(--primitive-card-shadow);
+  cursor: pointer;
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primitive-line-strong);
+  box-shadow: var(--primitive-card-hover-shadow);
+}
+
+.cardActive {
+  border-color: var(--primitive-teal);
+  box-shadow: 0 0 0 1px var(--primitive-teal), var(--primitive-card-hover-shadow);
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+}
+
+.input:focus-visible + .glyph + .text + .indicator {
+  box-shadow: 0 0 0 2px var(--primitive-teal);
+}
+
+.glyph {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-md);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-glass-soft);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-md);
+  color: var(--primitive-text-strong);
+}
+
+.text {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-base);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.description {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--primitive-body);
+}
+
+.hint {
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--primitive-line-strong);
+  background: transparent;
+  align-self: center;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.indicator[data-active="true"] {
+  background: var(--primitive-teal);
+  border-color: var(--primitive-teal);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-teal) 16%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .indicator {
+    transition: none;
+  }
+}

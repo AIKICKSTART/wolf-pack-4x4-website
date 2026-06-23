@@ -1,0 +1,101 @@
+.row {
+  display: grid;
+  grid-template-columns: 1fr minmax(120px, auto) minmax(120px, auto) minmax(96px, auto);
+  align-items: center;
+  gap: var(--primitive-space-4);
+  padding: var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  background: var(--primitive-field-bg);
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.dates {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.name {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.learning {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  line-height: var(--primitive-leading-normal);
+  color: var(--primitive-body);
+}
+
+.lift {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-bold);
+  white-space: nowrap;
+}
+
+.liftUp { color: var(--primitive-green); }
+.liftDown { color: var(--primitive-red); }
+.liftFlat { color: var(--primitive-muted); }
+
+.outcome {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: var(--primitive-space-1) var(--primitive-space-2-5);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid var(--primitive-line);
+}
+
+.outcomeShipped {
+  color: var(--primitive-green);
+  border-color: color-mix(in srgb, var(--primitive-green) 60%, var(--primitive-line));
+  background: color-mix(in srgb, var(--primitive-green) 12%, transparent);
+}
+
+.outcomeIterated {
+  color: var(--primitive-amber);
+  border-color: color-mix(in srgb, var(--primitive-amber) 60%, var(--primitive-line));
+  background: color-mix(in srgb, var(--primitive-amber) 12%, transparent);
+}
+
+.outcomeKilled {
+  color: var(--primitive-red);
+  border-color: color-mix(in srgb, var(--primitive-red) 60%, var(--primitive-line));
+  background: color-mix(in srgb, var(--primitive-red) 12%, transparent);
+}
+
+.outcomeInconclusive {
+  color: var(--primitive-muted);
+}
+
+.duration {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .duration {
+    text-align: left;
+  }
+}

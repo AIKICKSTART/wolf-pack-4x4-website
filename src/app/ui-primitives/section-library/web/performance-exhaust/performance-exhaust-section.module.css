@@ -1,0 +1,88 @@
+.host {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: var(--primitive-space-10);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  padding: var(--primitive-space-9) var(--primitive-space-8);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 88% 12%, color-mix(in oklab, var(--primitive-amber) 14%, transparent), transparent 50%),
+    radial-gradient(ellipse at 6% 90%, color-mix(in oklab, var(--primitive-red) 12%, transparent), transparent 54%),
+    var(--primitive-panel);
+  box-shadow: var(--primitive-surface-shadow);
+}
+
+.weave {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--primitive-carbon-weave);
+  background-size: var(--primitive-carbon-weave-size);
+  opacity: 0.42;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at 70% 30%, color-mix(in oklab, var(--primitive-canvas) 90%, transparent), transparent 82%);
+}
+
+.spotlight,
+.stats {
+  min-width: 0;
+}
+
+.visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: var(--primitive-space-5);
+  min-height: 300px;
+  padding: var(--primitive-space-8);
+  border: 1px solid var(--primitive-line-strong);
+  border-radius: var(--primitive-radius-lg);
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 30%, color-mix(in oklab, var(--primitive-amber) 20%, transparent), transparent 62%),
+    var(--primitive-metallic-black);
+  box-shadow: var(--primitive-shadow-soft);
+}
+
+.visualSheen {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--primitive-metallic-sheen);
+  opacity: 0.5;
+}
+
+.gaugeRow {
+  display: flex;
+  gap: var(--primitive-space-8);
+  align-items: center;
+}
+
+.visualCaption {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .host {
+    gap: var(--primitive-space-8);
+    padding: var(--primitive-space-6) var(--primitive-space-5);
+  }
+
+  .visual {
+    min-height: 220px;
+    padding: var(--primitive-space-6);
+  }
+
+  .gaugeRow {
+    gap: var(--primitive-space-5);
+  }
+}

@@ -1,0 +1,267 @@
+/* Local violet — no central violet token exists; derived from red + focus-ring
+   (teal) so the hue still tracks the central palette. */
+.editor {
+  --fb-violet: color-mix(in oklab, var(--primitive-red) 42%, var(--primitive-focus-ring));
+
+  display: grid;
+  gap: var(--primitive-space-3);
+  padding: var(--primitive-space-4) var(--primitive-space-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 2.5%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-widest);
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.headRow {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.headIcon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  color: var(--primitive-text-strong);
+  border: 1px solid var(--primitive-line);
+}
+
+.headLabel {
+  font-size: var(--primitive-text-sm);
+  font-weight: var(--primitive-weight-semibold);
+  color: var(--primitive-text-strong);
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-2);
+  padding-top: var(--primitive-space-2);
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 55%, transparent);
+  color: var(--primitive-body);
+  font-size: 14px;
+}
+
+.inputValue {
+  color: var(--primitive-text-strong);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inputTextarea {
+  min-height: 60px;
+  align-items: flex-start;
+}
+
+.inputDate,
+.inputDropdown {
+  justify-content: space-between;
+}
+
+.prefix,
+.suffix {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+}
+
+.stepper {
+  display: grid;
+  gap: 1px;
+  font-size: var(--primitive-text-2xs);
+  color: var(--primitive-muted);
+  line-height: var(--primitive-leading-tight);
+}
+
+.chevron {
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+}
+
+.optionChip {
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-canvas) 55%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+}
+
+.optionChipOn {
+  border-color: color-mix(in oklab, var(--fb-violet) 55%, transparent);
+  background: color-mix(in oklab, var(--fb-violet) 14%, transparent);
+  color: color-mix(in oklab, var(--fb-violet) 65%, var(--primitive-text-strong));
+}
+
+.rating {
+  display: flex;
+  gap: var(--primitive-space-1);
+  font-size: var(--primitive-text-xl);
+  color: color-mix(in oklab, var(--primitive-text-strong) 28%, transparent);
+}
+
+.star {
+  color: inherit;
+}
+
+.starOn {
+  color: var(--primitive-amber);
+}
+
+.yesNoRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--primitive-space-2);
+}
+
+.yesNoBtn {
+  padding: 9px var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 55%, transparent);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+  font-size: var(--primitive-text-sm);
+  cursor: pointer;
+}
+
+.yesNoOn {
+  background: color-mix(in oklab, var(--primitive-green) 18%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  color: var(--primitive-text-strong);
+}
+
+.fileRow {
+  display: flex;
+  gap: var(--primitive-space-2);
+}
+
+.fileChip {
+  flex: 1;
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px dashed var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+}
+
+/* Secondary action — shared carbon-body secondary button DNA. */
+.browseBtn {
+  padding: 9px 14px;
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-btn-radius);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.browseBtn:hover {
+  border-color: var(--primitive-line-strong);
+  color: var(--primitive-text-strong);
+}
+
+.browseBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.signature,
+.payment {
+  padding: var(--primitive-space-3) 14px;
+  border: 1px dashed var(--primitive-line);
+  border-radius: var(--primitive-radius-md);
+  background: color-mix(in oklab, var(--primitive-canvas) 22%, transparent);
+  color: var(--primitive-muted);
+  font-size: var(--primitive-text-xs);
+}
+
+.signatureHint,
+.paymentHint {
+  font-family: var(--primitive-font-mono);
+  letter-spacing: 0.04em;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  padding-top: var(--primitive-space-2-5);
+  border-top: 1px dashed var(--primitive-line);
+}
+
+.hint {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-muted);
+}
+
+/* Secondary action — shared carbon-body secondary button DNA. */
+.clearBtn {
+  padding: var(--primitive-space-1-5) var(--primitive-space-2-5);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  border-radius: var(--primitive-radius-pill);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.clearBtn:hover {
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  color: var(--primitive-red);
+}
+
+.clearBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--primitive-focus-shadow);
+}

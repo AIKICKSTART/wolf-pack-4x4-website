@@ -1,0 +1,194 @@
+/* states-loading-screen — branded loading surface for the Torque states gallery.
+   Mirrors the states family house style; role=status, reduced-motion safe. */
+
+.surface {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: center;
+  padding: clamp(24px, 3vw, 48px);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-xl);
+  background:
+    radial-gradient(ellipse at 8% 8%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 48%),
+    radial-gradient(ellipse at 92% 92%, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 52%),
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, black 24%, transparent)),
+    var(--primitive-panel-strong);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--primitive-text-strong) 6%, transparent), var(--primitive-shadow-deep);
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--primitive-body);
+}
+
+.figure {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  min-height: 200px;
+}
+
+.illustration {
+  width: min(100%, 260px);
+  height: auto;
+}
+
+.illustration .rotor {
+  transform-origin: 120px 96px;
+  animation: stateLoadSpin 9s linear infinite;
+}
+
+.illustration .arc {
+  transform-origin: 120px 96px;
+  animation: stateLoadSpin 1.4s linear infinite;
+}
+
+.caption {
+  margin-top: 14px;
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-4);
+  min-width: 0;
+}
+
+.code {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+  width: fit-content;
+  padding: 5px 11px;
+  border: 1px solid color-mix(in oklab, var(--primitive-teal) 45%, transparent);
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-teal) 10%, transparent);
+  color: var(--primitive-teal);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.code::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primitive-teal);
+  box-shadow: 0 0 8px var(--primitive-teal);
+  animation: stateLoadPulse 1.4s ease-in-out infinite;
+}
+
+.headline {
+  margin: 0;
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: clamp(30px, 4vw, 56px);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.message {
+  margin: 0;
+  max-width: 54ch;
+  color: var(--primitive-body);
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.55;
+}
+
+.steps {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  margin: var(--primitive-space-1) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--primitive-space-3);
+  opacity: 0.55;
+  animation: stateLoadFade 1.8s ease-in-out infinite;
+}
+
+.stepBar {
+  position: relative;
+  height: 10px;
+  border-radius: var(--primitive-radius-pill);
+  overflow: hidden;
+  background: var(--primitive-shimmer-base);
+}
+
+.stepBar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primitive-shimmer-peak),
+    transparent
+  );
+  animation: stateLoadShimmer 1.6s ease-in-out infinite;
+}
+
+.stepLabel {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes stateLoadSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes stateLoadShimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes stateLoadPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes stateLoadFade {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .illustration .rotor,
+  .illustration .arc,
+  .code::before,
+  .step,
+  .stepBar::after {
+    animation: none;
+  }
+
+  .step {
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 860px) {
+  .surface {
+    grid-template-columns: 1fr;
+  }
+}

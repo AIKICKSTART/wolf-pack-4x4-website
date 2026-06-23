@@ -1,0 +1,170 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-2-5);
+  padding: 14px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, var(--primitive-glass-soft), color-mix(in oklab, var(--primitive-text-strong) 1%, transparent)),
+    var(--primitive-panel);
+}
+
+.viewport {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 8%, transparent);
+  background:
+    radial-gradient(circle at 20% 30%, color-mix(in oklab, var(--primitive-teal) 16%, transparent), transparent 60%),
+    radial-gradient(circle at 80% 70%, color-mix(in oklab, var(--primitive-red) 10%, transparent), transparent 60%),
+    var(--primitive-canvas);
+  overflow: hidden;
+}
+
+.viewport[data-quality="delayed"] {
+  filter: contrast(0.92) saturate(0.85);
+}
+
+.viewport[data-quality="offline"] {
+  background: color-mix(in oklab, var(--primitive-canvas) 60%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scan {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in oklab, var(--primitive-teal) 18%, transparent) 40%,
+    transparent 60%
+  );
+  animation: scan 5s linear infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      color-mix(in oklab, var(--primitive-text-strong) 3%, transparent) 0 1px,
+      transparent 1px 18px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--primitive-text-strong) 3%, transparent) 0 1px,
+      transparent 1px 18px
+    );
+  pointer-events: none;
+}
+
+.timecode {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  padding: 3px var(--primitive-space-2);
+  border-radius: var(--primitive-radius-sm);
+  background: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  color: var(--primitive-amber);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.expand {
+  position: absolute;
+  top: var(--primitive-space-2);
+  right: var(--primitive-space-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  background: color-mix(in oklab, var(--primitive-canvas) 50%, transparent);
+  color: var(--primitive-text-strong);
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.expand:hover {
+  background: color-mix(in oklab, var(--primitive-canvas) 75%, transparent);
+}
+
+.expand:focus-visible {
+  background: color-mix(in oklab, var(--primitive-canvas) 75%, transparent);
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--primitive-focus-shadow);
+}
+
+.offline {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-space-2-5);
+  flex-wrap: wrap;
+}
+
+.identity {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.bay {
+  color: var(--primitive-text-strong);
+  font-family: var(--primitive-font-display);
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+
+.cam {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.1em;
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-2);
+}
+
+.snap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.06em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan {
+    animation: none;
+    opacity: 0.6;
+  }
+}

@@ -1,0 +1,76 @@
+.divider {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 18px 0 24px;
+  border-top: 1px solid var(--primitive-line);
+}
+
+.number {
+  font-family: var(--primitive-font-display);
+  font-size: clamp(38px, 6vw, 64px);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.9;
+  color: var(--accent, var(--primitive-amber));
+  text-shadow: 0 0 28px var(--accent-glow, color-mix(in oklab, var(--primitive-amber) 32%, transparent));
+}
+
+.body {
+  display: grid;
+  gap: 6px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--primitive-font-display);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: var(--primitive-weight-regular);
+  letter-spacing: var(--primitive-tracking-normal);
+  text-transform: uppercase;
+  color: var(--primitive-text-strong);
+  line-height: 1.04;
+}
+
+.subtitle {
+  margin: 0;
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-body);
+}
+
+.rule {
+  display: block;
+  grid-column: 1 / -1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent, var(--primitive-amber)) 0%, transparent 100%);
+  opacity: 0.5;
+}
+
+.toneNeutral {
+  --accent: var(--primitive-body);
+  --accent-glow: color-mix(in oklab, var(--primitive-text-strong) 12%, transparent);
+}
+
+.toneRed {
+  --accent: var(--primitive-red);
+  --accent-glow: color-mix(in oklab, var(--primitive-red) 42%, transparent);
+}
+
+.toneAmber {
+  --accent: var(--primitive-amber);
+  --accent-glow: color-mix(in oklab, var(--primitive-amber) 42%, transparent);
+}
+
+.toneTeal {
+  --accent: var(--primitive-teal);
+  --accent-glow: color-mix(in oklab, var(--primitive-teal) 42%, transparent);
+}
+
+.toneGreen {
+  --accent: var(--primitive-green);
+  --accent-glow: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+}

@@ -1,0 +1,153 @@
+.wrap {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px var(--primitive-space-4);
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 60%),
+    var(--primitive-panel);
+  color: var(--primitive-body);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--primitive-radius-round);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-xl);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-muted);
+}
+
+.status-queued .icon {
+  color: var(--primitive-amber);
+  border-color: color-mix(in oklab, var(--primitive-amber) 40%, transparent);
+}
+
+.status-processing .icon {
+  color: var(--primitive-teal);
+  border-color: color-mix(in oklab, var(--primitive-teal) 40%, transparent);
+}
+
+.status-ready .icon {
+  color: var(--primitive-green);
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+}
+
+.status-failed .icon {
+  color: var(--primitive-red);
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  background: color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--primitive-radius-round);
+  border: 2px solid color-mix(in oklab, var(--primitive-teal) 18%, transparent);
+  border-top-color: var(--primitive-teal);
+  animation: spin 0.9s linear infinite;
+}
+
+.body {
+  display: grid;
+  gap: var(--primitive-space-1);
+  min-width: 0;
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  font-size: var(--primitive-text-base);
+  font-weight: 700;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.005em;
+}
+
+.detail {
+  font-size: var(--primitive-text-xs);
+  color: var(--primitive-body);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-space-1-5);
+  margin-top: var(--primitive-space-1);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: var(--primitive-radius-pill);
+  background: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  border: 1px solid var(--primitive-line);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: var(--primitive-weight-bold);
+}
+
+.chipGlyph {
+  color: var(--primitive-teal);
+}
+
+.chipReady {
+  background: color-mix(in oklab, var(--primitive-green) 16%, transparent);
+  border-color: color-mix(in oklab, var(--primitive-green) 42%, transparent);
+  color: var(--primitive-green);
+}
+
+.action {
+  padding: var(--primitive-space-2) 14px;
+  border-radius: var(--primitive-btn-radius);
+  border: 1px solid var(--primitive-btn-secondary-border);
+  background: var(--primitive-btn-secondary-bg);
+  color: var(--primitive-btn-secondary-fg);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+  font-weight: var(--primitive-weight-black);
+  cursor: pointer;
+}
+
+.action:focus-visible {
+  outline: 2px solid var(--primitive-focus-ring);
+  outline-offset: 2px;
+}
+
+.actionReady {
+  border-color: color-mix(in oklab, var(--primitive-green) 50%, transparent);
+  color: var(--primitive-green);
+}
+
+.actionRetry {
+  border-color: color-mix(in oklab, var(--primitive-red) 50%, transparent);
+  color: var(--primitive-red);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation: none; border-top-color: var(--primitive-line); }
+}

@@ -1,0 +1,123 @@
+.card {
+  display: grid;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primitive-text-strong) 4%, transparent), transparent 50%),
+    var(--primitive-surface-1);
+  color: var(--primitive-body);
+  font-family: var(--primitive-font-body);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.name {
+  font-family: var(--primitive-font-mono);
+  font-size: 14px;
+  color: var(--primitive-text-strong);
+  letter-spacing: 0.02em;
+}
+
+.typeChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.typeBtree { color: var(--primitive-teal); background: color-mix(in oklab, var(--primitive-teal) 10%, transparent); border: 1px solid color-mix(in oklab, var(--primitive-teal) 40%, transparent); }
+.typeGin { color: var(--primitive-amber); background: color-mix(in oklab, var(--primitive-amber) 10%, transparent); border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent); }
+.typeGist { color: var(--primitive-green); background: color-mix(in oklab, var(--primitive-green) 10%, transparent); border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent); }
+.typeHash { color: color-mix(in oklab, var(--primitive-red) 62%, white); background: color-mix(in oklab, var(--primitive-red) 10%, transparent); border: 1px solid color-mix(in oklab, var(--primitive-red) 40%, transparent); }
+.typeBrin { color: var(--primitive-muted); background: color-mix(in oklab, var(--primitive-text-strong) 4%, transparent); border: 1px solid var(--primitive-line); }
+
+.uniqueChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-amber);
+  background: color-mix(in oklab, var(--primitive-amber) 6%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primitive-amber) 32%, transparent);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px 18px;
+  align-items: end;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.columnChip {
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--primitive-text-strong);
+  background: var(--primitive-glass-soft);
+  border: 1px solid var(--primitive-line);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.stats {
+  display: flex;
+  gap: 14px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.statValue {
+  color: var(--primitive-text-strong);
+}
+
+.usageChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.usageChip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.usageHigh { color: var(--primitive-green); background: color-mix(in oklab, var(--primitive-green) 10%, transparent); border: 1px solid color-mix(in oklab, var(--primitive-green) 40%, transparent); }
+.usageHigh::before { background: var(--primitive-green); box-shadow: 0 0 6px color-mix(in oklab, var(--primitive-green) 70%, transparent); }
+.usageMedium { color: var(--primitive-teal); background: color-mix(in oklab, var(--primitive-teal) 10%, transparent); border: 1px solid color-mix(in oklab, var(--primitive-teal) 40%, transparent); }
+.usageMedium::before { background: var(--primitive-teal); }
+.usageLow { color: var(--primitive-amber); background: color-mix(in oklab, var(--primitive-amber) 10%, transparent); border: 1px solid color-mix(in oklab, var(--primitive-amber) 40%, transparent); }
+.usageLow::before { background: var(--primitive-amber); }
+.usageUnused { color: color-mix(in oklab, var(--primitive-red) 62%, white); background: color-mix(in oklab, var(--primitive-red) 10%, transparent); border: 1px solid color-mix(in oklab, var(--primitive-red) 40%, transparent); }
+.usageUnused::before { background: var(--primitive-red); }

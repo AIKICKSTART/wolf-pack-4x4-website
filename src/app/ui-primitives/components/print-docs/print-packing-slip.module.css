@@ -1,0 +1,206 @@
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto;
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+.kicker {
+  color: var(--primitive-red);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.head h1 {
+  margin: var(--primitive-space-1) 0 0;
+  font-family: var(--primitive-font-display);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primitive-ink);
+}
+
+.docMeta {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  text-align: right;
+}
+
+.docMeta div {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: var(--primitive-space-2-5);
+  align-items: baseline;
+}
+
+.docMeta dt {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.docMeta dd {
+  margin: 0;
+  color: var(--primitive-ink);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.addresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--primitive-space-2-5);
+}
+
+.address {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-sm);
+  background: var(--primitive-paper-card);
+}
+
+.address strong {
+  color: var(--primitive-ink);
+  font-family: var(--primitive-font-display);
+  font-size: var(--primitive-text-sm);
+  font-weight: 700;
+}
+
+.address span,
+.address address {
+  font-style: normal;
+  color: var(--primitive-ink-soft);
+  font-size: 10.5px;
+  display: grid;
+  gap: 0;
+}
+
+.barcodeWrap {
+  margin-top: var(--primitive-space-1);
+}
+
+.itemsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.itemsTable thead th {
+  padding: 7px var(--primitive-space-2-5);
+  border-bottom: 2px solid var(--primitive-ink);
+  background: var(--primitive-paper-head);
+  text-align: left;
+  color: var(--primitive-ink);
+  font-family: var(--primitive-font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.itemsTable tbody td {
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-bottom: 1px solid var(--primitive-paper-rule);
+  color: var(--primitive-ink-soft);
+  vertical-align: middle;
+}
+
+.itemsTable tfoot td {
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  background: var(--primitive-ink);
+  color: var(--primitive-canvas);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.footLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 10px !important;
+}
+
+.colSku {
+  width: 90px;
+  font-family: var(--primitive-font-mono);
+  font-size: 10.5px;
+  color: var(--primitive-ink);
+}
+
+.colNum {
+  width: 80px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.colCheck {
+  width: 56px;
+  text-align: center;
+}
+
+.checkBox {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--primitive-ink);
+  border-radius: var(--primitive-radius-xs);
+}
+
+.notes {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border-left: 2px solid var(--primitive-red);
+  background: var(--primitive-paper-card);
+}
+
+.notes p {
+  margin: 0;
+  font-size: 11px;
+  color: var(--primitive-ink-soft);
+  line-height: 1.5;
+}
+
+.signoff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--primitive-space-6);
+  margin-top: var(--primitive-space-1-5);
+}
+
+.signLine {
+  height: 1px;
+  background: var(--primitive-ink);
+  margin: 18px 0 var(--primitive-space-1);
+}
+
+.signoff small {
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media print {
+  .addresses,
+  .signoff,
+  .notes {
+    break-inside: avoid;
+  }
+
+  .itemsTable thead th,
+  .address {
+    background: var(--primitive-canvas) !important;
+  }
+}

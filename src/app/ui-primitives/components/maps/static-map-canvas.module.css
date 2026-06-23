@@ -1,0 +1,104 @@
+.figure {
+  --map-water: color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-teal) 22%);
+  --map-water-2: color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-teal) 12%);
+  --map-land: color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-body) 20%);
+  --map-land-stroke: color-mix(in oklab, var(--primitive-text-strong) 14%, transparent);
+  --map-harbour: color-mix(in oklab, var(--primitive-canvas) 84%, var(--primitive-teal) 16%);
+  --map-road: color-mix(in oklab, var(--primitive-text-strong) 16%, transparent);
+  --map-ink: var(--primitive-body);
+
+  position: relative;
+  display: block;
+  margin: 0;
+  border: 1px solid var(--primitive-line);
+  border-radius: var(--primitive-radius-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 18% 12%, color-mix(in oklab, var(--primitive-teal) 6%, transparent), transparent 58%),
+    var(--map-water-2);
+  color: var(--map-ink);
+  isolation: isolate;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.water {
+  fill: var(--map-water);
+}
+
+.land {
+  fill: var(--map-land);
+  stroke: var(--map-land-stroke);
+  stroke-width: 1;
+}
+
+.harbour {
+  fill: var(--map-harbour);
+  stroke: color-mix(in oklab, var(--primitive-text-strong) 6%, transparent);
+  stroke-width: 1;
+}
+
+.roads {
+  fill: none;
+  stroke: var(--map-road);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.compass {
+  fill: color-mix(in oklab, var(--primitive-canvas) 78%, transparent);
+  stroke: var(--primitive-line-strong);
+  stroke-width: 1;
+}
+
+.compassNeedle {
+  fill: var(--primitive-red);
+  stroke: none;
+}
+
+.compassLabel {
+  fill: var(--map-ink);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  font-weight: var(--primitive-weight-bold);
+  letter-spacing: 0.18em;
+}
+
+/* tones */
+.toneDark {
+  --map-water: color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-teal) 22%);
+  --map-water-2: color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-teal) 12%);
+  --map-land: color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-body) 20%);
+}
+
+.toneMidnight {
+  --map-water: color-mix(in oklab, var(--primitive-canvas) 86%, var(--primitive-violet) 14%);
+  --map-water-2: color-mix(in oklab, var(--primitive-canvas) 94%, var(--primitive-violet) 6%);
+  --map-land: color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-violet) 20%);
+  --map-land-stroke: color-mix(in oklab, var(--primitive-violet) 18%, transparent);
+  --map-harbour: color-mix(in oklab, var(--primitive-canvas) 92%, var(--primitive-violet) 8%);
+  --map-road: color-mix(in oklab, var(--primitive-violet) 18%, transparent);
+}
+
+.toneAmber {
+  --map-water: color-mix(in oklab, var(--primitive-canvas) 80%, var(--primitive-amber) 20%);
+  --map-water-2: color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-amber) 10%);
+  --map-land: color-mix(in oklab, var(--primitive-canvas) 76%, var(--primitive-amber) 24%);
+  --map-land-stroke: color-mix(in oklab, var(--primitive-amber) 22%, transparent);
+  --map-harbour: color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-amber) 12%);
+  --map-road: color-mix(in oklab, var(--primitive-amber) 24%, transparent);
+}
+
+.toneTeal {
+  --map-water: color-mix(in oklab, var(--primitive-canvas) 78%, var(--primitive-teal) 22%);
+  --map-water-2: color-mix(in oklab, var(--primitive-canvas) 90%, var(--primitive-teal) 10%);
+  --map-land: color-mix(in oklab, var(--primitive-canvas) 74%, var(--primitive-teal) 26%);
+  --map-land-stroke: color-mix(in oklab, var(--primitive-teal) 22%, transparent);
+  --map-harbour: color-mix(in oklab, var(--primitive-canvas) 88%, var(--primitive-teal) 12%);
+  --map-road: color-mix(in oklab, var(--primitive-teal) 26%, transparent);
+}

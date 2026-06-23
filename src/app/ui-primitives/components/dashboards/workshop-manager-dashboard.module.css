@@ -1,0 +1,38 @@
+/* WorkshopManagerDashboard — composition layout. */
+
+.surface {
+  display: grid;
+  gap: 18px;
+}
+
+.boardRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: var(--primitive-space-4);
+  align-items: start;
+}
+
+.boardRow > * {
+  min-width: 0;
+}
+
+.gaugePair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--primitive-space-3);
+  align-items: center;
+}
+
+.gaugePair > * {
+  min-width: 0;
+}
+
+.matrixWrap {
+  min-width: 0;
+}
+
+@media (max-width: 1080px) {
+  .boardRow {
+    grid-template-columns: 1fr;
+  }
+}

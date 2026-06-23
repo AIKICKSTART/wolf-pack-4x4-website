@@ -1,0 +1,80 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-xs);
+  letter-spacing: var(--primitive-tracking-wide);
+  color: var(--primitive-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.compact {
+  gap: var(--primitive-space-2);
+  font-size: var(--primitive-text-2xs);
+}
+
+.tag {
+  --tag-tone: var(--primitive-red);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1-5);
+  padding: var(--primitive-space-0-5) var(--primitive-space-2);
+  border-radius: var(--primitive-radius-pill);
+  border: 1px solid color-mix(in oklab, var(--tag-tone) 42%, var(--primitive-line));
+  background: color-mix(in oklab, var(--tag-tone) 14%, transparent);
+  color: var(--tag-tone);
+  font-weight: var(--primitive-weight-semibold);
+  letter-spacing: var(--primitive-tracking-wider);
+  text-transform: uppercase;
+}
+
+.tagDot {
+  width: var(--primitive-space-1-5);
+  height: var(--primitive-space-1-5);
+  border-radius: var(--primitive-radius-round);
+  background: var(--tag-tone);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--tag-tone) 22%, transparent);
+}
+
+.toneRed {
+  --tag-tone: var(--primitive-red);
+}
+.toneAmber {
+  --tag-tone: var(--primitive-amber);
+}
+.toneTeal {
+  --tag-tone: var(--primitive-teal);
+}
+.toneGreen {
+  --tag-tone: var(--primitive-green);
+}
+.toneNeutral {
+  --tag-tone: var(--primitive-muted);
+}
+
+.source,
+.time,
+.read {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-space-1);
+}
+
+.source {
+  color: var(--primitive-body);
+  font-weight: var(--primitive-weight-medium);
+}
+
+.dot {
+  width: var(--primitive-space-0-5);
+  height: var(--primitive-space-0-5);
+  border-radius: var(--primitive-radius-round);
+  background: var(--primitive-line-strong);
+}
+
+.row svg {
+  color: currentColor;
+  opacity: 0.78;
+}

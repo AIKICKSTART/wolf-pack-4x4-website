@@ -1,0 +1,213 @@
+.card {
+  display: grid;
+  gap: var(--primitive-space-4);
+  padding: 18px;
+  border: 1px solid var(--primitive-line);
+  border-radius: 14px;
+  background: var(--primitive-card-bg);
+}
+
+.head {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+}
+
+.kicker {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--primitive-text-md);
+  color: var(--primitive-text-strong);
+  font-weight: 700;
+}
+
+.stepper {
+  display: flex;
+  margin: 0;
+  padding: var(--primitive-space-3);
+  list-style: none;
+  border-radius: var(--primitive-radius-lg);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-texture-stroke);
+  gap: var(--primitive-space-1);
+}
+
+.step {
+  flex: 1;
+  display: grid;
+  justify-items: center;
+  gap: var(--primitive-space-1-5);
+  text-align: center;
+  position: relative;
+  padding: var(--primitive-space-2) var(--primitive-space-1);
+}
+
+.step + .step::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: -50%;
+  width: 100%;
+  height: 1px;
+  background: var(--primitive-line);
+  z-index: 0;
+}
+
+.stepDone + .step::before,
+.stepActive::before {
+  background: var(--primitive-red);
+}
+
+.stepDot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--primitive-radius-round);
+  border: 1px solid var(--primitive-line);
+  background: var(--primitive-canvas);
+  color: var(--primitive-muted);
+  font-family: var(--primitive-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  z-index: 1;
+}
+
+.stepDone .stepDot {
+  background: var(--primitive-red);
+  border-color: var(--primitive-red);
+  color: var(--primitive-text-on-accent);
+}
+
+.stepActive .stepDot {
+  background: var(--primitive-canvas);
+  border-color: var(--primitive-red);
+  color: var(--primitive-red);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primitive-red) 18%, transparent);
+}
+
+.stepLabel {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.stepActive .stepLabel,
+.stepDone .stepLabel {
+  color: var(--primitive-text-strong);
+}
+
+.subkicker {
+  display: block;
+  margin-bottom: var(--primitive-space-2);
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.reviewerList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--primitive-space-1-5);
+}
+
+.reviewerRow {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: var(--primitive-space-2-5);
+  padding: var(--primitive-space-2) var(--primitive-space-2-5);
+  border-radius: 10px;
+  border: 1px solid var(--primitive-line);
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.reviewerInfo {
+  display: grid;
+  gap: var(--primitive-space-0-5);
+  min-width: 0;
+}
+
+.reviewerName {
+  font-size: 12.5px;
+  color: var(--primitive-text-strong);
+  font-weight: 500;
+}
+
+.reviewerStep {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primitive-muted);
+}
+
+.threadList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--primitive-space-2-5);
+}
+
+.comment {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: var(--primitive-space-2-5);
+}
+
+.commentBody {
+  display: grid;
+  gap: var(--primitive-space-1);
+  padding: var(--primitive-space-2-5) var(--primitive-space-3);
+  border: 1px solid var(--primitive-line);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primitive-text-strong) 3%, transparent);
+}
+
+.commentMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--primitive-space-2-5);
+}
+
+.commentAuthor {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--primitive-text-strong);
+}
+
+.commentTime {
+  font-family: var(--primitive-font-mono);
+  font-size: var(--primitive-text-2xs);
+  letter-spacing: 0.12em;
+  color: var(--primitive-muted);
+}
+
+.commentText {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--primitive-body);
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stepDot,
+  .step + .step::before {
+    transition: none;
+  }
+}
