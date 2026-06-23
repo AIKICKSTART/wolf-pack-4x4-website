@@ -74,10 +74,10 @@ const vehicleCategories = new Set<WolfpackStoreCategory>([
 
 function imageSet(id: string): Record<WolfpackStoreView, string> {
   return {
-    front: `/media/wolfpack/store/${id}-front.png`,
-    back: `/media/wolfpack/store/${id}-back.png`,
-    side: `/media/wolfpack/store/${id}-side.png`,
-    detail: `/media/wolfpack/store/${id}-detail.png`,
+    front: `/media/wolfpack/store/${id}-front.webp`,
+    back: `/media/wolfpack/store/${id}-back.webp`,
+    side: `/media/wolfpack/store/${id}-side.webp`,
+    detail: `/media/wolfpack/store/${id}-detail.webp`,
   }
 }
 
@@ -132,21 +132,21 @@ export const wolfpackStoreHeroes: readonly WolfpackStoreHero[] = [
     id: "full-drop",
     title: "Full Wolfpack Drop",
     kicker: "Apparel, camp gear and 4x4 accessories",
-    src: "/media/wolfpack/store/heroes/wolfpack-store-master-hero.png",
+    src: "/media/wolfpack/store/heroes/wolfpack-store-master-hero.webp",
     alt: "Wolfpack 4x4 apparel, camp gear and performance accessories arranged in a dark workshop",
   },
   {
     id: "apparel-line",
     title: "Clothing Line",
     kicker: "Every garment gets its own Wolfpack artwork",
-    src: "/media/wolfpack/store/heroes/wolfpack-apparel-line-hero.png",
+    src: "/media/wolfpack/store/heroes/wolfpack-apparel-line-hero.webp",
     alt: "Wolfpack 4x4 clothing line with t-shirts, jackets, hoodie, hats and socks",
   },
   {
     id: "accessory-fitment",
     title: "4x4 Accessory Concepts",
     kicker: "Australian 4WD fitment visuals",
-    src: "/media/wolfpack/store/heroes/wolfpack-accessories-vehicle-hero.png",
+    src: "/media/wolfpack/store/heroes/wolfpack-accessories-vehicle-hero.webp",
     alt: "Wolfpack 4x4 performance accessories staged with Australian 4WD vehicles",
   },
 ]

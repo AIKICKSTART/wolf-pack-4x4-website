@@ -285,7 +285,7 @@ export const DEMO_VERSIONS: ReadonlyArray<FileVersion> = [
 export const DEMO_MEDIA: ReadonlyArray<MediaAsset> = [
   {
     id: "m-1",
-    src: "/media/mufflermen-logo.png",
+    src: "/media/mufflermen-logo.webp",
     name: "Mufflermen — workshop mark",
     caption: "Master lockup used on every shopfront asset.",
     dimensions: { width: 1200, height: 800 },
@@ -296,7 +296,7 @@ export const DEMO_MEDIA: ReadonlyArray<MediaAsset> = [
   },
   {
     id: "m-2",
-    src: "/media/brand/mufflermen-logo-icon-512.png",
+    src: "/media/brand/mufflermen-logo-icon-512.webp",
     name: "Mufflermen — icon mark",
     caption: "Stand-alone icon used as profile + favicon.",
     dimensions: { width: 512, height: 512 },
@@ -307,7 +307,7 @@ export const DEMO_MEDIA: ReadonlyArray<MediaAsset> = [
   },
   {
     id: "m-3",
-    src: "/media/mufflermen-logo.png",
+    src: "/media/mufflermen-logo.webp",
     name: "Mufflermen — alt crop",
     caption: "Reserved framing for square placements.",
     dimensions: { width: 800, height: 800 },

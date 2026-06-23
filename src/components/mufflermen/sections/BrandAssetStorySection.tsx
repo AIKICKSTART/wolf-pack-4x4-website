@@ -11,7 +11,7 @@ export function BrandAssetStorySection() {
     {
       title: "Protection and recovery",
       label: "Bull bar ready",
-      path: "/media/wolfpack/wolfpack-logo-transparent.png",
+      path: "/media/wolfpack/wolfpack-logo-transparent.webp",
       body: "Show customers how protection, winches and recovery gear fit into the full vehicle plan.",
     },
     {

@@ -37,7 +37,7 @@ export const productLinks = [
     cta: "View vehicle gallery",
     description: "Badged Australian 4x4 model visuals with the Wolfpack black, blue and purple wrap direction.",
     href: "/gallery",
-    image: "/media/wolfpack/vehicles/ford-ranger-raptor-wolfpack.png",
+    image: "/media/wolfpack/vehicles/ford-ranger-raptor-wolfpack.webp",
     imageAlt: "Ford Ranger Raptor with Ford badge and Wolfpack wrap",
     imageTitle: "Australian performance 4x4 visuals | Wolfpack 4x4",
     proof: "Ranger Raptor, HiLux GR Sport, Patrol Warrior, D-MAX Blade, Triton GSR and LandCruiser 79.",
@@ -47,7 +47,7 @@ export const productLinks = [
     cta: "View clothing range",
     description: "Wolfpack shirts, jackets, hats, socks and country-ready merch in a dedicated product page.",
     href: "/products/clothing",
-    image: "/media/wolfpack/store/founding-pack-technical-tee-front.png",
+    image: "/media/wolfpack/store/founding-pack-technical-tee-front.webp",
     imageAlt: "Founding Pack Technical Tee front product render",
     imageTitle: "Wolfpack clothing and apparel | Wolfpack 4x4",
     proof: "Apparel is now grouped under Products with front, back, side and detail images.",
@@ -57,7 +57,7 @@ export const productLinks = [
     cta: "Check suspension fitment",
     description: "Lift kits, shocks, springs and support parts for touring, towing and work utes.",
     href: "/parts/category/suspension-4x4-parts",
-    image: "/media/wolfpack/store/suspension-lift-kit-front.png",
+    image: "/media/wolfpack/store/suspension-lift-kit-front.webp",
     imageAlt: "Wolfpack suspension lift kit product render",
     imageTitle: "4x4 suspension parts | Wolfpack 4x4",
     proof: "Lift and load support planned before parts are ordered.",
@@ -67,7 +67,7 @@ export const productLinks = [
     cta: "Plan towing support",
     description: "Tow, load and touring accessories for utes, caravans and work vehicles.",
     href: "/parts/category/towing-4x4-accessories",
-    image: "/media/wolfpack/store/tow-hitch-kit-front.png",
+    image: "/media/wolfpack/store/tow-hitch-kit-front.webp",
     imageAlt: "Wolfpack tow hitch kit product render",
     imageTitle: "Towing 4x4 accessories | Wolfpack 4x4",
     proof: "Weight and towing needs checked before fitment.",
@@ -77,7 +77,7 @@ export const productLinks = [
     cta: "Choose lighting gear",
     description: "Driving lights, light bars and electrical support for road, trail and work use.",
     href: "/parts/category/4x4-lighting-accessories",
-    image: "/media/wolfpack/store/driving-light-pair-front.png",
+    image: "/media/wolfpack/store/driving-light-pair-front.webp",
     imageAlt: "Wolfpack driving light pair product render",
     imageTitle: "4x4 lighting accessories | Wolfpack 4x4",
     proof: "Mounting, switching and wiring considered together.",
@@ -87,7 +87,7 @@ export const productLinks = [
     cta: "Check engine-bay support",
     description: "Filters and engine-bay accessories for useful touring and drivability upgrades.",
     href: "/parts/category/filters-engine-bay-accessories",
-    image: "/media/wolfpack/store/air-intake-kit-front.png",
+    image: "/media/wolfpack/store/air-intake-kit-front.webp",
     imageAlt: "Wolfpack cold air intake kit product render",
     imageTitle: "Engine bay 4x4 accessories | Wolfpack 4x4",
     proof: "Support parts matched to the vehicle and use case.",
@@ -97,7 +97,7 @@ export const productLinks = [
     cta: "Ask about ECU pairing",
     description: "Performance chips, ECU support and drivability planning for 4x4 builds.",
     href: "/parts/category/performance-chips-ecu-remaps",
-    image: "/media/wolfpack/store/throttle-controller-front.png",
+    image: "/media/wolfpack/store/throttle-controller-front.webp",
     imageAlt: "Wolfpack throttle controller product render",
     imageTitle: "4x4 performance chips | Wolfpack 4x4",
     proof: "Performance support planned around towing and touring use.",
@@ -107,7 +107,7 @@ export const productLinks = [
     cta: "Plan intake support",
     description: "Cold-air induction systems selected around the vehicle and 4x4 goal.",
     href: "/parts/category/cold-air-induction",
-    image: "/media/wolfpack/store/snorkel-kit-front.png",
+    image: "/media/wolfpack/store/snorkel-kit-front.webp",
     imageAlt: "Cold air induction kit with filter, couplers and intake piping on a workshop bench",
     imageTitle: "4x4 air intake systems | Wolfpack 4x4",
     proof: "Intake options matched to the vehicle and build goal.",
@@ -117,22 +117,22 @@ export const productLinks = [
 
 const wolfpackProofAssets = [
   {
-    path: "/media/wolfpack/vehicles/ford-ranger-raptor-wolfpack.png",
+    path: "/media/wolfpack/vehicles/ford-ranger-raptor-wolfpack.webp",
     label: "Ford Ranger Raptor",
     title: "Badged Raptor platform with Wolfpack wrap",
   },
   {
-    path: "/media/wolfpack/vehicles/toyota-hilux-gr-sport-wolfpack.png",
+    path: "/media/wolfpack/vehicles/toyota-hilux-gr-sport-wolfpack.webp",
     label: "Toyota HiLux GR Sport",
     title: "Toyota badge and GR Sport cues kept visible",
   },
   {
-    path: "/media/wolfpack/vehicles/nissan-patrol-warrior-wolfpack.png",
+    path: "/media/wolfpack/vehicles/nissan-patrol-warrior-wolfpack.webp",
     label: "Nissan Patrol Warrior",
     title: "Nissan and Warrior identity under Wolfpack graphics",
   },
   {
-    path: "/media/wolfpack/merch/founding-wolfpack-shirt.png",
+    path: "/media/wolfpack/merch/founding-wolfpack-shirt.webp",
     label: "Founding shirt",
     title: "Founding Wolfpack merch concept",
   },
@@ -329,7 +329,7 @@ export function AboutUsPublicPage({
         </div>
         <div className="public-image-card">
           <Image
-            src="/media/wolfpack/wolfpack-mascot-service-shirt.png"
+            src="/media/wolfpack/wolfpack-mascot-service-shirt.webp"
             alt="Wolfpack 4x4 mascot wearing a button-up workshop service shirt"
             width={900}
             height={900}
@@ -350,7 +350,7 @@ export function AboutUsPublicPage({
             {index === 0 ? (
               <div className="about-team-portrait">
                 <Image
-                  src="/media/wolfpack/wolfpack-logo-transparent.png"
+                  src="/media/wolfpack/wolfpack-logo-transparent.webp"
                   alt="Wolfpack 4x4 mascot and technical brand artwork"
                   width={720}
                   height={720}
@@ -536,7 +536,7 @@ export function GalleryPublicPage({
   })
   const cover = overrideCover(contentOverride, {
     alt: "Ford Ranger Raptor side view with Wolfpack black blue purple wrap",
-    src: "/media/wolfpack/vehicles/views/ford-ranger-raptor-side.png",
+    src: "/media/wolfpack/vehicles/views/ford-ranger-raptor-side.webp",
   })
   return (
     <CmsPageShell settings={settings}>

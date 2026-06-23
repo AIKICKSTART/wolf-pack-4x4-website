@@ -5,7 +5,7 @@ export function BrandLogo() {
   return (
     <img
       alt="Wolfpack 4x4"
-      src="/media/wolfpack/wolfpack-logo-transparent.png"
+      src="/media/wolfpack/wolfpack-logo-transparent.webp"
       style={{ height: "auto", width: 220 }}
     />
   );

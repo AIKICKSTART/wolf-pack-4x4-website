@@ -39,49 +39,49 @@ export const services = [
     title: "Suspension and lift kits",
     description:
       "Lift kits, shocks, springs and suspension packages selected around how the 4x4 is loaded, towed and driven.",
-    image: "/media/wolfpack/services/suspension-lift-kits.png",
+    image: "/media/wolfpack/services/suspension-lift-kits.webp",
   },
   {
     title: "Bull bars and vehicle protection",
     description:
       "Bull bars, side steps, underbody protection and front-end accessories fitted for touring, work utes and weekend tracks.",
-    image: "/media/wolfpack/services/bull-bars-protection.png",
+    image: "/media/wolfpack/services/bull-bars-protection.webp",
   },
   {
     title: "Winches and recovery gear",
     description:
       "Winches, recovery points, straps, boards and practical recovery setup advice before the vehicle leaves the workshop.",
-    image: "/media/wolfpack/services/winches-recovery-gear.png",
+    image: "/media/wolfpack/services/winches-recovery-gear.webp",
   },
   {
     title: "4x4 lighting and electrical",
     description:
       "Driving lights, light bars, dual battery support, power management and touring electrical upgrades.",
-    image: "/media/wolfpack/services/4x4-lighting-electrical.png",
+    image: "/media/wolfpack/services/4x4-lighting-electrical.webp",
   },
   {
     title: "Canopies, racks and storage",
     description:
       "Canopies, roof racks, drawer systems and storage accessories planned around payload, access and real trip use.",
-    image: "/media/wolfpack/services/canopies-roof-racks-storage.png",
+    image: "/media/wolfpack/services/canopies-roof-racks-storage.webp",
   },
   {
     title: "Performance 4x4 upgrades",
     description:
       "Breathing, intake, tuning-support and drivability upgrades for utes and 4WDs that need stronger response.",
-    image: "/media/wolfpack/services/performance-4x4-upgrades.png",
+    image: "/media/wolfpack/services/performance-4x4-upgrades.webp",
   },
   {
     title: "Towing and touring packages",
     description:
       "Towbar, brake, wiring and load-carrying advice for work vehicles, family tourers and caravan setups.",
-    image: "/media/wolfpack/services/towing-gvm-upgrades.png",
+    image: "/media/wolfpack/services/towing-gvm-upgrades.webp",
   },
   {
     title: "4x4 parts and accessories",
     description:
       "Workshop-supported parts lookup for suspension, towing, lighting, protection, recovery and touring gear.",
-    image: "/media/wolfpack/services/4x4-parts-accessories.png",
+    image: "/media/wolfpack/services/4x4-parts-accessories.webp",
   },
 ]
 
@@ -133,19 +133,19 @@ export const vehicleGalleryVehicles = [
       {
         key: "front",
         label: "Front",
-        src: "/media/wolfpack/vehicles/views/ford-ranger-raptor-front.png",
+        src: "/media/wolfpack/vehicles/views/ford-ranger-raptor-front.webp",
         alt: "Front view of a Ford Ranger Raptor with Ford badge and Wolfpack black blue purple wrap",
       },
       {
         key: "side",
         label: "Side",
-        src: "/media/wolfpack/vehicles/views/ford-ranger-raptor-side.png",
+        src: "/media/wolfpack/vehicles/views/ford-ranger-raptor-side.webp",
         alt: "Side view of a Ford Ranger Raptor with Wolfpack black blue purple wrap",
       },
       {
         key: "back",
         label: "Back",
-        src: "/media/wolfpack/vehicles/views/ford-ranger-raptor-back.png",
+        src: "/media/wolfpack/vehicles/views/ford-ranger-raptor-back.webp",
         alt: "Back view of a Ford Ranger Raptor with Ford badge and Wolfpack black blue purple wrap",
       },
     ],
@@ -160,19 +160,19 @@ export const vehicleGalleryVehicles = [
       {
         key: "front",
         label: "Front",
-        src: "/media/wolfpack/vehicles/views/toyota-hilux-gr-sport-front.png",
+        src: "/media/wolfpack/vehicles/views/toyota-hilux-gr-sport-front.webp",
         alt: "Front view of a Toyota HiLux GR Sport with Toyota badge and Wolfpack wrap",
       },
       {
         key: "side",
         label: "Side",
-        src: "/media/wolfpack/vehicles/views/toyota-hilux-gr-sport-side.png",
+        src: "/media/wolfpack/vehicles/views/toyota-hilux-gr-sport-side.webp",
         alt: "Side view of a Toyota HiLux GR Sport with Wolfpack wrap",
       },
       {
         key: "back",
         label: "Back",
-        src: "/media/wolfpack/vehicles/views/toyota-hilux-gr-sport-back.png",
+        src: "/media/wolfpack/vehicles/views/toyota-hilux-gr-sport-back.webp",
         alt: "Back view of a Toyota HiLux GR Sport with Toyota badge and Wolfpack wrap",
       },
     ],
@@ -187,19 +187,19 @@ export const vehicleGalleryVehicles = [
       {
         key: "front",
         label: "Front",
-        src: "/media/wolfpack/vehicles/views/nissan-patrol-warrior-front.png",
+        src: "/media/wolfpack/vehicles/views/nissan-patrol-warrior-front.webp",
         alt: "Front view of a Nissan Patrol Warrior with Nissan badge and Wolfpack wrap",
       },
       {
         key: "side",
         label: "Side",
-        src: "/media/wolfpack/vehicles/views/nissan-patrol-warrior-side.png",
+        src: "/media/wolfpack/vehicles/views/nissan-patrol-warrior-side.webp",
         alt: "Side view of a Nissan Patrol Warrior with Wolfpack wrap",
       },
       {
         key: "back",
         label: "Back",
-        src: "/media/wolfpack/vehicles/views/nissan-patrol-warrior-back.png",
+        src: "/media/wolfpack/vehicles/views/nissan-patrol-warrior-back.webp",
         alt: "Back view of a Nissan Patrol Warrior with Nissan badge and Wolfpack wrap",
       },
     ],
@@ -214,19 +214,19 @@ export const vehicleGalleryVehicles = [
       {
         key: "front",
         label: "Front",
-        src: "/media/wolfpack/vehicles/views/isuzu-dmax-blade-front.png",
+        src: "/media/wolfpack/vehicles/views/isuzu-dmax-blade-front.webp",
         alt: "Front view of an Isuzu D-MAX Blade with Isuzu badge and Wolfpack wrap",
       },
       {
         key: "side",
         label: "Side",
-        src: "/media/wolfpack/vehicles/views/isuzu-dmax-blade-side.png",
+        src: "/media/wolfpack/vehicles/views/isuzu-dmax-blade-side.webp",
         alt: "Side view of an Isuzu D-MAX Blade with Wolfpack wrap",
       },
       {
         key: "back",
         label: "Back",
-        src: "/media/wolfpack/vehicles/views/isuzu-dmax-blade-back.png",
+        src: "/media/wolfpack/vehicles/views/isuzu-dmax-blade-back.webp",
         alt: "Back view of an Isuzu D-MAX Blade with Isuzu badge and Wolfpack wrap",
       },
     ],
@@ -241,19 +241,19 @@ export const vehicleGalleryVehicles = [
       {
         key: "front",
         label: "Front",
-        src: "/media/wolfpack/vehicles/views/mitsubishi-triton-gsr-front.png",
+        src: "/media/wolfpack/vehicles/views/mitsubishi-triton-gsr-front.webp",
         alt: "Front view of a Mitsubishi Triton GSR with Mitsubishi badge and Wolfpack wrap",
       },
       {
         key: "side",
         label: "Side",
-        src: "/media/wolfpack/vehicles/views/mitsubishi-triton-gsr-side.png",
+        src: "/media/wolfpack/vehicles/views/mitsubishi-triton-gsr-side.webp",
         alt: "Side view of a Mitsubishi Triton GSR with Wolfpack wrap",
       },
       {
         key: "back",
         label: "Back",
-        src: "/media/wolfpack/vehicles/views/mitsubishi-triton-gsr-back.png",
+        src: "/media/wolfpack/vehicles/views/mitsubishi-triton-gsr-back.webp",
         alt: "Back view of a Mitsubishi Triton GSR with Mitsubishi badge and Wolfpack wrap",
       },
     ],
@@ -268,19 +268,19 @@ export const vehicleGalleryVehicles = [
       {
         key: "front",
         label: "Front",
-        src: "/media/wolfpack/vehicles/views/toyota-landcruiser-79-front.png",
+        src: "/media/wolfpack/vehicles/views/toyota-landcruiser-79-front.webp",
         alt: "Front view of a Toyota LandCruiser 79 with Toyota badge and Wolfpack wrap",
       },
       {
         key: "side",
         label: "Side",
-        src: "/media/wolfpack/vehicles/views/toyota-landcruiser-79-side.png",
+        src: "/media/wolfpack/vehicles/views/toyota-landcruiser-79-side.webp",
         alt: "Side view of a Toyota LandCruiser 79 with Wolfpack wrap",
       },
       {
         key: "back",
         label: "Back",
-        src: "/media/wolfpack/vehicles/views/toyota-landcruiser-79-back.png",
+        src: "/media/wolfpack/vehicles/views/toyota-landcruiser-79-back.webp",
         alt: "Back view of a Toyota LandCruiser 79 with Toyota badge and Wolfpack wrap",
       },
     ],

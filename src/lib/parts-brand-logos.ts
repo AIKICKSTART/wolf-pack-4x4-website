@@ -13,14 +13,14 @@ export type PartsBrandLogo = {
 }
 
 export function getPartsBrandLogoThemeSrc(logo: Pick<PartsBrandLogo, "id">, theme: PartsBrandLogoTheme) {
-  return `/media/parts/brand-logos/${theme}/${logo.id}.png`
+  return `/media/parts/brand-logos/${theme}/${logo.id}.webp`
 }
 
 export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "manta",
     name: "Manta",
-    src: "/media/parts/brand-logos/manta.png",
+    src: "/media/parts/brand-logos/manta.webp",
     sourcePage: "https://www.mantapro.com.au/",
     sourceAsset: "https://www.pngkey.com/png/full/94-945308_manta-exhaust-logo-exhaust-system.png",
     sourceType: "PNG",
@@ -30,7 +30,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "mpi-automotive",
     name: "MPI Automotive",
-    src: "/media/parts/brand-logos/mpi-automotive.png",
+    src: "/media/parts/brand-logos/mpi-automotive.webp",
     sourcePage: "https://www.mpiautomotive.com/",
     sourceAsset: "https://www.mpiautomotive.com/media/logo/default/MPI_Automotive_logo_1.png",
     sourceType: "PNG",
@@ -40,7 +40,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "redback",
     name: "Redback",
-    src: "/media/parts/brand-logos/redback.png",
+    src: "/media/parts/brand-logos/redback.webp",
     sourcePage: "https://redbackexhausts.com.au/",
     sourceAsset: "https://redbackexhausts.com.au/cdn/shop/files/redback-shopify-logo_8a8683ad-d308-400a-9bc8-c7b4ce8e6c0f.png?v=1632092062",
     sourceType: "PNG",
@@ -50,7 +50,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "xforce",
     name: "XForce",
-    src: "/media/parts/brand-logos/xforce.png",
+    src: "/media/parts/brand-logos/xforce.webp",
     sourcePage: "https://xforce.com.au/",
     sourceAsset: "https://xforce.com.au/cdn/shop/files/Xforce_Logo_Final_Black.png?v=1738295489",
     sourceType: "PNG",
@@ -60,7 +60,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "pacemaker",
     name: "Pacemaker",
-    src: "/media/parts/brand-logos/pacemaker.png",
+    src: "/media/parts/brand-logos/pacemaker.webp",
     sourcePage: "https://pacemaker.com.au/",
     sourceAsset: "https://cdn.shopify.com/s/files/1/0649/4761/8049/files/Pacemaker_Logo.svg?v=1676928427",
     sourceType: "SVG",
@@ -70,7 +70,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "lukey",
     name: "Lukey",
-    src: "/media/parts/brand-logos/lukey.png",
+    src: "/media/parts/brand-logos/lukey.webp",
     sourcePage: "https://swd.com.au/",
     sourceAsset: "https://swd.com.au/cdn/shop/collections/lukey-logo.svg?v=1702985639&width=300",
     sourceType: "SVG",
@@ -80,7 +80,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "tag",
     name: "TAG",
-    src: "/media/parts/brand-logos/tag.png",
+    src: "/media/parts/brand-logos/tag.webp",
     sourcePage: "https://www.tagtowbars.com.au/",
     sourceAsset: "https://www.tagtowbars.com.au/cdn/shop/files/tag-web-logo-badge_stkr.png?v=1632103119",
     sourceType: "PNG",
@@ -90,7 +90,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "exhaust-systems-australia",
     name: "Exhaust Systems Australia",
-    src: "/media/parts/brand-logos/exhaust-systems-australia.png",
+    src: "/media/parts/brand-logos/exhaust-systems-australia.webp",
     sourcePage: "https://exhaustsystemsaustralia.com.au/",
     sourceAsset: "https://exhaustsystemsaustralia.com.au/cdn/shop/files/ExhaustSystemsAustralia-Logo.png?v=1706051626&width=760",
     sourceType: "PNG",
@@ -100,7 +100,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "swd",
     name: "SWD",
-    src: "/media/parts/brand-logos/swd.png",
+    src: "/media/parts/brand-logos/swd.webp",
     sourcePage: "https://swd.com.au/",
     sourceAsset: "https://swd.com.au/cdn/shop/files/swd_logo_assembly_877x.jpg?v=1628041749",
     sourceType: "JPG",
@@ -110,7 +110,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "csc-parts",
     name: "CSC Parts",
-    src: "/media/parts/brand-logos/csc-parts.png",
+    src: "/media/parts/brand-logos/csc-parts.webp",
     sourcePage: "https://cscparts.com.au/",
     sourceAsset: "https://cscparts.com.au/wp-content/uploads/2023/10/CSC-Group-Australia-Minimal-Logo.svg",
     sourceType: "SVG",
@@ -120,7 +120,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "silverback-armour",
     name: "Silverback Armour",
-    src: "/media/parts/brand-logos/silverback-armour.png",
+    src: "/media/parts/brand-logos/silverback-armour.webp",
     sourcePage: "https://silverbackarmour.com.au/",
     sourceAsset: "https://silverbackarmour.com.au/assets/images/Silverback-Armour-Logo.svg",
     sourceType: "SVG",
@@ -130,7 +130,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "flowtech-advantage",
     name: "Flowtech Advantage",
-    src: "/media/parts/brand-logos/flowtech-advantage.png",
+    src: "/media/parts/brand-logos/flowtech-advantage.webp",
     sourcePage: "https://flowtechadvantage.com.au/about-us/",
     sourceAsset: "https://flowtechadvantage.com.au/wp-content/uploads/2022/11/Flowtech-Advantage-White-Logo.svg",
     sourceType: "SVG",
@@ -140,7 +140,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "brink",
     name: "Brink",
-    src: "/media/parts/brand-logos/brink.png",
+    src: "/media/parts/brand-logos/brink.webp",
     sourcePage: "https://swd.com.au/collections/brink",
     sourceAsset: "https://swd.com.au/cdn/shop/collections/brink-logo.svg?v=1702985674",
     sourceType: "SVG",
@@ -150,7 +150,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "husky-performance",
     name: "Husky Performance",
-    src: "/media/parts/brand-logos/husky-performance.png",
+    src: "/media/parts/brand-logos/husky-performance.webp",
     sourcePage: "https://www.cscgroup.com.au/",
     sourceAsset: "https://www.cscgroup.com.au/wp-content/uploads/2022/10/husky-by-CSC-Group-Australia-300x225.png",
     sourceType: "PNG",
@@ -160,7 +160,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "thermal-armour",
     name: "Thermal Armour",
-    src: "/media/parts/brand-logos/thermal-armour.png",
+    src: "/media/parts/brand-logos/thermal-armour.webp",
     sourcePage: "https://www.cscgroup.com.au/",
     sourceAsset: "https://www.cscgroup.com.au/wp-content/uploads/2022/10/Thermal-Armour-logo-in-white-300x225.png",
     sourceType: "PNG",
@@ -170,7 +170,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "blue-diamond",
     name: "Blue Diamond",
-    src: "/media/parts/brand-logos/blue-diamond.png",
+    src: "/media/parts/brand-logos/blue-diamond.webp",
     sourcePage: "https://cscparts.com.au/brand/blue-diamond/",
     sourceAsset: "https://cscparts.com.au/wp-content/uploads/2025/06/Menu-Blue-Diamond.png",
     sourceType: "PNG",
@@ -180,7 +180,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "mission-euro",
     name: "Mission Euro",
-    src: "/media/parts/brand-logos/mission-euro.png",
+    src: "/media/parts/brand-logos/mission-euro.webp",
     sourcePage: "https://www.missioneuro.com.au/",
     sourceAsset: "https://www.missioneuro.com.au/wp-content/uploads/2025/04/Mission-Euro-horizontal-v2-01.svg",
     sourceType: "SVG",
@@ -190,7 +190,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "raw-4x4",
     name: "RAW 4x4",
-    src: "/media/parts/brand-logos/raw-4x4.png",
+    src: "/media/parts/brand-logos/raw-4x4.webp",
     sourcePage: "https://raw4x4.com.au/",
     sourceAsset: "https://raw4x4.com.au/wp-content/uploads/2024/04/Black-Claws-Suspension-Equip-logo_Scratch-Marks_1000x500mm.png",
     sourceType: "PNG",
@@ -200,7 +200,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "radius-fabrications",
     name: "Radius Fabrications",
-    src: "/media/parts/brand-logos/radius-fabrications.png",
+    src: "/media/parts/brand-logos/radius-fabrications.webp",
     sourcePage: "https://radiusfabrications.com.au/",
     sourceAsset: "https://radiusfabrications.com.au/cdn/shop/files/radius-fabrications.jpg?v=1705377588&width=800",
     sourceType: "JPG",
@@ -210,7 +210,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "kc-hilites",
     name: "KC HiLiTES",
-    src: "/media/parts/brand-logos/kc-hilites.png",
+    src: "/media/parts/brand-logos/kc-hilites.webp",
     sourcePage: "https://radiusfabrications.com.au/collections/kc-hilites",
     sourceAsset: "https://radiusfabrications.com.au/cdn/shop/collections/KCHiLites.Logo__53126.1562980871.webp?v=1730680746",
     sourceType: "WEBP",
@@ -220,7 +220,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "cross-country-4x4",
     name: "Cross Country 4x4",
-    src: "/media/parts/brand-logos/cross-country-4x4.png",
+    src: "/media/parts/brand-logos/cross-country-4x4.webp",
     sourcePage: "https://crosscountry4x4.com.au/",
     sourceAsset: "https://crosscountry4x4.com.au/wp-content/uploads/2023/03/logo.png",
     sourceType: "PNG",
@@ -230,7 +230,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "gen-y-hitch",
     name: "GEN-Y Hitch",
-    src: "/media/parts/brand-logos/gen-y-hitch.png",
+    src: "/media/parts/brand-logos/gen-y-hitch.webp",
     sourcePage: "https://genyhitch.com.au/",
     sourceAsset: "https://genyhitch.com.au/cdn/shop/files/new-geny-logo.png?v=1658972187&width=1200",
     sourceType: "PNG",
@@ -240,7 +240,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "erich-jaeger",
     name: "Erich Jaeger",
-    src: "/media/parts/brand-logos/erich-jaeger.png",
+    src: "/media/parts/brand-logos/erich-jaeger.webp",
     sourcePage: "https://www.erich-jaeger.com/en/company",
     sourceAsset: "https://www.erich-jaeger.com/_assets/55402c888ca2a1fbc7e9ae6dcb816da2/Images/Erich-Jaeger-Logo_2024.svg",
     sourceType: "SVG",
@@ -250,7 +250,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "safari",
     name: "Safari 4x4",
-    src: "/media/parts/brand-logos/safari.png",
+    src: "/media/parts/brand-logos/safari.webp",
     sourcePage: "https://safari4x4.com.au/",
     sourceAsset: "https://safari4x4.com.au/ts1687840284/attachments/CmsSetting/5/safari_logo_white.png",
     sourceType: "WEBP",
@@ -260,7 +260,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "ultimate9",
     name: "Ultimate9",
-    src: "/media/parts/brand-logos/ultimate9.png",
+    src: "/media/parts/brand-logos/ultimate9.webp",
     sourcePage: "https://www.ultimate9.co/au/",
     sourceAsset: "https://www.ultimate9.co/static/version1779848142/frontend/Ultimate/default/en_AU/images/logo.svg",
     sourceType: "SVG",
@@ -270,7 +270,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "curt",
     name: "CURT",
-    src: "/media/parts/brand-logos/curt.png",
+    src: "/media/parts/brand-logos/curt.webp",
     sourcePage: "https://www.curtmfg.com/",
     sourceAsset: "https://www.curtmfg.com/media/images/top-nav-logos/curt-logo.svg",
     sourceType: "SVG",
@@ -280,7 +280,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "ultibend",
     name: "UltiBend",
-    src: "/media/parts/brand-logos/ultibend.png",
+    src: "/media/parts/brand-logos/ultibend.webp",
     sourcePage: "https://swd.com.au/collections/ultibend",
     sourceAsset: "https://swd.com.au/cdn/shop/collections/ultibend-logo.svg?v=1702986105",
     sourceType: "SVG",
@@ -290,7 +290,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "xtraseal",
     name: "Xtraseal",
-    src: "/media/parts/brand-logos/xtraseal.png",
+    src: "/media/parts/brand-logos/xtraseal.webp",
     sourcePage: "https://swd.com.au/collections/xtraseal",
     sourceAsset: "https://swd.com.au/cdn/shop/collections/xtraseal_logo.png?v=1702986694",
     sourceType: "PNG",
@@ -300,7 +300,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "torca",
     name: "Torca",
-    src: "/media/parts/brand-logos/torca.png",
+    src: "/media/parts/brand-logos/torca.webp",
     sourcePage: "https://www.normaamericasds.com/product/torca-torctite-exhaust-clamp",
     sourceAsset: "https://www.normaamericasds.com/sites/default/files/2019-06/Torca-small-blue.png",
     sourceType: "PNG",
@@ -310,7 +310,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "roadbase",
     name: "RoadBase",
-    src: "/media/parts/brand-logos/roadbase.png",
+    src: "/media/parts/brand-logos/roadbase.webp",
     sourcePage: "https://cscparts.com.au/brand/roadbase/",
     sourceAsset: "https://cscparts.com.au/wp-content/uploads/2026/03/Roadbase-logo.png",
     sourceType: "PNG",
@@ -320,7 +320,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "dinex",
     name: "DINEX",
-    src: "/media/parts/brand-logos/dinex.png",
+    src: "/media/parts/brand-logos/dinex.webp",
     sourcePage: "https://www.dinex.eu/",
     sourceAsset: "https://www.dinex.eu/img/dinex.svg",
     sourceType: "SVG",
@@ -330,7 +330,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "wombat",
     name: "Wombat",
-    src: "/media/parts/brand-logos/wombat.png",
+    src: "/media/parts/brand-logos/wombat.webp",
     sourcePage: "https://cscparts.com.au/brand/wombat/",
     sourceAsset: "https://cscparts.com.au/wp-content/uploads/2026/03/Wombat-logo.png",
     sourceType: "PNG",
@@ -340,7 +340,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "ufi-filters",
     name: "UFI Filters",
-    src: "/media/parts/brand-logos/ufi-filters.png",
+    src: "/media/parts/brand-logos/ufi-filters.webp",
     sourcePage: "https://www.ufifilters.com/",
     sourceAsset: "https://www.ufifilters.com/wp-content/uploads/2020/03/loghi-testata.png",
     sourceType: "PNG",
@@ -350,7 +350,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "diode-dynamics",
     name: "Diode Dynamics",
-    src: "/media/parts/brand-logos/diode-dynamics.png",
+    src: "/media/parts/brand-logos/diode-dynamics.webp",
     sourcePage: "https://www.diodedynamics.com/",
     sourceAsset: "https://www.diodedynamics.com/",
     sourceType: "SVG",
@@ -360,7 +360,7 @@ export const partsBrandLogos: readonly PartsBrandLogo[] = [
   {
     id: "infinite-rule",
     name: "Infinite Rule",
-    src: "/media/parts/brand-logos/infinite-rule.png",
+    src: "/media/parts/brand-logos/infinite-rule.webp",
     sourcePage: "https://infiniterule.com/",
     sourceAsset: "https://infiniterule.com/wp-content/uploads/2020/12/InfiniteRuleLogo.svg",
     sourceType: "SVG",

@@ -455,47 +455,47 @@ const servicesIndexSteps = [
 const serviceCardPhotos: Record<string, { alt: string; src: string; title: string }> = {
   "suspension-lift-kits": {
     alt: "Wolfpack 4x4 suspension and lift kit service card with full lifted ute and coilover components",
-    src: "/media/wolfpack/services/suspension-lift-kits.png",
+    src: "/media/wolfpack/services/suspension-lift-kits.webp",
     title: "Suspension and lift kits | Wolfpack 4x4",
   },
   "bull-bars-protection": {
     alt: "Wolfpack 4x4 bull bar and protection service card with full front bar assembly",
-    src: "/media/wolfpack/services/bull-bars-protection.png",
+    src: "/media/wolfpack/services/bull-bars-protection.webp",
     title: "Bull bars and protection | Wolfpack 4x4",
   },
   "winches-recovery-gear": {
     alt: "Wolfpack 4x4 winch and recovery gear service card with winch drum hook and recovery boards",
-    src: "/media/wolfpack/services/winches-recovery-gear.png",
+    src: "/media/wolfpack/services/winches-recovery-gear.webp",
     title: "Winches and recovery gear | Wolfpack 4x4",
   },
   "4x4-lighting-electrical": {
     alt: "Wolfpack 4x4 lighting and electrical service card with light bar driving lights and wiring",
-    src: "/media/wolfpack/services/4x4-lighting-electrical.png",
+    src: "/media/wolfpack/services/4x4-lighting-electrical.webp",
     title: "4x4 lighting and electrical | Wolfpack 4x4",
   },
   "dual-battery-systems": {
     alt: "Wolfpack 4x4 dual battery system service card with battery boxes charger and wiring",
-    src: "/media/wolfpack/services/dual-battery-systems.png",
+    src: "/media/wolfpack/services/dual-battery-systems.webp",
     title: "Dual battery systems | Wolfpack 4x4",
   },
   "canopies-roof-racks-storage": {
     alt: "Wolfpack 4x4 canopy roof rack and storage service card with ute canopy drawer and awning layout",
-    src: "/media/wolfpack/services/canopies-roof-racks-storage.png",
+    src: "/media/wolfpack/services/canopies-roof-racks-storage.webp",
     title: "Canopies roof racks and storage | Wolfpack 4x4",
   },
   "towing-gvm-upgrades": {
     alt: "Wolfpack 4x4 towing and GVM service card with tow hitch load support and rear ute stance",
-    src: "/media/wolfpack/services/towing-gvm-upgrades.png",
+    src: "/media/wolfpack/services/towing-gvm-upgrades.webp",
     title: "Towing and GVM support | Wolfpack 4x4",
   },
   "performance-4x4-upgrades": {
     alt: "Wolfpack 4x4 performance upgrade service card with snorkel intake and engine bay support parts",
-    src: "/media/wolfpack/services/performance-4x4-upgrades.png",
+    src: "/media/wolfpack/services/performance-4x4-upgrades.webp",
     title: "Performance 4x4 upgrades | Wolfpack 4x4",
   },
   "4x4-parts-accessories": {
     alt: "Wolfpack 4x4 parts and accessories service card with organised upgrade parts on a workshop bench",
-    src: "/media/wolfpack/services/4x4-parts-accessories.png",
+    src: "/media/wolfpack/services/4x4-parts-accessories.webp",
     title: "4x4 parts and accessories | Wolfpack 4x4",
   },
 }

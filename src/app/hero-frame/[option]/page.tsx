@@ -45,7 +45,7 @@ export default async function HeroFramePage({ params }: FramePageProps) {
       {renderHeroForOption({ option, component })}
       <Image
         className={styles.logo}
-        src="/media/wolfpack/wolfpack-logo-transparent.png"
+        src="/media/wolfpack/wolfpack-logo-transparent.webp"
         alt="Wolfpack 4x4"
         width={168}
         height={62}

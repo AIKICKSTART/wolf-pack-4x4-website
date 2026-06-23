@@ -51,7 +51,7 @@ async function productBlob(product: WolfpackStoreProduct, view: WolfpackStoreVie
   }
 
   const buffer = await readFile(imagePath)
-  return new Blob([buffer], { type: "image/png" })
+  return new Blob([buffer], { type: "image/webp" })
 }
 
 async function parseOpenAIError(response: Response) {
@@ -109,7 +109,7 @@ export async function POST(request: Request) {
   imageForm.append(
     "image",
     await productBlob(product, requestedView as WolfpackStoreView),
-    `${product.id}-${requestedView}.png`,
+    `${product.id}-${requestedView}.webp`,
   )
 
   const response = await fetch("https://api.openai.com/v1/images/edits", {

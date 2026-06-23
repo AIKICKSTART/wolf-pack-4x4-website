@@ -8,10 +8,10 @@ const wolfpackCollections = [
     proof: "Badged performance utes with Wolfpack wrap",
     status: "AU ute builds",
     badgeAction: "Raptor / GR Sport",
-    hero: "/media/wolfpack/vehicles/ford-ranger-raptor-wolfpack.png",
+    hero: "/media/wolfpack/vehicles/ford-ranger-raptor-wolfpack.webp",
     frames: [
-      { path: "/media/wolfpack/vehicles/toyota-hilux-gr-sport-wolfpack.png", title: "Toyota HiLux GR Sport concept" },
-      { path: "/media/wolfpack/merch/founding-wolfpack-shirt.png", title: "Founding Wolfpack shirt" },
+      { path: "/media/wolfpack/vehicles/toyota-hilux-gr-sport-wolfpack.webp", title: "Toyota HiLux GR Sport concept" },
+      { path: "/media/wolfpack/merch/founding-wolfpack-shirt.webp", title: "Founding Wolfpack shirt" },
     ],
   },
   {
@@ -21,10 +21,10 @@ const wolfpackCollections = [
     proof: "Touring platforms with OEM identity intact",
     status: "Touring builds",
     badgeAction: "Warrior / 79",
-    hero: "/media/wolfpack/vehicles/nissan-patrol-warrior-wolfpack.png",
+    hero: "/media/wolfpack/vehicles/nissan-patrol-warrior-wolfpack.webp",
     frames: [
-      { path: "/media/wolfpack/vehicles/toyota-landcruiser-79-wolfpack.png", title: "Toyota LandCruiser 79 concept" },
-      { path: "/media/wolfpack/wolfpack-logo-transparent.png", title: "Wolfpack 4x4 badge system" },
+      { path: "/media/wolfpack/vehicles/toyota-landcruiser-79-wolfpack.webp", title: "Toyota LandCruiser 79 concept" },
+      { path: "/media/wolfpack/wolfpack-logo-transparent.webp", title: "Wolfpack 4x4 badge system" },
     ],
   },
   {
@@ -34,9 +34,9 @@ const wolfpackCollections = [
     proof: "Work utes turned into Wolfpack builds",
     status: "Ute builds",
     badgeAction: "Blade / GSR",
-    hero: "/media/wolfpack/vehicles/isuzu-dmax-blade-wolfpack.png",
+    hero: "/media/wolfpack/vehicles/isuzu-dmax-blade-wolfpack.webp",
     frames: [
-      { path: "/media/wolfpack/vehicles/mitsubishi-triton-gsr-wolfpack.png", title: "Mitsubishi Triton GSR concept" },
+      { path: "/media/wolfpack/vehicles/mitsubishi-triton-gsr-wolfpack.webp", title: "Mitsubishi Triton GSR concept" },
       { path: "/media/wolfpack/wolfpack-mascot.png", title: "Technical Wolfpack mascot" },
     ],
   },

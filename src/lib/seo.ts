@@ -1350,7 +1350,7 @@ export function galleryPageJsonLd() {
         about: { "@id": `${siteUrl}/#business` },
         primaryImageOfPage: {
           "@type": "ImageObject",
-          url: absoluteUrl("/media/wolfpack/vehicles/views/ford-ranger-raptor-side.png"),
+          url: absoluteUrl("/media/wolfpack/vehicles/views/ford-ranger-raptor-side.webp"),
         },
         image: galleryImages.map((item) => ({
           "@type": "ImageObject",

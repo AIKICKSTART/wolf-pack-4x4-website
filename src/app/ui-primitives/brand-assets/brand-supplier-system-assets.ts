@@ -34,8 +34,8 @@ export const supplierSystemAssets: ReadonlyArray<SupplierSystemAsset> = [
     sourceReference: "HOLK128-178C-GTSR / VF HSV GTS-R LSA full-system mapping",
     allowedColor: "black",
     sourceLogos: [
-      "/media/parts/brand-logos/manta.png",
-      "/media/parts/brand-logos/mpi-automotive.png",
+      "/media/parts/brand-logos/manta.webp",
+      "/media/parts/brand-logos/mpi-automotive.webp",
     ],
     heroPath: "/media/brand/supplier-systems/hsv-gtsr-w1-manta-mpi/hero.webp",
     squarePath: "/media/brand/supplier-systems/hsv-gtsr-w1-manta-mpi/square.webp",
@@ -57,8 +57,8 @@ export const supplierSystemAssets: ReadonlyArray<SupplierSystemAsset> = [
     sourceReference: "MKFD0283 / Falcon XR-XT-XW-XY 302-351 V8 full-system mapping",
     allowedColor: "yellow",
     sourceLogos: [
-      "/media/parts/brand-logos/manta.png",
-      "/media/parts/brand-logos/mpi-automotive.png",
+      "/media/parts/brand-logos/manta.webp",
+      "/media/parts/brand-logos/mpi-automotive.webp",
     ],
     heroPath: "/media/brand/supplier-systems/ford-falcon-gt-ho-manta-mpi/hero.webp",
     squarePath: "/media/brand/supplier-systems/ford-falcon-gt-ho-manta-mpi/square.webp",
@@ -81,8 +81,8 @@ export const supplierSystemAssets: ReadonlyArray<SupplierSystemAsset> = [
     sourceReference: "ESSWVB22VKBK and SWD WRX/STI turbo-back catalogue mapping",
     allowedColor: "red",
     sourceLogos: [
-      "/media/parts/brand-logos/xforce.png",
-      "/media/parts/brand-logos/swd.png",
+      "/media/parts/brand-logos/xforce.webp",
+      "/media/parts/brand-logos/swd.webp",
     ],
     heroPath: "/media/brand/supplier-systems/subaru-wrx-xforce-swd/hero.webp",
     squarePath: "/media/brand/supplier-systems/subaru-wrx-xforce-swd/square.webp",
